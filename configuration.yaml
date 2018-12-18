@@ -50,6 +50,10 @@ telegram_bot:
       - !secret telegram_id_1
       - !secret telegram_id_2
 
+google:
+  client_id: !secret google_calendar_client_id
+  client_secret: !secret google_calendar_secret
+
 # Enables support for tracking state changes over time
 history:
 
