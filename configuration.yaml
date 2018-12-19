@@ -69,6 +69,7 @@ sun:
 weather:
   - platform: darksky
     api_key: !secret darksky_api_key
+    name: Dark Sky
 
 # Sensors
 sensor:
@@ -87,6 +88,7 @@ sensor:
       - precip_intensity
     update_interval: '00:30:00'
     language: de
+    name: Dark Sky Sensor
 
 # Text to speech
 tts:
