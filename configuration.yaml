@@ -14,7 +14,7 @@ homeassistant:
   customize: !include customize.yaml
 
 # Show links to resources in log and frontend
-introduction:
+#introduction:
 
 # Enables the frontend
 frontend:
@@ -66,10 +66,27 @@ map:
 # Track the sun
 sun:
 
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+
 # Sensors
 sensor:
   # Weather prediction
   - platform: yr
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    forecast:
+      - 0
+      - 1
+    monitored_conditions:
+      - summary
+      - icon
+      - temperature
+      - precip_probability
+      - precip_intensity
+    update_interval: '00:30:00'
+    language: de
 
 # Text to speech
 tts:
