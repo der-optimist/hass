@@ -16,7 +16,7 @@ homeassistant:
 zone: !include zones.yaml
 
 # Enables the frontend
-frontend:
+frontend: !include frontend.yaml
 
 lovelace:
 
