@@ -1,0 +1,12 @@
+- name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  radius: 100
+  icon: mdi:home-outline
+
+- name: FN
+  latitude: !secret work_jo_lat
+  longitude: !secret work_jo_long
+  radius: 1300
+  icon: mdi:desktop-tower-monitor
+  
