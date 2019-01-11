@@ -8,7 +8,7 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Berlin
-  customize: !include customize.yaml
+#  customize: !include customize.yaml
 
 zone: !include zones.yaml
 
@@ -95,6 +95,6 @@ tts:
 # Cloud
 cloud:
 
-group: !include groups.yaml
-automation: !include automations.yaml
-script: !include scripts.yaml
+#group: !include groups.yaml
+#automation: !include automations.yaml
+#script: !include scripts.yaml
