@@ -61,6 +61,8 @@ logbook:
 
 # Enables a map showing the location of tracked devices
 map:
+owntracks:
+  max_gps_accuracy: 100
 
 # Track the sun
 sun:
