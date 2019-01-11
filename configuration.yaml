@@ -13,8 +13,7 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
-# Show links to resources in log and frontend
-#introduction:
+zone: !include zones.yaml
 
 # Enables the frontend
 frontend:
