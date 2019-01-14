@@ -11,8 +11,8 @@ views:
     title: Home
     cards:
       - type: "custom:calendar-card"
-      name: "Geburtstage"
-      showProgressBar: false
-      numberOfDays: 30
-      entities:
-        - calendar.geburtstage_und_jahrestag
+        name: "Geburtstage"
+        showProgressBar: false
+        numberOfDays: 30
+        entities:
+          - calendar.geburtstage_und_jahrestag
