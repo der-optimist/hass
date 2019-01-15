@@ -7,7 +7,10 @@ class CalendarCardBD extends HTMLElement {
       this.content.style.padding = '0 16px 16px';
       card.appendChild(this.content);
       this.appendChild(card);
-      moment.locale('de');
+      moment.locale('en');
+      moment.updateLocale('en', {
+        weekdaysShort : ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"]
+      });
     }
 
     this._hass = hass;
