@@ -1,6 +1,3 @@
-import moment from 'moment';
-import 'moment/min/locales';
-
 class CalendarCardBD extends HTMLElement {
   set hass(hass) {
     if (!this.content) {
