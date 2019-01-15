@@ -157,8 +157,7 @@ class CalendarCardBD extends HTMLElement {
     return `
       <div class="day">
         <div class="${clazz}">
-          <div>${moment(day).format('DD')}</div>
-          <div>${moment(day).format('ddd')}</div>
+          <div>${moment(day).format('ddd')}&nbsp;${moment(day).format('DD')}.${moment(day).format('MM')}.</div>
         </div>
         <div class="events">${events.map(event => this.getEventHtml(event)).join('')}</div>
       </div>`;
@@ -174,8 +173,6 @@ class CalendarCardBD extends HTMLElement {
         <div class="event">
           <div class="info">
             <div class="summary">${event.title}</div>
-            ${event.location ? `<div class="location"><ha-icon icon="mdi:map-marker"></ha-icon>&nbsp;
-            ${event.locationAddress ? `<a href="https://www.google.com/maps/place/${event.locationAddress}" target="_blank">${event.location}</a></div>` : `${event.location}</div>`}` : ''}
           </div>
         </div>
       </div>`;
