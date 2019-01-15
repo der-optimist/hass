@@ -7,7 +7,7 @@ class CalendarCardBD extends HTMLElement {
       this.content.style.padding = '0 16px 16px';
       card.appendChild(this.content);
       this.appendChild(card);
-      moment.locale(hass.language);
+      moment.locale('de');
     }
 
     this._hass = hass;
