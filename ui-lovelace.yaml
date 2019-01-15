@@ -1,7 +1,7 @@
 resources:
   - url: https://unpkg.com/moment@2.22.2/moment.js
     type: js
-  - url: /local/custom_ui/calendar-card/calendar-card.js?v=1.0.1
+  - url: /local/custom_ui/calendar-card/calendar-card-bd.js?v=1.0.1
     type: module
 
 title: Lieblingshaus
@@ -10,9 +10,9 @@ views:
     id: home
     title: Home
     cards:
-      - type: "custom:calendar-card"
+      - type: "custom:calendar-card-bd"
         name: "Geburtstage"
         showProgressBar: false
-        numberOfDays: 30
+        numberOfDays: 90
         entities:
           - calendar.geburtstage_und_jahrestag
