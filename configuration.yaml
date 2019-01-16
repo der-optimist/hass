@@ -72,7 +72,7 @@ weather:
   - platform: darksky
     api_key: !secret darksky_api_key
     name: Dark Sky
-    mode: hourly
+#    mode: hourly
 
 # Sensors
 sensor:
