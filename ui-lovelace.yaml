@@ -19,6 +19,7 @@ views:
         entities:
           - calendar.geburtstage_und_jahrestag
       - type: 'custom:weather-card-chart'
-        title: Weather
-        weather: weather.dark_sky
+        title: Wetter
+        weather: weather.darksky
         sun: sun.sun
+        mode: hourly
