@@ -20,6 +20,6 @@ views:
           - calendar.geburtstage_und_jahrestag
       - type: 'custom:weather-card-chart'
         title: Wetter
-        weather: weather.darksky
+        weather: weather.dark_sky
         sun: sun.sun
         mode: hourly
