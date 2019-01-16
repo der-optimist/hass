@@ -76,9 +76,8 @@ class CalendarCardBD extends HTMLElement {
 
           .day {
             display: flex;
-            flex-direction: row;
-            width: 70%;
-            justify-content: top;
+            flex-direction: column;
+            width: 100%;
           }
 
           .date {
@@ -86,10 +85,12 @@ class CalendarCardBD extends HTMLElement {
             flex-direction: row;
             align-items: left;
             justify-content: top;
-            flex: 0 1 40px;
+            flex: 1 0 40px;
           }
 
           .events {
+            align-items: left;
+            justify-content: top;
             flex: 1 1 auto;
           }
 
