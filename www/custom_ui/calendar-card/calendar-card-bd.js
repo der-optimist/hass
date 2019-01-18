@@ -93,7 +93,6 @@ class CalendarCardBD extends HTMLElement {
           }
 
           .event-wrapper {
-            padding: 5px;
             margin-left: 10px;
           }
 
@@ -106,7 +105,7 @@ class CalendarCardBD extends HTMLElement {
           .info {
             display: flex;
             width: 100%;
-            justify-content: top;
+            justify-content: space-between;
             flex-direction: row;
           }
 
