@@ -80,12 +80,20 @@ class CalendarCardBD extends HTMLElement {
             width: 100%;
           }
 
+          .weekday {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: top;
+            flex: 0 1 20px;
+          }
+
           .date {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: top;
-            flex: 0 1 40px;
+            flex: 0 1 60px;
           }
 
           .events {
@@ -155,11 +163,12 @@ class CalendarCardBD extends HTMLElement {
   }
 
   getDayHtml(day, events) {
-    let clazz = moment().format('DD') === moment(day).format('DD') ? 'date now' : 'date';
+    let clazz = moment().format('DDD') === moment(day).format('DDD') ? 'date now' : 'date';
     return `
       <div class="day">
+        <div class="weekday">${moment(day).format('ddd')}</div>
         <div class="${clazz}">
-          <div>${moment(day).format('ddd')}&nbsp;${moment(day).format('DD')}.${moment(day).format('MM')}.</div>
+          <div>${moment(day).format('DD')}.${moment(day).format('MM')}.</div>
         </div>
         <div class="events">${events.map(event => this.getEventHtml(event)).join('')}</div>
       </div>`;
