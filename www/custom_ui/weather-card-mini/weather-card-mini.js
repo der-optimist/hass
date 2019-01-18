@@ -5,7 +5,7 @@ class WeatherCardMini extends HTMLElement {
       const link = document.createElement('link');
       link.type = 'text/css';
       link.rel = 'stylesheet';
-      link.href = '/local/custom_ui/weather-card-mini.css';
+      link.href = '/local/custom_ui/weather-card-mini/weather-card-mini.css';
       card.appendChild(link);
       this.content = document.createElement('div');
       this.content.className = 'card';
