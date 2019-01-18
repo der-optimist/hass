@@ -61,7 +61,7 @@ history:
 logbook:
 
 owntracks:
-  max_gps_accuracy: 200
+  max_gps_accuracy: 2000
 # Enables a map showing the location of tracked devices
 map:
 
