@@ -73,6 +73,8 @@ weather:
     api_key: !secret darksky_api_key
     name: Dark Sky
 #    mode: hourly
+  - platform: openweathermap
+    api_key: !secret owm_api_key
 
 # Sensors
 sensor:
