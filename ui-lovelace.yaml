@@ -5,6 +5,8 @@ resources:
     type: module
   - type: module
     url: /local/custom-weather-card-chart.js
+  - url: /local/custom_ui/weather-card-mini.js
+    type: js
 
 title: Lieblingshaus
 views:
@@ -23,3 +25,6 @@ views:
         weather: weather.dark_sky
         sun: sun.sun
         mode: hourly
+      - type: "custom:weather-card-mini"
+        entity_weather: weather.dark_sky
+        entity_sun: sun.sun
