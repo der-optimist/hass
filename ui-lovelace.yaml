@@ -3,10 +3,8 @@ resources:
     type: js
   - url: /local/custom_ui/calendar-card/calendar-card-bd.js?v=1.0.1
     type: module
-  - type: module
-    url: /local/custom-weather-card-chart.js
-  - url: /local/custom_ui/weather-card-mini/weather-card-mini.js
-    type: js
+  - url: /local/custom-lovelace/weather-card/weather-card.js
+    type: module
 
 title: Lieblingshaus
 views:
@@ -20,11 +18,6 @@ views:
         numberOfDays: 90
         entities:
           - calendar.geburtstage_und_jahrestag
-      - type: 'custom:weather-card-chart'
-        title: Wetter
-        weather: weather.dark_sky
-        sun: sun.sun
-        mode: hourly
-#      - type: "custom:weather-card-mini"
-#        entity_weather: weather.openweathermap
-#        entity_sun: sun.sun
+      - type: custom:weather-card
+        entity: weather.openweathermap
+        icons: '/local/icons/weather_icons/animated/'
