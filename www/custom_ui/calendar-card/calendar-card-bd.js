@@ -91,7 +91,7 @@ class CalendarCardBD extends HTMLElement {
             display: flex;
             flex-direction: column;
             justify-content: top;
-            flex: 0 1 4em;
+            flex: 0 1 3em;
           }
 
           .events {
