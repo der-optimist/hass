@@ -111,6 +111,16 @@ class WeatherCard extends LitElement {
 
     const stateObj = this.hass.states[this._config.entity];
     const lang = this.hass.selectedLanguage || this.hass.language;
+    var sunRise = hass.states["sun.sun"].attributes.next_rising;
+      sunRise = new Date(sunRise);
+      sunRise = sunRise.toLocaleTimeString();
+      var ssrI = sunRise.lastIndexOf(":");
+      sunRise = sunRise.substr(0,ssrI) + sunRise.substr(ssrI+4);
+    var sunSet = hass.states["sun.sun"].attributes.next_setting;
+      sunSet = new Date(sunSet);
+      sunSet = sunSet.toLocaleTimeString();
+      var ssrI = sunSet.lastIndexOf(":");
+      sunSet = sunSet.substr(0,ssrI) + sunSet.substr(ssrI+4);
 
     return html`
       ${this.renderStyle()}
@@ -135,9 +145,9 @@ class WeatherCard extends LitElement {
                 </span>
               </li>
               <li>
-                <span class="ha-icon"><ha-icon icon="mdi:weather-sunset-up"></ha-icon></span>${(new Date(hass.states["sun.sun"].attributes.next_rising)).toLocaleTimeString()}
+                <span class="ha-icon"><ha-icon icon="mdi:weather-sunset-up"></ha-icon></span>${sunRise}
                 <br>
-                <span class="ha-icon"><ha-icon icon="mdi:weather-sunset-down"></ha-icon></span>${(new Date(hass.states["sun.sun"].attributes.next_setting)).toLocaleTimeString()}
+                <span class="ha-icon"><ha-icon icon="mdi:weather-sunset-down"></ha-icon></span>${sunSet}
               </li>
             </ul>
           </span>
