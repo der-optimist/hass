@@ -83,17 +83,15 @@ class CalendarCardBD extends HTMLElement {
           .weekday {
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: top;
-            flex: 0 1 3em;
+            flex: 0 1 2em;
           }
 
           .date {
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: top;
-            flex: 0 1 6em;
+            flex: 0 1 4em;
           }
 
           .events {
