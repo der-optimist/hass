@@ -50,9 +50,9 @@
   -webkit-animation-name: am-weather-cloud-1;
      -moz-animation-name: am-weather-cloud-1;
           animation-name: am-weather-cloud-1;
-  -webkit-animation-duration: 7s;
-     -moz-animation-duration: 7s;
-          animation-duration: 7s;
+  -webkit-animation-duration: 14s;
+     -moz-animation-duration: 14s;
+          animation-duration: 14s;
   -webkit-animation-timing-function: linear;
      -moz-animation-timing-function: linear;
           animation-timing-function: linear;
@@ -88,9 +88,9 @@
   -webkit-animation-name: am-weather-cloud-2;
      -moz-animation-name: am-weather-cloud-2;
           animation-name: am-weather-cloud-2;
-  -webkit-animation-duration: 3s;
-     -moz-animation-duration: 3s;
-          animation-duration: 3s;
+  -webkit-animation-duration: 6s;
+     -moz-animation-duration: 6s;
+          animation-duration: 6s;
   -webkit-animation-timing-function: linear;
      -moz-animation-timing-function: linear;
           animation-timing-function: linear;
