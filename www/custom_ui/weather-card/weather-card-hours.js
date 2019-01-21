@@ -217,7 +217,7 @@ class WeatherCard extends LitElement {
           .ha-icon {
             height: 18px;
             margin-right: 5px;
-            color: var(--paper-item-icon-color);
+            color: var(--secondary-text-color);
           }
 
           .temp {
