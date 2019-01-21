@@ -85,10 +85,10 @@
      -moz-animation-name: am-weather-sun;
       -ms-animation-name: am-weather-sun;
           animation-name: am-weather-sun;
-  -webkit-animation-duration: 9s;
-     -moz-animation-duration: 9s;
-      -ms-animation-duration: 9s;
-          animation-duration: 9s;
+  -webkit-animation-duration: 30s;
+     -moz-animation-duration: 30s;
+      -ms-animation-duration: 30s;
+          animation-duration: 30s;
   -webkit-animation-timing-function: linear;
      -moz-animation-timing-function: linear;
       -ms-animation-timing-function: linear;
