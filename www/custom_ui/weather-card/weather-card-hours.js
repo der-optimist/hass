@@ -135,9 +135,9 @@ class WeatherCard extends LitElement {
                 </span>
               </li>
               <li>
-                <span class="ha-icon"><ha-icon icon="mdi:weather-sunset-up"></ha-icon></span>${new Date(hass.states["sun.sun"].attributes.next_rising)}
+                <span class="ha-icon"><ha-icon icon="mdi:weather-sunset-up"></ha-icon></span>${(new Date(hass.states["sun.sun"].attributes.next_rising)).toLocaleTimeString()}
                 <br>
-                <span class="ha-icon"><ha-icon icon="mdi:weather-sunset-down"></ha-icon></span>${new Date(hass.states["sun.sun"].attributes.next_setting)}
+                <span class="ha-icon"><ha-icon icon="mdi:weather-sunset-down"></ha-icon></span>${(new Date(hass.states["sun.sun"].attributes.next_setting)).toLocaleTimeString()}
               </li>
             </ul>
           </span>
