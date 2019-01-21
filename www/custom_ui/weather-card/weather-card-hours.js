@@ -111,12 +111,12 @@ class WeatherCard extends LitElement {
 
     const stateObj = this.hass.states[this._config.entity];
     const lang = this.hass.selectedLanguage || this.hass.language;
-    var sunRise = hass.states["sun.sun"].attributes.next_rising;
+    var sunRise = this.hass.states["sun.sun"].attributes.next_rising;
       sunRise = new Date(sunRise);
       sunRise = sunRise.toLocaleTimeString();
       var ssrI = sunRise.lastIndexOf(":");
       sunRise = sunRise.substr(0,ssrI) + sunRise.substr(ssrI+4);
-    var sunSet = hass.states["sun.sun"].attributes.next_setting;
+    var sunSet = this.hass.states["sun.sun"].attributes.next_setting;
       sunSet = new Date(sunSet);
       sunSet = sunSet.toLocaleTimeString();
       var ssrI = sunSet.lastIndexOf(":");
