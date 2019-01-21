@@ -25,6 +25,6 @@ views:
         weather: weather.dark_sky
         sun: sun.sun
         mode: hourly
-#      - type: "custom:weather-card-mini"
-#        entity_weather: weather.openweathermap
-#        entity_sun: sun.sun
+      - type: "custom:weather-card-mini"
+        entity_weather: weather.openweathermap
+        entity_sun: sun.sun
