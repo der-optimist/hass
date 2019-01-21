@@ -19,5 +19,5 @@ views:
         entities:
           - calendar.geburtstage_und_jahrestag
       - type: custom:weather-card
-        entity: weather.openweathermap
+        entity: weather.dark_sky
         icons: '/local/icons/weather_icons/animated/'
