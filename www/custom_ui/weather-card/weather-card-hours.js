@@ -135,13 +135,9 @@ class WeatherCard extends LitElement {
                 </span>
               </li>
               <li>
-                <span class="ha-icon"><ha-icon icon="mdi:gauge"></ha-icon></span>${stateObj.attributes.pressure}<span class="unit">
-                  ${this.getUnit("air_pressure")}
-                </span>
+                <span class="ha-icon"><ha-icon icon="mdi:weather-sunset-up"></ha-icon></span>${new Date(hass.states["sun.sun"].attributes.next_rising)}
                 <br>
-                <span class="ha-icon"><ha-icon icon="mdi:weather-fog"></ha-icon></span>
-                ${stateObj.attributes.visibility}<span class="unit"> ${this.getUnit("length")}
-                </span>
+                <span class="ha-icon"><ha-icon icon="mdi:weather-sunset-down"></ha-icon></span>${new Date(hass.states["sun.sun"].attributes.next_setting)}
               </li>
             </ul>
           </span>
