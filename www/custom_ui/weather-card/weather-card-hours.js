@@ -157,10 +157,10 @@ class WeatherCard extends LitElement {
                       <br><i class="icon" style="background: none, url(${
                         this.getWeatherIcon(daily.condition.toLowerCase())
                       }) no-repeat; background-size: contain;"></i>
-                      <br><span class="highTemp">${daily.temperature}${this.getUnit(
+                      <br><span class="highTemp">${Math.round(daily.temperature)}${this.getUnit(
                     "temperature"
                   )}</span>
-                      <br><span class="lowTemp">${daily.precipitation}${this.getUnit(
+                      <br><span class="lowTemp">${daily.precipitation = daily.precipitation ||0}${this.getUnit(
                     "precipitation"
                   )}</span>
                   </div>`
