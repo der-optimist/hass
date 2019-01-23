@@ -1,7 +1,4 @@
 ---
-hello_world:
-  module: hello
-  class: HelloWorld
 notify_work_arrived:
   module: notify_work_arrived
   class: notify_work_arrived
