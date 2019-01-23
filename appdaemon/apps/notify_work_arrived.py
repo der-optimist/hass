@@ -11,7 +11,8 @@ import appdaemon.plugins.hass.hassapi as hass
 class notify_work_arrived(hass.Hass):
 
     def initialize(self):
-        self.listen_state(self.arrived, self.args["device"], new = self.args["zone"])
+        device_full = "device_tracker." + self.args["device"]
+        self.listen_state(self.arrived, device_full, new = self.args["zone"])
         
     def arrived(self, entity, attribute, old, new, kwargs):
         self.log("Arrived at work")
