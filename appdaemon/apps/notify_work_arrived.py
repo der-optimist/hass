@@ -15,4 +15,5 @@ class notify_work_arrived(hass.Hass):
         self.listen_state(self.arrived, device_full, new = self.args["zone"])
         
     def arrived(self, entity, attribute, old, new, kwargs):
-        self.log("Arrived at work")
+        self.log("Jo arrived at work")
+        self.notify("Angekommen", name = "telegram_jo")
