@@ -15,4 +15,5 @@ class notify_work_arrived(hass.Hass):
         
     def arrived(self, entity, attribute, old, new, kwargs):
         self.log("Jo arrived at work")
+        self.log(self.get_state("sensor.jo_at_work"))
         self.notify("Angekommen", name = "telegram_jo")
