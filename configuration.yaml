@@ -46,6 +46,14 @@ telegram_bot:
       - !secret telegram_id_1
       - !secret telegram_id_2
 
+notify:
+  - name: telegram_jo
+    platform: telegram
+    chat_id: !secret telegram_id_1
+  - name: telegram_ma
+    platform: telegram
+    chat_id: !secret telegram_id_2
+
 google:
   client_id: !secret google_calendar_client_id
   client_secret: !secret google_calendar_secret
