@@ -8,7 +8,7 @@ import appdaemon.plugins.hass.hassapi as hass
 # device = tracked device
 #
 
-class notify_by_location(hass.Hass):
+class notify_work_arrived(hass.Hass):
 
     def initialize(self):
         self.listen_state(self.arrived, self.args["device"], new = self.args["zone"])
