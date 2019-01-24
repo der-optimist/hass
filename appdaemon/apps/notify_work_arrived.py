@@ -17,6 +17,7 @@ class notify_work_arrived(hass.Hass):
     def arrived(self, entity, attribute, old, new, kwargs):
         self.log("Jo arrived at work")
         time_at_work = self.get_state("sensor.jo_at_work")
+        self.log(type(time_at_work))
         self.log("Time at work: {}".format(time_at_work))
         if time_at_work == 0:
             self.notify("Angekommen", name = "telegram_jo")
