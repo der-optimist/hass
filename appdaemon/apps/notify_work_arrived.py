@@ -4,8 +4,8 @@ import appdaemon.plugins.hass.hassapi as hass
 # App to notify when arrived at work
 #
 # Args:
-# zone = Name of zone
-# device = tracked device
+# zone = Name of zone (only name of zone)
+# device = tracked device (fully qualified => device_tracker.device_name)
 #
 
 class notify_work_arrived(hass.Hass):
