@@ -1,10 +1,3 @@
-  javascript_version: latest
-  extra_html_url:
-    - /local/custom_ui/custom-weather-card.html
-    - /local/custom_ui/custom-weather-animated.html
-  extra_html_url_es5:
-    - /local/custom_ui/custom-weather-card.html
-    - /local/custom_ui/custom-weather-animated.html
   themes:
     darkorange:
       primary-color: "#ff9800"
@@ -32,6 +25,44 @@
       paper-item-selected_-_background-color: "var(--primary-color)"
       paper-item-icon_-_color: "var(--text-primary-color)"
       paper-item-icon-color: "var(--sidebar-text_-_background)"
+      paper-item-icon-active-color: "var(--primary-color)"
+      paper-grey-50: "var(--sidebar-text_-_background)"
+      paper-grey-200: "var(--primary-background-color)"
+      label-badge-background-color: "var(--sidebar-text_-_background)"
+      label-badge-text-color: "var(--text-primary-color)"
+      label-badge-red: "var(--primary-color)"
+      label-badge-blue: "var(--light-primary-color)"
+      label-badge-green: "var(--dark-primary-color)"
+      label-badge-yellow: "var(--text-primary-color)"
+      label-badge-grey: "var(--paper-grey-500)"
+      table-row-background-color: "var(--paper-card-background-color)"
+      table-row-alternative-background-color: "var(--sidebar-text_-_background)"
+    my_orange:
+      primary-color: "#ff9c27"
+      light-primary-color: "#ff9c27"
+      dark-primary-color: "#e28b24"
+      text-primary-color: "#ffffff"
+      primary-background-color: "#3d3d3d"
+      sidebar-text_-_background: "#4c4c4c"
+      paper-card-background-color: "#262626"
+      paper-card-header-color: "var(--text-primary-color)"
+      secondary-background-color: "var(--primary-background-color)"
+      primary-text-color: "var(--text-primary-color)"
+      secondary-text-color: "var(--primary-color)"
+      paper-listbox-background-color: "var(--sidebar-text_-_background)"
+      paper-toggle-button-checked-ink-color: "var(--dark-primary-color)"
+      paper-toggle-button-checked-button-color: "var(--dark-primary-color)"
+      paper-toggle-button-checked-bar-color: "var(--dark-primary-color)"
+      paper-slider-knob-color: "var(--primary-color)"
+      paper-slider-knob-start-color: "var(--primary-color)"
+      paper-slider-pin-color: "var(--primary-color)"
+      paper-slider-active-color: "var(--primary-color)"
+      paper-slider-secondary-color: "var(--light-primary-color)"
+      paper-slider-container-color: "var(--sidebar-text_-_background)"
+      paper-progress-secondary-color: "var(--sidebar-text_-_background)"
+      paper-item-selected_-_background-color: "var(--primary-color)"
+      paper-item-icon_-_color: "var(--text-primary-color)"
+      paper-item-icon-color: "var(--text-primary-color)"
       paper-item-icon-active-color: "var(--primary-color)"
       paper-grey-50: "var(--sidebar-text_-_background)"
       paper-grey-200: "var(--primary-background-color)"
