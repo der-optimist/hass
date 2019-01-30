@@ -9,7 +9,8 @@ import appdaemon.plugins.hass.hassapi as hass
 class garbage(hass.Hass):
 
     def initialize(self):
-        time_check_next_day = self.datetime().time(17, 00, 0)
+        import datetime
+        time_check_next_day = datetime.time(17, 00, 0)
         self.run_daily(self.check_next_day, time_check_next_day)
         self.listen_state(self.update_waste, "calendar.restmuelltonne", attribute="end_time")
         # for testing:
@@ -36,7 +37,7 @@ class garbage(hass.Hass):
 
     def create_text(self, start_date):
         weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
-        days = (start_date.date() - self.datetime().now().date()).days
+        days = (start_date.date() - self.datetime().date()).days
         if days == 0:
             printtext = "heute"
         elif days == 1:
