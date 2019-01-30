@@ -34,25 +34,31 @@ class garbage(hass.Hass):
         self.listen_state(self.update_organic, self.calendar_organic, attribute="end_time")
         self.listen_state(self.update_paper, self.calendar_paper, attribute="end_time")
         self.listen_state(self.update_plastic, self.calendar_plastic, attribute="end_time")
-        # --- testing only ---
-        self.run_minutely(self.update_all, time_midnight)
+        # --- Restarts ---
+        self.listen_event(self.update_all, "ha_started")
+        self.listen_event(self.update_all, "appd_started")
         
     def check_next_day(self, kwargs):
         self.log("Would check garbage of next day now, if I would know how to do...")
 
     def update_waste(self, kwargs):
+        self.log("Updating Waste Display Sensor")
         self.create_text(self.calendar_waste, self.sensor_display_waste)
 
     def update_organic(self, kwargs):
+        self.log("Updating Organic Waste Display Sensor")
         self.create_text(self.calendar_organic, self.sensor_display_organic)
 
     def update_paper(self, kwargs):
+        self.log("Updating Paper Display Sensor")
         self.create_text(self.calendar_paper, self.sensor_display_paper)
 
     def update_plastic(self, kwargs):
+        self.log("Updating Plastic Display Sensor")
         self.create_text(self.calendar_plastic, self.sensor_display_plastic)
 
     def update_all(self, kwargs):
+        self.log("Updating All Waste Display Sensors")
         self.update_waste("dummy")
         self.update_organic("dummy")
         self.update_paper("dummy")
@@ -70,3 +76,4 @@ class garbage(hass.Hass):
         else:
             printtext = end_time_datetime.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
         self.set_state(display_sensor_name, state=printtext)
+        self.log(printtext)
