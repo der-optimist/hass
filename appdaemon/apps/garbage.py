@@ -10,23 +10,36 @@ import datetime
 class garbage(hass.Hass):
 
     def initialize(self):
+        # --- calendar and sensor names ---
+        self.calendar_waste = "calendar.restmuelltonne"
+        self.calendar_organic = "calendar.biotonne"
+        self.calendar_paper = "calendar.papiertonne"
+        self.calendar_plastic = "calendar.raweg"
+        self.sensor_display_waste = "sensor.restmuelltonne_anzeige"
+        self.sensor_display_organic = "sensor.biotonne_anzeige"
+        self.sensor_display_paper = "sensor.papiertonne_anzeige"
+        self.sensor_display_plastic = "sensor.raweg_anzeige"
+        self.sensor_reminder_waste = "sensor.restmuelltonne_erinnerung"
+        self.sensor_reminder_organic = "sensor.biotonne_erinnerung"
+        self.sensor_reminder_paper = "sensor.papiertonne_erinnerung"
+        self.sensor_reminder_plastic = "sensor.raweg_erinnerung"
+        # --- Reminder Time ---
         time_check_next_day = datetime.time(17, 00, 0)
+        # ---
         self.run_daily(self.check_next_day, time_check_next_day)
-        self.listen_state(self.update_waste, "calendar.restmuelltonne", attribute="end_time")
+        self.listen_state(self.update_waste, self.calendar_waste, attribute="end_time")
         # for testing:
         self.run_minutely(self.update_waste, time_check_next_day)
+        self.run_minutely(self.update_organic, time_check_next_day)
         
     def check_next_day(self, entity, attribute, old, new, kwargs):
         pass
 
     def update_waste(self, kwargs):
-        #end_time_str = self.get_state("calendar.restmuelltonne", attribute="end_time")
-        #end_time_datetime = datetime.datetime.strptime(end_time_str,"%Y-%m-%d %H:%M:%S")
-        self.create_text("calendar.restmuelltonne", "sensor.restmuell_anzeige")
-        #self.set_state("sensor.restmuell_anzeige", state=display_text)
+        self.create_text(self.calendar_waste, self.sensor_display_waste)
 
     def update_organic(self, entity, attribute, old, new, kwargs):
-        pass
+        self.create_text(self.calendar_organic, self.sensor_display_organic)
 
     def update_paper(self, entity, attribute, old, new, kwargs):
         pass
