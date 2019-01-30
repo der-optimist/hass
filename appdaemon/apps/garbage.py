@@ -24,7 +24,7 @@ class garbage(hass.Hass):
         end_time_datetime = datetime.datetime.strptime(end_time_str,"%Y-%m-%d %H:%M:%S")
         self.log(end_time_datetime)
         self.log(type(end_time_datetime))
-        display_text = self.create_text(end_time)
+        display_text = self.create_text(end_time_datetime)
         self.set_state("sensor.restmuell_anzeige", state=display_text)
 
     def update_organic(self, entity, attribute, old, new, kwargs):
