@@ -23,17 +23,22 @@ class garbage(hass.Hass):
         self.sensor_reminder_organic = "sensor.biotonne_erinnerung"
         self.sensor_reminder_paper = "sensor.papiertonne_erinnerung"
         self.sensor_reminder_plastic = "sensor.raweg_erinnerung"
-        # --- Reminder Time ---
+        # --- reminder ---
         time_check_next_day = datetime.time(17, 00, 0)
-        # ---
         self.run_daily(self.check_next_day, time_check_next_day)
+        # --- update text at midnight ---
+        time_midnight = datetime.time(0, 00, 30)
+        self.run_daily(self.update_all, time_midnight)
+        # --- listen for calendar updates
         self.listen_state(self.update_waste, self.calendar_waste, attribute="end_time")
-        # for testing:
-        self.run_minutely(self.update_waste, time_check_next_day)
-        self.run_minutely(self.update_organic, time_check_next_day)
+        self.listen_state(self.update_organic, self.calendar_organic, attribute="end_time")
+        self.listen_state(self.update_paper, self.calendar_paper, attribute="end_time")
+        self.listen_state(self.update_plastic, self.calendar_plastic, attribute="end_time")
+        # --- testing only ---
+        self.run_minutely(self.update_all, time_midnight)
         
-    def check_next_day(self, entity, attribute, old, new, kwargs):
-        pass
+    def check_next_day(self, kwargs):
+        self.log("Would check garbage of next day now, if I would know how to do...")
 
     def update_waste(self, kwargs):
         self.create_text(self.calendar_waste, self.sensor_display_waste)
@@ -41,14 +46,17 @@ class garbage(hass.Hass):
     def update_organic(self, kwargs):
         self.create_text(self.calendar_organic, self.sensor_display_organic)
 
-    def update_paper(self, entity, attribute, old, new, kwargs):
-        pass
+    def update_paper(self, kwargs):
+        self.create_text(self.calendar_paper, self.sensor_display_paper)
 
-    def update_plastic(self, entity, attribute, old, new, kwargs):
-        pass
+    def update_plastic(self, kwargs):
+        self.create_text(self.calendar_plastic, self.sensor_display_plastic)
 
-    def update_all(self, entity, attribute, old, new, kwargs):
-        pass
+    def update_all(self, kwargs):
+        self.update_waste()
+        self.update_organic()
+        self.update_paper()
+        self.update_plastic()
 
     def create_text(self, calendar_name, display_sensor_name):
         weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
