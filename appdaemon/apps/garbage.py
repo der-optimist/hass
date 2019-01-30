@@ -21,6 +21,8 @@ class garbage(hass.Hass):
 
     def update_waste(self, kwargs):
         end_time = self.get_state("calendar.restmuelltonne", attribute="end_time")
+        self.log(end_time)
+        self.log(type(end_time))
         display_text = self.create_text(end_time)
         self.set_state("sensor.restmuell_anzeige", state=display_text)
 
