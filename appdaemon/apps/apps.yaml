@@ -4,3 +4,6 @@ notify_work_arrived:
   class: notify_work_arrived
   zone: !secret comp_work_jo_name
   device: !secret device_jo
+garbage:
+  module: garbage
+  class: garbage
