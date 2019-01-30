@@ -1,4 +1,5 @@
 import appdaemon.plugins.hass.hassapi as hass
+import datetime
 
 #
 # App to handle garbage topics
@@ -9,7 +10,6 @@ import appdaemon.plugins.hass.hassapi as hass
 class garbage(hass.Hass):
 
     def initialize(self):
-        import datetime
         time_check_next_day = datetime.time(17, 00, 0)
         self.run_daily(self.check_next_day, time_check_next_day)
         self.listen_state(self.update_waste, "calendar.restmuelltonne", attribute="end_time")
