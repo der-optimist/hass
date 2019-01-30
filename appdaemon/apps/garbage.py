@@ -20,10 +20,10 @@ class garbage(hass.Hass):
         pass
 
     def update_waste(self, kwargs):
-        end_time_str = self.get_state("calendar.restmuelltonne", attribute="end_time")
-        end_time_datetime = datetime.datetime.strptime(end_time_str,"%Y-%m-%d %H:%M:%S")
-        display_text = self.create_text(end_time_datetime)
-        self.set_state("sensor.restmuell_anzeige", state=display_text)
+        #end_time_str = self.get_state("calendar.restmuelltonne", attribute="end_time")
+        #end_time_datetime = datetime.datetime.strptime(end_time_str,"%Y-%m-%d %H:%M:%S")
+        self.create_text("calendar.restmuelltonne", "sensor.restmuell_anzeige")
+        #self.set_state("sensor.restmuell_anzeige", state=display_text)
 
     def update_organic(self, entity, attribute, old, new, kwargs):
         pass
@@ -37,13 +37,15 @@ class garbage(hass.Hass):
     def update_all(self, entity, attribute, old, new, kwargs):
         pass
 
-    def create_text(self, start_date):
+    def create_text(self, calendar_name, display_sensor_name):
         weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
-        days = (start_date.date() - self.datetime().date()).days
+        end_time_str = self.get_state(calendar_name, attribute="end_time")
+        end_time_datetime = datetime.datetime.strptime(end_time_str,"%Y-%m-%d %H:%M:%S")
+        days = (end_time_datetime.date() - self.datetime().date()).days
         if days == 0:
             printtext = "heute"
         elif days == 1:
             printtext = "morgen"
         else:
-            printtext = start_date.strftime('{}, %d.%m. ({} T.)').format(weekdays[start_date.weekday()], days)
-        return printtext
+            printtext = end_time_datetime.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
+        self.set_state(display_sensor_name, state=printtext)
