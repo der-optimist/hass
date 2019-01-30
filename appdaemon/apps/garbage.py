@@ -38,7 +38,7 @@ class garbage(hass.Hass):
     def update_waste(self, kwargs):
         self.create_text(self.calendar_waste, self.sensor_display_waste)
 
-    def update_organic(self, entity, attribute, old, new, kwargs):
+    def update_organic(self, kwargs):
         self.create_text(self.calendar_organic, self.sensor_display_organic)
 
     def update_paper(self, entity, attribute, old, new, kwargs):
