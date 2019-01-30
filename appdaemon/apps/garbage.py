@@ -34,7 +34,7 @@ class garbage(hass.Hass):
         self.listen_state(self.update_organic, self.calendar_organic, attribute="end_time")
         self.listen_state(self.update_paper, self.calendar_paper, attribute="end_time")
         self.listen_state(self.update_plastic, self.calendar_plastic, attribute="end_time")
-        # --- Restarts ---
+        # --- restarts ---
         self.listen_event(self.update_all, "ha_started")
         self.listen_event(self.update_all, "appd_started")
         
