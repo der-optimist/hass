@@ -3,7 +3,7 @@ import appdaemon.plugins.hass.hassapi as hass
 #
 # App to handle garbage topics
 #
-# Args:
+# Args: 
 # 
 
 class garbage(hass.Hass):
