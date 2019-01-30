@@ -14,13 +14,14 @@ class garbage(hass.Hass):
         self.run_daily(self.check_next_day, time_check_next_day)
         self.listen_state(self.update_waste, "calendar.restmuelltonne", attribute="end_time")
         # for testing:
-        self.run_minutely(self.update_waste, "calendar.restmuelltonne", attribute="end_time")
+        self.run_minutely(self.update_waste, time_check_next_day)
         
     def check_next_day(self, entity, attribute, old, new, kwargs):
         pass
 
-    def update_waste(self, entity, attribute, old, new, kwargs):
-        display_text = self.create_text(new)
+    def update_waste(self, kwargs):
+        end_time = self.get_state("calendar.restmuelltonne", attribute="end_time")
+        display_text = self.create_text(end_time)
         self.set_state("sensor.restmuell_anzeige", state=display_text)
 
     def update_organic(self, entity, attribute, old, new, kwargs):
