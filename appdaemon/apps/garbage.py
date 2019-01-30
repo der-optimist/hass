@@ -37,22 +37,22 @@ class garbage(hass.Hass):
         # --- testing only ---
         self.run_minutely(self.update_all, time_midnight)
         
-    def check_next_day(self, kwargs):
+    def check_next_day(self, **kwargs):
         self.log("Would check garbage of next day now, if I would know how to do...")
 
-    def update_waste(self, kwargs):
+    def update_waste(self, **kwargs):
         self.create_text(self.calendar_waste, self.sensor_display_waste)
 
-    def update_organic(self, kwargs):
+    def update_organic(self, **kwargs):
         self.create_text(self.calendar_organic, self.sensor_display_organic)
 
-    def update_paper(self, kwargs):
+    def update_paper(self, **kwargs):
         self.create_text(self.calendar_paper, self.sensor_display_paper)
 
-    def update_plastic(self, kwargs):
+    def update_plastic(self, **kwargs):
         self.create_text(self.calendar_plastic, self.sensor_display_plastic)
 
-    def update_all(self, kwargs):
+    def update_all(self, **kwargs):
         self.update_waste()
         self.update_organic()
         self.update_paper()
