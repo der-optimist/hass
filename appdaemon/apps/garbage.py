@@ -25,8 +25,12 @@ class garbage(hass.Hass):
         self.switch_reminder_plastic = "switch.raweg_erinnerung"
         self.icon_waste = "/local/icons/garbage/tonne_schwarz.svg"
         self.icon_organic = "/local/icons/garbage/tonne_braun.svg"
-        self.icon_paper = "/local/icons/garbage/tonne_blau_blink.svg"
+        self.icon_paper = "/local/icons/garbage/tonne_blau.svg"
         self.icon_plastic = "/local/icons/garbage/tonne_gelb.svg"
+        self.icon_waste_blink = "/local/icons/garbage/tonne_schwarz_blink.svg"
+        self.icon_organic_blink = "/local/icons/garbage/tonne_braun_blink.svg"
+        self.icon_paper_blink = "/local/icons/garbage/tonne_blau_blink.svg"
+        self.icon_plastic_blink = "/local/icons/garbage/tonne_gelb_blink.svg"
         # --- reminder ---
         time_check_next_day = datetime.time(17, 00, 0)
         self.run_daily(self.check_next_day, time_check_next_day)
@@ -42,8 +46,9 @@ class garbage(hass.Hass):
         self.listen_event(self.startup, "plugin_started")
         self.listen_event(self.startup, "appd_started")
         # --- initialize sensors and switches
-        self.update_all_displays(None)
+        self.create_display_sensors(None)
         self.create_reminder_switches(None)
+        self.update_all_displays(None)
         # --- listen for events of self created switches (they are not handeled by HA)
         self.listen_event(self.toggle_switches, event = "call_service")
         
@@ -112,8 +117,9 @@ class garbage(hass.Hass):
 
     def startup(self, event_name, data, kwargs):
         self.log("Garbage: Startup detected. Updating all the stuff now")
-        self.update_all_displays(None)
+        self.create_display_sensors(None)
         self.create_reminder_switches(None)
+        self.update_all_displays(None)
 
     def update_all_displays(self, kwargs):
         self.update_waste_display(None)
@@ -154,24 +160,46 @@ class garbage(hass.Hass):
     def create_reminder_switches(self, kwargs):
         if self.entity_exists(self.switch_reminder_waste):
             curr_state = self.get_state(self.switch_reminder_waste)
-            self.set_state(self.switch_reminder_waste, state = curr_state, attributes={"entity_picture":self.icon_waste})
+            self.set_state(self.switch_reminder_waste, state = curr_state, attributes={"entity_picture":self.icon_waste_blink})
         else:
-            self.set_state(self.switch_reminder_waste, state = "off", attributes={"entity_picture":self.icon_waste})
+            self.set_state(self.switch_reminder_waste, state = "off", attributes={"entity_picture":self.icon_waste_blink})
         if self.entity_exists(self.switch_reminder_organic):
             curr_state = self.get_state(self.switch_reminder_organic)
-            self.set_state(self.switch_reminder_organic, state = curr_state, attributes={"entity_picture":self.icon_organic})
+            self.set_state(self.switch_reminder_organic, state = curr_state, attributes={"entity_picture":self.icon_organic_blink})
         else:
-            self.set_state(self.switch_reminder_organic, state = "off", attributes={"entity_picture":self.icon_organic})
+            self.set_state(self.switch_reminder_organic, state = "off", attributes={"entity_picture":self.icon_organic_blink})
         if self.entity_exists(self.switch_reminder_paper):
             curr_state = self.get_state(self.switch_reminder_paper)
-            self.set_state(self.switch_reminder_paper, state = curr_state, attributes={"entity_picture":self.icon_paper})
+            self.set_state(self.switch_reminder_paper, state = curr_state, attributes={"entity_picture":self.icon_paper_blink})
         else:
-            self.set_state(self.switch_reminder_paper, state = "off", attributes={"entity_picture":self.icon_paper})
+            self.set_state(self.switch_reminder_paper, state = "off", attributes={"entity_picture":self.icon_paper_blink})
         if self.entity_exists(self.switch_reminder_plastic):
             curr_state = self.get_state(self.switch_reminder_plastic)
-            self.set_state(self.switch_reminder_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic})
+            self.set_state(self.switch_reminder_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic_blink})
         else:
-            self.set_state(self.switch_reminder_plastic, state = "off", attributes={"entity_picture":self.icon_plastic})
+            self.set_state(self.switch_reminder_plastic, state = "off", attributes={"entity_picture":self.icon_plastic_blink})
+
+    def create_display_sensors(self, kwargs):
+        if self.entity_exists(self.sensor_display_waste):
+            curr_state = self.get_state(self.sensor_display_waste)
+            self.set_state(self.sensor_display_waste, state = curr_state, attributes={"entity_picture":self.icon_waste})
+        else:
+            self.set_state(self.sensor_display_waste, state = "warte...", attributes={"entity_picture":self.icon_waste})
+        if self.entity_exists(self.sensor_display_organic):
+            curr_state = self.get_state(self.sensor_display_organic)
+            self.set_state(self.sensor_display_organic, state = curr_state, attributes={"entity_picture":self.icon_organic})
+        else:
+            self.set_state(self.sensor_display_organic, state = "warte...", attributes={"entity_picture":self.icon_organic})
+        if self.entity_exists(self.sensor_display_paper):
+            curr_state = self.get_state(self.sensor_display_paper)
+            self.set_state(self.sensor_display_paper, state = curr_state, attributes={"entity_picture":self.icon_paper})
+        else:
+            self.set_state(self.sensor_display_paper, state = "warte...", attributes={"entity_picture":self.icon_paper})
+        if self.entity_exists(self.sensor_display_plastic):
+            curr_state = self.get_state(self.sensor_display_plastic)
+            self.set_state(self.sensor_display_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic})
+        else:
+            self.set_state(self.sensor_display_plastic, state = "warte...", attributes={"entity_picture":self.icon_plastic})
 
     def create_text(self, calendar_name, display_sensor_name):
         weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
