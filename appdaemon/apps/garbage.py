@@ -4,7 +4,7 @@ import datetime
 #
 # App to handle garbage topics
 #
-# Args: 
+# Args: no args required
 # 
 
 class garbage(hass.Hass):
@@ -34,12 +34,32 @@ class garbage(hass.Hass):
         self.listen_state(self.update_organic, self.calendar_organic, attribute="end_time")
         self.listen_state(self.update_paper, self.calendar_paper, attribute="end_time")
         self.listen_state(self.update_plastic, self.calendar_plastic, attribute="end_time")
+        self.listen_state(self.reset_waste_reminder, self.calendar_waste, attribute="end_time")
+        self.listen_state(self.reset_organic_reminder, self.calendar_organic, attribute="end_time")
+        self.listen_state(self.reset_paper_reminder, self.calendar_paper, attribute="end_time")
+        self.listen_state(self.reset_plastic_reminder, self.calendar_plastic, attribute="end_time")
         # --- restarts ---
         self.listen_event(self.startup, "plugin_started")
         self.listen_event(self.startup, "appd_started")
         
     def check_next_day(self, kwargs):
-        self.log("Would check garbage of next day now, if I would know how to do...")
+        self.log("Checking if tomorrow is some garbage collection")
+        # check waste
+        if self.calc_days(self.calendar_waste) == 1:
+            self.set_state(self.sensor_reminder_waste, state = "on")
+            self.notify("Morgen ist Restmülltonne", name = "telegram_jo")
+        # check organic
+        if self.calc_days(self.calendar_organic) == 1:
+            self.set_state(self.sensor_reminder_organic, state = "on")
+            self.notify("Morgen ist Biotonne", name = "telegram_jo")
+        # check paper
+        if self.calc_days(self.calendar_paper) == 1:
+            self.set_state(self.sensor_reminder_paper, state = "on")
+            self.notify("Morgen ist Papiertonne", name = "telegram_jo")
+        # check plastic
+        if self.calc_days(self.calendar_plastic) == 1:
+            self.set_state(self.sensor_reminder_plastic, state = "on")
+            self.notify("Morgen ist RaWeg", name = "telegram_jo")
 
     def update_waste(self, kwargs):
         self.log("Updating Waste Display Sensor")
@@ -64,15 +84,29 @@ class garbage(hass.Hass):
         self.update_paper(None)
         self.update_plastic(None)
 
+    def reset_waste_reminder(self, kwargs):
+        self.log("Reseting waste reminder")
+        self.set_state(self.sensor_reminder_waste, state = "off")
+
+    def reset_organic_reminder(self, kwargs):
+        self.log("Reseting organic waste reminder")
+        self.set_state(self.sensor_reminder_organic, state = "off")
+
+    def reset_paper_reminder(self, kwargs):
+        self.log("Reseting paper reminder")
+        self.set_state(self.sensor_reminder_paper, state = "off")
+
+    def reset_plastic_reminder(self, kwargs):
+        self.log("Reseting plastic reminder")
+        self.set_state(self.sensor_reminder_plastic, state = "off")
+
     def startup(self, event_name, data, kwargs):
         self.log("Garbage: Startup detected. Updating all now")
         self.update_all(None)
 
     def create_text(self, calendar_name, display_sensor_name):
         weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
-        end_time_str = self.get_state(calendar_name, attribute="end_time")
-        end_time_datetime = datetime.datetime.strptime(end_time_str,"%Y-%m-%d %H:%M:%S")
-        days = (end_time_datetime.date() - self.datetime().date()).days
+        days = self.calc_days(calendar_name)
         if days == 0:
             printtext = "heute"
         elif days == 1:
@@ -81,3 +115,9 @@ class garbage(hass.Hass):
             printtext = end_time_datetime.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
         self.set_state(display_sensor_name, state=printtext)
         self.log(printtext)
+        
+    def calc_days(self, calendar_name):
+        end_time_str = self.get_state(calendar_name, attribute="end_time")
+        end_time_datetime = datetime.datetime.strptime(end_time_str,"%Y-%m-%d %H:%M:%S")
+        days = (end_time_datetime.date() - self.datetime().date()).days
+        return days
