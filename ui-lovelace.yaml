@@ -27,10 +27,7 @@ views:
           - entity: switch.restmuelltonne_erinnerung
             name: Restmüll
             tap_action:
-              action: call_service
-              service: homeassistant.update_entity
-              service_data:
-                entity_id: switch.restmuelltonne_erinnerung
+              action: toggle
           - entity: switch.biotonne_erinnerung
             name: Bio
             tap_action:
@@ -41,8 +38,5 @@ views:
               action: toggle
           - entity: switch.raweg_erinnerung
             name: RaWeg
-          - entity: switch.copy
-            name: BioCopy
             tap_action:
               action: toggle
-
