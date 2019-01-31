@@ -39,12 +39,12 @@ views:
             name: RaWeg
             tap_action:
               action: toggle
-          show_empty: true
-          state_filter:
-            - "on"
-          card: 
-            type: glance
-            show_name: false
+        show_empty: true
+        state_filter:
+          - "on"
+        card: 
+          type: glance
+          show_name: false
       - type: glance
         show_name: false
         entities:
