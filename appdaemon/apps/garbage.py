@@ -40,6 +40,7 @@ class garbage(hass.Hass):
         # --- initialize sensors and switches
         self.update_all_displays(None)
         self.create_reminder_switches(None)
+        # --- listen for events of self created switches (they are not handeled by HA)
         
     def check_next_day(self, kwargs):
         self.log("Checking if tomorrow is some garbage collection")
@@ -133,12 +134,17 @@ class garbage(hass.Hass):
         elif days == 1:
             printtext = "morgen"
         else:
+            end_time_datetime = self.get_end_time(calendar_name)
             printtext = end_time_datetime.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
         self.set_state(display_sensor_name, state=printtext)
         self.log(printtext)
         
     def calc_days(self, calendar_name):
-        end_time_str = self.get_state(calendar_name, attribute="end_time")
-        end_time_datetime = datetime.datetime.strptime(end_time_str,"%Y-%m-%d %H:%M:%S")
+        end_time_datetime = self.get_end_time(calendar_name)
         days = (end_time_datetime.date() - self.datetime().date()).days
         return days
+
+    def get_end_time(self, calendar_name):
+        end_time_str = self.get_state(calendar_name, attribute="end_time")
+        end_time_datetime = datetime.datetime.strptime(end_time_str,"%Y-%m-%d %H:%M:%S")
+        return end_time_datetime
