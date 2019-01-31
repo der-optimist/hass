@@ -41,4 +41,8 @@ views:
               action: toggle
           - entity: switch.raweg_erinnerung
             name: RaWeg
+          - entity: switch.copy
+            name: BioCopy
+            tap_action:
+              action: toggle
 
