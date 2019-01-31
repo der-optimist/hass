@@ -19,90 +19,111 @@ class garbage(hass.Hass):
         self.sensor_display_organic = "sensor.biotonne_anzeige"
         self.sensor_display_paper = "sensor.papiertonne_anzeige"
         self.sensor_display_plastic = "sensor.raweg_anzeige"
-        self.sensor_reminder_waste = "sensor.restmuelltonne_erinnerung"
-        self.sensor_reminder_organic = "sensor.biotonne_erinnerung"
-        self.sensor_reminder_paper = "sensor.papiertonne_erinnerung"
-        self.sensor_reminder_plastic = "sensor.raweg_erinnerung"
+        self.switch_reminder_waste = "switch.restmuelltonne_erinnerung"
+        self.switch_reminder_organic = "switch.biotonne_erinnerung"
+        self.switch_reminder_paper = "switch.papiertonne_erinnerung"
+        self.switch_reminder_plastic = "switch.raweg_erinnerung"
         # --- reminder ---
         time_check_next_day = datetime.time(17, 00, 0)
         self.run_daily(self.check_next_day, time_check_next_day)
         # --- update text at midnight ---
         time_midnight = datetime.time(0, 00, 30)
-        self.run_daily(self.update_all, time_midnight)
+        self.run_daily(self.midnight, time_midnight)
         # --- listen for calendar updates
-        self.listen_state(self.update_waste, self.calendar_waste, attribute="end_time")
-        self.listen_state(self.update_organic, self.calendar_organic, attribute="end_time")
-        self.listen_state(self.update_paper, self.calendar_paper, attribute="end_time")
-        self.listen_state(self.update_plastic, self.calendar_plastic, attribute="end_time")
-        self.listen_state(self.reset_waste_reminder, self.calendar_waste, attribute="end_time")
-        self.listen_state(self.reset_organic_reminder, self.calendar_organic, attribute="end_time")
-        self.listen_state(self.reset_paper_reminder, self.calendar_paper, attribute="end_time")
-        self.listen_state(self.reset_plastic_reminder, self.calendar_plastic, attribute="end_time")
+        self.listen_state(self.end_waste, self.calendar_waste, attribute="end_time")
+        self.listen_state(self.end_organic, self.calendar_organic, attribute="end_time")
+        self.listen_state(self.end_paper, self.calendar_paper, attribute="end_time")
+        self.listen_state(self.end_plastic, self.calendar_plastic, attribute="end_time")
         # --- restarts ---
         self.listen_event(self.startup, "plugin_started")
         self.listen_event(self.startup, "appd_started")
+        # --- initialize sensors and switches
+        self.update_all_displays(None)
+        self.create_reminder_switches(None)
         
     def check_next_day(self, kwargs):
         self.log("Checking if tomorrow is some garbage collection")
         # check waste
         if self.calc_days(self.calendar_waste) == 1:
-            self.set_state(self.sensor_reminder_waste, state = "on")
+            self.log("Tomorrow is waste collection")
+            self.set_state(self.switch_reminder_waste, state = "on")
             self.notify("Morgen ist Restmülltonne", name = "telegram_jo")
         # check organic
         if self.calc_days(self.calendar_organic) == 1:
-            self.set_state(self.sensor_reminder_organic, state = "on")
+            self.log("Tomorrow is organic waste collection")
+            self.set_state(self.switch_reminder_organic, state = "on")
             self.notify("Morgen ist Biotonne", name = "telegram_jo")
         # check paper
         if self.calc_days(self.calendar_paper) == 1:
-            self.set_state(self.sensor_reminder_paper, state = "on")
+            self.log("Tomorrow is paper collection")
+            self.set_state(self.switch_reminder_paper, state = "on")
             self.notify("Morgen ist Papiertonne", name = "telegram_jo")
         # check plastic
         if self.calc_days(self.calendar_plastic) == 1:
-            self.set_state(self.sensor_reminder_plastic, state = "on")
+            self.log("Tomorrow is plastic collection")
+            self.set_state(self.switch_reminder_plastic, state = "on")
             self.notify("Morgen ist RaWeg", name = "telegram_jo")
 
-    def update_waste(self, kwargs):
+    def end_waste(self, kwargs):
+        self.update_waste_display(None)
+        self.log("Reseting waste reminder")
+        self.set_state(self.switch_reminder_waste, state = "off")
+
+    def end_organic(self, kwargs):
+        self.update_organic_display(None)
+        self.log("Reseting organic waste reminder")
+        self.set_state(self.switch_reminder_organic, state = "off")
+
+    def end_paper(self, kwargs):
+        self.update_paper_display(None)
+        self.log("Reseting paper reminder")
+        self.set_state(self.switch_reminder_paper, state = "off")
+
+    def end_plastic(self, kwargs):
+        self.update_plastic_display(None)
+        self.log("Reseting plastic reminder")
+        self.set_state(self.switch_reminder_plastic, state = "off")
+    
+    def update_waste_display(self, kwargs):
         self.log("Updating Waste Display Sensor")
         self.create_text(self.calendar_waste, self.sensor_display_waste)
 
-    def update_organic(self, kwargs):
+    def update_organic_display(self, kwargs):
         self.log("Updating Organic Waste Display Sensor")
         self.create_text(self.calendar_organic, self.sensor_display_organic)
 
-    def update_paper(self, kwargs):
+    def update_paper_display(self, kwargs):
         self.log("Updating Paper Display Sensor")
         self.create_text(self.calendar_paper, self.sensor_display_paper)
 
-    def update_plastic(self, kwargs):
+    def update_plastic_display(self, kwargs):
         self.log("Updating Plastic Display Sensor")
         self.create_text(self.calendar_plastic, self.sensor_display_plastic)
 
-    def update_all(self, kwargs):
-        self.log("Updating All Waste Display Sensors")
-        self.update_waste(None)
-        self.update_organic(None)
-        self.update_paper(None)
-        self.update_plastic(None)
-
-    def reset_waste_reminder(self, kwargs):
-        self.log("Reseting waste reminder")
-        self.set_state(self.sensor_reminder_waste, state = "off")
-
-    def reset_organic_reminder(self, kwargs):
-        self.log("Reseting organic waste reminder")
-        self.set_state(self.sensor_reminder_organic, state = "off")
-
-    def reset_paper_reminder(self, kwargs):
-        self.log("Reseting paper reminder")
-        self.set_state(self.sensor_reminder_paper, state = "off")
-
-    def reset_plastic_reminder(self, kwargs):
-        self.log("Reseting plastic reminder")
-        self.set_state(self.sensor_reminder_plastic, state = "off")
+    def midnight(self, kwargs):
+        self.log("Midnight - Updating All Waste Display Sensors")
+        self.update_all_displays(None)
 
     def startup(self, event_name, data, kwargs):
-        self.log("Garbage: Startup detected. Updating all now")
-        self.update_all(None)
+        self.log("Garbage: Startup detected. Updating all the stuff now")
+        self.update_all_displays(None)
+        self.create_reminder_switches(None)
+
+    def update_all_displays(self, kwargs):
+        self.update_waste_display(None)
+        self.update_organic_display(None)
+        self.update_paper_display(None)
+        self.update_plastic_display(None)
+
+    def create_reminder_switches(self, kwargs):
+        if not self.entity_exists(self.switch_reminder_waste):
+            self.set_state(self.switch_reminder_waste, state = "off")
+        if not self.entity_exists(self.switch_reminder_organic):
+            self.set_state(self.switch_reminder_organic, state = "off")
+        if not self.entity_exists(self.switch_reminder_paper):
+            self.set_state(self.switch_reminder_paper, state = "off")
+        if not self.entity_exists(self.switch_reminder_plastic):
+            self.set_state(self.switch_reminder_plastic, state = "off")
 
     def create_text(self, calendar_name, display_sensor_name):
         weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
