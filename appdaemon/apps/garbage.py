@@ -118,13 +118,13 @@ class garbage(hass.Hass):
 
     def create_reminder_switches(self, kwargs):
         if not self.entity_exists(self.switch_reminder_waste):
-            self.set_state(self.switch_reminder_waste, state = "off")
+            self.set_state(self.switch_reminder_waste, state = "off", attributes={"entity_picture":"/local/icons/garbage/restmuell.png"})
         if not self.entity_exists(self.switch_reminder_organic):
-            self.set_state(self.switch_reminder_organic, state = "off")
+            self.set_state(self.switch_reminder_organic, state = "off", attributes={"entity_picture":"/local/icons/garbage/bio.png"})
         if not self.entity_exists(self.switch_reminder_paper):
-            self.set_state(self.switch_reminder_paper, state = "off")
+            self.set_state(self.switch_reminder_paper, state = "off", attributes={"entity_picture":"/local/icons/garbage/papier.png"})
         if not self.entity_exists(self.switch_reminder_plastic):
-            self.set_state(self.switch_reminder_plastic, state = "off")
+            self.set_state(self.switch_reminder_plastic, state = "off", attributes={"entity_picture":"/local/icons/garbage/plastik.png"})
 
     def create_text(self, calendar_name, display_sensor_name):
         weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
