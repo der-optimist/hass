@@ -41,6 +41,4 @@ views:
               action: toggle
           - entity: switch.raweg_erinnerung
             name: RaWeg
-            tap_action:
-              action: toggle
 
