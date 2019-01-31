@@ -14,3 +14,4 @@ class log_events(hass.Hass):
     
     def log_all_events(self, event_name, data, kwargs):
         self.log(event_name)
+        self.log(data)
