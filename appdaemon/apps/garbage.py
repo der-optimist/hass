@@ -128,17 +128,17 @@ class garbage(hass.Hass):
             self.set_state(self.switch_reminder_waste, state = "off", attributes={"entity_picture":self.icon_waste})
         if self.entity_exists(self.switch_reminder_organic):
             curr_state = self.get_state(self.switch_reminder_organic)
-            self.set_state(self.switch_reminder_organic, state = curr_state, attributes={"entity_picture":self.icon_waste})
+            self.set_state(self.switch_reminder_organic, state = curr_state, attributes={"entity_picture":self.icon_organic})
         else:
             self.set_state(self.switch_reminder_organic, state = "off", attributes={"entity_picture":self.icon_organic})
         if self.entity_exists(self.switch_reminder_paper):
             curr_state = self.get_state(self.switch_reminder_paper)
-            self.set_state(self.switch_reminder_paper, state = curr_state, attributes={"entity_picture":self.icon_waste})
+            self.set_state(self.switch_reminder_paper, state = curr_state, attributes={"entity_picture":self.icon_paper})
         else:
             self.set_state(self.switch_reminder_paper, state = "off", attributes={"entity_picture":self.icon_paper})
         if self.entity_exists(self.switch_reminder_plastic):
             curr_state = self.get_state(self.switch_reminder_plastic)
-            self.set_state(self.switch_reminder_plastic, state = curr_state, attributes={"entity_picture":self.icon_waste})
+            self.set_state(self.switch_reminder_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic})
         else:
             self.set_state(self.switch_reminder_plastic, state = "off", attributes={"entity_picture":self.icon_plastic})
 
