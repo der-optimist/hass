@@ -97,18 +97,18 @@ sensor:
     end: '{{ now() }}'
 
 switch:
-  - platform: template
-    switches:
-      copy:
-        value_template: "{{ is_state('switch.biotonne_erinnerung', 'on') }}"
-        turn_on:
-          service: switch.turn_on
-          data:
-            entity_id: switch.biotonne_erinnerung
-        turn_off:
-          service: switch.turn_off
-          data:
-            entity_id: switch.biotonne_erinnerung
+  #- platform: template
+  #  switches:
+  #    copy:
+  #      value_template: "{{ is_state('switch.biotonne_erinnerung', 'on') }}"
+  #      turn_on:
+  #        service: switch.turn_on
+  #        data:
+  #          entity_id: switch.biotonne_erinnerung
+  #      turn_off:
+  #        service: switch.turn_off
+  #        data:
+  #          entity_id: switch.biotonne_erinnerung
 
 # Text to speech
 tts:
