@@ -35,7 +35,7 @@ class garbage(hass.Hass):
         self.listen_state(self.update_paper, self.calendar_paper, attribute="end_time")
         self.listen_state(self.update_plastic, self.calendar_plastic, attribute="end_time")
         # --- restarts ---
-        self.listen_event(self.update_all, "ha_started")
+        self.listen_event(self.update_all, "plugin_started")
         self.listen_event(self.update_all, "appd_started")
         
     def check_next_day(self, kwargs):
