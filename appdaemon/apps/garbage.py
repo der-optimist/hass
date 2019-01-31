@@ -23,10 +23,10 @@ class garbage(hass.Hass):
         self.switch_reminder_organic = "switch.biotonne_erinnerung"
         self.switch_reminder_paper = "switch.papiertonne_erinnerung"
         self.switch_reminder_plastic = "switch.raweg_erinnerung"
-        self.icon_waste = "/local/icons/garbage/restmuell.png"
-        self.icon_organic = "/local/icons/garbage/bio.png"
-        self.icon_paper = "/local/icons/garbage/papier.png"
-        self.icon_plastic = "/local/icons/garbage/plastik.png"
+        self.icon_waste = "/local/icons/garbage/tonne_schwarz.svg"
+        self.icon_organic = "/local/icons/garbage/tonne_braun.svg"
+        self.icon_paper = "/local/icons/garbage/tonne_blau_blink.svg"
+        self.icon_plastic = "/local/icons/garbage/tonne_gelb.svg"
         # --- reminder ---
         time_check_next_day = datetime.time(17, 00, 0)
         self.run_daily(self.check_next_day, time_check_next_day)
