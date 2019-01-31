@@ -35,8 +35,8 @@ class garbage(hass.Hass):
         self.listen_state(self.update_paper, self.calendar_paper, attribute="end_time")
         self.listen_state(self.update_plastic, self.calendar_plastic, attribute="end_time")
         # --- restarts ---
-        self.listen_event(self.update_all, "plugin_started")
-        self.listen_event(self.update_all, "appd_started")
+        self.listen_event(self.startup, "plugin_started")
+        self.listen_event(self.startup, "appd_started")
         
     def check_next_day(self, kwargs):
         self.log("Would check garbage of next day now, if I would know how to do...")
@@ -59,10 +59,14 @@ class garbage(hass.Hass):
 
     def update_all(self, kwargs):
         self.log("Updating All Waste Display Sensors")
-        self.update_waste("dummy")
-        self.update_organic("dummy")
-        self.update_paper("dummy")
-        self.update_plastic("dummy")
+        self.update_waste(None)
+        self.update_organic(None)
+        self.update_paper(None)
+        self.update_plastic(None)
+
+    def startup(self, event_name, data, kwargs):
+        self.log("Garbage: Startup detected. Updating all now")
+        self.update_all(None)
 
     def create_text(self, calendar_name, display_sensor_name):
         weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
