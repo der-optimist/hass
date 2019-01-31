@@ -23,6 +23,10 @@ class garbage(hass.Hass):
         self.switch_reminder_organic = "switch.biotonne_erinnerung"
         self.switch_reminder_paper = "switch.papiertonne_erinnerung"
         self.switch_reminder_plastic = "switch.raweg_erinnerung"
+        self.icon_waste = "/local/icons/garbage/restmuell.png"
+        self.icon_organic = "/local/icons/garbage/bio.png"
+        self.icon_paper = "/local/icons/garbage/papier.png"
+        self.icon_plastic = "/local/icons/garbage/plastik.png"
         # --- reminder ---
         time_check_next_day = datetime.time(17, 00, 0)
         self.run_daily(self.check_next_day, time_check_next_day)
@@ -117,14 +121,26 @@ class garbage(hass.Hass):
         self.update_plastic_display(None)
 
     def create_reminder_switches(self, kwargs):
-        if not self.entity_exists(self.switch_reminder_waste):
-            self.set_state(self.switch_reminder_waste, state = "off", attributes={"entity_picture":"/local/icons/garbage/restmuell.png"})
-        if not self.entity_exists(self.switch_reminder_organic):
-            self.set_state(self.switch_reminder_organic, state = "off", attributes={"entity_picture":"/local/icons/garbage/bio.png"})
-        if not self.entity_exists(self.switch_reminder_paper):
-            self.set_state(self.switch_reminder_paper, state = "off", attributes={"entity_picture":"/local/icons/garbage/papier.png"})
-        if not self.entity_exists(self.switch_reminder_plastic):
-            self.set_state(self.switch_reminder_plastic, state = "off", attributes={"entity_picture":"/local/icons/garbage/plastik.png"})
+        if self.entity_exists(self.switch_reminder_waste):
+            curr_state = self.get_state(self.switch_reminder_waste)
+            self.set_state(self.switch_reminder_waste, state = curr_state, attributes={"entity_picture":self.icon_waste})
+        else:
+            self.set_state(self.switch_reminder_waste, state = "off", attributes={"entity_picture":self.icon_waste})
+        if self.entity_exists(self.switch_reminder_organic):
+            curr_state = self.get_state(self.switch_reminder_organic)
+            self.set_state(self.switch_reminder_organic, state = curr_state, attributes={"entity_picture":self.icon_waste})
+        else:
+            self.set_state(self.switch_reminder_organic, state = "off", attributes={"entity_picture":self.icon_organic})
+        if self.entity_exists(self.switch_reminder_paper):
+            curr_state = self.get_state(self.switch_reminder_paper)
+            self.set_state(self.switch_reminder_paper, state = curr_state, attributes={"entity_picture":self.icon_waste})
+        else:
+            self.set_state(self.switch_reminder_paper, state = "off", attributes={"entity_picture":self.icon_paper})
+        if self.entity_exists(self.switch_reminder_plastic):
+            curr_state = self.get_state(self.switch_reminder_plastic)
+            self.set_state(self.switch_reminder_plastic, state = curr_state, attributes={"entity_picture":self.icon_waste})
+        else:
+            self.set_state(self.switch_reminder_plastic, state = "off", attributes={"entity_picture":self.icon_plastic})
 
     def create_text(self, calendar_name, display_sensor_name):
         weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
