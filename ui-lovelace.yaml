@@ -1,6 +1,6 @@
 resources:
-  - url: /local/custom_ui/moment_js/moment.js
-    type: js
+  #- url: /local/custom_ui/moment_js/moment.js
+  #  type: js
   - url: /local/custom_ui/calendar-card/calendar-card-bd.js?v=1.0.1
     type: module
   - url: /local/custom_ui/weather-card/weather-card-hours.js
