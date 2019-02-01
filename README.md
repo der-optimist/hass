@@ -1,2 +1,2 @@
 # hass
-Home Assistant Config and Apps
+Home Assistant Config and Apps.
