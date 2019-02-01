@@ -1,3 +1,5 @@
+import '/local/custom_ui/moment_js/moment.js?js';
+
 class CalendarCardBD extends HTMLElement {
   set hass(hass) {
     if (!this.content) {
