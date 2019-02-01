@@ -11,6 +11,8 @@ views:
   - icon: mdi:home
     id: home
     title: Home
+    badges:
+      - !secret device_jo
     cards:
       - type: "custom:calendar-card-bd"
         name: "Geburtstage"
