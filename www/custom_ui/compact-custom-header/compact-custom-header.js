@@ -19,7 +19,7 @@ class CompactCustomHeader extends HTMLElement {
     let clock_am_pm = format_config(this.config.clock_am_pm);
     let disable = format_config(this.config.disable);
     let bg_image = format_config(this.config.background_image);
-    let dir = this.config.dir || '/www/custom-lovelace/compact-custom-header/';
+    let dir = this.config.dir || '/www/custom_ui/compact-custom-header/';
     let card_dir = dir.replace(/\/www\//gi, '/local/');
     // Empty agent for main config at start to keep index numbers consistant.
     let user_agent = ',' + this.config.user_agent;
