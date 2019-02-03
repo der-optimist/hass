@@ -9,3 +9,5 @@ dwd warnings
 pollen
 birthday calendar appdaemon
 reminders
+clock
+current temp
