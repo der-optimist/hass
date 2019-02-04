@@ -100,6 +100,15 @@ sensor:
     display_options:
       - 'time'
       - 'date'
+  - platform: template
+    temp_owm:
+      friendly_name: "Temp. draußen"
+      unit_of_measurement: '°C'
+      value_template: "{{ state_attr('weather.dark_sky', 'temperature') }}"
+    humidity_owm:
+      friendly_name: "Luftfeuchtigkeit"
+      unit_of_measurement: '%'
+      value_template: "{{ state_attr('weather.dark_sky', 'humidity') }}"
 
 switch:
 
