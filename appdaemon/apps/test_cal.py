@@ -1,6 +1,5 @@
 import appdaemon.plugins.hass.hassapi as hass
-import appdaemon.plugins.hass as myhass
-from requests import get
+import aiohttp
 
 #
 # testing the hass api
@@ -9,18 +8,19 @@ from requests import get
 class test_cal(hass.Hass):
 
     def initialize(self):
-        self.load_cal()
+        self.log_cal()
         
     def load_cal(self):
-        self.log(myhass.ha_url)
+        conn = aiohttp.TCPConnector()
+        self.session = aiohttp.ClientSession(connector=conn)
+        ha_url = "http://hassio/homeassistant"
         self.log("Try to load calendars")
-        token = self.args["token"]
-        auth = 'Bearer ' + token
-        self.log(auth)
-        url = 'http://hassio:8123/api/config'
-        headers = {
-            'Authorization': auth,
-            'content-type': 'application/json',
-        }
-        response = get(url, headers=headers, verify=False)
-        self.log(response.text)
+        apiurl = "{}/api/config".format(ha_url)
+        self.log("ha_config: url is {}".format(apiurl))
+        r = await self.session.get(apiurl, headers=headers, verify_ssl=False)
+        r.raise_for_status()
+        return await r.json()
+        
+    def log_cal(self):
+        resp = self.load_cal()
+        self.log(resp)
