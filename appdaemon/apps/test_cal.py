@@ -11,7 +11,7 @@ class test_cal(hass.Hass):
         self.load_cal()
         
     def load_cal(self):
-        self.log(hass.Hass.ha_url)
+        self.log(hass.ha_url)
         self.log("Try to load calendars")
         token = self.args["token"]
         auth = 'Bearer ' + token
