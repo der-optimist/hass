@@ -1,4 +1,5 @@
 import appdaemon.plugins.hass.hassapi as hass
+import appdaemon.plugins.hass as myhass
 from requests import get
 
 #
@@ -11,7 +12,7 @@ class test_cal(hass.Hass):
         self.load_cal()
         
     def load_cal(self):
-        self.log(hass.ha_url)
+        self.log(myhass.ha_url)
         self.log("Try to load calendars")
         token = self.args["token"]
         auth = 'Bearer ' + token
