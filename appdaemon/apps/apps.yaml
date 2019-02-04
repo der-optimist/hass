@@ -10,3 +10,7 @@ garbage:
 log_events:
   module: log_events
   class: log_events
+test_cal:
+  module: test_cal
+  class: test_cal
+  token: !secret test_token_1
