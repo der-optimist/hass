@@ -12,10 +12,9 @@ class test_cal(hass.Hass):
         self.load_cal()
         
     def load_cal(self):
-        #conn = aiohttp.TCPConnector()
-        #self.session = aiohttp.ClientSession(connector=conn)
         ha_url = "http://hassio/homeassistant"
         token = self.args["token"]
+        self.log(token)
         headers = {'Authorization': "Bearer {}".format(token)}
         self.log("Try to load calendars")
         apiurl = "{}/api/config".format(ha_url)
