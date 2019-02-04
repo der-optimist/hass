@@ -9,7 +9,7 @@ from requests import get
 class test_cal(hass.Hass):
 
     def initialize(self):
-        self.log_cal()
+        self.load_cal()
         
     def load_cal(self):
         #conn = aiohttp.TCPConnector()
@@ -21,9 +21,5 @@ class test_cal(hass.Hass):
         apiurl = "{}/api/config".format(ha_url)
         self.log("ha_config: url is {}".format(apiurl))
         r = get(apiurl, headers=headers, verify=False)
-        #r.raise_for_status()
-        return r.json()
-        
-    def log_cal(self):
-        resp = self.load_cal()
-        self.log(resp)
+        self.log(r.status_code)
+        self.log(r.text)
