@@ -21,5 +21,4 @@ class test_cal(hass.Hass):
         apiurl = "{}/api/config".format(ha_url)
         self.log("ha_config: url is {}".format(apiurl))
         r = get(apiurl, headers=headers, verify=False)
-        self.log(r.status_code)
         self.log(r.text)
