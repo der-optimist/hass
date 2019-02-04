@@ -13,6 +13,7 @@ homeassistant:
 zone: !include zones.yaml
 
 frontend: !include frontend.yaml
+api:
 
 lovelace:
   mode: yaml
