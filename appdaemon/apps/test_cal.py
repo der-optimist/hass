@@ -10,7 +10,7 @@ class test_cal(hass.Hass):
     def initialize(self):
         self.log_cal()
         
-    def load_cal(self):
+    async def load_cal(self):
         conn = aiohttp.TCPConnector()
         self.session = aiohttp.ClientSession(connector=conn)
         ha_url = "http://hassio/homeassistant"
