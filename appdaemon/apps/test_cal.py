@@ -15,7 +15,7 @@ class test_cal(hass.Hass):
         token = self.args["token"]
         auth = 'Bearer ' + token
         self.log(auth)
-        url = 'http://localhost:8123/api/config'
+        url = 'http://hassio:8123/api/config'
         headers = {
             'Authorization': auth,
             'content-type': 'application/json',
