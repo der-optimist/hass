@@ -17,7 +17,8 @@ class test_cal(hass.Hass):
         self.log(token)
         headers = {'Authorization': "Bearer {}".format(token)}
         self.log("Try to load calendars")
-        apiurl = "{}/api/config".format(ha_url)
+        #apiurl = "{}/api/config".format(ha_url)
+        apiurl = "{}/api/calendars/calendar.geburtstage_und_jahrestag?start=2019-02-04T00:00:00Z&end=2019-04-04T00:00:00Z".format(ha_url)
         self.log("ha_config: url is {}".format(apiurl))
         r = get(apiurl, headers=headers, verify=False)
         self.log(r.text)
