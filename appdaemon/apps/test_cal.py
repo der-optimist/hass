@@ -10,7 +10,7 @@ class test_cal(hass.Hass):
     def initialize(self):
         self.load_cal()
         
-    def load_cal():
+    def load_cal(self):
         self.log("Try to load calendars")
         token = self.args["token"]
         auth = 'Bearer ' + token
