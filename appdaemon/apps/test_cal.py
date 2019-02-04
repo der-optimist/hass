@@ -1,5 +1,4 @@
 import appdaemon.plugins.hass.hassapi as hass
-#import aiohttp
 from requests import get
 
 #
@@ -22,5 +21,4 @@ class test_cal(hass.Hass):
         apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(ha_url,calendar,start_date,end_date)
         self.log("ha_config: url is {}".format(apiurl))
         r = get(apiurl, headers=headers, verify=False)
-        self.log(r.text)
         self.log(r.json())
