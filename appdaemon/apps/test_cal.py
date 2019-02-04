@@ -16,7 +16,7 @@ class test_cal(hass.Hass):
         token = self.args["token"]
         calendar = "calendar.geburtstage_und_jahrestag"
         start_date = "2019-02-04T00:00:00"
-        end_sate = "2019-04-04T00:00:00"
+        end_date = "2019-04-04T00:00:00"
         headers = {'Authorization': "Bearer {}".format(token)}
         self.log("Try to load calendars")
         apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(ha_url,calendar,start_date,end_date)
