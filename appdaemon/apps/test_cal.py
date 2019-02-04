@@ -20,5 +20,5 @@ class test_cal(hass.Hass):
             'Authorization': auth,
             'content-type': 'application/json',
         }
-        response = get(url, headers=headers)
+        response = get(url, headers=headers, verify=False)
         self.log(response.text)
