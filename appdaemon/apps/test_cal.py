@@ -20,7 +20,7 @@ class test_cal(hass.Hass):
         self.log("Try to load calendars")
         apiurl = "{}/api/config".format(ha_url)
         self.log("ha_config: url is {}".format(apiurl))
-        r = get(apiurl, headers=headers, verify_ssl=False)
+        r = get(apiurl, headers=headers, verify=False)
         #r.raise_for_status()
         return r.json()
         
