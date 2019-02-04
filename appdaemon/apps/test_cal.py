@@ -12,7 +12,7 @@ class test_cal(hass.Hass):
         self.load_cal()
         
     def load_cal(self):
-        ha_url = "http://hassio/homeassistant"
+        ha_url = "http://192.168.1.30:8123/"
         token = self.args["token"]
         self.log(token)
         headers = {'Authorization': "Bearer {}".format(token)}
