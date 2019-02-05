@@ -13,4 +13,5 @@ log_events:
 calendar_and_reminders:
   module: calendar_and_reminders
   class: calendar_and_reminders
+  token: !secret test_token_1
 
