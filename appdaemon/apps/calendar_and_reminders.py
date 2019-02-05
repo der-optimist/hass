@@ -23,7 +23,7 @@ class calendar_and_reminders(hass.Hass):
         r = get(apiurl, headers=headers, verify=False)
         list = json.loads(r.text)
         for element in list:
-          #self.log(element)
+          self.log(element)
           description = ""
           if "description" in element:
             description = element["description"]
