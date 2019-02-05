@@ -22,6 +22,7 @@ class calendar_and_reminders(hass.Hass):
         apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(ha_url,calendar,start_date,end_date)
         self.log("ha_config: url is {}".format(apiurl))
         r = get(apiurl, headers=headers, verify=False)
+        self.log(r.text)
         list = json.loads(r.text)
         for element in list:
           self.log(element)
