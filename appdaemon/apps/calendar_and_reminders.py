@@ -12,7 +12,7 @@ class calendar_and_reminders(hass.Hass):
         self.load_cal()
         
     def load_cal(self):
-        ha_url = self.config["plugins"]["HASS"]["ha_url"]
+        ha_url = "http://192.168.1.30:8123"
         token = self.config["plugins"]["HASS"]["token"]
         token = self.args["token"]
         self.log(token)
