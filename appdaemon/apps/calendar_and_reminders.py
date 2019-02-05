@@ -14,7 +14,7 @@ class calendar_and_reminders(hass.Hass):
     def load_cal(self):
         ha_url = "http://192.168.1.30:8123"
         token = self.config["plugins"]["HASS"]["token"]
-        token = self.args["token"]
+        #token = self.args["token"]
         self.log(token)
         calendar = "calendar.geburtstage_und_jahrestag"
         start_date = "2019-02-05T00:00:00"
