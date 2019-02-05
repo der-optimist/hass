@@ -5,7 +5,7 @@ from requests import get
 # testing the hass api
 #
 
-class test_cal(hass.Hass):
+class calendar_and_reminders(hass.Hass):
 
     def initialize(self):
         self.load_cal()
