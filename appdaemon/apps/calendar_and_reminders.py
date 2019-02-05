@@ -1,5 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 from requests import get
+import json
 
 #
 # testing the hass api
