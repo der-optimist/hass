@@ -27,9 +27,6 @@ class calendar_and_reminders(hass.Hass):
         list = json.loads(r.text)
         for element in list:
           self.log(element)
-          description = ""
-          if "description" in element:
-            description = element["description"]
           summary = ""
           if "summary" in element:
             summary = element["summary"]
