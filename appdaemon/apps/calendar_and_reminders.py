@@ -16,8 +16,8 @@ class calendar_and_reminders(hass.Hass):
         token = self.args["token"]
         self.log(token)
         calendar = "calendar.geburtstage_und_jahrestag"
-        start_date = "2019-02-05T00:00:00"
-        end_date = "2019-03-10T00:00:00"
+        start_date = "2019-02-06T00:00:00"
+        end_date = "2019-03-20T00:00:00"
         headers = {'Authorization': "Bearer {}".format(token)}
         self.log("Try to load calendars")
         apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(ha_url,calendar,start_date,end_date)
