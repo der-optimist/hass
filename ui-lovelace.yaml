@@ -37,7 +37,7 @@ views:
             entity: sensor.temp_owm
             scale: 30px
       - type: custom:flex-table-card 
-        title: Fancy tabular data
+        title: Geburtstage
         entities:
           include: variable.birthdays
         columns:
