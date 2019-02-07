@@ -30,6 +30,7 @@ class calendar_and_reminders(hass.Hass):
         end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays)).strftime("%Y-%m-%dT00:00:00")
         summaries = []
         _dates = []
+        weekdays = []
         _list = self.load_calendar("calendar.geburtstage_und_jahrestag",start_dt,end_dt)
         for element in _list:
             self.log(element)
@@ -43,11 +44,12 @@ class calendar_and_reminders(hass.Hass):
                     summaries.append(summary)
                     _date = element["start"]["date"]
                     date_display = self.date_to_text(_date)
-                    _dates.append(date_display)
+                    weekdays.append(date_display[0])
+                    _dates.append(date_display[1])
                     self.log("{}: {}".format(date_display,summary))
                 else:
                     self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
-        self.call_service("variable/set_variable",variable="birthdays",value="birthdays",attributes={"who": summaries, "when": _dates})
+        self.call_service("variable/set_variable",variable="birthdays",value="birthdays",attributes={"who": summaries, "when": _dates, "weekday": weekdays})
 
 
     def load_calendar(self,calendar,start_dt,end_dt):
@@ -69,10 +71,10 @@ class calendar_and_reminders(hass.Hass):
         _date = datetime.datetime.strptime(date_str, "%Y-%m-%d")
         days = (_date.date() - self.datetime().date()).days
         if days == 0:
-            printtext = "heute"
+            printtext = [" ","heute"]
         elif days == 1:
-            printtext = "morgen"
+            printtext = [" ","morgen"]
         else:
-            printtext = _date.strftime('{}, %d.%m. ({} T.)').format(weekdays[_date.weekday()], days)
+            printtext = [_date.strftime('{}').format(weekdays[_date.weekday()]),_date.strftime('%d.%m. ({} T.)').format(days)]
         return printtext
         
