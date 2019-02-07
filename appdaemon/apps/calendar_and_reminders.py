@@ -4,8 +4,11 @@ import json
 import datetime
 
 #
-# Load Birthday events into a HASS variable
-# Check "Reminders Calendar" for events and set a reminder
+# What it does:
+#   - Load Birthday events into a HA variable (displayed in flex-table-card)
+#   - Check "Reminders Calendar" for events and set a reminder
+# What args it needs:
+#   - token: a long lived token from HA
 #
 
 class calendar_and_reminders(hass.Hass):
