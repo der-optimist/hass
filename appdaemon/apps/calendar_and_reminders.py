@@ -42,8 +42,9 @@ class calendar_and_reminders(hass.Hass):
                     summary = element["summary"]
                     summaries.append(summary)
                     _date = element["start"]["date"]
-                    _dates.append(_date)
-                    self.log("{}: {}".format(_date,summary))
+                    date_display = self.date_to_text(_date)
+                    _dates.append(date_display)
+                    self.log("{}: {}".format(date_display,summary))
                 else:
                     self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
         self.call_service("variable/set_variable",variable="birthdays",value="birthdays",attributes={"who": summaries, "when": _dates})
@@ -62,3 +63,16 @@ class calendar_and_reminders(hass.Hass):
     def startup(self, event_name, data, kwargs):
         self.log("Startup detected")
         self.check_birthdays(None)
+
+    def date_to_text(self, date_str):
+        weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+        _date = datetime.datetime.strptime(date_str, "%Y-%m-%d")
+        days = (_date.date() - self.datetime().date()).days
+        if days == 0:
+            printtext = "heute"
+        elif days == 1:
+            printtext = "morgen"
+        else:
+            printtext = _date.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
+        return printtext
+        
