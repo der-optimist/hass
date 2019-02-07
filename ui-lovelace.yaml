@@ -1,8 +1,6 @@
 resources:
-  #- url: /local/custom_ui/moment_js/moment.js
-  #  type: js
-  #- url: /local/custom_ui/calendar-card/calendar-card-bd.js?v=1.0.1
-  #  type: module
+  - url: /local/custom_ui/flex-table-card/flex-table-card.js
+    type: js
   - url: /local/custom_ui/weather-card/weather-card-hours.js
     type: module
   - url: /local/custom_ui/compact-custom-header/compact-custom-header.js?v=0.0.1
@@ -38,6 +36,15 @@ views:
           - type: custom:bignumber-card
             entity: sensor.temp_owm
             scale: 30px
+      - type: custom:flex-table-card 
+        title: Fancy tabular data
+        entities:
+          include: variable.birthdays
+        columns:
+          - name: Wer
+            attr_as_list: who
+          - name: Wann
+            attr_as_list: when
       - type: custom:weather-card
         entity: weather.dark_sky
         icons: '/local/icons/weather_icons/animated/'
