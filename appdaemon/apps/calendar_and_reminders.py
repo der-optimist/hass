@@ -2,6 +2,7 @@ import appdaemon.plugins.hass.hassapi as hass
 from requests import get
 import json
 import datetime
+import variable
 
 #
 # Load Birthday events into a HASS variable
@@ -28,6 +29,8 @@ class calendar_and_reminders(hass.Hass):
         self.log("Checking Birthdays")
         start_dt = datetime.datetime.now().strftime("%Y-%m-%dT00:00:00")
         end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays)).strftime("%Y-%m-%dT00:00:00")
+        summaries = []
+        _dates = []
         _list = self.load_calendar("calendar.geburtstage_und_jahrestag",start_dt,end_dt)
         for element in _list:
             self.log(element)
@@ -38,10 +41,13 @@ class calendar_and_reminders(hass.Hass):
                 _date = ""
                 if "summary" in element and "date" in element["start"]:
                     summary = element["summary"]
+                    summaries.append(summary)
                     _date = element["start"]["date"]
+                    _dates.append(_date)
                     self.log("{}: {}".format(_date,summary))
                 else:
                     self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
+        variable.set_variable("birthdays", "birthdays", {"who": summaries, "when": _dates}, None, None)
 
 
     def load_calendar(self,calendar,start_dt,end_dt):
