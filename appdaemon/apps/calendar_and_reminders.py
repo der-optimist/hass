@@ -35,4 +35,4 @@ class calendar_and_reminders(hass.Hass):
             _date = element["start"]["date"]
           elif "dateTime" in element["start"]:
             _date = element["start"]["dateTime"]
-          self.log("{}: {} ({})".format(_date,summary))
+          self.log("{}: {}".format(_date,summary))
