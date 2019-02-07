@@ -46,7 +46,7 @@ class calendar_and_reminders(hass.Hass):
                     self.log("{}: {}".format(_date,summary))
                 else:
                     self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
-        self.call_service("variable.set_variable",["birthdays", "birthdays", {"who": summaries, "when": _dates}, None, None])
+        self.call_service("variable/set_variable",variable="birthdays",value="birthdays",attributes={"who": summaries, "when": _dates})
 
 
     def load_calendar(self,calendar,start_dt,end_dt):
