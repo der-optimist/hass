@@ -9,3 +9,4 @@ Home Assistant Config and Apps
 - pollen
 - birthday calendar appdaemon
 - reminders
+- design
