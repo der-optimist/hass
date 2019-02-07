@@ -1,38 +1,59 @@
 import appdaemon.plugins.hass.hassapi as hass
 from requests import get
 import json
+import datetime
 
 #
-# testing the hass api
+# Load Birthday events into a HASS variable
+# Check "Reminders Calendar" for events and set a reminder
 #
 
 class calendar_and_reminders(hass.Hass):
 
     def initialize(self):
-        self.load_cal()
-        
-    def load_cal(self):
-        ha_url = "http://192.168.1.30:8123"
-        token = self.args["token"]
-        self.log(token)
-        calendar = "calendar.geburtstage_und_jahrestag"
-        start_date = "2019-02-06T00:00:00"
-        end_date = "2019-03-20T00:00:00"
-        headers = {'Authorization': "Bearer {}".format(token)}
-        self.log("Try to load calendars")
-        apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(ha_url,calendar,start_date,end_date)
+        # --- define variables ---
+        self.ha_url = "http://192.168.1.30:8123"
+        self.token = self.args["token"]
+        self.days_birthdays = 60
+        # --- birthdays to HASS variable ---
+        time_check_birthdays = datetime.time(hour=0, minute=2, second=0)
+        self.run_hourly(self.check_birthdays, time_check_next_day)
+        # --- do all the stuff at restarts ---
+        self.listen_event(self.startup, "plugin_started")
+        self.listen_event(self.startup, "appd_started")
+        # --- initialize ---
+        self.check_birthdays(None)
+ 
+    def check_birthdays(self, kwargs):
+        self.log("Checking Birthdays")
+        start_dt = datetime.datetime.now().strftime("%Y-%m-%dT00:00:00")
+        end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays)).strftime("%Y-%m-%dT00:00:00")
+        _list = self.load_calendar(self,"calendar.geburtstage_und_jahrestag",start_dt,end_dt)
+        for element in _list:
+            self.log(element)
+            if "dateTime" in element["start"]:
+                self.log("Birthday Calendar only supports all-day events. Found non-all-day event, but it will be ignored.")
+            else:
+                summary = ""
+                _date = ""
+                if "summary" in element and "date" in element["start"]:
+                    summary = element["summary"]
+                    _date = element["start"]["date"]
+                    self.log("{}: {}".format(_date,summary))
+                else:
+                    self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
+
+
+    def load_calendar(self,calendar,start_dt,end_dt):
+        headers = {'Authorization': "Bearer {}".format(self.token)}
+        self.log("Try to load calendar events")
+        apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(self.ha_url,calendar,start_dt,end_dt)
         self.log("ha_config: url is {}".format(apiurl))
         r = get(apiurl, headers=headers, verify=False)
         self.log(r)
-        list = json.loads(r.text)
-        for element in list:
-          self.log(element)
-          summary = ""
-          if "summary" in element:
-            summary = element["summary"]
-          _date = ""
-          if "date" in element["start"]:
-            _date = element["start"]["date"]
-          elif "dateTime" in element["start"]:
-            _date = element["start"]["dateTime"]
-          self.log("{}: {}".format(_date,summary))
+        _list = json.loads(r.text)
+        return _list
+
+    def startup(self, event_name, data, kwargs):
+        self.log("Garbage: Startup detected")
+        self.check_birthdays(None)
