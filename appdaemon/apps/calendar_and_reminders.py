@@ -16,7 +16,7 @@ class calendar_and_reminders(hass.Hass):
         self.token = self.args["token"]
         self.days_birthdays = 60
         # --- birthdays to HASS variable ---
-        time_check_birthdays = datetime.time(hour=0, minute=2, second=0)
+        time_check_birthdays = datetime.time(hour=0, minute=1, second=0)
         self.run_hourly(self.check_birthdays, time_check_birthdays)
         # --- do all the stuff at restarts ---
         self.listen_event(self.startup, "plugin_started")
@@ -33,7 +33,6 @@ class calendar_and_reminders(hass.Hass):
         weekdays = []
         _list = self.load_calendar("calendar.geburtstage_und_jahrestag",start_dt,end_dt)
         for element in _list:
-            self.log(element)
             if "dateTime" in element["start"]:
                 self.log("Birthday Calendar only supports all-day events. Found non-all-day event, but it will be ignored.")
             else:
@@ -46,7 +45,7 @@ class calendar_and_reminders(hass.Hass):
                     date_display = self.date_to_text(_date)
                     weekdays.append(date_display[0])
                     _dates.append(date_display[1])
-                    self.log("{}: {}".format(date_display,summary))
+                    self.log("{} {}: {}".format(date_display[0],date_display[1],summary))
                 else:
                     self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
         self.call_service("variable/set_variable",variable="birthdays",value="birthdays",attributes={"who": summaries, "when": _dates, "weekday": weekdays})
