@@ -41,6 +41,8 @@ views:
           include: variable.birthdays
         columns:
           - name: " "
+            attr_as_list: weekday
+          - name: " "
             attr_as_list: when
           - name: Geburtstage
             attr_as_list: who
