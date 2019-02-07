@@ -73,6 +73,6 @@ class calendar_and_reminders(hass.Hass):
         elif days == 1:
             printtext = "morgen"
         else:
-            printtext = _date.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
+            printtext = _date.strftime('{}, %d.%m. ({} T.)').format(weekdays[_date.weekday()], days)
         return printtext
         
