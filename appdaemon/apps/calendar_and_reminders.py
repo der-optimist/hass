@@ -17,7 +17,7 @@ class calendar_and_reminders(hass.Hass):
         self.days_birthdays = 60
         # --- birthdays to HASS variable ---
         time_check_birthdays = datetime.time(hour=0, minute=2, second=0)
-        self.run_hourly(self.check_birthdays, time_check_next_day)
+        self.run_hourly(self.check_birthdays, time_check_birthdays)
         # --- do all the stuff at restarts ---
         self.listen_event(self.startup, "plugin_started")
         self.listen_event(self.startup, "appd_started")
