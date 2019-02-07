@@ -28,7 +28,7 @@ class calendar_and_reminders(hass.Hass):
         self.log("Checking Birthdays")
         start_dt = datetime.datetime.now().strftime("%Y-%m-%dT00:00:00")
         end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays)).strftime("%Y-%m-%dT00:00:00")
-        _list = self.load_calendar(self,"calendar.geburtstage_und_jahrestag",start_dt,end_dt)
+        _list = self.load_calendar("calendar.geburtstage_und_jahrestag",start_dt,end_dt)
         for element in _list:
             self.log(element)
             if "dateTime" in element["start"]:
