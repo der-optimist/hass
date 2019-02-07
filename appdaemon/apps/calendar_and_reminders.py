@@ -14,7 +14,7 @@ class calendar_and_reminders(hass.Hass):
         # --- define variables ---
         self.ha_url = "http://192.168.1.30:8123"
         self.token = self.args["token"]
-        self.days_birthdays = 60
+        self.days_birthdays = 31
         # --- birthdays to HASS variable ---
         time_check_birthdays = datetime.time(hour=0, minute=1, second=0)
         self.run_hourly(self.check_birthdays, time_check_birthdays)
