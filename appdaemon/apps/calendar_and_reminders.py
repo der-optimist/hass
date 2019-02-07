@@ -55,5 +55,5 @@ class calendar_and_reminders(hass.Hass):
         return _list
 
     def startup(self, event_name, data, kwargs):
-        self.log("Garbage: Startup detected")
+        self.log("Startup detected")
         self.check_birthdays(None)
