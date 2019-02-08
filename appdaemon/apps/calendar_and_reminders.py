@@ -115,3 +115,8 @@ class calendar_and_reminders(hass.Hass):
         utc_offset_dt = datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S")
         utc_offset_h = utc_offset_dt.seconds//3600
         self.log(utc_offset_h)
+        if utc_offset_h >= 0:
+            utc_offset_str = '+' + str(utc_offset_h).zfill(2) + ':00'
+        else:
+            utc_offset_str = str(utc_offset_h).zfill(2) + ':00'
+        self.log(utc_offset_str)
