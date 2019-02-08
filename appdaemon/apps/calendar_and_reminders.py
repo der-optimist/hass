@@ -87,6 +87,9 @@ class calendar_and_reminders(hass.Hass):
             event_start_dt = datetime.datetime.strptime(start_dt, "%Y-%m-%dT%H:%M:%S")
             last_minute_dt = datetime.datetime.now().replace(second=0)
             end_check_interval_dt = last_minute_dt + datetime.timedelta(minutes=(self.check_reminder_repeat_minutes - 1), seconds=59)
+            self.log(last_minute_dt.strftime("%Y-%m-%dT%H:%M:%S"))
+            self.log(event_start_dt.strftime("%Y-%m-%dT%H:%M:%S"))
+            self.log(end_check_interval_dt.strftime("%Y-%m-%dT%H:%M:%S"))
             if event_start_dt > last_minute_dt and event_start_dt < end_check_interval_dt:
                 self.log("{} sollte ich als reminder setzen!".format(summary))
 
