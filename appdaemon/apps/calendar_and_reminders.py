@@ -22,27 +22,27 @@ class calendar_and_reminders(hass.Hass):
         time_check_birthdays = datetime.time(hour=0, minute=1, second=0)
         self.run_hourly(self.check_birthdays, time_check_birthdays)
         # --- set reminders triggered by google calendar events ---
-        time_check_reminder = datetime.time(hour=0, minute=58, second=0)
+        time_check_reminder = datetime.time(hour=0, minute=0, second=10)
         self.run_hourly(self.check_reminder, time_check_reminder)
         # --- do all the stuff at restarts ---
         self.listen_event(self.startup, "plugin_started")
         self.listen_event(self.startup, "appd_started")
         # --- initialize ---
         self.check_birthdays(None)
-        self.check_reminder(None)
+        #self.check_reminder(None)
  
     def check_birthdays(self, kwargs):
         self.log("Checking Birthdays")
         utc_offset = self.utc_offset(None)
-        start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT00:00:00") # local time
-        end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays) - utc_offset).strftime("%Y-%m-%dT00:00:00") # local time
+        start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT00:00:00") # results in UTC time => "Z" in url
+        end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays) - utc_offset).strftime("%Y-%m-%dT00:00:00") # results in UTC time => "Z" in url
         summaries = []
         _dates = []
         weekdays = []
         _list = self.load_calendar("calendar.geburtstage_und_jahrestag",start_dt,end_dt)
         for element in _list:
             if "dateTime" in element["start"]:
-                self.log("Birthday Calendar only supports all-day events. Found non-all-day event, but it will be ignored.")
+                self.log("Birthday Calendar only supports all-day events. Found event that is not all-day, it will be ignored.")
             else:
                 summary = ""
                 _date = ""
@@ -61,8 +61,8 @@ class calendar_and_reminders(hass.Hass):
     def check_reminder(self, kwargs):
         self.log("Checking reminder events now")
         utc_offset = self.utc_offset(None)
-        start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # local time
-        end_dt = (datetime.datetime.now() + datetime.timedelta(hours=1) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # local time
+        start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
+        end_dt = (datetime.datetime.now() + datetime.timedelta(minutes=59) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
         summaries = []
         start_dts = []
         end_dts = []
@@ -115,14 +115,4 @@ class calendar_and_reminders(hass.Hass):
         now_utc_naive = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
         now_loc_naive = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
         utc_offset_dt = datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S")
-        #utc_offset_dt = datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S")
-        #utc_offset_h = utc_offset_dt.seconds//3600
-        #self.log(utc_offset_h)
-        #self.log(utc_offset_dt.days)
-        #if utc_offset_dt.days >= 0:
-        #    utc_offset_str = '+' + str(utc_offset_h).zfill(2) + ':00'
-        #else:
-        #    utc_offset_str = str(utc_offset_h-24).zfill(2) + ':00'
-        #self.log(utc_offset_str)
-        #return utc_offset_str
         return utc_offset_dt
