@@ -81,6 +81,7 @@ class calendar_and_reminders(hass.Hass):
             elif "dateTime" in element["end"]:
                 end_dt = (element["end"]["dateTime"]).split('+')[0]
             self.log("{} - {}: {} ".format(start_dt,end_dt,summary))
+        self.utc_offset(None)
 
     def load_calendar(self,calendar,start_dt,end_dt):
         headers = {'Authorization': "Bearer {}".format(self.token)}
@@ -108,3 +109,7 @@ class calendar_and_reminders(hass.Hass):
             printtext = [_date.strftime('{}').format(weekdays[_date.weekday()]),_date.strftime('%d.%m. ({} T.)').format(days)]
         return printtext
         
+    def utc_offset(self, kwargs):
+        utc_offset_dt = datetime.datetime.utcnow() - datetime.datetime.now()
+        utc_offset = utc_offset_dt.seconds//3600
+        self.log(utc_offset)
