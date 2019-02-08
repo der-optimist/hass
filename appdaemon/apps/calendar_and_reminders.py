@@ -23,7 +23,8 @@ class calendar_and_reminders(hass.Hass):
         self.run_hourly(self.check_birthdays, time_check_birthdays)
         # --- set reminders triggered by google calendar events ---
         time_check_reminder = datetime.time(hour=0, minute=0, second=10)
-        self.run_hourly(self.check_reminder, time_check_reminder)
+        self.check_reminder_repeat_minutes = 15
+        self.run_every(self.check_reminder, time_check_reminder, self.check_reminder_repeat_minutes * 60)
         # --- do all the stuff at restarts ---
         self.listen_event(self.startup, "plugin_started")
         self.listen_event(self.startup, "appd_started")
@@ -62,7 +63,7 @@ class calendar_and_reminders(hass.Hass):
         self.log("Checking reminder events now")
         utc_offset = self.utc_offset(None)
         start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
-        end_dt = (datetime.datetime.now() + datetime.timedelta(minutes=59) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
+        end_dt = (datetime.datetime.now() + datetime.timedelta(minutes=(self.check_reminder_repeat_minutes - 1)) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
         summaries = []
         start_dts = []
         end_dts = []
