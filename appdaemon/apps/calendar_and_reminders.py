@@ -79,7 +79,7 @@ class calendar_and_reminders(hass.Hass):
             if "date" in element["end"]:
                 end_dt = element["end"]["date"]
             elif "dateTime" in element["end"]:
-                end_dt = element["end"]["dateTime"]
+                end_dt = (element["end"]["dateTime"]).split('+')[0]
             self.log("{} - {}: {} ".format(start_dt,end_dt,summary))
 
     def load_calendar(self,calendar,start_dt,end_dt):
