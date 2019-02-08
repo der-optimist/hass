@@ -92,6 +92,8 @@ class calendar_and_reminders(hass.Hass):
             self.log(end_check_interval_dt.strftime("%Y-%m-%dT%H:%M:%S"))
             if event_start_dt > last_minute_dt and event_start_dt < end_check_interval_dt:
                 self.log("{} sollte ich als reminder setzen!".format(summary))
+            else:
+                self.log("{} startete wohl nicht in diesem Interval".format(summary))
 
     def load_calendar(self,calendar,start_dt,end_dt):
         headers = {'Authorization': "Bearer {}".format(self.token)}
