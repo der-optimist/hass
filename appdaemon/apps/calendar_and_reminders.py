@@ -22,10 +22,10 @@ class calendar_and_reminders(hass.Hass):
         time_check_birthdays = datetime.time(hour=0, minute=1, second=0)
         self.run_hourly(self.check_birthdays, time_check_birthdays)
         # --- set reminders triggered by google calendar events ---
-        time_check_reminder_1 = datetime.time(hour=0, minute=59, second=0)
-        time_check_reminder_2 = datetime.time(hour=0, minute=14, second=0)
-        time_check_reminder_3 = datetime.time(hour=0, minute=29, second=0)
-        time_check_reminder_4 = datetime.time(hour=0, minute=44, second=0)
+        time_check_reminder_1 = datetime.time(hour=0, minute=0, second=10)
+        time_check_reminder_2 = datetime.time(hour=0, minute=15, second=10)
+        time_check_reminder_3 = datetime.time(hour=0, minute=30, second=10)
+        time_check_reminder_4 = datetime.time(hour=0, minute=45, second=10)
         self.check_reminder_repeat_minutes = 15
         self.run_hourly(self.check_reminder, time_check_reminder_1)
         self.run_hourly(self.check_reminder, time_check_reminder_2)
@@ -68,7 +68,7 @@ class calendar_and_reminders(hass.Hass):
         self.log("Checking reminder events now")
         utc_offset = self.utc_offset(None)
         start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
-        end_dt = (datetime.datetime.now() + datetime.timedelta(minutes=self.check_reminder_repeat_minutes) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
+        end_dt = (datetime.datetime.now() + datetime.timedelta(minutes=(self.check_reminder_repeat_minutes - 1)) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
         summaries = []
         start_dts = []
         end_dts = []
