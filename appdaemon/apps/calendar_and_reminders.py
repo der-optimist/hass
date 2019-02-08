@@ -90,7 +90,7 @@ class calendar_and_reminders(hass.Hass):
             self.log(last_minute_dt.strftime("%Y-%m-%dT%H:%M:%S"))
             self.log(event_start_dt.strftime("%Y-%m-%dT%H:%M:%S"))
             self.log(end_check_interval_dt.strftime("%Y-%m-%dT%H:%M:%S"))
-            if event_start_dt > last_minute_dt and event_start_dt < end_check_interval_dt:
+            if event_start_dt >= last_minute_dt and event_start_dt < end_check_interval_dt:
                 self.log("{} sollte ich als reminder setzen!".format(summary))
             else:
                 self.log("{} startete wohl nicht in diesem Interval".format(summary))
