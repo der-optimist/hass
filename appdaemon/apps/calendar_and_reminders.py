@@ -9,7 +9,7 @@ import datetime
 #   - Check "Reminders Calendar" for events and set a reminder
 # What args it needs:
 #   - token: a long lived token from HA
-#
+# 
 
 class calendar_and_reminders(hass.Hass):
 
