@@ -7,6 +7,8 @@ log:
   log_generations: 5
 appdaemon:
   threads: 10
+  utility_delay: 5
+  utility_skew: 4
   app_dir: /config/appdaemon/apps
   plugins:
     HASS:
