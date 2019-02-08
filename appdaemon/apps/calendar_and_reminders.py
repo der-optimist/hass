@@ -22,9 +22,15 @@ class calendar_and_reminders(hass.Hass):
         time_check_birthdays = datetime.time(hour=0, minute=1, second=0)
         self.run_hourly(self.check_birthdays, time_check_birthdays)
         # --- set reminders triggered by google calendar events ---
-        time_check_reminder = datetime.time(hour=0, minute=0, second=10)
+        time_check_reminder_1 = datetime.time(hour=0, minute=0, second=10)
+        time_check_reminder_2 = datetime.time(hour=0, minute=15, second=10)
+        time_check_reminder_3 = datetime.time(hour=0, minute=30, second=10)
+        time_check_reminder_4 = datetime.time(hour=0, minute=45, second=10)
         self.check_reminder_repeat_minutes = 15
-        self.run_every(self.check_reminder, time_check_reminder, self.check_reminder_repeat_minutes * 60)
+        self.run_hourly(self.check_reminder, time_check_reminder_1)
+        self.run_hourly(self.check_reminder, time_check_reminder_2)
+        self.run_hourly(self.check_reminder, time_check_reminder_3)
+        self.run_hourly(self.check_reminder, time_check_reminder_4)
         # --- do all the stuff at restarts ---
         self.listen_event(self.startup, "plugin_started")
         self.listen_event(self.startup, "appd_started")
