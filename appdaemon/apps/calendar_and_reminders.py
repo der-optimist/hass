@@ -30,7 +30,6 @@ class calendar_and_reminders(hass.Hass):
         self.listen_event(self.startup, "appd_started")
         # --- initialize ---
         self.check_birthdays(None)
-        #self.check_reminder(None)
  
     def check_birthdays(self, kwargs):
         self.log("Checking Birthdays")
@@ -75,16 +74,10 @@ class calendar_and_reminders(hass.Hass):
                 summary = element["summary"]
             start_dt = ""
             if "date" in element["start"]:
-                start_dt = element["start"]["date"]
+                start_dt = element["start"]["date"] + 'T00:00:00'
             elif "dateTime" in element["start"]:
-                start_dt = element["start"]["dateTime"]
-            end_dt = ""
-            if "date" in element["end"]:
-                end_dt = element["end"]["date"]
-            elif "dateTime" in element["end"]:
-                end_dt = (element["end"]["dateTime"]).split('+')[0]
-            self.log("{} - {}: {} ".format(start_dt,end_dt,summary))
-        self.utc_offset(None)
+                start_dt = (element["start"]["dateTime"]).split('+')[0]
+            self.log("{}: {} ".format(start_dt,summary))
 
     def load_calendar(self,calendar,start_dt,end_dt):
         headers = {'Authorization': "Bearer {}".format(self.token)}
