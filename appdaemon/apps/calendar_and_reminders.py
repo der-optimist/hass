@@ -21,11 +21,15 @@ class calendar_and_reminders(hass.Hass):
         # --- birthdays to HASS variable ---
         time_check_birthdays = datetime.time(hour=0, minute=1, second=0)
         self.run_hourly(self.check_birthdays, time_check_birthdays)
+        # --- set reminders triggered by google calendar events ---
+        time_check_reminder = datetime.time(hour=0, minute=58, second=0)
+        self.run_hourly(self.check_reminder, time_check_reminder)
         # --- do all the stuff at restarts ---
         self.listen_event(self.startup, "plugin_started")
         self.listen_event(self.startup, "appd_started")
         # --- initialize ---
         self.check_birthdays(None)
+        self.check_reminder(None)
  
     def check_birthdays(self, kwargs):
         self.log("Checking Birthdays")
@@ -53,6 +57,30 @@ class calendar_and_reminders(hass.Hass):
                     self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
         self.call_service("variable/set_variable",variable="birthdays",value="birthdays",attributes={"who": summaries, "when": _dates, "weekday": weekdays})
 
+    def check_reminder(self, kwargs):
+        self.log("Checking reminder events now")
+        start_dt = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        end_dt = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%S")
+        summaries = []
+        start_dts = []
+        end_dts = []
+        _list = self.load_calendar("calendar.erinnerungen_bildschirm",start_dt,end_dt)
+        for element in _list:
+            self.log(element)
+            summary = ""
+            if "summary" in element:
+                summary = element["summary"]
+            start_dt = ""
+            if "date" in element["start"]:
+                start_dt = element["start"]["date"]
+            elif "dateTime" in element["start"]:
+                start_dt = element["start"]["dateTime"]
+            end_dt = ""
+            if "date" in element["end"]:
+                end_dt = element["end"]["date"]
+            elif "dateTime" in element["end"]:
+                end_dt = element["end"]["dateTime"]
+            self.log("{} - {}: {} ".format(start_dt,end_dt,summary))
 
     def load_calendar(self,calendar,start_dt,end_dt):
         headers = {'Authorization': "Bearer {}".format(self.token)}
