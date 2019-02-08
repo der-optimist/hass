@@ -118,9 +118,9 @@ class calendar_and_reminders(hass.Hass):
         utc_offset_h = utc_offset_dt.seconds//3600
         self.log(utc_offset_h)
         self.log(utc_offset_dt.days)
-        if utc_offset_h >= 0:
+        if utc_offset_dt.days >= 0:
             utc_offset_str = '+' + str(utc_offset_h).zfill(2) + ':00'
         else:
-            utc_offset_str = str(utc_offset_h).zfill(2) + ':00'
+            utc_offset_str = str(utc_offset_h-24).zfill(2) + ':00'
         self.log(utc_offset_str)
         return utc_offset_str
