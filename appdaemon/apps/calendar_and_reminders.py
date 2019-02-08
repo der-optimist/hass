@@ -33,8 +33,8 @@ class calendar_and_reminders(hass.Hass):
  
     def check_birthdays(self, kwargs):
         self.log("Checking Birthdays")
-        start_dt = datetime.datetime.now().strftime("%Y-%m-%dT00:00:00")
-        end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays)).strftime("%Y-%m-%dT00:00:00")
+        start_dt = datetime.datetime.now().strftime("%Y-%m-%dT00:00:00") # local time
+        end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays)).strftime("%Y-%m-%dT00:00:00") # local time
         summaries = []
         _dates = []
         weekdays = []
@@ -59,8 +59,8 @@ class calendar_and_reminders(hass.Hass):
 
     def check_reminder(self, kwargs):
         self.log("Checking reminder events now")
-        start_dt = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-        end_dt = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%S")
+        start_dt = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S") # local time
+        end_dt = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%S") # local time
         summaries = []
         start_dts = []
         end_dts = []
@@ -112,10 +112,10 @@ class calendar_and_reminders(hass.Hass):
     def utc_offset(self, kwargs):
         now_utc_naive = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
         now_loc_naive = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-        #utc_offset_dt = datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S")
-        utc_offset_dt = datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S")
+        utc_offset_dt = datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S")
         utc_offset_h = utc_offset_dt.seconds//3600
         self.log(utc_offset_h)
+        self.log(utc_offset_dt.days)
         if utc_offset_h >= 0:
             utc_offset_str = '+' + str(utc_offset_h).zfill(2) + ':00'
         else:
