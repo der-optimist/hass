@@ -85,8 +85,9 @@ class calendar_and_reminders(hass.Hass):
 
     def load_calendar(self,calendar,start_dt,end_dt):
         headers = {'Authorization': "Bearer {}".format(self.token)}
+        utc_offset = self.utc_offset(None)
         self.log("Try to load calendar events")
-        apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(self.ha_url,calendar,start_dt,end_dt)
+        apiurl = "{}/api/calendars/{}?start={}{}&end={}{}".format(self.ha_url,calendar,start_dt,utc_offset,end_dt,utc_offset)
         self.log("ha_config: url is {}".format(apiurl))
         r = get(apiurl, headers=headers, verify=False)
         self.log(r)
@@ -112,7 +113,8 @@ class calendar_and_reminders(hass.Hass):
     def utc_offset(self, kwargs):
         now_utc_naive = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
         now_loc_naive = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-        utc_offset_dt = datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S")
+        #utc_offset_dt = datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S")
+        utc_offset_dt = datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S")
         utc_offset_h = utc_offset_dt.seconds//3600
         self.log(utc_offset_h)
         self.log(utc_offset_dt.days)
@@ -121,3 +123,4 @@ class calendar_and_reminders(hass.Hass):
         else:
             utc_offset_str = str(utc_offset_h).zfill(2) + ':00'
         self.log(utc_offset_str)
+        return utc_offset_str
