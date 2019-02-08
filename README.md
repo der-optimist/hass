@@ -7,6 +7,5 @@ Home Assistant Config and Apps
 - dwd forecast
 - dwd warnings
 - pollen
-- birthday calendar appdaemon
 - reminders
 - design
