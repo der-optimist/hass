@@ -112,7 +112,8 @@ class calendar_and_reminders(hass.Hass):
     def utc_offset(self, kwargs):
         now_utc_naive = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
         now_loc_naive = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-        utc_offset_dt = datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S")
+        #utc_offset_dt = datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S")
+        utc_offset_dt = datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S")
         utc_offset_h = utc_offset_dt.seconds//3600
         self.log(utc_offset_h)
         if utc_offset_h >= 0:
