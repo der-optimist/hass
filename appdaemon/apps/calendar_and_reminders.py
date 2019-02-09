@@ -99,7 +99,7 @@ class calendar_and_reminders(hass.Hass):
         headers = {'Authorization': "Bearer {}".format(self.token)}
         #self.log("Try to load calendar events")
         apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(self.ha_url,calendar,start_dt,end_dt)
-        #self.log("ha_config: url is {}".format(apiurl))
+        self.log("ha_config: url is {}".format(apiurl))
         r = get(apiurl, headers=headers, verify=False)
         #self.log(r)
         #self.log(r.text)
@@ -129,4 +129,5 @@ class calendar_and_reminders(hass.Hass):
         now_utc_naive = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
         now_loc_naive = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
         utc_offset_dt = datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S")
+        self.log("utc offset: {}d {}sec".format(utc_offset_dt.days, utc_offset_dt.seconds)
         return utc_offset_dt
