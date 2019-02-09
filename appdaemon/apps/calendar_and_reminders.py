@@ -102,6 +102,7 @@ class calendar_and_reminders(hass.Hass):
         self.log("ha_config: url is {}".format(apiurl))
         r = get(apiurl, headers=headers, verify=False)
         self.log(r)
+        self.log(r.text)
         _list = json.loads(r.text)
         return _list
 
