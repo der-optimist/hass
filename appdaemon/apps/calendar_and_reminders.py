@@ -65,7 +65,7 @@ class calendar_and_reminders(hass.Hass):
         self.call_service("variable/set_variable",variable="birthdays",value="birthdays",attributes={"who": summaries, "when": _dates, "weekday": weekdays})
 
     def check_reminder(self, kwargs):
-        self.log("Checking reminder events now")
+        #self.log("Checking reminder events now")
         utc_offset = self.utc_offset(None)
         start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
         end_dt = (datetime.datetime.now() + datetime.timedelta(minutes=(self.check_reminder_repeat_minutes - 1)) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
@@ -74,7 +74,7 @@ class calendar_and_reminders(hass.Hass):
         end_dts = []
         _list = self.load_calendar("calendar.erinnerungen_bildschirm",start_dt,end_dt)
         for element in _list:
-            self.log(element)
+            #self.log(element)
             summary = ""
             if "summary" in element:
                 summary = element["summary"]
@@ -83,13 +83,13 @@ class calendar_and_reminders(hass.Hass):
                 start_dt = element["start"]["date"] + 'T00:00:00'
             elif "dateTime" in element["start"]:
                 start_dt = (element["start"]["dateTime"]).split('+')[0]
-            self.log("{}: {} ".format(start_dt,summary))
+            #self.log("{}: {} ".format(start_dt,summary))
             event_start_dt = datetime.datetime.strptime(start_dt, "%Y-%m-%dT%H:%M:%S")
             last_minute_dt = datetime.datetime.now().replace(second=0) - datetime.timedelta(seconds=1)
             end_check_interval_dt = last_minute_dt + datetime.timedelta(minutes=(self.check_reminder_repeat_minutes - 1), seconds=59)
-            self.log(last_minute_dt.strftime("%Y-%m-%dT%H:%M:%S"))
-            self.log(event_start_dt.strftime("%Y-%m-%dT%H:%M:%S"))
-            self.log(end_check_interval_dt.strftime("%Y-%m-%dT%H:%M:%S"))
+            #self.log(last_minute_dt.strftime("%Y-%m-%dT%H:%M:%S"))
+            #self.log(event_start_dt.strftime("%Y-%m-%dT%H:%M:%S"))
+            #self.log(end_check_interval_dt.strftime("%Y-%m-%dT%H:%M:%S"))
             if event_start_dt >= last_minute_dt and event_start_dt < end_check_interval_dt:
                 self.log("{} sollte ich als reminder setzen!".format(summary))
             else:
@@ -97,13 +97,16 @@ class calendar_and_reminders(hass.Hass):
 
     def load_calendar(self,calendar,start_dt,end_dt):
         headers = {'Authorization': "Bearer {}".format(self.token)}
-        self.log("Try to load calendar events")
+        #self.log("Try to load calendar events")
         apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(self.ha_url,calendar,start_dt,end_dt)
-        self.log("ha_config: url is {}".format(apiurl))
+        #self.log("ha_config: url is {}".format(apiurl))
         r = get(apiurl, headers=headers, verify=False)
-        self.log(r)
-        self.log(r.text)
-        _list = json.loads(r.text)
+        #self.log(r)
+        #self.log(r.text)
+        if "summary" in r.text:
+            _list = json.loads(r.text)
+        else:
+        	_list = []
         return _list
 
     def startup(self, event_name, data, kwargs):
