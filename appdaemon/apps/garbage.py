@@ -75,22 +75,22 @@ class garbage(hass.Hass):
             self.set_state(self.switch_reminder_plastic, state = "on")
             self.notify("Morgen ist RaWeg", name = "telegram_jo")
 
-    def end_waste(self, entity, attribute, old, new, **kwargs):
+    def end_waste(self, entity, attribute, old, new, kwargs):
         self.update_waste_display(None)
         self.log("Reseting waste reminder")
         self.set_state(self.switch_reminder_waste, state = "off")
 
-    def end_organic(self, entity, attribute, old, new, **kwargs):
+    def end_organic(self, entity, attribute, old, new, kwargs):
         self.update_organic_display(None)
         self.log("Reseting organic waste reminder")
         self.set_state(self.switch_reminder_organic, state = "off")
 
-    def end_paper(self, entity, attribute, old, new, **kwargs):
+    def end_paper(self, entity, attribute, old, new, kwargs):
         self.update_paper_display(None)
         self.log("Reseting paper reminder")
         self.set_state(self.switch_reminder_paper, state = "off")
 
-    def end_plastic(self, entity, attribute, old, new, **kwargs):
+    def end_plastic(self, entity, attribute, old, new, kwargs):
         self.update_plastic_display(None)
         self.log("Reseting plastic reminder")
         self.set_state(self.switch_reminder_plastic, state = "off")
