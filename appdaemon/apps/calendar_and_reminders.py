@@ -40,8 +40,8 @@ class calendar_and_reminders(hass.Hass):
     def check_birthdays(self, kwargs):
         self.log("Checking Birthdays")
         utc_offset = self.utc_offset(None)
-        start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT00:00:00") # results in UTC time => "Z" in url
-        end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays) - utc_offset).strftime("%Y-%m-%dT00:00:00") # results in UTC time => "Z" in url
+        start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
+        end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
         summaries = []
         _dates = []
         weekdays = []
