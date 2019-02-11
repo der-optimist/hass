@@ -71,27 +71,31 @@ class calendar_and_reminders(hass.Hass):
         start_dts = []
         end_dts = []
         _list = self.load_calendar("calendar.erinnerungen_bildschirm",start_dt,end_dt)
-        for element in _list:
-            #self.log(element)
-            summary = ""
-            if "summary" in element:
-                summary = element["summary"]
-            start_dt = ""
-            if "date" in element["start"]:
-                start_dt = element["start"]["date"] + 'T00:00:00'
-            elif "dateTime" in element["start"]:
-                start_dt = (element["start"]["dateTime"]).split('+')[0]
-            #self.log("{}: {} ".format(start_dt,summary))
-            event_start_dt = datetime.datetime.strptime(start_dt, "%Y-%m-%dT%H:%M:%S")
-            last_minute_dt = datetime.datetime.now().replace(second=0) - datetime.timedelta(seconds=1)
-            end_check_interval_dt = last_minute_dt + datetime.timedelta(minutes=(self.check_reminder_repeat_minutes - 1), seconds=59)
-            #self.log(last_minute_dt.strftime("%Y-%m-%dT%H:%M:%S"))
-            #self.log(event_start_dt.strftime("%Y-%m-%dT%H:%M:%S"))
-            #self.log(end_check_interval_dt.strftime("%Y-%m-%dT%H:%M:%S"))
-            if event_start_dt >= last_minute_dt and event_start_dt < end_check_interval_dt:
-                self.log("{} sollte ich als reminder setzen!".format(summary))
-            else:
-                self.log("{} startete wohl nicht in diesem Interval".format(summary))
+        if _list == "error":
+            self.log("received http error - will retry later")
+            self.run_in(self.check_birthdays, 600)
+        else:
+            for element in _list:
+                #self.log(element)
+                summary = ""
+                if "summary" in element:
+                    summary = element["summary"]
+                start_dt = ""
+                if "date" in element["start"]:
+                    start_dt = element["start"]["date"] + 'T00:00:00'
+                elif "dateTime" in element["start"]:
+                    start_dt = (element["start"]["dateTime"]).split('+')[0]
+                #self.log("{}: {} ".format(start_dt,summary))
+                event_start_dt = datetime.datetime.strptime(start_dt, "%Y-%m-%dT%H:%M:%S")
+                last_minute_dt = datetime.datetime.now().replace(second=0) - datetime.timedelta(seconds=1)
+                end_check_interval_dt = last_minute_dt + datetime.timedelta(minutes=(self.check_reminder_repeat_minutes - 1), seconds=59)
+                #self.log(last_minute_dt.strftime("%Y-%m-%dT%H:%M:%S"))
+                #self.log(event_start_dt.strftime("%Y-%m-%dT%H:%M:%S"))
+                #self.log(end_check_interval_dt.strftime("%Y-%m-%dT%H:%M:%S"))
+                if event_start_dt >= last_minute_dt and event_start_dt < end_check_interval_dt:
+                    self.log("{} sollte ich als reminder setzen!".format(summary))
+                else:
+                    self.log("{} startete wohl nicht in diesem Interval".format(summary))
 
     def load_calendar(self,calendar,start_dt,end_dt):
         headers = {'Authorization': "Bearer {}".format(self.token)}
