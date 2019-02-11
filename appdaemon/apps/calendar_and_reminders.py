@@ -46,23 +46,27 @@ class calendar_and_reminders(hass.Hass):
         _dates = []
         weekdays = []
         _list = self.load_calendar("calendar.geburtstage_und_jahrestag",start_dt,end_dt)
-        for element in _list:
-            if "dateTime" in element["start"]:
-                self.log("Birthday Calendar only supports all-day events. Found event that is not all-day, it will be ignored.")
-            else:
-                summary = ""
-                _date = ""
-                if "summary" in element and "date" in element["start"]:
-                    summary = element["summary"]
-                    summaries.append(summary)
-                    _date = element["start"]["date"]
-                    date_display = self.date_to_text(_date)
-                    weekdays.append(date_display[0])
-                    _dates.append(date_display[1])
-                    self.log("{} {}: {}".format(date_display[0],date_display[1],summary))
+        if _list == "error":
+            self.log("received http error - will retry later")
+            self.run_in(self.check_birthdays, 600)
+        else:
+            for element in _list:
+                if "dateTime" in element["start"]:
+                    self.log("Birthday Calendar only supports all-day events. Found event that is not all-day, it will be ignored.")
                 else:
-                    self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
-        self.call_service("variable/set_variable",variable="birthdays",value="birthdays",attributes={"who": summaries, "when": _dates, "weekday": weekdays})
+                    summary = ""
+                    _date = ""
+                    if "summary" in element and "date" in element["start"]:
+                        summary = element["summary"]
+                        summaries.append(summary)
+                        _date = element["start"]["date"]
+                        date_display = self.date_to_text(_date)
+                        weekdays.append(date_display[0])
+                        _dates.append(date_display[1])
+                        self.log("{} {}: {}".format(date_display[0],date_display[1],summary))
+                    else:
+                        self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
+            self.call_service("variable/set_variable",variable="birthdays",value="birthdays",attributes={"who": summaries, "when": _dates, "weekday": weekdays})
 
     def check_reminder(self, kwargs):
         #self.log("Checking reminder events now")
@@ -101,13 +105,17 @@ class calendar_and_reminders(hass.Hass):
         apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(self.ha_url,calendar,start_dt,end_dt)
         self.log("ha_config: url is {}".format(apiurl))
         r = get(apiurl, headers=headers, verify=False)
-        #self.log(r)
-        #self.log(r.text)
-        if "summary" in r.text:
-            _list = json.loads(r.text)
+        self.log(r)
+        self.log(r.text)
+        if r.ok:
+            if "summary" in r.text:
+                resp = json.loads(r.text) # List
+            else:
+        	    resp = []
         else:
-        	_list = []
-        return _list
+            self.log("http error while loading calendars")
+            resp = "error"
+        return "error" #resp
 
     def startup(self, event_name, data, kwargs):
         self.log("Startup detected")
