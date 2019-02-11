@@ -129,24 +129,24 @@ class garbage(hass.Hass):
     def create_reminder_switches(self, kwargs):
         if self.entity_exists(self.switch_reminder_waste):
             curr_state = self.get_state(self.switch_reminder_waste)
-            self.set_state(self.switch_reminder_waste, state = curr_state, attributes={"entity_picture":self.icon_waste_blink})
+            self.set_state(self.switch_reminder_waste, state = curr_state, attributes={"entity_picture":self.icon_waste_blink, "friendly_name": "Restmülltonne raus"})
         else:
-            self.set_state(self.switch_reminder_waste, state = "off", attributes={"entity_picture":self.icon_waste_blink})
+            self.set_state(self.switch_reminder_waste, state = "off", attributes={"entity_picture":self.icon_waste_blink, "friendly_name": "Restmülltonne raus"})
         if self.entity_exists(self.switch_reminder_organic):
             curr_state = self.get_state(self.switch_reminder_organic)
-            self.set_state(self.switch_reminder_organic, state = curr_state, attributes={"entity_picture":self.icon_organic_blink})
+            self.set_state(self.switch_reminder_organic, state = curr_state, attributes={"entity_picture":self.icon_organic_blink, "friendly_name": "Biotonne raus"})
         else:
-            self.set_state(self.switch_reminder_organic, state = "off", attributes={"entity_picture":self.icon_organic_blink})
+            self.set_state(self.switch_reminder_organic, state = "off", attributes={"entity_picture":self.icon_organic_blink, "friendly_name": "Biotonne raus"})
         if self.entity_exists(self.switch_reminder_paper):
             curr_state = self.get_state(self.switch_reminder_paper)
-            self.set_state(self.switch_reminder_paper, state = curr_state, attributes={"entity_picture":self.icon_paper_blink})
+            self.set_state(self.switch_reminder_paper, state = curr_state, attributes={"entity_picture":self.icon_paper_blink, "friendly_name": "Papiertonne raus"})
         else:
-            self.set_state(self.switch_reminder_paper, state = "off", attributes={"entity_picture":self.icon_paper_blink})
+            self.set_state(self.switch_reminder_paper, state = "off", attributes={"entity_picture":self.icon_paper_blink, "friendly_name": "Papiertonne raus"})
         if self.entity_exists(self.switch_reminder_plastic):
             curr_state = self.get_state(self.switch_reminder_plastic)
-            self.set_state(self.switch_reminder_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic_blink})
+            self.set_state(self.switch_reminder_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic_blink, "friendly_name": "RaWeg herrichten"})
         else:
-            self.set_state(self.switch_reminder_plastic, state = "off", attributes={"entity_picture":self.icon_plastic_blink})
+            self.set_state(self.switch_reminder_plastic, state = "off", attributes={"entity_picture":self.icon_plastic_blink, "friendly_name": "RaWeg herrichten"})
 
     def create_display_sensors(self, kwargs):
         if self.entity_exists(self.sensor_display_waste):
