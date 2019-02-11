@@ -3,6 +3,7 @@ import datetime
 
 #
 # App to handle garbage topics
+# (note: AD-created switched are toggled by separate app)
 #
 # Args: no args required
 # 
@@ -49,8 +50,6 @@ class garbage(hass.Hass):
         self.create_display_sensors(None)
         self.create_reminder_switches(None)
         self.update_all_displays(None)
-        # --- listen for events of self created switches (they are not handeled by HA)
-        self.listen_event(self.toggle_switches, event = "call_service")
         
     def check_next_day(self, kwargs):
         self.log("Checking if tomorrow is some garbage collection")
@@ -126,36 +125,6 @@ class garbage(hass.Hass):
         self.update_organic_display(None)
         self.update_paper_display(None)
         self.update_plastic_display(None)
-
-    def toggle_switches(self,event_name,data, kwargs):
-        # waste
-        if(data["service"] == "turn_off" and data["service_data"]["entity_id"] == self.switch_reminder_waste):
-            self.log(self.switch_reminder_waste + " switched off")
-            self.set_state(self.switch_reminder_waste, state = "off")
-        if(data["service"] == "turn_on" and data["service_data"]["entity_id"] == self.switch_reminder_waste):
-            self.log(self.switch_reminder_waste + " switched on")
-            self.set_state(self.switch_reminder_waste, state = "on")
-        # organic
-        if(data["service"] == "turn_off" and data["service_data"]["entity_id"] == self.switch_reminder_organic):
-            self.log(self.switch_reminder_organic + " switched off")
-            self.set_state(self.switch_reminder_organic, state = "off")
-        if(data["service"] == "turn_on" and data["service_data"]["entity_id"] == self.switch_reminder_organic):
-            self.log(self.switch_reminder_organic + " switched on")
-            self.set_state(self.switch_reminder_organic, state = "on")
-        # paper
-        if(data["service"] == "turn_off" and data["service_data"]["entity_id"] == self.switch_reminder_paper):
-            self.log(self.switch_reminder_paper + " switched off")
-            self.set_state(self.switch_reminder_paper, state = "off")
-        if(data["service"] == "turn_on" and data["service_data"]["entity_id"] == self.switch_reminder_paper):
-            self.log(self.switch_reminder_paper + " switched on")
-            self.set_state(self.switch_reminder_paper, state = "on")
-        # plastic
-        if(data["service"] == "turn_off" and data["service_data"]["entity_id"] == self.switch_reminder_plastic):
-            self.log(self.switch_reminder_plastic + " switched off")
-            self.set_state(self.switch_reminder_plastic, state = "off")
-        if(data["service"] == "turn_on" and data["service_data"]["entity_id"] == self.switch_reminder_plastic):
-            self.log(self.switch_reminder_plastic + " switched on")
-            self.set_state(self.switch_reminder_plastic, state = "on")
 
     def create_reminder_switches(self, kwargs):
         if self.entity_exists(self.switch_reminder_waste):
