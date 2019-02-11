@@ -58,6 +58,7 @@ views:
         filter:
           include:
             - entity_id: "switch.reminder*"
+              state: "on"
       - type: entity-filter
         entities:
           - entity: switch.reminder_restmuelltonne_erinnerung
