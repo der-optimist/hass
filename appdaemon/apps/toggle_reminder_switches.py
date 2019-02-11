@@ -16,9 +16,9 @@ class toggle_reminder_switches(hass.Hass):
     def toggle_switches(self,event_name,data, kwargs):
         entity_id = data["service_data"]["entity_id"]
         if "switch.reminder" in entity_id:
-            if(data["service"] == "turn_off":
+            if data["service"] == "turn_off":
                 self.log(entity_id + " switched off")
                 self.set_state(entity_id, state = "off")
-            if(data["service"] == "turn_on":
+            if data["service"] == "turn_on":
                 self.log(entity_id + " switched on")
                 self.set_state(entity_id, state = "on")
