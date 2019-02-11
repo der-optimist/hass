@@ -53,9 +53,8 @@ views:
         icons: '/local/icons/weather_icons/animated/'
       - type: custom:monster-card
         card:
-          type: glance
-          show_name: true
-          show_state: false
+          type: entities
+          title: "To do"
         filter:
           include:
             - entity_id: "switch.reminder*"
