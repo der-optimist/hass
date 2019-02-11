@@ -7,6 +7,8 @@ resources:
     type: js
   - url: /local/custom_ui/bignumber-card/bignumber-card.js?v=1.0.0
     type: js
+  - url: /local/custom_ui/monster-card/monster-card.js?v=1.0.0
+    type: js
 
 title: Lieblingshaus
 views:
@@ -49,21 +51,29 @@ views:
       - type: custom:weather-card
         entity: weather.dark_sky
         icons: '/local/icons/weather_icons/animated/'
+      - type: custom:monster-card
+        card:
+          type: glance
+          show_name: true
+          show_state: false
+        filter:
+          include:
+            - entity_id: "switch.reminder*"
       - type: entity-filter
         entities:
-          - entity: switch.restmuelltonne_erinnerung
+          - entity: switch.reminder_restmuelltonne_erinnerung
             name: Restmüll
             tap_action:
               action: toggle
-          - entity: switch.biotonne_erinnerung
+          - entity: switch.reminder_biotonne_erinnerung
             name: Bio
             tap_action:
               action: toggle
-          - entity: switch.papiertonne_erinnerung
+          - entity: switch.reminder_papiertonne_erinnerung
             name: Papier
             tap_action:
               action: toggle
-          - entity: switch.raweg_erinnerung
+          - entity: switch.reminder_raweg_erinnerung
             name: RaWeg
             tap_action:
               action: toggle
