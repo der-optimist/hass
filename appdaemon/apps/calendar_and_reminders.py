@@ -18,7 +18,7 @@ class calendar_and_reminders(hass.Hass):
         self.ha_url = "http://192.168.1.30:8123"
         self.token = self.args["token"]
         self.days_birthdays = 31
-        self.icon_reminder_standard = "/local/icons/garbage/tonne_gelb_blink.svg"
+        self.icon_reminder_standard = "/local/icons/reminders/exclamation_mark_blink.svg"
         # --- birthdays to HASS variable ---
         time_check_birthdays = datetime.time(hour=0, minute=1, second=0)
         self.run_hourly(self.check_birthdays, time_check_birthdays)
