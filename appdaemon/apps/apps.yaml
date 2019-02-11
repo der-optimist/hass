@@ -1,4 +1,7 @@
 ---
+toggle_reminder_switches:
+  module: toggle_reminder_switches
+  class: toggle_reminder_switches
 notify_work_arrived:
   module: notify_work_arrived
   class: notify_work_arrived
