@@ -54,36 +54,22 @@ views:
       - type: custom:monster-card
         card:
           type: entities
-          title: "To do"
+          title: "zu erledigen"
+          show_header_toggle: false
         filter:
           include:
             - entity_id: "switch.reminder*"
               state: "on"
-      - type: entity-filter
+      - type: entities
         entities:
-          - entity: switch.reminder_restmuelltonne_erinnerung
+          - entity: sensor.restmuelltonne_anzeige
             name: Restmüll
-            tap_action:
-              action: toggle
-          - entity: switch.reminder_biotonne_erinnerung
-            name: Bio
-            tap_action:
-              action: toggle
-          - entity: switch.reminder_papiertonne_erinnerung
-            name: Papier
-            tap_action:
-              action: toggle
-          - entity: switch.reminder_raweg_erinnerung
+          - entity: sensor.biotonne_anzeige
+            name: Biotonne
+          - entity: sensor.papiertonne_anzeige
+            name: Papiertonne
+          - entity: sensor.raweg_anzeige
             name: RaWeg
-            tap_action:
-              action: toggle
-        show_empty: false
-        state_filter:
-          - "on"
-        card: 
-          type: glance
-          show_name: true
-          show_state: false
       - type: glance
         show_name: true
         entities:
