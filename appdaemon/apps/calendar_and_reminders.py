@@ -115,7 +115,7 @@ class calendar_and_reminders(hass.Hass):
         else:
             self.log("http error while loading calendars")
             resp = "error"
-        return "error" #resp
+        return resp
 
     def startup(self, event_name, data, kwargs):
         self.log("Startup detected")
