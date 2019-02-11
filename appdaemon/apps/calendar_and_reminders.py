@@ -25,6 +25,7 @@ class calendar_and_reminders(hass.Hass):
         self.check_reminder_repeat_minutes = 15
         for i in range(0,60,self.check_reminder_repeat_minutes):
             self.run_hourly(self.check_reminder, datetime.time(hour=0, minute=i, second=10))
+        self.check_reminder_repeat_counter = 0
         # --- do all the stuff at restarts ---
         self.listen_event(self.startup, "plugin_started")
         self.listen_event(self.startup, "appd_started")
@@ -72,9 +73,15 @@ class calendar_and_reminders(hass.Hass):
         end_dts = []
         _list = self.load_calendar("calendar.erinnerungen_bildschirm",start_dt,end_dt)
         if _list == "error":
-            self.log("received http error - will retry later")
-            self.run_in(self.check_birthdays, 600)
+            if self.check_reminder_repeat_counter < (self.check_reminder_repeat_minutes - 2):
+                self.check_reminder_repeat_counter += 1
+                self.log("received http error - will retry later. This will be repeat No. {}".format(self.check_reminder_repeat_counter))
+                self.run_in(self.check_reminder, 60)
+            else:
+                self.log("Max repeat cycles of check_rminder reached. Next check will be the normal one...")
+                self.check_reminder_repeat_counter = 0
         else:
+            self.check_reminder_repeat_counter = 0
             for element in _list:
                 #self.log(element)
                 summary = ""
@@ -88,7 +95,7 @@ class calendar_and_reminders(hass.Hass):
                 #self.log("{}: {} ".format(start_dt,summary))
                 event_start_dt = datetime.datetime.strptime(start_dt, "%Y-%m-%dT%H:%M:%S")
                 last_minute_dt = datetime.datetime.now().replace(second=0) - datetime.timedelta(seconds=1)
-                end_check_interval_dt = last_minute_dt + datetime.timedelta(minutes=(self.check_reminder_repeat_minutes - 1), seconds=59)
+                end_check_interval_dt = last_minute_dt + datetime.timedelta(minutes=(self.check_reminder_repeat_minutes - 1 - self.check_reminder_repeat_counter), seconds=59)
                 #self.log(last_minute_dt.strftime("%Y-%m-%dT%H:%M:%S"))
                 #self.log(event_start_dt.strftime("%Y-%m-%dT%H:%M:%S"))
                 #self.log(end_check_interval_dt.strftime("%Y-%m-%dT%H:%M:%S"))
