@@ -103,7 +103,7 @@ class calendar_and_reminders(hass.Hass):
                 if event_start_dt >= last_minute_dt and event_start_dt < end_check_interval_dt:
                     self.log("{} sollte ich als reminder setzen!".format(summary))
                     reminder_name = "switch.reminder_" + summary.replace(" ","").replace(".","").replace("!","").replace("?","").replace(".","").replace(":","").replace("-","")
-                    self.set_state(reminder_name, state = "on", attributes={"entity_picture":self.icon_reminder_standard, "fiendly_name": summary})
+                    self.set_state(reminder_name, state = "on", attributes={"entity_picture":self.icon_reminder_standard, "friendly_name": summary})
                 else:
                     self.log("{} startete wohl nicht in diesem Interval".format(summary))
 
