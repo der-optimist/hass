@@ -74,7 +74,7 @@ device_tracker:
     hosts: 192.168.1.6
 
 owntracks:
-  max_gps_accuracy: 2000
+#  max_gps_accuracy: 2000
 # Enables a map showing the location of tracked devices
 map:
 
