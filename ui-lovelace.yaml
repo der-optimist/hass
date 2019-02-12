@@ -39,7 +39,7 @@ views:
             entity: sensor.temp_owm
             scale: 30px
       - type: picture-elements
-        image: /config/www/meteograms/meteogram.png
+        image: /local/meteograms/meteogram.png
         elements:
           - type: image
             entity: camera.meteogram
