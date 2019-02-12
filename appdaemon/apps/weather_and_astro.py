@@ -21,5 +21,6 @@ class weather_and_astro(hass.Hass):
         self.log("will load meteogram now")
         r = requests.get(self.meteograms_url, allow_redirects=True)
         self.log("should be loaded. will save now")
+        self.log(r)
         open('self.meteogram_path', 'wb').write(r.content)
         self.log("should be saved")
