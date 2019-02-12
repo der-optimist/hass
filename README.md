@@ -7,5 +7,5 @@ Home Assistant Config and Apps
 - dwd forecast
 - dwd warnings
 - pollen
-- reminders
+- (reminders - special icons)
 - design
