@@ -75,6 +75,7 @@ device_tracker:
 
 owntracks:
 #  max_gps_accuracy: 2000
+
 # Enables a map showing the location of tracked devices
 map:
 
@@ -116,6 +117,11 @@ sensor:
         value_template: "{{ state_attr('weather.dark_sky', 'humidity') }}"
 
 switch:
+
+camera:
+  - platform: local_file
+    name: Meteogram
+    file_path: /config/www/meteograms/meteogram.png
 
 variable:
   birthdays:
