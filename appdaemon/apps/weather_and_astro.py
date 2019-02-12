@@ -4,7 +4,7 @@ import requests, io
 
 #
 # What it does:
-#   - Load Meteogram from meteograms.com (displayed via camera)
+#   - Load Meteogram from meteograms.com and save locally (displayed via camera)
 #   - Check DWD Weather Warnings
 # What args it needs:
 #   - meteograms_token: a token from meteograms.com
