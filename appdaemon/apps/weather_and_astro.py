@@ -8,6 +8,8 @@ import requests, io
 #   - Check DWD Weather Warnings
 # What args it needs:
 #   - meteograms_token: a token from meteograms.com
+#   - dwd_warncell_id: as a string. find the ID here: 
+#     https://www.dwd.de/DE/leistungen/opendata/help/warnungen/cap_warncellids_csv.csv
 # 
 
 class weather_and_astro(hass.Hass):
