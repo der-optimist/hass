@@ -38,6 +38,17 @@ views:
           - type: custom:bignumber-card
             entity: sensor.temp_owm
             scale: 30px
+      - type: picture-elements
+        image: /config/www/meteograms/meteogram.png
+        elements:
+          - type: image
+            entity: camera.meteogram
+            camera_image: camera.meteogram
+            style:
+              left: 50%
+              top: 50%
+              width: 100%
+              height: 100%
       - type: custom:flex-table-card 
         entities:
           include: variable.birthdays
