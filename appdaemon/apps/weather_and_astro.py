@@ -1,7 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 import xml.etree.ElementTree as ET
 import requests, io
-import dateutil.parser
 
 #
 # What it does:
