@@ -18,5 +18,8 @@ class weather_and_astro(hass.Hass):
         self.load_meteogram(None)
         
     def load_meteogram(self, kwargs):
+        self.log("will load meteogram now")
         r = requests.get(self.meteograms_url, allow_redirects=True)
+        self.log("should be loaded. will save now")
         open('self.meteogram_path', 'wb').write(r.content)
+        self.log("should be saved")
