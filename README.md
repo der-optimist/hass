@@ -9,3 +9,4 @@ Home Assistant Config and Apps
 - pollen
 - (reminders - special icons)
 - design
+- make garbage.py http-error-resistant
