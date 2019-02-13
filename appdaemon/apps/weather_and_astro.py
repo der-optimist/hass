@@ -97,6 +97,8 @@ class weather_and_astro(hass.Hass):
                     test_dt = datetime.datetime.strptime(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text, "%Y-%m-%dT%H:%M:%SZ")
                     self.datetime_readable(test_dt)
                     Times_expires.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EXPIRES', namespaces)[0].text)
+                    test_dt = datetime.datetime.strptime(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EXPIRES', namespaces)[0].text, "%Y-%m-%dT%H:%M:%SZ")
+                    self.datetime_readable(test_dt)
                     EC_Groups.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EC_GROUP', namespaces)[0].text)
                     try:
                         Parametervalues.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:PARAMATERVALUE', namespaces)[0].text)
@@ -118,7 +120,7 @@ class weather_and_astro(hass.Hass):
         dt_local_naive_str = (dt + self.utc_offset).strftime("%Y-%m-%dT%H:%M:%S")
         hour_str = dt_local_naive_str[11:13]
         date_readable_str = self.date_to_text(dt_local_naive_str[0:10])
-        dt_readable_str = date_readable_str + " " + hour_str
+        dt_readable_str = date_readable_str + " " + hour_str + " Uhr"
         self.log(dt_readable_str)
         return dt_readable_str
     
