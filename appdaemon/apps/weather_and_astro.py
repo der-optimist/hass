@@ -51,8 +51,8 @@ class weather_and_astro(hass.Hass):
         self.dwd_warncell_id = self.args["dwd_warncell_id"]
         #self.dwd_warncell_id = 816054000 #Suhl, for testing
         self.url_dwd_warnings = "https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&CQL_FILTER=WARNCELLID%20IN%20(%27{}%27)".format(self.dwd_warncell_id)
-        self.run_every(self.load_dwd_warnings, datetime.datetime.now(), 5 * 60)
-        #self.load_dwd_warnings(None)
+        #self.run_every(self.load_dwd_warnings, datetime.datetime.now(), 5 * 60)
+        self.load_dwd_warnings(None)
 
     def load_meteogram(self, kwargs):
         r = requests.get(self.url_meteograms, allow_redirects=True)
