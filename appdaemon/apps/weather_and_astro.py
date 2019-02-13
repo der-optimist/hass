@@ -67,7 +67,7 @@ class weather_and_astro(hass.Hass):
             self.log("downloading meteogram failed. http error {}".format(r.status_code))
 
     def minutely_check_dwd_warnings(self, kwargs):
-    	if (self.counter_dwd_warnings % self.minutes_dwd_warnings) == 0:
+        if (self.counter_dwd_warnings % self.minutes_dwd_warnings) == 0:
             self.self.minutes_dwd_warnings(None)
         self.counter_dwd_warnings += 1
 
