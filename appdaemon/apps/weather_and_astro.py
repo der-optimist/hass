@@ -104,7 +104,7 @@ class weather_and_astro(hass.Hass):
             data = []
             for i in range(len(Events)):
                 data.append([Severities_sortable[i], Times_onset[i], Times_expires[i], Events[i], Severities[i], EC_Groups[i], Parametervalues[i]])
-            data_sorted = sorted(data, key=lambda x: (x[0], x[1]))
+            data_sorted = sorted(data, key=lambda x: (-x[0], x[1]))
             self.log("list of warnings:")
             self.log(data_sorted)
         else:
