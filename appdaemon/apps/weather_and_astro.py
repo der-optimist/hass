@@ -72,7 +72,7 @@ class weather_and_astro(hass.Hass):
         self.counter_dwd_warnings += 1
 
     def load_dwd_warnings(self, kwargs):
-        self.utc_offset = self.utc_offset(None)
+        self.curr_utc_offset = self.utc_offset(None)
         r = requests.get(self.url_dwd_warnings, allow_redirects=True)
         self.log("http status code dwd warnings: {}".format(r.status_code))
         if r.status_code == 200:
@@ -127,7 +127,7 @@ class weather_and_astro(hass.Hass):
             self.log("downloading dwd warnings failed. http error {}".format(r.status_code))
 
     def datetime_readable(self, dt):
-        dt_local_naive_str = (dt + self.utc_offset).strftime("%Y-%m-%dT%H:%M:%S")
+        dt_local_naive_str = (dt + self.curr_utc_offset).strftime("%Y-%m-%dT%H:%M:%S")
         hour_str = dt_local_naive_str[11:13]
         date_readable_str = self.date_to_text(dt_local_naive_str[0:10])
         dt_readable_str = date_readable_str + " " + hour_str + " Uhr"
