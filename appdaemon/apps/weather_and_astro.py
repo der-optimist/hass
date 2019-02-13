@@ -93,7 +93,7 @@ class weather_and_astro(hass.Hass):
                     Events.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text)
                     Severities.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:SEVERITY', namespaces)[0].text)
                     Times_onset.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text)
-                    test_dt = datetime.datetime.strptime(start_dt, "%Y-%m-%dT%H:%M:%SZ")
+                    test_dt = datetime.datetime.strptime(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text, "%Y-%m-%dT%H:%M:%SZ")
                     self.log(test_dt)
                     self.log(test_dt.strftime("%Y-%m-%dT%H:%M:%S"))
                     Times_expires.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EXPIRES', namespaces)[0].text)
