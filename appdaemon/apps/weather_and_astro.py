@@ -52,7 +52,11 @@ class weather_and_astro(hass.Hass):
         #self.dwd_warncell_id = 816054000 #Suhl, for testing
         self.url_dwd_warnings = "https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&CQL_FILTER=WARNCELLID%20IN%20(%27{}%27)".format(self.dwd_warncell_id)
         #self.run_every(self.load_dwd_warnings, datetime.datetime.now(), 5 * 60)
-        self.load_dwd_warnings(None)
+        #self.load_dwd_warnings(None)
+        time_check_dwd_warnings = datetime.time(hour=0, minute=0, second=20)
+        self.minutes_dwd_warnings = 5
+        self.counter_dwd_warnings = 0
+        self.run_minutely(self.minutely_check_dwd_warnings, time_check_dwd_warnings)
 
     def load_meteogram(self, kwargs):
         r = requests.get(self.url_meteograms, allow_redirects=True)
@@ -61,6 +65,11 @@ class weather_and_astro(hass.Hass):
             open(self.path_meteogram, 'wb').write(r.content)
         else:
             self.log("downloading meteogram failed. http error {}".format(r.status_code))
+
+    def minutely_check_dwd_warnings(self, kwargs):
+    	if (self.counter_dwd_warnings % self.minutes_dwd_warnings) == 0:
+    	    self.self.minutes_dwd_warnings(None)
+        self.counter_dwd_warnings += 1
 
     def load_dwd_warnings(self, kwargs):
         self.utc_offset = self.utc_offset(None)
