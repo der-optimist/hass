@@ -117,7 +117,7 @@ class weather_and_astro(hass.Hass):
     def datetime_readable(self, dt):
         dt_local_naive_str = (dt + self.utc_offset).strftime("%Y-%m-%dT%H:%M:%S")
         hour_str = dt_local_naive_str[11:13]
-        date_readable_str = self.date_to_text(dt_local_naive_str)
+        date_readable_str = self.date_to_text(dt_local_naive_str[0:10])
         dt_readable_str = date_readable_str + " " + hour_str
         self.log(dt_readable_str)
         return dt_readable_str
