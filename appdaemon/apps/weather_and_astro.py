@@ -1,6 +1,7 @@
 import appdaemon.plugins.hass.hassapi as hass
 import xml.etree.ElementTree as ET
 import requests, io
+import json
 
 #
 # What it does:
@@ -15,7 +16,33 @@ import requests, io
 class weather_and_astro(hass.Hass):
 
     def initialize(self):
-        self.meteograms_url = "https://nodeserver.cloud3squared.com/getMeteogram/%7B%22chartWidth%22%3A%22800%22%2C%22density%22%3A%221.2%22%2C%22appLocale%22%3A%22de%22%2C%22theme%22%3A%22dark-gradient%22%2C%22provider%22%3A%22dwd.de%22%2C%22hoursToDisplay%22%3A%2284%22%2C%22hoursAvailable%22%3A%2284%22%2C%22headerLocation%22%3A%22false%22%2C%22headerTemperature%22%3A%22false%22%2C%22headerMoonPhase%22%3A%22false%22%2C%22headerUpdateTime%22%3A%22false%22%2C%22precipitationSeries%22%3A%22expected%22%2C%22pressure%22%3A%22false%22%2C%22cloudLayers%22%3A%22false%22%2C%22windSpeed%22%3A%22true%22%2C%22windSpeedMinMaxLabels%22%3A%22false%22%2C%22windSpeedUnit%22%3A%22km%2Fh%22%2C%22windSpeedColor%22%3A%22%23ddc0c0c0%22%2C%22windSpeedAxisMin%22%3A%220%22%2C%22windSpeedAxisMax%22%3A%2240%22%2C%22windSpeedAxisScale%22%3A%22fixed%22%2C%22windArrows%22%3A%22false%22%7D"
+        #self.meteograms_url = "https://nodeserver.cloud3squared.com/getMeteogram/%7B%22chartWidth%22%3A%22800%22%2C%22density%22%3A%221.2%22%2C%22appLocale%22%3A%22de%22%2C%22theme%22%3A%22dark-gradient%22%2C%22provider%22%3A%22dwd.de%22%2C%22hoursToDisplay%22%3A%2284%22%2C%22hoursAvailable%22%3A%2284%22%2C%22headerLocation%22%3A%22false%22%2C%22headerTemperature%22%3A%22false%22%2C%22headerMoonPhase%22%3A%22false%22%2C%22headerUpdateTime%22%3A%22false%22%2C%22precipitationSeries%22%3A%22expected%22%2C%22pressure%22%3A%22false%22%2C%22cloudLayers%22%3A%22false%22%2C%22windSpeed%22%3A%22true%22%2C%22windSpeedMinMaxLabels%22%3A%22false%22%2C%22windSpeedUnit%22%3A%22km%2Fh%22%2C%22windSpeedColor%22%3A%22%23ddc0c0c0%22%2C%22windSpeedAxisMin%22%3A%220%22%2C%22windSpeedAxisMax%22%3A%2240%22%2C%22windSpeedAxisScale%22%3A%22fixed%22%2C%22windArrows%22%3A%22false%22%7D"
+        self.meteograms_base_url = "https://nodeserver.cloud3squared.com/getMeteogram/"
+        self.meteograms_settings = {
+            "chartWidth": "800",
+            "density": "1.2",
+            "appLocale": "de",
+            "theme": "dark-gradient",
+            "provider": "dwd.de",
+            "hoursToDisplay": "84",
+            "hoursAvailable": "84",
+            "headerLocation": "false",
+            "headerTemperature": "false",
+            "headerMoonPhase": "false",
+            "headerUpdateTime": "false",
+            "precipitationSeries": "expected",
+            "pressure": "false",
+            "cloudLayers": "false",
+            "windSpeed": "true",
+            "windSpeedMinMaxLabels": "false",
+            "windSpeedUnit": "km/h",
+            "windSpeedColor": "#ddc0c0c0",
+            "windSpeedAxisMin": "0",
+            "windSpeedAxisMax": "40",
+            "windSpeedAxisScale": "fixed",
+            "windArrows": "false"
+            }
+        self.meteograms_url = requests.utils.quote(self.meteograms_base_url + json.dumps(self.meteograms_settings))
         self.meteogram_path = "/config/www/meteograms/meteogram.png"
         self.load_meteogram(None)
         
