@@ -20,4 +20,5 @@ calendar_and_reminders:
 weather_and_astro:
   module: weather_and_astro
   class: weather_and_astro
-  token_meteograms: "123xyz"
+  token_meteograms: !secret token_meteograms
+  dwd_warncell_id: !secret dwd_warncell_id
