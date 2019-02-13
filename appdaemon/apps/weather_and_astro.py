@@ -52,7 +52,7 @@ class weather_and_astro(hass.Hass):
 
     def load_meteogram(self, kwargs):
         r = requests.get(self.url_meteograms, allow_redirects=True)
-        self.log(r.status_code)
+        self.log("http status code meteograms: ".format(r.status_code))
         if r.status_code == 200:
             open(self.path_meteogram, 'wb').write(r.content)
         else:
@@ -60,7 +60,7 @@ class weather_and_astro(hass.Hass):
 
     def load_dwd_warnings(self, kwargs):
         r = requests.get(self.url_dwd_warnings, allow_redirects=True)
-        self.log(r.status_code)
+        self.log("http status code dwd warnings: ".format(r.status_code))
         if r.status_code == 200:
             xml = io.BytesIO(r.content)
             # Define Namespaces and load xml data
@@ -86,7 +86,7 @@ class weather_and_astro(hass.Hass):
             # read warnings from xml
             for warning in root.findall('wfs:member', namespaces):
                 event = warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text
-                if (event != "FROST") and (event != "HITZE"):
+                if (event != "FROST_TEST") and (event != "HITZE"):
                     Events.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text)
                     Severities.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:SEVERITY', namespaces)[0].text)
                     Times_onset.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text)
@@ -100,6 +100,7 @@ class weather_and_astro(hass.Hass):
             for i in range(len(Events)):
                 data.append([Severities_sortable[i], Times_onset[i], Times_expires[i], Events[i], Severities[i], EC_Groups[i], Parametervalues[i]])
             data_sorted = sorted(data, key=lambda x: (x[0], x[1]))
+            self.log("list of warnings:")
             self.log(data_sorted)
         else:
             self.log("downloading dwd warnings failed. http error {}".format(r.status_code))
