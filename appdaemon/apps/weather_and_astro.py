@@ -49,7 +49,7 @@ class weather_and_astro(hass.Hass):
         self.load_meteogram(None)
         # --- DWD weather warnings ---
         self.dwd_warncell_id = self.args["dwd_warncell_id"]
-        self.dwd_warncell_id = 816054000 #Suhl, for testing
+        #self.dwd_warncell_id = 816054000 #Suhl, for testing
         self.url_dwd_warnings = "https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&CQL_FILTER=WARNCELLID%20IN%20(%27{}%27)".format(self.dwd_warncell_id)
         self.load_dwd_warnings(None)
 
@@ -140,5 +140,5 @@ class weather_and_astro(hass.Hass):
         elif days == 1:
             printtext = "morgen"
         else:
-            printtext = _date.strftime('%d.%m.')
+            printtext = _date.strftime('{}, %d.%m.').format(weekdays[_date.weekday()])
         return printtext
