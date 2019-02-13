@@ -62,7 +62,7 @@ class weather_and_astro(hass.Hass):
             self.log("downloading meteogram failed. http error {}".format(r.status_code))
 
     def load_dwd_warnings(self, kwargs):
-        utc_offset = self.utc_offset(None)
+        self.utc_offset = self.utc_offset(None)
         r = requests.get(self.url_dwd_warnings, allow_redirects=True)
         self.log("http status code dwd warnings: {}".format(r.status_code))
         if r.status_code == 200:
@@ -95,8 +95,7 @@ class weather_and_astro(hass.Hass):
                     Severities.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:SEVERITY', namespaces)[0].text)
                     Times_onset.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text)
                     test_dt = datetime.datetime.strptime(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text, "%Y-%m-%dT%H:%M:%SZ")
-                    self.log(test_dt)
-                    self.log((test_dt + utc_offset).strftime("%Y-%m-%dT%H:%M:%S"))
+                    self.datetime_readable(test_dt)
                     Times_expires.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EXPIRES', namespaces)[0].text)
                     EC_Groups.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EC_GROUP', namespaces)[0].text)
                     try:
@@ -115,9 +114,29 @@ class weather_and_astro(hass.Hass):
         else:
             self.log("downloading dwd warnings failed. http error {}".format(r.status_code))
 
+    def datetime_readable(self, dt, kwargs):
+        dt_local_naive_str = (dt + self.utc_offset).strftime("%Y-%m-%dT%H:%M:%S")
+        hour_str = dt_local_naive_str[11:13]
+        date_readable_str = self.date_to_text(dt_local_naive_str)
+        dt_readable_str = date_readable_str + " " + hour_str
+        self.log(dt_readable_str)
+        return dt_readable_str
+    
     def utc_offset(self, kwargs):
         now_utc_naive = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
         now_loc_naive = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
         utc_offset_dt = datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S")
         #self.log("utc offset: {}d {}sec".format(utc_offset_dt.days, utc_offset_dt.seconds))
         return utc_offset_dt
+    
+    def date_to_text(self, date_str):
+        weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+        _date = datetime.datetime.strptime(date_str, "%Y-%m-%d")
+        days = (_date.date() - self.datetime().date()).days
+        if days == 0:
+            printtext = "heute"
+        elif days == 1:
+            printtext = "morgen"
+        else:
+            printtext = _date.strftime('%d.%m.')
+        return printtext
