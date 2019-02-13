@@ -62,6 +62,7 @@ class weather_and_astro(hass.Hass):
             self.log("downloading meteogram failed. http error {}".format(r.status_code))
 
     def load_dwd_warnings(self, kwargs):
+        utc_offset = self.utc_offset(None)
         r = requests.get(self.url_dwd_warnings, allow_redirects=True)
         self.log("http status code dwd warnings: {}".format(r.status_code))
         if r.status_code == 200:
@@ -95,7 +96,7 @@ class weather_and_astro(hass.Hass):
                     Times_onset.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text)
                     test_dt = datetime.datetime.strptime(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text, "%Y-%m-%dT%H:%M:%SZ")
                     self.log(test_dt)
-                    self.log(test_dt.strftime("%Y-%m-%dT%H:%M:%S"))
+                    self.log((test_dt + utc_offset).strftime("%Y-%m-%dT%H:%M:%S"))
                     Times_expires.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EXPIRES', namespaces)[0].text)
                     EC_Groups.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EC_GROUP', namespaces)[0].text)
                     try:
