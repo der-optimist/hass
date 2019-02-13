@@ -2,6 +2,7 @@ import appdaemon.plugins.hass.hassapi as hass
 import xml.etree.ElementTree as ET
 import requests, io
 import json
+import datetime
 
 #
 # What it does:
@@ -92,6 +93,9 @@ class weather_and_astro(hass.Hass):
                     Events.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text)
                     Severities.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:SEVERITY', namespaces)[0].text)
                     Times_onset.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text)
+                    test_dt = datetime.datetime.strptime(start_dt, "%Y-%m-%dT%H:%M:%SZ")
+                    self.log(test_dt)
+                    self.log(test_dt.strftime("%Y-%m-%dT%H:%M:%S"))
                     Times_expires.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EXPIRES', namespaces)[0].text)
                     EC_Groups.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EC_GROUP', namespaces)[0].text)
                     try:
@@ -109,3 +113,10 @@ class weather_and_astro(hass.Hass):
             self.log(data_sorted)
         else:
             self.log("downloading dwd warnings failed. http error {}".format(r.status_code))
+
+    def utc_offset(self, kwargs):
+        now_utc_naive = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
+        now_loc_naive = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        utc_offset_dt = datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S")
+        #self.log("utc offset: {}d {}sec".format(utc_offset_dt.days, utc_offset_dt.seconds))
+        return utc_offset_dt
