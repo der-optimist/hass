@@ -47,7 +47,9 @@ class weather_and_astro(hass.Hass):
         self.path_meteogram = "/config/www/meteograms/meteogram.png"
         self.load_meteogram(None)
         # --- DWD weather warnings ---
-        self.url_dwd_warnings = "https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&CQL_FILTER=WARNCELLID%20IN%20(%27{}%27)".format(self.args["dwd_warncell_id"])
+        self.dwd_warncell_id = self.args["dwd_warncell_id"]
+        self.dwd_warncell_id = 116054000 #Suhl, for testing
+        self.url_dwd_warnings = "https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&CQL_FILTER=WARNCELLID%20IN%20(%27{}%27)".format(self.dwd_warncell_id)
         self.load_dwd_warnings(None)
 
     def load_meteogram(self, kwargs):
@@ -81,7 +83,7 @@ class weather_and_astro(hass.Hass):
             Times_expires = []
             EC_Groups = []
             Parametervalues = []
-            Severities_dict = {'Extreme': 1, 'Severe': 2, 'Moderate': 3, 'Minor': 4}
+            Severities_dict = {'Extreme': 4, 'Severe': 3, 'Moderate': 2, 'Minor': 1}
 
             # read warnings from xml
             for warning in root.findall('wfs:member', namespaces):
