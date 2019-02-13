@@ -42,7 +42,7 @@ class weather_and_astro(hass.Hass):
             "windSpeedAxisScale": "fixed",
             "windArrows": "false"
             }
-        self.meteograms_url = self.meteograms_base_url + requests.utils.quote(json.dumps(self.meteograms_settings).replace(" ",""))
+        self.meteograms_url = self.meteograms_base_url + requests.utils.quote(json.dumps(self.meteograms_settings).replace(" ",""), safe='')
         self.meteogram_path = "/config/www/meteograms/meteogram.png"
         self.load_meteogram(None)
         
