@@ -68,7 +68,7 @@ class weather_and_astro(hass.Hass):
 
     def minutely_check_dwd_warnings(self, kwargs):
         if (self.counter_dwd_warnings % self.minutes_dwd_warnings) == 0:
-            self.self.minutes_dwd_warnings(None)
+            self.load_dwd_warnings(None)
         self.counter_dwd_warnings += 1
 
     def load_dwd_warnings(self, kwargs):
