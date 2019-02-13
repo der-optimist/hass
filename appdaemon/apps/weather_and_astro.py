@@ -48,7 +48,7 @@ class weather_and_astro(hass.Hass):
         
     def load_meteogram(self, kwargs):
         r = requests.get(self.meteograms_url, allow_redirects=True)
-        #self.log(r.status_code)
+        self.log(r.status_code)
         if r.status_code == 200:
             open(self.meteogram_path, 'wb').write(r.content)
         else:
