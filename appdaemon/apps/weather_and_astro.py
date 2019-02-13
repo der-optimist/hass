@@ -114,7 +114,7 @@ class weather_and_astro(hass.Hass):
         else:
             self.log("downloading dwd warnings failed. http error {}".format(r.status_code))
 
-    def datetime_readable(self, dt, kwargs):
+    def datetime_readable(self, dt):
         dt_local_naive_str = (dt + self.utc_offset).strftime("%Y-%m-%dT%H:%M:%S")
         hour_str = dt_local_naive_str[11:13]
         date_readable_str = self.date_to_text(dt_local_naive_str)
