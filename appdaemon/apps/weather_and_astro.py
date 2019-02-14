@@ -73,8 +73,12 @@ class weather_and_astro(hass.Hass):
 
     def load_dwd_warnings(self, kwargs):
         self.curr_utc_offset = self.utc_offset(None)
-        r = requests.get(self.url_dwd_warnings, allow_redirects=True)
-        self.log("http status code dwd warnings: {}".format(r.status_code))
+        try:
+            r = requests.get(self.url_dwd_warnings, allow_redirects=True)
+        except:
+            self.log("Error while loading DWD Warnings. Maybe connection problem")
+            return
+        #self.log("http status code dwd warnings: {}".format(r.status_code))
         if r.status_code == 200:
             xml = io.BytesIO(r.content)
             # Define Namespaces and load xml data
@@ -121,8 +125,8 @@ class weather_and_astro(hass.Hass):
             for i in range(len(Events)):
                 data.append([Severities_sortable[i], Times_onset[i], Times_expires[i], Events[i], Severities[i], EC_Groups[i], Parametervalues[i]])
             data_sorted = sorted(data, key=lambda x: (-x[0], x[1]))
-            self.log("list of warnings:")
-            self.log(data_sorted)
+            #self.log("list of warnings:")
+            #self.log(data_sorted)
         else:
             self.log("downloading dwd warnings failed. http error {}".format(r.status_code))
 
@@ -131,7 +135,7 @@ class weather_and_astro(hass.Hass):
         hour_str = dt_local_naive_str[11:13]
         date_readable_str = self.date_to_text(dt_local_naive_str[0:10])
         dt_readable_str = date_readable_str + " " + hour_str + " Uhr"
-        self.log(dt_readable_str)
+        #self.log(dt_readable_str)
         return dt_readable_str
     
     def utc_offset(self, kwargs):
