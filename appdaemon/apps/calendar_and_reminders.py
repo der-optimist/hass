@@ -34,7 +34,7 @@ class calendar_and_reminders(hass.Hass):
         self.check_birthdays(None)
  
     def check_birthdays(self, kwargs):
-        self.log("Checking Birthdays")
+        #self.log("Checking Birthdays")
         utc_offset = self.utc_offset(None)
         start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
         end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
@@ -59,7 +59,7 @@ class calendar_and_reminders(hass.Hass):
                         date_display = self.date_to_text(_date)
                         weekdays.append(date_display[0])
                         _dates.append(date_display[1])
-                        self.log("{} {}: {}".format(date_display[0],date_display[1],summary))
+                        #self.log("{} {}: {}".format(date_display[0],date_display[1],summary))
                     else:
                         self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
             self.call_service("variable/set_variable",variable="birthdays",value="birthdays",attributes={"who": summaries, "when": _dates, "weekday": weekdays})
@@ -113,11 +113,11 @@ class calendar_and_reminders(hass.Hass):
         headers = {'Authorization': "Bearer {}".format(self.token)}
         #self.log("Try to load calendar events")
         apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(self.ha_url,calendar,start_dt,end_dt)
-        self.log("ha_config: url is {}".format(apiurl))
+        #self.log("ha_config: url is {}".format(apiurl))
         r = get(apiurl, headers=headers, verify=False)
-        self.log(r)
-        self.log(r.text)
-        if r.ok:
+        #self.log(r)
+        #self.log(r.text)
+        if r.status_code == 200:
             if "summary" in r.text:
                 resp = json.loads(r.text) # List
             else:
