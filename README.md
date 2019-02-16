@@ -11,4 +11,4 @@ Home Assistant Config and Apps
 - design
 - make garbage.py http-error-resistant
 - fix darksky error when no internet
-- long time meteogram
+- long term meteogram
