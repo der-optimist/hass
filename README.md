@@ -1,7 +1,7 @@
 # hass
 Home Assistant Config and Apps
 
-# to do
+## to do
 - telegram bot
 - meteogram
 - dwd forecast
@@ -10,3 +10,5 @@ Home Assistant Config and Apps
 - (reminders - special icons)
 - design
 - make garbage.py http-error-resistant
+- fix darksky error when no internet
+- long time meteogram
