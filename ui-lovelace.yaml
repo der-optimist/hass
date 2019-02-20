@@ -66,6 +66,17 @@ views:
         show_empty: false
         card:
           type: entities
+          title: "Wetterwarnungen"
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "sensor.dwd_warn*"
+          exclude:
+            - state: "off"
+      - type: custom:monster-card
+        show_empty: false
+        card:
+          type: entities
           title: "zu erledigen"
           show_header_toggle: false
         filter:
