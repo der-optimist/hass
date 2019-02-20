@@ -22,3 +22,4 @@ weather_and_astro:
   class: weather_and_astro
   token_meteograms: !secret token_meteograms
   dwd_warncell_id: !secret dwd_warncell_id
+  home_town: !secret home_town
