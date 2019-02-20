@@ -12,6 +12,9 @@ import datetime
 #   - token_meteograms: a token from meteograms.com
 #   - dwd_warncell_id: as a string. find the ID here: 
 #     https://www.dwd.de/DE/leistungen/opendata/help/warnungen/cap_warncellids_csv.csv
+#   - home_town: Name of home town, for meteograms.com
+#   - home_latitude: for meteograms.com
+#   - home_longitude: for meteograms.com
 # 
 
 class weather_and_astro(hass.Hass):
