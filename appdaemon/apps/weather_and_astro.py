@@ -29,7 +29,7 @@ class weather_and_astro(hass.Hass):
             "longitude": str(self.args["home_longitude"]),
             "countryCode": "DE",
             "hoursToDisplay": "162",
-            "hoursAvailable": "162"
+            "hoursAvailable": "162",
             "appLocale": "de",
             "theme": "dark-gradient",
             "provider": "dwd.de",
