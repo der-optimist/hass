@@ -65,7 +65,7 @@ class weather_and_astro(hass.Hass):
             self.log("Error while loading meteogram. Maybe connection problem")
             self.run_in(self.load_meteogram, 120)
             return
-        if r.status_code == 2001:
+        if r.status_code == 200:
             open(self.path_meteogram, 'wb').write(r.content)
         else:
             self.log("downloading meteogram failed. http error {}".format(r.status_code))
