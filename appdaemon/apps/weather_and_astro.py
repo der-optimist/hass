@@ -7,7 +7,7 @@ import datetime
 #
 # What it does:
 #   - Load Meteogram from meteograms.com and save locally (displayed via camera)
-#   - Check DWD Weather Warnings
+#   - Check DWD Weather Warnings and create HA sensors
 # What args it needs:
 #   - token_meteograms: a token from meteograms.com
 #   - dwd_warncell_id: as a string. find the ID here: 
@@ -107,8 +107,11 @@ class weather_and_astro(hass.Hass):
             Severities = []
             Times_onset = []
             Times_expires = []
+            Start_readable = []
+            End_readable = []
             EC_Groups = []
             Parametervalues = []
+            Descriptions = []
             Severities_dict = {'Extreme': 4, 'Severe': 3, 'Moderate': 2, 'Minor': 1}
 
             # read warnings from xml
@@ -118,25 +121,33 @@ class weather_and_astro(hass.Hass):
                     Events.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text)
                     Severities.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:SEVERITY', namespaces)[0].text)
                     Times_onset.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text)
-                    test_dt = datetime.datetime.strptime(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text, "%Y-%m-%dT%H:%M:%SZ")
-                    self.datetime_readable(test_dt)
+                    start_dt = datetime.datetime.strptime(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text, "%Y-%m-%dT%H:%M:%SZ")
+                    Start_readable.append(self.datetime_readable(start_dt))
                     Times_expires.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EXPIRES', namespaces)[0].text)
-                    test_dt = datetime.datetime.strptime(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EXPIRES', namespaces)[0].text, "%Y-%m-%dT%H:%M:%SZ")
-                    self.datetime_readable(test_dt)
+                    end_dt = datetime.datetime.strptime(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EXPIRES', namespaces)[0].text, "%Y-%m-%dT%H:%M:%SZ")
+                    End_readable.append(self.datetime_readable(end_dt))
                     EC_Groups.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EC_GROUP', namespaces)[0].text)
                     try:
                         Parametervalues.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:PARAMATERVALUE', namespaces)[0].text)
                     except IndexError:
                         Parametervalues.append("")
+                    Descriptions.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:DESCRIPTION', namespaces)[0].text)
             Severities_sortable = [Severities_dict.get(item,item) for item in Severities]
 
             # write into one list and sort by severity and start time
             data = []
             for i in range(len(Events)):
-                data.append([Severities_sortable[i], Times_onset[i], Times_expires[i], Events[i], Severities[i], EC_Groups[i], Parametervalues[i]])
+                data.append([Severities_sortable[i], Times_onset[i], Times_expires[i], Start_readable[i], End_readable[i], Events[i], Severities[i], EC_Groups[i], Parametervalues[i], Descriptions[i]])
             data_sorted = sorted(data, key=lambda x: (-x[0], x[1]))
-            #self.log("list of warnings:")
-            #self.log(data_sorted)
+            list_of_active_sensors = []
+            for warning in data_sorted:
+                event = warning[5]
+                attributes = {"friendly_name": event, "von": warning[3], "bis": warning[4], "Beschreibung": warning[9], "Stärke (0-4)": warning[0]}
+                sensor_name = "sensor.dwd_warn_" + event.lower() + "_" + warning[1]
+                self.set_state(sensor_name, state = event, attributes = attributes)
+                list_of_active_sensors.append(sensor_name)
+            all_ha_sensors = self.get_state("sensor")
+            self.log(all_ha_sensors)
         else:
             self.log("downloading dwd warnings failed. http error {}".format(r.status_code))
 
