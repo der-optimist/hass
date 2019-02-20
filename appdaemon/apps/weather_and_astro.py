@@ -21,23 +21,25 @@ class weather_and_astro(hass.Hass):
         self.base_url_meteograms = "https://nodeserver.cloud3squared.com/getMeteogram/"
         self.settings_meteograms = {
             "token": self.args["token_meteograms"],
-            "chartWidth": "800",
-            "density": "1.2",
+            "chartWidth": "900",
             "placeName": self.args["home_town"],
             "longPlaceName": self.args["home_town"],
             "latitude": str(self.args["home_latitude"]),
             "longitude": str(self.args["home_longitude"]),
             "countryCode": "DE",
-            "hoursToDisplay": "162",
-            "hoursAvailable": "162",
             "appLocale": "de",
             "theme": "dark-gradient",
             "provider": "dwd.de",
+            "hoursToDisplay": "162",
+            "hoursAvailable": "162",
             "headerLocation": "false",
             "headerTemperature": "false",
             "headerMoonPhase": "false",
             "headerUpdateTime": "false",
             "precipitationSeries": "expected",
+            "precipitationAxisMin": "0",
+            "precipitationAxisMax": "40",
+            "precipitationAxisScale": "fixed",
             "pressure": "false",
             "cloudLayers": "false",
             "windSpeed": "true",
@@ -47,7 +49,8 @@ class weather_and_astro(hass.Hass):
             "windSpeedAxisMin": "0",
             "windSpeedAxisMax": "40",
             "windSpeedAxisScale": "fixed",
-            "windArrows": "false"
+            "windArrows": "false",
+            "compressionQuality": "90.0"
             }
         self.url_meteograms = self.base_url_meteograms + requests.utils.quote(json.dumps(self.settings_meteograms).replace(" ",""), safe='')
         self.path_meteogram = "/config/www/meteograms/meteogram.png"
