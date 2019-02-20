@@ -33,8 +33,6 @@ class weather_and_astro(hass.Hass):
             "appLocale": "de",
             "theme": "dark-gradient",
             "provider": "dwd.de",
-            "hoursToDisplay": "84",
-            "hoursAvailable": "84",
             "headerLocation": "false",
             "headerTemperature": "false",
             "headerMoonPhase": "false",
