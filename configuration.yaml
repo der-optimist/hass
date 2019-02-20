@@ -20,6 +20,7 @@ lovelace:
 
 # Enables configuration UI
 config:
+system_health:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 # http:
