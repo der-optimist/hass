@@ -20,9 +20,16 @@ class weather_and_astro(hass.Hass):
         # --- meteogram ---
         self.base_url_meteograms = "https://nodeserver.cloud3squared.com/getMeteogram/"
         self.settings_meteograms = {
-            "token": "demo_6113b6da87fd72174bb3e5e0f5a",
+            "token": self.args["token_meteograms"],
             "chartWidth": "800",
             "density": "1.2",
+            "placeName": self.args["home_town"],
+            "longPlaceName": self.args["home_town"],
+            "latitude": str(self.args["home_latitude"]),
+            "longitude": str(self.args["home_longitude"]),
+            "countryCode": "DE",
+            "hoursToDisplay": "162",
+            "hoursAvailable": "162"
             "appLocale": "de",
             "theme": "dark-gradient",
             "provider": "dwd.de",
@@ -46,17 +53,14 @@ class weather_and_astro(hass.Hass):
             }
         self.url_meteograms = self.base_url_meteograms + requests.utils.quote(json.dumps(self.settings_meteograms).replace(" ",""), safe='')
         self.path_meteogram = "/config/www/meteograms/meteogram.png"
-        self.load_meteogram(None)
+        time_load_meteogram = datetime.time(5, 00, 20)
+        self.run_daily(self.load_meteogram, time_load_meteogram)
+        self.load_meteogram(None) # for testing
         # --- DWD weather warnings ---
         self.dwd_warncell_id = self.args["dwd_warncell_id"]
         #self.dwd_warncell_id = 816054000 #Suhl, for testing
         self.url_dwd_warnings = "https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&CQL_FILTER=WARNCELLID%20IN%20(%27{}%27)".format(self.dwd_warncell_id)
         self.run_every(self.load_dwd_warnings, datetime.datetime.now(), 5 * 60)
-        #self.load_dwd_warnings(None)
-        #time_check_dwd_warnings = datetime.time(hour=0, minute=0, second=20)
-        #self.minutes_dwd_warnings = 5
-        #self.counter_dwd_warnings = 0
-        #self.run_minutely(self.minutely_check_dwd_warnings, time_check_dwd_warnings)
 
     def load_meteogram(self, kwargs):
         try:
