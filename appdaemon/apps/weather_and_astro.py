@@ -143,7 +143,7 @@ class weather_and_astro(hass.Hass):
             for warning in data_sorted:
                 event = warning[5]
                 start_end_readable = "von " + warning[3] + " bis " + warning[4]
-                attributes = {"friendly_name": event, "Dauer": start_end_readable, "Beschreibung": warning[9], "Stärke (0-4)": warning[0]}
+                attributes = {"friendly_name": start_end_readable, "Dauer": start_end_readable, "Beschreibung": warning[9], "Stärke (0-4)": warning[0]}
                 sensor_name = "sensor.dwd_warn_" + event.lower() + "_" + warning[1].replace("-","_").replace(":","_").replace("T","_").replace("Z","")
                 if (self.get_state(sensor_name) != event) or (self.get_state(sensor_name, attribute = "Stärke (0-4)") != warning[0]):
                     self.log("Sensor {} scheint neu zu sein".format(sensor_name))
