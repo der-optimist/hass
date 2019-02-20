@@ -143,11 +143,14 @@ class weather_and_astro(hass.Hass):
             for warning in data_sorted:
                 event = warning[5]
                 attributes = {"friendly_name": event, "von": warning[3], "bis": warning[4], "Beschreibung": warning[9], "Stärke (0-4)": warning[0]}
-                sensor_name = "sensor.dwd_warn_" + event.lower() + "_" + warning[1].replace("-","_").replace(":","_").replace("T","").replace("Z","")
+                sensor_name = "sensor.dwd_warn_" + event.lower() + "_" + warning[1].replace("-","_").replace(":","_").replace("T","_").replace("Z","")
                 self.set_state(sensor_name, state = event, attributes = attributes)
                 list_of_active_sensors.append(sensor_name)
             all_ha_sensors = self.get_state("sensor")
-            self.log(all_ha_sensors)
+            #self.log(all_ha_sensors)
+            for sensor, value in all_ha_sensors.items():
+                if sensor.startswith("sensor.dwd_warn_") and (sensor not in list_of_active_sensors) and (value["state"] != "off"):
+                    self.set_state(sensor, state = "off")
         else:
             self.log("downloading dwd warnings failed. http error {}".format(r.status_code))
 
