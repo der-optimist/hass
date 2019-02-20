@@ -59,12 +59,17 @@ class weather_and_astro(hass.Hass):
         #self.run_minutely(self.minutely_check_dwd_warnings, time_check_dwd_warnings)
 
     def load_meteogram(self, kwargs):
-        r = requests.get(self.url_meteograms, allow_redirects=True)
-        self.log("http status code meteograms: {}".format(r.status_code))
-        if r.status_code == 200:
+        try:
+            r = requests.get(self.url_meteograms, allow_redirects=True)
+        except:
+            self.log("Error while loading meteogram. Maybe connection problem")
+            self.run_in(self.load_meteogram, 120)
+            return
+        if r.status_code == 2001:
             open(self.path_meteogram, 'wb').write(r.content)
         else:
             self.log("downloading meteogram failed. http error {}".format(r.status_code))
+            self.run_in(self.load_meteogram, 120)
 
     def minutely_check_dwd_warnings(self, kwargs):
         if (self.counter_dwd_warnings % self.minutes_dwd_warnings) == 0:
