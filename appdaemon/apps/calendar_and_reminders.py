@@ -114,7 +114,11 @@ class calendar_and_reminders(hass.Hass):
         #self.log("Try to load calendar events")
         apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(self.ha_url,calendar,start_dt,end_dt)
         #self.log("ha_config: url is {}".format(apiurl))
-        r = get(apiurl, headers=headers, verify=False)
+        try:
+            r = get(apiurl, headers=headers, verify=False)
+        except:
+            self.log("Error while loading calendar {}. Maybe connection problem".format(calendar))
+            return "error"
         #self.log(r)
         #self.log(r.text)
         if r.status_code == 200:
@@ -123,7 +127,7 @@ class calendar_and_reminders(hass.Hass):
             else:
         	    resp = []
         else:
-            self.log("http error while loading calendars")
+            self.log("loading calendar {} failed. http error {}".format(calendar,r.status_code))
             resp = "error"
         return resp
 
