@@ -54,41 +54,39 @@ class weather_and_astro(hass.Hass):
             }
         self.url_meteograms = self.base_url_meteograms + requests.utils.quote(json.dumps(self.settings_meteograms).replace(" ",""), safe='')
         self.path_meteogram = "/config/www/meteograms/meteogram.png"
-        time_load_meteogram = datetime.time(5, 00, 20)
+        time_load_meteogram = datetime.time(5, 00, 20) # update time for meteogram
         self.run_daily(self.load_meteogram, time_load_meteogram)
-        self.load_meteogram(None) # for testing
+        #self.load_meteogram(None) # for testing
         # --- DWD weather warnings ---
         self.dwd_warncell_id = self.args["dwd_warncell_id"]
         #self.dwd_warncell_id = 816054000 #Suhl, for testing
         self.url_dwd_warnings = "https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&CQL_FILTER=WARNCELLID%20IN%20(%27{}%27)".format(self.dwd_warncell_id)
-        self.run_every(self.load_dwd_warnings, datetime.datetime.now(), 5 * 60)
+        self.run_every(self.load_dwd_warnings, datetime.datetime.now(), 5 * 60) # update every 5 minutes
 
     def load_meteogram(self, kwargs):
         try:
             r = requests.get(self.url_meteograms, allow_redirects=True)
         except:
+            # catch connection error - r does not get a status code then
             self.log("Error while loading meteogram. Maybe connection problem")
+            # try again in 2 minutes
             self.run_in(self.load_meteogram, 120)
             return
         if r.status_code == 200:
             open(self.path_meteogram, 'wb').write(r.content)
         else:
             self.log("downloading meteogram failed. http error {}".format(r.status_code))
+            # try again in 2 minutes
             self.run_in(self.load_meteogram, 120)
-
-    def minutely_check_dwd_warnings(self, kwargs):
-        if (self.counter_dwd_warnings % self.minutes_dwd_warnings) == 0:
-            self.load_dwd_warnings(None)
-        self.counter_dwd_warnings += 1
 
     def load_dwd_warnings(self, kwargs):
         self.curr_utc_offset = self.utc_offset(None)
         try:
             r = requests.get(self.url_dwd_warnings, allow_redirects=True)
         except:
+            # catch connection error - r does not get a status code then
             self.log("Error while loading DWD Warnings. Maybe connection problem")
             return
-        #self.log("http status code dwd warnings: {}".format(r.status_code))
         if r.status_code == 200:
             xml = io.BytesIO(r.content)
             # Define Namespaces and load xml data
@@ -139,11 +137,13 @@ class weather_and_astro(hass.Hass):
             for i in range(len(Events)):
                 data.append([Severities_sortable[i], Times_onset[i], Times_expires[i], Start_readable[i], End_readable[i], Events[i], Severities[i], EC_Groups[i], Parametervalues[i], Descriptions[i]])
             data_sorted = sorted(data, key=lambda x: (-x[0], x[1]))
+            
+            # create a sensor for each warning
             list_of_active_sensors = []
             for warning in data_sorted:
                 event = warning[5]
                 attributes = {"friendly_name": event, "von": warning[3], "bis": warning[4], "Beschreibung": warning[9], "Stärke (0-4)": warning[0]}
-                sensor_name = "sensor.dwd_warn_" + event.lower() + "_" + warning[1].replace("-","_").replace(":","_").replace("T","_").replace("Z","_2")
+                sensor_name = "sensor.dwd_warn_" + event.lower() + "_" + warning[1].replace("-","_").replace(":","_").replace("T","_").replace("Z","")
                 if (self.get_state(sensor_name) != event) or (self.get_state(sensor_name, attribute = "Stärke (0-4)") != warning[0]):
                     self.log("Sensor {} scheint neu zu sein".format(sensor_name))
                     if warning[0] >= 1: # Severity
@@ -152,27 +152,31 @@ class weather_and_astro(hass.Hass):
                     self.log("Sensor {} ist wohl nicht neu".format(sensor_name))
                 self.set_state(sensor_name, state = event, attributes = attributes)
                 list_of_active_sensors.append(sensor_name)
+            
+            # set outdated sensors to "off"
             all_ha_sensors = self.get_state("sensor")
-            #self.log(all_ha_sensors)
             for sensor, value in all_ha_sensors.items():
                 if sensor.startswith("sensor.dwd_warn_") and (sensor not in list_of_active_sensors) and (value["state"] != "off"):
                     self.set_state(sensor, state = "off")
+                    
         else:
+            # log http error. no second try here, as update will be done in a few minutes anyway
             self.log("downloading dwd warnings failed. http error {}".format(r.status_code))
 
     def datetime_readable(self, dt):
         dt_local_naive_str = (dt + self.curr_utc_offset).strftime("%Y-%m-%dT%H:%M:%S")
-        hour_str = dt_local_naive_str[11:13]
+        if dt_local_naive_str[11] == "0":
+            hour_str = dt_local_naive_str[12:13]
+        else:
+            hour_str = dt_local_naive_str[11:13]
         date_readable_str = self.date_to_text(dt_local_naive_str[0:10])
         dt_readable_str = date_readable_str + " " + hour_str + " Uhr"
-        #self.log(dt_readable_str)
         return dt_readable_str
     
     def utc_offset(self, kwargs):
         now_utc_naive = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
         now_loc_naive = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
         utc_offset_dt = datetime.datetime.strptime(now_loc_naive, "%Y-%m-%dT%H:%M:%S") - datetime.datetime.strptime(now_utc_naive, "%Y-%m-%dT%H:%M:%S")
-        #self.log("utc offset: {}d {}sec".format(utc_offset_dt.days, utc_offset_dt.seconds))
         return utc_offset_dt
     
     def date_to_text(self, date_str):
