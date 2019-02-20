@@ -115,7 +115,7 @@ class weather_and_astro(hass.Hass):
             # read warnings from xml
             for warning in root.findall('wfs:member', namespaces):
                 event = warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text
-                if (event != "FROST_TEST") and (event != "HITZE"):
+                if (event != "FROST_off") and (event != "HITZE_off"):
                     Events.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text)
                     Severities.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:SEVERITY', namespaces)[0].text)
                     Times_onset.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text)
