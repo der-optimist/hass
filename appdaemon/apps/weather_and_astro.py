@@ -148,7 +148,7 @@ class weather_and_astro(hass.Hass):
                 if (self.get_state(sensor_name) != event) or (self.get_state(sensor_name, attribute = "Stärke (0-4)") != warning[0]):
                     self.log("Sensor {} scheint neu zu sein".format(sensor_name))
                     if warning[0] >= 1: # Severity
-                        self.notify("[Warnung] {} (Stärke: {})".format(warning[9],warning[0]), name = "telegram_jo")
+                        self.notify("Warnung: {} (Stärke (0-4): {})".format(warning[9],warning[0]), name = "telegram_jo")
                 #else:
                     #self.log("Sensor {} ist wohl nicht neu".format(sensor_name))
                 self.set_state(sensor_name, state = event, attributes = attributes)
