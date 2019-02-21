@@ -62,7 +62,7 @@ class weather_and_astro(hass.Hass):
         #self.load_meteogram(None) # for testing
         # --- DWD weather warnings ---
         self.dwd_warncell_id = self.args["dwd_warncell_id"]
-        #self.dwd_warncell_id = 809180117 #Garmisch, for testing
+        self.dwd_warncell_id = 809180117 #Garmisch, for testing
         self.url_dwd_warnings = "https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&CQL_FILTER=WARNCELLID%20IN%20(%27{}%27)".format(self.dwd_warncell_id)
         self.run_every(self.load_dwd_warnings, datetime.datetime.now(), 5 * 60) # update every 5 minutes
 
@@ -154,6 +154,7 @@ class weather_and_astro(hass.Hass):
                 start_end_readable = warning[3] + " bis " + warning[4]
                 icon = Icons_dict.get(warning[0],"/local/icons/reminders/exclamation_mark_blink.svg")
                 attributes = {"friendly_name": start_end_readable, "entity_picture": icon, "Dauer": start_end_readable, "Beschreibung": warning[9], "Gefahr (0-4)": warning[0]}
+                self.log(warning[1])
                 sensor_name = "sensor.dwd_warn_" + event.lower() + "_" + warning[1].replace("-","_").replace(":","_").replace("T","_").replace("Z","").replace(" ","_")
                 if (self.get_state(sensor_name) != event) or (self.get_state(sensor_name, attribute = "Gefahr (0-4)") != warning[0]):
                     self.log("Sensor {} scheint neu zu sein".format(sensor_name))
