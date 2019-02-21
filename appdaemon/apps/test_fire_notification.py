@@ -8,5 +8,5 @@ import appdaemon.plugins.hass.hassapi as hass
 class test_fire_notification(hass.Hass):
 
     def initialize(self):
-        self.fire_event("custom_notify", message="My Test Message 4", target="telegram_jo")
-        self.fire_event("custom_notify", message="My Test Message 5", target="telegram_jo")
+        self.fire_event("custom_notify", message="My Test Message 6", target="telegram_jo")
+        self.fire_event("custom_notify", message="My Test Message 7", target="telegram_jo")
