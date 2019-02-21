@@ -62,7 +62,7 @@ class weather_and_astro(hass.Hass):
         #self.load_meteogram(None) # for testing
         # --- DWD weather warnings ---
         self.dwd_warncell_id = self.args["dwd_warncell_id"]
-        self.dwd_warncell_id = 809180117 #Garmisch, for testing
+        #self.dwd_warncell_id = 809180117 #Garmisch, for testing
         self.url_dwd_warnings = "https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&CQL_FILTER=WARNCELLID%20IN%20(%27{}%27)".format(self.dwd_warncell_id)
         self.run_every(self.load_dwd_warnings, datetime.datetime.now(), 5 * 60) # update every 5 minutes
 
