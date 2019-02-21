@@ -1,4 +1,5 @@
 import appdaemon.plugins.hass.hassapi as hass
+import os
 
 #
 # When there's no internet connection at the moment a telegram notification 
@@ -15,4 +16,9 @@ class custom_notify(hass.Hass):
         self.list_waiting_messages = []
         
     def send_notification(self,event_name,data,kwargs):
+        response = os.system("ping -c 1 google.com")
+        if response == 0:
+            self.log("google is up!")
+        else:
+            self.log("google is down!")
         self.notify(data["message"], name = data["target"])
