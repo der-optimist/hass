@@ -57,22 +57,26 @@ class garbage(hass.Hass):
         if self.calc_days(self.calendar_waste) == 1:
             self.log("Tomorrow is waste collection")
             self.set_state(self.switch_reminder_waste, state = "on")
-            self.notify("Morgen ist Restmülltonne", name = "telegram_jo")
+            #self.notify("Morgen ist Restmülltonne", name = "telegram_jo")
+            self.fire_event("custom_notify", message="Morgen ist Restmülltonne", target="telegram_jo")
         # check organic
         if self.calc_days(self.calendar_organic) == 1:
             self.log("Tomorrow is organic waste collection")
             self.set_state(self.switch_reminder_organic, state = "on")
-            self.notify("Morgen ist Biotonne", name = "telegram_jo")
+            #self.notify("Morgen ist Biotonne", name = "telegram_jo")
+            self.fire_event("custom_notify", message="Morgen ist Biotonne", target="telegram_jo")
         # check paper
         if self.calc_days(self.calendar_paper) == 1:
             self.log("Tomorrow is paper collection")
             self.set_state(self.switch_reminder_paper, state = "on")
-            self.notify("Morgen ist Papiertonne", name = "telegram_jo")
+            #self.notify("Morgen ist Papiertonne", name = "telegram_jo")
+            self.fire_event("custom_notify", message="Morgen ist Papiertonne", target="telegram_jo")
         # check plastic
         if self.calc_days(self.calendar_plastic) == 1:
             self.log("Tomorrow is plastic collection")
             self.set_state(self.switch_reminder_plastic, state = "on")
-            self.notify("Morgen ist RaWeg", name = "telegram_jo")
+            #self.notify("Morgen ist RaWeg", name = "telegram_jo")
+            self.fire_event("custom_notify", message="Morgen ist RaWeg", target="telegram_jo")
 
     def end_waste(self, entity, attribute, old, new, kwargs):
         if new is not None:
