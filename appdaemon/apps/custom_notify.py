@@ -20,7 +20,8 @@ class custom_notify(hass.Hass):
         
     def send_notification(self,event_name,data,kwargs):
         response_before = os.system("ping -c 1 -w2 google.com")
-        if response_before == 0:
+        #if response_before == 0:
+        if response_before == "test":
             self.log("google is up! will send message immediately")
             self.notify(data["message"], name = data["target"])
             response_after = os.system("ping -c 1 -w2 google.com")
