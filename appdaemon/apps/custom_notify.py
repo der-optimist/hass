@@ -43,7 +43,7 @@ class custom_notify(hass.Hass):
         if response_before == 0:
             self.log("google is up now! will send waiting notifications")
             for notification in self.list_waiting_messages:
-                message_modified = notification["message"] + " \n\n(gespeicherte Nachricht vom " + notification["dt"] + ")"
+                message_modified = notification["message"] + " \n(gespeicherte Nachricht vom " + notification["dt"] + ")"
                 self.notify(message_modified, name = notification["target"])
             response_after = os.system("ping -c 1 -w2 google.com")
             if response_after == 0:
