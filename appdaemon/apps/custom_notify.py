@@ -16,7 +16,7 @@ class custom_notify(hass.Hass):
         self.list_waiting_messages = []
         
     def send_notification(self,event_name,data,kwargs):
-        response = os.system("ping -c 1 google.com")
+        response = os.system("ping -c 1 -w2 google.com")
         if response == 0:
             self.log("google is up!")
         else:
