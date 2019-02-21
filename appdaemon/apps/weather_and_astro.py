@@ -153,12 +153,12 @@ class weather_and_astro(hass.Hass):
                 event = warning[5]
                 start_end_readable = warning[3] + " bis " + warning[4]
                 icon = Icons_dict.get(warning[0],"/local/icons/reminders/exclamation_mark_blink.svg")
-                attributes = {"friendly_name": start_end_readable, "entity_picture": icon, "Dauer": start_end_readable, "Beschreibung": warning[9], "Stärke (0-4)": warning[0]}
+                attributes = {"friendly_name": start_end_readable, "entity_picture": icon, "Dauer": start_end_readable, "Beschreibung": warning[9], "Gefahr (0-4)": warning[0]}
                 sensor_name = "sensor.dwd_warn_" + event.lower() + "_" + warning[1].replace("-","_").replace(":","_").replace("T","_").replace("Z","").replace(" ","_")
-                if (self.get_state(sensor_name) != event) or (self.get_state(sensor_name, attribute = "Stärke (0-4)") != warning[0]):
+                if (self.get_state(sensor_name) != event) or (self.get_state(sensor_name, attribute = "Gefahr (0-4)") != warning[0]):
                     self.log("Sensor {} scheint neu zu sein".format(sensor_name))
                     if warning[0] >= 1: # Severity
-                        self.fire_event("custom_notify", message="Warnung: {} \n(Stärke (0-4): {})".format(warning[9],warning[0]), target="telegram_jo")
+                        self.fire_event("custom_notify", message="Warnung: {} \nGefahr (0-4): {}".format(warning[9],warning[0]), target="telegram_jo")
                         #self.notify("Warnung: {} (Stärke (0-4): {})".format(warning[9],warning[0]), name = "telegram_jo")
                 #else:
                     #self.log("Sensor {} ist wohl nicht neu".format(sensor_name))
