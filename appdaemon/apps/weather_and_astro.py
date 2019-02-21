@@ -115,10 +115,10 @@ class weather_and_astro(hass.Hass):
             Descriptions = []
             Severities_dict = {'Extreme': 4, 'Severe': 3, 'Moderate': 2, 'Minor': 1}
             Icons_dict = {
-                1: "/local/icons/weather_warnings/warning_triangle_yellow.svg",
-                2: "/local/icons/weather_warnings/warning_triangle_orange.svg",
-                3: "/local/icons/weather_warnings/warning_triangle_red.svg",
-                4: "/local/icons/weather_warnings/warning_triangle_magenta.svg",
+                1: "/local/icons/reminders/exclamation_mark_yellow.svg",
+                2: "/local/icons/reminders/exclamation_mark_orange.svg",
+                3: "/local/icons/reminders/exclamation_mark_red.svg",
+                4: "/local/icons/reminders/exclamation_mark_purple.svg",
             }
 
             # read warnings from xml
@@ -152,7 +152,7 @@ class weather_and_astro(hass.Hass):
             for warning in data_sorted:
                 event = warning[5]
                 start_end_readable = warning[3] + " bis " + warning[4]
-                icon = Icons_dict.get(warning[0],"/local/icons/weather_warnings/question_mark.svg")
+                icon = Icons_dict.get(warning[0],"/local/icons/reminders/exclamation_mark_blink.svg")
                 attributes = {"friendly_name": start_end_readable, "entity_picture": icon, "Dauer": start_end_readable, "Beschreibung": warning[9], "Stärke (0-4)": warning[0]}
                 sensor_name = "sensor.dwd_warn_" + event.lower() + "_" + warning[1].replace("-","_").replace(":","_").replace("T","_").replace("Z","")
                 if (self.get_state(sensor_name) != event) or (self.get_state(sensor_name, attribute = "Stärke (0-4)") != warning[0]):
