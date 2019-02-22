@@ -64,7 +64,7 @@ class calendar_and_reminders(hass.Hass):
                         self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
             for i in range(len(summaries)):
                 attributes = {"friendly_name": summaries[i]}
-                self.set_state("sensor.birthday_" + str(i),state=weeksdays[i] + ", " + _dates[i],attributes= attributes)
+                self.set_state("sensor.birthday_" + str(i),state=weekdays[i] + ", " + _dates[i],attributes= attributes)
             for i in range(len(summaries),5):
                 self.set_state("sensor.birthday_" + str(i),state="off")
             self.call_service("variable/set_variable",variable="birthdays",value="birthdays",attributes={"who": summaries, "when": _dates, "weekday": weekdays})
