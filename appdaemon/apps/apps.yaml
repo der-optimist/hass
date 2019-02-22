@@ -5,9 +5,9 @@ toggle_reminder_switches:
 custom_notify:
   module: custom_notify
   class: custom_notify
-test_fire_notification:
-  module: test_fire_notification
-  class: test_fire_notification
+#test_fire_notification:
+#  module: test_fire_notification
+#  class: test_fire_notification
 notify_work_arrived:
   module: notify_work_arrived
   class: notify_work_arrived
