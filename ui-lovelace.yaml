@@ -34,15 +34,15 @@ views:
         cards:
           - type: custom:bignumber-card
             entity: sensor.time
-            scale: 24px
+            scale: 22px
             title: "Uhr"
           - type: custom:bignumber-card
             entity: sensor.temp_owm
-            scale: 24px
+            scale: 22px
             title: Draußen
           - type: custom:bignumber-card
             entity: sensor.t_wz_ist_oh
-            scale: 24px
+            scale: 22px
             title: Wohnzimmer
       - type: picture-elements
         image: /local/meteograms/meteogram.png
