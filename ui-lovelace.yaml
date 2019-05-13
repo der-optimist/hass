@@ -38,6 +38,11 @@ views:
           - type: custom:bignumber-card
             entity: sensor.temp_owm
             scale: 30px
+            title: Draußen
+          - type: custom:bignumber-card
+            entity: sensor.t_wz_ist_oh
+            scale: 30px
+            title: Wohnzimmer
       - type: picture-elements
         image: /local/meteograms/meteogram.png
         elements:
