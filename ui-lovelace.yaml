@@ -35,7 +35,7 @@ views:
           - type: custom:bignumber-card
             entity: sensor.time
             scale: 24px
-            title: " "
+            title: "Uhr"
           - type: custom:bignumber-card
             entity: sensor.temp_owm
             scale: 24px
