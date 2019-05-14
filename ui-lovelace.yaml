@@ -99,14 +99,14 @@ views:
             name: Papiertonne
           - entity: sensor.raweg_anzeige
             name: RaWeg
-      - type: glance
-        show_name: true
-        entities:
-          - entity: sensor.restmuelltonne_anzeige
-            name: Restmüll
-          - entity: sensor.biotonne_anzeige
-            name: Biotonne
-          - entity: sensor.papiertonne_anzeige
-            name: Papiertonne
-          - entity: sensor.raweg_anzeige
-            name: RaWeg
+#      - type: glance
+#        show_name: true
+#        entities:
+#          - entity: sensor.restmuelltonne_anzeige
+#            name: Restmüll
+#          - entity: sensor.biotonne_anzeige
+#            name: Biotonne
+#          - entity: sensor.papiertonne_anzeige
+#            name: Papiertonne
+#          - entity: sensor.raweg_anzeige
+#            name: RaWeg
