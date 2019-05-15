@@ -21,7 +21,7 @@ class notifications(hass.Hass):
         # --- send temps in the morning ---
         time_send_temps = datetime.time(4, 45, 00)
         self.run_daily(self.send_temps, time_send_temps)
-        self.send_temps(None) # for testing, send now
+        #self.send_temps(None) # for testing, send now
         
     def arrived_at_work(self, entity, attribute, old, new, kwargs):
         self.log("Jo arrived at work")
