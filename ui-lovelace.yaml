@@ -55,16 +55,16 @@ views:
               top: 50%
               width: 100%
               height: 100%
-      - type: custom:flex-table-card 
-        entities:
-          include: variable.birthdays
-        columns:
-          - name: " "
-            attr_as_list: weekday
-          - name: " "
-            attr_as_list: when
-          - name: Geburtstage
-            attr_as_list: who
+#      - type: custom:flex-table-card 
+#        entities:
+#          include: variable.birthdays
+#        columns:
+#          - name: " "
+#            attr_as_list: weekday
+#          - name: " "
+#            attr_as_list: when
+#          - name: Geburtstage
+#            attr_as_list: who
       - type: custom:weather-card
         entity: weather.dark_sky
         icons: '/local/icons/weather_icons/animated/'
@@ -89,6 +89,17 @@ views:
           include:
             - entity_id: "switch.reminder*"
               state: "on"
+      - type: custom:monster-card
+        show_empty: false
+        card:
+          type: entities
+          title: "Geburtstage"
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "sensor.birthday*"
+          exclude:
+            - state: "off"
       - type: entities
         entities:
           - entity: sensor.restmuelltonne_anzeige
