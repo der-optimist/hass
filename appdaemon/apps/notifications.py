@@ -11,7 +11,6 @@ import datetime
 # zone = Name of zone (only name of zone)
 # device = tracked device (fully qualified => device_tracker.device_name)
 #
-#
 
 class notifications(hass.Hass):
 
