@@ -38,7 +38,7 @@ class notifications(hass.Hass):
             self.log("Time at work: {}".format(time_at_work_hm))
             self.fire_event("custom_notify", message="Feierabend! Reicht auch, nach {}".format(time_at_work_hm), target="telegram_jo")
     
-    def send_temps(self):
+    def send_temps(self, kwargs):
         temp_wz = self.get_state("sensor.t_wz_ist_oh")
         temp_aussen = self.get_state("sensor.temp_owm")
         self.fire_event("custom_notify", message="===== Temperaturen =====\nWohnzimmer: {} °C\nDraussen: {} °C".format(temp_wz,temp_aussen), target="telegram_jo")
