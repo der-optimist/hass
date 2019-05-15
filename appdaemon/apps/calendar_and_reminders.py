@@ -41,8 +41,7 @@ class calendar_and_reminders(hass.Hass):
         start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
         end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
         summaries = []
-        _dates = []
-        weekdays = []
+        dates_display = []
         _list = self.load_calendar("calendar.geburtstage_und_jahrestag",start_dt,end_dt)
         if _list == "error":
             self.log("received http error - will retry later")
@@ -59,14 +58,15 @@ class calendar_and_reminders(hass.Hass):
                         summaries.append(summary)
                         _date = element["start"]["date"]
                         date_display = self.date_to_text(_date)
+                        dates_display.append(date_display)
                     else:
                         self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
             for i in range(len(summaries)):
-                if date_display[i] == "heute":
+                if dates_display[i] == "heute":
                     attributes = {"friendly_name": summaries[i], "entity_picture": self.icon_birthday_today}
                 else:
                     attributes = {"friendly_name": summaries[i], "entity_picture": self.icon_birthday_standard}
-                self.set_state("sensor.birthday_" + str(i),state=date_display[i],attributes= attributes)
+                self.set_state("sensor.birthday_" + str(i),state=dates_display[i],attributes= attributes)
             for i in range(len(summaries),5):
                 self.set_state("sensor.birthday_" + str(i),state="off")
 
