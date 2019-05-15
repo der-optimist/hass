@@ -20,6 +20,7 @@ class calendar_and_reminders(hass.Hass):
         self.days_birthdays = 31
         self.icon_reminder_standard = "/local/icons/reminders/exclamation_mark_blink.svg"
         self.icon_birthday_standard = "/local/icons/reminders/champagne_orange_noblink.svg"
+        self.icon_birthday_today = "/local/icons/reminders/champagne_yellow_noblink.svg"
         # --- birthdays to HASS variable ---
         time_check_birthdays = datetime.time(hour=0, minute=1, second=0)
         self.run_hourly(self.check_birthdays, time_check_birthdays)
@@ -58,17 +59,16 @@ class calendar_and_reminders(hass.Hass):
                         summaries.append(summary)
                         _date = element["start"]["date"]
                         date_display = self.date_to_text(_date)
-                        weekdays.append(date_display[0])
-                        _dates.append(date_display[1])
-                        #self.log("{} {}: {}".format(date_display[0],date_display[1],summary))
                     else:
                         self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
             for i in range(len(summaries)):
-                attributes = {"friendly_name": summaries[i], "entity_picture": self.icon_birthday_standard}
-                self.set_state("sensor.birthday_" + str(i),state=weekdays[i] + ", " + _dates[i],attributes= attributes)
+                if date_display[i] == "heute":
+                    attributes = {"friendly_name": summaries[i], "entity_picture": self.icon_birthday_today}
+                else:
+                    attributes = {"friendly_name": summaries[i], "entity_picture": self.icon_birthday_standard}
+                self.set_state("sensor.birthday_" + str(i),state=date_display[i],attributes= attributes)
             for i in range(len(summaries),5):
                 self.set_state("sensor.birthday_" + str(i),state="off")
-            self.call_service("variable/set_variable",variable="birthdays",value="birthdays",attributes={"who": summaries, "when": _dates, "weekday": weekdays})
 
     def check_reminder(self, kwargs):
         #self.log("Checking reminder events now")
@@ -146,11 +146,11 @@ class calendar_and_reminders(hass.Hass):
         _date = datetime.datetime.strptime(date_str, "%Y-%m-%d")
         days = (_date.date() - self.datetime().date()).days
         if days == 0:
-            printtext = [" ","heute"]
+            printtext = "heute"
         elif days == 1:
-            printtext = [" ","morgen"]
+            printtext = "morgen"
         else:
-            printtext = [_date.strftime('{}').format(weekdays[_date.weekday()]),_date.strftime('%d.%m. ({} T.)').format(days)]
+            printtext = _date.strftime('{}').format(weekdays[_date.weekday()]) + ", " + _date.strftime('%d.%m. ({} T.)').format(days)
         return printtext
         
     def utc_offset(self, kwargs):
