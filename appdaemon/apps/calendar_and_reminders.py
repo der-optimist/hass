@@ -19,6 +19,7 @@ class calendar_and_reminders(hass.Hass):
         self.token = self.args["token"]
         self.days_birthdays = 31
         self.icon_reminder_standard = "/local/icons/reminders/exclamation_mark_blink.svg"
+        self.icon_birthday_standard = "/local/icons/reminders/champagne_orange_noblink.svg"
         # --- birthdays to HASS variable ---
         time_check_birthdays = datetime.time(hour=0, minute=1, second=0)
         self.run_hourly(self.check_birthdays, time_check_birthdays)
@@ -63,7 +64,7 @@ class calendar_and_reminders(hass.Hass):
                     else:
                         self.log("No summary in event or no date in start of event - no idea what to do with that one, sorry")
             for i in range(len(summaries)):
-                attributes = {"friendly_name": summaries[i]}
+                attributes = {"friendly_name": summaries[i], "entity_picture": self.icon_birthday_standard}
                 self.set_state("sensor.birthday_" + str(i),state=weekdays[i] + ", " + _dates[i],attributes= attributes)
             for i in range(len(summaries),5):
                 self.set_state("sensor.birthday_" + str(i),state="off")
