@@ -57,10 +57,9 @@ class weather_and_astro(hass.Hass):
             }
         self.url_meteograms = self.base_url_meteograms + requests.utils.quote(json.dumps(self.settings_meteograms).replace(" ",""), safe='')
         self.path_meteogram = "/config/www/meteograms/meteogram.png"
-        #time_load_meteogram = datetime.time(5, 00, 20) # update time for meteogram
-        time_load_meteogram = datetime.time(12, 56, 20) # update time for meteogram
+        time_load_meteogram = datetime.time(5, 00, 20) # update time for meteogram
         self.run_daily(self.load_meteogram, time_load_meteogram)
-        #self.load_meteogram(None) # for testing
+        #self.load_meteogram(None) # for testing, load now
         # --- DWD weather warnings ---
         self.dwd_warncell_id = self.args["dwd_warncell_id"]
         #self.dwd_warncell_id = 809180117 #Garmisch, for testing
