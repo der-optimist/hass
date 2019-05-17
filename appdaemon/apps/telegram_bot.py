@@ -23,7 +23,7 @@ class telegram_bot(hass.Hass):
         for category in conversations["twosteps"].keys():
             categories_twosteps.append(category)
         # Test: suche Räume für Licht
-        for room in conversations["threesteps"]["Licht"]:
+        for room in conversations["threesteps"]["Licht"]["steps"]:
             self.log(room)
     
     def receive_telegram_text(self, event_id, payload_event, *args):
