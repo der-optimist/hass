@@ -39,4 +39,4 @@ class telegram_bot(hass.Hass):
     def send_temps(self, kwargs):
         temp_wz = self.get_state("sensor.t_wz_ist_oh")
         temp_aussen = self.get_state("sensor.temp_owm")
-        self.fire_event("custom_notify", message="===== Temperaturen =====\nWohnzimmer: {} °C\nDraussen: {} °C".format(temp_wz,temp_aussen), target="telegram_jo")
+        self.fire_event("custom_notify", message="=== 🔥 Temperaturen ❄️ ===\nWohnzimmer: {} °C\nDraussen: {} °C".format(temp_wz,temp_aussen), target="telegram_jo")
