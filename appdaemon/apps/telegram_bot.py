@@ -15,11 +15,13 @@ class telegram_bot(hass.Hass):
         self.listen_event(self.receive_telegram_callback, 'telegram_callback')
     
     def receive_telegram_text(self, event_id, payload_event, *args):
-        """Text repeater."""
         assert event_id == 'telegram_text'
         user_id = payload_event['user_id']
         text = payload_event['text']
         self.log(text)
+        
+        if text.startswith("Temp"):
+            self.send_temps(None)
 
 
     def receive_telegram_command(self, event_id, payload_event, *args):
@@ -33,3 +35,8 @@ class telegram_bot(hass.Hass):
         assert event_id == 'telegram_callback'
         data_callback = payload_event['data']
         callback_id = payload_event['id']
+
+    def send_temps(self, kwargs):
+        temp_wz = self.get_state("sensor.t_wz_ist_oh")
+        temp_aussen = self.get_state("sensor.temp_owm")
+        self.fire_event("custom_notify", message="===== Temperaturen =====\nWohnzimmer: {} °C\nDraussen: {} °C".format(temp_wz,temp_aussen), target="telegram_jo")
