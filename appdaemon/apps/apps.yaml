@@ -41,7 +41,7 @@ telegram_bot:
         q2: OK. Welches Licht genau?
         q3: Gut. Und wie hell?
         steps:
-          - Wohnzimmer:
+          Wohnzimmer:
             - name: Panels
               device: light.wz_panels
               values: 
@@ -55,7 +55,7 @@ telegram_bot:
                 - An
                 - 43%
                 - Aus
-          - Esszimmer:
+          Esszimmer:
             - name: Panels
               device: light.ez_panels
               values:
@@ -66,7 +66,7 @@ telegram_bot:
         q2: Ok. Welchen Rollo dort?
         q3: Gut. Und wie hoch?
         steps:
-          - Wohnzimmer:
+          Wohnzimmer:
             - name: Bodentiefes
               device: jal.wz_bodentiefes
               values: 
@@ -81,7 +81,7 @@ telegram_bot:
                 - 25%
                 - 75%
                 - rutner
-          - Esszimmer:
+          Esszimmer:
             - name: Hebeschiebetür
               device: jal.ez_hst
               values:
