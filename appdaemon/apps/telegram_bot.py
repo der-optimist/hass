@@ -44,6 +44,9 @@ class telegram_bot(hass.Hass):
         if text.lower().startswith("danke"):
             self.answer_thank_you(chat_id)
 
+        # --- Konversation 3-Steps ---
+        if text in categories_threesteps:
+            self.conversation_handler_threesteps(chat_id, text)
 
     def receive_telegram_command(self, event_id, payload_event, *args):
         assert event_id == 'telegram_command'
@@ -78,3 +81,6 @@ class telegram_bot(hass.Hass):
                           target=chat_id,
                           message=reply,
                           disable_notification=True)
+
+    def conversation_handler_threesteps(self, chat_id, category):
+        self.log("Started 3-Steps")
