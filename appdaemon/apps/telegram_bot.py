@@ -27,6 +27,10 @@ class telegram_bot(hass.Hass):
         # --- Wettervorhersage ---
         if text.startswith("Wetter") or text.startswith("Vorhersage"):
             self.send_weather_forecast(chat_id)
+        
+        # --- Danke Bitte ---
+        if text.startswith("Danke") or text.startswith("danke"):
+            self.answer_thank_you(chat_id)
 
 
     def receive_telegram_command(self, event_id, payload_event, *args):
@@ -46,12 +50,19 @@ class telegram_bot(hass.Hass):
         temp_aussen = self.get_state("sensor.temp_owm")
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
-                          message="=== 🔥 Temperaturen ❄️ ===\nWohnzimmer: {} °C\nDraussen: {} °C".format(temp_wz,temp_aussen),
-                          disable_notification=True)
+                          message="=== 🔥 Temperaturen ❄️ ===\nWohnzimmer: {} °C\nDraussen: {} °C".format(temp_wz,temp_aussen))
         
     def send_weather_forecast(self, chat_id):
         self.call_service('telegram_bot/send_photo',
                           target=chat_id,
-                          file= "/config/www/meteograms/meteogram.png",
-                          disable_notification=True)
+                          file= "/config/www/meteograms/meteogram.png")
         
+    def answer_thank_you(self, chat_id):
+        reply = random.choice(["Gerne 😘", 
+                           "Hey, du bist der Boss, ich mach nur was du sagst 😉", 
+                           "Immer wieder gerne", 
+                           "Bitteschön!"])
+        self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message=reply,
+                          disable_notification=True)
