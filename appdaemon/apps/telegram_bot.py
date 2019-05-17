@@ -16,12 +16,12 @@ class telegram_bot(hass.Hass):
         self.listen_event(self.receive_telegram_callback, 'telegram_callback')
         conversations = self.args["conversations"]
         #self.log(conversations)
-        categories_threesteps = []
-        categories_twosteps = []
+        self.categories_threesteps = []
+        self.categories_twosteps = []
         for category in conversations["threesteps"].keys():
-            categories_threesteps.append(category)
+            self.categories_threesteps.append(category)
         for category in conversations["twosteps"].keys():
-            categories_twosteps.append(category)
+            self.categories_twosteps.append(category)
         # Test: suche Räume für Licht
         for room in conversations["threesteps"]["Licht"]["steps"].keys():
             self.log(room)
@@ -45,7 +45,7 @@ class telegram_bot(hass.Hass):
             self.answer_thank_you(chat_id)
 
         # --- Konversation 3-Steps ---
-        if text in categories_threesteps:
+        if text in self.categories_threesteps:
             self.conversation_handler_threesteps(chat_id, text)
 
     def receive_telegram_command(self, event_id, payload_event, *args):
