@@ -21,7 +21,7 @@ class telegram_bot(hass.Hass):
         self.log(text)
         
         if text.startswith("Temp"):
-            self.send_temps(chat_id)
+            self.send_temps(self, chat_id)
 
 
     def receive_telegram_command(self, event_id, payload_event, *args):
