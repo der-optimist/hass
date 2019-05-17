@@ -72,12 +72,14 @@ class telegram_bot(hass.Hass):
             # --- Konversation 3-Steps ---
             if text in self.categories_threesteps:
                 self.log("Keyword of 3 Step Conversation Found")
+                self.conv_handler_curr_step.update( {user_id : 1} )
                 self.conv_handler_curr_type.update( {user_id : 3} )
                 self.conversation_handler(user_id, chat_id, text)
             
             # --- Konversation 2-Steps ---
             if text in self.categories_twosteps:
                 self.log("Keyword of 2 Step Conversation Found")
+                self.conv_handler_curr_step.update( {user_id : 1} )
                 self.conv_handler_curr_type.update( {user_id : 2} )
                 self.conversation_handler(user_id, chat_id, text)
             
