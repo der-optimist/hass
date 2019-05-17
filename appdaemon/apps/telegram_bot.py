@@ -4,7 +4,7 @@ import random
 
 #
 # Telegram Chatbot
-# Args: a yaml list of things and possible values
+# Args: a yaml list of conversations
 # 
 
 class telegram_bot(hass.Hass):
@@ -29,7 +29,7 @@ class telegram_bot(hass.Hass):
         for light in conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"].keys():
             self.log(light)
         # Test: suche Werte für Panels im Wohnzimmer
-        for value in conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["values"]:
+        for value in conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["Panels"]["values"]:
             self.log(value)
         self.log(conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["Panels"]["values"])
     
