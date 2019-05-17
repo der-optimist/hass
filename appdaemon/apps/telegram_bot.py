@@ -36,31 +36,58 @@ class telegram_bot(hass.Hass):
         #self.log(conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["Panels"]["values"])
         
         # Initialize Conversation Handler Variables
-        self.conv_handler_steps = {}
+        self.conv_handler_curr_step = {}
+        self.conv_handler_curr_type = {}
         for user_id in self.args["allowed_user_ids"]:
-            self.conv_handler_steps.update( {user_id : 0} )
+            self.conv_handler_curr_step.update( {user_id : 0} )
+            self.conv_handler_curr_type.update( {user_id : 0} )
     
     def receive_telegram_text(self, event_id, payload_event, *args):
         assert event_id == 'telegram_text'
         chat_id = payload_event['chat_id']
+        user_id = payload_event['user_id']
         text = payload_event['text']
         self.log(text)
         
-        # --- Temperaturen ---
-        if text.lower().startswith("temp"):
-            self.send_temps(chat_id)
+        if self.conv_handler_curr_step[user_id] > 0:
+            # Conversation Handler is waiting for an answer => pass the answer to it
+            newstep = self.conv_handler_curr_step[user_id] + 1
+            self.conv_handler_curr_step.update( {user_id : newstep} )
+            self.conversation_handler(user_id, chat_id, text)
+            
+        else: # user is not in an active conversation
+            
+            # --- Temperaturen ---
+            if text.lower().startswith("temp"):
+                self.send_temps(chat_id)
         
-        # --- Wettervorhersage ---
-        if text.lower().startswith("wetter") or text.lower().startswith("vorhersage"):
-            self.send_weather_forecast(chat_id)
+            # --- Wettervorhersage ---
+            if text.lower().startswith("wetter") or text.lower().startswith("vorhersage"):
+                self.send_weather_forecast(chat_id)
         
-        # --- Danke Bitte ---
-        if text.lower().startswith("danke"):
-            self.answer_thank_you(chat_id)
+            # --- Danke Bitte ---
+            if text.lower().startswith("danke"):
+                self.answer_thank_you(chat_id)
 
-        # --- Konversation 3-Steps ---
-        if text in self.categories_threesteps:
-            self.conversation_handler_threesteps(chat_id, text)
+            # --- Konversation 3-Steps ---
+            if text in self.categories_threesteps:
+                self.log("Keyword of 3 Step Conversation Found")
+                self.conv_handler_curr_type.update( {user_id : 3} )
+                self.conversation_handler(user_id, chat_id, text)
+            
+            # --- Konversation 2-Steps ---
+            if text in self.categories_twosteps:
+                self.log("Keyword of 2 Step Conversation Found")
+                self.conv_handler_curr_type.update( {user_id : 2} )
+                self.conversation_handler(user_id, chat_id, text)
+            
+            # --- Reset Conversation ---
+            if text.lower().startswith("reset"):
+                self.conv_handler_curr_type.update( {user_id : 0} )
+                self.conv_handler_curr_step.update( {user_id : 0} )
+                self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message="Conversation Reset")
 
     def receive_telegram_command(self, event_id, payload_event, *args):
         assert event_id == 'telegram_command'
@@ -96,5 +123,5 @@ class telegram_bot(hass.Hass):
                           message=reply,
                           disable_notification=True)
 
-    def conversation_handler_threesteps(self, chat_id, text):
-        self.log("Started 3-Steps")
+    def conversation_handler(self, user_id, chat_id, text):
+        self.log("Started Conversation")
