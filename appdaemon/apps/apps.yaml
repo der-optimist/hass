@@ -34,5 +34,77 @@ weather_and_astro:
 telegram_bot:
   module: telegram_bot
   class: telegram_bot
-  telegram_id_jo: !secret telegram_id_1
-  telegram_id_ma: !secret telegram_id_2
+  conversations:
+    threeSteps:
+      - Licht:
+          q1: OK. Welcher Raum?
+          q2: OK. Welches Licht genau?
+          q3: Gut. Und wie hell?
+          steps:
+            - Wohnzimmer:
+              - name: Panels
+                device: light.wz_panels
+                values: 
+                  - An
+                  - 1%
+                  - 50%
+                  - Aus
+              - name: Schrankbeleuchtung
+                device: light.wz_schraenke
+                values:
+                  - An
+                  - 43%
+                  - Aus
+            - Esszimmer:
+              - name: Panels
+                device: light.ez_panels
+                values:
+                  - An
+                  - Aus
+      - Rollo:
+          q1: OK. Welcher Raum?
+          q2: Ok. Welchen Rollo dort?
+          q3: Gut. Und wie hoch?
+          steps:
+            - Wohnzimmer:
+              - name: Bodentiefes
+                device: jal.wz_bodentiefes
+                values: 
+                  - hoch
+                  - 10%
+                  - 50%
+                  - rutner
+              - name: Hinter Couch
+                device: jal.wz_couch
+                values:
+                  - hoch
+                  - 25%
+                  - 75%
+                  - rutner
+            - Esszimmer:
+              - name: Hebeschiebetür
+                device: jal.ez_hst
+                values:
+                  - hoch
+                  - 20%
+                  - 70%
+                  - rutner
+    twosteps:
+      - Heizung:
+          q1: OK. Welcher Raum?
+          q2: Gut. Welche Temperatur?
+          steps:
+            - name: Wohnzimmer
+              device: heiz.wz
+              values: 
+                - 20
+                - 22
+                - 24
+                - 26
+            - name: Esszimmer
+              device: heiz.ez
+              values:
+                - 19
+                - 21
+                - 23
+                - 25
