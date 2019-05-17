@@ -81,6 +81,14 @@ class telegram_bot(hass.Hass):
                 self.conv_handler_curr_type.update( {user_id : 2} )
                 self.conversation_handler(user_id, chat_id, text)
             
+            # --- Status Conversation ---
+            if text.lower().startswith("status"):
+                t = self.conv_handler_curr_type[user_id]
+                s = self.conv_handler_curr_step[user_id]
+                self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message="Step: {}\nType: {}".format(s,t))
+            
             # --- Reset Conversation ---
             if text.lower().startswith("reset"):
                 self.conv_handler_curr_type.update( {user_id : 0} )
