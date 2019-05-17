@@ -15,9 +15,16 @@ class telegram_bot(hass.Hass):
         self.listen_event(self.receive_telegram_command, 'telegram_command')
         self.listen_event(self.receive_telegram_callback, 'telegram_callback')
         conversations = self.args["conversations"]
-        self.log(conversations)
+        #self.log(conversations)
+        categories_threesteps = []
+        categories_twosteps = []
         for category in conversations["threesteps"].keys():
-            self.log(category)
+            categories_threesteps.append(category)
+        for category in conversations["twosteps"].keys():
+            categories_twosteps.append(category)
+        # Test: suche Räume für Licht
+        for room in conversations["threesteps"]["Licht"]:
+            self.log(room)
     
     def receive_telegram_text(self, event_id, payload_event, *args):
         assert event_id == 'telegram_text'
