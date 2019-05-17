@@ -42,21 +42,21 @@ telegram_bot:
         q3: Gut. Und wie hell?
         steps:
           Wohnzimmer:
-            - name: Panels
+            Panels:
               device: light.wz_panels
               values: 
                 - An
                 - 1%
                 - 50%
                 - Aus
-            - name: Schrankbeleuchtung
+            Schrankbeleuchtung:
               device: light.wz_schraenke
               values:
                 - An
                 - 43%
                 - Aus
           Esszimmer:
-            - name: Panels
+            Panels:
               device: light.ez_panels
               values:
                 - An
@@ -67,14 +67,14 @@ telegram_bot:
         q3: Gut. Und wie hoch?
         steps:
           Wohnzimmer:
-            - name: Bodentiefes
+            Bodentiefes:
               device: jal.wz_bodentiefes
               values: 
                 - hoch
                 - 10%
                 - 50%
                 - rutner
-            - name: Hinter Couch
+            Hinter Couch:
               device: jal.wz_couch
               values:
                 - hoch
@@ -82,7 +82,7 @@ telegram_bot:
                 - 75%
                 - rutner
           Esszimmer:
-            - name: Hebeschiebetür
+            Hebeschiebetür:
               device: jal.ez_hst
               values:
                 - hoch
@@ -94,14 +94,14 @@ telegram_bot:
         q1: OK. Welcher Raum?
         q2: Gut. Welche Temperatur?
         steps:
-          - name: Wohnzimmer
+          Wohnzimmer:
             device: heiz.wz
             values: 
               - 20
               - 22
               - 24
               - 26
-          - name: Esszimmer
+          Esszimmer:
             device: heiz.ez
             values:
               - 19
