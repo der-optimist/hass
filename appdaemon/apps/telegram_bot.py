@@ -14,8 +14,9 @@ class telegram_bot(hass.Hass):
         self.listen_event(self.receive_telegram_text, 'telegram_text')
         self.listen_event(self.receive_telegram_command, 'telegram_command')
         self.listen_event(self.receive_telegram_callback, 'telegram_callback')
+        
+        # Extract Keywords for Conversations
         conversations = self.args["conversations"]
-        #self.log(conversations)
         self.categories_threesteps = []
         self.categories_twosteps = []
         for category in conversations["threesteps"].keys():
@@ -33,6 +34,12 @@ class telegram_bot(hass.Hass):
             self.log(value)
         # Test: suche Werte für Panels im Wohnzimmer, als Liste
         self.log(conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["Panels"]["values"])
+        
+        # Initialize Conversation Handler Variables
+        self.conv_handler_steps = {}
+        for user_id in self.args["allowed_user_ids"]:
+            self.conv_handler_steps.update( {user_id : 0} )
+        self.log(self.conv_handler_steps)
     
     def receive_telegram_text(self, event_id, payload_event, *args):
         assert event_id == 'telegram_text'
