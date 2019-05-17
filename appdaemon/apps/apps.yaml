@@ -34,3 +34,5 @@ weather_and_astro:
 telegram_bot:
   module: telegram_bot
   class: telegram_bot
+  telegram_id_jo: !secret telegram_id_1
+  telegram_id_ma: !secret telegram_id_2
