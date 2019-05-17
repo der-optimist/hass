@@ -35,7 +35,7 @@ telegram_bot:
   module: telegram_bot
   class: telegram_bot
   conversations:
-    threeSteps:
+    threesteps:
       - Licht:
           q1: OK. Welcher Raum?
           q2: OK. Welches Licht genau?
