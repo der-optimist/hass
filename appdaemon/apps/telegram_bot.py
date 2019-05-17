@@ -26,8 +26,12 @@ class telegram_bot(hass.Hass):
         for room in conversations["threesteps"]["Licht"]["steps"].keys():
             self.log(room)
         # Test: suche Lichter im Wohnzimmer
-        for room in conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"].keys():
-            self.log(room)
+        for light in conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"].keys():
+            self.log(light)
+        # Test: suche Werte für Panels im Wohnzimmer
+        for value in conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["values"]:
+            self.log(value)
+        self.log(conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["values"])
     
     def receive_telegram_text(self, event_id, payload_event, *args):
         assert event_id == 'telegram_text'
