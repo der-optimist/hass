@@ -35,7 +35,7 @@ telegram_bot:
   module: telegram_bot
   class: telegram_bot
   conversations:
-    threesteps:
+    - threesteps:
       - Licht:
           q1: OK. Welcher Raum?
           q2: OK. Welches Licht genau?
@@ -89,7 +89,7 @@ telegram_bot:
                   - 20%
                   - 70%
                   - rutner
-    twosteps:
+    - twosteps:
       - Heizung:
           q1: OK. Welcher Raum?
           q2: Gut. Welche Temperatur?
