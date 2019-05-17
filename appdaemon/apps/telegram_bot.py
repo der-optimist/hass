@@ -96,5 +96,5 @@ class telegram_bot(hass.Hass):
                           message=reply,
                           disable_notification=True)
 
-    def conversation_handler_threesteps(self, chat_id, category):
+    def conversation_handler_threesteps(self, chat_id, text):
         self.log("Started 3-Steps")
