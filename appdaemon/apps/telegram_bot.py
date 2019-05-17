@@ -16,7 +16,7 @@ class telegram_bot(hass.Hass):
         self.listen_event(self.receive_telegram_callback, 'telegram_callback')
         conversations = self.args["conversations"]
         self.log(conversations)
-        for category in conversations.threesteps:
+        for category in conversations["threesteps"]:
             self.log(category)
     
     def receive_telegram_text(self, event_id, payload_event, *args):
