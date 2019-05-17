@@ -21,15 +21,15 @@ class telegram_bot(hass.Hass):
         self.log(text)
         
         # --- Temperaturen ---
-        if text.startswith("Temp"):
+        if text.lower().startswith("temp"):
             self.send_temps(chat_id)
         
         # --- Wettervorhersage ---
-        if text.startswith("Wetter") or text.startswith("Vorhersage"):
+        if text.lower().startswith("wetter") or text.lower().startswith("vorhersage"):
             self.send_weather_forecast(chat_id)
         
         # --- Danke Bitte ---
-        if text.startswith("Danke") or text.startswith("danke"):
+        if text.lower().startswith("danke"):
             self.answer_thank_you(chat_id)
 
 
