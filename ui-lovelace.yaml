@@ -9,6 +9,8 @@ resources:
     type: js
   - url: /local/custom_ui/monster-card/monster-card.js?v=1.0.0
     type: js
+  - url: /local/custom_ui/kiosk/kiosk.js
+    type: js
 
 title: Lieblingshaus
 views:
