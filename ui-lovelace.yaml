@@ -17,8 +17,8 @@ views:
   - icon: mdi:home
     id: home
     title: Home
-    badges:
-      - !secret device_jo
+    #badges:
+    #  - !secret device_jo
     cards:
       - type: custom:compact-custom-header
         header: true
