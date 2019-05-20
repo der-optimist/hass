@@ -42,7 +42,7 @@
       light-primary-color: "#ff9c27"
       dark-primary-color: "#e28b24"
       text-primary-color: "#eeeeee"
-      primary-background-color: "#000000"
+      primary-background-color: "#0e0e0e"
       sidebar-text_-_background: "#424242"
       paper-card-background-color: "#303030"
       paper-card-header-color: "var(--text-primary-color)"
