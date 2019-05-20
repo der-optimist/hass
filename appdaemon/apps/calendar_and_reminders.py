@@ -47,6 +47,7 @@ class calendar_and_reminders(hass.Hass):
             self.log("received http error - will retry later")
             self.run_in(self.check_birthdays, 600)
         else:
+            _list = _list[:4] # limit to 4 birthdays
             for element in _list:
                 if "dateTime" in element["start"]:
                     self.log("Birthday Calendar only supports all-day events. Found event that is not all-day, it will be ignored.")
