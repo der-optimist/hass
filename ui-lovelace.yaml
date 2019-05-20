@@ -3,8 +3,8 @@ resources:
     type: js
   - url: /local/custom_ui/weather-card/weather-card-hours.js
     type: module
-  - url: /local/custom_ui/compact-custom-header/compact-custom-header.js?v=0.0.1
-    type: js
+  #- url: /local/custom_ui/compact-custom-header/compact-custom-header.js?v=0.0.1
+  #  type: js
   - url: /local/custom_ui/bignumber-card/bignumber-card.js?v=1.0.0
     type: js
   - url: /local/custom_ui/monster-card/monster-card.js?v=1.0.0
@@ -20,18 +20,18 @@ views:
     #badges:
     #  - !secret device_jo
     cards:
-      - type: custom:compact-custom-header
-        header: true
-        menu: true
-        notification: true
-        voice: false
-        options: true
-        tabs: true
-        clock: options
-        clock_format: 24
-        clock_am_pm: false
-        disable: false
-        background_image: false
+      #- type: custom:compact-custom-header
+      #  header: true
+      #  menu: true
+      #  notification: true
+      #  voice: false
+      #  options: true
+      #  tabs: true
+      #  clock: options
+      #  clock_format: 24
+      #  clock_am_pm: false
+      #  disable: false
+      #  background_image: false
       - type: horizontal-stack
         cards:
           - type: custom:bignumber-card
