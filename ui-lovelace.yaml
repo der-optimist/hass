@@ -11,6 +11,8 @@ resources:
     type: js
   - url: /local/custom_ui/kiosk/kiosk.js
     type: js
+  - url: /local/custom_ui/card-tools/card-tools.js?v=0.4.0
+    type: js
 
 title: Lieblingshaus
 views:
