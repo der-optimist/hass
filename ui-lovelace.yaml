@@ -141,6 +141,7 @@ views:
             cards:
               - type: entities
                 title: "Abfall"
+                show_header_toggle: false
                 entities:
                   - entity: sensor.restmuelltonne_anzeige
                     name: Restmüll
@@ -187,3 +188,8 @@ views:
                         entity: sensor.t_wz_ist_oh
                         scale: 22px
                         title: Wohnzimmer
+                  - type: entities
+                    title: "Wer ist wo..."
+                    show_header_toggle: false
+                    entities:
+                      - entity: sensor.location_jo
