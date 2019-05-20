@@ -18,9 +18,9 @@ resources:
 
 title: Lieblingshaus
 views:
-  - icon: mdi:home
-    id: home
-    title: Home
+  - title: Home (mobil)
+    path: home_mobile
+    icon: mdi:cellphone
     #badges:
     #  - !secret device_jo
     cards:
@@ -94,9 +94,9 @@ views:
             name: Papiertonne
           - entity: sensor.raweg_anzeige
             name: RaWeg
-  - icon: mdi:monitor
-    id: panel
-    title: Panel
+  - title: Home (Panel)
+    path: home_panel
+    icon: mdi:monitor
     panel: true
     #badges:
     #  - !secret device_jo
