@@ -22,18 +22,6 @@ views:
     #badges:
     #  - !secret device_jo
     cards:
-      #- type: custom:compact-custom-header
-      #  header: true
-      #  menu: true
-      #  notification: true
-      #  voice: false
-      #  options: true
-      #  tabs: true
-      #  clock: options
-      #  clock_format: 24
-      #  clock_am_pm: false
-      #  disable: false
-      #  background_image: false
       - type: horizontal-stack
         cards:
           - type: custom:bignumber-card
@@ -59,16 +47,6 @@ views:
               top: 50%
               width: 100%
               height: 100%
-#      - type: custom:flex-table-card 
-#        entities:
-#          include: variable.birthdays
-#        columns:
-#          - name: " "
-#            attr_as_list: weekday
-#          - name: " "
-#            attr_as_list: when
-#          - name: Geburtstage
-#            attr_as_list: who
       - type: custom:weather-card
         entity: weather.dark_sky
         icons: '/local/icons/weather_icons/static/'
@@ -114,14 +92,95 @@ views:
             name: Papiertonne
           - entity: sensor.raweg_anzeige
             name: RaWeg
-#      - type: glance
-#        show_name: true
-#        entities:
-#          - entity: sensor.restmuelltonne_anzeige
-#            name: Restmüll
-#          - entity: sensor.biotonne_anzeige
-#            name: Biotonne
-#          - entity: sensor.papiertonne_anzeige
-#            name: Papiertonne
-#          - entity: sensor.raweg_anzeige
-#            name: RaWeg
+  - icon: mdi:monitor
+    id: panel
+    title: Panel
+    panel: true
+    #badges:
+    #  - !secret device_jo
+    cards:
+      - type: custom:layout-card
+        layout: vertical
+        max_width: [50%, 50%]
+        cards:
+          - type: picture-elements
+            image: /local/meteograms/meteogram.png
+            elements:
+              - type: image
+                entity: camera.meteogram
+                camera_image: camera.meteogram
+                style:
+                  left: 50%
+                  top: 50%
+                  width: 100%
+                  height: 100%
+          - type: custom:monster-card
+            show_empty: false
+            card:
+              type: entities
+              title: "Wetterwarnungen"
+              show_header_toggle: false
+            filter:
+              include:
+                - entity_id: "sensor.dwd_warn*"
+              exclude:
+                - state: "off"
+          - type: custom:monster-card
+            show_empty: false
+            card:
+              type: entities
+              title: "zu erledigen"
+              show_header_toggle: false
+            filter:
+              include:
+                - entity_id: "switch.reminder*"
+                  state: "on"
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.restmuelltonne_anzeige
+                    name: Restmüll
+                  - entity: sensor.biotonne_anzeige
+                    name: Biotonne
+                  - entity: sensor.papiertonne_anzeige
+                    name: Papiertonne
+                  - entity: sensor.raweg_anzeige
+                    name: RaWeg
+              - type: custom:monster-card
+                show_empty: false
+                card:
+                  type: entities
+                  title: "Geburtstage"
+                  show_header_toggle: false
+                filter:
+                  include:
+                    - entity_id: "sensor.birthday*"
+                  exclude:
+                    - state: "off"
+          - break
+          - type: horizontal-stack
+            cards:
+              - type: custom:weather-card
+                entity: weather.dark_sky
+                icons: '/local/icons/weather_icons/static/'
+          - type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:bignumber-card
+                    entity: sensor.date
+                    scale: 22px
+                  - type: custom:bignumber-card
+                    entity: sensor.time
+                    scale: 22px
+              - type: horizontal-stack
+                cards:
+                  - type: custom:bignumber-card
+                    entity: sensor.temp_owm
+                    scale: 22px
+                    title: Draußen
+                  - type: custom:bignumber-card
+                    entity: sensor.t_wz_ist_oh
+                    scale: 22px
+                    title: Wohnzimmer
