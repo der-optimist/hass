@@ -3,8 +3,6 @@ resources:
     type: js
   - url: /local/custom_ui/weather-card/weather-card-hours.js
     type: module
-  #- url: /local/custom_ui/compact-custom-header/compact-custom-header.js?v=0.0.1
-  #  type: js
   - url: /local/custom_ui/bignumber-card/bignumber-card.js?v=1.0.0
     type: js
   - url: /local/custom_ui/monster-card/monster-card.js?v=1.0.0
@@ -21,8 +19,6 @@ views:
   - title: Home (mobil)
     path: home_mobile
     icon: mdi:cellphone
-    #badges:
-    #  - !secret device_jo
     cards:
       - type: horizontal-stack
         cards:
@@ -94,12 +90,15 @@ views:
             name: Papiertonne
           - entity: sensor.raweg_anzeige
             name: RaWeg
+      - type: entities
+        title: "Wer ist wo..."
+        show_header_toggle: false
+        entities:
+          - entity: sensor.location_jo
   - title: Home (Panel)
     path: home_panel
     icon: mdi:monitor
     panel: true
-    #badges:
-    #  - !secret device_jo
     cards:
       - type: custom:layout-card
         layout: vertical
