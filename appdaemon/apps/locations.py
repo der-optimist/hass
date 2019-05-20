@@ -21,6 +21,7 @@ class locations(hass.Hass):
         self.listen_state(self.arrived_at_home, self.args["device"], new = "home")
         self.listen_state(self.left_home, self.args["device"], old = "home")
         self.name_jo = self.args["name_jo"]
+        self.sensor_location_jo = "sensor.location_jo"
         
     def arrived_at_work(self, entity, attribute, old, new, kwargs):
         self.log("Jo arrived at work")
