@@ -5,14 +5,14 @@ toggle_reminder_switches:
 custom_notify:
   module: custom_notify
   class: custom_notify
-#test_fire_notification:
-#  module: test_fire_notification
-#  class: test_fire_notification
+locations:
+  module: locations
+  class: locations
+  zone: !secret comp_work_jo_name
+  device: !secret device_jo
 notifications:
   module: notifications
   class: notifications
-  zone: !secret comp_work_jo_name
-  device: !secret device_jo
 garbage:
   module: garbage
   class: garbage
