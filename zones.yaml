@@ -4,11 +4,11 @@
   radius: 100
   icon: mdi:home
 
-- name: !secret town_work_jo_name
-  latitude: !secret town_work_jo_lat
-  longitude: !secret town_work_jo_long
-  radius: 2500
-  icon: mdi:city-variant
+#- name: !secret town_work_jo_name
+#  latitude: !secret town_work_jo_lat
+#  longitude: !secret town_work_jo_long
+#  radius: 2500
+#  icon: mdi:city-variant
   
 - name: !secret comp_work_jo_name
   latitude: !secret comp_work_jo_lat
