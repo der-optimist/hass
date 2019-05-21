@@ -39,7 +39,7 @@ updater:
 discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
-conversation:
+#conversation:
 
 telegram_bot:
   - platform: polling
@@ -133,14 +133,9 @@ camera:
     name: Meteogram
     file_path: /config/www/meteograms/meteogram.png
 
-variable:
-  birthdays:
-    name: birthdays
-    value: 'warte auf Update'
-
 # Text to speech
-tts:
-  - platform: google
+#tts:
+#  - platform: google
 
 # Cloud
 cloud:
