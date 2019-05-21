@@ -40,7 +40,7 @@ class locations(hass.Hass):
             self.fire_event("custom_notify", message="Feierabend! Reicht auch, nach {}".format(time_at_work_hm), target="telegram_jo")
     
     def arrived_at_home(self, entity, attribute, old, new, kwargs):
-        self.set_state(self.sensor_location_jo, state = "Unterwegs", attributes={"entity_picture":"/local/icons/locations/at_home.svg", "friendly_name": self.name_jo})
+        self.set_state(self.sensor_location_jo, state = "Zu Hause", attributes={"entity_picture":"/local/icons/locations/at_home.svg", "friendly_name": self.name_jo})
         if old != "home":
             self.log("Jo arrived at home")
             self.fire_event("custom_notify", message="Zu Hause angekommen", target="telegram_jo")
