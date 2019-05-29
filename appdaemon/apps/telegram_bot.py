@@ -166,8 +166,8 @@ class telegram_bot(hass.Hass):
         for key in self.conversations["twosteps"][text]["steps"].keys():
             choices.append(key)
         question = self.conversations["twosteps"][text]["q1"]
-        reply = ', '.join(choices)
-        reply = [[("Test1", "Test1"), ("Test2", "Test2")]]
+        reply = self.build_menu(choices, 2)
+        #reply = [[("Test1", "Test1"), ("Test2", "Test2")]]
         self.call_service('telegram_bot/send_message',
                   target=chat_id,
                   message=question,
@@ -178,7 +178,20 @@ class telegram_bot(hass.Hass):
         self.log("Processing choice 1 of 2")
         return {'message': "OK. Wie warm?", 'keyboard': [[("Test3", "Test3"), ("Test4", "Test4")]] }
         
-
+    def build_menu(self, values, n_cols):
+        while (len(values) % n_cols) > 0:
+            values.append(" ")
+        button_list = []
+        counter = 0
+        for row in range(len(values) / n_cols):
+            list_row = []
+            for column in range(n_cols):
+                button = (values[counter], values[counter])
+                counter = counter + 1
+                list_row.append(button)
+            button_list.append(list_row)
+        return button_list
+    
     #ef conversation_handler(self, user_id, chat_id, text):
     #    self.log("Conversation Handler Called")
     #    if self.conv_handler_curr_type[user_id] == 2:
