@@ -125,7 +125,7 @@ class telegram_bot(hass.Hass):
                 # choice 1 wurde wohl getroffen => verarbeiten
                 reply = self.react_on_choice1_twostep(user_id, chat_id, data_callback)
                 self.call_service('telegram_bot/answer_callback_query',
-                              message=reply["message"],
+                              message="",
                               callback_query_id=callback_id,
                               show_alert=False)
 
