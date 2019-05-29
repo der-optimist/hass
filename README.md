@@ -7,5 +7,6 @@ Home Assistant Config and Apps
 - pollen
 - (reminders - special icons)
 - design
+- Pizza Reminder :-)
 - make garbage.py http-error-resistant
 - fix darksky error when no internet
