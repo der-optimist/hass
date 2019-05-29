@@ -38,6 +38,7 @@ class telegram_bot(hass.Hass):
         # Initialize Conversation Handler Variables
         self.conv_handler_curr_msg_num = {}
         self.conv_handler_curr_type = {}
+        self.conv_handler_curr_commands = {}
         for user_id in self.args["allowed_user_ids"]:
             self.conv_handler_curr_msg_num.update( {user_id : 0} )
             self.conv_handler_curr_type.update( {user_id : 0} )
@@ -151,7 +152,12 @@ class telegram_bot(hass.Hass):
                 choices = []
                 for key in conversations["twosteps"][text]["steps"].keys():
                     choices.append(key)
-                message = ', '.join(choices)
+                question = conversations["twosteps"][text]["q1"]
+                reply = ', '.join(choices)
+                self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message=question,
+                          disable_notification=True)
                 self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=reply,
