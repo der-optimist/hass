@@ -16,7 +16,7 @@ class telegram_bot(hass.Hass):
         self.listen_event(self.receive_telegram_callback, 'telegram_callback')
         
         # Extract Keywords for Conversations
-        conversations = self.args["conversations"]
+        self.conversations = self.args["conversations"]
         self.categories_threesteps = []
         self.categories_twosteps = []
         for category in conversations["threesteps"].keys():
@@ -24,16 +24,16 @@ class telegram_bot(hass.Hass):
         for category in conversations["twosteps"].keys():
             self.categories_twosteps.append(category)
         # Test: suche Räume für Licht
-        #for room in conversations["threesteps"]["Licht"]["steps"].keys():
+        #for room in self.conversations["threesteps"]["Licht"]["steps"].keys():
         #    self.log(room)
         # Test: suche Lichter im Wohnzimmer
-        #for light in conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"].keys():
+        #for light in self.conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"].keys():
         #    self.log(light)
         # Test: suche Werte für Panels im Wohnzimmer, einzelne Werte
-        #for value in conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["Panels"]["values"]:
+        #for value in self.conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["Panels"]["values"]:
         #    self.log(value)
         # Test: suche Werte für Panels im Wohnzimmer, als Liste
-        #self.log(conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["Panels"]["values"])
+        #self.log(self.conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["Panels"]["values"])
         
         # Initialize Conversation Handler Variables
         self.conv_handler_curr_msg_num = {}
@@ -150,9 +150,9 @@ class telegram_bot(hass.Hass):
                 commands[0] = text
                 self.conv_handler_curr_commands.update( {user_id : commands} )
                 choices = []
-                for key in conversations["twosteps"][text]["steps"].keys():
+                for key in self.conversations["twosteps"][text]["steps"].keys():
                     choices.append(key)
-                question = conversations["twosteps"][text]["q1"]
+                question = self.conversations["twosteps"][text]["q1"]
                 reply = ', '.join(choices)
                 self.call_service('telegram_bot/send_message',
                           target=chat_id,
