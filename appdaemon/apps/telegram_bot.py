@@ -157,8 +157,5 @@ class telegram_bot(hass.Hass):
                 self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=question,
-                          disable_notification=True)
-                self.call_service('telegram_bot/send_message',
-                          target=chat_id,
-                          message=reply,
-                          disable_notification=True)
+                          disable_notification=True, 
+                          inline_keyboard=reply)
