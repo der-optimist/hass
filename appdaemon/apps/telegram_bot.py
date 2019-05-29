@@ -130,7 +130,7 @@ class telegram_bot(hass.Hass):
                               show_alert=False)
                 self.call_service('telegram_bot/send_message',
                     target=chat_id,
-                    message=replay["message"],
+                    message=reply["message"],
                     disable_notification=True, 
                     inline_keyboard=reply["keyboard"])
 
