@@ -154,7 +154,7 @@ class telegram_bot(hass.Hass):
                     choices.append(key)
                 question = self.conversations["twosteps"][text]["q1"]
                 reply = ', '.join(choices)
-                reply = [("Test1", "/Test1"), ("Test2", "/Test2")]
+                reply = [[("Test1", "Test1"), ("Test2", "Test2")]]
                 self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=question,
