@@ -130,9 +130,9 @@ class telegram_bot(hass.Hass):
                               show_alert=False)
                 self.call_service('telegram_bot/send_message',
                     target=chat_id,
-                    message=replay[0],
+                    message=replay["message"],
                     disable_notification=True, 
-                    inline_keyboard=reply[1])
+                    inline_keyboard=reply["keyboard"])
 
     def send_temps(self, chat_id):
         temp_wz = self.get_state("sensor.t_wz_ist_oh")
