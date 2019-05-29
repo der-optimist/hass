@@ -36,11 +36,12 @@ class telegram_bot(hass.Hass):
         #self.log(conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["Panels"]["values"])
         
         # Initialize Conversation Handler Variables
-        self.conv_handler_curr_step = {}
+        self.conv_handler_curr_msg_num = {}
         self.conv_handler_curr_type = {}
         for user_id in self.args["allowed_user_ids"]:
-            self.conv_handler_curr_step.update( {user_id : 0} )
+            self.conv_handler_curr_msg_num.update( {user_id : 0} )
             self.conv_handler_curr_type.update( {user_id : 0} )
+            self.conv_handler_curr_commands.update( {user_id : [0, 0, 0]} )
         
         self.call_service('telegram_bot/send_message',
                           target=self.args["allowed_user_ids"][0],
@@ -56,7 +57,7 @@ class telegram_bot(hass.Hass):
         # --- Status Conversation ---
         if text.lower().startswith("status"):
             t = self.conv_handler_curr_type[user_id]
-            s = self.conv_handler_curr_step[user_id]
+            s = self.conv_handler_curr_msg_num[user_id]
             self.call_service('telegram_bot/send_message',
                       target=chat_id,
                       message="Step: {}\nType: {}".format(s,t))
@@ -64,15 +65,15 @@ class telegram_bot(hass.Hass):
         # --- Reset Conversation ---
         if text.lower().startswith("reset"):
             self.conv_handler_curr_type.update( {user_id : 0} )
-            self.conv_handler_curr_step.update( {user_id : 0} )
+            self.conv_handler_curr_msg_num.update( {user_id : 0} )
             self.call_service('telegram_bot/send_message',
                       target=chat_id,
                       message="Conversation Reset")
         
-        if self.conv_handler_curr_step[user_id] > 0:
+        if self.conv_handler_curr_msg_num[user_id] > 0:
             # Conversation Handler is waiting for an answer => pass the answer to it
-            newstep = self.conv_handler_curr_step[user_id] + 1
-            self.conv_handler_curr_step.update( {user_id : newstep} )
+            newstep = self.conv_handler_curr_msg_num[user_id] + 1
+            self.conv_handler_curr_msg_num.update( {user_id : newstep} )
             self.conversation_handler(user_id, chat_id, text)
             
         else: # user is not in an active conversation
@@ -92,14 +93,14 @@ class telegram_bot(hass.Hass):
             # --- Konversation 3-Steps ---
             if text in self.categories_threesteps:
                 self.log("Keyword of 3 Step Conversation Found")
-                self.conv_handler_curr_step.update( {user_id : 1} )
+                self.conv_handler_curr_msg_num.update( {user_id : 1} )
                 self.conv_handler_curr_type.update( {user_id : 3} )
                 self.conversation_handler(user_id, chat_id, text)
             
             # --- Konversation 2-Steps ---
             if text in self.categories_twosteps:
                 self.log("Keyword of 2 Step Conversation Found")
-                self.conv_handler_curr_step.update( {user_id : 1} )
+                self.conv_handler_curr_msg_num.update( {user_id : 1} )
                 self.conv_handler_curr_type.update( {user_id : 2} )
                 self.conversation_handler(user_id, chat_id, text)
  
@@ -139,4 +140,19 @@ class telegram_bot(hass.Hass):
                           disable_notification=True)
 
     def conversation_handler(self, user_id, chat_id, text):
-        self.log("Started Conversation")
+        self.log("Conversation Handler Called")
+        if self.conv_handler_curr_type[user_id] == 2:
+            self.log("Conversation Handler: Type 2")
+            if self.conv_handler_curr_msg_num[user_id] == 1:
+                # Stichwort für 2-Step-Konversation erkannt, lege text im Speicher ab und sende Möglichkeiten für 2. Schritt
+                commands = self.conv_handler_curr_commands[user_id]
+                commands(0) = text
+                self.conv_handler_curr_commands.update( {user_id : commands} )
+                choices = []
+                for key in conversations["twosteps"][text]["steps"].keys():
+                choices.append(key)
+                message = ', '.join(choices)
+                self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message=reply,
+                          disable_notification=True)
