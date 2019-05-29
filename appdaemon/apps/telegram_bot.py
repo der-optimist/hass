@@ -146,7 +146,7 @@ class telegram_bot(hass.Hass):
             if self.conv_handler_curr_msg_num[user_id] == 1:
                 # Stichwort für 2-Step-Konversation erkannt, lege text im Speicher ab und sende Möglichkeiten für 2. Schritt
                 commands = self.conv_handler_curr_commands[user_id]
-                commands(0) = text
+                commands[0] = text
                 self.conv_handler_curr_commands.update( {user_id : commands} )
                 choices = []
                 for key in conversations["twosteps"][text]["steps"].keys():
