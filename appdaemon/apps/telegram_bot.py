@@ -183,7 +183,7 @@ class telegram_bot(hass.Hass):
             values.append(" ")
         button_list = []
         counter = 0
-        for row in range(len(values) / n_cols):
+        for row in range(len(values) // n_cols):
             list_row = []
             for column in range(n_cols):
                 button = (values[counter], values[counter])
