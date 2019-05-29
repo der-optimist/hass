@@ -150,7 +150,7 @@ class telegram_bot(hass.Hass):
                 self.conv_handler_curr_commands.update( {user_id : commands} )
                 choices = []
                 for key in conversations["twosteps"][text]["steps"].keys():
-                choices.append(key)
+                    choices.append(key)
                 message = ', '.join(choices)
                 self.call_service('telegram_bot/send_message',
                           target=chat_id,
