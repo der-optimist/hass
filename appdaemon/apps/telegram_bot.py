@@ -127,7 +127,7 @@ class telegram_bot(hass.Hass):
                 self.call_service('telegram_bot/answer_callback_query',
                               message=reply["message"],
                               callback_query_id=callback_id,
-                              show_alert=True)
+                              show_alert=False)
 
     def send_temps(self, chat_id):
         temp_wz = self.get_state("sensor.t_wz_ist_oh")
