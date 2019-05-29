@@ -92,18 +92,18 @@ class telegram_bot(hass.Hass):
                 self.answer_thank_you(chat_id)
 
             # --- Konversation 3-Steps ---
-            if text in self.categories_threesteps:
-                self.log("Keyword of 3 Step Conversation Found")
-                self.conv_handler_curr_msg_num.update( {user_id : 1} )
-                self.conv_handler_curr_type.update( {user_id : 3} )
-                self.conversation_handler(user_id, chat_id, text)
+            #if text in self.categories_threesteps:
+            #    self.log("Keyword of 3 Step Conversation Found")
+            #    self.conv_handler_curr_msg_num.update( {user_id : 1} )
+            #    self.conv_handler_curr_type.update( {user_id : 3} )
+            #    self.conversation_handler(user_id, chat_id, text)
             
             # --- Konversation 2-Steps ---
             if text in self.categories_twosteps:
                 self.log("Keyword of 2 Step Conversation Found")
-                self.conv_handler_curr_msg_num.update( {user_id : 1} )
+                #self.conv_handler_curr_msg_num.update( {user_id : 1} )
                 self.conv_handler_curr_type.update( {user_id : 2} )
-                self.conversation_handler(user_id, chat_id, text)
+                self.react_on_keyword_twostep(user_id, chat_id, text)
  
 
     def receive_telegram_command(self, event_id, payload_event, *args):
@@ -115,8 +115,19 @@ class telegram_bot(hass.Hass):
     
     def receive_telegram_callback(self, event_id, payload_event, *args):
         assert event_id == 'telegram_callback'
+        user_id = payload_event['user_id']
+        chat_id = payload_event['chat_id']
         data_callback = payload_event['data']
         callback_id = payload_event['id']
+        
+        if self.conv_handler_curr_type[user_id] == 2:
+            if self.conv_handler_curr_commands[user_id][1] == 0:
+                # choice 1 wurde wohl getroffen => verarbeiten
+                reply = self.react_on_choice1_twostep(user_id, chat_id, data_callback)
+                self.call_service('telegram_bot/answer_callback_query',
+                              message=reply["message"],
+                              callback_query_id=callback_id,
+                              show_alert=True)
 
     def send_temps(self, chat_id):
         temp_wz = self.get_state("sensor.t_wz_ist_oh")
@@ -139,24 +150,47 @@ class telegram_bot(hass.Hass):
                           target=chat_id,
                           message=reply,
                           disable_notification=True)
+    
+    def react_on_keyword_twostep(self, user_id, chat_id, text):
+        self.log("2 Step Conversation started")
+        # Stichwort für 2-Step-Konversation erkannt, lege text im Speicher ab und sende Möglichkeiten für 2. Schritt
+        commands = self.conv_handler_curr_commands[user_id]
+        commands[0] = text
+        self.conv_handler_curr_commands.update( {user_id : commands} )
+        choices = []
+        for key in self.conversations["twosteps"][text]["steps"].keys():
+            choices.append(key)
+        question = self.conversations["twosteps"][text]["q1"]
+        reply = ', '.join(choices)
+        reply = [[("Test1", "Test1"), ("Test2", "Test2")]]
+        self.call_service('telegram_bot/send_message',
+                  target=chat_id,
+                  message=question,
+                  disable_notification=True, 
+                  inline_keyboard=reply)
+                      
+    def react_on_choice1_twostep(self, user_id, chat_id, text):
+        self.log("Processing choice 1 of 2")
+        return {'message': "OK. Wie warm?", 'keyboard': [[("Test3", "Test3"), ("Test4", "Test4")]] }
+        
 
-    def conversation_handler(self, user_id, chat_id, text):
-        self.log("Conversation Handler Called")
-        if self.conv_handler_curr_type[user_id] == 2:
-            self.log("Conversation Handler: Type 2")
-            if self.conv_handler_curr_msg_num[user_id] == 1:
-                # Stichwort für 2-Step-Konversation erkannt, lege text im Speicher ab und sende Möglichkeiten für 2. Schritt
-                commands = self.conv_handler_curr_commands[user_id]
-                commands[0] = text
-                self.conv_handler_curr_commands.update( {user_id : commands} )
-                choices = []
-                for key in self.conversations["twosteps"][text]["steps"].keys():
-                    choices.append(key)
-                question = self.conversations["twosteps"][text]["q1"]
-                reply = ', '.join(choices)
-                reply = [[("Test1", "Test1"), ("Test2", "Test2")]]
-                self.call_service('telegram_bot/send_message',
-                          target=chat_id,
-                          message=question,
-                          disable_notification=True, 
-                          inline_keyboard=reply)
+    #ef conversation_handler(self, user_id, chat_id, text):
+    #    self.log("Conversation Handler Called")
+    #    if self.conv_handler_curr_type[user_id] == 2:
+    #        self.log("Conversation Handler: Type 2")
+    #        if self.conv_handler_curr_msg_num[user_id] == 1:
+    #            # Stichwort für 2-Step-Konversation erkannt, lege text im Speicher ab und sende Möglichkeiten für 2. Schritt
+    #            commands = self.conv_handler_curr_commands[user_id]
+    #            commands[0] = text
+    #            self.conv_handler_curr_commands.update( {user_id : commands} )
+    #            choices = []
+    #            for key in self.conversations["twosteps"][text]["steps"].keys():
+    #                choices.append(key)
+    #            question = self.conversations["twosteps"][text]["q1"]
+    #            reply = ', '.join(choices)
+    #            reply = [[("Test1", "Test1"), ("Test2", "Test2")]]
+    #            self.call_service('telegram_bot/send_message',
+    #                      target=chat_id,
+    #                      message=question,
+    #                      disable_notification=True, 
+    #                      inline_keyboard=reply)
