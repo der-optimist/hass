@@ -19,9 +19,9 @@ class telegram_bot(hass.Hass):
         self.conversations = self.args["conversations"]
         self.categories_threesteps = []
         self.categories_twosteps = []
-        for category in conversations["threesteps"].keys():
+        for category in self.conversations["threesteps"].keys():
             self.categories_threesteps.append(category)
-        for category in conversations["twosteps"].keys():
+        for category in self.conversations["twosteps"].keys():
             self.categories_twosteps.append(category)
         # Test: suche Räume für Licht
         #for room in self.conversations["threesteps"]["Licht"]["steps"].keys():
