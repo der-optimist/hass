@@ -42,7 +42,7 @@ class telegram_bot(hass.Hass):
         for user_id in self.args["allowed_user_ids"]:
             self.conv_handler_curr_msg_num.update( {user_id : 0} )
             self.conv_handler_curr_type.update( {user_id : 0} )
-            self.conv_handler_curr_commands.update( {user_id : [0, 0, 0]} )
+            self.conv_handler_curr_commands.update( {user_id : [0, 0, 0, 0]} )
         
         self.call_service('telegram_bot/send_message',
                           target=self.args["allowed_user_ids"][0],
@@ -61,12 +61,12 @@ class telegram_bot(hass.Hass):
             c = self.conv_handler_curr_commands[user_id]
             self.call_service('telegram_bot/send_message',
                       target=chat_id,
-                      message="Commands: {}, {}, {}\nType: {}".format(c[0],c[1],c[2],t))
+                      message="Commands: {}, {}, {}, {}\nType: {}".format(c[0],c[1],c[2],c[3],t))
         
         # --- Reset Conversation ---
         if text.lower().startswith("reset"):
             self.conv_handler_curr_type.update( {user_id : 0} )
-            self.conv_handler_curr_commands.update( {user_id : [0, 0, 0]} )
+            self.conv_handler_curr_commands.update( {user_id : [0, 0, 0, 0]} )
             self.call_service('telegram_bot/send_message',
                       target=chat_id,
                       message="Conversation Reset")
@@ -184,7 +184,8 @@ class telegram_bot(hass.Hass):
         for val in self.conversations["twosteps"][commands[0]]["steps"][text]["values"]:
             choices.append(val)
         reply = self.build_menu(choices, 3)
-        return {'message': "OK. Wie warm?", 'keyboard': reply }
+        question = self.conversations["twosteps"][commands[0]]["q2"]
+        return {'message': question, 'keyboard': reply }
         
     def build_menu(self, values, n_cols):
         while (len(values) % n_cols) > 0:
