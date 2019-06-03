@@ -132,10 +132,10 @@ class telegram_bot(hass.Hass):
                     inline_keyboard=reply["keyboard"])
             else:
                 if self.conv_handler_curr_commands[user_id][2] == 0:
-                # choice 2 wurde wohl getroffen => verarbeiten
-                commands = self.conv_handler_curr_commands[user_id]
-                commands[2] = text
-                self.conv_handler_curr_commands.update( {user_id : commands} )
+                    # choice 2 wurde wohl getroffen => verarbeiten
+                    commands = self.conv_handler_curr_commands[user_id]
+                    commands[2] = text
+                    self.conv_handler_curr_commands.update( {user_id : commands} )
                 reply = self.run_command_from_conversation(user_id, chat_id)
                 
 
