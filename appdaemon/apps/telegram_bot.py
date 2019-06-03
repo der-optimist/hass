@@ -80,6 +80,7 @@ class telegram_bot(hass.Hass):
             
         elif self.conv_handler_curr_type[user_id] == 3:
             # User is currently in a 3-Step conversation
+            self.log("...")
             
         else: # user is not in an active conversation
             
