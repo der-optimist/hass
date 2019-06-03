@@ -123,7 +123,7 @@ class telegram_bot(hass.Hass):
                 if self.conv_handler_curr_commands[user_id][2] == 0:
                     # choice 2 wurde wohl getroffen => Fuehe Befehl aus
                     commands = self.conv_handler_curr_commands[user_id]
-                    commands[2] = text
+                    commands[2] = data_callback
                     self.conv_handler_curr_commands.update( {user_id : commands} )
                 reply = self.run_command_from_conversation(user_id, chat_id)
                 self.call_service('telegram_bot/answer_callback_query',
@@ -164,9 +164,9 @@ class telegram_bot(hass.Hass):
         commands[0] = text
         self.conv_handler_curr_commands.update( {user_id : commands} )
         choices = []
-        for key in self.conversations["twosteps"][text]["steps"].keys():
+        for key in self.conversations["twosteps"][commands[0]]["steps"].keys():
             choices.append(key)
-        question = self.conversations["twosteps"][text]["q1"]
+        question = self.conversations["twosteps"][commands[0]]["q1"]
         reply = self.build_menu(choices, 2)
         #reply = [[("Test1", "Test1"), ("Test2", "Test2")]]
         self.call_service('telegram_bot/send_message',
@@ -182,7 +182,7 @@ class telegram_bot(hass.Hass):
         commands[1] = text
         self.conv_handler_curr_commands.update( {user_id : commands} )
         choices = []
-        for val in self.conversations["twosteps"][commands[0]]["steps"][text]["values"]:
+        for val in self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["values"]:
             choices.append(val)
         reply = self.build_menu(choices, 3)
         question = self.conversations["twosteps"][commands[0]]["q2"]
