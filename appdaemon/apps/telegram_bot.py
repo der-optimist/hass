@@ -23,24 +23,13 @@ class telegram_bot(hass.Hass):
             self.categories_threesteps.append(category)
         for category in self.conversations["twosteps"].keys():
             self.categories_twosteps.append(category)
-        # Test: suche Räume für Licht
-        #for room in self.conversations["threesteps"]["Licht"]["steps"].keys():
-        #    self.log(room)
-        # Test: suche Lichter im Wohnzimmer
-        #for light in self.conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"].keys():
-        #    self.log(light)
-        # Test: suche Werte für Panels im Wohnzimmer, einzelne Werte
-        #for value in self.conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["Panels"]["values"]:
-        #    self.log(value)
-        # Test: suche Werte für Panels im Wohnzimmer, als Liste
-        #self.log(self.conversations["threesteps"]["Licht"]["steps"]["Wohnzimmer"]["Panels"]["values"])
         
         # Initialize Conversation Handler Variables
-        self.conv_handler_curr_msg_num = {}
+        #self.conv_handler_curr_msg_num = {}
         self.conv_handler_curr_type = {}
         self.conv_handler_curr_commands = {}
         for user_id in self.args["allowed_user_ids"]:
-            self.reset_conversation_commands(self, user_id)
+            self.reset_conversation_commands(user_id)
         
         self.call_service('telegram_bot/send_message',
                           target=self.args["allowed_user_ids"][0],
@@ -68,11 +57,11 @@ class telegram_bot(hass.Hass):
                       target=chat_id,
                       message="Conversation Reset")
         
-        if self.conv_handler_curr_msg_num[user_id] > 0:
-            # Conversation Handler is waiting for an answer => pass the answer to it
-            newstep = self.conv_handler_curr_msg_num[user_id] + 1
-            self.conv_handler_curr_msg_num.update( {user_id : newstep} )
-            self.conversation_handler(user_id, chat_id, text)
+        #if self.conv_handler_curr_msg_num[user_id] > 0:
+        #    # Conversation Handler is waiting for an answer => pass the answer to it
+        #    newstep = self.conv_handler_curr_msg_num[user_id] + 1
+        #    self.conv_handler_curr_msg_num.update( {user_id : newstep} )
+        #    self.conversation_handler(user_id, chat_id, text)
             
         else: # user is not in an active conversation
             
@@ -227,24 +216,3 @@ class telegram_bot(hass.Hass):
                 list_row.append(button)
             button_list.append(list_row)
         return button_list
-    
-    #ef conversation_handler(self, user_id, chat_id, text):
-    #    self.log("Conversation Handler Called")
-    #    if self.conv_handler_curr_type[user_id] == 2:
-    #        self.log("Conversation Handler: Type 2")
-    #        if self.conv_handler_curr_msg_num[user_id] == 1:
-    #            # Stichwort für 2-Step-Konversation erkannt, lege text im Speicher ab und sende Möglichkeiten für 2. Schritt
-    #            commands = self.conv_handler_curr_commands[user_id]
-    #            commands[0] = text
-    #            self.conv_handler_curr_commands.update( {user_id : commands} )
-    #            choices = []
-    #            for key in self.conversations["twosteps"][text]["steps"].keys():
-    #                choices.append(key)
-    #            question = self.conversations["twosteps"][text]["q1"]
-    #            reply = ', '.join(choices)
-    #            reply = [[("Test1", "Test1"), ("Test2", "Test2")]]
-    #            self.call_service('telegram_bot/send_message',
-    #                      target=chat_id,
-    #                      message=question,
-    #                      disable_notification=True, 
-    #                      inline_keyboard=reply)
