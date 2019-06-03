@@ -58,7 +58,7 @@ class telegram_bot(hass.Hass):
         # --- Status Conversation ---
         if text.lower().startswith("status"):
             t = self.conv_handler_curr_type[user_id]
-            c = self.self.conv_handler_curr_commands[user_id]
+            c = self.conv_handler_curr_commands[user_id]
             self.call_service('telegram_bot/send_message',
                       target=chat_id,
                       message="Commands: {}, {}, {}\nType: {}".format(c[0],c[1],c[2],t))
