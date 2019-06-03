@@ -193,7 +193,7 @@ class telegram_bot(hass.Hass):
         commands = self.conv_handler_curr_commands[user_id]
         if self.conv_handler_curr_type[user_id] == 2:
             value = commands[2]
-            device = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["decive"]
+            device = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device"]
         reply = "OK. Gerät {} bekommt den Befehl {}.".format(device,value)
         self.reset_conversation_commands(self, user_id)
         return {'message': reply, 'keyboard': none }
