@@ -52,7 +52,7 @@ class telegram_bot(hass.Hass):
         
         # --- Reset Conversation ---
         if text.lower().startswith("reset"):
-            self.reset_conversation_commands(self, user_id)
+            self.reset_conversation_commands(user_id)
             self.call_service('telegram_bot/send_message',
                       target=chat_id,
                       message="Conversation Reset")
@@ -195,7 +195,7 @@ class telegram_bot(hass.Hass):
             value = commands[2]
             device = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device"]
         reply = "OK. Gerät {} bekommt den Befehl {}.".format(device,value)
-        self.reset_conversation_commands(self, user_id)
+        self.reset_conversation_commands(user_id)
         return {'message': reply, 'keyboard': none }
     
     def reset_conversation_commands(self, user_id):
