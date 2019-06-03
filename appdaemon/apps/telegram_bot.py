@@ -40,9 +40,7 @@ class telegram_bot(hass.Hass):
         self.conv_handler_curr_type = {}
         self.conv_handler_curr_commands = {}
         for user_id in self.args["allowed_user_ids"]:
-            self.conv_handler_curr_msg_num.update( {user_id : 0} )
-            self.conv_handler_curr_type.update( {user_id : 0} )
-            self.conv_handler_curr_commands.update( {user_id : [0, 0, 0, 0]} )
+            self.reset_conversation_commands(self, user_id)
         
         self.call_service('telegram_bot/send_message',
                           target=self.args["allowed_user_ids"][0],
@@ -65,8 +63,7 @@ class telegram_bot(hass.Hass):
         
         # --- Reset Conversation ---
         if text.lower().startswith("reset"):
-            self.conv_handler_curr_type.update( {user_id : 0} )
-            self.conv_handler_curr_commands.update( {user_id : [0, 0, 0, 0]} )
+            self.reset_conversation_commands(self, user_id)
             self.call_service('telegram_bot/send_message',
                       target=chat_id,
                       message="Conversation Reset")
@@ -133,6 +130,14 @@ class telegram_bot(hass.Hass):
                     message=reply["message"],
                     disable_notification=True, 
                     inline_keyboard=reply["keyboard"])
+            else:
+                if self.conv_handler_curr_commands[user_id][2] == 0:
+                # choice 2 wurde wohl getroffen => verarbeiten
+                commands = self.conv_handler_curr_commands[user_id]
+                commands[2] = text
+                self.conv_handler_curr_commands.update( {user_id : commands} )
+                reply = self.run_command_from_conversation(user_id, chat_id)
+                
 
     def send_temps(self, chat_id):
         temp_wz = self.get_state("sensor.t_wz_ist_oh")
@@ -186,6 +191,21 @@ class telegram_bot(hass.Hass):
         reply = self.build_menu(choices, 3)
         question = self.conversations["twosteps"][commands[0]]["q2"]
         return {'message': question, 'keyboard': reply }
+    
+    def run_command_from_conversation(self, user_id, chat_id):
+        self.log("fire the command!")
+        commands = self.conv_handler_curr_commands[user_id]
+        if self.conv_handler_curr_type[user_id] == 2:
+            value = commmands[2]
+            device = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["decive"]:
+        reply = "OK. Gerät {} bekommt den Befehl {}.".format(device,value)
+        self.reset_conversation_commands(self, user_id)
+        return {'message': reply, 'keyboard': none }
+    
+    def reset_conversation_commands(self, user_id):
+        self.conv_handler_curr_commands.update( {user_id : [0, 0, 0, 0]} )
+        self.conv_handler_curr_type.update( {user_id : 0} )
+        self.log("Commands reset for user {}".format(user_id))
         
     def build_menu(self, values, n_cols):
         while (len(values) % n_cols) > 0:
