@@ -196,7 +196,7 @@ class telegram_bot(hass.Hass):
             device = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device"]
         reply = "OK. Gerät {} bekommt den Befehl {}.".format(device,value)
         self.reset_conversation_commands(user_id)
-        return {'message': reply, 'keyboard': none }
+        return reply
     
     def reset_conversation_commands(self, user_id):
         self.conv_handler_curr_commands.update( {user_id : [0, 0, 0, 0]} )
