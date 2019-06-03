@@ -176,7 +176,15 @@ class telegram_bot(hass.Hass):
                       
     def react_on_choice1_twostep(self, user_id, chat_id, text):
         self.log("Processing choice 1 of 2")
-        return {'message': "OK. Wie warm?", 'keyboard': [[("Test3", "Test3"), ("Test4", "Test4")]] }
+        # 1. Auswahl von 2-Step-Konversation erkannt, lege text im Speicher ab und sende Möglichkeiten für 2. Auswahl
+        commands = self.conv_handler_curr_commands[user_id]
+        commands[1] = text
+        self.conv_handler_curr_commands.update( {user_id : commands} )
+        choices = []
+        for val in self.conversations["twosteps"][commands[0]]["steps"][text]["values"]:
+            choices.append(val)
+        reply = self.build_menu(choices, 3)
+        return {'message': "OK. Wie warm?", 'keyboard': reply }
         
     def build_menu(self, values, n_cols):
         while (len(values) % n_cols) > 0:
