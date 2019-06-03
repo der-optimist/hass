@@ -66,7 +66,7 @@ class telegram_bot(hass.Hass):
         # --- Reset Conversation ---
         if text.lower().startswith("reset"):
             self.conv_handler_curr_type.update( {user_id : 0} )
-            self.conv_handler_curr_msg_num.update( {user_id : 0} )
+            self.conv_handler_curr_commands.update( {user_id : [0, 0, 0]} )
             self.call_service('telegram_bot/send_message',
                       target=chat_id,
                       message="Conversation Reset")
