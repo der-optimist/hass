@@ -57,11 +57,37 @@ class telegram_bot(hass.Hass):
                       target=chat_id,
                       message="Conversation Reset")
         
-        #if self.conv_handler_curr_msg_num[user_id] > 0:
-        #    # Conversation Handler is waiting for an answer => pass the answer to it
-        #    newstep = self.conv_handler_curr_msg_num[user_id] + 1
-        #    self.conv_handler_curr_msg_num.update( {user_id : newstep} )
-        #    self.conversation_handler(user_id, chat_id, text)
+        if self.conv_handler_curr_type[user_id] == 2:
+            # User is currently in a 2-Step conversation
+            if self.conv_handler_curr_commands[user_id][1] == 0:
+                # choice 1 wurde wohl getroffen => verarbeiten
+                reply = self.react_on_choice1_twostep(user_id, chat_id, data_callback)
+                self.call_service('telegram_bot/answer_callback_query',
+                              message="",
+                              callback_query_id=callback_id,
+                              show_alert=False)
+                self.call_service('telegram_bot/send_message',
+                    target=chat_id,
+                    message=reply["message"],
+                    disable_notification=True, 
+                    inline_keyboard=reply["keyboard"])
+            else:
+                if self.conv_handler_curr_commands[user_id][2] == 0:
+                    # choice 2 wurde wohl getroffen => Fuehe Befehl aus
+                    commands = self.conv_handler_curr_commands[user_id]
+                    commands[2] = data_callback
+                    self.conv_handler_curr_commands.update( {user_id : commands} )
+                reply = self.run_command_from_conversation(user_id, chat_id)
+                self.call_service('telegram_bot/answer_callback_query',
+                              message="",
+                              callback_query_id=callback_id,
+                              show_alert=False)
+                self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message=reply)
+            
+        elif self.conv_handler_curr_type[user_id] == 3:
+            # User is currently in a 3-Step conversation
             
         else: # user is not in an active conversation
             
@@ -78,16 +104,11 @@ class telegram_bot(hass.Hass):
                 self.answer_thank_you(chat_id)
 
             # --- Konversation 3-Steps ---
-            #if text in self.categories_threesteps:
-            #    self.log("Keyword of 3 Step Conversation Found")
-            #    self.conv_handler_curr_msg_num.update( {user_id : 1} )
-            #    self.conv_handler_curr_type.update( {user_id : 3} )
-            #    self.conversation_handler(user_id, chat_id, text)
+
             
             # --- Konversation 2-Steps ---
             if text in self.categories_twosteps:
                 self.log("Keyword of 2 Step Conversation Found")
-                #self.conv_handler_curr_msg_num.update( {user_id : 1} )
                 self.conv_handler_curr_type.update( {user_id : 2} )
                 self.react_on_keyword_twostep(user_id, chat_id, text)
  
