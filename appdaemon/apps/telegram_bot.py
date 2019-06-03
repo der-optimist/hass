@@ -61,11 +61,7 @@ class telegram_bot(hass.Hass):
             # User is currently in a 2-Step conversation
             if self.conv_handler_curr_commands[user_id][1] == 0:
                 # choice 1 wurde wohl getroffen => verarbeiten
-                reply = self.react_on_choice1_twostep(user_id, chat_id, data_callback)
-                self.call_service('telegram_bot/answer_callback_query',
-                              message="",
-                              callback_query_id=callback_id,
-                              show_alert=False)
+                reply = self.react_on_choice1_twostep(user_id, chat_id, text)
                 self.call_service('telegram_bot/send_message',
                     target=chat_id,
                     message=reply["message"],
@@ -75,13 +71,9 @@ class telegram_bot(hass.Hass):
                 if self.conv_handler_curr_commands[user_id][2] == 0:
                     # choice 2 wurde wohl getroffen => Fuehe Befehl aus
                     commands = self.conv_handler_curr_commands[user_id]
-                    commands[2] = data_callback
+                    commands[2] = text
                     self.conv_handler_curr_commands.update( {user_id : commands} )
                 reply = self.run_command_from_conversation(user_id, chat_id)
-                self.call_service('telegram_bot/answer_callback_query',
-                              message="",
-                              callback_query_id=callback_id,
-                              show_alert=False)
                 self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=reply)
