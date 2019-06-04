@@ -31,9 +31,9 @@ class telegram_bot(hass.Hass):
         for user_id in self.args["allowed_user_ids"]:
             self.reset_conversation_commands(user_id)
         
-        self.call_service('telegram_bot/send_message',
-                          target=self.args["allowed_user_ids"][0],
-                          message="Bot restarted 👍")
+        #self.call_service('telegram_bot/send_message',
+        #                  target=self.args["allowed_user_ids"][0],
+        #                  message="Bot restarted 👍")
     
     def receive_telegram_text(self, event_id, payload_event, *args):
         assert event_id == 'telegram_text'
