@@ -307,6 +307,27 @@ class telegram_bot(hass.Hass):
         message = self.conversations["threesteps"][commands[0]]["q2"]
         return {'message': message, 'keyboard': keyboard }
     
+    def react_on_choice2_threestep(self, user_id, chat_id, text):
+        self.log("Processing choice 2 of 3")
+        # 2. Auswahl von 3-Step-Konversation erkannt, lege text im Speicher ab und sende Möglichkeiten für 3. Auswahl
+        commands = self.conv_handler_curr_commands[user_id]
+        commands[2] = text
+        self.conv_handler_curr_commands.update( {user_id : commands} )
+        # check if there is a device for the given input
+        try:
+            device = self.conversations["twosteps"][commands[0]]["steps"][commands[1]][commands[2]]["device"]
+        except KeyError as e:
+            message = "Sorry - leider konnte ich zu {}, {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1], commands[2])
+            self.reset_conversation_commands(user_id)
+            return {'message': message, 'keyboard': [[]] }
+        # ok, there is a device, then there should be values
+        choices = []
+        for val in self.conversations["twosteps"][commands[0]]["steps"][commands[1]][commands[2]]["values"]:
+            choices.append(val)
+        keyboard = self.build_menu(choices, 3)
+        message = self.conversations["twosteps"][commands[0]]["q3"]
+        return {'message': message, 'keyboard': keyboard }
+    
     def run_command_from_conversation(self, user_id, chat_id):
         self.log("fire the command!")
         commands = self.conv_handler_curr_commands[user_id]
