@@ -171,6 +171,46 @@ class telegram_bot(hass.Hass):
                           target=chat_id,
                           message=reply)
                 
+        if self.conv_handler_curr_type[user_id] == 3:
+            if self.conv_handler_curr_commands[user_id][1] == 0:
+                # choice 1 wurde wohl getroffen => verarbeiten
+                reply = self.react_on_choice1_threeestep(user_id, chat_id, data_callback)
+                self.call_service('telegram_bot/answer_callback_query',
+                              message="",
+                              callback_query_id=callback_id,
+                              show_alert=False)
+                self.call_service('telegram_bot/send_message',
+                    target=chat_id,
+                    message=reply["message"],
+                    disable_notification=True, 
+                    inline_keyboard=reply["keyboard"])
+            elif self.conv_handler_curr_commands[user_id][2] == 0:
+                # choice 2 wurde wohl getroffen => verarbeiten
+                reply = self.react_on_choice2_threeestep(user_id, chat_id, data_callback)
+                self.call_service('telegram_bot/answer_callback_query',
+                              message="",
+                              callback_query_id=callback_id,
+                              show_alert=False)
+                self.call_service('telegram_bot/send_message',
+                    target=chat_id,
+                    message=reply["message"],
+                    disable_notification=True, 
+                    inline_keyboard=reply["keyboard"])
+            else:
+                if self.conv_handler_curr_commands[user_id][3] == 0:
+                    # choice 3 wurde wohl getroffen => Fuehe Befehl aus
+                    commands = self.conv_handler_curr_commands[user_id]
+                    commands[2] = data_callback
+                    self.conv_handler_curr_commands.update( {user_id : commands} )
+                reply = self.run_command_from_conversation(user_id, chat_id)
+                self.call_service('telegram_bot/answer_callback_query',
+                              message="",
+                              callback_query_id=callback_id,
+                              show_alert=False)
+                self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message=reply)
+                
 
     def send_temps(self, chat_id):
         temp_wz = self.get_state("sensor.t_wz_ist_oh")
@@ -248,6 +288,27 @@ class telegram_bot(hass.Hass):
             choices.append(val)
         keyboard = self.build_menu(choices, 3)
         message = self.conversations["twosteps"][commands[0]]["q2"]
+        return {'message': message, 'keyboard': keyboard }
+    
+    def react_on_choice1_threestep(self, user_id, chat_id, text):
+        self.log("Processing choice 1 of 3")
+        # 1. Auswahl von 2-Step-Konversation erkannt, lege text im Speicher ab und sende Möglichkeiten für 2. Auswahl
+        commands = self.conv_handler_curr_commands[user_id]
+        commands[1] = text
+        self.conv_handler_curr_commands.update( {user_id : commands} )
+        # check if there is a device for the given input
+        try:
+            device = self.conversations["threesteps"][commands[0]]["steps"][commands[1]][0]["device"]
+        except KeyError as e:
+            message = "Sorry - leider konnte ich zu {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1])
+            self.reset_conversation_commands(user_id)
+            return {'message': message, 'keyboard': [[]] }
+        # ok, there is a device, then there should be values
+        choices = []
+        for key in self.conversations["threesteps"][commands[0]]["steps"][commands[1]].keys():
+            choices.append(key)
+        keyboard = self.build_menu(choices, 3)
+        message = self.conversations["threesteps"][commands[0]]["q2"]
         return {'message': message, 'keyboard': keyboard }
     
     def run_command_from_conversation(self, user_id, chat_id):
