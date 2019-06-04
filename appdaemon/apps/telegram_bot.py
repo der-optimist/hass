@@ -322,10 +322,10 @@ class telegram_bot(hass.Hass):
             return {'message': message, 'keyboard': [[]] }
         # ok, there is a device, then there should be values
         choices = []
-        for val in self.conversations["twosteps"][commands[0]]["steps"][commands[1]][commands[2]]["values"]:
+        for val in self.conversations["threesteps"][commands[0]]["steps"][commands[1]][commands[2]]["values"]:
             choices.append(val)
         keyboard = self.build_menu(choices, 3)
-        message = self.conversations["twosteps"][commands[0]]["q3"]
+        message = self.conversations["threesteps"][commands[0]]["q3"]
         return {'message': message, 'keyboard': keyboard }
     
     def run_command_from_conversation(self, user_id, chat_id):
