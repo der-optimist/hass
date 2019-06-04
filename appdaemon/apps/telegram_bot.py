@@ -203,6 +203,7 @@ class telegram_bot(hass.Hass):
                     commands[3] = data_callback
                     self.conv_handler_curr_commands.update( {user_id : commands} )
                 reply = self.run_command_from_conversation(user_id, chat_id)
+                self.log(reply)
                 self.call_service('telegram_bot/answer_callback_query',
                               message="",
                               callback_query_id=callback_id,
