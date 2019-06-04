@@ -24,16 +24,15 @@ class telegram_bot(hass.Hass):
         for category in self.conversations["twosteps"].keys():
             self.categories_twosteps.append(category)
         
-        # Initialize Conversation Handler Variables
-        #self.conv_handler_curr_msg_num = {}
+        # Initialize Conversation Variables
         self.conv_handler_curr_type = {}
         self.conv_handler_curr_commands = {}
         for user_id in self.args["allowed_user_ids"]:
             self.reset_conversation_commands(user_id)
         
-        #self.call_service('telegram_bot/send_message',
-        #                  target=self.args["allowed_user_ids"][0],
-        #                  message="Bot restarted 👍")
+        self.call_service('telegram_bot/send_message',
+                          target=self.args["allowed_user_ids"][0],
+                          message="Bot restarted 👍")
     
     def receive_telegram_text(self, event_id, payload_event, *args):
         assert event_id == 'telegram_text'
@@ -118,6 +117,13 @@ class telegram_bot(hass.Hass):
         user_id = payload_event['user_id']
         command = payload_event['command']
         self.log(command)
+        
+        # --- check if user allowed
+        if not user_id in self.args["allowed_user_ids"]:
+            self.call_service('telegram_bot/send_message',
+                      target=chat_id,
+                      message="Verboooden!")
+            return
 
     
     def receive_telegram_callback(self, event_id, payload_event, *args):
@@ -126,6 +132,13 @@ class telegram_bot(hass.Hass):
         chat_id = payload_event['chat_id']
         data_callback = payload_event['data']
         callback_id = payload_event['id']
+        
+        # --- check if user allowed
+        if not user_id in self.args["allowed_user_ids"]:
+            self.call_service('telegram_bot/send_message',
+                      target=chat_id,
+                      message="Verboooden!")
+            return
         
         if self.conv_handler_curr_type[user_id] == 2:
             if self.conv_handler_curr_commands[user_id][1] == 0:
