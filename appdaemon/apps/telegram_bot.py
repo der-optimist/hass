@@ -103,7 +103,10 @@ class telegram_bot(hass.Hass):
                 self.answer_thank_you(chat_id)
 
             # --- Konversation 3-Steps ---
-
+            if text in self.categories_threesteps:
+                self.log("Keyword of 3 Step Conversation Found")
+                self.conv_handler_curr_type.update( {user_id : 3} )
+                self.react_on_keyword_threestep(user_id, chat_id, text)
             
             # --- Konversation 2-Steps ---
             if text in self.categories_twosteps:
@@ -193,7 +196,7 @@ class telegram_bot(hass.Hass):
     
     def react_on_keyword_twostep(self, user_id, chat_id, text):
         self.log("2 Step Conversation started")
-        # Stichwort für 2-Step-Konversation erkannt, lege text im Speicher ab und sende Möglichkeiten für 2. Schritt
+        # Stichwort für 2-Step-Konversation erkannt, lege text im Speicher ab und sende Möglichkeiten für 1. Auswahl
         commands = self.conv_handler_curr_commands[user_id]
         commands[0] = text
         self.conv_handler_curr_commands.update( {user_id : commands} )
@@ -203,6 +206,23 @@ class telegram_bot(hass.Hass):
         question = self.conversations["twosteps"][commands[0]]["q1"]
         reply = self.build_menu(choices, 2)
         #reply = [[("Test1", "Test1"), ("Test2", "Test2")]]
+        self.call_service('telegram_bot/send_message',
+                  target=chat_id,
+                  message=question,
+                  disable_notification=True, 
+                  inline_keyboard=reply)
+        
+    def react_on_keyword_threestep(self, user_id, chat_id, text):
+        self.log("3 Step Conversation started")
+        # Stichwort für 3-Step-Konversation erkannt, lege text im Speicher ab und sende Möglichkeiten für 1. Auswahl
+        commands = self.conv_handler_curr_commands[user_id]
+        commands[0] = text
+        self.conv_handler_curr_commands.update( {user_id : commands} )
+        choices = []
+        for key in self.conversations["threesteps"][commands[0]]["steps"].keys():
+            choices.append(key)
+        question = self.conversations["threesteps"][commands[0]]["q1"]
+        reply = self.build_menu(choices, 2)
         self.call_service('telegram_bot/send_message',
                   target=chat_id,
                   message=question,
