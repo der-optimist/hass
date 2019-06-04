@@ -42,6 +42,13 @@ class telegram_bot(hass.Hass):
         text = payload_event['text']
         self.log(text)
         
+        # --- check if user allowed
+        if not user_id in self.args["allowed_user_ids"]:
+            self.call_service('telegram_bot/send_message',
+                      target=chat_id,
+                      message="Verboooden!")
+            return
+        
         # --- Status Conversation ---
         if text.lower().startswith("status"):
             t = self.conv_handler_curr_type[user_id]
