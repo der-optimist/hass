@@ -174,7 +174,7 @@ class telegram_bot(hass.Hass):
         if self.conv_handler_curr_type[user_id] == 3:
             if self.conv_handler_curr_commands[user_id][1] == 0:
                 # choice 1 wurde wohl getroffen => verarbeiten
-                reply = self.react_on_choice1_threeestep(user_id, chat_id, data_callback)
+                reply = self.react_on_choice1_threestep(user_id, chat_id, data_callback)
                 self.call_service('telegram_bot/answer_callback_query',
                               message="",
                               callback_query_id=callback_id,
@@ -186,7 +186,7 @@ class telegram_bot(hass.Hass):
                     inline_keyboard=reply["keyboard"])
             elif self.conv_handler_curr_commands[user_id][2] == 0:
                 # choice 2 wurde wohl getroffen => verarbeiten
-                reply = self.react_on_choice2_threeestep(user_id, chat_id, data_callback)
+                reply = self.react_on_choice2_threestep(user_id, chat_id, data_callback)
                 self.call_service('telegram_bot/answer_callback_query',
                               message="",
                               callback_query_id=callback_id,
