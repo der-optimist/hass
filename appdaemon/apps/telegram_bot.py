@@ -45,7 +45,7 @@ class telegram_bot(hass.Hass):
         if not user_id in self.args["allowed_user_ids"]:
             self.call_service('telegram_bot/send_message',
                       target=chat_id,
-                      message="Verboooden!")
+                      message="⛔")
             return
         
         # --- Status Conversation ---
@@ -122,7 +122,7 @@ class telegram_bot(hass.Hass):
         if not user_id in self.args["allowed_user_ids"]:
             self.call_service('telegram_bot/send_message',
                       target=chat_id,
-                      message="Verboooden!")
+                      message="⛔")
             return
 
     
@@ -137,7 +137,7 @@ class telegram_bot(hass.Hass):
         if not user_id in self.args["allowed_user_ids"]:
             self.call_service('telegram_bot/send_message',
                       target=chat_id,
-                      message="Verboooden!")
+                      message="⛔")
             return
         
         if self.conv_handler_curr_type[user_id] == 2:
