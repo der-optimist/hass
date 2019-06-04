@@ -200,7 +200,7 @@ class telegram_bot(hass.Hass):
                 if self.conv_handler_curr_commands[user_id][3] == 0:
                     # choice 3 wurde wohl getroffen => Fuehe Befehl aus
                     commands = self.conv_handler_curr_commands[user_id]
-                    commands[2] = data_callback
+                    commands[3] = data_callback
                     self.conv_handler_curr_commands.update( {user_id : commands} )
                 reply = self.run_command_from_conversation(user_id, chat_id)
                 self.call_service('telegram_bot/answer_callback_query',
@@ -337,6 +337,14 @@ class telegram_bot(hass.Hass):
                 device = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device"]
             except KeyError as e:
                 reply = "Sorry - leider konnte ich zu {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1])
+                self.reset_conversation_commands(user_id)
+                return reply
+        if self.conv_handler_curr_type[user_id] == 3:
+            value = commands[3]
+            try:
+                device = self.conversations["threesteps"][commands[0]]["steps"][commands[1]][commands[2]]["device"]
+            except KeyError as e:
+                reply = "Sorry - leider konnte ich zu {}, {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1], commands[1])
                 self.reset_conversation_commands(user_id)
                 return reply
         # Please insert real action command...
