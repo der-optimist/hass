@@ -296,17 +296,13 @@ class telegram_bot(hass.Hass):
         commands = self.conv_handler_curr_commands[user_id]
         commands[1] = text
         self.conv_handler_curr_commands.update( {user_id : commands} )
-        # check if there is a device for the given input
-        try:
-            device = self.conversations["threesteps"][commands[0]]["steps"][commands[1]][0]["device"]
-        except KeyError as e:
-            message = "Sorry - leider konnte ich zu {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1])
-            self.reset_conversation_commands(user_id)
-            return {'message': message, 'keyboard': [[]] }
-        # ok, there is a device, then there should be values
         choices = []
         for key in self.conversations["threesteps"][commands[0]]["steps"][commands[1]].keys():
             choices.append(key)
+        if choices == []: # es wurde wohl kein Eintrag unter diesem Namen gefunden
+            message = "Sorry - leider konnte ich zu {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1])
+            self.reset_conversation_commands(user_id)
+            return {'message': message, 'keyboard': [[]] }
         keyboard = self.build_menu(choices, 3)
         message = self.conversations["threesteps"][commands[0]]["q2"]
         return {'message': message, 'keyboard': keyboard }
