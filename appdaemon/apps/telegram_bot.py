@@ -195,12 +195,20 @@ class telegram_bot(hass.Hass):
         commands = self.conv_handler_curr_commands[user_id]
         commands[1] = text
         self.conv_handler_curr_commands.update( {user_id : commands} )
+        # check if there is a device for the given input
+        try:
+            device = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device"]
+        except KeyError as e:
+            message = "Sorry - leider konnte ich zu {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1])
+            self.reset_conversation_commands(user_id)
+            return {'message': message, 'keyboard': [[]] }
+        # ok, there is a device, then there should be values
         choices = []
         for val in self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["values"]:
             choices.append(val)
-        reply = self.build_menu(choices, 3)
-        question = self.conversations["twosteps"][commands[0]]["q2"]
-        return {'message': question, 'keyboard': reply }
+        keyboard = self.build_menu(choices, 3)
+        message = self.conversations["twosteps"][commands[0]]["q2"]
+        return {'message': message, 'keyboard': keyboard }
     
     def run_command_from_conversation(self, user_id, chat_id):
         self.log("fire the command!")
@@ -211,6 +219,7 @@ class telegram_bot(hass.Hass):
                 device = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device"]
             except KeyError as e:
                 reply = "Sorry - leider konnte ich zu {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1])
+                self.reset_conversation_commands(user_id)
                 return reply
         # Please insert real action command...
         reply = "OK. Gerät {} bekommt den Befehl {}.".format(device,value)
