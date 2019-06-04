@@ -36,7 +36,7 @@ telegram_bot:
   module: telegram_bot
   class: telegram_bot
   allowed_user_ids:
-    - 123
+    - !secret telegram_id_1
     - !secret telegram_id_2
   conversations:
     threesteps:
