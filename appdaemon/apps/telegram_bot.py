@@ -355,7 +355,7 @@ class telegram_bot(hass.Hass):
         self.reset_conversation_commands(user_id)
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
-                          message=reply)
+                          message="Test")
         return reply
     
     def reset_conversation_commands(self, user_id):
