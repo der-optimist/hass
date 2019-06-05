@@ -1,5 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 import datetime
+import time
 import random
 
 #
@@ -208,6 +209,7 @@ class telegram_bot(hass.Hass):
                               message="",
                               callback_query_id=callback_id,
                               show_alert=False)
+                time.sleep( 1 )
                 self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=reply)
