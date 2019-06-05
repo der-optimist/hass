@@ -353,6 +353,9 @@ class telegram_bot(hass.Hass):
         # Please insert real action command...
         reply = "OK. Gerät {} bekommt den Befehl {}.".format(device,value)
         self.reset_conversation_commands(user_id)
+        self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message=reply)
         return reply
     
     def reset_conversation_commands(self, user_id):
