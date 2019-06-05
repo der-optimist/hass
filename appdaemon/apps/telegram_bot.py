@@ -170,7 +170,7 @@ class telegram_bot(hass.Hass):
                               show_alert=False)
                 self.call_service('telegram_bot/send_message',
                           target=chat_id,
-                          message=reply)
+                          message=reply.replace("_", "\_"))
                 
         if self.conv_handler_curr_type[user_id] == 3:
             if self.conv_handler_curr_commands[user_id][1] == 0:
@@ -209,10 +209,9 @@ class telegram_bot(hass.Hass):
                               message="",
                               callback_query_id=callback_id,
                               show_alert=False)
-                time.sleep( 1 )
                 self.call_service('telegram_bot/send_message',
                           target=chat_id,
-                          message=reply)
+                          message=reply.replace("_", "\_"))
                 
 
     def send_temps(self, chat_id):
@@ -352,10 +351,6 @@ class telegram_bot(hass.Hass):
                 return reply
         # Please insert real action command...
         reply = "OK. Gerät {} bekommt den Befehl {}.".format(device,value)
-        self.reset_conversation_commands(user_id)
-        self.call_service('telegram_bot/send_message',
-                          target=chat_id,
-                          message="OK. Gerät light.ezpanels bekommt den Befehl Aus.")
         return reply
     
     def reset_conversation_commands(self, user_id):
