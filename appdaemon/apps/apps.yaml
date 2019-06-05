@@ -48,6 +48,7 @@ telegram_bot:
           Wohnzimmer:
             Panels:
               device: light.wz_panels
+              type: light_dim
               values: 
                 - An
                 - 1%
@@ -55,6 +56,7 @@ telegram_bot:
                 - Aus
             Schrankbeleuchtung:
               device: light.wz_schraenke
+              type: light_dim
               values:
                 - An
                 - 43%
@@ -62,6 +64,14 @@ telegram_bot:
           Esszimmer:
             Panels:
               device: light.ez_panels
+              type: light_dim
+              values:
+                - An
+                - Aus
+          Gästezimmer:
+            Deckenlicht:
+              device: light.gz_decke
+              type: light_switch
               values:
                 - An
                 - Aus
@@ -72,27 +82,30 @@ telegram_bot:
         steps:
           Wohnzimmer:
             Bodentiefes:
-              device: jal.wz_bodentiefes
+              device: cover.wz_bodentiefes
+              type: jal
               values: 
                 - hoch
                 - 10%
                 - 50%
-                - rutner
+                - runter
             Hinter Couch:
-              device: jal.wz_couch
+              device: cover.wz_couch
+              type: jal
               values:
                 - hoch
                 - 25%
                 - 75%
-                - rutner
+                - runter
           Esszimmer:
             Hebeschiebetür:
-              device: jal.ez_hst
+              device: cover.ez_hst
+              type: jal
               values:
                 - hoch
                 - 20%
                 - 70%
-                - rutner
+                - runter
     twosteps:
       Heizung:
         q1: OK. Welcher Raum?
@@ -100,6 +113,7 @@ telegram_bot:
         steps:
           Wohnzimmer:
             device: heiz.wz
+            type: heat
             values: 
               - 20
               - 22
@@ -107,6 +121,7 @@ telegram_bot:
               - 26
           Esszimmer:
             device: heiz.ez
+            type: heat
             values:
               - 19
               - 21
