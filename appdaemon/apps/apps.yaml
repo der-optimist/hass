@@ -47,31 +47,31 @@ telegram_bot:
         steps:
           Wohnzimmer:
             Panels:
-              device: light.wz_panels
-              type: light_dim
+              device_name: light.wz_panels
+              device_type: light_dim
               values: 
                 - An
                 - 1%
                 - 50%
                 - Aus
             Schrankbeleuchtung:
-              device: light.wz_schraenke
-              type: light_dim
+              device_name: light.wz_schraenke
+              device_type: light_dim
               values:
                 - An
                 - 43%
                 - Aus
           Esszimmer:
             Panels:
-              device: light.ez_panels
-              type: light_dim
+              device_name: light.ez_panels
+              device_type: light_dim
               values:
                 - An
                 - Aus
           Gästezimmer:
             Deckenlicht:
-              device: light.gz_decke
-              type: light_switch
+              device_name: light.gz_decke
+              device_type: light_switch
               values:
                 - An
                 - Aus
@@ -82,16 +82,16 @@ telegram_bot:
         steps:
           Wohnzimmer:
             Bodentiefes:
-              device: cover.wz_bodentiefes
-              type: jal
+              device_name: cover.wz_bodentiefes
+              device_type: jal
               values: 
                 - hoch
                 - 10%
                 - 50%
                 - runter
             Hinter Couch:
-              device: cover.wz_couch
-              type: jal
+              device_name: cover.wz_couch
+              device_type: jal
               values:
                 - hoch
                 - 25%
@@ -99,8 +99,8 @@ telegram_bot:
                 - runter
           Esszimmer:
             Hebeschiebetür:
-              device: cover.ez_hst
-              type: jal
+              device_name: cover.ez_hst
+              device_type: jal
               values:
                 - hoch
                 - 20%
@@ -112,8 +112,8 @@ telegram_bot:
         q2: Gut. Welche Temperatur?
         steps:
           Wohnzimmer:
-            device: heiz.wz
-            type: heat
+            device_name: heiz.wz
+            device_type: heat
             values: 
               - 20
               - 22
@@ -121,7 +121,7 @@ telegram_bot:
               - 26
           Esszimmer:
             device: heiz.ez
-            type: heat
+            device_type: heat
             values:
               - 19
               - 21
