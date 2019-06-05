@@ -355,7 +355,7 @@ class telegram_bot(hass.Hass):
         self.reset_conversation_commands(user_id)
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
-                          message="OK. Gerät light.ez_panels bekommt den Befehl Aus.")
+                          message="OK. Gerät light.ezpanels bekommt den Befehl Aus.")
         return reply
     
     def reset_conversation_commands(self, user_id):
