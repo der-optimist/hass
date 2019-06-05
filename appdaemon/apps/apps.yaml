@@ -120,7 +120,7 @@ telegram_bot:
               - 24
               - 26
           Esszimmer:
-            device: heiz.ez
+            device_name: heiz.ez
             device_type: heat
             values:
               - 19
