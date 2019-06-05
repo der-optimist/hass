@@ -279,7 +279,7 @@ class telegram_bot(hass.Hass):
         self.conv_handler_curr_commands.update( {user_id : commands} )
         # check if there is a device for the given input
         try:
-            device = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device"]
+            device_name = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device_name"]
         except KeyError as e:
             message = "Sorry - leider konnte ich zu {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1])
             self.reset_conversation_commands(user_id)
@@ -317,7 +317,7 @@ class telegram_bot(hass.Hass):
         self.conv_handler_curr_commands.update( {user_id : commands} )
         # check if there is a device for the given input
         try:
-            device = self.conversations["threesteps"][commands[0]]["steps"][commands[1]][commands[2]]["device"]
+            device_name = self.conversations["threesteps"][commands[0]]["steps"][commands[1]][commands[2]]["device_name"]
         except KeyError as e:
             message = "Sorry - leider konnte ich zu {}, {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1], commands[2])
             self.reset_conversation_commands(user_id)
@@ -336,22 +336,29 @@ class telegram_bot(hass.Hass):
         if self.conv_handler_curr_type[user_id] == 2:
             value = commands[2]
             try:
-                device = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device"]
+                device_name = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device_name"]
             except KeyError as e:
                 reply = "Sorry - leider konnte ich zu {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1])
                 self.reset_conversation_commands(user_id)
                 return reply
+            device_type = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device_type"]
         if self.conv_handler_curr_type[user_id] == 3:
             value = commands[3]
             try:
-                device = self.conversations["threesteps"][commands[0]]["steps"][commands[1]][commands[2]]["device"]
+                device_name = self.conversations["threesteps"][commands[0]]["steps"][commands[1]][commands[2]]["device_name"]
             except KeyError as e:
                 reply = "Sorry - leider konnte ich zu {}, {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1], commands[1])
                 self.reset_conversation_commands(user_id)
                 return reply
+            device_type = self.conversations["threesteps"][commands[0]]["steps"][commands[1]][commands[2]]["device_type"]
         # Please insert real action command...
-        reply = "OK. Gerät {} bekommt den Befehl {}.".format(device,value)
+        reply = "OK. Gerät {} ({}) bekommt den Befehl {}.".format(device_name,device_type,value)
         return reply
+    
+    def clean_command(self, command):
+        command_clean = command.replace("%", "")
+        command_clean = command.replace(" °C", "").replace("°C", "").replace(" °", "").replace("°", "")
+        return command_clean
     
     def reset_conversation_commands(self, user_id):
         self.conv_handler_curr_commands.update( {user_id : [0, 0, 0, 0]} )
