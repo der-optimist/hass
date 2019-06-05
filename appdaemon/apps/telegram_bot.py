@@ -353,6 +353,7 @@ class telegram_bot(hass.Hass):
             device_type = self.conversations["threesteps"][commands[0]]["steps"][commands[1]][commands[2]]["device_type"]
         # Please insert real action command...
         reply = "OK. Gerät {} ({}) bekommt den Befehl {}.".format(device_name,device_type,value)
+        self.reset_conversation_commands(user_id)
         return reply
     
     def clean_command(self, command):
