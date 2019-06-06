@@ -324,7 +324,7 @@ class telegram_bot(hass.Hass):
         commands[1] = text
         self.conv_handler_curr_commands.update( {user_id : commands} )
         # check if there is a device for the given input
-        if not text in self.conversations["threesteps"][commands[0]]["steps"].keys()
+        if not text in self.conversations["threesteps"][commands[0]]["steps"].keys():
             message = "Sorry - leider konnte ich zu {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1])
             self.reset_conversation_commands(user_id)
             return {'message': message, 'keyboard': [[]] }
