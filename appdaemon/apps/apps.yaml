@@ -126,7 +126,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-          EZ/WZ:
+          EZ / WZ:
             Panels EZ:
               device_name: light.panels_esszimmer
               device_type: light_dim
@@ -310,7 +310,7 @@ telegram_bot:
               values: 
                 - An
                 - Aus
-          Flur/Tr EG:
+          Flur / Tr. EG:
             Panels Flur EG:
               device_name: light.panels_flur_eg
               device_type: light_dim
@@ -343,7 +343,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-          Flur/Tr OG:
+          Flur / Tr. OG:
             Panels Flur OG:
               device_name: light.panels_flur_og
               device_type: light_dim
@@ -392,7 +392,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-          Windf./WC:
+          Windf. / WC:
             Panels Windf.:
               device_name: light.panels_windfang
               device_type: light_dim
@@ -524,7 +524,7 @@ telegram_bot:
               values: 
                 - An
                 - Aus
-          NZ/GZ:
+          NZ / GZ:
             Nähtisch Decke:
               device_name: light.nahtisch_decke
               device_type: light_switch
