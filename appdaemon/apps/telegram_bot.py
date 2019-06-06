@@ -83,11 +83,36 @@ class telegram_bot(hass.Hass):
                 reply = self.run_command_from_conversation(user_id, chat_id)
                 self.call_service('telegram_bot/send_message',
                           target=chat_id,
-                          message=reply)
+                          message=reply.replace("_", "\_"))
             
         elif self.conv_handler_curr_type[user_id] == 3:
             # User is currently in a 3-Step conversation
-            self.log("...")
+            if self.conv_handler_curr_commands[user_id][1] == 0:
+                # choice 1 wurde wohl getroffen => verarbeiten
+                reply = self.react_on_choice1_threestep(user_id, chat_id, text)
+                self.call_service('telegram_bot/send_message',
+                    target=chat_id,
+                    message=reply["message"],
+                    disable_notification=True, 
+                    inline_keyboard=reply["keyboard"])
+            elif self.conv_handler_curr_commands[user_id][2] == 0:
+                # choice 2 wurde wohl getroffen => verarbeiten
+                reply = self.react_on_choice2_threestep(user_id, chat_id, text)
+                self.call_service('telegram_bot/send_message',
+                    target=chat_id,
+                    message=reply["message"],
+                    disable_notification=True, 
+                    inline_keyboard=reply["keyboard"])
+            else:
+                if self.conv_handler_curr_commands[user_id][3] == 0:
+                    # choice 3 wurde wohl getroffen => Fuehe Befehl aus
+                    commands = self.conv_handler_curr_commands[user_id]
+                    commands[3] = text
+                    self.conv_handler_curr_commands.update( {user_id : commands} )
+                reply = self.run_command_from_conversation(user_id, chat_id)
+                self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message=reply.replace("_", "\_"))
             
         else: # user is not in an active conversation
             
