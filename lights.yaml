@@ -4,4 +4,291 @@
     address: '1/0/0'
     state_address: '1/0/1'
     brightness_address: '1/0/3'
-    brightness_state_address: '1/2/4' 
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Licht Arbeitsplatte'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Bar-Beleuchtung'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Sockelbeleuchtung'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Panels Bar'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+
+# Esszimmer
+  - platform: knx
+    name: 'Panels Esszimmer'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Schrankbeleuchtung Esszimmer'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Wandleuchten Esszimmer hell'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Wandleuchten Esszimmer gemütlich'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+
+# Wohnzimmer
+  - platform: knx
+    name: 'Panels Wohnzimmer'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Schrankbeleuchtung Esszimmer'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+
+# Schlafzimmer
+  - platform: knx
+    name: 'Panels Schlafzimmer'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Bettbeleuchtung'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+
+# Bad EG
+  - platform: knx
+    name: 'Panels Bad EG'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Regal Bad EG'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Spiegelschrank Bad EG'
+    address: '1/0/0'
+
+# Flur EG
+  - platform: knx
+    name: 'Panels Flur EG'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+
+# Windfang
+  - platform: knx
+    name: 'Panels Windfang'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Auf Garderobenschrank'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+
+# WC
+  - platform: knx
+    name: 'Panels WC'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Spiegel WC'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+
+# Treppe EG-Keller
+  - platform: knx
+    name: 'Treppe Keller'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+
+# Kind Ost - La
+  - platform: knx
+    name: 'Panels La'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Wandwürfel La'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Stehlampe La'
+    address: '1/0/0'
+    state_address: '1/0/1'
+
+# Nähzimmer
+  - platform: knx
+    name: 'Nähtisch Decke'
+    address: '1/0/0'
+    state_address: '1/0/1'
+  - platform: knx
+    name: 'Schreibtisch Decke'
+    address: '1/0/0'
+    state_address: '1/0/1'
+  - platform: knx
+    name: 'Nähzimmerschrank'
+    address: '1/0/0'
+    state_address: '1/0/1'
+
+# Kind West - Le
+  - platform: knx
+    name: 'Panels Le'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Wandwürfel Le'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Stehlampe Le'
+    address: '1/0/0'
+    state_address: '1/0/1'
+
+# Gästezimmer
+  - platform: knx
+    name: 'Gästezimmer'
+    address: '1/0/0'
+    state_address: '1/0/1'
+
+# Flur OG
+  - platform: knx
+    name: 'Panels Flur OG'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+
+# Bad OG
+  - platform: knx
+    name: 'Panels Bad OG'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Spiegelschrank Bad OG'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+
+# Treppe OG
+  - platform: knx
+    name: 'Panels Treppe OG'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Stufenbeleuchtung Treppe'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+
+# Keller
+  - platform: knx
+    name: 'Flur Keller'
+    address: '1/0/0'
+    state_address: '1/0/1'
+  - platform: knx
+    name: 'Technikraum'
+    address: '1/0/0'
+    state_address: '1/0/1'
+  - platform: knx
+    name: 'Vorratsraum'
+    address: '1/0/0'
+    state_address: '1/0/1'
+  - platform: knx
+    name: 'Werkelraum Mitte'
+    address: '1/0/0'
+    state_address: '1/0/1'
+  - platform: knx
+    name: 'Werkelraum Werkbank'
+    address: '1/0/0'
+    state_address: '1/0/1'
+  - platform: knx
+    name: 'Lagerraum'
+    address: '1/0/0'
+    state_address: '1/0/1'
+
+# Carport / Eingang / Abstellraum
+  - platform: knx
+    name: 'LED-Streifen Carport'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Spots Carport'
+    address: '1/0/0'
+    state_address: '1/0/1'
+  - platform: knx
+    name: 'Abstellraum Carport'
+    address: '1/0/0'
+    state_address: '1/0/1'
+
+# Garten / Terrasse
+  - platform: knx
+    name: 'Wandwürfel Süden'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
+  - platform: knx
+    name: 'Wandwürfel Westen'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4'
