@@ -310,7 +310,7 @@ telegram_bot:
               values: 
                 - An
                 - Aus
-          Flur/WC EG:
+          Flur/Tr EG:
             Panels Flur EG:
               device_name: light.panels_flur_eg
               device_type: light_dim
@@ -327,77 +327,6 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Panels Windf.:
-              device_name: light.panels_windfang
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
-            Panel WC:
-              device_name: light.panels_wc
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
-            Panels Flur OG:
-              device_name: light.panels_flur_og
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
-            Auf Garderobenschrank:
-              device_name: light.auf_garderobenschrank
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
-            Spiegel WC:
-              device_name: light.spiegel_wc
-              device_type: light_switch
-              values: 
-                - An
-                - Aus
-          Treppen:
             Kellertreppe:
               device_name: light.treppe_keller
               device_type: light_dim
@@ -414,7 +343,24 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Panels OG:
+          Flur/Tr OG:
+            Panels Flur OG:
+              device_name: light.panels_flur_og
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Panels Treppe OG:
               device_name: light.panels_treppe_og
               device_type: light_dim
               values: 
@@ -446,6 +392,61 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
+          Windf./WC:
+            Panels Windf.:
+              device_name: light.panels_windfang
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Auf Garderobenschrank:
+              device_name: light.auf_garderobenschrank
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Panel WC:
+              device_name: light.panels_wc
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Spiegel WC:
+              device_name: light.spiegel_wc
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
           Kinder:
             Panels La:
               device_name: light.panels_la
