@@ -64,7 +64,7 @@
     brightness_address: '1/1/123'
     brightness_state_address: '1/1/124'
   - platform: knx
-    name: 'Schrankbeleuchtung Esszimmer'
+    name: 'Schrankbeleuchtung Wohnzimmer'
     address: '1/1/160'
     state_address: '1/1/161'
     brightness_address: '1/1/163'
