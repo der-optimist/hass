@@ -62,6 +62,22 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
+            Panels Bar:
+              device_name: light.panels_bar
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
             Arbeitsplatte:
               device_name: light.arbeitsplatte
               device_type: light_dim
@@ -110,24 +126,8 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Panels Bar:
-              device_name: light.panels_bar
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
-          Esszimmer:
-            Panels Esszimer:
+          EZ/WZ:
+            Panels EZ:
               device_name: light.panels_esszimmer
               device_type: light_dim
               values: 
@@ -159,7 +159,23 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Schrankbeleuchtung:
+            Panels WZ:
+              device_name: light.panels_wohnzimmer
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Schrankbel. EZ:
               device_name: light.schrankbeleuchtung_esszimmer
               device_type: light_dim
               values: 
@@ -207,24 +223,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-          Wohnzimmer:
-            Panels:
-              device_name: light.panels_wohnzimmer
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
-            Schrankbeleuchtung:
+            Schrankbel. WZ:
               device_name: light.schrankbeleuchtung_wohnzimmer
               device_type: light_dim
               values: 
@@ -240,9 +239,25 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-          Schlafzimmer:
-            Panels:
+          MaJo:
+            Panels SZ:
               device_name: light.panels_schlafzimmer
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Panels Bad:
+              device_name: light.panels_bad_eg
               device_type: light_dim
               values: 
                 - Aus
@@ -273,24 +288,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-          Bad EG:
-            Panels:
-              device_name: light.panels_bad_eg
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
-            Regal:
+            Regal Bad:
               device_name: light.regal_bad_eg
               device_type: light_dim
               values: 
@@ -306,14 +304,14 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Spiegel:
+            Spiegel Bad:
               device_name: light.spiegel_bad_eg
               device_type: light_switch
               values: 
                 - An
                 - Aus
-          Flur EG:
-            Panels:
+          Flur/WC EG:
+            Panels Flur EG:
               device_name: light.panels_flur_eg
               device_type: light_dim
               values: 
@@ -329,9 +327,40 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-          Windfang:
-            Panels:
+            Panels Windf.:
               device_name: light.panels_windfang
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Panel WC:
+              device_name: light.panels_wc
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Panels Flur OG:
+              device_name: light.panels_flur_og
               device_type: light_dim
               values: 
                 - Aus
@@ -362,31 +391,14 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-          WC:
-            Panel:
-              device_name: light.panels_wc
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
-            Spiegel:
+            Spiegel WC:
               device_name: light.spiegel_wc
               device_type: light_switch
               values: 
                 - An
                 - Aus
-          Treppe Keller:
-            LED-Streifen:
+          Treppen:
+            Kellertreppe:
               device_name: light.treppe_keller
               device_type: light_dim
               values: 
@@ -402,8 +414,40 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-          La:
-            Panels:
+            Panels OG:
+              device_name: light.panels_treppe_og
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Stufen OG:
+              device_name: light.stufenbeleuchtung_treppe
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+          Kinder:
+            Panels La:
               device_name: light.panels_la
               device_type: light_dim
               values: 
@@ -419,7 +463,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Wandwürfel:
+            Wandwürfel La:
               device_name: light.wandwurfel_la
               device_type: light_dim
               values: 
@@ -435,13 +479,51 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Stehlampe:
+            Stehlampe La:
               device_name: light.stehlampe_la
               device_type: light_switch
               values: 
                 - An
                 - Aus
-          Nähzimmer:
+            Panels Le:
+              device_name: light.panels_le
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Wandwürfel Le:
+              device_name: light.wandwurfel_le
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Stehlampe Le:
+              device_name: light.stehlampe_le
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+          NZ/GZ:
             Nähtisch Decke:
               device_name: light.nahtisch_decke
               device_type: light_switch
@@ -460,69 +542,12 @@ telegram_bot:
               values: 
                 - An
                 - Aus
-          Le:
-            Panels:
-              device_name: light.panels_le
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
-            Wandwürfel:
-              device_name: light.wandwurfel_le
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
-            Stehlampe:
-              device_name: light.stehlampe_le
-              device_type: light_switch
-              values: 
-                - An
-                - Aus
-          Gästezimmer:
-            Deckenlicht:
+            Gästezimmer:
               device_name: light.gastezimmer
               device_type: light_switch
               values:
                 - An
                 - Aus
-          Flur OG:
-            Panels:
-              device_name: light.panels_flur_og
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
           Bad OG:
             Panels:
               device_name: light.panels_bad_og
@@ -546,39 +571,6 @@ telegram_bot:
               values: 
                 - An
                 - Aus
-          Treppe OG:
-            Panels:
-              device_name: light.panels_treppe_og
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
-            Stufen:
-              device_name: light.stufenbeleuchtung_treppe
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
           Keller:
             Flur:
               device_name: light.flur_keller
@@ -616,8 +608,8 @@ telegram_bot:
               values: 
                 - An
                 - Aus
-          Carport und Co:
-            LED-Streifen:
+          Außen:
+            LED-Streifen CP:
               device_name: light.led_streifen_carport
               device_type: light_dim
               values: 
@@ -633,7 +625,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Spots:
+            Spots CP:
               device_name: light.spots_carport
               device_type: light_switch
               values: 
@@ -645,7 +637,6 @@ telegram_bot:
               values: 
                 - An
                 - Aus
-          Garten:
             Wandwürfel Süd:
               device_name: light.wandwurfel_suden
               device_type: light_switch
