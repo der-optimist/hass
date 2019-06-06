@@ -330,7 +330,7 @@ class telegram_bot(hass.Hass):
         choices = []
         for key in self.conversations["threesteps"][commands[0]]["steps"][commands[1]].keys():
             choices.append(key)
-        keyboard = self.build_menu(choices, 2)
+        keyboard = self.build_menu(choices, 3)
         message = self.conversations["threesteps"][commands[0]]["q2"]
         return {'message': message, 'keyboard': keyboard }
     
