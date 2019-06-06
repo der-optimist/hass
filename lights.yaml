@@ -6,7 +6,7 @@
     brightness_address: '1/0/3'
     brightness_state_address: '1/0/4'
   - platform: knx
-    name: 'Licht Arbeitsplatte'
+    name: 'Arbeitsplatte'
     address: '1/0/40'
     state_address: '1/0/41'
     brightness_address: '1/0/43'
