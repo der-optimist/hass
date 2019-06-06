@@ -45,34 +45,617 @@ telegram_bot:
         q2: OK. Welches Licht genau?
         q3: Gut. Und wie hell?
         steps:
-          Wohnzimmer:
-            Panels:
-              device_name: light.wz_panels
+          Küche:
+            Panels Küche:
+              device_name: light.panels_kuche
               device_type: light_dim
               values: 
-                - An
+                - Aus
                 - 1%
-                - 50%
-                - Aus
-            Schrankbeleuchtung:
-              device_name: light.wz_schraenke
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Arbeitsplatte:
+              device_name: light.arbeitsplatte
               device_type: light_dim
-              values:
-                - An
-                - 43%
+              values: 
                 - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Bar-Beleuchtung:
+              device_name: light.bar_beleuchtung
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Sockel:
+              device_name: light.sockelbeleuchtung
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Panels Bar:
+              device_name: light.panels_bar
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
           Esszimmer:
-            Panels:
-              device_name: light.ez_panels
+            Panels Esszimer:
+              device_name: light.panels_esszimmer
               device_type: light_dim
-              values:
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Panels Bar:
+              device_name: light.panels_bar
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Schrankbeleuchtung:
+              device_name: light.schrankbeleuchtung_esszimmer
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Wandleuchten hell:
+              device_name: light.wandleuchten_esszimmer_hell
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Wandleuchten gemütlich:
+              device_name: light.wandleuchten_essszimmer_gemutlich
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+          Wohnzimmer:
+            Panels:
+              device_name: light.panels_wohnzimmer
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Schrankbeleuchtung:
+              device_name: light.schrankbeleuchtung_wohnzimmer
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+          Schlafzimmer:
+            Panels:
+              device_name: light.panels_schlafzimmer
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Bettbeleuchtung:
+              device_name: light.bettbeleuchtung
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+          Bad EG:
+            Panels:
+              device_name: light.panels_bad_eg
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Regal:
+              device_name: light.regal_bad_eg
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Spiegel:
+              device_name: light.spiegel_bad_eg
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+          Flur EG:
+            Panels:
+              device_name: light.panels_flur_eg
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+          Windfang:
+            Panels:
+              device_name: light.panels_windfang
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Auf Garderobenschrank:
+              device_name: light.auf_garderobenschrank
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+          WC:
+            Panel:
+              device_name: light.panels_wc
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Spiegel:
+              device_name: light.spiegel_wc
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+          Treppe Keller:
+            LED-Streifen:
+              device_name: light.treppe_keller
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+          La:
+            Panels:
+              device_name: light.panels_la
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Wandwürfel:
+              device_name: light.wandwurfel_la
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Stehlampe:
+              device_name: light.stehlampe_la
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+          Nähzimmer:
+            Nähtisch Decke:
+              device_name: light.nahtisch_decke
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+            Schreibtisch Decke:
+              device_name: light.schreibtisch_decke
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+            Schrank:
+              device_name: light.nahzimmerschrank
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+          Le:
+            Panels:
+              device_name: light.panels_le
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Wandwürfel:
+              device_name: light.wandwurfel_le
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Stehlampe:
+              device_name: light.stehlampe_le
+              device_type: light_switch
+              values: 
                 - An
                 - Aus
           Gästezimmer:
             Deckenlicht:
-              device_name: light.gz_decke
+              device_name: light.gastezimmer
               device_type: light_switch
               values:
+                - An
+                - Aus
+          Flur OG:
+            Panels:
+              device_name: light.panels_flur_og
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+          Bad OG:
+            Panels:
+              device_name: light.panels_bad_og
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Spiegel:
+              device_name: light.spiegel_bad_og
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+          Treppe OG:
+            Panels:
+              device_name: light.panels_treppe_og
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Stufen:
+              device_name: light.stufenbeleuchtung_treppe
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+          Keller:
+            Flur:
+              device_name: light.flur_keller
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+            Technikraum:
+              device_name: light.technikraum
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+            Vorratsraum:
+              device_name: light.vorratsraum
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+            Werkelraum:
+              device_name: light.werkelraum_mitte
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+            Werkbank:
+              device_name: light.werkelraum_werkbank
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+            Lagerraum:
+              device_name: light.lagerraum
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+          Carport und Co:
+            LED-Streifen:
+              device_name: light.led_streifen_carport
+              device_type: light_dim
+              values: 
+                - Aus
+                - 1%
+                - 2%
+                - 5%
+                - 10%
+                - 15%
+                - 20%
+                - 30%
+                - 40%
+                - 60%
+                - 80%
+                - 100%
+            Spots:
+              device_name: light.spots_carport
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+            Abstellraum:
+              device_name: light.abstellraum_carport
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+          Garten:
+            Wandwürfel Süd:
+              device_name: light.wandwurfel_suden
+              device_type: light_switch
+              values: 
+                - An
+                - Aus
+            Wandwürfel West:
+              device_name: light.wandwurfel_westen
+              device_type: light_switch
+              values: 
                 - An
                 - Aus
       Rollo:
