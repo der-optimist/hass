@@ -271,8 +271,7 @@ class telegram_bot(hass.Hass):
         for key in self.conversations["twosteps"][commands[0]]["steps"].keys():
             choices.append(key)
         question = self.conversations["twosteps"][commands[0]]["q1"]
-        reply = self.build_menu(choices, 2)
-        #reply = [[("Test1", "Test1"), ("Test2", "Test2")]]
+        reply = self.build_menu(choices, 3)
         self.call_service('telegram_bot/send_message',
                   target=chat_id,
                   message=question,
@@ -289,7 +288,7 @@ class telegram_bot(hass.Hass):
         for key in self.conversations["threesteps"][commands[0]]["steps"].keys():
             choices.append(key)
         question = self.conversations["threesteps"][commands[0]]["q1"]
-        reply = self.build_menu(choices, 2)
+        reply = self.build_menu(choices, 3)
         self.call_service('telegram_bot/send_message',
                   target=chat_id,
                   message=question,
@@ -313,7 +312,7 @@ class telegram_bot(hass.Hass):
         choices = []
         for val in self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["values"]:
             choices.append(val)
-        keyboard = self.build_menu(choices, 3)
+        keyboard = self.build_menu(choices, 4)
         message = self.conversations["twosteps"][commands[0]]["q2"]
         return {'message': message, 'keyboard': keyboard }
     
@@ -331,7 +330,7 @@ class telegram_bot(hass.Hass):
         choices = []
         for key in self.conversations["threesteps"][commands[0]]["steps"][commands[1]].keys():
             choices.append(key)
-        keyboard = self.build_menu(choices, 3)
+        keyboard = self.build_menu(choices, 2)
         message = self.conversations["threesteps"][commands[0]]["q2"]
         return {'message': message, 'keyboard': keyboard }
     
@@ -352,7 +351,7 @@ class telegram_bot(hass.Hass):
         choices = []
         for val in self.conversations["threesteps"][commands[0]]["steps"][commands[1]][commands[2]]["values"]:
             choices.append(val)
-        keyboard = self.build_menu(choices, 3)
+        keyboard = self.build_menu(choices, 4)
         message = self.conversations["threesteps"][commands[0]]["q3"]
         return {'message': message, 'keyboard': keyboard }
     
