@@ -98,7 +98,7 @@
     brightness_address: '1/2/83'
     brightness_state_address: '1/2/84'
   - platform: knx
-    name: 'Spiegelschrank Bad EG'
+    name: 'Spiegel Bad EG'
     address: '0/0/60'
     state_address: '0/0/61'
 
@@ -216,7 +216,7 @@
     brightness_address: '1/4/83'
     brightness_state_address: '1/4/84'
   - platform: knx
-    name: 'Spiegelschrank Bad OG'
+    name: 'Spiegel Bad OG'
     address: '0/0/160'
     state_address: '0/0/161'
 
