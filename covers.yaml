@@ -1,0 +1,12 @@
+# Küche
+  - platform: knx
+    name: "Jalousie Küche"
+    move_long_address: '9/0/0'
+    move_short_address: '9/0/1'
+    position_address: '9/0/2'
+    position_state_address: '9/0/3'
+    angle_address: '9/0/4'
+    angle_state_address: '9/0/5'
+    invert_position: true
+    travelling_time_down: 21
+    travelling_time_up: 25
