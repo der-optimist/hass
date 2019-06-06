@@ -191,7 +191,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Wandleuchten hell:
+            Wandl. hell:
               device_name: light.wandleuchten_esszimmer_hell
               device_type: light_dim
               values: 
@@ -207,7 +207,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Wandleuchten gemütlich:
+            Wandl. gemütlich:
               device_name: light.wandleuchten_essszimmer_gemutlich
               device_type: light_dim
               values: 
@@ -311,7 +311,7 @@ telegram_bot:
                 - An
                 - Aus
           Flur/Tr. EG:
-            Panels Flur EG:
+            Flur EG:
               device_name: light.panels_flur_eg
               device_type: light_dim
               values: 
@@ -344,7 +344,7 @@ telegram_bot:
                 - 80%
                 - 100%
           Flur/Tr. OG:
-            Panels Flur OG:
+            Flur OG:
               device_name: light.panels_flur_og
               device_type: light_dim
               values: 
@@ -360,7 +360,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Panels Treppe OG:
+            Treppe OG:
               device_name: light.panels_treppe_og
               device_type: light_dim
               values: 
@@ -393,7 +393,7 @@ telegram_bot:
                 - 80%
                 - 100%
           Windf./WC:
-            Panels Windf.:
+            Windf.:
               device_name: light.panels_windfang
               device_type: light_dim
               values: 
@@ -409,7 +409,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Auf Garderobenschrank:
+            Auf Schrank:
               device_name: light.auf_garderobenschrank
               device_type: light_dim
               values: 
@@ -525,13 +525,13 @@ telegram_bot:
                 - An
                 - Aus
           NZ/GZ:
-            Nähtisch Decke:
+            Näht. Decke:
               device_name: light.nahtisch_decke
               device_type: light_switch
               values: 
                 - An
                 - Aus
-            Schreibtisch Decke:
+            Schreibt. Decke:
               device_name: light.schreibtisch_decke
               device_type: light_switch
               values: 
@@ -610,7 +610,7 @@ telegram_bot:
                 - An
                 - Aus
           Außen:
-            LED-Streifen CP:
+            LED-Str. CP:
               device_name: light.led_streifen_carport
               device_type: light_dim
               values: 
@@ -638,13 +638,13 @@ telegram_bot:
               values: 
                 - An
                 - Aus
-            Wandwürfel Süd:
+            Wandw. Süd:
               device_name: light.wandwurfel_suden
               device_type: light_switch
               values: 
                 - An
                 - Aus
-            Wandwürfel West:
+            Wandw. West:
               device_name: light.wandwurfel_westen
               device_type: light_switch
               values: 
