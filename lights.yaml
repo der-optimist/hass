@@ -1,0 +1,7 @@
+# Küche
+  - platform: knx
+    name: 'Panels Küche'
+    address: '1/0/0'
+    state_address: '1/0/1'
+    brightness_address: '1/0/3'
+    brightness_state_address: '1/2/4' 
