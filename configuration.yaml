@@ -87,6 +87,9 @@ weather:
     api_key: !secret owm_api_key
 
 knx:
+  fire_event: true
+  fire_event_filter: ["*/*/*"]
+  state_updater: true
 
 light: !include lights.yaml
 
