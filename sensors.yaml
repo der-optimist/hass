@@ -34,7 +34,74 @@
     name: 'Temp. Wohnzimmer PM'
     address: '6/1/65'
     type: temperature
-    
+  - platform: knx
+    name: 'Temp. Schlafzimmer PM'
+    address: '6/1/193'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Schlafzimmer Taster'
+    address: '3/2/1'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Bad EG PM'
+    address: '6/2/65'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Bad EG Taster'
+    address: '3/2/129'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Flur EG PM'
+    address: '6/2/193'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Windfang PM'
+    address: '6/3/65'
+    type: temperature
+  - platform: knx
+    name: 'Temp. WC PM'
+    address: '6/3/193'
+    type: temperature
+  - platform: knx
+    name: 'Temp. La PM'
+    address: '7/0/65'
+    type: temperature
+  - platform: knx
+    name: 'Temp. La Taster'
+    address: '3/3/129'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Nähzimmer PM'
+    address: '7/0/193'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Le PM'
+    address: '7/1/65'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Le Taster'
+    address: '3/4/1'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Gästezimmer PM'
+    address: '7/1/193'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Gästezimmer Taster'
+    address: '3/4/129'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Flur OG PM'
+    address: '7/2/65'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Bad OG PM'
+    address: '7/2/193'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Bad OG Taster'
+    address: '3/5/1'
+    type: temperature
 
 # 1-wire
 
