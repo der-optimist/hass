@@ -19,16 +19,20 @@
         value_template: "{{ state_attr('weather.dark_sky', 'humidity') }}"
 # KNX
   - platform: knx
-    name: 'Küche PM'
+    name: 'Temp. Küche PM'
     address: '6/0/65'
     type: temperature
   - platform: knx
-    name: 'Esszimmer PM'
+    name: 'Temp. Esszimmer PM'
     address: '6/0/193'
     type: temperature
   - platform: knx
-    name: 'Esszimmer Taster'
+    name: 'Temp. Esszimmer Taster'
     address: '3/0/1'
+    type: temperature
+  - platform: knx
+    name: 'Temp. Wohnzimmer PM'
+    address: '6/1/65'
     type: temperature
     
 
