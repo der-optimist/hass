@@ -53,3 +53,7 @@
     name: 'Gefrierschrank'
     address: '0/0/230'
     state_address: '0/0/231'
+  - platform: knx
+    name: 'Lüftungsanlage'
+    address: '0/1/60'
+    state_address: '0/1/61'
