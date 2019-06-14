@@ -105,6 +105,66 @@
 
 # 1-wire
 
+# --- Helligkeit ---
+# KNX
+  - platform: knx
+    name: 'Helligkeit Küche PM'
+    address: '6/0/56'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit Esszimmer PM'
+    address: '6/0/184'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit Wohnzimmer PM'
+    address: '6/1/56'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit Schlafzimmer PM'
+    address: '6/1/184'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit Bad EG PM'
+    address: '6/2/56'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit Flur EG PM'
+    address: '6/2/184'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit Windfang PM'
+    address: '6/3/56'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit WC PM'
+    address: '6/3/184'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit La PM'
+    address: '7/0/56'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit Nähzimmer PM'
+    address: '7/0/184'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit Le PM'
+    address: '7/1/56'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit Gästezimmer PM'
+    address: '7/1/184'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit Flur OG PM'
+    address: '7/2/56'
+    type: illuminance
+  - platform: knx
+    name: 'Helligkeit Bad OG PM'
+    address: '7/2/184'
+    type: illuminance
+
+
 # --- Sonstiges ---
 # Wetter
   - platform: yr
