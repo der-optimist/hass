@@ -1,12 +1,12 @@
 # --- Temperatur ---
-  # Wohnzimmer über openhab
+# Wohnzimmer über openhab
   - platform: rest
     resource: http://openhabianpi:8080/rest/items/T_WZ_ist
     name: T_WZ_ist_OH
     device_class: temperature
     unit_of_measurement: "°C"
     value_template: '{{ value_json.state | round(1) }}'
-  # Außendaten über Internet
+# Außendaten über Internet
   - platform: template
     sensors:
       temp_owm:
@@ -164,6 +164,48 @@
     address: '7/2/184'
     type: illuminance
 
+# --- Elektrische Leistung ---
+# Küche
+  - platform: knx
+    name: 'El. Leistung Backofen'
+    address: '0/0/3'
+    type: power
+  - platform: knx
+    name: 'El. Leistung Kühlschrank Küche'
+    address: '0/0/13'
+    type: power
+  - platform: knx
+    name: 'El. Leistung Spülmaschine'
+    address: '0/0/23'
+    type: power
+  - platform: knx
+    name: 'El. Leistung Mixi'
+    address: '0/0/33'
+    type: power
+  - platform: knx
+    name: 'El. Leistung TV'
+    address: '0/0/53'
+    type: power
+  - platform: knx
+    name: 'El. Leistung Waschmaschine'
+    address: '0/0/193'
+    type: power
+  - platform: knx
+    name: 'El. Leistung Trockner'
+    address: '0/0/203'
+    type: power
+  - platform: knx
+    name: 'El. Leistung Kühlschrank Keller'
+    address: '0/0/223'
+    type: power
+  - platform: knx
+    name: 'El. Leistung Gefrierschrank'
+    address: '0/0/233'
+    type: power
+  - platform: knx
+    name: 'El. Leistung Lüftungsanlage'
+    address: '0/1/63'
+    type: power
 
 # --- Sonstiges ---
 # Wetter
