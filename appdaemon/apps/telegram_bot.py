@@ -126,10 +126,10 @@ class telegram_bot(hass.Hass):
             
             # --- Müll erledigt ---
             if text.lower().startswith("müll"):
-            all_ha_switches = self.get_state("switch")
-            for switch, value in all_ha_switches.items():
-                if switch.startswith("switch.reminder_garbage_"):
-                    self.turn-off(switch)
+                all_ha_switches = self.get_state("switch")
+                for switch, value in all_ha_switches.items():
+                    if switch.startswith("switch.reminder_garbage_"):
+                        self.turn-off(switch)
 
         
             # --- Danke Bitte ---
