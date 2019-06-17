@@ -20,7 +20,10 @@ async def async_setup(hass, config):
     """Ensure KNX is there."""
 
     if DATA_KNX not in hass.data:
-        _LOGGER.warning("knx_reader cannot find DATA_KNX in hass.data")
+        _LOGGER.warning("Setup failed, knx_reader (custom component) cannot find DATA_KNX in hass.data")
+        hass.components.persistent_notification.async_create(
+            "Setup failed, knx_reader (custom component) cannot find DATA_KNX in hass.data",
+            title="KNX-READER")
         return False
 
     def service_read_from_knx_bus(call):
