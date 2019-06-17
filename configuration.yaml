@@ -91,6 +91,8 @@ knx:
   fire_event_filter: ["*/*/*"]
   state_updater: true
 
+knx_reader: # custom component for reading a GA status
+
 light: !include lights.yaml
 
 sensor: !include sensors.yaml
