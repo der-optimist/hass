@@ -22,9 +22,6 @@ async def async_setup(hass, config):
     if DATA_KNX not in hass.data:
         _LOGGER.warning("knx_reader cannot find DATA_KNX in hass.data")
         return False
-    if not hass.data[DATA_KNX].initialized:
-        _LOGGER.warning("knx_reader - hass.data[DATA_KNX].initialized failed")
-        return False
 
     def service_read_from_knx_bus(call):
         """Issue read request to the bus."""
