@@ -5,55 +5,55 @@
     state_address: '0/0/1'
   - platform: knx
     name: 'Kühlschrank Küche'
-    address: '0/0/10'
-    state_address: '0/0/11'
-  - platform: knx
-    name: 'Spülmaschine'
     address: '0/0/20'
     state_address: '0/0/21'
   - platform: knx
+    name: 'Spülmaschine'
+    address: '0/0/40'
+    state_address: '0/0/41'
+  - platform: knx
     name: 'Mixi'
-    address: '0/0/30'
-    state_address: '0/0/31'
+    address: '0/0/60'
+    state_address: '0/0/61'
 
 # Wohnzimmer
   - platform: knx
     name: 'WZ - Steckdose'
-    address: '0/0/40'
-    state_address: '0/0/41'
+    address: '0/0/80'
+    state_address: '0/0/81'
   - platform: knx
     name: 'TV'
-    address: '0/0/50'
-    state_address: '0/0/51'
+    address: '0/0/100'
+    state_address: '0/0/101'
 
 # Bad OG
   - platform: knx
     name: 'Heizkörper Bad OG'
-    address: '0/0/140'
-    state_address: '0/0/141'
+    address: '0/1/40'
+    state_address: '0/1/41'
   - platform: knx
     name: 'SD Badewanne'
-    address: '0/0/150'
-    state_address: '0/0/151'
+    address: '0/1/60'
+    state_address: '0/1/61'
 
 # Keller
   - platform: knx
     name: 'Waschmaschine'
-    address: '0/0/190'
-    state_address: '0/0/191'
+    address: '0/1/140'
+    state_address: '0/1/141'
   - platform: knx
     name: 'Trockner'
-    address: '0/0/200'
-    state_address: '0/0/201'
+    address: '0/1/160'
+    state_address: '0/1/161'
   - platform: knx
     name: 'Kühlschrank Keller'
-    address: '0/0/220'
-    state_address: '0/0/221'
+    address: '0/1/200'
+    state_address: '0/1/201'
   - platform: knx
     name: 'Gefrierschrank'
-    address: '0/0/230'
-    state_address: '0/0/231'
+    address: '0/1/220'
+    state_address: '0/1/221'
   - platform: knx
     name: 'Lüftungsanlage'
-    address: '0/1/60'
-    state_address: '0/1/61'
+    address: '0/2/140'
+    state_address: '0/2/141'
