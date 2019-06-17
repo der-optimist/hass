@@ -172,39 +172,39 @@
     type: power
   - platform: knx
     name: 'El. Leistung Kühlschrank Küche'
-    address: '0/0/13'
-    type: power
-  - platform: knx
-    name: 'El. Leistung Spülmaschine'
     address: '0/0/23'
     type: power
   - platform: knx
+    name: 'El. Leistung Spülmaschine'
+    address: '0/0/43'
+    type: power
+  - platform: knx
     name: 'El. Leistung Mixi'
-    address: '0/0/33'
+    address: '0/0/63'
     type: power
   - platform: knx
     name: 'El. Leistung TV'
-    address: '0/0/53'
+    address: '0/0/103'
     type: power
   - platform: knx
     name: 'El. Leistung Waschmaschine'
-    address: '0/0/193'
+    address: '0/1/143'
     type: power
   - platform: knx
     name: 'El. Leistung Trockner'
-    address: '0/0/203'
+    address: '0/1/163'
     type: power
   - platform: knx
     name: 'El. Leistung Kühlschrank Keller'
-    address: '0/0/223'
+    address: '0/1/203'
     type: power
   - platform: knx
     name: 'El. Leistung Gefrierschrank'
-    address: '0/0/233'
+    address: '0/1/223'
     type: power
   - platform: knx
     name: 'El. Leistung Lüftungsanlage'
-    address: '0/1/63'
+    address: '0/2/143'
     type: power
 
 # --- Sonstiges ---
