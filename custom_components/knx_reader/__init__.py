@@ -19,12 +19,11 @@ SERVICE_KNX_READ_SCHEMA = vol.Schema({
 async def async_setup(hass, config):
     """Ensure KNX is there."""
 
-    if DATA_KNX not in hass.data \
-            or not hass.data[DATA_KNX].initialized:
-        _LOGGER.warning("knx_reader cannot find data of knx component")
-        hass.components.persistent_notification.async_create(
-            "knx_reader cannot find data of knx component",
-            title="KNX-READER")
+    if DATA_KNX not in hass.data:
+        _LOGGER.warning("knx_reader cannot find DATA_KNX in hass.data")
+        return False
+    if not hass.data[DATA_KNX].initialized:
+        _LOGGER.warning("knx_reader - hass.data[DATA_KNX].initialized failed")
         return False
 
     def service_read_from_knx_bus(call):
