@@ -118,3 +118,19 @@ camera:
 cloud:
 
 #group: !include groups.yaml
+
+# Inputs
+input_select:
+  pizza_timer:
+    name: Pizza Timer
+    options:
+      - "keine Pizza"
+      - "Abbruch"
+      - "10"
+      - "11"
+      - "12"
+      - "13"
+      - "14"
+      - "15"
+      - "16"
+    icon: mdi:pizza
