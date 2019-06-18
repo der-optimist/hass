@@ -25,7 +25,7 @@ class pizza_timer(hass.Hass):
                 self.timer_handle = None
                 self.log("Pizza-Timer abgebrochen")
         else:
-            if self.timer != None:
+            if self.timer_handle != None:
                 self.cancel_timer(self.timer_handle)
             self.starttime = datetime.datetime.now()
             delay_sec = int(new)
