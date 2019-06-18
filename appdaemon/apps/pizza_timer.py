@@ -24,6 +24,7 @@ class pizza_timer(hass.Hass):
                 self.cancel_timer(self.timer_handle)
                 self.timer_handle = None
                 self.log("Pizza-Timer abgebrochen")
+                self.run_in(self.reset_pizza,2)
         else:
             if self.timer_handle != None:
                 self.cancel_timer(self.timer_handle)
@@ -33,3 +34,7 @@ class pizza_timer(hass.Hass):
             
     def remind_pizza(self, kwargs):
         self.log("Pizza ist fertig")
+    
+    def reset_pizza(self, kwargs):
+        self.log("Reset auf Keine Pizza")
+        self.select_option("input_select.pizza_timer", "keine Pizza")
