@@ -159,7 +159,9 @@ class weather_and_astro(hass.Hass):
                 if (self.get_state(sensor_name) != start_end_readable) or (self.get_state(sensor_name, attribute = "Gefahr (0-4)") != warning[0]):
                     self.log("Sensor {} scheint neu zu sein".format(sensor_name))
                     if warning[0] >= 1: # Severity
-                        if not self.just_started: # prevent repeated notifications after a restart
+                        if self.just_started: # prevent repeated notifications after a restart
+                            self.log("Warnung gefunden, aber just-started flag erkannt. Sende deshalb keine Benachrichtigung")
+                        else:
                             self.fire_event("custom_notify", message="Warnung - {}:\n{}\nGefahr (0-4): {}".format(start_end_readable,warning[9],warning[0]), target="telegram_jo")
                 #else:
                     #self.log("Sensor {} ist wohl nicht neu".format(sensor_name))
