@@ -65,6 +65,7 @@ class weather_and_astro(hass.Hass):
         #self.dwd_warncell_id = 809180117 #Garmisch, for testing
         self.url_dwd_warnings = "https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&CQL_FILTER=WARNCELLID%20IN%20(%27{}%27)".format(self.dwd_warncell_id)
         self.run_every(self.load_dwd_warnings, datetime.datetime.now(), 5 * 60) # update every 5 minutes
+        self.just_started = True # prevent repeated notifications after a restart
 
     def load_meteogram(self, kwargs):
         try:
@@ -158,7 +159,8 @@ class weather_and_astro(hass.Hass):
                 if (self.get_state(sensor_name) != start_end_readable) or (self.get_state(sensor_name, attribute = "Gefahr (0-4)") != warning[0]):
                     self.log("Sensor {} scheint neu zu sein".format(sensor_name))
                     if warning[0] >= 1: # Severity
-                        self.fire_event("custom_notify", message="Warnung - {}:\n{}\nGefahr (0-4): {}".format(start_end_readable,warning[9],warning[0]), target="telegram_jo")
+                        if not self.just_started: # prevent repeated notifications after a restart
+                            self.fire_event("custom_notify", message="Warnung - {}:\n{}\nGefahr (0-4): {}".format(start_end_readable,warning[9],warning[0]), target="telegram_jo")
                 #else:
                     #self.log("Sensor {} ist wohl nicht neu".format(sensor_name))
                 self.set_state(sensor_name, state = start_end_readable, attributes = attributes)
@@ -169,6 +171,8 @@ class weather_and_astro(hass.Hass):
             for sensor, value in all_ha_sensors.items():
                 if sensor.startswith("sensor.dwd_warn_") and (sensor not in list_of_active_sensors) and (value["state"] != "off"):
                     self.set_state(sensor, state = "off")
+            # First notification after startup should be passed...
+            self.just_started = False
                     
         else:
             # log http error. no second try here, as update will be done in a few minutes anyway
