@@ -33,6 +33,10 @@ discovery:
 # Allows you to issue voice commands from the frontend in enabled browsers
 #conversation:
 
+media_player:
+  - platform: kodi
+    host: kodi-wz
+
 telegram_bot:
   - platform: polling
     api_key: !secret telegram_api_key
