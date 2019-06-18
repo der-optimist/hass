@@ -37,6 +37,7 @@ class pizza_timer(hass.Hass):
             
     def remind_pizza(self, kwargs):
         self.log("Pizza ist fertig")
+        self.select_option("input_select.pizza_timer", "keine Pizza")
     
     def reset_pizza(self, kwargs):
         self.log("Reset auf Keine Pizza")
