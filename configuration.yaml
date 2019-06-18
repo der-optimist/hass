@@ -135,6 +135,9 @@ input_select:
       - "14"
       - "15"
       - "16"
+      - "20"
+      - "25"
+      - "30"
       - "Abbruch"
     initial: "keine Pizza"
     icon: mdi:pizza
