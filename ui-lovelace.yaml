@@ -91,6 +91,10 @@ views:
           - entity: sensor.raweg_anzeige
             name: RaWeg
       - type: entities
+        title: Pizza Timer
+        entities:
+          - input_select.pizza_timer
+      - type: entities
         title: "Wer ist wo..."
         show_header_toggle: false
         entities:
