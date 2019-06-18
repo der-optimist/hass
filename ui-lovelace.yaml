@@ -92,6 +92,7 @@ views:
             name: RaWeg
       - type: entities
         title: Pizza Timer
+        show_header_toggle: false
         entities:
           - input_select.pizza_timer
       - type: entities
