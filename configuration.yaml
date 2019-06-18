@@ -125,7 +125,6 @@ input_select:
     name: Pizza Timer
     options:
       - "keine Pizza"
-      - "Abbruch"
       - "10"
       - "11"
       - "12"
@@ -133,4 +132,5 @@ input_select:
       - "14"
       - "15"
       - "16"
+      - "Abbruch"
     icon: mdi:pizza
