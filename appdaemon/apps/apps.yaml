@@ -32,6 +32,10 @@ weather_and_astro:
   home_town: !secret home_town
   home_latitude: !secret home_latitude
   home_longitude: !secret home_longitude
+pizza_timer:
+  module: pizza_timer
+  class: pizza_timer
+# ----------------------
 telegram_bot:
   module: telegram_bot
   class: telegram_bot
