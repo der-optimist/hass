@@ -30,7 +30,7 @@ class pizza_timer(hass.Hass):
                 self.cancel_timer(self.timer_handle)
             self.starttime = datetime.datetime.now()
             delay_sec = int(new)
-            self.timer = self.run_in(self.remind_pizza,delay_sec)
+            self.timer_handle = self.run_in(self.remind_pizza,delay_sec)
             
     def remind_pizza(self, kwargs):
         self.log("Pizza ist fertig")
