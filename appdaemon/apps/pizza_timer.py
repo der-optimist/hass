@@ -17,6 +17,9 @@ class pizza_timer(hass.Hass):
         self.log("State Change in Pizza Timer erkannt: {}".format(new))
         if new == "keine Pizza":
             self.log("Schade, keine Pizza")
+            if self.timer_handle != None:
+                self.cancel_timer(self.timer_handle)
+                self.log("Es lief aber noch ein Timer, den hab ich jetzt abgebrochen")
         elif new == "Abbruch":
             if self.timer_handle == None:
                 self.log("Pizza-Timer Abbruch angefragt, aber kein Timer vorhanden")
