@@ -1,0 +1,10 @@
+# Heizung
+  - platform: knx
+    name: 'Küche'
+    temperature_address: '5/1/1'
+    setpoint_shift_address: '10/0/1'
+    setpoint_shift_state_address: '10/0/1'
+    target_temperature_address: '10/0/0'
+    target_temperature_state_address: '10/0/2'
+    operation_mode_address: '10/0/3
+    controller_status_state_address: '10/0/5'
