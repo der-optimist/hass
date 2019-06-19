@@ -655,36 +655,622 @@ telegram_bot:
                 - An
                 - Aus
       Rollo:
-        q1: OK. Welcher Raum?
-        q2: Ok. Welchen Rollo dort?
-        q3: Gut. Und wie hoch?
+        q1: OK. Welche Jalousie?
+        q2: Ok. Wie hoch?
+        q3: Gut. Offen oder zu?
         steps:
-          Wohnzimmer:
-            Bodentiefes:
-              device_name: cover.wz_bodentiefes
+          Küche:
+            Runter:
+              device_name: cover.jalousie_kuche
               device_type: jal
               values: 
-                - hoch
-                - 10%
-                - 50%
-                - runter
-            Hinter Couch:
-              device_name: cover.wz_couch
-              device_type: jal
-              values:
-                - hoch
-                - 25%
-                - 75%
-                - runter
-          Esszimmer:
-            Hebeschiebetür:
-              device_name: cover.ez_hst
-              device_type: jal
-              values:
-                - hoch
+                - auf
                 - 20%
-                - 70%
-                - runter
+                - 50%
+                - 80%
+                - zu
+            80%:
+              device_name: cover.jalousie_kuche
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            60%:
+              device_name: cover.jalousie_kuche
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            40%:
+              device_name: cover.jalousie_kuche
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            20%:
+              device_name: cover.jalousie_kuche
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            hoch:
+              device_name: cover.jalousie_kuche
+              device_type: jal
+              values: 
+                - blöde Frage
+          HST:
+            Runter:
+              device_name: cover.jalousie_hst
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            80%:
+              device_name: cover.jalousie_hst
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            60%:
+              device_name: cover.jalousie_hst
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            40%:
+              device_name: cover.jalousie_hst
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            20%:
+              device_name: cover.jalousie_hst
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            hoch:
+              device_name: cover.jalousie_hst
+              device_type: jal
+              values: 
+                - blöde Frage
+          WZ Bodentiefes:
+            Runter:
+              device_name: cover.jalousie_wz_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            80%:
+              device_name: cover.jalousie_wz_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            60%:
+              device_name: cover.jalousie_wz_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            40%:
+              device_name: cover.jalousie_wz_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            20%:
+              device_name: cover.jalousie_wz_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            hoch:
+              device_name: cover.jalousie_wz_bodentiefes
+              device_type: jal
+              values: 
+                - blöde Frage
+          WZ Couch:
+            Runter:
+              device_name: cover.jalousie_wz_couch
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            80%:
+              device_name: cover.jalousie_wz_couch
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            60%:
+              device_name: cover.jalousie_wz_couch
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            40%:
+              device_name: cover.jalousie_wz_couch
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            20%:
+              device_name: cover.jalousie_wz_couch
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            hoch:
+              device_name: cover.jalousie_wz_couch
+              device_type: jal
+              values: 
+                - blöde Frage
+          Schlafzimmer:
+            Runter:
+              device_name: cover.jalousie_schlafzimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            80%:
+              device_name: cover.jalousie_schlafzimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            60%:
+              device_name: cover.jalousie_schlafzimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            40%:
+              device_name: cover.jalousie_schlafzimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            20%:
+              device_name: cover.jalousie_schlafzimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            hoch:
+              device_name: cover.jalousie_schlafzimmer
+              device_type: jal
+              values: 
+                - blöde Frage
+          La Bodentiefes:
+            Runter:
+              device_name: cover.jalousie_la_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            80%:
+              device_name: cover.jalousie_la_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            60%:
+              device_name: cover.jalousie_la_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            40%:
+              device_name: cover.jalousie_la_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            20%:
+              device_name: cover.jalousie_la_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            hoch:
+              device_name: cover.jalousie_la_bodentiefes
+              device_type: jal
+              values: 
+                - blöde Frage
+          La Lichtband:
+            Runter:
+              device_name: cover.jalousie_la_lichtband
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            80%:
+              device_name: cover.jalousie_la_lichtband
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            60%:
+              device_name: cover.jalousie_la_lichtband
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            40%:
+              device_name: cover.jalousie_la_lichtband
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            20%:
+              device_name: cover.jalousie_la_lichtband
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            hoch:
+              device_name: cover.jalousie_la_lichtband
+              device_type: jal
+              values: 
+                - blöde Frage
+          Nähzimmer:
+            Runter:
+              device_name: cover.jalousie_nahzimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            80%:
+              device_name: cover.jalousie_nahzimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            60%:
+              device_name: cover.jalousie_nahzimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            40%:
+              device_name: cover.jalousie_nahzimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            20%:
+              device_name: cover.jalousie_nahzimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            hoch:
+              device_name: cover.jalousie_nahzimmer
+              device_type: jal
+              values: 
+                - blöde Frage
+          Le Lichtband:
+            Runter:
+              device_name: cover.jalousie_le_lichtband
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            80%:
+              device_name: cover.jalousie_le_lichtband
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            60%:
+              device_name: cover.jalousie_le_lichtband
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            40%:
+              device_name: cover.jalousie_le_lichtband
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            20%:
+              device_name: cover.jalousie_le_lichtband
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            hoch:
+              device_name: cover.jalousie_le_lichtband
+              device_type: jal
+              values: 
+                - blöde Frage
+          Le Bodentiefes:
+            Runter:
+              device_name: cover.jalousie_le_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            80%:
+              device_name: cover.jalousie_le_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            60%:
+              device_name: cover.jalousie_le_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            40%:
+              device_name: cover.jalousie_le_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            20%:
+              device_name: cover.jalousie_le_bodentiefes
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            hoch:
+              device_name: cover.jalousie_le_bodentiefes
+              device_type: jal
+              values: 
+                - blöde Frage
+          Gästezimmer:
+            Runter:
+              device_name: cover.jalousie_gastezimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            80%:
+              device_name: cover.jalousie_gastezimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            60%:
+              device_name: cover.jalousie_gastezimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            40%:
+              device_name: cover.jalousie_gastezimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            20%:
+              device_name: cover.jalousie_gastezimmer
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            hoch:
+              device_name: cover.jalousie_gastezimmer
+              device_type: jal
+              values: 
+                - blöde Frage
+          Bad OG:
+            Runter:
+              device_name: cover.jalousie_bad_og
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            80%:
+              device_name: cover.jalousie_bad_og
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            60%:
+              device_name: cover.jalousie_bad_og
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            40%:
+              device_name: cover.jalousie_bad_og
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            20%:
+              device_name: cover.jalousie_bad_og
+              device_type: jal
+              values: 
+                - auf
+                - 20%
+                - 50%
+                - 80%
+                - zu
+            hoch:
+              device_name: cover.jalousie_bad_og
+              device_type: jal
+              values: 
+                - blöde Frage
     twosteps:
       Heizung:
         q1: OK. Welcher Raum?
