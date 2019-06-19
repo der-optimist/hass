@@ -108,6 +108,8 @@ switch: !include switches.yaml
 
 cover: !include covers.yaml
 
+climate: !include climate.yaml
+
 camera:
   - platform: local_file
     name: Meteogram
