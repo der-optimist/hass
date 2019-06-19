@@ -1336,6 +1336,18 @@ telegram_bot:
               - 25
               - 26
               - 27
+          Windfang WC:
+            device_name: climate.windfang_wc
+            device_type: heat
+            values: 
+              - 18
+              - 19
+              - 20
+              - 21
+              - 22
+              - 23
+              - 24
+              - 25
           La:
             device_name: climate.la
             device_type: heat
