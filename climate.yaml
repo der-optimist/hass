@@ -6,7 +6,7 @@
     setpoint_shift_state_address: '10/0/1'
     target_temperature_address: '10/0/0'
     target_temperature_state_address: '10/0/2'
-    operation_mode_address: '10/0/3
+    operation_mode_address: '10/0/3'
     controller_status_state_address: '10/0/5'
   - platform: knx
     name: 'Esszimmer'
@@ -15,7 +15,7 @@
     setpoint_shift_state_address: '10/0/1'
     target_temperature_address: '10/0/0'
     target_temperature_state_address: '10/0/2'
-    operation_mode_address: '10/0/3
+    operation_mode_address: '10/0/3'
     controller_status_state_address: '10/0/5'
   - platform: knx
     name: 'Wohnzimmer'
@@ -24,7 +24,7 @@
     setpoint_shift_state_address: '10/0/1'
     target_temperature_address: '10/0/0'
     target_temperature_state_address: '10/0/2'
-    operation_mode_address: '10/0/3
+    operation_mode_address: '10/0/3'
     controller_status_state_address: '10/0/5'
   - platform: knx
     name: 'Schlafzimmer'
@@ -33,7 +33,7 @@
     setpoint_shift_state_address: '10/0/1'
     target_temperature_address: '10/0/0'
     target_temperature_state_address: '10/0/2'
-    operation_mode_address: '10/0/3
+    operation_mode_address: '10/0/3'
     controller_status_state_address: '10/0/5'
   - platform: knx
     name: 'Bad EG'
@@ -42,7 +42,7 @@
     setpoint_shift_state_address: '10/0/1'
     target_temperature_address: '10/0/0'
     target_temperature_state_address: '10/0/2'
-    operation_mode_address: '10/0/3
+    operation_mode_address: '10/0/3'
     controller_status_state_address: '10/0/5'
   - platform: knx
     name: 'Windfang WC'
@@ -51,7 +51,7 @@
     setpoint_shift_state_address: '10/0/1'
     target_temperature_address: '10/0/0'
     target_temperature_state_address: '10/0/2'
-    operation_mode_address: '10/0/3
+    operation_mode_address: '10/0/3'
     controller_status_state_address: '10/0/5'
   - platform: knx
     name: 'La'
@@ -60,7 +60,7 @@
     setpoint_shift_state_address: '10/0/1'
     target_temperature_address: '10/0/0'
     target_temperature_state_address: '10/0/2'
-    operation_mode_address: '10/0/3
+    operation_mode_address: '10/0/3'
     controller_status_state_address: '10/0/5'
   - platform: knx
     name: 'Nähzimmer'
@@ -69,7 +69,7 @@
     setpoint_shift_state_address: '10/0/1'
     target_temperature_address: '10/0/0'
     target_temperature_state_address: '10/0/2'
-    operation_mode_address: '10/0/3
+    operation_mode_address: '10/0/3'
     controller_status_state_address: '10/0/5'
   - platform: knx
     name: 'Le'
@@ -78,7 +78,7 @@
     setpoint_shift_state_address: '10/0/1'
     target_temperature_address: '10/0/0'
     target_temperature_state_address: '10/0/2'
-    operation_mode_address: '10/0/3
+    operation_mode_address: '10/0/3'
     controller_status_state_address: '10/0/5'
   - platform: knx
     name: 'Gästezimmer'
@@ -87,7 +87,7 @@
     setpoint_shift_state_address: '10/0/1'
     target_temperature_address: '10/0/0'
     target_temperature_state_address: '10/0/2'
-    operation_mode_address: '10/0/3
+    operation_mode_address: '10/0/3'
     controller_status_state_address: '10/0/5'
   - platform: knx
     name: 'Flur OG'
@@ -96,7 +96,7 @@
     setpoint_shift_state_address: '10/0/1'
     target_temperature_address: '10/0/0'
     target_temperature_state_address: '10/0/2'
-    operation_mode_address: '10/0/3
+    operation_mode_address: '10/0/3'
     controller_status_state_address: '10/0/5'
   - platform: knx
     name: 'Bad OG'
@@ -105,5 +105,5 @@
     setpoint_shift_state_address: '10/0/1'
     target_temperature_address: '10/0/0'
     target_temperature_state_address: '10/0/2'
-    operation_mode_address: '10/0/3
+    operation_mode_address: '10/0/3'
     controller_status_state_address: '10/0/5'
