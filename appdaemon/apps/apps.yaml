@@ -1276,19 +1276,135 @@ telegram_bot:
         q1: OK. Welcher Raum?
         q2: Gut. Welche Temperatur?
         steps:
-          Wohnzimmer:
-            device_name: heiz.wz
+          Küche:
+            device_name: climate.kuche
             device_type: heat
             values: 
+              - 18
               - 20
+              - 21
               - 22
+              - 23
               - 24
+              - 25
               - 26
           Esszimmer:
-            device_name: heiz.ez
+            device_name: climate.esszimmer
             device_type: heat
-            values:
-              - 19
+            values: 
+              - 18
+              - 20
               - 21
+              - 22
               - 23
+              - 24
               - 25
+              - 26
+          Wohnzimmer:
+            device_name: climate.wohnzimmer
+            device_type: heat
+            values: 
+              - 18
+              - 20
+              - 21
+              - 22
+              - 23
+              - 24
+              - 25
+              - 26
+          Schlafzimmer:
+            device_name: climate.schlafzimmer
+            device_type: heat
+            values: 
+              - 17
+              - 18
+              - 19
+              - 20
+              - 21
+              - 22
+              - 23
+              - 24
+          Bad EG:
+            device_name: climate.bad_eg
+            device_type: heat
+            values: 
+              - 18
+              - 21
+              - 22
+              - 23
+              - 24
+              - 25
+              - 26
+              - 27
+          La:
+            device_name: climate.la
+            device_type: heat
+            values: 
+              - 18
+              - 20
+              - 21
+              - 22
+              - 23
+              - 24
+              - 25
+              - 26
+          Nähzimmer:
+            device_name: climate.nahzimmer
+            device_type: heat
+            values: 
+              - 18
+              - 20
+              - 21
+              - 22
+              - 23
+              - 24
+              - 25
+              - 26
+          Le:
+            device_name: climate.le
+            device_type: heat
+            values: 
+              - 18
+              - 20
+              - 21
+              - 22
+              - 23
+              - 24
+              - 25
+              - 26
+          Gästezimmer:
+            device_name: climate.gastezimmer
+            device_type: heat
+            values: 
+              - 17
+              - 18
+              - 19
+              - 20
+              - 21
+              - 22
+              - 23
+              - 24
+          Flur OG:
+            device_name: climate.flur_og
+            device_type: heat
+            values: 
+              - 18
+              - 19
+              - 20
+              - 21
+              - 22
+              - 23
+              - 24
+              - 25
+          Bad OG:
+            device_name: climate.bad_og
+            device_type: heat
+            values: 
+              - 18
+              - 21
+              - 22
+              - 23
+              - 24
+              - 25
+              - 26
+              - 27
