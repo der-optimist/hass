@@ -37,10 +37,10 @@ class pizza_timer(hass.Hass):
             
     def remind_pizza(self, kwargs):
         self.log("Pizza ist fertig")
-        self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 10000, "icon": "http://rp3/pizza_kodi.jpg"})
+        #self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 10000, "icon": "http://rp3/pizza_kodi.jpg"})
         r = self.call_service("media_player/kodi_call_method", entity_id = "media_player.kodi", method = "Player.GetActivePlayers")
         self.log(r)
-        self.call_service("media_player/kodi_call_method", entity_id = "media_player.kodi", method = "Player.PlayPause", playerid = 0)
+        #self.call_service("media_player/kodi_call_method", entity_id = "media_player.kodi", method = "Player.PlayPause", playerid = 0)
         self.select_option("input_select.pizza_timer", "keine Pizza")
     
     def reset_pizza(self, kwargs):
