@@ -38,6 +38,12 @@ discovery:
 # Allows you to issue voice commands from the frontend in enabled browsers
 #conversation:
 
+mqtt:
+  broker: a0d7b954-mqtt
+  username: !secret mqtt_user_1
+  password: !secret mqtt_pw_1
+  client_id: home-assistant
+
 media_player:
   - platform: kodi
     host: kodi-wz
