@@ -27,6 +27,11 @@ updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   # include_used_components: true
 
+hacs: # HA custom store
+  token: !secret github_api_key
+  appdaemon: True
+  theme: True
+
 # Discover some devices automatically
 discovery:
 
