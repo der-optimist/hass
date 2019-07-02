@@ -1,0 +1,6 @@
+# Custom Component for reading values from KNX bus
+
+read:
+  description: Read a value from KNX bus
+  fields:
+    address: {description: Group address(es) to read from, example: 1/1/0}
