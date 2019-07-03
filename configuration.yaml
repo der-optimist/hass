@@ -151,10 +151,111 @@ cloud:
 
 # Inputs
 input_boolean:
-  dummy_light_switch:
-    name: Test-Lichtschalter
-  dummy_app_switch:
-    name: Test-Appschalter
+  # App Switches
+  app_switch_licht_kueche:
+    name: Automatik Licht Küche
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_esszimmer:
+    name: Automatik Licht Esszimmer
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_wohnzimmer:
+    name: Automatik Licht Wohnzimmer
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_schlafzimmer:
+    name: Automatik Licht Schlafzimmer
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_bad_eg:
+    name: Automatik Licht Bad EG
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_flur_eg:
+    name: Automatik Licht Flur EG
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_windfang:
+    name: Automatik Licht Windfang
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_wc:
+    name: Automatik Licht WC
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_la:
+    name: Automatik Licht La
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_naehzimmer:
+    name: Automatik Licht Nähzimmer
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_le:
+    name: Automatik Licht Le
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_gaestezimmer:
+    name: Automatik Licht Gästezimmer
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_flur_og:
+    name: Automatik Licht Flur OG
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_bad_og:
+    name: Automatik Licht Bad OG
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_treppe_og:
+    name: Automatik Licht Treppe OG
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_licht_treppe_keller:
+    name: Automatik Licht Kellertreppe
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_jalousie_kueche:
+    name: Automatik Jalousie Küche
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_jalousie_esszimmer:
+    name: Automatik Jalousie Esszimmer
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_jalousie_wohnzimmer:
+    name: Automatik Jalousie Wohnzimmer
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_jalousie_schlafzimmer:
+    name: Automatik Jalousie Schlafzimmer
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_jalousie_la:
+    name: Automatik Jalousie La
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_jalousie_naehzimmer:
+    name: Automatik Jalousie Nähzimmer
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_jalousie_le:
+    name: Automatik Jalousie Le
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_jalousie_gaestezimmer:
+    name: Automatik Jalousie Gästezimmer
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_jalousie_bad_og:
+    name: Automatik Jalousie Bad OG
+    icon: mdi:auto-fix
+    initial: off
+  app_switch_log_events:
+    name: Logging HA events in AD
+    icon: mdi:note-text
+    initial: off
 input_select:
   pizza_timer:
     name: Pizza Timer
