@@ -150,6 +150,11 @@ cloud:
 #group: !include groups.yaml
 
 # Inputs
+input_boolean:
+  dummy_light_switch:
+    name: Test-Lichtschalter
+  dummy_app_switch:
+    name: Test-Appschalter
 input_select:
   pizza_timer:
     name: Pizza Timer
