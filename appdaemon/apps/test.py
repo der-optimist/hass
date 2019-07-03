@@ -13,3 +13,5 @@ class test(hass.Hass):
     
     def state_change(self, entity, attributes, old, new, kwargs):
         self.log("Schalter betätigt: {}".format(new))
+        self.fire_event("custom_notify", message="Test-Schalter: {}".format(new), target="telegram_jo")
+
