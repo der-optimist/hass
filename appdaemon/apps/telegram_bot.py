@@ -19,8 +19,7 @@ class telegram_bot(hass.Hass):
         # Extract Keywords for Conversations
         self.conversations = self.args["conversations"]
         self.log(self.conversations)
-        self.conversations = [element.replace('name_la', self.args["name_la"]) for element in self.conversations]
-        self.conversations = [element.replace('name_le', self.args["name_le"]) for element in self.conversations]
+        self.conversations = self.replace_secrets(self.conversations)
         self.log(self.conversations)
         self.categories_threesteps = []
         self.categories_twosteps = []
@@ -419,3 +418,24 @@ class telegram_bot(hass.Hass):
                 list_row.append(button)
             button_list.append(list_row)
         return button_list
+    
+    def replace_secrets(self, obj, self.convert):
+        """
+        Recursively goes through the dictionary obj and replaces keys with the convert function.
+        """
+        if isinstance(obj, (str, int, float)):
+            return obj
+        if isinstance(obj, dict):
+            new = obj.__class__()
+            for k, v in obj.items():
+                new[self.convert(k)] = self.replace_secrets(v, self.convert)
+        elif isinstance(obj, (list, set, tuple)):
+            new = obj.__class__(self.replace_secrets(v, self.convert) for v in obj)
+        else:
+            return obj
+        return new
+
+    def convert(self, text):
+        text.replace('name_la', self.args["name_la"])
+        text.replace('name_la', self.args["name_la"])
+        return text
