@@ -453,7 +453,7 @@ telegram_bot:
                 - An
                 - Aus
           Kinder:
-            Panels La:
+            Panels !secret name_la:
               device_name: light.panels_la
               device_type: light_dim
               values: 
