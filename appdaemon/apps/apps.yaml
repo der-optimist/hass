@@ -20,6 +20,7 @@ garbage:
 log_events:
   module: log_events
   class: log_events
+  constrain_input_boolean: input_boolean.app_switch_log_events
 calendar_and_reminders:
   module: calendar_and_reminders
   class: calendar_and_reminders
@@ -35,10 +36,6 @@ weather_and_astro:
 pizza_timer:
   module: pizza_timer
   class: pizza_timer
-test:
-  module: test
-  class: test
-  constrain_input_boolean: input_boolean.dummy_app_switch
 # ----------------------
 telegram_bot:
   module: telegram_bot
