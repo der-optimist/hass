@@ -428,9 +428,9 @@ class telegram_bot(hass.Hass):
         if isinstance(obj, dict):
             new = obj.__class__()
             for k, v in obj.items():
-                new[convert(k)] = replace_secrets(v, convert)
+                new[self.convert(k)] = self.replace_secrets(v, self.convert)
         elif isinstance(obj, (list, set, tuple)):
-            new = obj.__class__(replace_secrets(v, convert) for v in obj)
+            new = obj.__class__(self.replace_secrets(v, self.convert) for v in obj)
         else:
             return obj
         return new
