@@ -19,7 +19,7 @@ class telegram_bot(hass.Hass):
         # Extract Keywords for Conversations
         self.conversations = self.args["conversations"]
         self.log(self.conversations)
-        self.conversations = self.replace_secrets(self, conversations)
+        self.conversations = self.replace_secrets(self, self.conversations)
         self.log(self.conversations)
         self.categories_threesteps = []
         self.categories_twosteps = []
@@ -428,9 +428,9 @@ class telegram_bot(hass.Hass):
         if isinstance(obj, dict):
             new = obj.__class__()
             for k, v in obj.items():
-                new[self.convert(k)] = self.replace_secrets(v, self.convert)
+                new[convert(k)] = replace_secrets(v, convert)
         elif isinstance(obj, (list, set, tuple)):
-            new = obj.__class__(self.replace_secrets(v, self.convert) for v in obj)
+            new = obj.__class__(replace_secrets(v, convert) for v in obj)
         else:
             return obj
         return new
