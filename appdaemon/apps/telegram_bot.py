@@ -19,7 +19,7 @@ class telegram_bot(hass.Hass):
         # Extract Keywords for Conversations
         self.conversations = self.args["conversations"]
         self.log(self.conversations)
-        self.conversations = self.replace_secrets(self.conversations)
+        self.conversations = self.replace_secrets(self, self.conversations)
         self.log(self.conversations)
         self.categories_threesteps = []
         self.categories_twosteps = []
