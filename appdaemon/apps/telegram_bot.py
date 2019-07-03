@@ -21,6 +21,8 @@ class telegram_bot(hass.Hass):
         self.log(self.conversations)
         self.conversations = self.replace_secrets(self.conversations, self.convert)
         self.log(self.conversations)
+        self.log(self.args["name_la"])
+        self.log(self.args["name_le"])
         self.categories_threesteps = []
         self.categories_twosteps = []
         for category in self.conversations["threesteps"].keys():
@@ -436,8 +438,8 @@ class telegram_bot(hass.Hass):
         return new
 
     def convert(self, text):
-        self.log(text)
+        self.log(type(text))
         text.replace('name_la', self.args["name_la"])
-        text.replace('name_la', self.args["name_la"])
+        text.replace('name_le', self.args["name_le"])
         self.log(text)
         return text
