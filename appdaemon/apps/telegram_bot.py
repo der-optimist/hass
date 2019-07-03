@@ -419,7 +419,7 @@ class telegram_bot(hass.Hass):
             button_list.append(list_row)
         return button_list
     
-    def replace_secrets(self, obj, self.convert):
+    def replace_secrets(self, obj, convert):
         """
         Recursively goes through the dictionary obj and replaces keys with the convert function.
         """
