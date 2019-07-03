@@ -434,7 +434,6 @@ class telegram_bot(hass.Hass):
         return new
 
     def convert(self, text):
-        text = text.replace('name_la', self.args["name_la"])
-        text = text.replace('name_le', self.args["name_le"])
-        self.log(text)
+        for secret in self.args["secrets"].keys():
+            text = text.replace(secret, self.args["secrets"][secret])
         return text
