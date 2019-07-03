@@ -44,8 +44,8 @@ telegram_bot:
     - !secret telegram_id_1
     - !secret telegram_id_2
   secrets:
-    - name_la: !secret name_la
-    - name_le: !secret name_le
+    name_la: !secret name_la
+    name_le: !secret name_le
   conversations:
     threesteps:
       Licht:
