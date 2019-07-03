@@ -43,6 +43,8 @@ telegram_bot:
   allowed_user_ids:
     - !secret telegram_id_1
     - !secret telegram_id_2
+  name_la: !secret name_la
+  name_le: !secret name_le
   conversations:
     threesteps:
       Licht:
@@ -453,7 +455,7 @@ telegram_bot:
                 - An
                 - Aus
           Kinder:
-            Panels !secret name_la:
+            Panels name_la:
               device_name: light.panels_la
               device_type: light_dim
               values: 
@@ -469,7 +471,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Wandwürfel La:
+            Wandwürfel name_la:
               device_name: light.wandwurfel_la
               device_type: light_dim
               values: 
@@ -485,13 +487,13 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Stehlampe La:
+            Stehlampe name_la:
               device_name: light.stehlampe_la
               device_type: light_switch
               values: 
                 - An
                 - Aus
-            Panels Le:
+            Panels name_le:
               device_name: light.panels_le
               device_type: light_dim
               values: 
@@ -507,7 +509,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Wandwürfel Le:
+            Wandwürfel name_le:
               device_name: light.wandwurfel_le
               device_type: light_dim
               values: 
@@ -523,7 +525,7 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Stehlampe Le:
+            Stehlampe name_le:
               device_name: light.stehlampe_le
               device_type: light_switch
               values: 
@@ -915,7 +917,7 @@ telegram_bot:
               device_type: jal
               values: 
                 - blöde Frage
-          La Bodentiefes:
+          name_la Bodentiefes:
             Runter:
               device_name: cover.jalousie_la_bodentiefes
               device_type: jal
@@ -966,7 +968,7 @@ telegram_bot:
               device_type: jal
               values: 
                 - blöde Frage
-          La Lichtband:
+          name_la Lichtband:
             Runter:
               device_name: cover.jalousie_la_lichtband
               device_type: jal
@@ -1068,7 +1070,7 @@ telegram_bot:
               device_type: jal
               values: 
                 - blöde Frage
-          Le Lichtband:
+          name_le Lichtband:
             Runter:
               device_name: cover.jalousie_le_lichtband
               device_type: jal
@@ -1119,7 +1121,7 @@ telegram_bot:
               device_type: jal
               values: 
                 - blöde Frage
-          Le Bodentiefes:
+          name_le Bodentiefes:
             Runter:
               device_name: cover.jalousie_le_bodentiefes
               device_type: jal
@@ -1349,7 +1351,7 @@ telegram_bot:
               - 23
               - 24
               - 25
-          La:
+          name_la:
             device_name: climate.la
             device_type: heat
             values: 
@@ -1373,7 +1375,7 @@ telegram_bot:
               - 24
               - 25
               - 26
-          Le:
+          name_le:
             device_name: climate.le
             device_type: heat
             values: 
