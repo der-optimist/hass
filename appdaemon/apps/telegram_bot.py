@@ -18,6 +18,8 @@ class telegram_bot(hass.Hass):
         
         # Extract Keywords for Conversations
         self.conversations = self.args["conversations"]
+        self.conversations = [element.replace('name_la', self.args["name_la"]) for element in self.conversations]
+        self.conversations = [element.replace('name_le', self.args["name_le"]) for element in self.conversations]
         self.categories_threesteps = []
         self.categories_twosteps = []
         for category in self.conversations["threesteps"].keys():
