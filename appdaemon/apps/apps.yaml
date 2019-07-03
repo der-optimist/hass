@@ -35,6 +35,10 @@ weather_and_astro:
 pizza_timer:
   module: pizza_timer
   class: pizza_timer
+test:
+  module: test
+  class: test
+  constrain_input_boolean = input_boolean.dummy_app_switch
 # ----------------------
 telegram_bot:
   module: telegram_bot
