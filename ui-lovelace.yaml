@@ -197,3 +197,10 @@ views:
                     show_header_toggle: false
                     entities:
                       - entity: sensor.location_jo
+  - title: Test
+    path: test
+    cards:
+      - type: entities
+        entities:
+          - input_boolean.dummy_app_switch
+          - input_boolean.dummy_light_switch
