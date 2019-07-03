@@ -15,4 +15,4 @@ appdaemon:
       type: hass
       ha_url: http://hassio/homeassistant
       appdaemon_startup_conditions:
-        delay: 60
+        delay: 20
