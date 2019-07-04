@@ -12,9 +12,9 @@ homeassistant:
 zone: !include zones.yaml
 
 frontend: !include frontend.yaml
-http:
-  ssl_certificate: certificate.pem
-  ssl_key: privkey.pem
+#http:
+#  ssl_certificate: certificate.pem
+#  ssl_key: privkey.pem
 
 api:
 
