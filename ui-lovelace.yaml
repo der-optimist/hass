@@ -13,6 +13,8 @@ resources:
     type: js
   - url: /local/custom_ui/layout-card/layout-card.js?v=0.1.0
     type: js
+  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+    type: module
 
 title: Lieblingshaus
 views:
