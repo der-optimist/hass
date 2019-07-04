@@ -17,6 +17,13 @@ resources:
     type: module
 
 title: Lieblingshaus
+cch:
+  options: clock
+  clock_format: 24
+  clock_date: true
+  date_locale: de-DE
+  sidebar_closed: true
+  swipe: true
 views:
   - title: Home (mobil)
     path: home_mobile
