@@ -152,6 +152,8 @@ class weather_and_astro(hass.Hass):
             list_of_active_sensors = []
             for warning in data_sorted:
                 event = warning[5]
+                if event == "UV-INDEX":
+                    event = "UV-Warnung"
                 start_end_readable = warning[3] + " bis " + warning[4]
                 icon = Icons_dict.get(warning[0],"/local/icons/reminders/exclamation_mark_blink.svg")
                 attributes = {"friendly_name": event, "entity_picture": icon, "Dauer": start_end_readable, "Beschreibung": warning[9], "Gefahr (0-4)": warning[0]}
@@ -162,7 +164,10 @@ class weather_and_astro(hass.Hass):
                         if self.just_started: # prevent repeated notifications after a restart
                             self.log("Warnung gefunden, aber just-started flag erkannt. Sende deshalb keine Benachrichtigung")
                         else:
-                            self.fire_event("custom_notify", message="Warnung - {}:\n{}\nGefahr (0-4): {}".format(start_end_readable,warning[9],warning[0]), target="telegram_jo")
+                            if event == "UV-Warnung":
+                                self.fire_event("custom_notify", message="Warnung - {}:\n{}\nGefahr (0-4): {}".format(start_end_readable,"Hohe UV-Werte",warning[0]), target="telegram_jo")
+                            else:
+                                self.fire_event("custom_notify", message="Warnung - {}:\n{}\nGefahr (0-4): {}".format(start_end_readable,warning[9],warning[0]), target="telegram_jo")
                 #else:
                     #self.log("Sensor {} ist wohl nicht neu".format(sensor_name))
                 self.set_state(sensor_name, state = start_end_readable, attributes = attributes)
