@@ -5,7 +5,7 @@ cards:
   - type: vertical-stack
     cards:
       - type: entities
-        title: "Küche"
+        title: "Licht Küche"
         show_header_toggle: true
         entities:
         - type: custom:slider-entity-row
@@ -25,7 +25,7 @@ cards:
           name: Sockel
           toggle: true
       - type: entities
-        title: "Jalousie"
+        title: "Jalousie Küche"
         show_header_toggle: false
         entities:
         - entity: cover.jalousie_kuche
@@ -33,15 +33,16 @@ cards:
         - type: custom:slider-entity-row
           entity: cover.jalousie_kuche
           full_row: true
-      - type: 'custom:simple-thermostat'
-        entity: climate.kuche
-        sensors:
-          - entity: sensor.temp_kuche_pm
-            name: Temp. PM
+      #- type: 'custom:simple-thermostat'
+      #  entity: climate.kuche
+      #  name: Heizung Küche
+      #  sensors:
+      #    - entity: sensor.temp_kuche_pm
+      #      name: Temp. PM
   - type: vertical-stack
     cards:
       - type: entities
-        title: "Esszimmer"
+        title: "Licht Esszimmer"
         show_header_toggle: true
         entities:
         - type: custom:slider-entity-row
@@ -69,7 +70,7 @@ cards:
           name: Wandleuchten warm
           toggle: true
       - type: entities
-        title: "Jalousie"
+        title: "Jalousie Esszimmer"
         show_header_toggle: false
         entities:
         - entity: cover.jalousie_hst
@@ -79,13 +80,14 @@ cards:
           full_row: true
       - type: 'custom:simple-thermostat'
         entity: climate.esszimmer
+        name: Heizung Esszimmer
         sensors:
           - entity: sensor.temp_esszimmer_pm
             name: Temp. PM
   - type: vertical-stack
     cards:
       - type: entities
-        title: "Wohnzimmer"
+        title: "Licht Wohnzimmer"
         show_header_toggle: true
         entities:
         - type: custom:slider-entity-row
@@ -99,7 +101,7 @@ cards:
         - entity: switch.wz_steckdose
           name: Steckdose
       - type: entities
-        title: "Jalousie"
+        title: "Jalousie Wohnzimmer"
         show_header_toggle: false
         entities:
         - entity: cover.jalousie_wz_bodentiefes
@@ -112,8 +114,9 @@ cards:
         - type: custom:slider-entity-row
           entity: cover.jalousie_wz_couch
           full_row: true
-      - type: 'custom:simple-thermostat'
-        entity: climate.wohnzimmer
-        sensors:
-          - entity: sensor.temp_wohnzimmer_pm
-            name: Temp. PM
+      #- type: 'custom:simple-thermostat'
+      #  entity: climate.wohnzimmer
+      #  name: Heizung Wohnzimmer
+      #  sensors:
+      #    - entity: sensor.temp_wohnzimmer_pm
+      #      name: Temp. PM
