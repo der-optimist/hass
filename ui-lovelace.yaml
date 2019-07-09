@@ -241,7 +241,7 @@ views:
               entity: cover.jalousie_kuche
               full_row: true
           - type: 'custom:simple-thermostat'
-            entity: climate.my_room
+            entity: climate.kuche
             sensors:
               - entity: sensor.temp_kuche_pm
                 name: Temp. PM
