@@ -1,0 +1,84 @@
+title: Home (mobil)
+path: home_mobile
+icon: mdi:cellphone
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:bignumber-card
+        entity: sensor.time
+        scale: 22px
+        title: "Uhr"
+      - type: custom:bignumber-card
+        entity: sensor.temp_owm
+        scale: 22px
+        title: Draußen
+      - type: custom:bignumber-card
+        entity: sensor.t_wz_ist_oh
+        scale: 22px
+        title: Wohnzimmer
+  - type: picture-elements
+    image: /local/meteograms/meteogram.png
+    elements:
+      - type: image
+        entity: camera.meteogram
+        camera_image: camera.meteogram
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+          height: 100%
+  - type: custom:weather-card
+    entity: weather.dark_sky
+    icons: '/local/icons/weather_icons/static/'
+  - type: custom:monster-card
+    show_empty: false
+    card:
+      type: entities
+      title: "Wetterwarnungen"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "sensor.dwd_warn*"
+      exclude:
+        - state: "off"
+  - type: custom:monster-card
+    show_empty: false
+    card:
+      type: entities
+      title: "zu erledigen"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "switch.reminder*"
+          state: "on"
+  - type: custom:monster-card
+    show_empty: false
+    card:
+      type: entities
+      title: "Geburtstage"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "sensor.birthday*"
+      exclude:
+        - state: "off"
+  - type: entities
+    entities:
+      - entity: sensor.restmuelltonne_anzeige
+        name: Restmüll
+      - entity: sensor.biotonne_anzeige
+        name: Biotonne
+      - entity: sensor.papiertonne_anzeige
+        name: Papiertonne
+      - entity: sensor.raweg_anzeige
+        name: RaWeg
+  - type: entities
+    title: Pizza Timer
+    show_header_toggle: false
+    entities:
+      - input_select.pizza_timer
+  - type: entities
+    title: "Wer ist wo..."
+    show_header_toggle: false
+    entities:
+      - entity: sensor.location_jo
