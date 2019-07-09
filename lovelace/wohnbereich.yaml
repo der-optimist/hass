@@ -1,0 +1,119 @@
+title: Wohnbereich
+path: wohnbereich
+icon: mdi:food-fork-drink
+cards:
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Küche"
+        show_header_toggle: true
+        entities:
+        - type: custom:slider-entity-row
+          entity: light.panels_kuche
+          name: Panels Küche
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.panels_bar
+          name: Panels Bar
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.arbeitsplatte
+          name: Arbeitsplatte
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.sockelbeleuchtung
+          name: Sockel
+          toggle: true
+      - type: entities
+        title: "Jalousie"
+        show_header_toggle: false
+        entities:
+        - entity: cover.jalousie_kuche
+          name: Küche
+        - type: custom:slider-entity-row
+          entity: cover.jalousie_kuche
+          full_row: true
+      - type: 'custom:simple-thermostat'
+        entity: climate.kuche
+        sensors:
+          - entity: sensor.temp_kuche_pm
+            name: Temp. PM
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Esszimmer"
+        show_header_toggle: true
+        entities:
+        - type: custom:slider-entity-row
+          entity: light.panels_esszimmer
+          name: Panels Esszimmer
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.panels_bar
+          name: Panels Bar
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.bar_beleuchtung
+          name: Barbeleuchtung
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.schrankbeleuchtung_esszimmer
+          name: Hängeschränke
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.wandleuchten_esszimmer_hell
+          name: Wandleuchten hell
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.wandleuchten_esszimmer_gemutlich
+          name: Wandleuchten warm
+          toggle: true
+      - type: entities
+        title: "Jalousie"
+        show_header_toggle: false
+        entities:
+        - entity: cover.jalousie_hst
+          name: Esszimmer
+        - type: custom:slider-entity-row
+          entity: cover.jalousie_hst
+          full_row: true
+      - type: 'custom:simple-thermostat'
+        entity: climate.esszimmer
+        sensors:
+          - entity: sensor.temp_esszimmer_pm
+            name: Temp. PM
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Wohnzimmer"
+        show_header_toggle: true
+        entities:
+        - type: custom:slider-entity-row
+          entity: light.panels_wohnzimmer
+          name: Panels Wohnzimmer
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.schrankbeleuchtung_wohnzimmer
+          name: Hängeschränke
+          toggle: true
+        - entity: switch.wz_steckdose
+          name: Steckdose
+      - type: entities
+        title: "Jalousie"
+        show_header_toggle: false
+        entities:
+        - entity: cover.jalousie_wz_bodentiefes
+          name: Bodentiefes
+        - type: custom:slider-entity-row
+          entity: cover.jalousie_wz_bodentiefes
+          full_row: true
+        - entity: cover.jalousie_wz_couch
+          name: Couch
+        - type: custom:slider-entity-row
+          entity: cover.jalousie_wz_couch
+          full_row: true
+      - type: 'custom:simple-thermostat'
+        entity: climate.wohnzimmer
+        sensors:
+          - entity: sensor.temp_wohnzimmer_pm
+            name: Temp. PM
