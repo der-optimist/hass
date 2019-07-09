@@ -1,6 +1,4 @@
 resources:
-  - url: /local/custom_ui/flex-table-card/flex-table-card.js
-    type: js
   - url: /local/custom_ui/weather-card/weather-card-hours.js
     type: module
   - url: /local/custom_ui/bignumber-card/bignumber-card.js?v=1.0.0
@@ -15,6 +13,10 @@ resources:
     type: js
   - url: /community_plugin/compact-custom-header/compact-custom-header.js
     type: module
+  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+    type: module 
+  - url: /community_plugin/simple-thermostat/simple-thermostat.js
+    type: module    
 
 title: Lieblingshaus
 cch:
@@ -203,10 +205,43 @@ views:
                     show_header_toggle: false
                     entities:
                       - entity: sensor.location_jo
-  - title: Test
-    path: test
+  - title: Wohnbereich
+    path: wohnbereich
+    icon: mdi:food-fork-drink
     cards:
-      - type: entities
-        entities:
-          - input_boolean.dummy_app_switch
-          - input_boolean.dummy_light_switch
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: "Küche"
+            show_header_toggle: true
+            entities:
+            - type: custom:slider-entity-row
+              entity: light.panels_kuche
+              name: Panels Küche
+              toggle: true
+            - type: custom:slider-entity-row
+              entity: light.panels_bar
+              name: Panels Bar
+              toggle: true
+            - type: custom:slider-entity-row
+              entity: light.arbeitsplatte
+              name: Arbeitsplatte
+              toggle: true
+            - type: custom:slider-entity-row
+              entity: light.sockelbeleuchtung
+              name: Sockel
+              toggle: true
+          - type: entities
+            title: "Jalousie"
+            show_header_toggle: false
+            entities:
+            - entity: cover.jalousie_kuche
+              name: Küche
+            - type: custom:slider-entity-row
+              entity: cover.jalousie_kuche
+              full_row: true
+          - type: 'custom:simple-thermostat'
+            entity: climate.my_room
+            sensors:
+              - entity: sensor.temp_kuche_pm
+                name: Temp. PM
