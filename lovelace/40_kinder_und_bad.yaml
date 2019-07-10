@@ -9,27 +9,70 @@ cards:
         show_header_toggle: true
         entities:
         - type: custom:slider-entity-row
-          entity: light.panels_schlafzimmer
-          name: Panels Schlafzimmer
+          entity: light.panels_la
+          name: Panels
           toggle: true
         - type: custom:slider-entity-row
-          entity: light.bettbeleuchtung
-          name: Bettbeleuchtung
+          entity: light.wandwurfel_la
+          name: Wandwürfel
           toggle: true
+        - entity: light.stehlampe_la
+          name: Stehlampe
       - type: entities
-        title: "Jalousie Schlafzimmer"
+        title: "Jalousie"
         show_header_toggle: false
         entities:
-        - entity: cover.jalousie_schlafzimmer
-          name: Schlafzimmer
+        - entity: cover.jalousie_la_bodentiefes
+          name: Bodentiefes
         - type: custom:slider-entity-row
-          entity: cover.jalousie_schlafzimmer
+          entity: cover.jalousie_la_bodentiefes
+          full_row: true
+        - entity: cover.jalousie_la_lichtband
+          name: Bodentiefes
+        - type: custom:slider-entity-row
+          entity: cover.jalousie_la_lichtband
           full_row: true
       - type: 'custom:simple-thermostat'
-        entity: climate.schlafzimmer
-        name: Heizung Schlafzimmer
+        entity: climate.la
+        name: Heizung
         sensors:
-          - entity: sensor.temp_schlafzimmer_pm
+          - entity: sensor.temp_la_pm
+            name: Temp. PM
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: !secret name_le
+        show_header_toggle: true
+        entities:
+        - type: custom:slider-entity-row
+          entity: light.panels_le
+          name: Panels
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.wandwurfel_le
+          name: Wandwürfel
+          toggle: true
+        - entity: light.stehlampe_le
+          name: Stehlampe
+      - type: entities
+        title: "Jalousie"
+        show_header_toggle: false
+        entities:
+        - entity: cover.jalousie_le_bodentiefes
+          name: Bodentiefes
+        - type: custom:slider-entity-row
+          entity: cover.jalousie_le_bodentiefes
+          full_row: true
+        - entity: cover.jalousie_le_lichtband
+          name: Bodentiefes
+        - type: custom:slider-entity-row
+          entity: cover.jalousie_le_lichtband
+          full_row: true
+      - type: 'custom:simple-thermostat'
+        entity: climate.le
+        name: Heizung
+        sensors:
+          - entity: sensor.temp_le_pm
             name: Temp. PM
   - type: vertical-stack
     cards:
@@ -38,14 +81,14 @@ cards:
         show_header_toggle: true
         entities:
         - type: custom:slider-entity-row
-          entity: light.panels_bad_eg
+          entity: light.panels_bad_og
           name: Panels Bad
           toggle: true
-        - entity: light.spiegel_bad_eg
+        - entity: light.spiegel_bad_og
           name: Spiegel
       - type: 'custom:simple-thermostat'
-        entity: climate.bad_eg
+        entity: climate.bad_og
         name: Heizung Bad
         sensors:
-          - entity: sensor.temp_bad_eg_pm
+          - entity: sensor.temp_bad_og_pm
             name: Temp. PM
