@@ -1,0 +1,51 @@
+title: Kinder und Bad
+path: kinder_und_bad
+icon: mdi:human-female-female
+cards:
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: Licht !secret name_la
+        show_header_toggle: true
+        entities:
+        - type: custom:slider-entity-row
+          entity: light.panels_schlafzimmer
+          name: Panels Schlafzimmer
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.bettbeleuchtung
+          name: Bettbeleuchtung
+          toggle: true
+      - type: entities
+        title: "Jalousie Schlafzimmer"
+        show_header_toggle: false
+        entities:
+        - entity: cover.jalousie_schlafzimmer
+          name: Schlafzimmer
+        - type: custom:slider-entity-row
+          entity: cover.jalousie_schlafzimmer
+          full_row: true
+      - type: 'custom:simple-thermostat'
+        entity: climate.schlafzimmer
+        name: Heizung Schlafzimmer
+        sensors:
+          - entity: sensor.temp_schlafzimmer_pm
+            name: Temp. PM
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Licht Bad"
+        show_header_toggle: true
+        entities:
+        - type: custom:slider-entity-row
+          entity: light.panels_bad_eg
+          name: Panels Bad
+          toggle: true
+        - entity: light.spiegel_bad_eg
+          name: Spiegel
+      - type: 'custom:simple-thermostat'
+        entity: climate.bad_eg
+        name: Heizung Bad
+        sensors:
+          - entity: sensor.temp_bad_eg_pm
+            name: Temp. PM
