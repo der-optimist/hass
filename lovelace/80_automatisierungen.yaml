@@ -64,5 +64,5 @@ cards:
     title: Sonstiges
     show_header_toggle: true
     entities:
-      - input_boolean.app_switch_log_events
+      - entity: input_boolean.app_switch_log_events
         name: Log Events in AD
