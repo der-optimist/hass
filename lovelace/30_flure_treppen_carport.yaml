@@ -18,7 +18,7 @@ cards:
           toggle: true
         - type: custom:slider-entity-row
           entity: light.panels_treppe_og
-          name: Panels Treppe OG
+          name: Panels Treppe
           toggle: true
         - type: custom:slider-entity-row
           entity: light.stufenbeleuchtung_treppe
@@ -64,7 +64,7 @@ cards:
         entities:
         - type: custom:slider-entity-row
           entity: light.led_streifen_carport
-          name: Streifen Carport/Eingang
+          name: Streifen Eingang
           toggle: true
         - entity: light.spots_carport
           name: Spots Carport
