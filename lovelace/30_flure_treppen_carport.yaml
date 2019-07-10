@@ -1,0 +1,72 @@
+title: Flur und Co
+path: flur_und_co
+icon: mdi:stairs
+cards:
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Licht Flure und Treppen"
+        show_header_toggle: true
+        entities:
+        - type: custom:slider-entity-row
+          entity: light.panels_flur_eg
+          name: Panels Flur EG
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.panels_flur_og
+          name: Panels Flur OG
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.panels_treppe_og
+          name: Panels Treppe OG
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.stufenbeleuchtung_treppe
+          name: Treppenstufen
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.treppe_keller
+          name: Kellertreppe
+          toggle: true
+      - type: 'custom:simple-thermostat'
+        entity: climate.flur_og
+        name: Heizung Flur OG
+        sensors:
+          - entity: sensor.temp_flur_og_pm
+            name: Temp. PM
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Licht Windfang/WC"
+        show_header_toggle: true
+        entities:
+        - type: custom:slider-entity-row
+          entity: light.panels_windfang
+          name: Panels Windfang
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.panels_wc
+          name: Panels WC
+          toggle: true
+        - entity: light.spiegel_wc
+          name: Spiegel WC
+      - type: 'custom:simple-thermostat'
+        entity: climate.windfang_wc
+        name: Heizung Windfang/WC
+        sensors:
+          - entity: sensor.temp_wc_pm
+            name: Temp. PM
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Licht Carport/Eingang"
+        show_header_toggle: true
+        entities:
+        - type: custom:slider-entity-row
+          entity: light.led_streifen_carport
+          name: Streifen Carport/Eingang
+          toggle: true
+        - entity: light.spots_carport
+          name: Spots Carport
+        - entity: light.abstellraum_carport
+          name: Abstellraum
