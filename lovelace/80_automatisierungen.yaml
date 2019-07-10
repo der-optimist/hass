@@ -42,24 +42,24 @@ cards:
     title: Jalousien
     show_header_toggle: true
     entities:
-      - input_boolean.app_switch_jalousie_kueche
+      - entity: input_boolean.app_switch_jalousie_kueche
         name: Küche
-      - input_boolean.app_switch_jalousie_esszimmer
-        name: Küche
-      - input_boolean.app_switch_jalousie_wohnzimmer
-        name: Küche
-      - input_boolean.app_switch_jalousie_schlafzimmer
-        name: Küche
-      - input_boolean.app_switch_jalousie_la
-        name: Küche
-      - input_boolean.app_switch_jalousie_naehzimmer
-        name: Küche
-      - input_boolean.app_switch_jalousie_le
-        name: Küche
-      - input_boolean.app_switch_jalousie_gaestezimmer
-        name: Küche
-      - input_boolean.app_switch_jalousie_bad_og
-        name: Küche
+      - entity: input_boolean.app_switch_jalousie_esszimmer
+        name: Esszimmer
+      - entity: input_boolean.app_switch_jalousie_wohnzimmer
+        name: Wohnzimmer
+      - entity: input_boolean.app_switch_jalousie_schlafzimmer
+        name: Schlafzimmer
+      - entity: input_boolean.app_switch_jalousie_la
+        name: !secret name_la
+      - entity: input_boolean.app_switch_jalousie_naehzimmer
+        name: Nähzimmer
+      - entity: input_boolean.app_switch_jalousie_le
+        name: !secret name_le
+      - entity: input_boolean.app_switch_jalousie_gaestezimmer
+        name: Gästezimmer
+      - entity: input_boolean.app_switch_jalousie_bad_og
+        name: Bad OG
   - type: entities
     title: Sonstiges
     show_header_toggle: true
