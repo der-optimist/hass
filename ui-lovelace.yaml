@@ -30,3 +30,6 @@ views:
   - !include lovelace/20_eltern.yaml
   - !include lovelace/30_flure_treppen_carport.yaml
   - !include lovelace/40_kinder_und_bad.yaml
+  - !include lovelace/50_nz_gz.yaml
+  - !include lovelace/60_keller.yaml
+  - !include lovelace/80_automatisierungen.yaml
