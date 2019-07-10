@@ -1,0 +1,68 @@
+title: Automatisierungen
+path: automatisierungen
+icon: mdi:auto-fix
+cards:
+  - type: entities
+    title: Licht
+    show_header_toggle: true
+    entities:
+      - entity: input_boolean.app_switch_licht_kueche
+        name: Küche
+      - entity: input_boolean.app_switch_licht_esszimmer
+        name: Esszimmer
+      - entity: input_boolean.app_switch_licht_wohnzimmer
+        name: Wohnzimmer
+      - entity: input_boolean.app_switch_licht_schlafzimmer
+        name: Schlafzimmer
+      - entity: input_boolean.app_switch_licht_bad_eg
+        name: Bad EG
+      - entity: input_boolean.app_switch_licht_flur_eg
+        name: Flur EG
+      - entity: input_boolean.app_switch_licht_windfang
+        name: Windfang
+      - entity: input_boolean.app_switch_licht_wc
+        name: WC
+      - entity: input_boolean.app_switch_licht_la
+        name: !secret name_la
+      - entity: input_boolean.app_switch_licht_naehzimmer
+        name: Nähzimmer
+      - entity: input_boolean.app_switch_licht_le
+        name: !secret name_le
+      - entity: input_boolean.app_switch_licht_gaestezimmer
+        name: Gästezimmer
+      - entity: input_boolean.app_switch_licht_flur_og
+        name: Flur OG
+      - entity: input_boolean.app_switch_licht_bad_og
+        name: Bad OG
+      - entity: input_boolean.app_switch_licht_treppe_og
+        name: Treppe OG
+      - entity: input_boolean.app_switch_licht_treppe_keller
+        name: Kellertreppe
+  - type: entities
+    title: Jalousien
+    show_header_toggle: true
+    entities:
+      - input_boolean.app_switch_jalousie_kueche
+        name: Küche
+      - input_boolean.app_switch_jalousie_esszimmer
+        name: Küche
+      - input_boolean.app_switch_jalousie_wohnzimmer
+        name: Küche
+      - input_boolean.app_switch_jalousie_schlafzimmer
+        name: Küche
+      - input_boolean.app_switch_jalousie_la
+        name: Küche
+      - input_boolean.app_switch_jalousie_naehzimmer
+        name: Küche
+      - input_boolean.app_switch_jalousie_le
+        name: Küche
+      - input_boolean.app_switch_jalousie_gaestezimmer
+        name: Küche
+      - input_boolean.app_switch_jalousie_bad_og
+        name: Küche
+  - type: entities
+    title: Sonstiges
+    show_header_toggle: true
+    entities:
+      - input_boolean.app_switch_log_events
+        name: Log Events in AD
