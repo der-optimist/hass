@@ -225,3 +225,26 @@
     display_options:
       - 'time'
       - 'date'
+# System 
+  - platform: systemmonitor
+    resources:
+      - type: processor_use
+      - type: disk_use_percent
+        arg: "/"
+      - type: since_last_boot
+      - type: memory_use_percent
+      - type: network_in
+        arg: eth0
+      - type: throughput_network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+      - type: throughput_network_out
+        arg: eth0
+      - type: load_1m
+      - type: load_15m
+  - platform: command_line
+    name: CPU Temperatur
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "°C"
+    value_template: '{{ value | multiply(0.001) | round(1) }}'
