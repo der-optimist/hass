@@ -27,13 +27,13 @@ cch:
   swipe_animate: swipe
   exceptions:
     - conditions:
-        user: Bildschirm
+        user: bildschirm
       config:
-        hide_tabs: home_mobile
+        hide_tabs: 0
     - conditions:
-        user: jo
+        user: majo
       config:
-        hide_tabs: 2
+        hide_tabs: 1
 views:
   - !include lovelace/00_home_mobile.yaml
   - !include lovelace/01_home_panel.yaml
