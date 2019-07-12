@@ -29,7 +29,7 @@ cch:
     - conditions:
         user: Bildschirm
       config:
-        hide_tabs: 1
+        hide_tabs: home_mobile
     - conditions:
         user: jo
       config:
