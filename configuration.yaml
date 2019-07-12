@@ -84,6 +84,7 @@ recorder:
       - cover
       - light
       - device_tracker
+      - input_boolean
   exclude:
     entities:
       - sensor.yr_symbol
