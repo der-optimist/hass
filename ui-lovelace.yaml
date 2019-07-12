@@ -30,6 +30,7 @@ cch:
         user: Bildschirm
       config:
         hide_tabs: 0
+        sidebar_closed: true
     - conditions:
         user: majo
       config:
