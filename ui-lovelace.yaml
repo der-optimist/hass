@@ -27,7 +27,7 @@ cch:
   swipe_animate: swipe
   exceptions:
     - conditions:
-        user: bildschirm
+        user: Bildschirm
       config:
         hide_tabs: 0
     - conditions:
