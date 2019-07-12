@@ -41,8 +41,8 @@
     target_temperature_state_address: '10/0/62'
     operation_mode_address: '10/0/63'
     operation_modes:
-      - Comfort
-      - Standby
+      - STATE_HEAT
+      - STATE_ECO
     controller_status_state_address: '10/0/65'
     min_temp: 17.0
     max_temp: 28.0
