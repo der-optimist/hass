@@ -85,6 +85,7 @@ cards:
               - type: sensor
                 entity: sensor.temp_owm
                 name: Außentemperatur
+                graph: line
               - type: entities
                 title: "Wer ist wo..."
                 show_header_toggle: false
