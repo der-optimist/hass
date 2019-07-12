@@ -25,8 +25,17 @@ cch:
   sidebar_closed: true
   swipe: true
   swipe_animate: swipe
-views:
-  - !include lovelace/00_home.yaml
+  exceptions:
+    - conditions:
+        user: Bildschirm
+      config:
+        hide_tabs: 1
+    - conditions:
+        user: jo
+      config:
+        hide_tabs: 2
+  - !include lovelace/00_home_mobile.yaml
+  - !include lovelace/01_home_panel.yaml
   - !include lovelace/10_wohnbereich.yaml
   - !include lovelace/20_eltern.yaml
   - !include lovelace/30_flure_treppen_carport.yaml
