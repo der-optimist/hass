@@ -75,21 +75,16 @@ cards:
               - type: horizontal-stack
                 cards:
                   - type: custom:bignumber-card
-                    entity: sensor.date
-                    scale: 22px
-                  - type: custom:bignumber-card
-                    entity: sensor.time
-                    scale: 22px
-              - type: horizontal-stack
-                cards:
-                  - type: custom:bignumber-card
                     entity: sensor.t_wz_ist_oh
                     scale: 22px
                     title: Wohnzimmer
                   - type: custom:bignumber-card
-                    entity: sensor.temp_owm
+                    entity: sensor.time
                     scale: 22px
-                    title: Draußen
+                    title: Uhrzeit
+              - type: sensor
+                entity: sensor.temp_owm
+                name: Außentemperatur
               - type: entities
                 title: "Wer ist wo..."
                 show_header_toggle: false
