@@ -83,6 +83,7 @@ recorder:
       - climate
       - cover
       - light
+      - device_tracker
   exclude:
     entities:
       - sensor.yr_symbol
