@@ -34,6 +34,7 @@ cch:
         user: jo
       config:
         hide_tabs: 2
+views:
   - !include lovelace/00_home_mobile.yaml
   - !include lovelace/01_home_panel.yaml
   - !include lovelace/10_wohnbereich.yaml
