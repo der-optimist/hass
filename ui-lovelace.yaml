@@ -11,6 +11,8 @@ resources:
     type: js
   - url: /local/custom_ui/layout-card/layout-card.js?v=0.1.0
     type: js
+  - url: /local/custom_ui/state-switch/state-switch.js?v=0.1.0
+    type: js
   - url: /community_plugin/compact-custom-header/compact-custom-header.js
     type: module
   - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
