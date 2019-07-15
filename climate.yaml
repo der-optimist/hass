@@ -41,7 +41,6 @@
     target_temperature_state_address: '10/0/62'
     operation_mode_address: '10/0/63'
     operation_modes:
-      - "Comfort"
       - "Night"
     controller_status_state_address: '10/0/65'
     min_temp: 17.0
