@@ -34,6 +34,7 @@ async def async_setup(hass, config):
         knx_address = Address(attr_address)
 
         value_reader = ValueReader(hass.data[DATA_KNX].xknx, knx_address)
+        _LOGGER.warning("Shoul read from KNX bus now")
         yield from value_reader.send_group_read()
         _LOGGER.warning("Not sure if I got a value from KNX bus...")
 
