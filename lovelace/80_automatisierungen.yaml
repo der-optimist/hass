@@ -66,3 +66,10 @@ cards:
     entities:
       - entity: input_boolean.app_switch_log_events
         name: Log Events in AD
+  - type: custom:button-card
+    icon: mdi:information-outline
+    tap_action:
+        action: call-service
+        service: knx_reader.read
+        service_data:
+          address: "0/0/1"
