@@ -35,7 +35,7 @@ async def async_setup(hass, config):
 
         value_reader = ValueReader(hass.data[DATA_KNX].xknx, knx_address)
         yield from value_reader.send_group_read()
-        hass.bus.fire('example_component_my_cool_event', {'answer': 43})
+        _LOGGER.warning("Not sure if I got a value from KNX bus...")
 
     hass.services.async_register(
         DOMAIN, SERVICE_KNX_READ,
