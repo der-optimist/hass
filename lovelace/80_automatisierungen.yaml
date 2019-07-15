@@ -72,4 +72,4 @@ cards:
         action: call-service
         service: knx_reader.read
         service_data:
-          address: "0/0/1"
+          address: '1/0/41'
