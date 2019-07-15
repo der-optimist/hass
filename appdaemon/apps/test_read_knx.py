@@ -7,8 +7,9 @@ import appdaemon.plugins.hass.hassapi as hass
 class test_read_knx(hass.Hass):
 
     def initialize(self):
-        self.listen_event(self.read_knx, event = "custom_read_knx")
+        self.run_in(self.read_knx, 60)
         
-    def read_knx(self,event_name,data,kwargs):
-        self.log("Received a Custom Read KNX event")
+    def read_knx(self,kwargs):
+        self.call_service("knx_reader/read", address = "0/0/1")
+        self.log("Triggered Read KNX")
         
