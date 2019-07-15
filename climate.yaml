@@ -1,4 +1,4 @@
-# Heizung 
+# Heizung  
   - platform: knx
     name: 'Küche'
     temperature_address: '3/0/1'
