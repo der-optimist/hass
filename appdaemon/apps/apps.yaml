@@ -1,4 +1,9 @@
 ---
+# Test Area
+test_read_knx:
+  module: test_read_knx
+  class: test_read_knx
+# Main Section
 toggle_reminder_switches:
   module: toggle_reminder_switches
   class: toggle_reminder_switches
