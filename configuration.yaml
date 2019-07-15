@@ -156,6 +156,10 @@ cloud:
 
 # Inputs
 input_boolean:
+  # Test-Switch
+  test_trigger:
+    name: Testtrigger
+    icon: mdi:ray-start-arrow
   # App Switches
   app_switch_licht_kueche:
     name: Automatik Licht Küche
