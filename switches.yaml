@@ -57,3 +57,21 @@
     name: 'Lüftungsanlage'
     address: '0/2/140'
     state_address: '0/2/141'
+
+# Schlafen
+  - platform: knx
+    name: 'Jo schläft'
+    address: '15/0/30'
+    state_address: '15/0/30'
+  - platform: knx
+    name: 'Ma schläft'
+    address: '15/0/31'
+    state_address: '15/0/31'
+  - platform: knx
+    name: 'Le schläft'
+    address: '15/0/32'
+    state_address: '15/0/32'
+  - platform: knx
+    name: 'La schläft'
+    address: '15/0/33'
+    state_address: '15/0/33'
