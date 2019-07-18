@@ -32,7 +32,7 @@ class weather_and_astro(hass.Hass):
             "countryCode": "DE",
             "appLocale": "de",
             "theme": "dark-gradient",
-            "daylightBandsWeekendColorDiff": "true"
+            "daylightBandsWeekendColorDiff": "true",
             "provider": "dwd.de",
             "hoursToDisplay": "162",
             "hoursAvailable": "162",
