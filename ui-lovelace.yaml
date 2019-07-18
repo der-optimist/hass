@@ -33,6 +33,7 @@ cch:
       config:
         hide_tabs: 0
         sidebar_closed: true
+        background: "#606060"
     - conditions:
         user: majo
       config:
