@@ -19,6 +19,7 @@ class pizza_timer(hass.Hass):
         if round(float(new)) == 0:
             if self.time_internal_state == 0:
                 self.log("Timer abgelaufen, werde jetzt an die Pizza erinnern")
+                self.timer_handle = None
                 self.remind_pizza(None)
             else:
                 self.log("Timer wurde wohl manuell auf 0 gestellt, breche den Timer ab. Schade, keine Pizza!")
@@ -26,6 +27,7 @@ class pizza_timer(hass.Hass):
                 if self.timer_handle != None:
                     self.cancel_timer(self.timer_handle)
                     self.log("Timer wurde abgebrochen")
+                    self.timer_handle = None
         else:
             if round(float(new)) == self.time_internal_state:
                 self.log("Event wurde wohl durch mich selber ausgelöst weil eine Minute um ist, werde eine neue Minute timen...")
