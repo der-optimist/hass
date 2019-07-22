@@ -13,9 +13,11 @@ class pizza_timer(hass.Hass):
         self.listen_state(self.state_change, "input_number.pizza_timer_2")
         self.timer_handle = None
         self.time_internal_state = 0
+        self.log(type(self.time_internal_state))
     
     def state_change(self, entity, attributes, old, new, kwargs):
         self.log("State Change in Pizza Timer erkannt: {}".format(new))
+        self.log(type(new))
         if new == 0:
             if self.time_internal_state == 0:
                 self.log("Timer abgelaufen, werde jetzt an die Pizza erinnern")
