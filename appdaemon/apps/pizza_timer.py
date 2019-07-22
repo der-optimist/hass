@@ -10,38 +10,42 @@ import datetime
 class pizza_timer(hass.Hass):
 
     def initialize(self):
-        self.listen_state(self.state_change, "input_select.pizza_timer")
+        self.listen_state(self.state_change, "input_number.pizza_timer")
         self.timer_handle = None
+        self.time_internal_state = 0
     
     def state_change(self, entity, attributes, old, new, kwargs):
         self.log("State Change in Pizza Timer erkannt: {}".format(new))
-        if new == "keine Pizza":
-            self.log("Schade, keine Pizza")
-            if self.timer_handle != None:
-                self.cancel_timer(self.timer_handle)
-                self.log("Es lief aber noch ein Timer, den hab ich jetzt abgebrochen")
-        elif new == "Abbruch":
-            if self.timer_handle == None:
-                self.log("Pizza-Timer Abbruch angefragt, aber kein Timer vorhanden")
+        if new == 0:
+            if self.time_internal_state == 0:
+                self.log("Timer abgelaufen, werde jetzt an die Pizza erinnern")
+                self.remind_pizza(None)
             else:
-                self.cancel_timer(self.timer_handle)
-                self.timer_handle = None
-                self.log("Pizza-Timer abgebrochen")
-                self.run_in(self.reset_pizza,2)
+                self.log("Timer wurde wohl manuell auf 0 gestellt, breche den Timer ab. Schade, keine Pizza!")
+                self.time_internal_state = 0
+                if self.timer_handle != None:
+                    self.cancel_timer(self.timer_handle)
+                    self.log("Timer wurde abgebrochen")
         else:
-            if self.timer_handle != None:
-                self.cancel_timer(self.timer_handle)
-            self.starttime = datetime.datetime.now()
-            delay_sec = 60 * int(new)
-            self.timer_handle = self.run_in(self.remind_pizza,delay_sec)
-            
+            if new == self.time_internal_state:
+                self.log("Event wurde wohl durch mich selber ausgelöst weil eine Minute um ist, werde eine neue Minute timen...")
+                self.timer_handle = self.run_in(self.minute_abgelaufen,60)
+            else:
+                self.log("Es wurde wohl eine neue Zeit eingestellt. Werde neuen Timer setzen")
+                if self.timer_handle != None:
+                    self.cancel_timer(self.timer_handle)
+                    self.log("Timer wurde abgebrochen")
+                self.time_internal_state = new
+                self.timer_handle = self.run_in(self.minute_abgelaufen,60)
+
+    def minute_abgelaufen(self, kwargs):
+        self.log("Eine Minute ist wohl um")
+        self.time_internal_state = self.time_internal_state - 1
+        old_state = self.get_state("input_number.pizza_timer")
+        self.input_number.select_value("input_number.pizza_timer", old_state - 1)
+
     def remind_pizza(self, kwargs):
         self.log("Pizza ist fertig")
-        self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 15000, "icon": "http://rp3/pizza_kodi.jpg"})
-        self.call_service("media_player/kodi_call_method", entity_id = "media_player.kodi", method = "Player.GetActivePlayers")
-        self.call_service("media_player/kodi_call_method", entity_id = "media_player.kodi", method = "Player.PlayPause", playerid = 1)
-        self.select_option("input_select.pizza_timer", "keine Pizza")
-    
-    def reset_pizza(self, kwargs):
-        self.log("Reset auf Keine Pizza")
-        self.select_option("input_select.pizza_timer", "keine Pizza")
+        #self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 15000, "icon": "http://rp3/pizza_kodi.jpg"})
+        #self.call_service("media_player/kodi_call_method", entity_id = "media_player.kodi", method = "Player.GetActivePlayers")
+        #self.call_service("media_player/kodi_call_method", entity_id = "media_player.kodi", method = "Player.PlayPause", playerid = 1)
