@@ -128,7 +128,7 @@ knx:
   fire_event_filter: ["*/*/*"]
   state_updater: true
 
-knx_reader: # custom component for reading a GA status
+#knx_reader: # custom component for reading a GA status
 
 light: !include lights.yaml
 
@@ -258,7 +258,7 @@ input_select:
     initial: "keine Pizza"
     icon: mdi:pizza
 input_number:
-  pizza_timer:
+  pizza_timer_2:
     name: Pizza Timer
     initial: 0
     min: 0
