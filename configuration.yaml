@@ -257,3 +257,10 @@ input_select:
       - "Abbruch"
     initial: "keine Pizza"
     icon: mdi:pizza
+input_number:
+  pizza_timer:
+    name: Pizza Timer
+    initial: 0
+    min: 0
+    max: 30
+    step: 1
