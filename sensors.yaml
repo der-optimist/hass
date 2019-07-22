@@ -105,6 +105,14 @@
 
 # 1-wire
 
+# --- Praesenz ---
+# KNX
+binary_sensor:
+  - platform: knx
+    address: '6/0/9'
+    name: PM_E_KU_Küche
+    device_class: motion
+
 # --- Helligkeit ---
 # KNX
   - platform: knx
