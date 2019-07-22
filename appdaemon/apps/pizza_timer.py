@@ -10,7 +10,7 @@ import datetime
 class pizza_timer(hass.Hass):
 
     def initialize(self):
-        self.listen_state(self.state_change, "input_number.pizza_timer")
+        self.listen_state(self.state_change, "input_number.pizza_timer_2")
         self.timer_handle = None
         self.time_internal_state = 0
     
@@ -41,8 +41,8 @@ class pizza_timer(hass.Hass):
     def minute_abgelaufen(self, kwargs):
         self.log("Eine Minute ist wohl um")
         self.time_internal_state = self.time_internal_state - 1
-        old_state = self.get_state("input_number.pizza_timer")
-        self.input_number.select_value("input_number.pizza_timer", old_state - 1)
+        old_state = self.get_state("input_number.pizza_timer_2")
+        self.input_number.select_value("input_number.pizza_timer_2", old_state - 1)
 
     def remind_pizza(self, kwargs):
         self.log("Pizza ist fertig")
