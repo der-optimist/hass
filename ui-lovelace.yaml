@@ -37,7 +37,7 @@ cch:
         all_tabs_color: "#ff9c27"
         all_buttons_color: "#ff9c27"
         tab_indicator_color:  "#ff9c27"
-        notify_indicator_color: "#eeeeee#
+        notify_indicator_color: "#eeeeee"
     - conditions:
         user: majo
       config:
