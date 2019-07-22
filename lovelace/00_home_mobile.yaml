@@ -77,9 +77,9 @@ cards:
     show_header_toggle: false
     entities:
       - entity: input_number.pizza_timer_2
-      - type: custom:slider-entity-row
-        entity: input_number.pizza_timer_2
-        full_row: true
+#      - type: custom:slider-entity-row
+#        entity: input_number.pizza_timer_2
+#        full_row: true
   - type: entities
     title: "Wer ist wo..."
     show_header_toggle: false
