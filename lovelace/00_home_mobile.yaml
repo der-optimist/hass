@@ -76,7 +76,9 @@ cards:
     title: Pizza Timer
     show_header_toggle: false
     entities:
-      - input_select.pizza_timer
+      - type: custom:slider-entity-row
+        entity: input_select.pizza_timer
+        full_row: true
   - type: entities
     title: "Wer ist wo..."
     show_header_toggle: false
