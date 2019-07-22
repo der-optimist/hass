@@ -13,7 +13,6 @@ class pizza_timer(hass.Hass):
         self.listen_state(self.state_change, "input_number.pizza_timer_2")
         self.timer_handle = None
         self.time_internal_state = 0
-        self.log(self.get_state("media_player.kodi"))
     
     def state_change(self, entity, attributes, old, new, kwargs):
         self.log("State Change in Pizza Timer erkannt: {}".format(new))
@@ -49,7 +48,9 @@ class pizza_timer(hass.Hass):
 
     def remind_pizza(self, kwargs):
         self.log("Pizza ist fertig")
-        
-        #self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 15000, "icon": "http://rp3/pizza_kodi.jpg"})
-        #self.call_service("media_player/kodi_call_method", entity_id = "media_player.kodi", method = "Player.GetActivePlayers")
-        #self.call_service("media_player/kodi_call_method", entity_id = "media_player.kodi", method = "Player.PlayPause", playerid = 1)
+        if self.get_state("media_player.kodi") == "playing":
+            self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 15000, "icon": "http://rp3/pizza_kodi.jpg"})
+            self.call_service("media_player/kodi_call_method", entity_id = "media_player.kodi", method = "Player.PlayPause", playerid = 1)
+        else:
+            #self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 30000, "icon": "http://rp3/pizza_kodi.jpg"})
+            self.fire_event("custom_notify", message="Pizza ist fertig, aber Kodi läuft gerade nicht - hoffentlich schaust du wenigstens aufs Handy...", target="telegram_jo")
