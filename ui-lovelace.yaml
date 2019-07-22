@@ -33,7 +33,10 @@ cch:
       config:
         hide_tabs: 0
         sidebar_closed: true
-        background: "#303030"
+        background: "#484848"
+        all_tabs_color: "#ff9c27"
+        all_buttons_color: "#ff9c27"
+        tab_indicator_color:  "#ff9c27"
     - conditions:
         user: majo
       config:
