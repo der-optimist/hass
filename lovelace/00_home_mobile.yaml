@@ -77,7 +77,7 @@ cards:
     show_header_toggle: false
     entities:
       - type: custom:slider-entity-row
-        entity: input_select.pizza_timer
+        entity: input_number.pizza_timer_2
         full_row: true
   - type: entities
     title: "Wer ist wo..."
