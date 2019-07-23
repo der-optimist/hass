@@ -1,5 +1,4 @@
 # --- Praesenz ---
-
 # Küche
   - platform: knx
     address: '6/0/9'
