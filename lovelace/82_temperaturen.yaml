@@ -46,7 +46,7 @@ cards:
         name: Gästezimmer Taster
       - entity: sensor.temp_gastezimmer_pm
         name: Gästezimmer PM
-      - entity: sensor.temp_flur_og_pm	
+      - entity: sensor.temp_flur_og_pm
         name: Flur OG PM
       - entity: sensor.temp_bad_og_taster
         name: Bad OG Taster
