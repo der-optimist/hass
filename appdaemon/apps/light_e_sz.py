@@ -13,8 +13,8 @@ class light_e_sz(hass.Hass):
         self.brightness_day = 100 # %
         self.min_illuminance = 100 # lx
         # react on presence detection
-        self.listen_state(self.presence_on, "binary_sensor.PM_E_SZ_Bett", new="on", old="off")
-        self.listen_state(self.presence_off, "binary_sensor.PM_E_SZ_Bett", new="off", old="on")
+        self.listen_state(self.presence_on, "binary_sensor.PM_E_SZ_Bett", new="on")
+        self.listen_state(self.presence_off, "binary_sensor.PM_E_SZ_Bett", new="off")
         # react on illuminance change
         self.listen_state(self.illuminance_changed, "sensor.helligkeit_schlafzimmer_pm")
     
