@@ -1,0 +1,66 @@
+title: Temperaturen
+path: temperaturen
+icon: mdi:temperature-celsius
+cards:
+  - type: entities
+    title: EG
+    show_header_toggle: false
+    entities:
+      - entity: sensor.temp_kuche_pm
+        name: Küche PM
+      - entity: sensor.temp_esszimmer_taster
+        name: Esszimmer Taster
+      - entity: sensor.temp_esszimmer_pm
+        name: Esszimmer PM
+      - entity: sensor.temp_wohnzimmer_pm
+        name: Wohnzimmer PM
+      - entity: sensor.temp_schlafzimmer_taster
+        name: Schlafzimmer Taster
+      - entity: sensor.temp_schlafzimmer_pm
+        name: Schlafzimmer PM
+      - entity: sensor.temp_bad_eg_taster
+        name: Bad EG Taster
+      - entity: sensor.temp_bad_eg_pm	
+        name: Bad EG PM
+      - entity: sensor.temp_flur_eg_pm
+        name: Flur EG PM
+      - entity: sensor.temp_wc_pm
+        name: WC PM
+      - entity: sensor.temp_windfang_pm
+        name: Windfang PM
+  - type: entities
+    title: OG
+    show_header_toggle: false
+    entities:
+      - entity: sensor.temp_la_taster
+        name: La. Taster
+      - entity: sensor.temp_la_pm
+        name: La. PM
+      - entity: sensor.temp_nahzimmer_pm
+        name: Nähzimmer PM
+      - entity: sensor.temp_le_taster
+        name: Le. Taster
+      - entity: sensor.temp_le_pm
+        name: Le. PM
+      - entity: sensor.temp_gastezimmer_taster
+        name: Gästezimmer Taster
+      - entity: sensor.temp_gastezimmer_pm
+        name: Gästezimmer PM
+      - entity: sensor.temp_flur_og_pm	
+        name: Flur OG PM
+      - entity: sensor.temp_bad_og_taster
+        name: Bad OG Taster
+      - entity: sensor.temp_bad_og_pm
+        name: Bad OG PM
+  - type: entities
+    title: Sonstige
+    show_header_toggle: false
+    entities:
+      - entity: sensor.t_wz_ist_oh
+        name: Wohnzimmer (OH)
+      - entity: sensor.temp_owm
+        name: Draußen (Internet)
+      - entity: sensor.temp_wetterstation
+        name: Draußen (Wetterst.)
+      - entity: sensor.cpu_temperatur
+        name: CPU HA-Server
