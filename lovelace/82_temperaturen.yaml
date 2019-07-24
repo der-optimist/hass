@@ -20,7 +20,7 @@ cards:
         name: Schlafzimmer PM
       - entity: sensor.temp_bad_eg_taster
         name: Bad EG Taster
-      - entity: sensor.temp_bad_eg_pm	
+      - entity: sensor.temp_bad_eg_pm
         name: Bad EG PM
       - entity: sensor.temp_flur_eg_pm
         name: Flur EG PM
