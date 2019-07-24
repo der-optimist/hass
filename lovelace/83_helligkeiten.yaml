@@ -14,7 +14,7 @@ cards:
         name: Wohnzimmer PM
       - entity: sensor.helligkeit_schlafzimmer_pm
         name: Schlafzimmer PM
-      - entity: sensor.helligkeit_bad_eg_pm	
+      - entity: sensor.helligkeit_bad_eg_pm
         name: Bad EG PM
       - entity: sensor.helligkeit_flur_eg_pm
         name: Flur EG PM
@@ -34,7 +34,7 @@ cards:
         name: Le. PM
       - entity: sensor.helligkeit_gastezimmer_pm
         name: Gästezimmer PM
-      - entity: sensor.helligkeit_flur_og_pm	
+      - entity: sensor.helligkeit_flur_og_pm
         name: Flur OG PM
       - entity: sensor.helligkeit_bad_og_pm
         name: Bad OG PM
