@@ -52,3 +52,5 @@ views:
   - !include lovelace/50_nz_gz.yaml
   - !include lovelace/60_keller.yaml
   - !include lovelace/80_automatisierungen.yaml
+  - !include lovelace/82_temperaturen.yaml
+  - !include lovelace/83_helligkeiten.yaml
