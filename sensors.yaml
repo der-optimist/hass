@@ -102,6 +102,10 @@
     name: 'Temp. Bad OG Taster'
     address: '3/5/1'
     type: temperature
+  - platform: knx
+    name: 'Temp. Wetterstation'
+    address: '13/0/0'
+    type: temperature
 
 # 1-wire
 
@@ -163,6 +167,16 @@
     name: 'Helligkeit Bad OG PM'
     address: '7/2/184'
     type: illuminance
+  - platform: knx
+    name: 'Helligkeit Wetterstation'
+    address: '13/0/2'
+    type: illuminance
+
+# --- Windgeschwindigkeit ---
+  - platform: knx
+    name: 'Windgeschwindigkeit Wetterstation'
+    address: '13/0/1'
+    type: speed_ms
 
 # --- Elektrische Leistung ---
 # Küche
