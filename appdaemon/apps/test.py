@@ -9,9 +9,6 @@ import appdaemon.plugins.hass.hassapi as hass
 class test(hass.Hass):
 
     def initialize(self):
-        self.listen_state(self.state_change, "input_boolean.dummy_light_switch")
+        self.log("debug log",level="DEBUG")
     
-    def state_change(self, entity, attributes, old, new, kwargs):
-        self.log("Schalter betätigt: {}".format(new))
-        self.fire_event("custom_notify", message="Test-Schalter: {}".format(new), target="telegram_jo")
 
