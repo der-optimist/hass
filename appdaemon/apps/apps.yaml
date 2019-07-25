@@ -1,8 +1,9 @@
 ---
 # Test Area
-#test_read_knx:
-#  module: test_read_knx
-#  class: test_read_knx
+test:
+  module: test
+  class: test
+  #log_level: DEBUG
 # Main Section
 toggle_reminder_switches:
   module: toggle_reminder_switches
