@@ -240,24 +240,6 @@ input_boolean:
   app_switch_log_events:
     name: Logging HA events in AD
     icon: mdi:note-text
-input_select:
-  pizza_timer:
-    name: Pizza Timer
-    options:
-      - "keine Pizza"
-      - "10"
-      - "11"
-      - "12"
-      - "13"
-      - "14"
-      - "15"
-      - "16"
-      - "20"
-      - "25"
-      - "30"
-      - "Abbruch"
-    initial: "keine Pizza"
-    icon: mdi:pizza
 input_number:
   pizza_timer_2:
     name: Pizza Timer
