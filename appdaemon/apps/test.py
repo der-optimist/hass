@@ -10,5 +10,6 @@ class test(hass.Hass):
 
     def initialize(self):
         self.log("debug log",level="DEBUG")
+         self.log("normal log")
     
 
