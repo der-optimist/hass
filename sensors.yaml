@@ -272,9 +272,6 @@
     type: power
 
 # --- Sonstiges ---
-# Wetter
-  - platform: yr
-  
 # History
   - platform: history_stats
     name: Jo at work
