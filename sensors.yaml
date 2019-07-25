@@ -172,6 +172,56 @@
     address: '13/0/2'
     type: illuminance
 
+# --- Stellwerte Heizung ---
+  - platform: knx
+    name: 'Stellwert Heizung Küche'
+    address: '10/0/4'
+    type: percent
+  - platform: knx
+    name: 'Stellwert Heizung Esszimmer'
+    address: '10/0/24'
+    type: percent
+  - platform: knx
+    name: 'Stellwert Heizung Wohnzimmer'
+    address: '10/0/44'
+    type: percent
+  - platform: knx
+    name: 'Stellwert Heizung Schlafzimmer'
+    address: '10/0/64'
+    type: percent
+  - platform: knx
+    name: 'Stellwert Heizung Bad EG'
+    address: '10/0/84'
+    type: percent
+  - platform: knx
+    name: 'Stellwert Heizung Windfang/WC'
+    address: '10/0/104'
+    type: percent
+  - platform: knx
+    name: 'Stellwert Heizung La'
+    address: '10/0/124'
+    type: percent
+  - platform: knx
+    name: 'Stellwert Heizung Nähzimmer'
+    address: '10/0/144'
+    type: percent
+  - platform: knx
+    name: 'Stellwert Heizung Le'
+    address: '10/0/164'
+    type: percent
+  - platform: knx
+    name: 'Stellwert Heizung Gästezimmer'
+    address: '10/0/184'
+    type: percent
+  - platform: knx
+    name: 'Stellwert Heizung Flur OG'
+    address: '10/0/204'
+    type: percent
+  - platform: knx
+    name: 'Stellwert Heizung Bad OG'
+    address: '10/0/224'
+    type: percent
+
 # --- Windgeschwindigkeit ---
   - platform: knx
     name: 'Windgeschwindigkeit Wetterstation'
