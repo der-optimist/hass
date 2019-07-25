@@ -4,6 +4,7 @@ test:
   module: test
   class: test
   log_level: DEBUG
+  log: test
 # Main Section
 toggle_reminder_switches:
   module: toggle_reminder_switches
