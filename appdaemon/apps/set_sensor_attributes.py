@@ -12,7 +12,7 @@ class set_sensor_attributes(hass.Hass):
 
     def initialize(self):
         # listen for new values
-        self.run_in(self.set_attributes, 1)
+        self.run_in(self.set_attributes, 60)
   
     def set_attributes(self, kwargs):
         for sensor in self.get_state("sensor"):
@@ -20,3 +20,7 @@ class set_sensor_attributes(hass.Hass):
                 self.set_state(sensor, attributes={"icon":"mdi:speedometer", "unit_of_measurement": "W"})
             if sensor.startswith("sensor.stromzahler"):
                 self.set_state(sensor, attributes={"icon":"mdi:counter", "unit_of_measurement": "kWh"})
+            if sensor.startswith("sensor.helligkeit"):
+                self.set_state(sensor, attributes={"icon":"mdi:weather-sunny", "unit_of_measurement": "lx"})
+            if sensor.startswith("sensor.windgeschwindigkeit"):
+                self.set_state(sensor, attributes={"icon":"mdi:weather-windy", "unit_of_measurement": "km/h"})
