@@ -3,9 +3,9 @@ import datetime
 
 #
 # App does:
-#  - Calculate "real" electricity meter value from KNX counter
+#  - Calculate "real" electricity meter value from KNX pulse counter (to kWh)
 #  - Create Sensor with this value
-#  - Calculate power (from previous to current event)
+#  - Calculate power in W (from previous to current event)
 #
 # Args:
 # knx_counter = "sensor.stromzahler_xyz_rohdaten"
@@ -28,22 +28,22 @@ class stromzaehler_be(hass.Hass):
         self.log("Test: gibt es beim Neustart gleich einen Wert fuer den KNX counter?")
         self.log(self.get_state(self.args["knx_counter"]))
         # ich geh erst mal davon aus, dass der Wert nicht zur Verfügung steht und setze den Sensor auf 0
-        self.set_state(self.args["ha_electricity_sensor_name"], state = 0, attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"]})
-        self.set_state(self.args["ha_power_sensor_name"], state = 0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"]})
+        self.set_state(self.args["ha_electricity_sensor_name"], state = 0, attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
+        self.set_state(self.args["ha_power_sensor_name"], state = 0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W"})
         
     def counter_changed(self, entity, attribute, old, new, kwargs):
+        current_time = datetime.datetime.now() # for most accurate value, capture current time first
         self.log("Value {} received from counter {}".format(new,self.args["knx_counter"])
         # Update electricity meter sensor
         new_electricity_value = new * self.args["energy_per_pulse"]
         self.set_state(self.args["ha_electricity_sensor_name"], state = new_electricity_value)
         # calculate power
         if self.time_of_last_event == None:
-            self.log("Looks like it is the first event since a restart")
+            self.log("Looks like it is the first event since a restart. Power will be available next time")
         else:
             if self.value_of_last_event == None:
                 self.log("I have a time of the last event, but no value... no idea how that can happen. Look for a bug!")
             else:
-                current_time = datetime.datetime.now()
                 time_delta_seconds = (current_time - self.time_of_last_event).total_seconds()
                 electricity_delta_Ws = (new - self.value_of_last_event) * self.args["energy_per_pulse"] * 3600 * 1000
                 current_power = electricity_delta_Ws / time_delta_seconds
