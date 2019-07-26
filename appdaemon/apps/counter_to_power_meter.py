@@ -24,6 +24,7 @@ class counter_to_power_meter(hass.Hass):
         # initialize internal variables
         self.time_of_last_event = None
         self.value_of_last_event = None
+        self.handle_reset_timer = None
         # set sensor values to zero until first values can be calculated
         self.log("Test: gibt es beim Neustart gleich einen Wert fuer den KNX counter?")
         self.log(self.get_state(self.args["knx_counter"]))
@@ -32,8 +33,10 @@ class counter_to_power_meter(hass.Hass):
         self.set_state(self.args["ha_power_sensor_name"], state = 0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W"})
         
     def counter_changed(self, entity, attribute, old, new, kwargs):
-        if new == "unavailable" or new == "Nicht verfügbar":
+        if new == "unavailable" or new == "Nicht verfügbar" or new == old:
             return
+        if self.handle_reset_timer != None:
+            self.cancel_timer(self.handle_reset_timer)
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
         self.log("Value {} received from counter {}".format(new,self.args["knx_counter"]))
         # Update electricity meter sensor
@@ -53,3 +56,7 @@ class counter_to_power_meter(hass.Hass):
         # save current values in variables for next calculation
         self.time_of_last_event = current_time
         self.value_of_last_event = new
+        self.handle_reset_timer = self.run_in(self.reset_power,10*60) # no value for 10 min => 0. Means power below 3W (2000 pulses/kWh)
+
+    def reset_power(self, kwargs):
+        self.set_state(self.args["ha_power_sensor_name"], state = 0)
