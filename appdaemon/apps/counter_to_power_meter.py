@@ -41,7 +41,7 @@ class counter_to_power_meter(hass.Hass):
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
         self.log("Value {} received from counter {}".format(new,self.args["knx_counter"]))
         # Update electricity meter sensor
-        new_electricity_value = new * self.args["energy_per_pulse"]
+        new_electricity_value = float(new) * self.args["energy_per_pulse"]
         self.set_state(self.args["ha_electricity_sensor_name"], state = new_electricity_value)
         # calculate power
         if self.time_of_last_event == None:
@@ -56,7 +56,7 @@ class counter_to_power_meter(hass.Hass):
                 self.set_state(self.args["ha_power_sensor_name"], state = current_power)
         # save current values in variables for next calculation
         self.time_of_last_event = current_time
-        self.value_of_last_event = new
+        self.value_of_last_event = new_electricity_value
         self.handle_reset_timer = self.run_in(self.reset_power,10*60) # no value for 10 min => 0. Means power below 3W (2000 pulses/kWh)
 
     def reset_power(self, kwargs):
