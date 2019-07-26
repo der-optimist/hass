@@ -3,7 +3,7 @@ import datetime
 
 #
 # App does:
-#  - Some KNX sensors don't get a "unit_of_measurement" or an icon at startup. This app shall update them
+#  - Some KNX sensors don't get a "unit_of_measurement" or an icon at startup. This app shall update them after some delay
 #
 # Args:
 # none
