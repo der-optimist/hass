@@ -51,12 +51,12 @@ class counter_to_power_meter(hass.Hass):
                 self.log("I have a time of the last event, but no value... no idea how that can happen. Look for a bug!")
             else:
                 time_delta_seconds = (current_time - self.time_of_last_event).total_seconds()
-                electricity_delta_Ws = (new - self.value_of_last_event) * self.args["energy_per_pulse"] * 3600 * 1000
+                electricity_delta_Ws = (float(new) - self.value_of_last_event) * self.args["energy_per_pulse"] * 3600 * 1000
                 current_power = electricity_delta_Ws / time_delta_seconds
                 self.set_state(self.args["ha_power_sensor_name"], state = current_power)
         # save current values in variables for next calculation
         self.time_of_last_event = current_time
-        self.value_of_last_event = new_electricity_value
+        self.value_of_last_event = float(new)
         self.handle_reset_timer = self.run_in(self.reset_power,10*60) # no value for 10 min => 0. Means power below 3W (2000 pulses/kWh)
 
     def reset_power(self, kwargs):
