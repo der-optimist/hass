@@ -32,6 +32,8 @@ class counter_to_power_meter(hass.Hass):
         self.set_state(self.args["ha_power_sensor_name"], state = 0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W"})
         
     def counter_changed(self, entity, attribute, old, new, kwargs):
+        if new == "unavailable" or new == "Nicht verfügbar":
+            return
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
         self.log("Value {} received from counter {}".format(new,self.args["knx_counter"]))
         # Update electricity meter sensor
