@@ -61,6 +61,9 @@ counter_to_power_meter_kochfeld:
   ha_power_sensor_name: sensor.el_leistung_kochfeld
   ha_power_sensor_friendly_name: El. Leistung Kochfeld
   energy_per_pulse: 0.0005
+set_sensor_attributes:
+  module: set_sensor_attributes
+  class: set_sensor_attributes
 # ----------------------
 telegram_bot:
   module: telegram_bot
