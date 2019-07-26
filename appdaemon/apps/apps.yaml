@@ -46,21 +46,21 @@ pizza_timer:
 counter_to_power_meter_waermepumpe:
   module: counter_to_power_meter
   class: counter_to_power_meter
-  knx_counter = sensor.stromzahler_warmepumpe_rohdaten
-  ha_electricity_sensor_name = sensor.stromzahler_warmepumpe
-  ha_electricity_sensor_friendly_name = Stromzähler Wärmepumpe
-  ha_power_sensor_name = sensor.el_leistung_warmepumpe
-  ha_power_sensor_friendly_name = El. Leistung Wärmepumpe
-  energy_per_pulse = 0.0005
+  knx_counter: sensor.stromzahler_warmepumpe_rohdaten
+  ha_electricity_sensor_name: sensor.stromzahler_warmepumpe
+  ha_electricity_sensor_friendly_name: Stromzähler Wärmepumpe
+  ha_power_sensor_name: sensor.el_leistung_warmepumpe
+  ha_power_sensor_friendly_name: El. Leistung Wärmepumpe
+  energy_per_pulse: 0.0005
 counter_to_power_meter_kochfeld:
   module: counter_to_power_meter
   class: counter_to_power_meter
-  knx_counter = sensor.stromzahler_kochfeld_rohdaten
-  ha_electricity_sensor_name = sensor.stromzahler_kochfeld
-  ha_electricity_sensor_friendly_name = Stromzähler Kochfeld
-  ha_power_sensor_name = sensor.el_leistung_kochfeld
-  ha_power_sensor_friendly_name = El. Leistung Kochfeld
-  energy_per_pulse = 0.0005
+  knx_counter: sensor.stromzahler_kochfeld_rohdaten
+  ha_electricity_sensor_name: sensor.stromzahler_kochfeld
+  ha_electricity_sensor_friendly_name: Stromzähler Kochfeld
+  ha_power_sensor_name: sensor.el_leistung_kochfeld
+  ha_power_sensor_friendly_name: El. Leistung Kochfeld
+  energy_per_pulse: 0.0005
 # ----------------------
 telegram_bot:
   module: telegram_bot
