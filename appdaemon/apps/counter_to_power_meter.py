@@ -33,6 +33,7 @@ class counter_to_power_meter(hass.Hass):
         self.set_state(self.args["ha_power_sensor_name"], state = 0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W"})
         
     def counter_changed(self, entity, attribute, old, new, kwargs):
+        self.log(type(new))
         if new == "unavailable" or new == "Nicht verfügbar" or new == old:
             return
         if self.handle_reset_timer != None:
