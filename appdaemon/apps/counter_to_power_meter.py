@@ -16,7 +16,7 @@ import datetime
 # energy_per_pulse = 0.0005 (in kWh => 2000 pulses per kWh => 0.0005 kWh/pulse)
 #
 
-class stromzaehler_be(hass.Hass):
+class counter_to_power_meter(hass.Hass):
 
     def initialize(self):
         # listen for new values
