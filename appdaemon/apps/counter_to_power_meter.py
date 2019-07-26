@@ -60,3 +60,5 @@ class counter_to_power_meter(hass.Hass):
 
     def reset_power(self, kwargs):
         self.set_state(self.args["ha_power_sensor_name"], state = 0)
+
+# to do: Timer alle 60 Sekunden, Power so berechnen als wäre gerade ein neuer Wert gekommen => Power sink langsam. Abbrechen wenn unter ...W
