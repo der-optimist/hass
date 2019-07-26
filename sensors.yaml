@@ -313,7 +313,6 @@
     name: 'Stromzähler Lüftungsanlage'
     address: '0/2/144'
     type: 4byte_signed
-    unit_of_measurement: kWh
 
 # Binäreingang Rohdaten
   - platform: knx
