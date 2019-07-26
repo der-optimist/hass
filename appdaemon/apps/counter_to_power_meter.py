@@ -33,7 +33,7 @@ class stromzaehler_be(hass.Hass):
         
     def counter_changed(self, entity, attribute, old, new, kwargs):
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
-        self.log("Value {} received from counter {}".format(new,self.args["knx_counter"])
+        self.log("Value {} received from counter {}".format(new,self.args["knx_counter"]))
         # Update electricity meter sensor
         new_electricity_value = new * self.args["energy_per_pulse"]
         self.set_state(self.args["ha_electricity_sensor_name"], state = new_electricity_value)
