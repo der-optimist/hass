@@ -21,6 +21,10 @@ resources:
     type: module
   - url: /community_plugin/button-card/button-card.js
     type: module
+  - url: /community_plugin/mini-graph-card/mini-graph-card.js
+    type: module
+  - url: /community_plugin/bar-card/bar-card.js
+    type: js
 
 title: Lieblingshaus
 cch:
