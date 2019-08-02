@@ -91,10 +91,12 @@ cards:
                     entity: sensor.time
                     scale: 22px
                     title: Uhrzeit
-              - type: sensor
-                entity: sensor.temp_owm
+              - type: custom:mini-graph-card
+                entities: 
+                  - sensor.temp_owm
                 name: Außentemperatur
-                graph: line
+                show:
+                  extrema: true
               - type: entities
                 title: "Wer ist wo..."
                 show_header_toggle: false
