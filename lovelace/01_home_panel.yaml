@@ -95,8 +95,10 @@ cards:
                 entities: 
                   - sensor.temp_owm
                 name: Außentemperatur
+                hour24: true
+                decimals: 1
                 show:
-                  extrema: true
+                  labels: true
               - type: entities
                 title: "Wer ist wo..."
                 show_header_toggle: false
