@@ -38,7 +38,7 @@ cards:
             entity: input_number.pizza_timer_2
             full_row: true
       - break
-      - type: type: picture-entity
+      - type: picture-entity
         entity: camera.meteogram
         camera_view: live
       - type: custom:layout-card
