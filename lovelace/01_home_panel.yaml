@@ -70,7 +70,7 @@ cards:
                 - entity_id: "sensor.dwd_warn*"
               exclude:
                 - state: "off"
-            type: horizontal-stack
+          - type: horizontal-stack
             cards:
               - type: entities
                 title: "Abfall"
