@@ -24,7 +24,8 @@ class weather_and_astro(hass.Hass):
         self.base_url_meteograms = "https://nodeserver.cloud3squared.com/getMeteogram/"
         self.settings_meteograms = {
             "token": self.args["token_meteograms"],
-            "chartWidth": "900",
+            "chartWidth": "1350",
+            "chartHeight": "400",
             "placeName": self.args["home_town"],
             "longPlaceName": self.args["home_town"],
             "latitude": str(self.args["home_latitude"]),
@@ -60,7 +61,7 @@ class weather_and_astro(hass.Hass):
         self.path_meteogram = "/config/www/meteograms/meteogram.png"
         time_load_meteogram = datetime.time(5, 00, 20) # update time for meteogram
         self.run_daily(self.load_meteogram, time_load_meteogram)
-        #self.load_meteogram(None) # for testing, load now
+        self.load_meteogram(None) # for testing, load now
         # --- DWD weather warnings ---
         self.dwd_warncell_id = self.args["dwd_warncell_id"]
         #self.dwd_warncell_id = 809180117 #Garmisch, for testing
