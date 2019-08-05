@@ -5,8 +5,39 @@ panel: true
 cards:
   - type: custom:layout-card
     layout: vertical
-    max_width: [50%, 50%]
+    max_width: [25%, 75%]
     cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:bignumber-card
+            entity: sensor.t_wz_ist_oh
+            scale: 22px
+            title: Wohnzimmer
+          - type: custom:bignumber-card
+            entity: sensor.time
+            scale: 22px
+            title: Uhrzeit
+      - type: custom:mini-graph-card
+        entities: 
+          - sensor.temp_owm
+        name: Außentemperatur
+        hour24: true
+        decimals: 1
+        show:
+          labels: true
+      - type: entities
+        title: "Wer ist wo..."
+        show_header_toggle: false
+        entities:
+          - entity: sensor.location_jo
+      - type: entities
+        title: Pizza Timer
+        show_header_toggle: false
+        entities:
+          - type: custom:slider-entity-row
+            entity: input_number.pizza_timer_2
+            full_row: true
+      - break
       - type: picture-elements
         image: /local/meteograms/meteogram.png
         elements:
@@ -18,89 +49,57 @@ cards:
               top: 50%
               width: 100%
               height: 100%
-      - type: custom:monster-card
-        show_empty: false
-        card:
-          type: entities
-          title: "Wetterwarnungen"
-          show_header_toggle: false
-        filter:
-          include:
-            - entity_id: "sensor.dwd_warn*"
-          exclude:
-            - state: "off"
-      - type: custom:monster-card
-        show_empty: false
-        card:
-          type: entities
-          title: "zu erledigen"
-          show_header_toggle: false
-        filter:
-          include:
-            - entity_id: "switch.reminder*"
-              state: "on"
-      - type: horizontal-stack
+      - type: custom:layout-card
+        layout: vertical
+        max_width: [33%, 67%]
         cards:
-          - type: entities
-            title: "Abfall"
-            show_header_toggle: false
-            entities:
-              - entity: sensor.restmuelltonne_anzeige
-                name: Restmüll
-              - entity: sensor.biotonne_anzeige
-                name: Biotonne
-              - entity: sensor.papiertonne_anzeige
-                name: Papiertonne
-              - entity: sensor.raweg_anzeige
-                name: RaWeg
           - type: custom:monster-card
             show_empty: false
             card:
               type: entities
-              title: "Geburtstage"
+              title: "zu erledigen"
               show_header_toggle: false
             filter:
               include:
-                - entity_id: "sensor.birthday*"
+                - entity_id: "switch.reminder*"
+                  state: "on"
+          - type: markdown
+            content: >
+              Buttons für Szenen
+          - break
+          - type: custom:monster-card
+            show_empty: false
+            card:
+              type: entities
+              title: "Wetterwarnungen"
+              show_header_toggle: false
+            filter:
+              include:
+                - entity_id: "sensor.dwd_warn*"
               exclude:
                 - state: "off"
-      - break
-      - type: horizontal-stack
-        cards:
-          - type: vertical-stack
+            type: horizontal-stack
             cards:
-              - type: custom:weather-card
-                entity: weather.dark_sky
-                icons: '/local/icons/weather_icons/static/'
               - type: entities
-                title: Pizza Timer
+                title: "Abfall"
                 show_header_toggle: false
                 entities:
-                  - type: custom:slider-entity-row
-                    entity: input_number.pizza_timer_2
-                    full_row: true
-          - type: vertical-stack
-            cards:
-              - type: horizontal-stack
-                cards:
-                  - type: custom:bignumber-card
-                    entity: sensor.t_wz_ist_oh
-                    scale: 22px
-                    title: Wohnzimmer
-                  - type: custom:bignumber-card
-                    entity: sensor.time
-                    scale: 22px
-                    title: Uhrzeit
-              - type: custom:mini-graph-card
-                entities: 
-                  - sensor.temp_owm
-                name: Außentemperatur
-                hour24: true
-                decimals: 1
-                show:
-                  labels: true
-              - type: entities
-                title: "Wer ist wo..."
-                show_header_toggle: false
-                entities:
-                  - entity: sensor.location_jo
+                  - entity: sensor.restmuelltonne_anzeige
+                    name: Restmüll
+                  - entity: sensor.biotonne_anzeige
+                    name: Biotonne
+                  - entity: sensor.papiertonne_anzeige
+                    name: Papiertonne
+                  - entity: sensor.raweg_anzeige
+                    name: RaWeg
+              - type: custom:monster-card
+                show_empty: false
+                card:
+                  type: entities
+                  title: "Geburtstage"
+                  show_header_toggle: false
+                filter:
+                  include:
+                    - entity_id: "sensor.birthday*"
+                  exclude:
+                    - state: "off"
