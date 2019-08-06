@@ -38,11 +38,17 @@ cards:
             entity: input_number.pizza_timer_2
             full_row: true
       - break
-      - type: picture-entity
-        entity: camera.meteogram
-        camera_view: live
-        show_name: false
-        show_state: false
+      - type: picture-elements
+        image: /local/meteograms/meteogram.png
+        elements:
+          - type: image
+            entity: camera.meteogram
+            camera_image: camera.meteogram
+            style:
+              left: 50%
+              top: 50%
+              width: 100%
+              height: 100%
       - type: custom:layout-card
         layout: vertical
         max_width: [34%, 66%]
