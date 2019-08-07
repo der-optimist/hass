@@ -32,7 +32,12 @@ cards:
           name: Küche
         - type: custom:slider-entity-row
           entity: cover.jalousie_kuche
-          full_row: true
+          name: Position
+          attribute: position
+        - type: custom:slider-entity-row
+          entity: cover.jalousie_kuche
+          name: Winkel
+          attribute: tilt
       #- type: 'custom:simple-thermostat'
       #  entity: climate.kuche
       #  name: Heizung Küche
