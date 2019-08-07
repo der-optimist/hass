@@ -32,7 +32,7 @@ cards:
           name: Küche
         - type: custom:slider-entity-row
           entity: cover.jalousie_kuche
-          name: Position
+          name: Auf/Ab
           attribute: position
         - type: custom:slider-entity-row
           entity: cover.jalousie_kuche
@@ -82,7 +82,12 @@ cards:
           name: Esszimmer
         - type: custom:slider-entity-row
           entity: cover.jalousie_hst
-          full_row: true
+          name: Auf/Ab
+          attribute: position
+        - type: custom:slider-entity-row
+          entity: cover.jalousie_hst
+          name: Winkel
+          attribute: tilt
       - type: 'custom:simple-thermostat'
         entity: climate.esszimmer
         name: Heizung Esszimmer
@@ -118,7 +123,12 @@ cards:
           name: Couch
         - type: custom:slider-entity-row
           entity: cover.jalousie_wz_couch
-          full_row: true
+          name: Auf/Ab
+          attribute: position
+        - type: custom:slider-entity-row
+          entity: cover.jalousie_wz_couch
+          name: Winkel
+          attribute: tilt
       #- type: 'custom:simple-thermostat'
       #  entity: climate.wohnzimmer
       #  name: Heizung Wohnzimmer
