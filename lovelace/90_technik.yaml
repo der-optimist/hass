@@ -21,3 +21,9 @@ cards:
     show_header_toggle: false
     entities:
       - entity: media_player.kodi
+  - type: entities
+    title: "Backup"
+    show_header_toggle: false
+    entities:
+      - entity: binary_sensor.snapshots_stale
+      - entity: sensor.snapshot_backup
