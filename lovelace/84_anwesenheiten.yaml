@@ -5,8 +5,25 @@ cards:
   - type: custom:monster-card
     card:
       type: entities
-      title: "Präsenz"
+      title: "EG"
       show_header_toggle: false
     filter:
       include:
-        - entity_id: " binary_sensor.pm*"
+        - entity_id: "binary_sensor.pm_e*"
+  - type: custom:monster-card
+    card:
+      type: entities
+      title: "OG"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "binary_sensor.pm_o*"
+  - type: custom:monster-card
+    card:
+      type: entities
+      title: "Keller/Außen"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "binary_sensor.pm_k*"
+        - entity_id: "binary_sensor.pm_a*"
