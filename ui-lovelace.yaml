@@ -58,3 +58,4 @@ views:
   - !include lovelace/80_automatisierungen.yaml
   - !include lovelace/82_temperaturen.yaml
   - !include lovelace/83_helligkeiten.yaml
+  - !include lovelace/90_technik.yaml
