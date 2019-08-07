@@ -1,0 +1,12 @@
+title: Wo ist jemand
+path: anwesenheiten
+icon: mdi:motion-sensor
+cards:
+  - type: custom:monster-card
+    card:
+      type: entities
+      title: "Präsenz"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: " binary_sensor.pm*"
