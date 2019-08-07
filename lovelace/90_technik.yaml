@@ -1,0 +1,23 @@
+title: Technik
+path: technik
+icon: mdi:router-wireless
+cards:
+  - type: custom:monster-card
+    card:
+      type: entities
+      title: "Internet"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "sensor.speedtest*"
+  - type: entities
+    title: "HA-Server"
+    show_header_toggle: false
+    entities:
+      - entity: sensor.cpu_temperatur
+      - entity: sensor.disk_use_percent
+  - type: entities
+    title: "Kodi"
+    show_header_toggle: false
+    entities:
+      - entity: media_player.kodi
