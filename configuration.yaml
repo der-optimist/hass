@@ -112,6 +112,8 @@ owntracks:
 # Enables a map showing the location of tracked devices
 #map:
 
+speedtestdotnet:
+
 # Track the sun
 sun:
 
