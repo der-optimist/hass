@@ -118,7 +118,12 @@ cards:
           name: Bodentiefes
         - type: custom:slider-entity-row
           entity: cover.jalousie_wz_bodentiefes
-          full_row: true
+          name: Auf/Ab
+          attribute: position
+        - type: custom:slider-entity-row
+          entity: cover.jalousie_wz_bodentiefes
+          name: Winkel
+          attribute: tilt
         - entity: cover.jalousie_wz_couch
           name: Couch
         - type: custom:slider-entity-row
