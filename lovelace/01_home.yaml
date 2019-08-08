@@ -80,6 +80,7 @@ cards:
                 - state: "off"
           - type: custom:layout-card
             layout: vertical
+            column_width: 250
             max_width: [50%, 50%]
             cards:
               - type: custom:monster-card
