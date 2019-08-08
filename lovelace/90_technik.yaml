@@ -19,7 +19,10 @@ cards:
         entity: sensor.memory_use_percent
         animation: 'off'
         show_icon: true
-      - entity: sensor.disk_use_percent
+      - type: custom:bar-card
+        entity: sensor.disk_use_percent
+        animation: 'off'
+        show_icon: true
   - type: entities
     title: "Kodi"
     show_header_toggle: false
