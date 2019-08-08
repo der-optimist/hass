@@ -18,8 +18,7 @@ cards:
       - type: custom:bar-card
         entity: sensor.memory_use_percent
         animation: 'off'
-        card_style:
-          background: transparent
+        show_icon: true
       - entity: sensor.disk_use_percent
   - type: entities
     title: "Kodi"
