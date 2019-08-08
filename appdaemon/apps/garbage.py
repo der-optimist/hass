@@ -196,7 +196,7 @@ class garbage(hass.Hass):
         else:
             end_time_datetime = self.get_end_time(calendar_name)
             printtext = end_time_datetime.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
-        self.set_state(display_sensor_name, state=printtext, attributes={"datetime":end_time_datetime})
+        self.set_state(display_sensor_name, state=printtext, attributes={"datetime":end_time_datetime.timestamp()})
         self.log(printtext)
         
     def calc_days(self, calendar_name):
