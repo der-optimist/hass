@@ -29,6 +29,8 @@ cards:
     hour24: true
     points_per_hour: 1
     decimals: 1
+    lower_bound: 0
+    lower_bound_secondary: 0
     show:
       labels: true
   - type: entities
