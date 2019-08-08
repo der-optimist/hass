@@ -80,18 +80,15 @@ cards:
                 - state: "off"
           - type: horizontal-stack
             cards:
-              - type: entities
-                title: "Abfall"
-                show_header_toggle: false
-                entities:
-                  - entity: sensor.restmuelltonne_anzeige
-                    name: Restmüll
-                  - entity: sensor.biotonne_anzeige
-                    name: Biotonne
-                  - entity: sensor.papiertonne_anzeige
-                    name: Papiertonne
-                  - entity: sensor.raweg_anzeige
-                    name: RaWeg
+              - type: custom:monster-card
+                show_empty: false
+                card:
+                  type: entities
+                  title: "Abfall"
+                  show_header_toggle: false
+                filter:
+                  include:
+                    - entity_id: "sensor.abfall_anzeige*"
               - type: custom:monster-card
                 show_empty: false
                 card:
