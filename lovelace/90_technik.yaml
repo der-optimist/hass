@@ -16,7 +16,6 @@ cards:
     entities:
       - entity: sensor.cpu_temperatur
       - type: custom:bar-card
-        title: Default
         entity: sensor.memory_use_percent
         animation: 'off'
       - entity: sensor.disk_use_percent
