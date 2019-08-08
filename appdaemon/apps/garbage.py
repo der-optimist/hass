@@ -20,6 +20,10 @@ class garbage(hass.Hass):
         self.sensor_display_organic = "sensor.biotonne_anzeige"
         self.sensor_display_paper = "sensor.papiertonne_anzeige"
         self.sensor_display_plastic = "sensor.raweg_anzeige"
+        self.sensor_display_1 = "sensor.abfall_anzeige_1"
+        self.sensor_display_2 = "sensor.abfall_anzeige_2"
+        self.sensor_display_3 = "sensor.abfall_anzeige_3"
+        self.sensor_display_4 = "sensor.abfall_anzeige_4"
         self.switch_reminder_waste = "switch.reminder_garbage_restmuelltonne"
         self.switch_reminder_organic = "switch.reminder_garbage_biotonne"
         self.switch_reminder_paper = "switch.reminder_garbage_papiertonne"
@@ -177,6 +181,10 @@ class garbage(hass.Hass):
             self.set_state(self.sensor_display_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic})
         else:
             self.set_state(self.sensor_display_plastic, state = "warte...", attributes={"entity_picture":self.icon_plastic})
+        self.set_state(self.sensor_display_1, state = "warte...")
+        self.set_state(self.sensor_display_2, state = "warte...")
+        self.set_state(self.sensor_display_3, state = "warte...")
+        self.set_state(self.sensor_display_4, state = "warte...")
 
     def create_text(self, calendar_name, display_sensor_name):
         weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
@@ -188,7 +196,7 @@ class garbage(hass.Hass):
         else:
             end_time_datetime = self.get_end_time(calendar_name)
             printtext = end_time_datetime.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
-        self.set_state(display_sensor_name, state=printtext)
+        self.set_state(display_sensor_name, state=printtext, attributes={"datetime":end_time_datetime})
         self.log(printtext)
         
     def calc_days(self, calendar_name):
