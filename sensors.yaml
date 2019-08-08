@@ -20,91 +20,91 @@
 # KNX
   - platform: knx
     name: 'Temp. Küche PM'
-    address: '6/0/65'
+    state_address: '6/0/65'
     type: temperature
   - platform: knx
     name: 'Temp. Esszimmer PM'
-    address: '6/0/193'
+    state_address: '6/0/193'
     type: temperature
   - platform: knx
     name: 'Temp. Esszimmer Taster'
-    address: '3/0/1'
+    state_address: '3/0/1'
     type: temperature
   - platform: knx
     name: 'Temp. Wohnzimmer PM'
-    address: '6/1/65'
+    state_address: '6/1/65'
     type: temperature
   - platform: knx
     name: 'Temp. Schlafzimmer PM'
-    address: '6/1/193'
+    state_address: '6/1/193'
     type: temperature
   - platform: knx
     name: 'Temp. Schlafzimmer Taster'
-    address: '3/2/1'
+    state_address: '3/2/1'
     type: temperature
   - platform: knx
     name: 'Temp. Bad EG PM'
-    address: '6/2/65'
+    state_address: '6/2/65'
     type: temperature
   - platform: knx
     name: 'Temp. Bad EG Taster'
-    address: '3/2/129'
+    state_address: '3/2/129'
     type: temperature
   - platform: knx
     name: 'Temp. Flur EG PM'
-    address: '6/2/193'
+    state_address: '6/2/193'
     type: temperature
   - platform: knx
     name: 'Temp. Windfang PM'
-    address: '6/3/65'
+    state_address: '6/3/65'
     type: temperature
   - platform: knx
     name: 'Temp. WC PM'
-    address: '6/3/193'
+    state_address: '6/3/193'
     type: temperature
   - platform: knx
     name: 'Temp. La PM'
-    address: '7/0/65'
+    state_address: '7/0/65'
     type: temperature
   - platform: knx
     name: 'Temp. La Taster'
-    address: '3/3/129'
+    state_address: '3/3/129'
     type: temperature
   - platform: knx
     name: 'Temp. Nähzimmer PM'
-    address: '7/0/193'
+    state_address: '7/0/193'
     type: temperature
   - platform: knx
     name: 'Temp. Le PM'
-    address: '7/1/65'
+    state_address: '7/1/65'
     type: temperature
   - platform: knx
     name: 'Temp. Le Taster'
-    address: '3/4/1'
+    state_address: '3/4/1'
     type: temperature
   - platform: knx
     name: 'Temp. Gästezimmer PM'
-    address: '7/1/193'
+    state_address: '7/1/193'
     type: temperature
   - platform: knx
     name: 'Temp. Gästezimmer Taster'
-    address: '3/4/129'
+    state_address: '3/4/129'
     type: temperature
   - platform: knx
     name: 'Temp. Flur OG PM'
-    address: '7/2/65'
+    state_address: '7/2/65'
     type: temperature
   - platform: knx
     name: 'Temp. Bad OG PM'
-    address: '7/2/193'
+    state_address: '7/2/193'
     type: temperature
   - platform: knx
     name: 'Temp. Bad OG Taster'
-    address: '3/5/1'
+    state_address: '3/5/1'
     type: temperature
   - platform: knx
     name: 'Temp. Wetterstation'
-    address: '13/0/0'
+    state_address: '13/0/0'
     type: temperature
 
 # 1-wire
@@ -113,215 +113,215 @@
 # KNX
   - platform: knx
     name: 'Helligkeit Küche PM'
-    address: '6/0/56'
+    state_address: '6/0/56'
     type: illuminance
   - platform: knx
     name: 'Helligkeit Esszimmer PM'
-    address: '6/0/184'
+    state_address: '6/0/184'
     type: illuminance
   - platform: knx
     name: 'Helligkeit Wohnzimmer PM'
-    address: '6/1/56'
+    state_address: '6/1/56'
     type: illuminance
   - platform: knx
     name: 'Helligkeit Schlafzimmer PM'
-    address: '6/1/184'
+    state_address: '6/1/184'
     type: illuminance
   - platform: knx
     name: 'Helligkeit Bad EG PM'
-    address: '6/2/56'
+    state_address: '6/2/56'
     type: illuminance
   - platform: knx
     name: 'Helligkeit Flur EG PM'
-    address: '6/2/184'
+    state_address: '6/2/184'
     type: illuminance
   - platform: knx
     name: 'Helligkeit Windfang PM'
-    address: '6/3/56'
+    state_address: '6/3/56'
     type: illuminance
   - platform: knx
     name: 'Helligkeit WC PM'
-    address: '6/3/184'
+    state_address: '6/3/184'
     type: illuminance
   - platform: knx
     name: 'Helligkeit La PM'
-    address: '7/0/56'
+    state_address: '7/0/56'
     type: illuminance
   - platform: knx
     name: 'Helligkeit Nähzimmer PM'
-    address: '7/0/184'
+    state_address: '7/0/184'
     type: illuminance
   - platform: knx
     name: 'Helligkeit Le PM'
-    address: '7/1/56'
+    state_address: '7/1/56'
     type: illuminance
   - platform: knx
     name: 'Helligkeit Gästezimmer PM'
-    address: '7/1/184'
+    state_address: '7/1/184'
     type: illuminance
   - platform: knx
     name: 'Helligkeit Flur OG PM'
-    address: '7/2/56'
+    state_address: '7/2/56'
     type: illuminance
   - platform: knx
     name: 'Helligkeit Bad OG PM'
-    address: '7/2/184'
+    state_address: '7/2/184'
     type: illuminance
   - platform: knx
     name: 'Helligkeit Wetterstation'
-    address: '13/0/2'
+    state_address: '13/0/2'
     type: illuminance
 
 # --- Stellwerte Heizung ---
   - platform: knx
     name: 'Stellwert Heizung Küche'
-    address: '10/0/4'
+    state_address: '10/0/4'
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Esszimmer'
-    address: '10/0/24'
+    state_address: '10/0/24'
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Wohnzimmer'
-    address: '10/0/44'
+    state_address: '10/0/44'
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Schlafzimmer'
-    address: '10/0/64'
+    state_address: '10/0/64'
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Bad EG'
-    address: '10/0/84'
+    state_address: '10/0/84'
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Windfang/WC'
-    address: '10/0/104'
+    state_address: '10/0/104'
     type: percent
   - platform: knx
     name: 'Stellwert Heizung La'
-    address: '10/0/124'
+    state_address: '10/0/124'
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Nähzimmer'
-    address: '10/0/144'
+    state_address: '10/0/144'
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Le'
-    address: '10/0/164'
+    state_address: '10/0/164'
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Gästezimmer'
-    address: '10/0/184'
+    state_address: '10/0/184'
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Flur OG'
-    address: '10/0/204'
+    state_address: '10/0/204'
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Bad OG'
-    address: '10/0/224'
+    state_address: '10/0/224'
     type: percent
 
 # --- Windgeschwindigkeit ---
   - platform: knx
     name: 'Windgeschwindigkeit Wetterstation'
-    address: '13/0/1'
+    state_address: '13/0/1'
     type: speed_ms
 
 # --- Elektrische Leistung ---
 # Schaltaktor direkt
   - platform: knx
     name: 'El. Leistung Backofen'
-    address: '0/0/3'
+    state_address: '0/0/3'
     type: power
   - platform: knx
     name: 'El. Leistung Kühlschrank Küche'
-    address: '0/0/23'
+    state_address: '0/0/23'
     type: power
   - platform: knx
     name: 'El. Leistung Spülmaschine'
-    address: '0/0/43'
+    state_address: '0/0/43'
     type: power
   - platform: knx
     name: 'El. Leistung Mixi'
-    address: '0/0/63'
+    state_address: '0/0/63'
     type: power
   - platform: knx
     name: 'El. Leistung TV'
-    address: '0/0/103'
+    state_address: '0/0/103'
     type: power
   - platform: knx
     name: 'El. Leistung Waschmaschine'
-    address: '0/1/143'
+    state_address: '0/1/143'
     type: power
   - platform: knx
     name: 'El. Leistung Trockner'
-    address: '0/1/163'
+    state_address: '0/1/163'
     type: power
   - platform: knx
     name: 'El. Leistung Kühlschrank Keller'
-    address: '0/1/203'
+    state_address: '0/1/203'
     type: power
   - platform: knx
     name: 'El. Leistung Gefrierschrank'
-    address: '0/1/223'
+    state_address: '0/1/223'
     type: power
   - platform: knx
     name: 'El. Leistung Lüftungsanlage'
-    address: '0/2/143'
+    state_address: '0/2/143'
     type: power
 
 # --- Stromzähler ---
 # Schaltaktor direkt
   - platform: knx
     name: 'Stromzähler Backofen'
-    address: '0/0/4'
+    state_address: '0/0/4'
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Kühlschrank Küche'
-    address: '0/0/24'
+    state_address: '0/0/24'
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Spülmaschine'
-    address: '0/0/44'
+    state_address: '0/0/44'
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Mixi'
-    address: '0/0/64'
+    state_address: '0/0/64'
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler TV'
-    address: '0/0/104'
+    state_address: '0/0/104'
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Waschmaschine'
-    address: '0/1/144'
+    state_address: '0/1/144'
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Trockner'
-    address: '0/1/164'
+    state_address: '0/1/164'
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Kühlschrank Keller'
-    address: '0/1/204'
+    state_address: '0/1/204'
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Gefrierschrank'
-    address: '0/1/224'
+    state_address: '0/1/224'
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Lüftungsanlage'
-    address: '0/2/144'
+    state_address: '0/2/144'
     type: 4byte_signed
 
 # Binäreingang Rohdaten
   - platform: knx
     name: 'Stromzähler Kochfeld Rohdaten'
-    address: '11/0/21'
+    state_address: '11/0/21'
     type: 4byte_unsigned
   - platform: knx
     name: 'Stromzähler Wärmepumpe Rohdaten'
-    address: '11/0/20'
+    state_address: '11/0/20'
     type: 4byte_unsigned
 
 # --- Sonstiges ---
