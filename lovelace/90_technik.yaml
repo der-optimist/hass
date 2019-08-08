@@ -10,6 +10,20 @@ cards:
     filter:
       include:
         - entity_id: "sensor.speedtest*"
+  - type: custom:mini-graph-card
+    entities: 
+      - entity: sensor.speedtest_download
+        name: Download
+      - entity: sensor.speedtest_upload
+        name: Upload
+      - entity: sensor.speedtest_ping
+        name: Ping
+    name: Internet
+    hour24: true
+    points_per_hour: 1
+    decimals: 1
+    show:
+      labels: true
   - type: entities
     title: "HA-Server"
     show_header_toggle: false
