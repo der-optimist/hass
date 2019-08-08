@@ -18,6 +18,7 @@ cards:
       - type: custom:bar-card
         entity: sensor.memory_use_percent
         animation: 'off'
+        icon_position: left
         card_style:
           background-color: transparent
       - entity: sensor.disk_use_percent
