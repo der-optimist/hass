@@ -54,6 +54,7 @@ class garbage(hass.Hass):
         self.create_display_sensors(None)
         self.create_reminder_switches(None)
         self.update_all_displays(None)
+        self.update_sorted_sensors(None)
         
     def check_next_day(self, kwargs):
         self.log("Checking if tomorrow is some garbage collection")
@@ -196,7 +197,7 @@ class garbage(hass.Hass):
         else:
             end_time_datetime = self.get_end_time(calendar_name)
             printtext = end_time_datetime.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
-        self.set_state(display_sensor_name, state=printtext, attributes={"datetime":end_time_datetime.timestamp()})
+        self.set_state(display_sensor_name, state=printtext, attributes={"timestamp":end_time_datetime.timestamp()})
         self.log(printtext)
         
     def calc_days(self, calendar_name):
@@ -208,3 +209,16 @@ class garbage(hass.Hass):
         end_time_str = self.get_state(calendar_name, attribute="end_time")
         end_time_datetime = datetime.datetime.strptime(end_time_str,"%Y-%m-%d %H:%M:%S")
         return end_time_datetime
+
+    def update_sorted_sensors(self, kwargs):
+        sensor_names = [self.sensor_display_waste, self.sensor_display_organic, self.sensor_display_paper, self.sensor_display_plastic]
+        timestamps = []
+        for sensor in sensor_names:
+            timestamps.add(self.get_state(sensor, attribute = "timestamp"))
+        zipped_pairs = zip(timestamps, sensor_names)
+        sensor_names_sorted = [x for _, x in sorted(zipped_pairs)] 
+        self.log(sensor_names_sorted)
+        
+        
+        
+        
