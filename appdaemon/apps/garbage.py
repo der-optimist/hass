@@ -218,7 +218,8 @@ class garbage(hass.Hass):
         zipped_pairs = zip(timestamps, sensor_names)
         sensor_names_sorted = [x for _, x in sorted(zipped_pairs)] 
         self.log(sensor_names_sorted)
-        
+        self.log(self.get_state(sensor_names_sorted[0], attribute="all"))
+        self.set_state(self.sensor_display_1,self.get_state(sensor_names_sorted[0], attribute="all"))
         
         
         
