@@ -163,22 +163,22 @@ class garbage(hass.Hass):
     def create_display_sensors(self, kwargs):
         if self.entity_exists(self.sensor_display_waste):
             curr_state = self.get_state(self.sensor_display_waste)
-            self.set_state(self.sensor_display_waste, state = curr_state, attributes={"entity_picture":self.icon_waste})
+            self.set_state(self.sensor_display_waste, state = curr_state, attributes={"entity_picture":self.icon_waste, "friendly_name": "Restmüll"})
         else:
             self.set_state(self.sensor_display_waste, state = "warte...", attributes={"entity_picture":self.icon_waste, "friendly_name": "Restmüll", "timestamp": 0})
         if self.entity_exists(self.sensor_display_organic):
             curr_state = self.get_state(self.sensor_display_organic)
-            self.set_state(self.sensor_display_organic, state = curr_state, attributes={"entity_picture":self.icon_organic})
+            self.set_state(self.sensor_display_organic, state = curr_state, attributes={"entity_picture":self.icon_organic, "friendly_name": "Biotonne"})
         else:
             self.set_state(self.sensor_display_organic, state = "warte...", attributes={"entity_picture":self.icon_organic, "friendly_name": "Biotonne", "timestamp": 0})
         if self.entity_exists(self.sensor_display_paper):
             curr_state = self.get_state(self.sensor_display_paper)
-            self.set_state(self.sensor_display_paper, state = curr_state, attributes={"entity_picture":self.icon_paper})
+            self.set_state(self.sensor_display_paper, state = curr_state, attributes={"entity_picture":self.icon_paper, "friendly_name": "Papiertonne"})
         else:
             self.set_state(self.sensor_display_paper, state = "warte...", attributes={"entity_picture":self.icon_paper, "friendly_name": "Papiertonne", "timestamp": 0})
         if self.entity_exists(self.sensor_display_plastic):
             curr_state = self.get_state(self.sensor_display_plastic)
-            self.set_state(self.sensor_display_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic})
+            self.set_state(self.sensor_display_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic, "friendly_name": "RaWeg"})
         else:
             self.set_state(self.sensor_display_plastic, state = "warte...", attributes={"entity_picture":self.icon_plastic, "friendly_name": "RaWeg", "timestamp": 0})
         self.set_state(self.sensor_display_1, state = "warte...")
