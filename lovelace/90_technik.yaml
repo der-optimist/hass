@@ -33,6 +33,8 @@ cards:
     lower_bound_secondary: 0
     show:
       labels: true
+      labels_secondary: true
+      points: true
   - type: entities
     title: "HA-Server"
     show_header_toggle: false
