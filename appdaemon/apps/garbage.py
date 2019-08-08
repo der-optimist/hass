@@ -197,7 +197,7 @@ class garbage(hass.Hass):
             end_time_datetime = self.get_end_time(calendar_name)
             printtext = end_time_datetime.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
         self.set_state(display_sensor_name, state=printtext, attributes={"timestamp":end_time_datetime.timestamp()})
-        self.log(printtext)
+        #self.log(printtext)
         
     def calc_days(self, calendar_name):
         end_time_datetime = self.get_end_time(calendar_name)
@@ -216,8 +216,6 @@ class garbage(hass.Hass):
             timestamps.append(self.get_state(sensor, attribute = "timestamp"))
         zipped_pairs = zip(timestamps, sensor_names)
         sensor_names_sorted = [x for _, x in sorted(zipped_pairs)] 
-        self.log(sensor_names_sorted)
-        self.log(self.get_state(sensor_names_sorted[0], attribute="all"))
         self.set_state(self.sensor_display_1, state = self.get_state(sensor_names_sorted[0]), attributes={"entity_picture":self.get_state(sensor_names_sorted[0], attribute = "entity_picture"), "friendly_name":self.get_state(sensor_names_sorted[0], attribute = "friendly_name")})
         self.set_state(self.sensor_display_2, state = self.get_state(sensor_names_sorted[1]), attributes={"entity_picture":self.get_state(sensor_names_sorted[1], attribute = "entity_picture"), "friendly_name":self.get_state(sensor_names_sorted[1], attribute = "friendly_name")})
         self.set_state(self.sensor_display_3, state = self.get_state(sensor_names_sorted[2]), attributes={"entity_picture":self.get_state(sensor_names_sorted[2], attribute = "entity_picture"), "friendly_name":self.get_state(sensor_names_sorted[2], attribute = "friendly_name")})
