@@ -18,6 +18,7 @@ cards:
         name: Upload
       - entity: sensor.speedtest_ping
         name: Ping
+        y_axis: secondary
     name: Internet
     hour24: true
     points_per_hour: 1
