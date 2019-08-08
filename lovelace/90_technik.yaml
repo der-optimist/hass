@@ -14,11 +14,17 @@ cards:
     entities: 
       - entity: sensor.speedtest_download
         name: Download
+        show_points: true
+        show_state: true
       - entity: sensor.speedtest_upload
         name: Upload
+        show_points: true
+        show_state: true
       - entity: sensor.speedtest_ping
         name: Ping
         y_axis: secondary
+        show_points: true
+        show_state: true
     name: Internet
     hour24: true
     points_per_hour: 1
