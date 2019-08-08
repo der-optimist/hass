@@ -54,7 +54,6 @@ class garbage(hass.Hass):
         self.create_display_sensors(None)
         self.create_reminder_switches(None)
         self.update_all_displays(None)
-        self.update_sorted_sensors(None)
         
     def check_next_day(self, kwargs):
         self.log("Checking if tomorrow is some garbage collection")
@@ -62,25 +61,21 @@ class garbage(hass.Hass):
         if self.calc_days(self.calendar_waste) == 1:
             self.log("Tomorrow is waste collection")
             self.set_state(self.switch_reminder_waste, state = "on")
-            #self.notify("Morgen ist Restmülltonne", name = "telegram_jo")
             self.fire_event("custom_notify", message="Morgen ist Restmülltonne", target="telegram_jo")
         # check organic
         if self.calc_days(self.calendar_organic) == 1:
             self.log("Tomorrow is organic waste collection")
             self.set_state(self.switch_reminder_organic, state = "on")
-            #self.notify("Morgen ist Biotonne", name = "telegram_jo")
             self.fire_event("custom_notify", message="Morgen ist Biotonne", target="telegram_jo")
         # check paper
         if self.calc_days(self.calendar_paper) == 1:
             self.log("Tomorrow is paper collection")
             self.set_state(self.switch_reminder_paper, state = "on")
-            #self.notify("Morgen ist Papiertonne", name = "telegram_jo")
             self.fire_event("custom_notify", message="Morgen ist Papiertonne", target="telegram_jo")
         # check plastic
         if self.calc_days(self.calendar_plastic) == 1:
             self.log("Tomorrow is plastic collection")
             self.set_state(self.switch_reminder_plastic, state = "on")
-            #self.notify("Morgen ist RaWeg", name = "telegram_jo")
             self.fire_event("custom_notify", message="Morgen ist RaWeg", target="telegram_jo")
 
     def end_waste(self, entity, attribute, old, new, kwargs):
@@ -110,18 +105,22 @@ class garbage(hass.Hass):
     def update_waste_display(self, kwargs):
         self.log("Updating Waste Display Sensor")
         self.create_text(self.calendar_waste, self.sensor_display_waste)
+        self.update_sorted_sensors(None)
 
     def update_organic_display(self, kwargs):
         self.log("Updating Organic Waste Display Sensor")
         self.create_text(self.calendar_organic, self.sensor_display_organic)
+        self.update_sorted_sensors(None)
 
     def update_paper_display(self, kwargs):
         self.log("Updating Paper Display Sensor")
         self.create_text(self.calendar_paper, self.sensor_display_paper)
+        self.update_sorted_sensors(None)
 
     def update_plastic_display(self, kwargs):
         self.log("Updating Plastic Display Sensor")
         self.create_text(self.calendar_plastic, self.sensor_display_plastic)
+        self.update_sorted_sensors(None)
 
     def midnight(self, kwargs):
         self.log("Midnight - Updating All Waste Display Sensors")
@@ -166,22 +165,22 @@ class garbage(hass.Hass):
             curr_state = self.get_state(self.sensor_display_waste)
             self.set_state(self.sensor_display_waste, state = curr_state, attributes={"entity_picture":self.icon_waste})
         else:
-            self.set_state(self.sensor_display_waste, state = "warte...", attributes={"entity_picture":self.icon_waste})
+            self.set_state(self.sensor_display_waste, state = "warte...", attributes={"entity_picture":self.icon_waste, "friendly_name": "Restmüll", "timestamp": 0})
         if self.entity_exists(self.sensor_display_organic):
             curr_state = self.get_state(self.sensor_display_organic)
             self.set_state(self.sensor_display_organic, state = curr_state, attributes={"entity_picture":self.icon_organic})
         else:
-            self.set_state(self.sensor_display_organic, state = "warte...", attributes={"entity_picture":self.icon_organic})
+            self.set_state(self.sensor_display_organic, state = "warte...", attributes={"entity_picture":self.icon_organic, "friendly_name": "Biotonne", "timestamp": 0})
         if self.entity_exists(self.sensor_display_paper):
             curr_state = self.get_state(self.sensor_display_paper)
             self.set_state(self.sensor_display_paper, state = curr_state, attributes={"entity_picture":self.icon_paper})
         else:
-            self.set_state(self.sensor_display_paper, state = "warte...", attributes={"entity_picture":self.icon_paper})
+            self.set_state(self.sensor_display_paper, state = "warte...", attributes={"entity_picture":self.icon_paper, "friendly_name": "Papiertonne", "timestamp": 0})
         if self.entity_exists(self.sensor_display_plastic):
             curr_state = self.get_state(self.sensor_display_plastic)
             self.set_state(self.sensor_display_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic})
         else:
-            self.set_state(self.sensor_display_plastic, state = "warte...", attributes={"entity_picture":self.icon_plastic})
+            self.set_state(self.sensor_display_plastic, state = "warte...", attributes={"entity_picture":self.icon_plastic, "friendly_name": "RaWeg", "timestamp": 0})
         self.set_state(self.sensor_display_1, state = "warte...")
         self.set_state(self.sensor_display_2, state = "warte...")
         self.set_state(self.sensor_display_3, state = "warte...")
@@ -219,7 +218,9 @@ class garbage(hass.Hass):
         sensor_names_sorted = [x for _, x in sorted(zipped_pairs)] 
         self.log(sensor_names_sorted)
         self.log(self.get_state(sensor_names_sorted[0], attribute="all"))
-        self.set_state(self.sensor_display_1,self.get_state(sensor_names_sorted[0], attribute="all"))
-        
+        self.set_state(self.sensor_display_1, state = self.get_state(sensor_names_sorted[0]), attributes={"entity_picture":self.get_state(sensor_names_sorted[0], attribute = "entity_picture"), "friendly_name":self.get_state(sensor_names_sorted[0], attribute = "friendly_name")})
+        self.set_state(self.sensor_display_2, state = self.get_state(sensor_names_sorted[1]), attributes={"entity_picture":self.get_state(sensor_names_sorted[1], attribute = "entity_picture"), "friendly_name":self.get_state(sensor_names_sorted[1], attribute = "friendly_name")})
+        self.set_state(self.sensor_display_3, state = self.get_state(sensor_names_sorted[2]), attributes={"entity_picture":self.get_state(sensor_names_sorted[2], attribute = "entity_picture"), "friendly_name":self.get_state(sensor_names_sorted[2], attribute = "friendly_name")})
+        self.set_state(self.sensor_display_4, state = self.get_state(sensor_names_sorted[3]), attributes={"entity_picture":self.get_state(sensor_names_sorted[3], attribute = "entity_picture"), "friendly_name":self.get_state(sensor_names_sorted[3], attribute = "friendly_name")})
         
         
