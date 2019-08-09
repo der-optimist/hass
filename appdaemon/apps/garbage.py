@@ -189,12 +189,12 @@ class garbage(hass.Hass):
     def create_text(self, calendar_name, display_sensor_name):
         weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
         days = self.calc_days(calendar_name)
+        end_time_datetime = self.get_end_time(calendar_name)
         if days == 0:
             printtext = "heute"
         elif days == 1:
             printtext = "morgen"
         else:
-            end_time_datetime = self.get_end_time(calendar_name)
             printtext = end_time_datetime.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
         self.set_state(display_sensor_name, state=printtext, attributes={"timestamp":end_time_datetime.timestamp()})
         #self.log(printtext)
