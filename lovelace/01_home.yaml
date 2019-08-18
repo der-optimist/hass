@@ -9,10 +9,10 @@ cards:
     cards:
       - type: horizontal-stack
         cards:
-#          - type: custom:bignumber-card
-#            entity: sensor.t_wz_ist_oh
-#            scale: 22px
-#            title: Wohnzimmer
+          - type: custom:bignumber-card
+            entity: sensor.t_wz_ist_oh
+            scale: 22px
+            title: Wohnzimmer
           - type: custom:bignumber-card
             entity: sensor.time
             scale: 22px
