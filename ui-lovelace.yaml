@@ -25,6 +25,8 @@ resources:
     type: module
   - url: /community_plugin/bar-card/bar-card.js
     type: js
+  - url: /community_plugin/our-groceries-card/our-groceries-card.js
+    type: js
 
 title: Lieblingshaus
 cch:
@@ -54,3 +56,4 @@ views:
   - !include lovelace/83_helligkeiten.yaml
   - !include lovelace/84_anwesenheiten.yaml
   - !include lovelace/90_technik.yaml
+  - !include lovelace/98_einkaufen.yaml
