@@ -64,6 +64,9 @@ counter_to_power_meter_kochfeld:
 set_sensor_attributes:
   module: set_sensor_attributes
   class: set_sensor_attributes
+reload_browser_page:
+  module: reload_browser_page
+  class: reload_browser_page
 # ----------------------
 telegram_bot:
   module: telegram_bot
