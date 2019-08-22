@@ -1,7 +1,6 @@
 title: Einkaufen
 path: einkaufen
 icon: mdi:format-list-bulleted
-panel: true
 cards:
   - type: custom:our-groceries-card
     title: Einkaufsliste
