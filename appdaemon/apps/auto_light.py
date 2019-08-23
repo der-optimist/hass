@@ -72,7 +72,9 @@ class auto_light(hass.Hass):
             if self.is_triggered:
                 self.log("Another trigger is active. Will do nothing with this OFF event")
             else:
-                self.log("No other trigger is active. Will decide if I should switch the light off")
+                self.log("No other trigger is active, noboby seems to be here. Will decide if I should switch the light off")
+                self.log("Activating automatic mode")
+                self.manual_mode = False
                 self.filter_turn_off_command(None)
         
     def light_state_changed(self, entity, attributes, old, new, kwargs):
@@ -101,6 +103,14 @@ class auto_light(hass.Hass):
     
     def filter_turn_off_command(self, kwargs):
         self.log("Will decide now if light should be turned off")
+        if self.manual_mode:
+            self.log("I am in manual mode, wont do anything")
+            return
+        if self.is_blocked:
+            self.log("I am blocked by a blocking entity, wont do anything")
+            return
+        self.log("Will turn off the light now")
+        self.turn_off(self.light)
         
     def check_if_blocked(self, kwargs):
         self.log("Will check if one of the blocking device is active")
