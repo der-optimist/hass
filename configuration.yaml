@@ -48,6 +48,7 @@ mqtt:
   username: !secret mqtt_user_1
   password: !secret mqtt_pw_1
   client_id: home-assistant
+  discovery: true
 
 media_player:
   - platform: kodi
@@ -161,12 +162,21 @@ cloud:
 
 #group: !include groups.yaml
 
+timer:
+  zigbee_permit_join:
+    name: Time remaining
+    duration: 600 # Updated this to the number of seconds you wish
+
 # Inputs
 input_boolean:
   # Test-Switch
   test_trigger:
     name: Testtrigger
     icon: mdi:ray-start-arrow
+  zigbee_permit_join:
+    name: Allow devices to join
+    initial: off
+    icon: mdi:cellphone-wireless
   # App Switches
   app_switch_licht_kueche:
     name: Automatik Licht Küche
@@ -253,3 +263,51 @@ input_number:
     min: 0
     max: 30
     step: 1
+
+automation:
+  - id: enable_zigbee_join
+    alias: Enable Zigbee joining
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_boolean.zigbee_permit_join
+      to: 'on'
+    action:
+    - service: mqtt.publish
+      data:
+        topic: zigbee2mqtt/bridge/config/permit_join
+        payload: 'true'
+    - service: timer.start
+      data:
+        entity_id: timer.zigbee_permit_join
+  - id: disable_zigbee_join
+    alias: Disable Zigbee joining
+    trigger:
+    - entity_id: input_boolean.zigbee_permit_join
+      platform: state
+      to: 'off'
+    action:
+    - data:
+        payload: 'false'
+        topic: zigbee2mqtt/bridge/config/permit_join
+      service: mqtt.publish
+    - data:
+        entity_id: timer.zigbee_permit_join
+      service: timer.cancel
+    hide_entity: true
+  - id: disable_zigbee_join_timer
+    alias: Disable Zigbee joining by timer
+    hide_entity: true
+    trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.zigbee_permit_join
+    action:
+    - service: mqtt.publish
+      data:
+        topic: zigbee2mqtt/bridge/config/permit_join
+        payload: 'false'
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.zigbee_permit_join
