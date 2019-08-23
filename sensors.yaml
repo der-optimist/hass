@@ -352,3 +352,9 @@
     command: "cat /sys/class/thermal/thermal_zone0/temp"
     unit_of_measurement: "°C"
     value_template: '{{ value | multiply(0.001) | round(1) }}'
+
+# MQTT
+  - platform: mqtt
+    name: Bridge state
+    state_topic: "zigbee2mqtt/bridge/state"
+    icon: mdi:router-wireless
