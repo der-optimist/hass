@@ -165,7 +165,7 @@ cloud:
 timer:
   zigbee_permit_join:
     name: Time remaining
-    duration: 600 # Updated this to the number of seconds you wish
+    duration: 1800 # Updated this to the number of seconds you wish
 
 # Inputs
 input_boolean:
