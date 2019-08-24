@@ -22,6 +22,7 @@ class locations(hass.Hass):
         self.listen_state(self.left_home, self.args["device"], old = "home")
         self.name_jo = self.args["name_jo"]
         self.sensor_location_jo = "sensor.location_jo"
+        self.set_state(self.sensor_location_jo, state = "warte auf Info...", attributes={"entity_picture":"/local/icons/weather_warnings/question_mark.svg", "friendly_name": self.name_jo})
         
     def arrived_at_work(self, entity, attribute, old, new, kwargs):
         self.log("Jo arrived at work")
