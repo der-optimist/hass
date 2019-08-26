@@ -1,11 +1,11 @@
 # --- Temperatur ---
 # Wohnzimmer über openhab
-  - platform: rest
-    resource: http://192.168.1.162:8080/rest/items/T_WZ_ist
-    name: T_WZ_ist_OH
-    device_class: temperature
-    unit_of_measurement: "°C"
-    value_template: '{{ value_json.state | round(1) }}'
+#  - platform: rest
+#    resource: http://192.168.1.162:8080/rest/items/T_WZ_ist
+#    name: T_WZ_ist_OH
+#    device_class: temperature
+#    unit_of_measurement: "°C"
+#    value_template: '{{ value_json.state | round(1) }}'
 # Außendaten über Internet
   - platform: template
     sensors:
@@ -339,6 +339,12 @@
     display_options:
       - 'time'
       - 'date'
+  - platform: template
+    sensors:
+      date_template:
+        friendly_name: 'Datum'
+        value_template: '{{ as_timestamp(states('sensor.date')) | timestamp_custom("%d.%m.%Y", True) }}'
+        entity_id: sensor.date
 # System 
   - platform: systemmonitor
     resources:
