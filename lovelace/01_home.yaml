@@ -18,7 +18,7 @@ cards:
             content: >
               # [[ sensor.time ]]
               
-              [[ sensor.date ]]
+              [[ sensor.date_template ]]
 #          - type: custom:bignumber-card
 #            entity: sensor.t_wz_ist_oh
 #            scale: 22px
