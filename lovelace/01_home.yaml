@@ -81,6 +81,11 @@ cards:
             show_empty: false
             card:
               type: entities
+              style: |
+                ha-card {
+                  border-style: solid;
+                  border-color: var(--primary-color);
+                }    
               title: "Wetterwarnungen"
               show_header_toggle: false
             filter:
