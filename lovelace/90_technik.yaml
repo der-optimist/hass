@@ -30,6 +30,7 @@ cards:
     title: "HA-Server"
     show_header_toggle: false
     entities:
+      - entity: sensor.processor_use
       - entity: sensor.cpu_temperatur
       - type: custom:bar-card
         entity: sensor.memory_use_percent
