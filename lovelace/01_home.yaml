@@ -73,7 +73,7 @@ cards:
             filter:
               include:
                 - entity_id: "*battery"
-                  state: '< 99'
+                  state: '< 15'
           - type: markdown
             content: >
               Buttons für Szenen
