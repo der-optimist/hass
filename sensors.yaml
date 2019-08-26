@@ -17,6 +17,10 @@
         friendly_name: "Luftfeuchtigkeit"
         unit_of_measurement: '%'
         value_template: "{{ state_attr('weather.dark_sky', 'humidity') }}"
+      date_template:
+        friendly_name: 'Datum'
+        value_template: '{{ as_timestamp(states('sensor.date')) | timestamp_custom("%d.%m.%Y", True) }}'
+        entity_id: sensor.date
 # KNX
   - platform: knx
     name: 'Temp. Küche PM'
@@ -339,11 +343,7 @@
     display_options:
       - 'time'
       - 'date'
-  - platform: template
-    sensors:
-      date_template:
-        friendly_name: 'Datum'
-        value_template: '{{ as_timestamp(states('sensor.date')) | timestamp_custom("%d.%m.%Y", True) }}'
+
 # System 
   - platform: systemmonitor
     resources:
