@@ -27,6 +27,8 @@ resources:
     type: js
   - url: /community_plugin/our-groceries-card/our-groceries-card.js
     type: js
+  - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
+    type: module
 
 title: Lieblingshaus
 cch:
