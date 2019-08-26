@@ -29,6 +29,8 @@ resources:
     type: js
   - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
     type: module
+  - url: /community_plugin/lovelace-card-mod/card-mod.js
+    type: module
 
 title: Lieblingshaus
 cch:
