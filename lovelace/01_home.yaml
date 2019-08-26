@@ -9,14 +9,22 @@ cards:
     cards:
       - type: horizontal-stack
         cards:
-          - type: custom:bignumber-card
-            entity: sensor.t_wz_ist_oh
-            scale: 22px
-            title: Wohnzimmer
-          - type: custom:bignumber-card
-            entity: sensor.time
-            scale: 22px
-            title: Uhrzeit
+          - type: markdown
+            content: >
+              # **[[ sensor.0x00158d00034d1e34_temperature ]]** ([[ sensor.0x00158d00034d1e34_humidity ]])
+              Wohnzimmer
+          - type: markdown
+            content: >
+              # **[[ sensor.time ]]**
+              [[ sensor.date ]]
+#          - type: custom:bignumber-card
+#            entity: sensor.t_wz_ist_oh
+#            scale: 22px
+#            title: Wohnzimmer
+#          - type: custom:bignumber-card
+#            entity: sensor.time
+#            scale: 22px
+#            title: Uhrzeit
       - type: custom:mini-graph-card
         entities: 
           - sensor.temp_owm
