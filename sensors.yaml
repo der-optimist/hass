@@ -19,7 +19,7 @@
         value_template: "{{ state_attr('weather.dark_sky', 'humidity') }}"
       date_template:
         friendly_name: 'Datum'
-        value_template: '{{ as_timestamp(states('sensor.date')) | timestamp_custom("%d.%m.%Y", True) }}'
+        value_template: '{{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}'
         entity_id: sensor.date
 # KNX
   - platform: knx
