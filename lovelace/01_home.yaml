@@ -19,14 +19,6 @@ cards:
               # [[ sensor.time ]]
               
               [[ sensor.date_template ]]
-#          - type: custom:bignumber-card
-#            entity: sensor.t_wz_ist_oh
-#            scale: 22px
-#            title: Wohnzimmer
-#          - type: custom:bignumber-card
-#            entity: sensor.time
-#            scale: 22px
-#            title: Uhrzeit
       - type: custom:mini-graph-card
         entities: 
           - sensor.temp_owm
@@ -73,6 +65,15 @@ cards:
               include:
                 - entity_id: "switch.reminder*"
                   state: "on"
+          - type: custom:monster-card
+            show_empty: false
+            card:
+              type: glance
+              title: Batterie wechseln
+            filter:
+              include:
+                - entity_id: "*battery"
+                  state: '< 99'
           - type: markdown
             content: >
               Buttons für Szenen
