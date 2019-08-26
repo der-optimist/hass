@@ -11,11 +11,13 @@ cards:
         cards:
           - type: markdown
             content: >
-              # **[[ sensor.0x00158d00034d1e34_temperature ]]** ([[ sensor.0x00158d00034d1e34_humidity ]])
+              # [[ sensor.0x00158d00034d1e34_temperature ]]°C ([[ sensor.0x00158d00034d1e34_humidity ]]%)
+              
               Wohnzimmer
           - type: markdown
             content: >
-              # **[[ sensor.time ]]**
+              # [[ sensor.time ]]
+              
               [[ sensor.date ]]
 #          - type: custom:bignumber-card
 #            entity: sensor.t_wz_ist_oh
