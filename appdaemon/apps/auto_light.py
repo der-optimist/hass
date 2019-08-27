@@ -43,10 +43,8 @@ class auto_light(hass.Hass):
             except ValueError:
                 self.log("illuminance value of sensor {} can not be coverted to float as it is {}".format(self.illuminance_sensor,self.get_state(self.illuminance_sensor)))
         # is_night
-        self.is_night = False
+        self.check_if_night(None)
         for trigger_entity_for_night_mode in self.trigger_entities_for_night_mode:
-            if self.get_state(trigger_entity_for_night_mode) == "on":
-                self.is_night = True
             self.listen_state(self.night_trigger_changed, trigger_entity_for_night_mode)
         self.check_if_any_trigger_active(None)
         self.app_brightness_state = float(self.get_state(self.light, attribute="brightness_pct"))
@@ -107,7 +105,12 @@ class auto_light(hass.Hass):
         self.check_if_blocked(None)
     
     def night_trigger_changed(self, entity, attributes, old, new, kwargs):
-        pass
+        self.log("Night trigger: {} changed from {} to {}".format(entity, old, new))
+        self.check_if_night(None)
+        self.check_if_too_dark(None)
+        if self.is_too_dark and self.is_triggered:
+            self.log("Seems to be too dark and someone is present. Will decide if I should switch on the light")
+            self.filter_turn_on_command(None)
 
     def filter_turn_on_command(self, kwargs):
         self.log("Will decide now if light should be turned on")
@@ -162,3 +165,9 @@ class auto_light(hass.Hass):
                 self.is_too_dark = True
             else:
                 self.is_too_dark = False
+                
+    def check_if_night(self, kwargs):
+        self.is_night = False
+        for trigger_entity_for_night_mode in self.trigger_entities_for_night_mode:
+            if self.get_state(trigger_entity_for_night_mode) == "on":
+                self.is_night = True
