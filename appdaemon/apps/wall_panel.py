@@ -20,7 +20,7 @@ class wall_panel(hass.Hass):
         else:
             self.log("Nighttime - will let the panel sleep")
         
-    def is_time_between(begin_time, end_time, check_time=None):
+    def is_time_between(self, begin_time, end_time, check_time=None):
         # If check time is not given, default to current time
         check_time = check_time or datetime.datetime.now().time()
         if begin_time < end_time:
