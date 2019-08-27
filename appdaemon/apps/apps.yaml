@@ -67,6 +67,9 @@ set_sensor_attributes:
 reload_browser_page:
   module: reload_browser_page
   class: reload_browser_page
+wall_panel:
+  module: wall_panel
+  class: wall_panel
 # ----------------------
 telegram_bot:
   module: telegram_bot
