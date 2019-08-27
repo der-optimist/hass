@@ -1,5 +1,5 @@
 import appdaemon.plugins.hass.hassapi as hass
-from datetime
+import datetime
 
 #
 # What it does:
