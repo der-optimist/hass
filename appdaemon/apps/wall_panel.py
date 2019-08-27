@@ -1,5 +1,5 @@
 import appdaemon.plugins.hass.hassapi as hass
-import datetime, time
+from datetime import datetime, time
 
 #
 # What it does:
@@ -11,7 +11,7 @@ class wall_panel(hass.Hass):
     def initialize(self):
         self.start_time = time(5,00)
         self.end_time = time(22,45)
-        self.run_every(self.send_wake_command, datetime.datetime.now(), 5 * 60) # run every 5 minutes
+        self.run_every(self.send_wake_command, datetime.now(), 5 * 60) # run every 5 minutes
 
     def send_wake_command(self, kwargs):
         if is_time_between(self.start_time, self.end_time):
