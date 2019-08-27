@@ -6,7 +6,7 @@ import datetime
 #   - Send a wake command to the wall panel (during day time) for keeping it on
 # 
 
-class weather_and_astro(hass.Hass):
+class wall_panel(hass.Hass):
 
     def initialize(self):
         self.start_time = time(5,00)
