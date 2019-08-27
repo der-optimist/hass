@@ -14,7 +14,7 @@ class wall_panel(hass.Hass):
         self.run_every(self.send_wake_command, datetime.datetime.now(), 5 * 60) # run every 5 minutes
 
     def send_wake_command(self, kwargs):
-        if is_time_between(self.start_time, self.end_time):
+        if self.is_time_between(self.start_time, self.end_time):
             self.log("Daytime - will send wake command to panel")
             self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"wake\":true,\"wakeTime\":610}", qos = "1")
         else:
