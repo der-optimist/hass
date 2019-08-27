@@ -47,6 +47,7 @@ class auto_light(hass.Hass):
         for trigger_entity_for_night_mode in self.trigger_entities_for_night_mode:
             if self.get_state(trigger_entity_for_night_mode) == "on":
                 self.is_night = True
+            self.listen_state(self.night_trigger_changed, trigger_entity_for_night_mode)
         self.check_if_any_trigger_active(None)
         self.app_brightness_state = float(self.get_state(self.light, attribute="brightness_pct"))
         
@@ -64,8 +65,15 @@ class auto_light(hass.Hass):
     def trigger_state_changed(self, entity, attributes, old, new, kwargs):
         self.log("Light Trigger: {} changed from {} to {}".format(entity, old, new))
         if new == "on":
-            self.log("Got trigger event ON, will decide if we need light...")
-            self.filter_turn_on_command(None)
+            if self.is_triggered:
+                self.log("Got trigger event, but is already triggered, wont do anything")
+                return
+            else:
+                self.is_triggered = True
+                self.log("Got trigger event ON, will check if it is too dark...")
+                if self.is_too_dark:
+                    self.log("Jep, seems to be too dark")
+                    self.filter_turn_on_command(None)
         if new == "off":
             self.log("Got trigger event OFF, will look if another trigger is active")
             self.check_if_any_trigger_active(None)
@@ -73,13 +81,14 @@ class auto_light(hass.Hass):
                 self.log("Another trigger is active. Will do nothing with this OFF event")
             else:
                 self.log("No other trigger is active, noboby seems to be here. Will decide if I should switch the light off")
-                self.log("Activating automatic mode")
+                self.log("But first, I will activate automatic mode")
                 self.manual_mode = False
                 self.filter_turn_off_command(None)
         
     def light_state_changed(self, entity, attributes, old, new, kwargs):
         self.log("Light: {} changed from {} to {}".format(entity, old, new))
         if float(new) == self.app_brightness_state:
+            # does this work for OFF? No brightness?
             self.log("This state change happened most likely due to my command. Wont change anything")
         else:
             self.log("The light was changed manually, I think. Will deactivate myself and switch to manual mode")
@@ -87,19 +96,34 @@ class auto_light(hass.Hass):
         
     def illuminance_changed(self, entity, attributes, old, new, kwargs):
         self.log("illuminance sensor: {} changed from {} to {}".format(entity, old, new))
+        self.measured_illuminance = float(new)
+        self.check_if_too_dark(None)
+        if self.is_too_dark and self.is_triggered:
+            self.log("Seems to be too dark and someone is present. Will decide if I should switch on the light")
+            self.filter_turn_on_command(None)
         
     def blocking_entity_changed(self, entity, attributes, old, new, kwargs):
         self.log("Blocking: {} changed from {} to {}".format(entity, old, new))
         self.check_if_blocked(None)
+    
+    def night_trigger_changed(self, entity, attributes, old, new, kwargs):
+        pass
 
     def filter_turn_on_command(self, kwargs):
         self.log("Will decide now if light should be turned on")
-        if self.is_triggered:
-            self.log("Got trigger event, but is already triggered, wont do anything")
+        if self.manual_mode:
+            self.log("I am in manual mode, wont do anything")
             return
+        if self.is_blocked:
+            self.log("I am blocked by a blocking entity, wont do anything")
+            return
+        self.log("Will turn on the light now")
+        if self.is_night:
+            self.app_brightness_state = self.brightness_night
+            self.turn_on(self.light,brightness=self.brightness_night)
         else:
-            self.log("Got trigger event, was not triggered yet, will check if I should switch on")
-            # self.app_brightness_state = new value
+            self.app_brightness_state = self.brightness_day
+            self.turn_on(self.light,brightness=self.brightness_day)
     
     def filter_turn_off_command(self, kwargs):
         self.log("Will decide now if light should be turned off")
@@ -110,6 +134,7 @@ class auto_light(hass.Hass):
             self.log("I am blocked by a blocking entity, wont do anything")
             return
         self.log("Will turn off the light now")
+        self.app_brightness_state = float(0)
         self.turn_off(self.light)
         
     def check_if_blocked(self, kwargs):
@@ -125,3 +150,15 @@ class auto_light(hass.Hass):
         for trigger in self.triggers:
             if self.get_state(trigger) == "on":
                 self.is_triggered = True
+    
+    def check_if_too_dark(self, kwargs):
+        if self.is_night:
+            if self.measured_illuminance < self.min_illuminance_night:
+                self.is_too_dark = True
+            else:
+                self.is_too_dark = False
+        else:
+            if self.measured_illuminance < self.min_illuminance_day:
+                self.is_too_dark = True
+            else:
+                self.is_too_dark = False
