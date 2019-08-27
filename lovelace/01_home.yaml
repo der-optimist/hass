@@ -15,7 +15,7 @@ cards:
                 font-weight: 300;
               }  
             content: >
-              # [[ sensor.0x00158d00034d1e34_temperature ]]°C ([[ sensor.0x00158d00034d1e34_humidity ]]%)
+              # [[ sensor.0x00158d00034d1e34_temperature ]]°C / [[ sensor.0x00158d00034d1e34_humidity ]]%
               
               Wohnzimmer
           - type: markdown
