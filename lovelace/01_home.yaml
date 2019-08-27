@@ -23,6 +23,7 @@ cards:
             style: |
               h1 {
                 font-weight: 300;
+                font-size: 1.9em;
               }
             content: >
               # [[ sensor.time ]]
