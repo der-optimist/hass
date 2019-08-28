@@ -47,13 +47,16 @@ class auto_light(hass.Hass):
         for trigger_entity_for_night_mode in self.trigger_entities_for_night_mode:
             self.listen_state(self.night_trigger_changed, trigger_entity_for_night_mode)
         self.check_if_any_trigger_active(None)
-        self.app_brightness_state = float(self.get_state(self.light, attribute="brightness_pct"))
+        if self.get_state(self.light) == "on":
+            self.app_brightness_state = float(self.get_state(self.light, attribute="brightness_pct"))
+        else:
+            self.app_brightness_state = float(0)
         
         # set up state listener for each trigger sensor
         for trigger in self.triggers:
             self.listen_state(self.trigger_state_changed, trigger)
         # set up state listener for the light
-        self.listen_state(self.light_state_changed, self.light, attribute="brightness_pct")
+        self.listen_state(self.light_state_changed, self.light)
         # set up state listener for brightness sensor
         self.listen_state(self.illuminance_changed, self.illuminance_sensor)
         # set up state listener for each blocking entity
@@ -85,8 +88,16 @@ class auto_light(hass.Hass):
         
     def light_state_changed(self, entity, attributes, old, new, kwargs):
         self.log("Light: {} changed from {} to {}".format(entity, old, new))
-        if float(new) == self.app_brightness_state:
-            # does this work for OFF? No brightness?
+        if new == "on":
+            try:
+                new_brightness = float(self.get_state(self.light, attribute="brightness_pct"))
+            except Exception as e:
+                self.log("Received brightness can not be coverted to float. will use 0. Error was {}".format(e))
+                new_brightness = float(0)
+        if new == "off":
+            self.log("New state is OFF, will use 0 as brightness")
+            new_brightness = float(0)
+        if new_brightness == self.app_brightness_state:
             self.log("This state change happened most likely due to my command. Wont change anything")
         else:
             self.log("The light was changed manually, I think. Will deactivate myself and switch to manual mode")
