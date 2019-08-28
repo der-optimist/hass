@@ -46,14 +46,14 @@ class auto_light(hass.Hass):
                 self.measured_illuminance = float(self.get_state(self.illuminance_sensor))
             except ValueError:
                 self.log("illuminance value of sensor {} can not be coverted to float as it is {}".format(self.illuminance_sensor,self.get_state(self.illuminance_sensor)))
+        # is night?
+        self.check_if_night(None)
         # check if too dark or too bright
         self.check_if_too_dark(None)
         self.check_if_too_bright(None)
-        # is_night
-        self.check_if_night(None)
-        for trigger_entity_for_night_mode in self.trigger_entities_for_night_mode:
-            self.listen_state(self.night_trigger_changed, trigger_entity_for_night_mode)
+        # is triggered at the moment of startup?
         self.check_if_any_trigger_active(None)
+        # initialize the status of the light
         if self.get_state(self.light) == "on":
             self.app_brightness_state = float(self.get_state(self.light, attribute="brightness_pct"))
         else:
@@ -69,6 +69,9 @@ class auto_light(hass.Hass):
         # set up state listener for each blocking entity
         for blocking_entity in self.blocking_entities:
             self.listen_state(self.blocking_entity_changed, blocking_entity)
+        # set up state listener for each night-defining entity
+        for trigger_entity_for_night_mode in self.trigger_entities_for_night_mode:
+            self.listen_state(self.night_trigger_changed, trigger_entity_for_night_mode)
         
     def trigger_state_changed(self, entity, attributes, old, new, kwargs):
         self.log("Light Trigger: {} changed from {} to {}".format(entity, old, new))
