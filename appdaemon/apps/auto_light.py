@@ -12,6 +12,8 @@ from typing import Set
 # - brightness_night
 # - min_illuminance_day
 # - min_illuminance_night
+# - illuminance_light_off_day (above this value, switch off the light even if it is triggered)
+# - illuminance_light_off_night (above this value, switch off the light even if it is triggered)
 # - illuminance_sensor
 # - trigger_entities_for_night_mode: on = night
 # 
@@ -24,6 +26,8 @@ class auto_light(hass.Hass):
         self.brightness_night = float(self.args.get("brightness_night"))
         self.min_illuminance_day = float(self.args.get("min_illuminance_day"))
         self.min_illuminance_night = float(self.args.get("min_illuminance_night"))
+        self.illuminance_light_off_day = float(self.args.get("illuminance_light_off_day"))
+        self.illuminance_light_off_night = float(self.args.get("illuminance_light_off_night"))
         self.light: str = self.args.get("light")
         self.triggers: Set[str] = self.args.get("triggers", set())
         self.blocking_entities: Set[str] = self.args.get("blocking_entities", set())
@@ -42,6 +46,9 @@ class auto_light(hass.Hass):
                 self.measured_illuminance = float(self.get_state(self.illuminance_sensor))
             except ValueError:
                 self.log("illuminance value of sensor {} can not be coverted to float as it is {}".format(self.illuminance_sensor,self.get_state(self.illuminance_sensor)))
+        # check if too dark or too bright
+        self.check_if_too_dark(None)
+        self.check_if_too_bright(None)
         # is_night
         self.check_if_night(None)
         for trigger_entity_for_night_mode in self.trigger_entities_for_night_mode:
@@ -105,11 +112,19 @@ class auto_light(hass.Hass):
         
     def illuminance_changed(self, entity, attributes, old, new, kwargs):
         self.log("illuminance sensor: {} changed from {} to {}".format(entity, old, new))
-        self.measured_illuminance = float(new)
+        try:
+            self.measured_illuminance = float(new)
+        except Exception as e:
+                self.log("Received illuminance can not be coverted to float. will use 0. Error was {}".format(e))
+                self.measured_illuminance = float(0)
         self.check_if_too_dark(None)
         if self.is_too_dark and self.is_triggered:
             self.log("Seems to be too dark and someone is present. Will decide if I should switch on the light")
             self.filter_turn_on_command(None)
+        self.check_if_too_bright(None)
+        if self.is_too_bright and self.is_triggered:
+            self.log("Seems to be too bright - light is not needed any more. Will decide if I should switch off the light")
+            self.filter_turn_off_command(None)
         
     def blocking_entity_changed(self, entity, attributes, old, new, kwargs):
         self.log("Blocking: {} changed from {} to {}".format(entity, old, new))
@@ -176,6 +191,18 @@ class auto_light(hass.Hass):
                 self.is_too_dark = True
             else:
                 self.is_too_dark = False
+    
+    def check_if_too_bright(self, kwargs):
+        if self.is_night:
+            if self.measured_illuminance > self.illuminance_light_off_night:
+                self.is_too_bright = True
+            else:
+                self.is_too_bright = False
+        else:
+            if self.measured_illuminance > self.illuminance_light_off_day:
+                self.is_too_bright = True
+            else:
+                self.is_too_bright = False
                 
     def check_if_night(self, kwargs):
         self.is_night = False
