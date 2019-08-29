@@ -50,7 +50,7 @@ class pizza_timer(hass.Hass):
         self.log("Pizza ist fertig")
         if self.get_state("media_player.kodi") == "playing":
             self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 15000, "icon": "http://rp3/pizza_kodi.jpg"})
-            self.call_service("media_player/kodi_call_method", entity_id = "media_player.kodi", method = "Player.PlayPause", playerid = 1)
+            self.call_service("kodi/call_method", entity_id = "media_player.kodi", method = "Player.PlayPause", playerid = 1)
         else:
             #self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 30000, "icon": "http://rp3/pizza_kodi.jpg"})
             self.fire_event("custom_notify", message="Pizza ist fertig, aber Kodi läuft gerade nicht - hoffentlich schaust du wenigstens aufs Handy...", target="telegram_jo")
