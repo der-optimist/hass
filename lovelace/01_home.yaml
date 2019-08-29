@@ -16,7 +16,7 @@ cards:
                 font-size: 1.9em;
               }  
             content: >
-              # [[ sensor.0x00158d00034d1e34_temperature ]]°C  [[ sensor.0x00158d00034d1e34_humidity ]]%
+              # {{ states('sensor.0x00158d00034d1e34_temperature.state_with_unit') }}  {{ states('sensor.0x00158d00034d1e34_humidity.state_with_unit') }}
               
               Wohnzimmer
           - type: markdown
@@ -26,9 +26,9 @@ cards:
                 font-size: 1.9em;
               }
             content: >
-              # [[ sensor.time ]]
+              # {{ states('sensor.time' }}
               
-              [[ sensor.date_template ]]
+              {{ states('sensor.date_template' }}
       - type: custom:mini-graph-card
         style: |
           state__value {
