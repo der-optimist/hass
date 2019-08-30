@@ -4,7 +4,7 @@ import datetime
 #
 # App to handle the awesome pizza timer
 #
-# Args: 
+# Args:
 # 
 
 class pizza_timer(hass.Hass):
