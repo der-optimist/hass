@@ -14,6 +14,7 @@ import datetime
 # ha_power_sensor_name = "sensor.el_leistung_xyz"
 # ha_power_sensor_friendly_name = "El. Leistung XYZ"
 # energy_per_pulse = 0.0005 (in kWh => 2000 pulses per kWh => 0.0005 kWh/pulse)
+# knx_sending_every = 10 (expect to receive a new value after 10 pulses. Used only for calulating ramp-down values)
 #
 
 class counter_to_power_meter(hass.Hass):
@@ -24,7 +25,7 @@ class counter_to_power_meter(hass.Hass):
         # initialize internal variables
         self.time_of_last_event = None
         self.value_of_last_event = None
-        self.handle_reset_timer = None
+        self.handle_ramp_down_timer = None
         # set sensor values to zero until first values can be calculated
         self.log("Test: gibt es beim Neustart gleich einen Wert fuer den KNX counter?")
         self.log(self.get_state(self.args["knx_counter"]))
@@ -36,8 +37,8 @@ class counter_to_power_meter(hass.Hass):
         self.log(type(new))
         if new == "unavailable" or new == "Nicht verfügbar" or new == old:
             return
-        if self.handle_reset_timer != None:
-            self.cancel_timer(self.handle_reset_timer)
+        if self.handle_ramp_down_timer != None:
+            self.cancel_timer(self.handle_ramp_down_timer)
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
         self.log("Value {} received from counter {}".format(new,self.args["knx_counter"]))
         # Update electricity meter sensor
@@ -54,12 +55,19 @@ class counter_to_power_meter(hass.Hass):
                 electricity_delta_Ws = (float(new) - self.value_of_last_event) * self.args["energy_per_pulse"] * 3600 * 1000
                 current_power = electricity_delta_Ws / time_delta_seconds
                 self.set_state(self.args["ha_power_sensor_name"], state = current_power)
+                self.handle_ramp_down_timer = self.run_in(self.ramp_down,round(time_delta_seconds + 0.5))
         # save current values in variables for next calculation
         self.time_of_last_event = current_time
         self.value_of_last_event = float(new)
-        self.handle_reset_timer = self.run_in(self.reset_power,10*60) # no value for 10 min => 0. Means power below 3W (2000 pulses/kWh)
 
-    def reset_power(self, kwargs):
-        self.set_state(self.args["ha_power_sensor_name"], state = 0)
-
-# to do: Timer alle 60 Sekunden, Power so berechnen als wäre gerade ein neuer Wert gekommen => Power sink langsam. Abbrechen wenn unter ...W
+    def ramp_down(self, kwargs):
+        current_time = datetime.datetime.now() # for most accurate value, capture current time first
+        new_virtual_electricity_value = (self.value_of_last_event + self.args["knx_sending_every"]) * self.args["energy_per_pulse"]
+        time_delta_seconds = (current_time - self.time_of_last_event).total_seconds()
+        electricity_delta_Ws = self.args["knx_sending_every"] * self.args["energy_per_pulse"] * 3600 * 1000
+        current_power = electricity_delta_Ws / time_delta_seconds
+        if current_power < 2:
+            self.set_state(self.args["ha_power_sensor_name"], state = 0)
+        else:
+            self.set_state(self.args["ha_power_sensor_name"], state = current_power)
+            self.handle_ramp_down_timer = self.run_in(self.ramp_down,round(time_delta_seconds + 0.5))
