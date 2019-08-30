@@ -14,7 +14,8 @@ import datetime
 # ha_power_sensor_name = "sensor.el_leistung_xyz"
 # ha_power_sensor_friendly_name = "El. Leistung XYZ"
 # energy_per_pulse = 0.0005 (in kWh => 2000 pulses per kWh => 0.0005 kWh/pulse)
-# knx_sending_every = 10 (expect to receive a new value after 10 pulses. Used only for calulating ramp-down values)
+# knx_sending_every = 5 (expect to receive a new value after 10 pulses. Used only for calulating ramp-down values)
+# cut_power_below: 10 (set to 0 if ramp-down goes below this value)
 #
 
 class counter_to_power_meter(hass.Hass):
@@ -66,7 +67,7 @@ class counter_to_power_meter(hass.Hass):
         time_delta_seconds = (current_time - self.time_of_last_event).total_seconds()
         electricity_delta_Ws = self.args["knx_sending_every"] * self.args["energy_per_pulse"] * 3600 * 1000
         current_power = electricity_delta_Ws / time_delta_seconds
-        if current_power < 2:
+        if current_power < self.args["cut_power_below"]:
             self.set_state(self.args["ha_power_sensor_name"], state = 0)
         else:
             self.set_state(self.args["ha_power_sensor_name"], state = current_power)
