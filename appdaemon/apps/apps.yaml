@@ -52,7 +52,8 @@ counter_to_power_meter_waermepumpe:
   ha_power_sensor_name: sensor.el_leistung_warmepumpe
   ha_power_sensor_friendly_name: El. Leistung Wärmepumpe
   energy_per_pulse: 0.0005
-  knx_sending_every: 10
+  knx_sending_every: 5
+  cut_power_below: 10
 counter_to_power_meter_kochfeld:
   module: counter_to_power_meter
   class: counter_to_power_meter
@@ -62,7 +63,8 @@ counter_to_power_meter_kochfeld:
   ha_power_sensor_name: sensor.el_leistung_kochfeld
   ha_power_sensor_friendly_name: El. Leistung Kochfeld
   energy_per_pulse: 0.0005
-  knx_sending_every: 10
+  knx_sending_every: 5
+  cut_power_below: 10
 set_sensor_attributes:
   module: set_sensor_attributes
   class: set_sensor_attributes
