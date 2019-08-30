@@ -55,7 +55,7 @@ class counter_to_power_meter(hass.Hass):
                 time_delta_seconds = (current_time - self.time_of_last_event).total_seconds()
                 electricity_delta_Ws = (float(new) - self.value_of_last_event) * self.args["energy_per_pulse"] * 3600 * 1000
                 current_power = electricity_delta_Ws / time_delta_seconds
-                self.set_state(self.args["ha_power_sensor_name"], state = current_power)
+                self.set_state(self.args["ha_power_sensor_name"], state = round(current_power, 1))
                 self.handle_ramp_down_timer = self.run_in(self.ramp_down,round(time_delta_seconds + 0.5))
         # save current values in variables for next calculation
         self.time_of_last_event = current_time
@@ -70,5 +70,5 @@ class counter_to_power_meter(hass.Hass):
         if current_power < self.args["cut_power_below"]:
             self.set_state(self.args["ha_power_sensor_name"], state = 0)
         else:
-            self.set_state(self.args["ha_power_sensor_name"], state = current_power)
+            self.set_state(self.args["ha_power_sensor_name"], state = round(current_power, 1))
             self.handle_ramp_down_timer = self.run_in(self.ramp_down,round(time_delta_seconds + 0.5))
