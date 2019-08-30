@@ -13,6 +13,8 @@ class pizza_timer(hass.Hass):
         self.listen_state(self.state_change, "input_number.pizza_timer_2")
         self.timer_handle = None
         self.time_internal_state = 0
+        self.log(self.get_state(input_number.pizza_timer_2))
+        self.log(type(self.get_state(input_number.pizza_timer_2)))
     
     def state_change(self, entity, attributes, old, new, kwargs):
         self.log("State Change in Pizza Timer erkannt: {}".format(new))
@@ -54,4 +56,4 @@ class pizza_timer(hass.Hass):
         else:
             #self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 30000, "icon": "http://rp3/pizza_kodi.jpg"})
             self.fire_event("custom_notify", message="Pizza ist fertig, aber Kodi läuft gerade nicht - hoffentlich schaust du wenigstens aufs Handy...", target="telegram_jo")
-        self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"speak\":\"Pizza ist fertig!\"}", qos = "2")
+        #self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"speak\":\"Pizza ist fertig!\"}", qos = "2")
