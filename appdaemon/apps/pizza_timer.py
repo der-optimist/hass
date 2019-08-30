@@ -59,4 +59,4 @@ class pizza_timer(hass.Hass):
         else:
             #self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 30000, "icon": "http://rp3/pizza_kodi.jpg"})
             self.fire_event("custom_notify", message="Pizza ist fertig, aber Kodi läuft gerade nicht - hoffentlich schaust du wenigstens aufs Handy...", target="telegram_jo")
-        #self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"speak\":\"Pizza ist fertig!\"}", qos = "2")
+        self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"speak\":\"Pizza ist fertig!\"}", qos = "2")
