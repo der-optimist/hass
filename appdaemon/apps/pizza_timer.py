@@ -13,7 +13,7 @@ class pizza_timer(hass.Hass):
         self.listen_state(self.state_change, "input_number.pizza_timer_2")
         self.timer_handle = None
         self.time_internal_state = 0
-        if not int(self.get_state("input_number.pizza_timer_2")) == int(0):
+        if not float(self.get_state("input_number.pizza_timer_2")) == float(0):
             self.log("Pizza Timer nicht Null als ich gestartet wurde, werde jetzt weiter runter zaehlen")
             self.minute_abgelaufen(None)
         else:
