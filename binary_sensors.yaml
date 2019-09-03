@@ -78,7 +78,7 @@
 # Kellertreppe
   - platform: knx
     state_address: '8/0/2'
-    name: PM_E_FL_Flur
+    name: PM_K_Treppe
     device_class: motion
 
 # La
