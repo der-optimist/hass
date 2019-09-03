@@ -252,11 +252,12 @@ class telegram_bot(hass.Hass):
                 
 
     def send_temps(self, chat_id):
-        temp_wz = self.get_state("sensor.t_wz_ist_oh")
+        temp_wz = self.get_state("sensor.0x00158d00034d1e34_temperature")
+        lf_wz = self.get_state("sensor.0x00158d00034d1e34_humidity")
         temp_aussen = self.get_state("sensor.temp_owm")
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
-                          message="=== 🔥 Temperaturen ❄️ ===\nWohnzimmer: {} °C\nDraussen: {} °C".format(temp_wz,temp_aussen))
+                          message="===== Temperaturen =====\nWohnzimmer: {} °C ({}%)\nDraussen: {} °C".format(temp_wz,lf_wz,temp_aussen))
         
     def send_weather_forecast(self, chat_id):
         self.call_service('telegram_bot/send_photo',
