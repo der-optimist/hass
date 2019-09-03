@@ -20,4 +20,4 @@ class notifications(hass.Hass):
         temp_wz = self.get_state("sensor.0x00158d00034d1e34_temperature")
         lf_wz = self.get_state("sensor.0x00158d00034d1e34_humidity")
         temp_aussen = self.get_state("sensor.temp_owm")
-        self.fire_event("custom_notify", message="===== Temperaturen =====\nWohnzimmer: {} °C ({}%)\nDraussen: {} °C".format(temp_wz,lf_wz,temp_aussen), target="telegram_jo")
+        self.fire_event("custom_notify", message="=== 🔥 Temperaturen ❄️ ===\nWohnzimmer: {} °C ({}%)\nDraussen: {} °C".format(temp_wz,lf_wz,temp_aussen), target="telegram_jo")
