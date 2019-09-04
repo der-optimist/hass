@@ -101,6 +101,10 @@ cards:
       name: Hängeschränke
       toggle: true
     - type: divider
+      style: 
+        height: 1px
+        background-color: "#ff9c27"
+        opacity: 0.25
     - entity: switch.wz_steckdose
       name: Steckdose
     - type: section
