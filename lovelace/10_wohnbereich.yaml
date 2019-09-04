@@ -118,7 +118,7 @@ cards:
     - type: divider
       style: 
         height: 1px
-        background-color: "var(–secondary-text-color)"
+        background-color: "#ff9c27"
         opacity: 0.25
     - entity: cover.jalousie_wz_couch
       name: Couch
