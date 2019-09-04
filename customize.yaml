@@ -1,3 +1,4 @@
+# Switches
 switch.ma_schlaft:
   icon: mdi:power-sleep
 switch.jo_schlaft:
@@ -8,3 +9,12 @@ switch.le_schlaft:
   icon: mdi:power-sleep
 switch.wz_steckdose:
   icon: mdi:power-socket-eu
+# Covers
+cover.jalousie_kuche:
+  icon: mdi:arrow-up-down
+cover.jalousie_hst:
+  icon: mdi:arrow-up-down
+cover.jalousie_wz_bodentiefes:
+  icon: mdi:arrow-up-down
+cover.jalousie_wz_couch:
+  icon: mdi:arrow-up-down
