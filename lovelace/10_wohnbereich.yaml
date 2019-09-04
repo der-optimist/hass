@@ -116,6 +116,7 @@ cards:
       name: Winkel
       attribute: tilt
     - type: divider
+      style: height: 1px, background-color: var(–secondary-text-color), opacity: 0.25
     - entity: cover.jalousie_wz_couch
       name: Couch
     - type: custom:slider-entity-row
