@@ -33,6 +33,7 @@ cards:
       label: Heizung
     - type: 'custom:simple-thermostat'
       entity: climate.schlafzimmer
+      name: false
       sensors:
         - entity: sensor.temp_schlafzimmer_pm
           name: Temp. PM
