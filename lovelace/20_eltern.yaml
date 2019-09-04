@@ -56,4 +56,4 @@ cards:
       name: false
       sensors:
         - entity: sensor.temp_bad_eg_pm
-        name: Temp. PM
+          name: Temp. PM
