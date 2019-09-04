@@ -1,8 +1,10 @@
 switch.ma_schlaft:
-  icon: mdi:weather-night
+  icon: mdi:power-sleep
 switch.jo_schlaft:
-  icon: mdi:weather-night
+  icon: mdi:power-sleep
 switch.la_schlaft:
-  icon: mdi:weather-night
+  icon: mdi:power-sleep
 switch.le_schlaft:
-  icon: mdi:weather-night
+  icon: mdi:power-sleep
+switch.wz_steckdose:
+  icon: mdi:power-socket-eu
