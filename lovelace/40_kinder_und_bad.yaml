@@ -8,6 +8,8 @@ cards:
         title: !secret name_la
         show_header_toggle: true
         entities:
+        - entity: switch.la_schlaft
+          name: Schläft
         - type: custom:slider-entity-row
           entity: light.panels_la
           name: Panels
@@ -44,6 +46,8 @@ cards:
         title: !secret name_le
         show_header_toggle: true
         entities:
+        - entity: switch.le_schlaft
+          name: Schläft
         - type: custom:slider-entity-row
           entity: light.panels_le
           name: Panels
