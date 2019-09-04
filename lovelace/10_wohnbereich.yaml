@@ -100,6 +100,7 @@ cards:
       entity: light.schrankbeleuchtung_wohnzimmer
       name: Hängeschränke
       toggle: true
+    - type: divider
     - entity: switch.wz_steckdose
       name: Steckdose
     - type: section
@@ -114,6 +115,7 @@ cards:
       entity: cover.jalousie_wz_bodentiefes
       name: Winkel
       attribute: tilt
+    - type: divider
     - entity: cover.jalousie_wz_couch
       name: Couch
     - type: custom:slider-entity-row
