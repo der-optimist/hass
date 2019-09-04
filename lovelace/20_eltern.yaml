@@ -2,35 +2,40 @@ title: Eltern-Suite
 path: elternsuite
 icon: mdi:emoticon-kiss-outline
 cards:
-  - type: vertical-stack
-    cards:
-      - type: entities
-        title: "Licht Schlafzimmer"
-        show_header_toggle: true
-        entities:
-        - type: custom:slider-entity-row
-          entity: light.panels_schlafzimmer
-          name: Panels Schlafzimmer
-          toggle: true
-        - type: custom:slider-entity-row
-          entity: light.bettbeleuchtung
-          name: Bettbeleuchtung
-          toggle: true
-      - type: entities
-        title: "Jalousie Schlafzimmer"
-        show_header_toggle: false
-        entities:
-        - entity: cover.jalousie_schlafzimmer
-          name: Schlafzimmer
-        - type: custom:slider-entity-row
-          entity: cover.jalousie_schlafzimmer
-          full_row: true
-      - type: 'custom:simple-thermostat'
-        entity: climate.schlafzimmer
-        name: Heizung Schlafzimmer
-        sensors:
-          - entity: sensor.temp_schlafzimmer_pm
-            name: Temp. PM
+  - type: entities
+    title: "Schlafzimmer"
+    show_header_toggle: true
+    entities:
+    - type: section
+      label: Licht
+    - type: custom:slider-entity-row
+      entity: light.panels_schlafzimmer
+      name: Panels Schlafzimmer
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.bettbeleuchtung
+      name: Bettbeleuchtung
+      toggle: true
+    - type: section
+      label: Schläft jemand?
+    - entity: switch.ma_schlaft
+      name: !secret name_ma
+    - entity: switch.jo_schlaft
+      name: !secret name_jo
+    - type: section
+      label: Jalousie
+    - entity: cover.jalousie_schlafzimmer
+      name: Schlafzimmer
+    - type: custom:slider-entity-row
+      entity: cover.jalousie_schlafzimmer
+      full_row: true
+    - type: section
+      label: Heizung
+    - type: 'custom:simple-thermostat'
+      entity: climate.schlafzimmer
+      sensors:
+        - entity: sensor.temp_schlafzimmer_pm
+          name: Temp. PM
   - type: vertical-stack
     cards:
       - type: entities
