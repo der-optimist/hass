@@ -11,10 +11,10 @@ switch.wz_steckdose:
   icon: mdi:power-socket-eu
 # Covers
 cover.jalousie_kuche:
-  icon: mdi:arrow-up-down
+  icon: mdi:format-align-justify
 cover.jalousie_hst:
-  icon: mdi:arrow-up-down
+  icon: mdi:format-align-justify
 cover.jalousie_wz_bodentiefes:
-  icon: mdi:arrow-up-down
+  icon: mdi:format-align-justify
 cover.jalousie_wz_couch:
-  icon: mdi:arrow-up-down
+  icon: mdi:format-align-justify
