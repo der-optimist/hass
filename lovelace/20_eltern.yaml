@@ -4,7 +4,7 @@ icon: mdi:emoticon-kiss-outline
 cards:
   - type: entities
     title: "Schlafzimmer"
-    show_header_toggle: true
+    show_header_toggle: false
     entities:
     - type: section
       label: Licht
@@ -37,21 +37,23 @@ cards:
       sensors:
         - entity: sensor.temp_schlafzimmer_pm
           name: Temp. PM
-  - type: vertical-stack
-    cards:
-      - type: entities
-        title: "Licht Bad"
-        show_header_toggle: true
-        entities:
-        - type: custom:slider-entity-row
-          entity: light.panels_bad_eg
-          name: Panels Bad
-          toggle: true
-        - entity: light.spiegel_bad_eg
-          name: Spiegel
-      - type: 'custom:simple-thermostat'
-        entity: climate.bad_eg
-        name: Heizung Bad
-        sensors:
-          - entity: sensor.temp_bad_eg_pm
-            name: Temp. PM
+  - type: entities
+    title: "Bad EG"
+    show_header_toggle: false
+    entities:
+    - type: section
+      label: Licht
+    - type: custom:slider-entity-row
+      entity: light.panels_bad_eg
+      name: Panels Bad
+      toggle: true
+    - entity: light.spiegel_bad_eg
+      name: Spiegel
+    - type: section
+      label: Heizung
+    - type: 'custom:simple-thermostat'
+      entity: climate.bad_eg
+      name: false
+      sensors:
+        - entity: sensor.temp_bad_eg_pm
+        name: Temp. PM
