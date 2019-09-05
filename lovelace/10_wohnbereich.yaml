@@ -79,6 +79,7 @@ cards:
       entity: cover.jalousie_hst
       name: Winkel
       attribute: tilt
+      icon: mdi:texture
     - type: section
       label: Heizung
     - type: 'custom:simple-thermostat'
@@ -120,6 +121,7 @@ cards:
       entity: cover.jalousie_wz_bodentiefes
       name: Winkel
       attribute: tilt
+      icon: mdi:texture
     - type: divider
       style: 
         height: 1px
@@ -135,3 +137,4 @@ cards:
       entity: cover.jalousie_wz_couch
       name: Winkel
       attribute: tilt
+      icon: mdi:texture
