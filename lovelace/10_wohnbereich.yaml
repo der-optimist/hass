@@ -36,6 +36,7 @@ cards:
       entity: cover.jalousie_kuche
       name: Winkel
       attribute: tilt
+      icon: mdi:texture
   - type: entities
     title: "Esszimmer"
     show_header_toggle: false
