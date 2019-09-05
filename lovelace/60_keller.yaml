@@ -18,6 +18,8 @@ cards:
     - entity: switch.trockner
       name: Trockner
       secondary_info: "[[ sensor.el_leistung_trockner.state ]] W"
+    - entity: sensor.el_leistung_warmepumpe
+      name: Wärmepumpe
   - type: entities
     title: "Flur und Treppe"
     show_header_toggle: false
