@@ -2,53 +2,65 @@ title: Nähzimmer und Gäste
 path: nz_und_gz
 icon: mdi:cash-register
 cards:
-  - type: vertical-stack
-    cards:
-      - type: entities
-        title: Licht Nähzimmer
-        show_header_toggle: true
-        entities:
-        - entity: light.nahtisch_decke
-          name: Nähtisch
-        - entity: light.schreibtisch_decke
-          name: Schreibtisch
-        - entity: light.nahzimmerschrank
-          name: Barschrank
-      - type: entities
-        title: "Jalousie Nähzimmer"
-        show_header_toggle: false
-        entities:
-        - entity: cover.jalousie_nahzimmer
-          name: Bodentiefes
-        - type: custom:slider-entity-row
-          entity: cover.jalousie_nahzimmer
-          full_row: true
-      - type: 'custom:simple-thermostat'
-        entity: climate.nahzimmer
-        name: Heizung Nähzimmer
-        sensors:
-          - entity: sensor.temp_nahzimmer_pm
-            name: Temp. PM
-  - type: vertical-stack
-    cards:
-      - type: entities
-        title: Licht Gästezimmer
-        show_header_toggle: true
-        entities:
-        - entity: light.gastezimmer
-          name: Deckenlicht
-      - type: entities
-        title: "Jalousie Gästezimmer"
-        show_header_toggle: false
-        entities:
-        - entity: cover.jalousie_gastezimmer
-          name: Bodentiefes
-        - type: custom:slider-entity-row
-          entity: cover.jalousie_gastezimmer
-          full_row: true
-      - type: 'custom:simple-thermostat'
-        entity: climate.gastezimmer
-        name: Heizung Gästezimmer
-        sensors:
-          - entity: sensor.temp_gastezimmer_pm
-            name: Temp. PM
+  - type: entities
+    title: Nähzimmer
+    show_header_toggle: false
+    entities:
+    - type: section
+      label: Licht
+    - entity: light.nahtisch_decke
+      name: Nähtisch
+    - entity: light.schreibtisch_decke
+      name: Schreibtisch
+    - entity: light.nahzimmerschrank
+      name: Barschrank
+    - type: section
+      label: Jalousie
+    - entity: cover.jalousie_nahzimmer
+      name: Bodentiefes
+    - type: custom:slider-entity-row
+      entity: cover.jalousie_nahzimmer
+      name: Auf/Ab
+      attribute: position
+    - type: custom:slider-entity-row
+      entity: cover.jalousie_nahzimmer
+      name: Winkel
+      attribute: tilt
+      icon: mdi:texture
+    - type: section
+      label: Heizung
+    - type: 'custom:simple-thermostat'
+      entity: climate.nahzimmer
+      name: false
+      sensors:
+        - entity: sensor.temp_nahzimmer_pm
+          name: Temp. PM
+  - type: entities
+    title: Gästezimmer
+    show_header_toggle: false
+    entities:
+    - type: section
+      label: Licht
+    - entity: light.gastezimmer
+      name: Deckenlicht
+    - type: section
+      label: Jalousie
+    - entity: cover.jalousie_gastezimmer
+      name: Bodentiefes
+    - type: custom:slider-entity-row
+      entity: cover.jalousie_gastezimmer
+      name: Auf/Ab
+      attribute: position
+    - type: custom:slider-entity-row
+      entity: cover.jalousie_gastezimmer
+      name: Winkel
+      attribute: tilt
+      icon: mdi:texture
+    - type: section
+      label: Heizung
+    - type: 'custom:simple-thermostat'
+      entity: climate.gastezimmer
+      name: false
+      sensors:
+        - entity: sensor.temp_gastezimmer_pm
+          name: Temp. PM
