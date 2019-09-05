@@ -9,10 +9,47 @@ switch.le_schlaft:
   icon: mdi:power-sleep
 switch.wz_steckdose:
   icon: mdi:power-socket-eu
+switch.waschmaschine:
+  icon: mdi:washing-machine
+switch.trockner:
+  icon: mdi:tumble-dryer
+switch.spulmaschine:
+  icon: mdi:dishwasher
+switch.tv:
+  icon: mdi:television
+switch.mixi:
+  icon: mdi:blender
+switch.luftungsanlage:
+  icon: mdi:fan
+switch.backofen:
+  icon: mdi:toaster-oven
+switch.gefrierschrank:
+  icon: mdi:snowflake
+switch.kuhlschrank_keller:
+  icon: mdi:fridge-outline
+switch.kuhlschrank_kuche:
+  icon: mdi:fridge-outline
+
 # Covers
-cover.jalousie_kuche:
+cover.jalousie_bad_og:
+  icon: mdi:format-align-justify
+cover.jalousie_gastezimmer:
   icon: mdi:format-align-justify
 cover.jalousie_hst:
+  icon: mdi:format-align-justify
+cover.jalousie_kuche:
+  icon: mdi:format-align-justify
+cover.jalousie_la_bodentiefes:
+  icon: mdi:format-align-justify
+cover.jalousie_la_lichtband:
+  icon: mdi:format-align-justify
+cover.jalousie_le_bodentiefes:
+  icon: mdi:format-align-justify
+cover.jalousie_le_lichtband:
+  icon: mdi:format-align-justify
+cover.jalousie_nahzimmer:
+  icon: mdi:format-align-justify
+cover.jalousie_schlafzimmer:
   icon: mdi:format-align-justify
 cover.jalousie_wz_bodentiefes:
   icon: mdi:format-align-justify
