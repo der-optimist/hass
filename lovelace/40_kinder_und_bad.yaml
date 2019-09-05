@@ -142,7 +142,7 @@ cards:
       attribute: tilt
       icon: mdi:texture
     - type: section
-      label: Jalousi
+      label: Heizung
     - type: 'custom:simple-thermostat'
       entity: climate.bad_og
       name: false
