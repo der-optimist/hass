@@ -55,3 +55,9 @@ cover.jalousie_wz_bodentiefes:
   icon: mdi:format-align-justify
 cover.jalousie_wz_couch:
   icon: mdi:format-align-justify
+
+# Sensors
+sensor.el_leistung_warmepumpe:
+  icon: mdi:fire
+sensor.el_leistung_kochfeld:
+  icon: mdi:pot-mix
