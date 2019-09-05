@@ -28,7 +28,8 @@ cards:
       name: Schlafzimmer
     - type: custom:slider-entity-row
       entity: cover.jalousie_schlafzimmer
-      full_row: true
+      name: Auf/Ab
+      attribute: position
     - type: custom:slider-entity-row
       entity: cover.jalousie_schlafzimmer
       name: Winkel
