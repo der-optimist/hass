@@ -13,17 +13,17 @@ cards:
             style: |
               h1 {
                 font-weight: 300;
-                font-size: 1.9em;
+                font-size: 2.4em;
               }  
             content: >
-              # [[ sensor.0x00158d00034d1e34_temperature ]]°C  [[ sensor.0x00158d00034d1e34_humidity ]]%
+              # [[ sensor.temp_esszimmer_taster ]]°C
               
               Wohnzimmer
           - type: markdown
             style: |
               h1 {
                 font-weight: 300;
-                font-size: 1.9em;
+                font-size: 2.4em;
               }
             content: >
               # [[ sensor.time ]]
@@ -35,7 +35,7 @@ cards:
             font-size: 2em;
           }
         entities: 
-          - sensor.temp_owm
+          - sensor.temp_wetterstation
         name: Außentemperatur
         hour24: true
         decimals: 1
