@@ -86,8 +86,12 @@ cards:
       entity: climate.esszimmer
       name: false
       sensors:
-        - entity: sensor.temp_esszimmer_pm
-          name: Temp. PM
+        - entity: sensor.stellwert_heizung_esszimmer
+          name: Ventil offen
+        - entity: sensor.stellwert_heizung_kuche
+          name: Ventil Küche
+        - entity: sensor.stellwert_heizung_wohnzimmer
+          name: Ventil WZ
   - type: entities
     title: "Wohnzimmer"
     show_header_toggle: false
