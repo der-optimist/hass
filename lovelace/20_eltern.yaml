@@ -41,8 +41,8 @@ cards:
       entity: climate.schlafzimmer
       name: false
       sensors:
-        - entity: sensor.temp_schlafzimmer_pm
-          name: Temp. PM
+        - entity: sensor.stellwert_heizung_schlafzimmer
+          name: Ventil offen
   - type: entities
     title: "Bad EG"
     show_header_toggle: false
@@ -61,5 +61,5 @@ cards:
       entity: climate.bad_eg
       name: false
       sensors:
-        - entity: sensor.temp_bad_eg_pm
-          name: Temp. PM
+        - entity: sensor.stellwert_heizung_bad_eg
+          name: Ventil offen
