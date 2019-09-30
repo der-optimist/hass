@@ -8,8 +8,9 @@
     angle_address: '9/0/4'
     angle_state_address: '9/0/5'
     invert_position: true
+    invert_angle: true
     travelling_time_down: 21
-    travelling_time_up: 25
+    travelling_time_up: 21
   - platform: knx
     name: "Jalousie HST"
     move_long_address: '9/0/20'
@@ -19,8 +20,9 @@
     angle_address: '9/0/24'
     angle_state_address: '9/0/25'
     invert_position: true
-    travelling_time_down: 21
-    travelling_time_up: 25
+    invert_angle: true
+    travelling_time_down: 55
+    travelling_time_up: 55
   - platform: knx
     name: "Jalousie WZ Bodentiefes"
     move_long_address: '9/0/40'
@@ -30,8 +32,9 @@
     angle_address: '9/0/44'
     angle_state_address: '9/0/45'
     invert_position: true
-    travelling_time_down: 21
-    travelling_time_up: 25
+    invert_angle: true
+    travelling_time_down: 55
+    travelling_time_up: 55
   - platform: knx
     name: "Jalousie WZ Couch"
     move_long_address: '9/0/60'
@@ -41,8 +44,9 @@
     angle_address: '9/0/64'
     angle_state_address: '9/0/65'
     invert_position: true
-    travelling_time_down: 21
-    travelling_time_up: 25
+    invert_angle: true
+    travelling_time_down: 35
+    travelling_time_up: 35
   - platform: knx
     name: "Jalousie Schlafzimmer"
     move_long_address: '9/0/80'
@@ -52,8 +56,9 @@
     angle_address: '9/0/84'
     angle_state_address: '9/0/85'
     invert_position: true
-    travelling_time_down: 21
-    travelling_time_up: 25
+    invert_angle: true
+    travelling_time_down: 35
+    travelling_time_up: 35
   - platform: knx
     name: "Jalousie La Bodentiefes"
     move_long_address: '9/0/100'
@@ -63,8 +68,9 @@
     angle_address: '9/0/104'
     angle_state_address: '9/0/105'
     invert_position: true
-    travelling_time_down: 21
-    travelling_time_up: 25
+    invert_angle: true
+    travelling_time_down: 55
+    travelling_time_up: 55
   - platform: knx
     name: "Jalousie La Lichtband"
     move_long_address: '9/0/120'
@@ -74,8 +80,9 @@
     angle_address: '9/0/124'
     angle_state_address: '9/0/125'
     invert_position: true
+    invert_angle: true
     travelling_time_down: 21
-    travelling_time_up: 25
+    travelling_time_up: 21
   - platform: knx
     name: "Jalousie Nähzimmer"
     move_long_address: '9/0/140'
@@ -85,8 +92,9 @@
     angle_address: '9/0/144'
     angle_state_address: '9/0/145'
     invert_position: true
+    invert_angle: true
     travelling_time_down: 21
-    travelling_time_up: 25
+    travelling_time_up: 21
   - platform: knx
     name: "Jalousie Le Lichtband"
     move_long_address: '9/0/160'
@@ -96,8 +104,9 @@
     angle_address: '9/0/164'
     angle_state_address: '9/0/165'
     invert_position: true
+    invert_angle: true
     travelling_time_down: 21
-    travelling_time_up: 25
+    travelling_time_up: 21
   - platform: knx
     name: "Jalousie Le Bodentiefes"
     move_long_address: '9/0/180'
@@ -107,8 +116,9 @@
     angle_address: '9/0/184'
     angle_state_address: '9/0/185'
     invert_position: true
-    travelling_time_down: 21
-    travelling_time_up: 25
+    invert_angle: true
+    travelling_time_down: 55
+    travelling_time_up: 55
   - platform: knx
     name: "Jalousie Gästezimmer"
     move_long_address: '9/0/200'
@@ -118,8 +128,9 @@
     angle_address: '9/0/204'
     angle_state_address: '9/0/205'
     invert_position: true
-    travelling_time_down: 21
-    travelling_time_up: 25
+    invert_angle: true
+    travelling_time_down: 55
+    travelling_time_up: 55
   - platform: knx
     name: "Jalousie Bad OG"
     move_long_address: '9/0/220'
@@ -129,5 +140,6 @@
     angle_address: '9/0/224'
     angle_state_address: '9/0/225'
     invert_position: true
-    travelling_time_down: 21
-    travelling_time_up: 25
+    invert_angle: true
+    travelling_time_down: 35
+    travelling_time_up: 35
