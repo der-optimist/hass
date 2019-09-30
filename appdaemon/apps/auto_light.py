@@ -55,7 +55,7 @@ class auto_light(hass.Hass):
         self.check_if_any_trigger_active(None)
         # initialize the status of the light
         if self.get_state(self.light) == "on":
-            self.app_brightness_state = float(self.get_state(self.light, attribute="brightness_pct"))
+            self.app_brightness_state = self.byte_to_pct(self.get_state(self.light, attribute="brightness"))
         else:
             self.app_brightness_state = float(0)
         
@@ -100,7 +100,7 @@ class auto_light(hass.Hass):
         self.log("Light: {} changed from {} to {}".format(entity, old, new))
         if new == "on":
             try:
-                new_brightness = float(self.get_state(self.light, attribute="brightness_pct"))
+                new_brightness = self.byte_to_pct(self.get_state(self.light, attribute="brightness"))
             except Exception as e:
                 self.log("Received brightness can not be coverted to float. will use 0. Error was {}".format(e))
                 new_brightness = float(0)
@@ -212,3 +212,10 @@ class auto_light(hass.Hass):
         for trigger_entity_for_night_mode in self.trigger_entities_for_night_mode:
             if self.get_state(trigger_entity_for_night_mode) == "on":
                 self.is_night = True
+
+    def pct_to_byte(self, val_pct, kwargs):
+        return float(round(val_pct*255/100))
+    
+    def byte_to_pct(self, val_byte, kwargs):
+        return float(round(val_byte*100/255))
+    
