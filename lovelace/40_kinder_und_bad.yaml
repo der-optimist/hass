@@ -41,7 +41,7 @@ cards:
         background-color: "#ff9c27"
         opacity: 0.25
     - entity: cover.jalousie_la_lichtband
-      name: Bodentiefes
+      name: Lichtband
     - type: custom:slider-entity-row
       entity: cover.jalousie_la_lichtband
       name: Auf/Ab
@@ -98,7 +98,7 @@ cards:
         background-color: "#ff9c27"
         opacity: 0.25
     - entity: cover.jalousie_le_lichtband
-      name: Bodentiefes
+      name: Lichtband
     - type: custom:slider-entity-row
       entity: cover.jalousie_le_lichtband
       name: Auf/Ab
