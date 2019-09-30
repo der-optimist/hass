@@ -8,6 +8,7 @@ import datetime
 # What it does:
 #   - Load Meteogram from meteograms.com and save locally (displayed via camera)
 #   - Check DWD Weather Warnings and create HA sensors
+#   - Convert wind speed m/s in km/h and create a sensor for it
 # What args it needs:
 #   - token_meteograms: a token from meteograms.com
 #   - dwd_warncell_id: as a string. find the ID here: 
@@ -68,6 +69,8 @@ class weather_and_astro(hass.Hass):
         self.url_dwd_warnings = "https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&CQL_FILTER=WARNCELLID%20IN%20(%27{}%27)".format(self.dwd_warncell_id)
         self.run_every(self.load_dwd_warnings, datetime.datetime.now(), 5 * 60) # update every 5 minutes
         self.just_started = True # prevent repeated notifications after a restart
+        # --- wind speed ---
+        self.listen_state(self.convert_wind_speed, "sensor.windgeschwindigkeit_wetterstation")
 
     def load_meteogram(self, kwargs):
         try:
@@ -214,3 +217,14 @@ class weather_and_astro(hass.Hass):
         else:
             printtext = _date.strftime('{}, %d.%m.').format(weekdays[_date.weekday()])
         return printtext
+    
+    def convert_wind_speed(self, entity, attribute, old, new, kwargs):
+        if (new is not None) and (new is not "unknown") and (new is not "unavailable"):
+            try:
+                speed_kmh = float(new) * 3.6
+                self.set_state("sensor.windgeschwindigkeit_wetterstation_kmh", state = round(speed_kmh, 1), attributes = {"icon":"mdi:weather-windy", "friendly_name": "Windgeschwindigkeit", "unit_of_measurement": "km/h"})
+            except Exception as e:
+                # catch error
+                self.log("Error converting wind speed to kmh: {}".format(e))
+
+        
