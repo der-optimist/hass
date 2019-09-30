@@ -120,3 +120,14 @@
     state_address: '7/2/137'
     name: PM_O_BA
     device_class: motion
+
+# --- Alarme ---
+  - platform: knx
+    state_address: '13/0/4'
+    name: Windalarm 1
+  - platform: knx
+    state_address: '13/0/5'
+    name: Windalarm 2
+  - platform: knx
+    state_address: '13/0/6'
+    name: Windalarm 3
