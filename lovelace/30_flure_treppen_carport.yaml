@@ -34,8 +34,8 @@ cards:
       entity: climate.flur_og
       name: false
       sensors:
-        - entity: sensor.temp_flur_og_pm
-          name: Temp. PM
+        - entity: sensor.stellwert_heizung_flur_og
+          name: Ventil offen
   - type: entities
     title: "Windfang und WC"
     show_header_toggle: false
@@ -58,8 +58,8 @@ cards:
       entity: climate.windfang_wc
       name: false
       sensors:
-        - entity: sensor.temp_wc_pm
-          name: Temp. PM
+        - entity: sensor.stellwert_heizung_windfang_wc
+          name: Ventil offen
   - type: entities
     title: "Carport und Eingang"
     show_header_toggle: false
