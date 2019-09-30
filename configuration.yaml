@@ -81,6 +81,7 @@ recorder:
   include:
     domains:
       - sensor
+      - binary_sensor
       - switch
       - climate
       - cover
