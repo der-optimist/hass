@@ -57,8 +57,8 @@ cards:
       entity: climate.la
       name: false
       sensors:
-        - entity: sensor.temp_la_pm
-          name: Temp. PM
+        - entity: sensor.stellwert_heizung_la
+          name: Ventil offen
   - type: entities
     title: !secret name_le
     show_header_toggle: false
@@ -114,8 +114,8 @@ cards:
       entity: climate.le
       name: false
       sensors:
-        - entity: sensor.temp_le_pm
-          name: Temp. PM
+        - entity: sensor.stellwert_heizung_le
+          name: Ventil offen
   - type: entities
     title: "Bad OG"
     show_header_toggle: false
@@ -147,5 +147,5 @@ cards:
       entity: climate.bad_og
       name: false
       sensors:
-        - entity: sensor.temp_bad_og_pm
-          name: Temp. PM
+        - entity: sensor.stellwert_heizung_bad_og
+          name: Ventil offen
