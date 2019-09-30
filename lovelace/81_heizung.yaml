@@ -36,37 +36,37 @@ cards:
     entities:
       - type: 'custom:simple-thermostat'
         entity: climate.kuche
-        name: false
+        name: Küche
         sensors:
           - entity: sensor.stellwert_heizung_kuche
             name: Ventil offen
       - type: 'custom:simple-thermostat'
         entity: climate.esszimmer
-        name: false
+        name: Esszimmer
         sensors:
           - entity: sensor.stellwert_heizung_esszimmer
             name: Ventil offen
       - type: 'custom:simple-thermostat'
         entity: climate.wohnzimmer
-        name: false
+        name: Wohnzimmer
         sensors:
           - entity: sensor.stellwert_heizung_wohnzimmer
             name: Ventil offen
       - type: 'custom:simple-thermostat'
         entity: climate.schlafzimmer
-        name: false
+        name: Schlafzimmer
         sensors:
           - entity: sensor.stellwert_heizung_schlafzimmer
             name: Ventil offen
       - type: 'custom:simple-thermostat'
         entity: climate.bad_eg
-        name: false
+        name: Bad EG
         sensors:
           - entity: sensor.stellwert_heizung_bad_eg
             name: Ventil offen
       - type: 'custom:simple-thermostat'
         entity: climate.windfang_wc
-        name: false
+        name: Windfang / WC
         sensors:
           - entity: sensor.stellwert_heizung_windfang_wc
             name: Ventil offen
@@ -76,37 +76,37 @@ cards:
     entities:
       - type: 'custom:simple-thermostat'
         entity: climate.la
-        name: false
+        name: !secret name_la
         sensors:
           - entity: sensor.stellwert_heizung_la
             name: Ventil offen
       - type: 'custom:simple-thermostat'
         entity: climate.nahzimmer
-        name: false
+        name: Nähzimmer
         sensors:
           - entity: sensor.stellwert_heizung_nahzimmer
             name: Ventil offen
       - type: 'custom:simple-thermostat'
         entity: climate.le
-        name: false
+        name: !secret name_le
         sensors:
           - entity: sensor.stellwert_heizung_le
             name: Ventil offen
       - type: 'custom:simple-thermostat'
         entity: climate.gastezimmer
-        name: false
+        name: Gästezimmer
         sensors:
           - entity: sensor.stellwert_heizung_gastezimmer
             name: Ventil offen
       - type: 'custom:simple-thermostat'
         entity: climate.flur_og
-        name: false
+        name: Flur OG
         sensors:
           - entity: sensor.stellwert_heizung_flur_og
             name: Ventil offen
       - type: 'custom:simple-thermostat'
         entity: climate.bad_og
-        name: false
+        name: Bad EG
         sensors:
           - entity: sensor.stellwert_heizung_bad_og
             name: Ventil offen
