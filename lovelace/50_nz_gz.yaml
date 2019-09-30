@@ -33,8 +33,8 @@ cards:
       entity: climate.nahzimmer
       name: false
       sensors:
-        - entity: sensor.temp_nahzimmer_pm
-          name: Temp. PM
+        - entity: sensor.stellwert_heizung_nahzimmer
+          name: Ventil offen
   - type: entities
     title: Gästezimmer
     show_header_toggle: false
@@ -62,5 +62,5 @@ cards:
       entity: climate.gastezimmer
       name: false
       sensors:
-        - entity: sensor.temp_gastezimmer_pm
-          name: Temp. PM
+        - entity: sensor.stellwert_heizung_gastezimmer
+          name: Ventil offen
