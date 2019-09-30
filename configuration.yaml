@@ -135,6 +135,10 @@ knx:
   fire_event: true
   fire_event_filter: ["*/*/*"]
   state_updater: true
+  expose:
+  - type: 'speed_ms'
+    entity_id: 'sensor.windgeschwindigkeit_wetterstation_kmh'
+    address: '13/0/50'
 
 #knx_reader: # custom component for reading a GA status
 
