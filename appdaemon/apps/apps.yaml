@@ -7,23 +7,24 @@ test:
   log: test
 # Main Section
 # Light
-#light_e_fl_panels:
-#  module: auto_light
-#  class: auto_light
-#  light: light.panels_flur_eg
-#  triggers: 
-#    - binary_sensor.pm_e_fl_flur
-#  #blocking_entities: list of entities that block this app (e.g. sleeping-switch)
-#  brightness_day: 100
-#  brightness_night: 10
-#  min_illuminance_day: 100
-#  min_illuminance_night: 10
-#  illuminance_light_off_day: 150
-#  illuminance_light_off_night: 50
-#  illuminance_sensor: sensor.helligkeit_flur_eg_pm
-#  trigger_entities_for_night_mode:
-#    - switch.ma_schlaft
-#    - switch.jo_schlaft
+light_e_fl_panels:
+  module: auto_light
+  class: auto_light
+  constrain_input_boolean: input_boolean.app_switch_licht_windfang
+  light: light.panels_windfang
+  triggers: 
+    - binary_sensor.pm_e_wf_haustur
+  #blocking_entities: list of entities that block this app (e.g. sleeping-switch)
+  brightness_day: 80
+  brightness_night: 10
+  min_illuminance_day: 50
+  min_illuminance_night: 2
+  illuminance_light_off_day: 100
+  illuminance_light_off_night: 50
+  illuminance_sensor: sensor.helligkeit_windfang_pm
+  trigger_entities_for_night_mode:
+    - switch.ma_schlaft
+    - switch.jo_schlaft
 # Other Stuff
 toggle_reminder_switches:
   module: toggle_reminder_switches
