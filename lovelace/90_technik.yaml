@@ -8,6 +8,7 @@ cards:
     show_state: false
   - type: picture-glance
     camera_image: camera.meteogram
+    entities: []
   - type: custom:mini-graph-card
     entities: 
       - entity: sensor.speedtest_download
