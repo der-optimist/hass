@@ -110,7 +110,9 @@ class auto_light(hass.Hass):
         if new_brightness == self.app_brightness_state:
             self.log("This state change happened most likely due to my command. Wont change anything")
         else:
-            self.log("The light was changed manually, I think. Will deactivate myself and switch to manual mode")
+            self.log("The light was changed manually, I think. Will deactivate myself and switch to manual mode. new / app-state:")
+            self.log(new_brightness)
+            self.log(self.app_brightness_state)
             self.manual_mode = True
         
     def illuminance_changed(self, entity, attributes, old, new, kwargs):
