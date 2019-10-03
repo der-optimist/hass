@@ -1,5 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 from typing import Set
+import time
 
 #
 # Automate light, universal app
@@ -99,6 +100,7 @@ class auto_light(hass.Hass):
     def light_state_changed(self, entity, attributes, old, new, kwargs):
         self.log("Light: {} changed from {} to {}".format(entity, old, new))
         if new == "on":
+            time.sleep( 5 )
             try:
                 new_brightness = self.byte_to_pct(self.get_state(self.light, attribute="brightness"))
             except Exception as e:
