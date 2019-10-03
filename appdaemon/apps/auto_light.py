@@ -187,13 +187,17 @@ class auto_light(hass.Hass):
         if self.is_night:
             if self.measured_illuminance < self.min_illuminance_night:
                 self.is_too_dark = True
+                self.log("is night and too dark")
             else:
                 self.is_too_dark = False
+                self.log("is night but not too dark")
         else:
             if self.measured_illuminance < self.min_illuminance_day:
                 self.is_too_dark = True
+                self.log("is not night, but too dark")
             else:
                 self.is_too_dark = False
+                self.log("is not night and not too dark")
     
     def check_if_too_bright(self, kwargs):
         if self.is_night:
