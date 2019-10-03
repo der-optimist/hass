@@ -217,9 +217,9 @@ class auto_light(hass.Hass):
             if self.get_state(trigger_entity_for_night_mode) == "on":
                 self.is_night = True
 
-    def pct_to_byte(self, val_pct, kwargs):
+    def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
     
-    def byte_to_pct(self, val_byte, kwargs):
+    def byte_to_pct(self, val_byte):
         return float(round(val_byte*100/255))
     
