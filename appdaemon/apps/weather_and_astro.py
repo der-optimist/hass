@@ -70,6 +70,7 @@ class weather_and_astro(hass.Hass):
         self.run_every(self.load_dwd_warnings, datetime.datetime.now(), 5 * 60) # update every 5 minutes
         self.just_started = True # prevent repeated notifications after a restart
         # --- wind speed ---
+        self.input_values = []
         self.listen_state(self.convert_wind_speed, "sensor.windgeschwindigkeit_wetterstation")
 
     def load_meteogram(self, kwargs):
@@ -221,8 +222,11 @@ class weather_and_astro(hass.Hass):
     def convert_wind_speed(self, entity, attribute, old, new, kwargs):
         if (new is not None) and (new is not "unknown") and (new is not "unavailable"):
             try:
-                speed_kmh = float(new) * 3.6
-                self.set_state("sensor.windgeschwindigkeit_wetterstation_kmh", state = round(speed_kmh, 1), attributes = {"icon":"mdi:weather-windy", "friendly_name": "Windgeschwindigkeit", "unit_of_measurement": "km/h"})
+                self.input_values.add(float(new))
+                if len(self.input_values) > 4:
+                    speed_kmh = sum(self.input_values) / len(self.input_values) * 3.6
+                    self.set_state("sensor.windgeschwindigkeit_wetterstation_kmh", state = round(speed_kmh, 0), attributes = {"icon":"mdi:weather-windy", "friendly_name": "Windgeschwindigkeit", "unit_of_measurement": "km/h"})
+                    self.input_values = []
             except Exception as e:
                 # catch error
                 self.log("Error converting wind speed to kmh: {}".format(e))
