@@ -222,7 +222,7 @@ class weather_and_astro(hass.Hass):
     def convert_wind_speed(self, entity, attribute, old, new, kwargs):
         if (new is not None) and (new is not "unknown") and (new is not "unavailable"):
             try:
-                self.input_values.add(float(new))
+                self.input_values.append(float(new))
                 if len(self.input_values) > 4:
                     speed_kmh = sum(self.input_values) / len(self.input_values) * 3.6
                     self.set_state("sensor.windgeschwindigkeit_wetterstation_kmh", state = round(speed_kmh, 0), attributes = {"icon":"mdi:weather-windy", "friendly_name": "Windgeschwindigkeit", "unit_of_measurement": "km/h"})
