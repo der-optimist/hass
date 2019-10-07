@@ -30,6 +30,12 @@ cards:
         name: Flur OG
       - entity: sensor.stellwert_heizung_bad_og
         name: Bad OG
+  - type: 'custom:simple-thermostat'
+    entity: climate.gastezimmer
+    name: Gästezimmer
+    sensors:
+      - entity: sensor.stellwert_heizung_gastezimmer
+        name: Ventil offen
   - type: entities
     title: Heizungen EG
     show_header_toggle: false
