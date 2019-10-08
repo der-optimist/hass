@@ -38,9 +38,6 @@ class heating_helper(hass.Hass):
         # update texts when temps changed
         self.listen_state(self.update_current_temp_text, self.args["climate_entity"], attribute = "current_temperature")
         self.listen_state(self.update_target_temp_text, self.args["climate_entity"], attribute = "temperature")
-        # test area
-        current_target_temp = self.get_state(self.args["climate_entity"], attribute="temperature")
-        self.log(type(current_target_temp))
         
     def shift_target_temp_up(self,event_name,data,kwargs):
         current_target_temp = self.get_state(self.args["climate_entity"], attribute="temperature")
