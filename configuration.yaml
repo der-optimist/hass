@@ -140,6 +140,12 @@ knx:
   - type: 'speed_ms'
     entity_id: 'sensor.windgeschwindigkeit_wetterstation_kmh'
     address: '13/0/50'
+  - type: 'string'
+    entity_id: 'sensor.windfang_wc_temp_ist_text'
+    address: '10/7/8'
+  - type: 'string'
+    entity_id: 'sensor.windfang_wc_temp_soll_text'
+    address: '10/7/7'
 
 #knx_reader: # custom component for reading a GA status
 
