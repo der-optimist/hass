@@ -28,6 +28,7 @@ class auto_light_2(hass.Hass):
             if now >= now.replace(hour=int(each.split(":")[0]), minute=int(each.split(":")[1]), second=0, microsecond=0):
                 self.basic_brightness = self.args["brightness_values"][each]
         self.log(self.basic_brightness)
+        self.log(type(self.basic_brightness))
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
