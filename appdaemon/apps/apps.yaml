@@ -24,17 +24,17 @@ light_e_wf_panels_2:
   triggers: 
     - binary_sensor.pm_e_wf_haustur
   brightness_values:
-    00:00: 10
-    05:30: 20
-    12:00: 30
-    19:00: 40
-    23:59: 50
+    "00:00": 10
+    "05:30": 20
+    "12:00": 30
+    "19:00": 40
+    "23:59": 50
   min_illuminance_values:
-    00:00: 1
-    05:30: 2
-    12:00: 3
-    19:00: 4
-    23:59: 5
+    "00:00": 1
+    "05:30": 2
+    "12:00": 3
+    "19:00": 4
+    "23:59": 5
   illuminance_sensor: sensor.helligkeit_windfang_pm
 light_e_fl_panels:
   module: auto_light
