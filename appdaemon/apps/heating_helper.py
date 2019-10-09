@@ -42,12 +42,12 @@ class heating_helper(hass.Hass):
     def shift_target_temp_up(self,event_name,data,kwargs):
         current_target_temp = self.get_state(self.args["climate_entity"], attribute="temperature")
         new_target_temp = float(current_target_temp) + 0.5
-        self.call_service(self, "climate/set_temperature", entity_id = self.args["climate_entity"], temperature = new_target_temp)
+        self.call_service("climate/set_temperature", entity_id = self.args["climate_entity"], temperature = new_target_temp)
         
     def shift_target_temp_down(self,event_name,data,kwargs):
         current_target_temp = self.get_state(self.args["climate_entity"], attribute="temperature")
         new_target_temp = float(current_target_temp) - 0.5
-        self.call_service(self, "climate/set_temperature", entity_id = self.args["climate_entity"], temperature = new_target_temp)
+        self.call_service("climate/set_temperature", entity_id = self.args["climate_entity"], temperature = new_target_temp)
         
     def update_current_temp_text(self, entity, attribute, old, new, kwargs):
         try:
