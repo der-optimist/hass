@@ -2,13 +2,6 @@ title: Technik
 path: technik
 icon: mdi:router-wireless
 cards:
-  - type: picture-entity
-    entity: camera.meteogram
-    show_name: false
-    show_state: false
-  - type: picture-glance
-    camera_image: camera.meteogram
-    entities: []
   - type: custom:mini-graph-card
     entities: 
       - entity: sensor.speedtest_download
