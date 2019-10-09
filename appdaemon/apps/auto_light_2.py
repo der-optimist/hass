@@ -20,6 +20,8 @@ class auto_light_2(hass.Hass):
         self.triggers: Set[str] = self.args.get("triggers", set())
         self.illuminance_sensor: str = self.args.get("illuminance_sensor", None)
         self.times_brightness_strings = self.args["brightness_values"].keys()
+        self.log(self.times_brightness_strings)
+        self.log(sorted(self.times_brightness_strings))
         self.find_last_brightness_value(None)
 
     def find_last_brightness_value(self, kwargs):
