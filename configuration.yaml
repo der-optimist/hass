@@ -164,6 +164,10 @@ camera:
   - platform: local_file
     name: Meteogram
     file_path: /config/www/meteograms/meteogram.png
+  - platform: generic
+    name: Meteogram_generic
+    still_image_url: https://127.0.0.1:8123/local/meteograms/meteogram.png
+    verify_ssl: false
 
 # Text to speech
 #tts:
