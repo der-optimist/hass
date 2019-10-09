@@ -25,7 +25,7 @@ class auto_light_2(hass.Hass):
     def find_last_brightness_value(self, kwargs):
         now = datetime.datetime.now()
         for each in sorted(self.times_brightness_strings):
-            if now >= now.replace(hour=each.split(":")[0], minute=each.split(":")[1], second=0, microsecond=0):
+            if now >= now.replace(hour=int(each.split(":")[0]), minute=int(each.split(":")[1]), second=0, microsecond=0):
                 self.log("jetzt oder war schon")
             else:
                 self.log("kommt noch")
