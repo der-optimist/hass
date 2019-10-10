@@ -107,7 +107,7 @@ class auto_light_2(hass.Hass):
         if self.keeping_off:
             self.log("A keeping-off entity is active, wont do anything")
             return
-        self.log("Will turn on the light now")
+        self.log("Will turn on the light now with brightness {}".format(self.basic_brightness))
         self.turn_on(self.light,brightness=self.pct_to_byte(self.basic_brightness))
 
     def filter_turn_off_command(self, kwargs):
