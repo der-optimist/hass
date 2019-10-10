@@ -29,6 +29,21 @@ class auto_light_2(hass.Hass):
         self.update_min_illuminance_value(None)
         for each in sorted(self.times_min_illuminance_strings):
             self.run_daily(self.update_min_illuminance_value, datetime.time(int(each.split(":")[0]), int(each.split(":")[1]), 0))
+        # measured illuminance
+        self.measured_illuminance = float(0)
+        if not self.illuminance_sensor == None:
+            # set up state listener for illuminance sensor
+            self.listen_state(self.illuminance_changed, self.illuminance_sensor)
+            try: 
+                self.measured_illuminance = float(self.get_state(self.illuminance_sensor))
+            except ValueError:
+                self.log("illuminance value of sensor {} can not be coverted to float as it is {}".format(self.illuminance_sensor,self.get_state(self.illuminance_sensor)))
+        # check if it is too dark at the moment
+        self.check_if_too_dark(None)
+        # set up state listener for each trigger sensor
+        for trigger in self.triggers:
+            self.listen_state(self.trigger_state_changed, trigger)
+
 
     def update_basic_brightness_value(self, kwargs):
         now = datetime.datetime.now()
@@ -45,6 +60,54 @@ class auto_light_2(hass.Hass):
                 current_min_illuminance = self.args["min_illuminance_values"][each]
         self.min_illuminance = current_min_illuminance
         self.log("Min illuminance set to {}".format(self.min_illuminance))
+        self.check_if_too_dark(None)
+
+    def illuminance_changed(self, entity, attributes, old, new, kwargs):
+        self.log("illuminance sensor: {} changed from {} to {}".format(entity, old, new))
+        try:
+            self.measured_illuminance = float(new)
+        except Exception as e:
+                self.log("Received illuminance can not be coverted to float. will use 0. Error was {}".format(e))
+                self.measured_illuminance = float(0)
+        self.check_if_too_dark(None)
+
+    def trigger_state_changed(self, entity, attributes, old, new, kwargs):
+        self.log("Light Trigger: {} changed from {} to {}".format(entity, old, new))
+        if new == "on":
+            if self.is_triggered:
+                self.log("Got trigger event, but is already triggered, wont do anything")
+                return
+            else:
+                self.is_triggered = True
+                self.log("Got trigger event ON, will check if it is too dark...")
+                if self.is_too_dark:
+                    self.log("Jep, seems to be too dark")
+                    #self.filter_turn_on_command(None)
+        if new == "off":
+            self.log("Got trigger event OFF, will look if another trigger is active")
+            self.check_if_any_trigger_active(None)
+            if self.is_triggered:
+                self.log("Another trigger is active. Will do nothing with this OFF event")
+            else:
+                self.log("No other trigger is active, noboby seems to be here. Will decide if I should switch the light off")
+                self.log("But first, I will activate automatic mode")
+                self.manual_mode = False
+                #self.filter_turn_off_command(None)
+
+    def check_if_too_dark(self, kwargs):
+        if self.measured_illuminance < self.min_illuminance:
+            self.is_too_dark = True
+            self.log("is too dark. measured: {}, min_illum.: {}".format(self.measured_illuminance, self.min_illuminance))
+        else:
+            self.is_too_dark = False
+            self.log("is not too dark. measured: {}, min_illum.: {}".format(self.measured_illuminance, self.min_illuminance))
+
+    def check_if_any_trigger_active(self, kwargs):
+        self.log("Will check if one of the triggers is active")
+        self.is_triggered = False
+        for trigger in self.triggers:
+            if self.get_state(trigger) == "on":
+                self.is_triggered = True
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
