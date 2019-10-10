@@ -43,6 +43,8 @@ class auto_light_2(hass.Hass):
         self.manual_mode = False
         self.keeping_off = False
         self.keeping_on = False
+        # is triggered at the moment of startup?
+        self.check_if_any_trigger_active(None)
         # set up state listener for each trigger sensor
         for trigger in self.triggers:
             self.listen_state(self.trigger_state_changed, trigger)
