@@ -16,6 +16,10 @@ heating_helper_windfang_wc:
   ga_text_target_temp: "10/7/7"
   sensor_name_current_temp_text: sensor.windfang_wc_temp_ist_text
   sensor_name_target_temp_text: sensor.windfang_wc_temp_soll_text
+# Scenes
+sync_scene_entities:
+  module: sync_scene_entities
+  class: sync_scene_entities
 # Light
 light_e_wf_panels_2:
   module: auto_light_2
