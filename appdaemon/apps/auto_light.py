@@ -118,7 +118,7 @@ class auto_light(hass.Hass):
             self.manual_mode = True
         
     def illuminance_changed(self, entity, attributes, old, new, kwargs):
-        self.log("illuminance sensor: {} changed from {} to {}".format(entity, old, new))
+        #self.log("illuminance sensor: {} changed from {} to {}".format(entity, old, new))
         try:
             self.measured_illuminance = float(new)
         except Exception as e:
@@ -191,17 +191,17 @@ class auto_light(hass.Hass):
         if self.is_night:
             if self.measured_illuminance < self.min_illuminance_night:
                 self.is_too_dark = True
-                self.log("is night and too dark")
+                #self.log("is night and too dark")
             else:
                 self.is_too_dark = False
-                self.log("is night but not too dark")
+                #self.log("is night but not too dark")
         else:
             if self.measured_illuminance < self.min_illuminance_day:
                 self.is_too_dark = True
-                self.log("is not night, but too dark")
+                #self.log("is not night, but too dark")
             else:
                 self.is_too_dark = False
-                self.log("is not night and not too dark")
+                #self.log("is not night and not too dark")
     
     def check_if_too_bright(self, kwargs):
         if self.is_night:
