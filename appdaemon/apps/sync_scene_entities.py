@@ -19,16 +19,16 @@ class sync_scene_entities(hass.Hass):
     def scene(self,event_name,data,kwargs):
         self.log("KNX scene detected. data is:")
         self.log(data)
-        if data == 1:
+        if data["data"] == [0]:
             self.log("La geht ins Bett")
             self.set_state("switch.la_schlaft", state = "on")
-        elif data == 2:
+        elif data["data"] == [1]:
             self.log("Le geht ins Bett")
             self.set_state("switch.le_schlaft", state = "on")
-        elif data == 5:
+        elif data["data"] == [4]:
             self.log("La steht auf")
             self.set_state("switch.la_schlaft", state = "off")
-        elif data == 6:
+        elif data["data"] == [5]:
             self.log("Le steht auf")
             self.set_state("switch.le_schlaft", state = "off")
     
