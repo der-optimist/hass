@@ -39,6 +39,10 @@ class auto_light_2(hass.Hass):
                 self.log("illuminance value of sensor {} can not be coverted to float as it is {}".format(self.illuminance_sensor,self.get_state(self.illuminance_sensor)))
         # update min illuminance and check if it is too dark at the moment
         self.update_min_illuminance_value(None)
+        # keeping_off, keeping_on and manual mode not implemented yet, so set to false:
+        self.manual_mode = False
+        self.keeping_off = False
+        self.keeping_on = False
         # set up state listener for each trigger sensor
         for trigger in self.triggers:
             self.listen_state(self.trigger_state_changed, trigger)
@@ -62,7 +66,7 @@ class auto_light_2(hass.Hass):
         self.check_if_too_dark(None)
 
     def illuminance_changed(self, entity, attributes, old, new, kwargs):
-        self.log("illuminance sensor: {} changed from {} to {}".format(entity, old, new))
+        #self.log("illuminance sensor: {} changed from {} to {}".format(entity, old, new))
         try:
             self.measured_illuminance = float(new)
         except Exception as e:
@@ -81,7 +85,7 @@ class auto_light_2(hass.Hass):
                 self.log("Got trigger event ON, will check if it is too dark...")
                 if self.is_too_dark:
                     self.log("Jep, seems to be too dark")
-                    #self.filter_turn_on_command(None)
+                    self.filter_turn_on_command(None)
         if new == "off":
             self.log("Got trigger event OFF, will look if another trigger is active")
             self.check_if_any_trigger_active(None)
@@ -91,7 +95,29 @@ class auto_light_2(hass.Hass):
                 self.log("No other trigger is active, noboby seems to be here. Will decide if I should switch the light off")
                 self.log("But first, I will activate automatic mode")
                 self.manual_mode = False
-                #self.filter_turn_off_command(None)
+                self.filter_turn_off_command(None)
+
+    def filter_turn_on_command(self, kwargs):
+        self.log("Will decide now if light should be turned on")
+        if self.manual_mode:
+            self.log("I am in manual mode, wont do anything")
+            return
+        if self.keeping_off:
+            self.log("A keeping-off entity is active, wont do anything")
+            return
+        self.log("Will turn on the light now")
+        self.turn_on(self.light,brightness=self.pct_to_byte(self.basic_brightness))
+
+    def filter_turn_off_command(self, kwargs):
+        self.log("Will decide now if light should be turned off")
+        if self.manual_mode:
+            self.log("I am in manual mode, wont do anything")
+            return
+        if self.keeping_on:
+            self.log("A keeping-on entity is active, wont do anything")
+            return
+        self.log("Will turn off the light now")
+        self.turn_off(self.light)
 
     def check_if_too_dark(self, kwargs):
         if self.measured_illuminance < self.min_illuminance:
