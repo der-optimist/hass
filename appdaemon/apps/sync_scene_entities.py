@@ -25,6 +25,8 @@ class sync_scene_entities(hass.Hass):
         elif data["data"] == [1]:
             self.log("Le geht ins Bett")
             self.set_state("switch.le_schlaft", state = "on")
+        elif data["data"] == [3]:
+            self.log("Fernseh-Szene")
         elif data["data"] == [4]:
             self.log("La steht auf")
             self.set_state("switch.la_schlaft", state = "off")
