@@ -20,6 +20,10 @@ heating_helper_windfang_wc:
 sync_scene_entities:
   module: sync_scene_entities
   class: sync_scene_entities
+# Night
+night_mode_knx:
+  module: night_mode_knx
+  class: night_mode_knx
 # Light
 light_e_wf_panels_2:
   module: auto_light_2
