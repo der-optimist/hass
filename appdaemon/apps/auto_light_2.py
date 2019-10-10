@@ -26,7 +26,6 @@ class auto_light_2(hass.Hass):
             self.run_daily(self.update_basic_brightness_value, datetime.time(int(each.split(":")[0]), int(each.split(":")[1]), 0))
         # min illuminance depending on time
         self.times_min_illuminance_strings = self.args["min_illuminance_values"].keys()
-        self.update_min_illuminance_value(None)
         for each in sorted(self.times_min_illuminance_strings):
             self.run_daily(self.update_min_illuminance_value, datetime.time(int(each.split(":")[0]), int(each.split(":")[1]), 0))
         # measured illuminance
@@ -38,8 +37,8 @@ class auto_light_2(hass.Hass):
                 self.measured_illuminance = float(self.get_state(self.illuminance_sensor))
             except ValueError:
                 self.log("illuminance value of sensor {} can not be coverted to float as it is {}".format(self.illuminance_sensor,self.get_state(self.illuminance_sensor)))
-        # check if it is too dark at the moment
-        self.check_if_too_dark(None)
+        # update min illuminance and check if it is too dark at the moment
+        self.update_min_illuminance_value(None)
         # set up state listener for each trigger sensor
         for trigger in self.triggers:
             self.listen_state(self.trigger_state_changed, trigger)
