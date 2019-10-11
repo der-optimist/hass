@@ -23,6 +23,8 @@ class auto_light_3(hass.Hass):
         self.triggers: Set[str] = self.args.get("triggers", set())
         # is triggered at the moment of startup?
         self.check_if_any_trigger_active(None)
+        # manual mode not implemented yet, so set to false:
+        self.manual_mode = False
         self.illuminance_sensor: str = self.args.get("illuminance_sensor", None)
         self.keeping_off_entities: Set[str] = self.args.get("keeping_off_entities", set())
         self.check_if_keeping_off_active(None)
@@ -51,8 +53,6 @@ class auto_light_3(hass.Hass):
                 self.log("illuminance value of sensor {} can not be coverted to float as it is {}".format(self.illuminance_sensor,self.get_state(self.illuminance_sensor)))
         # update min illuminance and check if it is too dark at the moment
         self.update_min_illuminance_value(None)
-        # manual mode not implemented yet, so set to false:
-        self.manual_mode = False
         # set up state listener for each trigger sensor
         for trigger in self.triggers:
             self.listen_state(self.trigger_state_changed, trigger)
