@@ -128,7 +128,7 @@ class auto_light_3(hass.Hass):
             self.log("A keeping-fix entity is active, wont do anything")
             return
         self.log("Will turn on the light now with brightness {}".format(self.basic_brightness))
-        #self.turn_on(self.light,brightness=self.pct_to_byte(self.basic_brightness))
+        self.turn_on(self.light,brightness=self.pct_to_byte(self.basic_brightness))
 
     def filter_turn_off_command(self, kwargs):
         self.log("Will decide now if light should be turned off")
@@ -142,7 +142,7 @@ class auto_light_3(hass.Hass):
             self.log("A keeping-fix entity is active, wont do anything")
             return
         self.log("Will turn off the light now")
-        #self.turn_off(self.light)
+        self.turn_off(self.light)
 
     def check_if_too_dark(self, kwargs):
         if self.measured_illuminance < self.min_illuminance:
@@ -191,7 +191,7 @@ class auto_light_3(hass.Hass):
             self.keeping_fix = True
             brightness = self.keeping_fix_entities[entity]
             self.log("Will set fixed brightness to {}".format(brightness))
-            #self.turn_on(self.light,brightness=self.pct_to_byte(brightness))
+            self.turn_on(self.light,brightness=self.pct_to_byte(brightness))
         else: # this one is not on, but maybe another one
             self.check_if_keeping_fix_active(None)
 
@@ -202,6 +202,8 @@ class auto_light_3(hass.Hass):
             if self.get_state(keeping_fix_entity) == "on":
                 self.keeping_fix = True
                 self.log("Ah, wait! Yes, this one is active: {}. Will stay in fixed mode".format(keeping_fix_entity))
+        if (not self.is_triggered) and (not self.keeping_fix):
+            self.filter_turn_off_command(None)
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
