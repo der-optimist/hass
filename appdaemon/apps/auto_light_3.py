@@ -115,7 +115,7 @@ class auto_light_3(hass.Hass):
             self.log("A keeping-off entity is active, wont do anything")
             return
         self.log("Will turn on the light now with brightness {}".format(self.basic_brightness))
-        self.turn_on(self.light,brightness=self.pct_to_byte(self.basic_brightness))
+        #self.turn_on(self.light,brightness=self.pct_to_byte(self.basic_brightness))
 
     def filter_turn_off_command(self, kwargs):
         self.log("Will decide now if light should be turned off")
@@ -126,7 +126,7 @@ class auto_light_3(hass.Hass):
             self.log("A keeping-on entity is active, wont do anything")
             return
         self.log("Will turn off the light now")
-        self.turn_off(self.light)
+        #self.turn_off(self.light)
 
     def check_if_too_dark(self, kwargs):
         if self.measured_illuminance < self.min_illuminance:
