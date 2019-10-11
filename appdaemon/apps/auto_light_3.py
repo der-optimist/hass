@@ -21,6 +21,8 @@ class auto_light_3(hass.Hass):
     def initialize(self):
         self.light: str = self.args.get("light")
         self.triggers: Set[str] = self.args.get("triggers", set())
+        # is triggered at the moment of startup?
+        self.check_if_any_trigger_active(None)
         self.illuminance_sensor: str = self.args.get("illuminance_sensor", None)
         self.keeping_off_entities: Set[str] = self.args.get("keeping_off_entities", set())
         self.check_if_keeping_off_active(None)
@@ -51,8 +53,6 @@ class auto_light_3(hass.Hass):
         self.update_min_illuminance_value(None)
         # manual mode not implemented yet, so set to false:
         self.manual_mode = False
-        # is triggered at the moment of startup?
-        self.check_if_any_trigger_active(None)
         # set up state listener for each trigger sensor
         for trigger in self.triggers:
             self.listen_state(self.trigger_state_changed, trigger)
