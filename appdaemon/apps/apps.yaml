@@ -48,10 +48,6 @@ light_e_wf_panels_3:
     "19:00": 15
     "23:00": 1
   illuminance_sensor: sensor.helligkeit_windfang_pm
-  keeping_off_entities:
-    - switch.ma_schlaft
-  keeping_on_entities:
-    - switch.jo_schlaft
 light_e_fl_panels_3:
   module: auto_light_3
   class: auto_light_3
