@@ -74,8 +74,8 @@ light_e_wf_panels_3:
     - switch.ma_schlaft
     - switch.jo_schlaft
   keeping_fix_entities:
-    - switch.la_schlaft: 17
-    - switch.le_schlaft: 23
+    switch.la_schlaft: 17
+    switch.le_schlaft: 23
 #light_e_fl_panels:
 #  module: auto_light
 #  class: auto_light
