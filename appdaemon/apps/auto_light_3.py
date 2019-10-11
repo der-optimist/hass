@@ -16,7 +16,7 @@ import datetime
 # - keeping_fix_entities (dict of entities:value pairs, optional)
 # 
 
-class auto_light_2(hass.Hass):
+class auto_light_3(hass.Hass):
 
     def initialize(self):
         self.light: str = self.args.get("light")
