@@ -187,23 +187,21 @@ class auto_light_3(hass.Hass):
 
     def keeping_fix_entity_changed(self, entity, attributes, old, new, kwargs):
         self.log("Keeping fix: {} changed from {} to {}".format(entity, old, new))
-        self.check_if_keeping_fix_active(entity,new,None)
-
-    def check_if_keeping_fix_active(self, entity, new, kwargs):
         if new == "on":
-            self.log("Keeping fix entity detected: {} - {}".format(entity, new))
             self.keeping_fix = True
             brightness = self.keeping_fix_entities[entity]
-            self.log(brightness)
+            self.log("Will set fixed brightness to {}".format(brightness))
             #self.turn_on(self.light,brightness=self.pct_to_byte(brightness))
         else: # this one is not on, but maybe another one
-            self.log("Keeping fix entity detected: {} - {}".format(entity, new))
-            self.keeping_fix = False
-            self.log("Will check if another one is on. First, I assume - no.")
-            for keeping_on_entity in self.keeping_on_entities:
-                if self.get_state(keeping_on_entity) == "on":
-                    self.keeping_on = True
-                    self.log("Ah, wait! Yes, this one is active: {}. Will stay in fixed mode".format(keeping_on_entity))
+            self.check_if_keeping_fix_active(None)
+
+    def check_if_keeping_fix_active(self, kwargs):
+        self.log("Will check if a keeping-fix entity is active. First, I assume - no.")
+        self.keeping_fix = False
+        for keeping_fix_entity in self.keeping_fix_entities:
+            if self.get_state(keeping_fix_entity) == "on":
+                self.keeping_fix = True
+                self.log("Ah, wait! Yes, this one is active: {}. Will stay in fixed mode".format(keeping_fix_entity))
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
