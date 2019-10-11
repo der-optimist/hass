@@ -14,7 +14,7 @@ class sync_scene_entities(hass.Hass):
     def initialize(self):
         # listen for knx scene events
         self.listen_event(self.scene, event = "knx_event", address = "15/0/50")
-        self.run_daily(self.reset_sleep_switches, datetime.time(9, 0, 0))
+        self.run_daily(self.reset_sleep_switches, datetime.time(10, 30, 0))
         
     def scene(self,event_name,data,kwargs):
         self.log("KNX scene detected. data is:")
@@ -34,7 +34,7 @@ class sync_scene_entities(hass.Hass):
             self.log("Le steht auf")
             self.set_state("switch.le_schlaft", state = "off")
     
-    def reset_sleep_switches(self,event_name,data,kwargs):
+    def reset_sleep_switches(self,kwargs):
         # if "wake up button" was not used
         self.set_state("switch.la_schlaft", state = "off")
         self.set_state("switch.le_schlaft", state = "off")
