@@ -32,7 +32,6 @@ class auto_light_3(hass.Hass):
         self.check_if_keeping_on_active(None)
         self.keeping_fix_entities: Set[str] = self.args.get("keeping_fix_entities", set())
         self.log(self.keeping_fix_entities)
-        self.check_if_keeping_fix_active(None)
         # brightness depending on time
         self.times_brightness_strings = self.args["brightness_values"].keys()
         self.update_basic_brightness_value(None)
@@ -53,6 +52,7 @@ class auto_light_3(hass.Hass):
                 self.log("illuminance value of sensor {} can not be coverted to float as it is {}".format(self.illuminance_sensor,self.get_state(self.illuminance_sensor)))
         # update min illuminance and check if it is too dark at the moment
         self.update_min_illuminance_value(None)
+        self.check_if_keeping_fix_active(None)
         # set up state listener for each trigger sensor
         for trigger in self.triggers:
             self.listen_state(self.trigger_state_changed, trigger)
