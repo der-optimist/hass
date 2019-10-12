@@ -204,6 +204,9 @@ class auto_light_3(hass.Hass):
                 self.log("Ah, wait! Yes, this one is active: {}. Will stay in fixed mode".format(keeping_fix_entity))
         if (not self.is_triggered) and (not self.keeping_fix):
             self.filter_turn_off_command(None)
+        # if triggered and not keeping_fix: turn on (with basic brightness)
+        if self.is_triggered and (not self.keeping_fix) and self.is_too_dark:
+            self.filter_turn_on_command(None)
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
