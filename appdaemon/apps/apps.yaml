@@ -5,6 +5,11 @@ test:
   class: test
   log_level: DEBUG
   log: test
+jal_gz_test:
+  cover_entity: cover.jalousie_gastezimmer
+  time: "08:30"
+  position: 20
+  tilt: 50
 # Main Section
 # Heating
 heating_helper_windfang_wc:
@@ -20,6 +25,12 @@ heating_helper_windfang_wc:
 sync_scene_entities:
   module: sync_scene_entities
   class: sync_scene_entities
+# Cover
+jal_bad_kinder_bettfertig:
+  cover_entity: cover.jalousie_bad_og
+  time: "18:00"
+  position: 100
+  tilt: 100
 # Light
 light_e_wf_panels_3:
   module: auto_light_3
