@@ -6,8 +6,10 @@ test:
   log_level: DEBUG
   log: test
 jal_gz_test:
+  module: cover_timer
+  class: cover_timer
   cover_entity: cover.jalousie_gastezimmer
-  time: "08:30"
+  time: "09:00"
   position: 20
   tilt: 50
 # Main Section
@@ -27,6 +29,8 @@ sync_scene_entities:
   class: sync_scene_entities
 # Cover
 jal_bad_kinder_bettfertig:
+  module: cover_timer
+  class: cover_timer
   cover_entity: cover.jalousie_bad_og
   time: "18:00"
   position: 100
