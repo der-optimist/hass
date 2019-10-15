@@ -12,8 +12,6 @@ cards:
       name: Nähtisch
     - entity: light.schreibtisch_decke
       name: Schreibtisch
-    - entity: light.nahzimmerschrank
-      name: Barschrank
     - type: section
       label: Jalousie
     - entity: cover.jalousie_nahzimmer
