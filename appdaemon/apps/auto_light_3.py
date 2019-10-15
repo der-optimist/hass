@@ -206,6 +206,8 @@ class auto_light_3(hass.Hass):
         # if triggered and not keeping_fix: turn on (with basic brightness)
         if self.is_triggered and (not self.keeping_fix) and self.is_too_dark:
             self.filter_turn_on_command(None)
+        if self.is_triggered and (not self.keeping_fix) and (not self.is_too_dark):
+            self.filter_turn_off_command(None)
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
