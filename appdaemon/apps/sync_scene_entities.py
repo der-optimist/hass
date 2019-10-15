@@ -14,7 +14,7 @@ class sync_scene_entities(hass.Hass):
     def initialize(self):
         # listen for knx scene events
         self.listen_event(self.scene, event = "knx_event", address = "15/0/50")
-        self.run_daily(self.reset_sleep_switches, datetime.time(10, 30, 0))
+        self.run_daily(self.reset_sleep_switches, datetime.time(9, 0, 0))
         
     def scene(self,event_name,data,kwargs):
         self.log("KNX scene detected. data is:")
