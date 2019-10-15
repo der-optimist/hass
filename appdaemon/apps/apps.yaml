@@ -39,6 +39,7 @@ jal_bad_kinder_bettfertig:
 light_e_wf_panels_3:
   module: auto_light_3
   class: auto_light_3
+  debug: all
   constrain_input_boolean: input_boolean.app_switch_licht_windfang
   light: light.panels_windfang
   triggers: 
@@ -62,6 +63,7 @@ light_e_wf_panels_3:
 light_e_fl_panels_3:
   module: auto_light_3
   class: auto_light_3
+  debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_flur_eg
   light: light.panels_flur_eg
   triggers: 
