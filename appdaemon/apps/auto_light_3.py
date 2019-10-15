@@ -31,7 +31,7 @@ class auto_light_3(hass.Hass):
         self.keeping_on_entities: Set[str] = self.args.get("keeping_on_entities", set())
         self.check_if_keeping_on_active(None)
         self.keeping_fix_entities: Set[str] = self.args.get("keeping_fix_entities", set())
-        self.log(self.keeping_fix_entities)
+        self.debug_filter(self.keeping_fix_entities,"all")
         # brightness depending on time
         self.times_brightness_strings = self.args["brightness_values"].keys()
         self.update_basic_brightness_value(None)
@@ -49,7 +49,7 @@ class auto_light_3(hass.Hass):
             try: 
                 self.measured_illuminance = float(self.get_state(self.illuminance_sensor))
             except ValueError:
-                self.log("illuminance value of sensor {} can not be coverted to float as it is {}".format(self.illuminance_sensor,self.get_state(self.illuminance_sensor)))
+                self.debug_filter("illuminance value of sensor {} can not be coverted to float as it is {}".format(self.illuminance_sensor,self.get_state(self.illuminance_sensor)),"few")
         # update min illuminance and check if it is too dark at the moment
         self.update_min_illuminance_value(None)
         self.check_if_keeping_fix_active(None)
@@ -73,7 +73,7 @@ class auto_light_3(hass.Hass):
             if now >= now.replace(hour=int(each.split(":")[0]), minute=int(each.split(":")[1])):
                 current_brightness = self.args["brightness_values"][each]
         self.basic_brightness = current_brightness
-        self.log("Basic brightness set to {}".format(self.basic_brightness))
+        self.debug_filter("Basic brightness set to {}".format(self.basic_brightness),"few")
 
     def update_min_illuminance_value(self, kwargs):
         now = datetime.datetime.now()
@@ -81,127 +81,126 @@ class auto_light_3(hass.Hass):
             if now >= now.replace(hour=int(each.split(":")[0]), minute=int(each.split(":")[1])):
                 current_min_illuminance = self.args["min_illuminance_values"][each]
         self.min_illuminance = current_min_illuminance
-        self.log("Min illuminance set to {}".format(self.min_illuminance))
+        self.debug_filter("Min illuminance set to {}".format(self.min_illuminance),"few")
         self.check_if_too_dark(None)
 
     def illuminance_changed(self, entity, attributes, old, new, kwargs):
-        #self.log("illuminance sensor: {} changed from {} to {}".format(entity, old, new))
+        self.debug_filter("illuminance sensor: {} changed from {} to {}".format(entity, old, new),"all")
         try:
             self.measured_illuminance = float(new)
         except Exception as e:
-                self.log("Received illuminance can not be coverted to float. will use 0. Error was {}".format(e))
+                self.debug_filter("Received illuminance can not be coverted to float. will use 0. Error was {}".format(e),"few")
                 self.measured_illuminance = float(0)
         self.check_if_too_dark(None)
 
     def trigger_state_changed(self, entity, attributes, old, new, kwargs):
-        self.log("Light Trigger: {} changed from {} to {}".format(entity, old, new))
+        self.debug_filter("Light Trigger: {} changed from {} to {}".format(entity, old, new),"few")
         if new == "on":
             if self.is_triggered:
-                self.log("Got trigger event, but is already triggered, wont do anything")
+                self.debug_filter("Got trigger event, but is already triggered, wont do anything","few")
                 return
             else:
                 self.is_triggered = True
-                self.log("Got trigger event ON, will check if it is too dark...")
+                self.debug_filter("Got trigger event ON, will check if it is too dark...","all")
                 if self.is_too_dark:
-                    self.log("Jep, seems to be too dark")
+                    self.debug_filter("Jep, seems to be too dark","all")
                     self.filter_turn_on_command(None)
         if new == "off":
-            self.log("Got trigger event OFF, will look if another trigger is active")
+            self.debug_filter("Got trigger event OFF, will look if another trigger is active","few")
             self.check_if_any_trigger_active(None)
             if self.is_triggered:
-                self.log("Another trigger is active. Will do nothing with this OFF event")
+                self.debug_filter("Another trigger is active. Will do nothing with this OFF event","few")
             else:
-                self.log("No other trigger is active, noboby seems to be here. Will decide if I should switch the light off")
-                self.log("But first, I will activate automatic mode")
+                self.debug_filter("No other trigger is active, noboby seems to be here. Will decide if I should switch the light off","few")
+                self.debug_filter("But first, I will activate automatic mode","all")
                 self.manual_mode = False
                 self.filter_turn_off_command(None)
 
     def filter_turn_on_command(self, kwargs):
-        self.log("Will decide now if light should be turned on")
+        self.debug_filter("Will decide now if light should be turned on","all")
         if self.manual_mode:
-            self.log("I am in manual mode, wont do anything")
+            self.debug_filter("I am in manual mode, wont do anything","few")
             return
         if self.keeping_off:
-            self.log("A keeping-off entity is active, wont do anything")
+            self.debug_filter("A keeping-off entity is active, wont do anything","few")
             return
         if self.keeping_fix:
-            self.log("A keeping-fix entity is active, wont do anything")
+            self.debug_filter("A keeping-fix entity is active, wont do anything","few")
             return
-        self.log("Will turn on the light now with brightness {}".format(self.basic_brightness))
+        self.debug_filter("Will turn on the light now with brightness {}".format(self.basic_brightness),"few")
         self.turn_on(self.light,brightness=self.pct_to_byte(self.basic_brightness))
 
     def filter_turn_off_command(self, kwargs):
-        self.log("Will decide now if light should be turned off")
+        self.debug_filter("Will decide now if light should be turned off","all")
         if self.manual_mode:
-            self.log("I am in manual mode, wont do anything")
+            self.debug_filter("I am in manual mode, wont do anything","few")
             return
         if self.keeping_on:
-            self.log("A keeping-on entity is active, wont do anything")
+            self.debug_filter("A keeping-on entity is active, wont do anything","few")
             return
         if self.keeping_fix:
-            self.log("A keeping-fix entity is active, wont do anything")
+            self.debug_filter("A keeping-fix entity is active, wont do anything","few")
             return
-        self.log("Will turn off the light now")
+        self.debug_filter("Will turn off the light now","few")
         self.turn_off(self.light)
 
     def check_if_too_dark(self, kwargs):
         if self.measured_illuminance < self.min_illuminance:
             self.is_too_dark = True
-            self.log("is too dark. measured: {}, min_illum.: {}".format(self.measured_illuminance, self.min_illuminance))
+            self.debug_filter("is too dark. measured: {}, min_illum.: {}".format(self.measured_illuminance, self.min_illuminance),"all")
         else:
             self.is_too_dark = False
-            self.log("is not too dark. measured: {}, min_illum.: {}".format(self.measured_illuminance, self.min_illuminance))
+            self.debug_filter("is not too dark. measured: {}, min_illum.: {}".format(self.measured_illuminance, self.min_illuminance),"all")
 
     def check_if_any_trigger_active(self, kwargs):
-        self.log("Will check if one of the triggers is active")
+        self.debug_filter("Will check if one of the triggers is active","all")
         self.is_triggered = False
         for trigger in self.triggers:
             if self.get_state(trigger) == "on":
                 self.is_triggered = True
 
     def keeping_off_entity_changed(self, entity, attributes, old, new, kwargs):
-        self.log("Keeping off: {} changed from {} to {}".format(entity, old, new))
+        self.debug_filter("Keeping off: {} changed from {} to {}".format(entity, old, new),"few")
         self.check_if_keeping_off_active(None)
 
     def check_if_keeping_off_active(self, kwargs):
-        self.log("Will check if one of the keeping-off devices is active")
+        self.debug_filter("Will check if one of the keeping-off devices is active. I assume - no.","few")
         self.keeping_off = False
-        self.log("I assume - no.")
         for keeping_off_entity in self.keeping_off_entities:
             if self.get_state(keeping_off_entity) == "on":
                 self.keeping_off = True
-                self.log("Ah, wait! Yes, this one is active: {}".format(keeping_off_entity))
+                self.debug_filter("Ah, wait! Yes, this one is active: {}".format(keeping_off_entity),"few")
 
     def keeping_on_entity_changed(self, entity, attributes, old, new, kwargs):
-        self.log("Keeping on: {} changed from {} to {}".format(entity, old, new))
+        self.debug_filter("Keeping on: {} changed from {} to {}".format(entity, old, new),"few")
         self.check_if_keeping_on_active(None)
 
     def check_if_keeping_on_active(self, kwargs):
-        self.log("Will check if one of the keeping-on devices is active")
+        self.debug_filter("Will check if one of the keeping-on devices is active","few")
         self.keeping_on = False
-        self.log("I assume - no.")
+        self.debug_filter("I assume - no.","few")
         for keeping_on_entity in self.keeping_on_entities:
             if self.get_state(keeping_on_entity) == "on":
                 self.keeping_on = True
-                self.log("Ah, wait! Yes, this one is active: {}".format(keeping_on_entity))
+                self.debug_filter("Ah, wait! Yes, this one is active: {}".format(keeping_on_entity),"few")
 
     def keeping_fix_entity_changed(self, entity, attributes, old, new, kwargs):
-        self.log("Keeping fix: {} changed from {} to {}".format(entity, old, new))
+        self.debug_filter("Keeping fix: {} changed from {} to {}".format(entity, old, new),"few")
         if new == "on":
             self.keeping_fix = True
             brightness = self.keeping_fix_entities[entity]
-            self.log("Will set fixed brightness to {}".format(brightness))
+            self.debug_filter("Will set fixed brightness to {}".format(brightness),"few")
             self.turn_on(self.light,brightness=self.pct_to_byte(brightness))
         else: # this one is not on, but maybe another one
             self.check_if_keeping_fix_active(None)
 
     def check_if_keeping_fix_active(self, kwargs):
-        self.log("Will check if a keeping-fix entity is active. First, I assume - no.")
+        self.debug_filter("Will check if a keeping-fix entity is active. First, I assume - no.","few")
         self.keeping_fix = False
         for keeping_fix_entity in self.keeping_fix_entities:
             if self.get_state(keeping_fix_entity) == "on":
                 self.keeping_fix = True
-                self.log("Ah, wait! Yes, this one is active: {}. Will stay in fixed mode".format(keeping_fix_entity))
+                self.debug_filter("Ah, wait! Yes, this one is active: {}. Will stay in fixed mode".format(keeping_fix_entity),"few")
         if (not self.is_triggered) and (not self.keeping_fix):
             self.filter_turn_off_command(None)
         # if triggered and not keeping_fix: turn on (with basic brightness)
@@ -214,3 +213,8 @@ class auto_light_3(hass.Hass):
     def byte_to_pct(self, val_byte):
         return float(round(val_byte*100/255))
     
+    def debug_filter(self, log_text, level):
+        if self.args["debug"] == "few" and level == "few":
+            self.log(log_text)
+        elif self.args["debug"] == "all":
+            self.log(log_text)
