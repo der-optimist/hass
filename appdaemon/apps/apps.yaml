@@ -1,17 +1,5 @@
 ---
 # Test Area
-test:
-  module: test
-  class: test
-  log_level: DEBUG
-  log: test
-jal_gz_test:
-  module: cover_timer
-  class: cover_timer
-  cover_entity: cover.jalousie_gastezimmer
-  time: "09:00"
-  position: 20
-  tilt: 50
 # Main Section
 # Heating
 heating_helper_windfang_wc:
@@ -39,7 +27,7 @@ jal_bad_kinder_bettfertig:
 light_e_wf_panels_3:
   module: auto_light_3
   class: auto_light_3
-  debug: all
+  debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_windfang
   light: light.panels_windfang
   triggers: 
