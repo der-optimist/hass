@@ -5,7 +5,7 @@ import datetime
 #
 # Automate light, universal app
 #
-# Args: 
+# Args:
 # - light (light entity that should be controlled)
 # - triggers (list of triggers)
 # - brightness_values (dict of time and brightness value pairs, for "basic" brightness depending on time. "00:00": XY should be the first)
