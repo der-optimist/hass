@@ -1,7 +1,5 @@
 # Switches
-switch.ma_schlaft:
-  icon: mdi:power-sleep
-switch.jo_schlaft:
+switch.majo_schlafen:
   icon: mdi:power-sleep
 switch.la_schlaft:
   icon: mdi:power-sleep
