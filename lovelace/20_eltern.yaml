@@ -18,10 +18,8 @@ cards:
       toggle: true
     - type: section
       label: Schläft jemand?
-    - entity: switch.ma_schlaft
-      name: !secret name_ma
-    - entity: switch.jo_schlaft
-      name: !secret name_jo
+    - entity: switch.majo_schlafen
+      name: MaJo
     - type: section
       label: Jalousie
     - entity: cover.jalousie_schlafzimmer
