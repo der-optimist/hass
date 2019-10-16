@@ -17,7 +17,7 @@ class wall_panel(hass.Hass):
         if self.is_time_between(self.start_time, self.end_time):
             #self.log("Daytime - will send wake command to panel")
             self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"wake\":true,\"wakeTime\":610}", qos = "1")
-            self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"reload\":true}", qos = "2")
+            #self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"reload\":true}", qos = "2")
         #else:
             #self.log("Nighttime - will let the panel sleep")
         
