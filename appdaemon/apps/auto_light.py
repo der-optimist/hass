@@ -10,7 +10,7 @@ import datetime
 # - triggers (list of triggers)
 # - brightness_values (dict of time and brightness value pairs, for "basic" brightness depending on time. "00:00": XY should be the first)
 # - min_illuminance_values (dict of time and illuminance value pairs, for taget illuminance depending on time. "00:00": XY should be the first)
-# - illuminance_sensor
+# - illuminance_sensor (optional)
 # - keeping_off_entities (list of entities, optional). Entity = on means light stays off (e.g. sleeping-switch)
 # - keeping_on_entities (list of entities, optional). Entity = on means light stays on
 # - keeping_fix_entities (dict of entity:value pairs, optional). When on, light will be set to brightness and stay on as long as this entity is on
@@ -26,7 +26,6 @@ class auto_light(hass.Hass):
         self.check_if_any_trigger_active(None)
         # manual mode not implemented yet, so set to false:
         self.manual_mode = False
-        #self.special_brightness_active = False
         self.illuminance_sensor: str = self.args.get("illuminance_sensor", None)
         self.keeping_off_entities: Set[str] = self.args.get("keeping_off_entities", set())
         self.check_if_keeping_off_active(None)
@@ -241,7 +240,7 @@ class auto_light(hass.Hass):
                 self.special_brightness_active = True
                 self.special_brightness = self.special_brightness_entities[special_brightness_entity]
                 self.debug_filter("Ah, wait! Yes, this one is active: {}. Will set special brightness: {}".format(special_brightness_entity,self.special_brightness),"few")
-        # if triggered and not keeping_fix: turn on (with basic brightness)
+        # if triggered and too dark: turn on (with basic or special brightness)
         if self.is_triggered and self.is_too_dark:
             self.filter_turn_on_command(None)
 
