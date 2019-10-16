@@ -37,7 +37,6 @@ class auto_light(hass.Hass):
         self.debug_filter(self.keeping_fix_entities,"all")
         # brightness depending on time
         self.times_brightness_strings = self.args["brightness_values"].keys()
-        self.check_if_special_brightness_active(None)
         self.update_basic_brightness_value(None)
         for each in sorted(self.times_brightness_strings):
             self.run_daily(self.update_basic_brightness_value, datetime.time(int(each.split(":")[0]), int(each.split(":")[1]), 0))
@@ -57,6 +56,7 @@ class auto_light(hass.Hass):
         # update min illuminance and check if it is too dark at the moment
         self.update_min_illuminance_value(None)
         self.check_if_keeping_fix_active(None)
+        self.check_if_special_brightness_active(None)
         # set up state listener for each trigger sensor
         for trigger in self.triggers:
             self.listen_state(self.trigger_state_changed, trigger)
