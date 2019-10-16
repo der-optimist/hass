@@ -121,7 +121,7 @@
     name: PM_O_BA
     device_class: motion
 
-# --- Alarme ---
+# --- Wetter ---
   - platform: knx
     state_address: '13/0/4'
     name: Windalarm 1
@@ -131,3 +131,125 @@
   - platform: knx
     state_address: '13/0/6'
     name: Windalarm 3
+  - platform: knx
+    state_address: '13/0/3'
+    name: Tag-Nacht Wetterstation
+  - platform: knx
+    state_address: '13/0/7'
+    name: Regenalarm
+  - platform: knx
+    state_address: '13/0/8'
+    name: Temperaturalarm Wetterstation
+    device_class: cold
+  - platform: knx
+    state_address: '13/0/13'
+    name: Wetterstation Status GPS-Signal
+    device_class: power
+  - platform: knx
+    state_address: '13/0/28'
+    name: Status Waermeschutz
+  - platform: knx
+    state_address: '13/0/29'
+    name: Status Waermegewinnung
+
+# --- Heizung ---
+  - platform: knx
+    state_address: '10/7/1'
+    name: Heizungsanforderung EG
+  - platform: knx
+    state_address: '10/7/2'
+    name: Heizungsanforderung OG
+  - platform: knx
+    state_address: '10/7/4'
+    name: Störung Heizaktor EG
+    device_class: problem
+  - platform: knx
+    state_address: '10/7/5'
+    name: Störung Heizaktor OG
+    device_class: problem
+
+# --- Dimm-Aktoren ---
+  - platform: knx
+    state_address: '1/7/201'
+    name: Status 24V LED-Aktor 1
+    device_class: power
+  - platform: knx
+    state_address: '1/7/202'
+    name: Status 24V LED-Aktor 2
+    device_class: power
+  - platform: knx
+    state_address: '1/7/203'
+    name: Status 24V LED-Aktor 3
+    device_class: power
+  - platform: knx
+    state_address: '1/7/204'
+    name: Status 24V LED-Aktor 4
+    device_class: power
+  - platform: knx
+    state_address: '1/7/205'
+    name: Status 24V LED-Aktor 5
+    device_class: power
+  - platform: knx
+    state_address: '1/7/206'
+    name: Status 24V LED-Aktor 6
+    device_class: power
+  - platform: knx
+    state_address: '1/7/207'
+    name: Status 24V LED-Aktor 7
+    device_class: power
+  - platform: knx
+    state_address: '1/7/211'
+    name: Überstromalarm LED-Aktor 1
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/212'
+    name: Überstromalarm LED-Aktor 2
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/213'
+    name: Überstromalarm LED-Aktor 3
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/214'
+    name: Überstromalarm LED-Aktor 4
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/215'
+    name: Überstromalarm LED-Aktor 5
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/216'
+    name: Überstromalarm LED-Aktor 6
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/217'
+    name: Überstromalarm LED-Aktor 7
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/221'
+    name: Übertemperaturalarm LED-Aktor 1
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/222'
+    name: Übertemperaturalarm LED-Aktor 2
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/223'
+    name: Übertemperaturalarm LED-Aktor 3
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/224'
+    name: Übertemperaturalarm LED-Aktor 4
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/225'
+    name: Übertemperaturalarm LED-Aktor 5
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/226'
+    name: Übertemperaturalarm LED-Aktor 6
+    device_class: problem
+  - platform: knx
+    state_address: '1/7/227'
+    name: Übertemperaturalarm LED-Aktor 7
+    device_class: problem
