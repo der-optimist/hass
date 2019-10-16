@@ -241,7 +241,7 @@ class auto_light(hass.Hass):
                 self.special_brightness = self.special_brightness_entities[special_brightness_entity]
                 self.debug_filter("Ah, wait! Yes, this one is active: {}. Will set special brightness: {}".format(special_brightness_entity,self.special_brightness),"few")
         # if triggered and too dark: turn on (with basic or special brightness)
-        if self.is_triggered and self.is_too_dark:
+        if self.is_triggered and (self.is_too_dark or (self.get_state(self.light) == "on")):
             self.filter_turn_on_command(None)
 
     def pct_to_byte(self, val_pct):
