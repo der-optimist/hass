@@ -1,11 +1,4 @@
 # --- Temperatur ---
-# Wohnzimmer über openhab
-#  - platform: rest
-#    resource: http://192.168.1.162:8080/rest/items/T_WZ_ist
-#    name: T_WZ_ist_OH
-#    device_class: temperature
-#    unit_of_measurement: "°C"
-#    value_template: '{{ value_json.state | round(1) }}'
 # Außendaten über Internet
   - platform: template
     sensors:
@@ -226,11 +219,35 @@
     state_address: '10/0/224'
     type: percent
 
-# --- Windgeschwindigkeit ---
+# --- Wetterstation - Sonstige ---
   - platform: knx
     name: 'Windgeschwindigkeit Wetterstation'
     state_address: '13/0/1'
     type: speed_ms
+  - platform: knx
+    name: 'Sonnenschutz Fassade 1 Position'
+    state_address: '13/0/14'
+    type: percent
+  - platform: knx
+    name: 'Sonnenschutz Fassade 1 Lamellen'
+    state_address: '13/0/15'
+    type: percent
+  - platform: knx
+    name: 'Sonnenschutz Fassade 2 Position'
+    state_address: '13/0/18'
+    type: percent
+  - platform: knx
+    name: 'Sonnenschutz Fassade 2 Lamellen'
+    state_address: '13/0/19'
+    type: percent
+  - platform: knx
+    name: 'Sonnenschutz Fassade 3 Position'
+    state_address: '13/0/22'
+    type: percent
+  - platform: knx
+    name: 'Sonnenschutz Fassade 3 Lamellen'
+    state_address: '13/0/23'
+    type: percent
 
 # --- Elektrische Leistung ---
 # Schaltaktor direkt
