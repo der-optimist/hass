@@ -60,12 +60,8 @@
 
 # Schlafen und Nachtmodus
   - platform: knx
-    name: 'Jo schläft'
+    name: 'MaJo schlafen'
     address: '15/0/30'
-    state_address: '15/0/30'
-  - platform: knx
-    name: 'Ma schläft'
-    address: '15/0/31'
     state_address: '15/0/31'
   - platform: knx
     name: 'Le schläft'
@@ -75,7 +71,3 @@
     name: 'La schläft'
     address: '15/0/33'
     state_address: '15/0/33'
-  - platform: knx
-    name: 'Nachtmodus Kinderzimmer'
-    address: '15/0/28'
-    state_address: '15/0/28'
