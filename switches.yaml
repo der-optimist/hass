@@ -27,14 +27,14 @@
     state_address: '0/0/101'
 
 # Bad OG
-  - platform: knx
-    name: 'Heizkörper Bad OG'
-    address: '0/1/40'
-    state_address: '0/1/41'
-  - platform: knx
-    name: 'SD Badewanne'
-    address: '0/1/60'
-    state_address: '0/1/61'
+#  - platform: knx
+#    name: 'Heizkörper Bad OG'
+#    address: '0/1/40'
+#    state_address: '0/1/41'
+#  - platform: knx
+#    name: 'SD Badewanne'
+#    address: '0/1/60'
+#    state_address: '0/1/61'
 
 # Keller
   - platform: knx
