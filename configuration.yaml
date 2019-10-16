@@ -92,6 +92,9 @@ recorder:
     entities:
       - sensor.yr_symbol
       - sensor.time
+      - sensor.windgeschwindigkeit_wetterstation
+      - sensor.windfang_wc_temp_ist_text
+      - sensor.windfang_wc_temp_soll_text
   purge_interval: 1
   purge_keep_days: 7
   db_url: !secret db_url
@@ -146,8 +149,6 @@ knx:
   - type: 'string'
     entity_id: 'sensor.windfang_wc_temp_soll_text'
     address: '10/7/7'
-
-#knx_reader: # custom component for reading a GA status
 
 light: !include lights.yaml
 
