@@ -229,6 +229,8 @@ class auto_light(hass.Hass):
             self.special_brightness_active = True
             self.special_brightness = self.special_brightness_entities[entity]
             self.debug_filter("Will set special brightness to {}".format(self.special_brightness),"few")
+            if self.get_state(self.light) == "on":
+                self.filter_turn_on_command(None)
         else: # this one is not on, but maybe another one
             self.check_if_special_brightness_active(None)
     
