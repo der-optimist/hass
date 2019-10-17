@@ -56,6 +56,7 @@ class auto_light(hass.Hass):
         self.update_min_illuminance_value(None)
         self.check_if_keeping_fix_active(None)
         self.check_if_special_brightness_active(None)
+        self.decide_if_light_is_needed(None)
         # set up state listener for each trigger sensor
         for trigger in self.triggers:
             self.listen_state(self.trigger_state_changed, trigger)
@@ -198,30 +199,29 @@ class auto_light(hass.Hass):
         self.debug_filter("Keeping fix: {} changed from {} to {}".format(entity, old, new),"few")
         if new == "on":
             self.keeping_fix = True
-            brightness = self.keeping_fix_entities[entity]
-            self.debug_filter("Will set fixed brightness to {}".format(brightness),"few")
-            self.turn_on(self.light,brightness=self.pct_to_byte(brightness))
+            fix_brightness = self.keeping_fix_entities[entity]
+            self.debug_filter("Will set fixed brightness to {}".format(fix_brightness),"few")
+            self.turn_on(self.light,brightness=self.pct_to_byte(fix_brightness))
         else: # this one is not on, but maybe another one
-            self.check_if_keeping_fix_active(None)
+            fix_brightness = self.check_if_keeping_fix_active(None)
+            if self.keeping_fix:
+                self.debug_filter("Will set fixed brightness to {}".format(fix_brightness),"few")
+                self.turn_on(self.light,brightness=self.pct_to_byte(fix_brightness))
+            else:
+                self.decide_if_light_is_needed(None)
+            if (not self.is_triggered) and (not self.keeping_fix):
+                self.filter_turn_off_command(None)
 
     def check_if_keeping_fix_active(self, kwargs):
         self.debug_filter("Will check if a keeping-fix entity is active. First, I assume - no.","few")
         self.keeping_fix = False
+        fix_brightness = 0
         for keeping_fix_entity in self.keeping_fix_entities:
             if self.get_state(keeping_fix_entity) == "on":
                 self.keeping_fix = True
-                brightness = self.keeping_fix_entities[keeping_fix_entity]
+                fix_brightness = self.keeping_fix_entities[keeping_fix_entity]
                 self.debug_filter("Ah, wait! Yes, this one is active: {}. Will stay in fixed mode".format(keeping_fix_entity),"few")
-        if self.keeping_fix:
-            self.debug_filter("Will set fixed brightness to {}".format(brightness),"few")
-            self.turn_on(self.light,brightness=self.pct_to_byte(brightness))
-        if (not self.is_triggered) and (not self.keeping_fix):
-            self.filter_turn_off_command(None)
-        # if triggered and not keeping_fix: turn on (with basic brightness)
-        if self.is_triggered and (not self.keeping_fix) and self.is_too_dark:
-            self.filter_turn_on_command(None)
-        if self.is_triggered and (not self.keeping_fix) and (not self.is_too_dark):
-            self.filter_turn_off_command(None)
+        return fix_brightness
 
     def special_brightness_entity_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Special Brightness Entity: {} changed from {} to {}".format(entity, old, new),"few")
@@ -233,6 +233,9 @@ class auto_light(hass.Hass):
                 self.filter_turn_on_command(None)
         else: # this one is not on, but maybe another one
             self.check_if_special_brightness_active(None)
+            # if triggered and too dark: turn on (with basic or special brightness)
+            if self.is_triggered and (self.is_too_dark or (self.get_state(self.light) == "on")):
+                self.filter_turn_on_command(None)
     
     def check_if_special_brightness_active(self, kwargs):
         self.debug_filter("Will check if a special-brightness entity is active. First, I assume - no.","few")
@@ -242,9 +245,23 @@ class auto_light(hass.Hass):
                 self.special_brightness_active = True
                 self.special_brightness = self.special_brightness_entities[special_brightness_entity]
                 self.debug_filter("Ah, wait! Yes, this one is active: {}. Will set special brightness: {}".format(special_brightness_entity,self.special_brightness),"few")
-        # if triggered and too dark: turn on (with basic or special brightness)
-        if self.is_triggered and (self.is_too_dark or (self.get_state(self.light) == "on")):
-            self.filter_turn_on_command(None)
+
+    def decide_if_light_is_needed(self, kwargs):
+        if self.is_triggered:
+            if self.is_too_dark:
+                if self.get_state(self.light) != "on":
+                    self.debug_filter("Triggered, too dark, light off => should switch on of nothings prevents that","few")
+                    self.filter_turn_on_command(None)
+                else:
+                    self.debug_filter("Triggered, too dark, but light is already on. Maybe you should adjust brightness values:","few")
+                    try:
+                        self.debug_filter("Min. Illuminance: {} - Measured Illuminance: {} - current brightness: {}".format(self.min_illuminance, self.measured_illuminance, self.get_state(self.light, attribute="brightness")),"few")
+                    except:
+                        self.debug_filter("Fehler beim Lesen von min. illum., measured illum. oder brightness","few")
+            else:
+                self.debug_filter("Triggered, but not too dark, will do nothing","few")
+        else:
+            self.debug_filter("Not triggered, will do nothing","few")
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
