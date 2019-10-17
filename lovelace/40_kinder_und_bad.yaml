@@ -22,8 +22,6 @@ cards:
       label: Schläft jemand?
     - entity: switch.la_schlaft
       name: Schläft
-    - entity: switch.nachtmodus_kinderzimmer
-      name: Nachtmodus Kinderzimmer
     - type: section
       label: Jalousie
     - entity: cover.jalousie_la_bodentiefes
@@ -81,8 +79,6 @@ cards:
       label: Schläft jemand?
     - entity: switch.le_schlaft
       name: Schläft
-    - entity: switch.nachtmodus_kinderzimmer
-      name: Nachtmodus Kinderzimmer
     - type: section
       label: Jalousie
     - entity: cover.jalousie_le_bodentiefes
