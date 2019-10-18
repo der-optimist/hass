@@ -88,9 +88,15 @@ cards:
               include:
                 - entity_id: "*battery"
                   state: '< 15'
-          - type: markdown
-            content: >
-              Buttons für Szenen
+          - type: entity-button
+            name: Pizza
+            tap_action:
+              action: call-service
+              service: input_number.set_value
+              data_template:
+                entity_id: input_number.pizza_timer_2
+                value: 11
+            entity: input_number.pizza_timer_2
           - break
           - type: custom:monster-card
             show_empty: false
