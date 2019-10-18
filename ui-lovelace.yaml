@@ -61,6 +61,7 @@ views:
   - !include lovelace/81_heizung.yaml
   - !include lovelace/82_temperaturen.yaml
   - !include lovelace/83_helligkeiten.yaml
+  - !include lovelace/84_wetterstation.yaml
   - !include lovelace/86_anwesenheiten.yaml
   - !include lovelace/90_technik.yaml
   - !include lovelace/98_einkaufen.yaml
