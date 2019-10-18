@@ -33,88 +33,13 @@ jal_bad_kinder_bettfertig:
   time: "18:00"
   position: 100
   tilt: 100
-# --- Light ---
-#   Dim-Steps
-dimmer_steps_panels_le:
-  module: dimmer_steps
-  class: dimmer_steps
-  light_entity: light.panels_le
-  steps:
-    - 5
-    - 30
-    - 80
-    - 100
-  command_ga: "15/0/28"
-dimmer_steps_panels_la:
-  module: dimmer_steps
-  class: dimmer_steps
-  light_entity: light.panels_la
-  steps:
-    - 5
-    - 30
-    - 80
-    - 100
-  command_ga: "15/0/29"
-#  Auto-Light
-light_e_wf_panels_3:
-  module: auto_light_3
-  class: auto_light_3
-  debug: few
-  constrain_input_boolean: input_boolean.app_switch_licht_windfang
-  light: light.panels_windfang
-  triggers: 
-    - binary_sensor.pm_e_wf_haustur
-    - binary_sensor.pm_e_wf_innen
-  brightness_values:
-    "00:00": 20
-    "05:00": 50
-    "06:30": 60
-    "09:00": 100
-    "17:00": 80
-    "18:30": 60
-    "21:00": 20
-  min_illuminance_values:
-    "00:00": 5
-    "05:00": 10
-    "06:30": 20
-    "09:00": 25
-    "17:00": 20
-    "19:00": 10
-    "23:00": 5
-  illuminance_sensor: sensor.helligkeit_windfang_pm
-auto_light_e_fl_panels:
-  module: auto_light
-  class: auto_light
-  debug: few
-  constrain_input_boolean: input_boolean.app_switch_licht_flur_eg
-  light: light.panels_flur_eg
-  triggers: 
-    - binary_sensor.pm_e_fl_flur
-    - binary_sensor.pm_e_fl_treppe_og
-    - binary_sensor.pm_e_fl_windfang
-    - binary_sensor.pm_e_wf_innen
-    - binary_sensor.pm_o_fl_treppe
-    - binary_sensor.pm_e_wc
-    - binary_sensor.pm_e_sz_gang
-  brightness_values:
-    "00:00": 20
-    "05:00": 50
-    "06:30": 60
-    "09:00": 80
-    "17:00": 50
-    "18:30": 35
-    "21:00": 20
-  min_illuminance_values:
-    "00:00": 5
-    "05:00": 10
-    "06:30": 20
-    "09:00": 25
-    "17:00": 10
-    "19:00": 10
-    "23:00": 5
-  illuminance_sensor: sensor.helligkeit_flur_eg_pm
-  special_brightness_entities:
-    switch.majo_schlafen: 5
+jal_schlafzimmer_abends:
+  module: cover_timer
+  class: cover_timer
+  cover_entity: cover.jalousie_schlafzimmer
+  time: "18:30"
+  position: 100
+  tilt: 100
 # Other Stuff
 toggle_reminder_switches:
   module: toggle_reminder_switches
