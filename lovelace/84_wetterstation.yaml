@@ -1,0 +1,35 @@
+title: Wetterstation
+path: wetterstation
+icon: mdi:weather-snowy-rainy
+cards:
+  - type: entities
+    title: Temperatur, Helligkeit, Regen
+    show_header_toggle: false
+    entities:
+      - entity: sensor.temp_wetterstation
+        name: Temperatur
+      - entity: sensor.helligkeit_wetterstation
+        name: Helligkeit
+      - entity: binary_sensor.regenalarm
+        name: Regen
+      - entity: binary_sensor.tag_nacht_wetterstation
+      - entity: binary_sensor.temperaturalarm_wetterstation
+  - type: entities
+    title: Wind
+    show_header_toggle: false
+    entities:
+      - entity: sensor.windgeschwindigkeit_wetterstation
+      - entity: sensor.windgeschwindigkeit_wetterstation_kmh
+      - entity: binary_sensor.windalarm_1
+      - entity: binary_sensor.windalarm_2
+      - entity: binary_sensor.windalarm_3
+  - type: entities
+    title: Beschattung
+    show_header_toggle: false
+    entities:
+      - entity: sensor.sonnenschutz_fassade_1_position
+      - entity: sensor.sonnenschutz_fassade_1_lamellen
+      - entity: sensor.sonnenschutz_fassade_2_position
+      - entity: sensor.sonnenschutz_fassade_2_lamellen
+      - entity: sensor.sonnenschutz_fassade_3_position
+      - entity: sensor.sonnenschutz_fassade_3_lamellen
