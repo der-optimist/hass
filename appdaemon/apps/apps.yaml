@@ -5,6 +5,7 @@ test_dim_steps_wz:
   class: dimmer_steps
   light_entity: light.panels_wohnzimmer
   steps:
+    - 0
     - 5
     - 30
     - 85
