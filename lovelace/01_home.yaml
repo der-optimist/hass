@@ -90,6 +90,7 @@ cards:
                   state: '< 15'
           - type: entity-button
             name: Pizza
+            icon: mdi:pizza
             tap_action:
               action: call-service
               service: input_number.set_value
