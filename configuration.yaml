@@ -21,6 +21,9 @@ api:
 
 logger:
   default: info
+  logs:
+    googleapiclient.discovery: debug
+    oauth2client.transport: debug
 
 lovelace:
   mode: yaml
