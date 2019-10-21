@@ -19,6 +19,9 @@ frontend: !include frontend.yaml
 
 api:
 
+logger:
+  default: info
+
 lovelace:
   mode: yaml
 
