@@ -79,9 +79,9 @@ notify:
     name: kodi_wz
     host: 192.168.1.125
 
-google:
-  client_id: !secret google_calendar_client_id
-  client_secret: !secret google_calendar_secret
+#google:
+#  client_id: !secret google_calendar_client_id
+#  client_secret: !secret google_calendar_secret
 
 recorder:
   include:
