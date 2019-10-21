@@ -108,12 +108,12 @@ history:
 # View all events in a logbook
 logbook:
 
-device_tracker:
-  - platform: nmap_tracker
-    hosts: 192.168.1.6
-  - platform: bluetooth_le_tracker
-    track_new_devices: true
-  - platform: bluetooth_tracker
+#device_tracker:
+#  - platform: nmap_tracker
+#    hosts: 192.168.1.6
+#  - platform: bluetooth_le_tracker
+#    track_new_devices: true
+#  - platform: bluetooth_tracker
 
 owntracks:
 #  max_gps_accuracy: 2000
