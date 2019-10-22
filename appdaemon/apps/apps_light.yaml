@@ -115,14 +115,13 @@ auto_light_e_fl_panels:
     - binary_sensor.pm_e_sz_gang
   brightness_values:
     "00:00": 35
-    "05:00": 50
+    "03:00": 10
     "06:30": 60
     "09:00": 80
     "17:00": 50
     "18:30": 35
   min_illuminance_values:
     "00:00": 5
-    "05:00": 10
     "06:30": 20
     "09:00": 25
     "17:00": 10
