@@ -20,7 +20,7 @@ frontend: !include frontend.yaml
 api:
 
 logger:
-  default: info
+  default: debug
   logs:
     googleapiclient.discovery: debug
     oauth2client.transport: debug
@@ -43,9 +43,9 @@ hacs: # HA custom store
   theme: True
 
 # Discover some devices automatically
-discovery:
-  ignore:
-    - igd
+#discovery:
+#  ignore:
+#    - igd
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 #conversation:
