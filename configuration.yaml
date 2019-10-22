@@ -20,10 +20,11 @@ frontend: !include frontend.yaml
 api:
 
 logger:
-  default: debug
+  default: info
   logs:
-    googleapiclient.discovery: debug
-    oauth2client.transport: debug
+#    googleapiclient.discovery: debug
+#    oauth2client.transport: debug
+    homeassistant.components.discovery: debug
 
 lovelace:
   mode: yaml
@@ -79,9 +80,9 @@ notify:
     name: kodi_wz
     host: 192.168.1.125
 
-#google:
-#  client_id: !secret google_calendar_client_id
-#  client_secret: !secret google_calendar_secret
+google:
+  client_id: !secret google_calendar_client_id
+  client_secret: !secret google_calendar_secret
 
 recorder:
   include:
