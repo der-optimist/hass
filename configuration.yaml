@@ -22,9 +22,10 @@ api:
 logger:
   default: info
   logs:
+    xknx: debug
 #    googleapiclient.discovery: debug
 #    oauth2client.transport: debug
-    homeassistant.components.discovery: debug
+#    homeassistant.components.discovery: debug
 
 lovelace:
   mode: yaml
