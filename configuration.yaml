@@ -21,8 +21,8 @@ api:
 
 logger:
   default: info
-  logs:
-    xknx: debug
+#  logs:
+#    xknx: debug
 #    googleapiclient.discovery: debug
 #    oauth2client.transport: debug
 #    homeassistant.components.discovery: debug
