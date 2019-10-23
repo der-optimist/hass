@@ -18,90 +18,112 @@
   - platform: knx
     name: 'Temp. Küche PM'
     state_address: '6/0/65'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Esszimmer PM'
     state_address: '6/0/193'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Esszimmer Taster'
     state_address: '3/0/1'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Wohnzimmer PM'
     state_address: '6/1/65'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Schlafzimmer PM'
     state_address: '6/1/193'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Schlafzimmer Taster'
     state_address: '3/2/1'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Bad EG PM'
     state_address: '6/2/65'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Bad EG Taster'
     state_address: '3/2/129'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Flur EG PM'
     state_address: '6/2/193'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Windfang PM'
     state_address: '6/3/65'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. WC PM'
     state_address: '6/3/193'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. La PM'
     state_address: '7/0/65'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. La Taster'
     state_address: '3/3/129'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Nähzimmer PM'
     state_address: '7/0/193'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Le PM'
     state_address: '7/1/65'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Le Taster'
     state_address: '3/4/1'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Gästezimmer PM'
     state_address: '7/1/193'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Gästezimmer Taster'
     state_address: '3/4/129'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Flur OG PM'
     state_address: '7/2/65'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Bad OG PM'
     state_address: '7/2/193'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Bad OG Taster'
     state_address: '3/5/1'
+    sync_state: False
     type: temperature
   - platform: knx
     name: 'Temp. Wetterstation'
     state_address: '13/0/0'
+    sync_state: False
     type: temperature
 
 # 1-wire
@@ -111,142 +133,176 @@
   - platform: knx
     name: 'Helligkeit Küche PM'
     state_address: '6/0/56'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit Esszimmer PM'
     state_address: '6/0/184'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit Wohnzimmer PM'
     state_address: '6/1/56'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit Schlafzimmer PM'
     state_address: '6/1/184'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit Bad EG PM'
     state_address: '6/2/56'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit Flur EG PM'
     state_address: '6/2/184'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit Windfang PM'
     state_address: '6/3/56'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit WC PM'
     state_address: '6/3/184'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit La PM'
     state_address: '7/0/56'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit Nähzimmer PM'
     state_address: '7/0/184'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit Le PM'
     state_address: '7/1/56'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit Gästezimmer PM'
     state_address: '7/1/184'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit Flur OG PM'
     state_address: '7/2/56'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit Bad OG PM'
     state_address: '7/2/184'
+    sync_state: False
     type: illuminance
   - platform: knx
     name: 'Helligkeit Wetterstation'
     state_address: '13/0/2'
+    sync_state: False
     type: illuminance
 
 # --- Stellwerte Heizung ---
   - platform: knx
     name: 'Stellwert Heizung Küche'
     state_address: '10/0/4'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Esszimmer'
     state_address: '10/0/24'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Wohnzimmer'
     state_address: '10/0/44'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Schlafzimmer'
     state_address: '10/0/64'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Bad EG'
     state_address: '10/0/84'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Windfang/WC'
     state_address: '10/0/104'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Stellwert Heizung La'
     state_address: '10/0/124'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Nähzimmer'
     state_address: '10/0/144'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Le'
     state_address: '10/0/164'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Gästezimmer'
     state_address: '10/0/184'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Flur OG'
     state_address: '10/0/204'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Stellwert Heizung Bad OG'
     state_address: '10/0/224'
+    sync_state: False
     type: percent
 
 # --- Wetterstation - Sonstige ---
   - platform: knx
     name: 'Windgeschwindigkeit Wetterstation'
     state_address: '13/0/1'
+    sync_state: False
     type: speed_ms
   - platform: knx
     name: 'Sonnenschutz Fassade 1 Position'
     state_address: '13/0/14'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Sonnenschutz Fassade 1 Lamellen'
     state_address: '13/0/15'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Sonnenschutz Fassade 2 Position'
     state_address: '13/0/18'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Sonnenschutz Fassade 2 Lamellen'
     state_address: '13/0/19'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Sonnenschutz Fassade 3 Position'
     state_address: '13/0/22'
+    sync_state: False
     type: percent
   - platform: knx
     name: 'Sonnenschutz Fassade 3 Lamellen'
     state_address: '13/0/23'
+    sync_state: False
     type: percent
 
 # --- Elektrische Leistung ---
@@ -254,42 +310,52 @@
   - platform: knx
     name: 'El. Leistung Backofen'
     state_address: '0/0/3'
+    sync_state: False
     type: power
   - platform: knx
     name: 'El. Leistung Kühlschrank Küche'
     state_address: '0/0/23'
+    sync_state: False
     type: power
   - platform: knx
     name: 'El. Leistung Spülmaschine'
     state_address: '0/0/43'
+    sync_state: False
     type: power
   - platform: knx
     name: 'El. Leistung Mixi'
     state_address: '0/0/63'
+    sync_state: False
     type: power
   - platform: knx
     name: 'El. Leistung TV'
     state_address: '0/0/103'
+    sync_state: False
     type: power
   - platform: knx
     name: 'El. Leistung Waschmaschine'
     state_address: '0/1/143'
+    sync_state: False
     type: power
   - platform: knx
     name: 'El. Leistung Trockner'
     state_address: '0/1/163'
+    sync_state: False
     type: power
   - platform: knx
     name: 'El. Leistung Kühlschrank Keller'
     state_address: '0/1/203'
+    sync_state: False
     type: power
   - platform: knx
     name: 'El. Leistung Gefrierschrank'
     state_address: '0/1/223'
+    sync_state: False
     type: power
   - platform: knx
     name: 'El. Leistung Lüftungsanlage'
     state_address: '0/2/143'
+    sync_state: False
     type: power
 
 # --- Stromzähler ---
@@ -297,30 +363,37 @@
   - platform: knx
     name: 'Stromzähler Backofen'
     state_address: '0/0/4'
+    sync_state: False
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Kühlschrank Küche'
     state_address: '0/0/24'
+    sync_state: False
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Spülmaschine'
     state_address: '0/0/44'
+    sync_state: False
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Mixi'
     state_address: '0/0/64'
+    sync_state: False
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler TV'
     state_address: '0/0/104'
+    sync_state: False
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Waschmaschine'
     state_address: '0/1/144'
+    sync_state: False
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Trockner'
     state_address: '0/1/164'
+    sync_state: False
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Kühlschrank Keller'
@@ -329,20 +402,24 @@
   - platform: knx
     name: 'Stromzähler Gefrierschrank'
     state_address: '0/1/224'
+    sync_state: False
     type: 4byte_signed
   - platform: knx
     name: 'Stromzähler Lüftungsanlage'
     state_address: '0/2/144'
+    sync_state: False
     type: 4byte_signed
 
 # Binäreingang Rohdaten
   - platform: knx
     name: 'Stromzähler Kochfeld Rohdaten'
     state_address: '11/0/21'
+    sync_state: False
     type: 4byte_unsigned
   - platform: knx
     name: 'Stromzähler Wärmepumpe Rohdaten'
     state_address: '11/0/20'
+    sync_state: False
     type: 4byte_unsigned
 
 # --- Sonstiges ---
