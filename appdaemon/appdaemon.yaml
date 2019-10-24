@@ -3,7 +3,7 @@ log:
   errorfile: /config/appdaemon/logs/errors.log
   logfile: /config/appdaemon/logs/logfile.log
   accessfile: /config/appdaemon/logs/access.log
-  log_size: 50000
+  log_size: 500000
   log_generations: 5
 appdaemon:
   threads: 10
