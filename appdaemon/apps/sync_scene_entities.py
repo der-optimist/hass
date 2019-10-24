@@ -21,20 +21,20 @@ class sync_scene_entities(hass.Hass):
         self.log(data)
         if data["data"] == [0]:
             self.log("La geht ins Bett")
-            self.set_state("switch.la_schlaft", state = "on")
+            self.turn_on("switch.la_schlaft")
         elif data["data"] == [1]:
             self.log("Le geht ins Bett")
-            self.set_state("switch.le_schlaft", state = "on")
+            self.turn_on("switch.le_schlaft")
         elif data["data"] == [3]:
             self.log("Fernseh-Szene")
         elif data["data"] == [4]:
             self.log("La steht auf")
-            self.set_state("switch.la_schlaft", state = "off")
+            self.turn_off("switch.la_schlaft")
         elif data["data"] == [5]:
             self.log("Le steht auf")
-            self.set_state("switch.le_schlaft", state = "off")
+            self.turn_off("switch.le_schlaft")
     
     def reset_sleep_switches(self,kwargs):
         # if "wake up button" was not used
-        self.set_state("switch.la_schlaft", state = "off")
-        self.set_state("switch.le_schlaft", state = "off")
+        self.turn_off("switch.la_schlaft")
+        self.turn_off("switch.le_schlaft")
