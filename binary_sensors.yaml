@@ -2,311 +2,325 @@
 # Küche
   - platform: knx
     state_address: '6/0/9'
-    sync_state: False
+#    sync_state: False
     name: PM_E_KU_Küche
     device_class: motion
   - platform: knx
     state_address: '6/0/23'
-    sync_state: False
+#    sync_state: False
     name: PM_E_KU_Bar_EZ
     device_class: motion
 
 # Esszimmer
   - platform: knx
     state_address: '6/0/137'
-    sync_state: False
+#    sync_state: False
     name: PM_E_EZ_Bar_Küche
     device_class: motion
   - platform: knx
     state_address: '6/0/151'
-    sync_state: False
+#    sync_state: False
     name: PM_E_EZ_Esstisch
     device_class: motion
 
 # Wohnzimmer
   - platform: knx
     state_address: '6/1/9'
-    sync_state: False
+#    sync_state: False
     name: PM_E_WZ_Durchgang
     device_class: motion
   - platform: knx
     state_address: '6/1/23'
-    sync_state: False
+#    sync_state: False
     name: PM_E_WZ_Couch
     device_class: motion
 
 # Schlafzimmer
   - platform: knx
     state_address: '6/1/137'
-    sync_state: False
+#    sync_state: False
     name: PM_E_SZ_Gang
     device_class: motion
   - platform: knx
     state_address: '6/1/151'
-    sync_state: False
+#    sync_state: False
     name: PM_E_SZ_Bett
     device_class: motion
 
 # Bad EG
   - platform: knx
     state_address: '6/2/9'
-    sync_state: False
+#    sync_state: False
     name: PM_E_BA
     device_class: motion
 
 # Flur EG
   - platform: knx
     state_address: '6/2/137'
-    sync_state: False
+#    sync_state: False
     name: PM_E_FL_Flur
     device_class: motion
   - platform: knx
     state_address: '6/2/151'
-    sync_state: False
+#    sync_state: False
     name: PM_E_FL_Treppe_OG
     device_class: motion
   - platform: knx
     state_address: '6/2/165'
-    sync_state: False
+#    sync_state: False
     name: PM_E_FL_Windfang
     device_class: motion
 
 # Windfang
   - platform: knx
     state_address: '6/3/9'
-    sync_state: False
+#    sync_state: False
     name: PM_E_WF_Haustür
     device_class: motion
   - platform: knx
     state_address: '6/3/23'
-    sync_state: False
+#    sync_state: False
     name: PM_E_WF_Innen
     device_class: motion
 
 # WC
   - platform: knx
     state_address: '6/3/137'
-    sync_state: False
+#    sync_state: False
     name: PM_E_WC
     device_class: motion
 
 # Kellertreppe
   - platform: knx
     state_address: '8/0/1'
-    sync_state: False
+#    sync_state: False
     name: PM_K_Treppe
     device_class: motion
 
 # La
   - platform: knx
     state_address: '7/0/9'
-    sync_state: False
+#    sync_state: False
     name: PM_O_KO_La
     device_class: motion
 
 # Nähzimmer
   - platform: knx
     state_address: '7/0/137'
-    sync_state: False
+#    sync_state: False
     name: PM_O_NZ
     device_class: motion
 
 # Le
   - platform: knx
     state_address: '7/1/9'
-    sync_state: False
+#    sync_state: False
     name: PM_O_KW_Le
     device_class: motion
 
 # Gästezimmer
   - platform: knx
     state_address: '7/1/137'
-    sync_state: False
+#    sync_state: False
     name: PM_O_GZ
     device_class: motion
 
 # Flur OG
   - platform: knx
     state_address: '7/2/9'
-    sync_state: False
+#    sync_state: False
     name: PM_O_FL_Flur
     device_class: motion
   - platform: knx
     state_address: '7/2/23'
-    sync_state: False
+#    sync_state: False
     name: PM_O_FL_Treppe
     device_class: motion
 
 # Bad OG
   - platform: knx
     state_address: '7/2/137'
-    sync_state: False
+#    sync_state: False
     name: PM_O_BA
     device_class: motion
 
 # --- Wetter ---
   - platform: knx
     state_address: '13/0/4'
-    sync_state: False
+#    sync_state: False
     name: Windalarm 1
   - platform: knx
     state_address: '13/0/5'
-    sync_state: False
+#    sync_state: False
     name: Windalarm 2
   - platform: knx
     state_address: '13/0/6'
-    sync_state: False
+#    sync_state: False
     name: Windalarm 3
   - platform: knx
     state_address: '13/0/3'
-    sync_state: False
+#    sync_state: False
     name: Tag-Nacht Wetterstation
   - platform: knx
     state_address: '13/0/7'
-    sync_state: False
+#    sync_state: False
     name: Regenalarm
   - platform: knx
     state_address: '13/0/8'
-    sync_state: False
+#    sync_state: False
     name: Temperaturalarm Wetterstation
     device_class: cold
   - platform: knx
     state_address: '13/0/13'
-    sync_state: False
+#    sync_state: False
     name: Wetterstation Status GPS-Signal
     device_class: power
   - platform: knx
     state_address: '13/0/28'
-    sync_state: False
+#    sync_state: False
     name: Status Waermeschutz
   - platform: knx
     state_address: '13/0/29'
-    sync_state: False
+#    sync_state: False
     name: Status Waermegewinnung
 
 # --- Heizung ---
   - platform: knx
     state_address: '10/7/1'
-    sync_state: False
+#    sync_state: False
     name: Heizungsanforderung EG
   - platform: knx
     state_address: '10/7/2'
-    sync_state: False
+#    sync_state: False
     name: Heizungsanforderung OG
   - platform: knx
     state_address: '10/7/4'
-    sync_state: False
+#    sync_state: False
     name: Störung Heizaktor EG
     device_class: problem
   - platform: knx
     state_address: '10/7/5'
-    sync_state: False
+#    sync_state: False
     name: Störung Heizaktor OG
     device_class: problem
 
 # --- Dimm-Aktoren ---
   - platform: knx
     state_address: '1/7/201'
-    sync_state: False
+#    sync_state: False
     name: Status 24V LED-Aktor 1
     device_class: power
   - platform: knx
     state_address: '1/7/202'
-    sync_state: False
+#    sync_state: False
     name: Status 24V LED-Aktor 2
     device_class: power
   - platform: knx
     state_address: '1/7/203'
-    sync_state: False
+#    sync_state: False
     name: Status 24V LED-Aktor 3
     device_class: power
   - platform: knx
     state_address: '1/7/204'
-    sync_state: False
+#    sync_state: False
     name: Status 24V LED-Aktor 4
     device_class: power
   - platform: knx
     state_address: '1/7/205'
-    sync_state: False
+#    sync_state: False
     name: Status 24V LED-Aktor 5
     device_class: power
   - platform: knx
     state_address: '1/7/206'
-    sync_state: False
+#    sync_state: False
     name: Status 24V LED-Aktor 6
     device_class: power
   - platform: knx
     state_address: '1/7/207'
-    sync_state: False
+#    sync_state: False
     name: Status 24V LED-Aktor 7
     device_class: power
   - platform: knx
     state_address: '1/7/211'
-    sync_state: False
+#    sync_state: False
     name: Überstromalarm LED-Aktor 1
     device_class: problem
   - platform: knx
     state_address: '1/7/212'
-    sync_state: False
+#    sync_state: False
     name: Überstromalarm LED-Aktor 2
     device_class: problem
   - platform: knx
     state_address: '1/7/213'
-    sync_state: False
+#    sync_state: False
     name: Überstromalarm LED-Aktor 3
     device_class: problem
   - platform: knx
     state_address: '1/7/214'
-    sync_state: False
+#    sync_state: False
     name: Überstromalarm LED-Aktor 4
     device_class: problem
   - platform: knx
     state_address: '1/7/215'
-    sync_state: False
+#    sync_state: False
     name: Überstromalarm LED-Aktor 5
     device_class: problem
   - platform: knx
     state_address: '1/7/216'
-    sync_state: False
+#    sync_state: False
     name: Überstromalarm LED-Aktor 6
     device_class: problem
   - platform: knx
     state_address: '1/7/217'
-    sync_state: False
+#    sync_state: False
     name: Überstromalarm LED-Aktor 7
     device_class: problem
   - platform: knx
     state_address: '1/7/221'
-    sync_state: False
+#    sync_state: False
     name: Übertemperaturalarm LED-Aktor 1
     device_class: problem
   - platform: knx
     state_address: '1/7/222'
-    sync_state: False
+#    sync_state: False
     name: Übertemperaturalarm LED-Aktor 2
     device_class: problem
   - platform: knx
     state_address: '1/7/223'
-    sync_state: False
+#    sync_state: False
     name: Übertemperaturalarm LED-Aktor 3
     device_class: problem
   - platform: knx
     state_address: '1/7/224'
-    sync_state: False
+#    sync_state: False
     name: Übertemperaturalarm LED-Aktor 4
     device_class: problem
   - platform: knx
     state_address: '1/7/225'
-    sync_state: False
+#    sync_state: False
     name: Übertemperaturalarm LED-Aktor 5
     device_class: problem
   - platform: knx
     state_address: '1/7/226'
-    sync_state: False
+#    sync_state: False
     name: Übertemperaturalarm LED-Aktor 6
     device_class: problem
   - platform: knx
     state_address: '1/7/227'
-    sync_state: False
+#    sync_state: False
     name: Übertemperaturalarm LED-Aktor 7
     device_class: problem
+
+# --- Sleeping and Night ---
+  - platform: template
+    sensors:
+      la_und_le_schlafen:
+        friendly_name: "Beide Mädels schlafen"
+        value_template: >-
+          {{ is_state('switch.la_schlaft', 'on')
+             and is_state('switch.le_schlaft', 'on') }}
+      la_oder_le_schlafen:
+        friendly_name: "Min. 1 Kind schläft"
+        value_template: >-
+          {{ is_state('switch.la_schlaft', 'on')
+             or is_state('switch.le_schlaft', 'on') }}
