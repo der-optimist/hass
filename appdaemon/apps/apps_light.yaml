@@ -73,7 +73,7 @@ light_e_wc_spiegel:
     - switch.majo_schlafen
 # - Windfang
 light_e_wf_panels:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
   debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_windfang
