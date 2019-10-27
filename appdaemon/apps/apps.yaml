@@ -1,5 +1,8 @@
 ---
 # Test Area
+day_night:
+  module: day_night
+  class: day_night
 test_dim_steps_wz:
   module: dimmer_steps
   class: dimmer_steps
