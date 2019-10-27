@@ -12,8 +12,8 @@ class day_night(hass.Hass):
         self.day_time = datetime.time(7,30)
         self.night_time = datetime.time(18,30)
         self.address = "7/3/3"
-        self.run_daily(self.send_day, self.start_time)
-        self.run_daily(self.send_night, self.start_time)
+        self.run_daily(self.send_day, self.day_time)
+        self.run_daily(self.send_night, self.night_time)
         self.startup(None)
 
     def send_day(self, kwargs):
