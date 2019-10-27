@@ -158,7 +158,7 @@ auto_light_e_ba_panels:
 auto_light_o_ba_panels:
   module: auto_light
   class: auto_light
-  debug: all
+  debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_bad_og
   light: light.panels_bad_og
   triggers: 
@@ -180,7 +180,7 @@ auto_light_o_ba_panels:
   special_brightness_entities:
     switch.la_und_le_schlafen: 5
 # - Schlafzimmer
-auto_light_o_ba_panels:
+auto_light_e_sz_panels:
   module: auto_light_beta
   class: auto_light
   debug: few
