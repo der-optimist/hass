@@ -157,6 +157,9 @@ knx:
   - type: 'string'
     entity_id: 'sensor.windfang_wc_temp_soll_text'
     address: '10/7/7'
+  - type: 'temperature'
+    entity_id: 'sensor.temp_owm'
+    address: '13/0/0'
 
 light: !include lights.yaml
 
