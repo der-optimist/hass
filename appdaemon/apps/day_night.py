@@ -14,6 +14,7 @@ class day_night(hass.Hass):
         self.address = "7/3/3"
         self.run_daily(self.send_day, self.start_time)
         self.run_daily(self.send_night, self.start_time)
+        self.startup(None)
 
     def send_day(self, kwargs):
         self.log("Daytime")
@@ -22,6 +23,12 @@ class day_night(hass.Hass):
     def send_night(self, kwargs):
         self.log("Nighttime")
         self.call_service("knx/send", address = self.address, payload = 0)
+        
+    def startup(self, kwargs):
+        if self.is_time_between(self.day_time, self.night_time):
+            self.send_day(None)
+        else:
+            self.send_night(None)
         
     def is_time_between(self, begin_time, end_time, check_time=None):
         # If check time is not given, default to current time
