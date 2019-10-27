@@ -11,7 +11,7 @@ class day_night(hass.Hass):
     def initialize(self):
         self.day_time = datetime.time(7,30)
         self.night_time = datetime.time(18,30)
-        self.address = "7/3/3"
+        self.address = "13/0/3"
         self.run_daily(self.send_day, self.day_time)
         self.run_daily(self.send_night, self.night_time)
         self.startup(None)
