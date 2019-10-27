@@ -75,7 +75,7 @@ light_e_wc_spiegel:
 light_e_wf_panels:
   module: auto_light_beta
   class: auto_light
-  debug: few
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_windfang
   light: light.panels_windfang
   triggers: 
@@ -158,7 +158,7 @@ auto_light_e_ba_panels:
 auto_light_o_ba_panels:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: all
   constrain_input_boolean: input_boolean.app_switch_licht_bad_og
   light: light.panels_bad_og
   triggers: 
