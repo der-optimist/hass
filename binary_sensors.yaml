@@ -324,3 +324,9 @@
         value_template: >-
           {{ is_state('switch.la_schlaft', 'on')
              or is_state('switch.le_schlaft', 'on') }}
+      alle_schlafen:
+        friendly_name: "Alle schlafen"
+        value_template: >-
+          {{ is_state('switch.la_schlaft', 'on')
+             and is_state('switch.le_schlaft', 'on')
+             and is_state('switch.majo_schlafen', 'on') }}
