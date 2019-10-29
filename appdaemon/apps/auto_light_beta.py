@@ -180,6 +180,8 @@ class auto_light(hass.Hass):
         if self.keeping_off:
             self.debug_filter("Will turn off the light now, if no other device blocks that","few")
             self.filter_turn_off_command(None)
+        else:
+            self.decide_if_light_is_needed(None)
 
     def check_if_keeping_off_active(self, kwargs):
         self.debug_filter("Will check if one of the keeping-off devices is active. I assume - no.","few")
@@ -195,6 +197,9 @@ class auto_light(hass.Hass):
         if self.keeping_on:
             self.debug_filter("Will turn on the light now, if no other device blocks that","few")
             self.filter_turn_on_command(None)
+        else:
+            if not self.is_triggered:
+                self.filter_turn_off_command(None)
 
     def check_if_keeping_on_active(self, kwargs):
         self.debug_filter("Will check if one of the keeping-on devices is active","few")
@@ -265,7 +270,7 @@ class auto_light(hass.Hass):
                 else:
                     self.debug_filter("Triggered, too dark, but light is already on. Maybe you should adjust brightness values:","few")
                     try:
-                        self.debug_filter("Min. Illuminance: {} - Measured Illuminance: {} - current brightness: {}".format(self.min_illuminance, self.measured_illuminance, self.get_state(self.light, attribute="brightness")),"few")
+                        self.debug_filter("Min. Illuminance: {} - Measured Illuminance: {} - current brightness: {}".format(self.min_illuminance, self.measured_illuminance, self.byte_to_pct(self.get_state(self.light, attribute="brightness"))),"few")
                     except:
                         self.debug_filter("Fehler beim Lesen von min. illum., measured illum. oder brightness","few")
             else:
