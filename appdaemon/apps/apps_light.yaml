@@ -178,7 +178,7 @@ auto_light_o_ba_panels:
     "21:00": 25
   illuminance_sensor: sensor.helligkeit_bad_og_pm
   special_brightness_entities:
-    switch.la_und_le_schlafen: 5
+    binary_sensor.la_und_le_schlafen: 5
 # - Schlafzimmer
 auto_light_e_sz_panels:
   module: auto_light_beta
