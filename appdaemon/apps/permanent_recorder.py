@@ -13,7 +13,6 @@ class permanent_recorder(hass.Hass):
 
     def initialize(self):
         self.log("Permanent Logger started")
-        self.log(self.args["db_passwd"])
         self.mydb = mysql.connector.connect(
             host="core-mariadb",
             user="appdaemon",
@@ -30,12 +29,13 @@ class permanent_recorder(hass.Hass):
     def init_table(self):
         mycursor = self.mydb.cursor()
         mycursor.execute("SHOW TABLES")
-        self.log(mycursor)
+        for x in mycursor:
+            self.log(x)
         if "ha" in mycursor:
             self.log("Table ha in database found. Will use it")
         else:
             self.log("Did not find table ha in database. Will create it")
-            mycursor.execute("CREATE TABLE ha (id INT AUTO_INCREMENT PRIMARY KEY, domain VARCHAR(255), entity_id VARCHAR(255), value VARCHAR(255), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+            #mycursor.execute("CREATE TABLE ha (id INT AUTO_INCREMENT PRIMARY KEY, domain VARCHAR(255), entity_id VARCHAR(255), value VARCHAR(255), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
     
     def write_test1(self):
         self.log("Write Test 1")
