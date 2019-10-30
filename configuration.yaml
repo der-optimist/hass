@@ -21,8 +21,8 @@ api:
 
 logger:
   default: info
-  logs:
-    xknx: debug
+#  logs:
+#    xknx: debug
 #    googleapiclient.discovery: debug
 #    oauth2client.transport: debug
 #    homeassistant.components.discovery: debug
@@ -61,7 +61,7 @@ mqtt:
 
 media_player:
   - platform: kodi
-    host: 192.168.1.125
+    host: 192.168.178.38
 
 telegram_bot:
   - platform: polling
@@ -79,7 +79,7 @@ notify:
     chat_id: !secret telegram_id_2
   - platform: kodi
     name: kodi_wz
-    host: 192.168.1.125
+    host: 192.168.178.38
 
 google:
   client_id: !secret google_calendar_client_id
@@ -100,6 +100,7 @@ recorder:
     entities:
       - sensor.yr_symbol
       - sensor.time
+      - sensor.last_boot
       - sensor.windgeschwindigkeit_wetterstation
       - sensor.windfang_wc_temp_ist_text
       - sensor.windfang_wc_temp_soll_text
@@ -176,10 +177,6 @@ camera:
   - platform: local_file
     name: Meteogram
     file_path: /config/www/meteograms/meteogram.png
-  - platform: generic
-    name: Meteogram_generic
-    still_image_url: https://127.0.0.1:8123/local/meteograms/meteogram.png
-    verify_ssl: false
 
 # Text to speech
 #tts:
