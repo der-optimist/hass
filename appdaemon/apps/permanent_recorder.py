@@ -29,12 +29,11 @@ class permanent_recorder(hass.Hass):
     def init_table(self):
         mycursor = self.mydb.cursor()
         mycursor.execute("SHOW TABLES")
-        self.log(mycursor)
-        self.log(type(mycursor))
+        table_exists = False
         for x in mycursor:
-            self.log(x)
-            self.log(type(x))
-        if "ha" in mycursor:
+            if "ha" in x:
+                table_exists = True
+        if table_exists:
             self.log("Table ha in database found. Will use it")
         else:
             self.log("Did not find table ha in database. Will create it")
