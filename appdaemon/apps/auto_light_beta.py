@@ -1,6 +1,7 @@
 import appdaemon.plugins.hass.hassapi as hass
 from typing import Set
 import datetime
+import random
 
 #
 # Automate light, universal app
@@ -20,6 +21,7 @@ import datetime
 class auto_light(hass.Hass):
 
     def initialize(self):
+        random_second = random.randint(0,30)
         self.light: str = self.args.get("light")
         self.triggers: Set[str] = self.args.get("triggers", set())
         # is triggered at the moment of startup?
@@ -39,11 +41,11 @@ class auto_light(hass.Hass):
         self.times_brightness_strings = self.args["brightness_values"].keys()
         self.update_basic_brightness_value(None)
         for each in sorted(self.times_brightness_strings):
-            self.run_daily(self.update_basic_brightness_value, datetime.time(int(each.split(":")[0]), int(each.split(":")[1]), 0))
+            self.run_daily(self.update_basic_brightness_value, datetime.time(int(each.split(":")[0]), int(each.split(":")[1]), random_second))
         # min illuminance depending on time
         self.times_min_illuminance_strings = self.args["min_illuminance_values"].keys()
         for each in sorted(self.times_min_illuminance_strings):
-            self.run_daily(self.update_min_illuminance_value, datetime.time(int(each.split(":")[0]), int(each.split(":")[1]), 0))
+            self.run_daily(self.update_min_illuminance_value, datetime.time(int(each.split(":")[0]), int(each.split(":")[1]), random_second))
         # measured illuminance
         self.measured_illuminance = float(0)
         if not self.illuminance_sensor == None:
