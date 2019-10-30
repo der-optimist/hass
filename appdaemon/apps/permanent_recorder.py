@@ -18,7 +18,7 @@ class permanent_recorder(hass.Hass):
             host="core-mariadb",
             user="appdaemon",
             passwd=self.args["db_passwd"],
-            database="homeassistant-permanent"
+            database="homeassistantpermanent"
         )
         
         self.init_table()
