@@ -54,9 +54,8 @@ class pizza_timer(hass.Hass):
     def remind_pizza(self, kwargs):
         self.log("Pizza ist fertig")
         if self.get_state("media_player.kodi") == "playing":
-            self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 15000, "icon": "http://rp3/pizza_kodi.jpg"})
+            self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 15000, "icon": "http://odroidxu4/sonstiges/pizza2.jpg"})
             self.call_service("kodi/call_method", entity_id = "media_player.kodi", method = "Player.PlayPause", playerid = 1)
         else:
-            #self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 30000, "icon": "http://rp3/pizza_kodi.jpg"})
             self.fire_event("custom_notify", message="Pizza ist fertig, aber Kodi läuft gerade nicht - hoffentlich schaust du wenigstens aufs Handy...", target="telegram_jo")
         self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"speak\":\"Pizza ist fertig!\"}", qos = "2")
