@@ -24,7 +24,7 @@ class permanent_recorder(hass.Hass):
         self.init_table()
         self.write_test1()
         self.write_test2()
-
+        self.query_test()
         
 
     def init_table(self):
@@ -54,3 +54,12 @@ class permanent_recorder(hass.Hass):
         mycursor.execute(sql, val)
         self.mydb.commit()
         self.log("Write Test 2 done")
+        
+    def query_test(self):
+        self.log("Query Test")
+        mycursor = self.mydb.cursor()
+        mycursor.execute("SELECT * FROM ha")
+        myresult = mycursor.fetchall()
+        for x in myresult:
+            self.log(x)
+        self.log("Query Test done")
