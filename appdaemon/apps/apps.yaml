@@ -3,6 +3,9 @@
 #day_night:
 #  module: day_night
 #  class: day_night
+permanent_recorder:
+  module: permanent_recorder
+  class: permanent_recorder
 test_dim_steps_wz:
   module: dimmer_steps
   class: dimmer_steps
