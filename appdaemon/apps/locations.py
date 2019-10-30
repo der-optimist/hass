@@ -30,7 +30,7 @@ class locations(hass.Hass):
         time_at_work = self.get_state("sensor.jo_at_work")
         self.log("Time at work: {}".format(time_at_work))
         if time_at_work == "0.0":
-            self.fire_event("custom_notify", message="Bei der Arbeit angekommen", target="telegram_jo")
+            self.fire_event("custom_notify", message="Deiner lieben Frau schreiben!", target="telegram_jo")
 
     def left_work(self, entity, attribute, old, new, kwargs):
         if new != self.args["zone"]:
