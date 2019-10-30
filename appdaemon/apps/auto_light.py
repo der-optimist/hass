@@ -25,7 +25,7 @@ class auto_light(hass.Hass):
         # is triggered at the moment of startup?
         self.check_if_any_trigger_active(None)
         # manual mode not implemented yet, so set to false:
-        self.manual_mode = False
+        self.manually_switched_off = False
         self.illuminance_sensor: str = self.args.get("illuminance_sensor", None)
         self.keeping_off_entities: Set[str] = self.args.get("keeping_off_entities", set())
         self.check_if_keeping_off_active(None)
@@ -72,6 +72,8 @@ class auto_light(hass.Hass):
         # set up state listener for each special-brightness entity
         for special_brightness_entity in self.special_brightness_entities:
             self.listen_state(self.special_brightness_entity_changed, special_brightness_entity)
+        # listen for state change of the light, e.g. when manually turned off during beeing triggered
+        self.listen_state(self.light_state_changed, self.light)
 
 
     def update_basic_brightness_value(self, kwargs):
@@ -99,6 +101,11 @@ class auto_light(hass.Hass):
                 self.debug_filter("Received illuminance can not be coverted to float. will use 0. Error was {}".format(e),"few")
                 self.measured_illuminance = float(0)
         self.check_if_too_dark(None)
+        self.decide_if_light_is_needed(None)
+
+    def light_state_changed(self, entity, attributes, old, new, kwargs):
+        if old == "on" and new == "off" and self.is_triggered:
+            self.manually_switched_off = True
 
     def trigger_state_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Light Trigger: {} changed from {} to {}".format(entity, old, new),"few")
@@ -120,12 +127,12 @@ class auto_light(hass.Hass):
             else:
                 self.debug_filter("No other trigger is active, noboby seems to be here. Will decide if I should switch the light off","few")
                 self.debug_filter("But first, I will activate automatic mode","all")
-                self.manual_mode = False
+                self.manually_switched_off = False
                 self.filter_turn_off_command(None)
 
     def filter_turn_on_command(self, kwargs):
         self.debug_filter("Will decide now if light should be turned on","all")
-        if self.manual_mode:
+        if self.manually_switched_off:
             self.debug_filter("I am in manual mode, wont do anything","few")
             return
         if self.keeping_off:
@@ -143,9 +150,6 @@ class auto_light(hass.Hass):
 
     def filter_turn_off_command(self, kwargs):
         self.debug_filter("Will decide now if light should be turned off","all")
-        if self.manual_mode:
-            self.debug_filter("I am in manual mode, wont do anything","few")
-            return
         if self.keeping_on:
             self.debug_filter("A keeping-on entity is active, wont do anything","few")
             return
@@ -173,6 +177,11 @@ class auto_light(hass.Hass):
     def keeping_off_entity_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Keeping off: {} changed from {} to {}".format(entity, old, new),"few")
         self.check_if_keeping_off_active(None)
+        if self.keeping_off:
+            self.debug_filter("Will turn off the light now, if no other device blocks that","few")
+            self.filter_turn_off_command(None)
+        else:
+            self.decide_if_light_is_needed(None)
 
     def check_if_keeping_off_active(self, kwargs):
         self.debug_filter("Will check if one of the keeping-off devices is active. I assume - no.","few")
@@ -185,6 +194,12 @@ class auto_light(hass.Hass):
     def keeping_on_entity_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Keeping on: {} changed from {} to {}".format(entity, old, new),"few")
         self.check_if_keeping_on_active(None)
+        if self.keeping_on:
+            self.debug_filter("Will turn on the light now, if no other device blocks that","few")
+            self.filter_turn_on_command(None)
+        else:
+            if not self.is_triggered:
+                self.filter_turn_off_command(None)
 
     def check_if_keeping_on_active(self, kwargs):
         self.debug_filter("Will check if one of the keeping-on devices is active","few")
@@ -255,13 +270,13 @@ class auto_light(hass.Hass):
                 else:
                     self.debug_filter("Triggered, too dark, but light is already on. Maybe you should adjust brightness values:","few")
                     try:
-                        self.debug_filter("Min. Illuminance: {} - Measured Illuminance: {} - current brightness: {}".format(self.min_illuminance, self.measured_illuminance, self.get_state(self.light, attribute="brightness")),"few")
+                        self.debug_filter("Min. Illuminance: {} - Measured Illuminance: {} - current brightness: {}".format(self.min_illuminance, self.measured_illuminance, self.byte_to_pct(self.get_state(self.light, attribute="brightness"))),"few")
                     except:
                         self.debug_filter("Fehler beim Lesen von min. illum., measured illum. oder brightness","few")
             else:
-                self.debug_filter("Triggered, but not too dark, will do nothing","few")
+                self.debug_filter("Triggered, but not too dark, will do nothing","all")
         else:
-            self.debug_filter("Not triggered, will do nothing","few")
+            self.debug_filter("Not triggered, will do nothing","all")
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
