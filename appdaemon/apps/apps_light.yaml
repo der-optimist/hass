@@ -2,6 +2,7 @@
 dimmer_steps_panels_le:
   module: dimmer_steps
   class: dimmer_steps
+  plugin: NONE
   light_entity: light.panels_le
   steps:
     - 0
@@ -13,6 +14,7 @@ dimmer_steps_panels_le:
 dimmer_steps_panels_la:
   module: dimmer_steps
   class: dimmer_steps
+  plugin: NONE
   light_entity: light.panels_la
   steps:
     - 0
@@ -26,7 +28,8 @@ dimmer_steps_panels_la:
 light_e_wc_panels:
   module: auto_light
   class: auto_light
-  debug: few
+  plugin: NONE
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_wc
   light: light.panels_wc
   triggers: 
@@ -52,7 +55,8 @@ light_e_wc_panels:
 light_e_wc_spiegel:
   module: auto_light
   class: auto_light
-  debug: few
+  plugin: NONE
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_wc
   light: light.spiegel_wc
   triggers: 
@@ -73,8 +77,9 @@ light_e_wc_spiegel:
     - switch.majo_schlafen
 # - Windfang
 light_e_wf_panels:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
+  plugin: NONE
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_windfang
   light: light.panels_windfang
@@ -82,13 +87,12 @@ light_e_wf_panels:
     - binary_sensor.pm_e_wf_haustur
     - binary_sensor.pm_e_wf_innen
   brightness_values:
-    "00:00": 40
+    "00:00": 60
     "05:00": 50
     "06:30": 60
     "09:00": 100
     "17:00": 80
     "18:30": 60
-    "21:00": 40
   min_illuminance_values:
     "00:00": 5
     "05:00": 10
@@ -102,7 +106,8 @@ light_e_wf_panels:
 auto_light_e_fl_panels:
   module: auto_light
   class: auto_light
-  debug: few
+  plugin: NONE
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_flur_eg
   light: light.panels_flur_eg
   triggers: 
@@ -134,7 +139,8 @@ auto_light_e_fl_panels:
 auto_light_e_ba_panels:
   module: auto_light
   class: auto_light
-  debug: few
+  plugin: NONE
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_bad_eg
   light: light.panels_bad_eg
   triggers: 
@@ -158,7 +164,8 @@ auto_light_e_ba_panels:
 auto_light_o_ba_panels:
   module: auto_light
   class: auto_light
-  debug: few
+  plugin: NONE
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_bad_og
   light: light.panels_bad_og
   triggers: 
@@ -178,11 +185,12 @@ auto_light_o_ba_panels:
     "21:00": 25
   illuminance_sensor: sensor.helligkeit_bad_og_pm
   special_brightness_entities:
-    binary_sensor.la_und_le_schlafen: 5
+    binary_sensor.alle_schlafen: 5
 # - Schlafzimmer
 auto_light_e_sz_panels:
   module: auto_light_beta
   class: auto_light
+  plugin: NONE
   debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_schlafzimmer
   light: light.panels_schlafzimmer
@@ -190,12 +198,12 @@ auto_light_e_sz_panels:
     - binary_sensor.pm_e_sz_bett
     - binary_sensor.pm_e_sz_gang
   brightness_values:
-    "00:00": 20
+    "00:00": 30
     "06:30": 50
     "09:00": 90
     "17:00": 80
     "18:00": 70
-    "20:00": 20
+    "20:00": 30
   min_illuminance_values:
     "00:00": 5
     "04:30": 30
