@@ -27,10 +27,10 @@ class permanent_recorder(hass.Hass):
         
     def write_test1(self):
         self.log("Write Test 1")
-        self.client.write("Test-Entity brightness=25", protocol='line')
+        self.client.write("Test-Entity brightness=25", "homeassistant_permanent", protocol='line')
         self.log("Write Test 1 done")
         
     def write_test2(self):
         self.log("Write Test 2")
-        self.client.write("Test-Entity brightness=on", protocol='line')
+        self.client.write("Test-Entity brightness=on", "homeassistant_permanent", protocol='line')
         self.log("Write Test 2 done")
