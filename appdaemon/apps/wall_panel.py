@@ -23,10 +23,10 @@ class wall_panel(hass.Hass):
             # via REST api
             data = json.dumps({"wake": True, "wakeTime": 610})
             headers = {"content-type": "application/json"}
-            try:
-                requests.post(self.url, headers=headers, json=data)
-            except Exception as e:
-                self.log("Error sending wake command to wallpanel via REST api. Error was {}".format(e))
+            #try:
+            #    requests.post(self.url, headers=headers, json=data)
+            #except Exception as e:
+            #    self.log("Error sending wake command to wallpanel via REST api. Error was {}".format(e))
         #else:
             #self.log("Nighttime - will let the panel sleep")
         
