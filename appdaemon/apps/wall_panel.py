@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Oct 31 07:03:02 2019
-
-@author: F36121
-"""
-
 import appdaemon.plugins.hass.hassapi as hass
 import datetime
 import requests
