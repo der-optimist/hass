@@ -85,7 +85,7 @@ light_e_wf_panels:
   light: light.panels_windfang
   triggers: 
     - binary_sensor.pm_e_wf_haustur
-    - binary_sensor.pm_e_wf_innen
+    - binary_sensor.pm_e_wf_garderobe
   brightness_values:
     "00:00": 60
     "05:00": 50
@@ -111,13 +111,15 @@ auto_light_e_fl_panels:
   constrain_input_boolean: input_boolean.app_switch_licht_flur_eg
   light: light.panels_flur_eg
   triggers: 
-    - binary_sensor.pm_e_fl_flur
+#    - binary_sensor.pm_e_fl_flur
     - binary_sensor.pm_e_fl_treppe_og
     - binary_sensor.pm_e_fl_windfang
-    - binary_sensor.pm_e_wf_innen
+    - binary_sensor.pm_e_wf_flur
+    - binary_sensor.pm_e_wf_garderobe
     - binary_sensor.pm_o_fl_treppe
     - binary_sensor.pm_e_wc
     - binary_sensor.pm_e_sz_gang
+    - binary_sensor.pm_k_flur
   brightness_values:
     "00:00": 35
     "03:00": 10
