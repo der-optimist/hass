@@ -122,7 +122,7 @@ class calendar_and_reminders(hass.Hass):
         apiurl = "{}/api/calendars/{}?start={}Z&end={}Z".format(self.ha_url,calendar,start_dt,end_dt)
         #self.log("ha_config: url is {}".format(apiurl))
         try:
-            r = get(apiurl, headers=headers, verify=False)
+            r = get(apiurl, headers=headers, verify=False, timeout=10)
         except:
             self.log("Error while loading calendar {}. Maybe connection problem".format(calendar))
             return "error"
