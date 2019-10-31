@@ -45,7 +45,7 @@ jal_bad_kinder_bettfertig:
   position: 100
   tilt: 100
   plugin: NONE
-jal_schlafzimmer_abends:
+jal_schlafzimmer_abends_zeit:
   module: cover_timer
   class: cover_timer
   cover_entity: cover.jalousie_schlafzimmer
@@ -53,6 +53,17 @@ jal_schlafzimmer_abends:
   position: 100
   tilt: 100
   plugin: NONE
+jal_schlafzimmer_abends_helligkeit:
+  module: cover_illuminance
+  class: cover_illuminance
+  constrain_start_time: "16:00:00"
+  constrain_end_time: "18:29:59"
+  cover_entity: cover.jalousie_schlafzimmer
+  illuminance_sensor: sensor.helligkeit_wetterstation
+  illuminance: 5
+  up_or_down: down
+  position: 100
+  tilt: 100
 # Other Stuff
 toggle_reminder_switches:
   module: toggle_reminder_switches
