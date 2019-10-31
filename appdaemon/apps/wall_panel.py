@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Oct 31 07:03:02 2019
+
+@author: F36121
+"""
+
 import appdaemon.plugins.hass.hassapi as hass
 import datetime
 import requests
@@ -20,12 +27,12 @@ class wall_panel(hass.Hass):
             # via mqtt
             self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"wake\":true,\"wakeTime\":610}", qos = "1")
             # via REST api
-            #data = {"wake": true, "wakeTime": 610}
-            #headers = {"content-type": "application/json"}
-            #try:
-            #    requests.post(self.url, headers=headers, json=data)
-            #except Exception as e:
-            #    self.log("Error sending wake command to wallpanel via REST api. Error was {}".format(e))
+            data = {"wake": "true", "wakeTime": 610}
+            headers = {"content-type": "application/json"}
+            try:
+                requests.post(self.url, headers=headers, json=data)
+            except Exception as e:
+                self.log("Error sending wake command to wallpanel via REST api. Error was {}".format(e))
         #else:
             #self.log("Nighttime - will let the panel sleep")
         
