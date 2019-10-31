@@ -127,7 +127,7 @@ owntracks:
 # Enables a map showing the location of tracked devices
 #map:
 
-speedtestdotnet:
+#speedtestdotnet:
 
 ourgroceries:
   username: !secret our_groceries_username
