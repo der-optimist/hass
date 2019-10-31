@@ -1,5 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 import datetime
+import requests
 
 #
 # What it does:
@@ -11,13 +12,20 @@ class wall_panel(hass.Hass):
     def initialize(self):
         self.start_time = datetime.time(5,00)
         self.end_time = datetime.time(22,45)
+        self.url = "http://192.168.178.26:2971/api/command"
         self.run_every(self.send_wake_command, datetime.datetime.now(), 5 * 60) # run every 5 minutes
 
     def send_wake_command(self, kwargs):
         if self.is_time_between(self.start_time, self.end_time):
-            #self.log("Daytime - will send wake command to panel")
+            # via mqtt
             self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"wake\":true,\"wakeTime\":610}", qos = "1")
-            #self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"reload\":true}", qos = "2")
+            # via REST api
+            data = {"wake": true, "wakeTime": 610}
+            headers = {"content-type": "application/json"}
+            try:
+                requests.post(self.url, headers=headers, json=data)
+            except Exception as e:
+                self.log("Error sending wake command to wallpanel via REST api. Error was {}".format(e))
         #else:
             #self.log("Nighttime - will let the panel sleep")
         
