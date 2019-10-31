@@ -1,6 +1,7 @@
 import appdaemon.plugins.hass.hassapi as hass
 import datetime
 import requests
+import json
 
 #
 # What it does:
@@ -20,7 +21,7 @@ class wall_panel(hass.Hass):
             # via mqtt
             self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"wake\":true,\"wakeTime\":610}", qos = "1")
             # via REST api
-            data = {"wake": "true", "wakeTime": 610}
+            data = json.dumps({"wake": True, "wakeTime": 610})
             headers = {"content-type": "application/json"}
             try:
                 requests.post(self.url, headers=headers, json=data)
