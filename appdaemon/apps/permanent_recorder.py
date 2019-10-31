@@ -13,7 +13,7 @@ class permanent_recorder(hass.Hass):
 
     def initialize(self):
         self.log("Permanent Logger started")
-        self.host = self.args.get("host", "core-mariadb")
+        self.host = self.args.get("host", "a0d7b954-influxdb")
         self.port=8086
         self.user = self.args.get("user", "appdaemon")
         self.password = self.args.get("db_passwd", None)
