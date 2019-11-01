@@ -21,7 +21,7 @@ class wall_panel(hass.Hass):
             # via mqtt
             self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"wake\":true,\"wakeTime\":610}", qos = "1")
             # via REST api
-            data = json.dumps({"wake": True, "wakeTime": 610})
+            data = json.dumps({"speak":"Test"})
             headers = {"content-type": "application/json"}
             try:
                 r = requests.post(self.url, data=data, timeout=5)
