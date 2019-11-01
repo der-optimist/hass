@@ -110,7 +110,6 @@ weather_and_astro:
 pizza_timer:
   module: pizza_timer
   class: pizza_timer
-  plugin: NONE
 counter_to_power_meter_waermepumpe:
   module: counter_to_power_meter
   class: counter_to_power_meter
