@@ -24,7 +24,7 @@ class wall_panel(hass.Hass):
             data = json.dumps({"speak":"Test"})
             headers = {"content-type": "application/json"}
             try:
-                r = requests.post(self.url, json={"speak":"Test"}, timeout=5)
+                r = requests.post(self.url, json={"wake":"true","wakeTime":610}, timeout=5)
                 self.log(r)
                 self.log(r.text)
                 #r = requests.get("http://192.168.178.26:2971/api/state", timeout=5)
