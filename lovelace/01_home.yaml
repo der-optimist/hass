@@ -53,6 +53,36 @@ cards:
           - type: custom:slider-entity-row
             entity: input_number.pizza_timer_2
             full_row: true
+      - type: horizontal-stack
+        cards:
+          - type: entity-button
+            name: Pizza
+            icon: mdi:pizza
+            tap_action:
+              action: call-service
+              service: input_number.set_value
+              service_data:
+                entity_id: input_number.pizza_timer_2
+                value: 11
+            entity: input_number.pizza_timer_2
+          - type: entity-button
+            name: runter
+            icon: mdi:arrow-down-bold-box-outline
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.jal_wohnbereich_runter
+            entity: scene.jal_wohnbereich_runter
+          - type: entity-button
+            name: hoch
+            icon: mdi:arrow-up-bold-box-outline
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.jal_wohnbereich_hoch
+            entity: scene.jal_wohnbereich_hoch
       - break
       - type: picture-elements
         image: /local/meteograms/meteogram.png
@@ -88,16 +118,6 @@ cards:
               include:
                 - entity_id: "*battery"
                   state: '< 15'
-          - type: entity-button
-            name: Pizza
-            icon: mdi:pizza
-            tap_action:
-              action: call-service
-              service: input_number.set_value
-              service_data:
-                entity_id: input_number.pizza_timer_2
-                value: 11
-            entity: input_number.pizza_timer_2
           - break
           - type: custom:monster-card
             show_empty: false
