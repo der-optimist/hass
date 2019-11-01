@@ -18,11 +18,14 @@ class cover_illuminance(hass.Hass):
         self.listen_state(self.illuminance_changed, self.args["illuminance_sensor"])
 
     def illuminance_changed(self, entity, attributes, old, new, kwargs):
-        if self.args["up_or_down"] == "down" and  float(new) <= float(self.args["illuminance"]) and float(old) > float(self.args["illuminance"]):
-            self.log("Getting dark now, will set cover {} to position {} and tilt {} now.".format(self.args["cover_entity"],self.args["position"],self.args["tilt"]))
-            self.call_service("cover/set_cover_position", entity_id = self.args["cover_entity"], position = self.args["position"])
-            self.call_service("cover/set_cover_tilt_position", entity_id = self.args["cover_entity"], tilt_position = self.args["tilt"])
-        if self.args["up_or_down"] == "up" and  float(new) >= float(self.args["illuminance"]) and float(old) < float(self.args["illuminance"]):
-            self.log("Getting bright now, will set cover {} to position {} and tilt {} now.".format(self.args["cover_entity"],self.args["position"],self.args["tilt"]))
-            self.call_service("cover/set_cover_position", entity_id = self.args["cover_entity"], position = self.args["position"])
-            self.call_service("cover/set_cover_tilt_position", entity_id = self.args["cover_entity"], tilt_position = self.args["tilt"])
+        try:
+            if self.args["up_or_down"] == "down" and  float(new) <= float(self.args["illuminance"]) and float(old) > float(self.args["illuminance"]):
+                self.log("Getting dark now, will set cover {} to position {} and tilt {} now.".format(self.args["cover_entity"],self.args["position"],self.args["tilt"]))
+                self.call_service("cover/set_cover_position", entity_id = self.args["cover_entity"], position = self.args["position"])
+                self.call_service("cover/set_cover_tilt_position", entity_id = self.args["cover_entity"], tilt_position = self.args["tilt"])
+            if self.args["up_or_down"] == "up" and  float(new) >= float(self.args["illuminance"]) and float(old) < float(self.args["illuminance"]):
+                self.log("Getting bright now, will set cover {} to position {} and tilt {} now.".format(self.args["cover_entity"],self.args["position"],self.args["tilt"]))
+                self.call_service("cover/set_cover_position", entity_id = self.args["cover_entity"], position = self.args["position"])
+                self.call_service("cover/set_cover_tilt_position", entity_id = self.args["cover_entity"], tilt_position = self.args["tilt"])
+        except Exception as e:
+            self.log("Error: {}".format(e))
