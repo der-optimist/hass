@@ -27,6 +27,9 @@ class wall_panel(hass.Hass):
                 r = requests.post(self.url, data={"speak":"Test"}, timeout=5)
                 self.log(r)
                 self.log(r.text)
+                r = requests.get("http://192.168.178.26:2971/api/state", timeout=5)
+                self.log(r)
+                self.log(r.text)
             except Exception as e:
                 self.log("Error sending wake command to wallpanel via REST api. Error was {}".format(e))
         #else:
