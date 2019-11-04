@@ -214,7 +214,7 @@ auto_light_e_sz_panels:
   keeping_off_entities:
     - switch.majo_schlafen
 # - Nähzimmer Schreibtisch
-auto_light_e_sz_panels:
+auto_light_e_nz_schreibtisch:
   module: auto_light
   class: auto_light
   plugin: NONE
@@ -229,7 +229,7 @@ auto_light_e_sz_panels:
     "00:00": 70
   illuminance_sensor: sensor.helligkeit_nahzimmer_pm
 # - Nähzimmer Nähtisch
-auto_light_e_sz_panels:
+auto_light_e_nz_nahtisch:
   module: auto_light
   class: auto_light
   plugin: NONE
