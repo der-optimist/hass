@@ -21,9 +21,9 @@ class permanent_recorder(hass.Hass):
         
         self.client =InfluxDBClient(self.host, self.port, self.user, self.password, self.dbname)
         
-        #self.drop()
-        self.write_test1()
-#        self.query_test()
+        self.drop()
+        #self.write_test1()
+        #self.query_test()
     
     def drop(self):
         self.log("Drop Test 1")
