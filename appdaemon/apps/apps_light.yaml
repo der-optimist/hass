@@ -119,7 +119,7 @@ auto_light_e_fl_panels:
     - binary_sensor.pm_o_fl_treppe
     - binary_sensor.pm_e_wc
     - binary_sensor.pm_e_sz_gang
-    - binary_sensor.pm_k_flur
+    - binary_sensor.pm_ktr_flur
   brightness_values:
     "00:00": 35
     "03:00": 10
@@ -187,7 +187,7 @@ auto_light_o_ba_panels:
     "21:00": 25
   illuminance_sensor: sensor.helligkeit_bad_og_pm
   special_brightness_entities:
-    binary_sensor.alle_schlafen: 5
+    binary_sensor.la_und_le_schlafen: 5
 # - Schlafzimmer
 auto_light_e_sz_panels:
   module: auto_light_beta
