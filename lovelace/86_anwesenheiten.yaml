@@ -27,3 +27,11 @@ cards:
       include:
         - entity_id: "binary_sensor.pm_k*"
         - entity_id: "binary_sensor.pm_a*"
+  - type: custom:monster-card
+    card:
+      type: entities
+      title: "Sonstige"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "binary_sensor.anwesenheit*"
