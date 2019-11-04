@@ -11,6 +11,7 @@ class pizza_timer(hass.Hass):
 
     def initialize(self):
         self.listen_state(self.state_change, "input_number.pizza_timer_2")
+        self.url = "http://192.168.178.26:2971/api/command"
         self.timer_handle = None
         self.time_internal_state = 0
         if not float(self.get_state("input_number.pizza_timer_2")) == float(0):
@@ -58,4 +59,11 @@ class pizza_timer(hass.Hass):
             self.call_service("kodi/call_method", entity_id = "media_player.kodi", method = "Player.PlayPause", playerid = 1)
         else:
             self.fire_event("custom_notify", message="Pizza ist fertig, aber Kodi läuft gerade nicht - hoffentlich schaust du wenigstens aufs Handy...", target="telegram_jo")
-        self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"speak\":\"Pizza ist fertig!\"}", qos = "2")
+        #self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"speak\":\"Pizza ist fertig!\"}", qos = "2")
+        # via REST api
+        try:
+            r = requests.post(self.url, json={"speak":"Pizza ist fertig!"}, timeout=5)
+            #self.log(r)
+            #self.log(r.text)
+        except Exception as e:
+            self.log("Error sending speak command (pizza) to wallpanel via REST api. Error was {}".format(e))
