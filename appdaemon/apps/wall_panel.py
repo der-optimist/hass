@@ -1,7 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 import datetime
 import requests
-import json
 
 #
 # What it does:
