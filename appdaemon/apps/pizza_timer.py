@@ -1,5 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 import datetime
+import requests
 
 #
 # App to handle the awesome pizza timer
