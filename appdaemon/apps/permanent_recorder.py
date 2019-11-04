@@ -33,6 +33,5 @@ class permanent_recorder(hass.Hass):
     def write_test1(self):
         self.log("Write Test 1")
         self.client.write_points([{"measurement":"Test-Entity2","fields":{"brightness":25.9}}])
-        self.client.write_points([{"measurement":"Test-Entity2","fields":{"brightness":22}}])
         self.log("Write Test 1 done")
         
