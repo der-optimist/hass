@@ -21,7 +21,7 @@ class permanent_recorder(hass.Hass):
         
         self.client =InfluxDBClient(self.host, self.port, self.user, self.password, self.dbname)
         
-        self.drop()
+        #self.drop()
         self.write_test1()
         self.write_test2()
 #        self.query_test()
@@ -33,10 +33,10 @@ class permanent_recorder(hass.Hass):
         
     def write_test1(self):
         self.log("Write Test 1")
-        self.client.write_points([{"measurement":"Test-Entity2","fields":{"brightness":25}}], database=self.dbname, time_precision='ms', protocol='line')
+        self.client.write_points([{"measurement":"Test-Entity2","fields":{"brightness":25}}])
         self.log("Write Test 1 done")
         
     def write_test2(self):
         self.log("Write Test 2")
-        self.client.write_points([{"measurement":"Test-Entity2","fields":{"brightness":20}}], database=self.dbname, time_precision='ms', batch_size=1, protocol='line')
+        self.client.write_points([{"measurement":"Test-Entity2","fields":{"brightness":20}}])
         self.log("Write Test 2 done")
