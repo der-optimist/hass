@@ -24,6 +24,8 @@ class permanent_recorder(hass.Hass):
         #self.drop()
         self.write_test1()
         self.write_test2()
+        self.write_test3()
+        self.write_test4()
 #        self.query_test()
     
     def drop(self):
@@ -40,3 +42,13 @@ class permanent_recorder(hass.Hass):
         self.log("Write Test 2")
         self.client.write_points([{"measurement":"Test-Entity2","fields":{"brightness":20}}])
         self.log("Write Test 2 done")
+        
+    def write_test3(self):
+        self.log("Write Test 3")
+        self.client.write_points([{"measurement":"Test-Entity2","fields":{"brightness":"on"}}])
+        self.log("Write Test 3 done")
+
+    def write_test4(self):
+        self.log("Write Test 4")
+        self.client.write_points([{"measurement":"Test-Entity2","fields":{"brightness":10}}])
+        self.log("Write Test 4 done")
