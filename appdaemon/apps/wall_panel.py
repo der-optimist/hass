@@ -16,13 +16,13 @@ class wall_panel(hass.Hass):
         self.listen_state(self.presence_on, "binary_sensor.anwesenheit_bildschirm", new = "on")
         self.listen_state(self.presence_off, "binary_sensor.anwesenheit_bildschirm", new = "off")
         if self.get_state("binary_sensor.anwesenheit_bildschirm") == "on":
-            self.send_wake_command()
+            self.send_wake_command(None)
         # reload page
         self.listen_state(self.wp_online, "binary_sensor.ping_bildschirm", new = "on")
         #self.run_in(self.send_reload_command, 120) # auskommentiert wegen restart problem
         self.timer_handle = None
 
-    def send_wake_command(self):
+    def send_wake_command(self, kwargs):
         try:
             requests.post(self.url, json={"wake":"true","wakeTime":610}, timeout=5)
         except Exception as e:
@@ -38,7 +38,7 @@ class wall_panel(hass.Hass):
 
     def presence_on(self, entity, attributes, old, new, kwargs):
         self.log("Wall panel presence on. Will send periodic wake commands")
-        self.send_wake_command()
+        self.send_wake_command(None)
     
     def presence_off(self, entity, attributes, old, new, kwargs):
         self.log("Wall panel presence off. Will cancel periodic wake commands")
