@@ -23,14 +23,14 @@ class permanent_recorder(hass.Hass):
         
         self.write_test1()
         self.write_test2()
-        self.query_test()
+#        self.query_test()
         
     def write_test1(self):
         self.log("Write Test 1")
-        self.client.write("Test-Entity brightness=25", "homeassistant_permanent", protocol='line')
+        client.write_points(["Test-Entity brightness=25"], database=self.dbname, time_precision='ms', protocol='line')
         self.log("Write Test 1 done")
         
     def write_test2(self):
         self.log("Write Test 2")
-        self.client.write("Test-Entity brightness=on", "homeassistant_permanent", protocol='line')
+        client.write_points(["Test-Entity brightness=on"], database=self.dbname, time_precision='ms', batch_size=1, protocol='line')
         self.log("Write Test 2 done")
