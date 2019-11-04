@@ -138,3 +138,5 @@ set_sensor_attributes:
 wall_panel:
   module: wall_panel
   class: wall_panel
+  constrain_start_time: "05:00:00"
+  constrain_end_time: "23:00:00"
