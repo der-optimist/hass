@@ -129,6 +129,10 @@ cards:
     - entity: light.spiegel_bad_og
       name: Spiegel
     - type: section
+      label: Schläft jemand?
+    - entity: switch.bad_og_nachtmodus
+      name: Nachtmodus
+    - type: section
       label: Jalousie
     - entity: cover.jalousie_bad_og
       name: Bad
