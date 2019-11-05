@@ -15,8 +15,6 @@ homeassistant:
         - 192.168.178.0/24
         - 172.29.148.0/24
         - 127.0.0.1
-        - fd00::/8
-        - fe80::/8
 
 zone: !include zones.yaml
 
