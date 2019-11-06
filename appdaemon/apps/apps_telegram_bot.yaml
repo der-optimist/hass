@@ -257,28 +257,12 @@ telegram_bot:
                 - 60%
                 - 80%
                 - 100%
-            Regal Bad:
-              device_name: light.regal_bad_eg
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
             Spiegel Bad:
               device_name: light.spiegel_bad_eg
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
           Flur/Tr. EG:
             Flur EG:
               device_name: light.panels_flur_eg
@@ -362,24 +346,8 @@ telegram_bot:
                 - 80%
                 - 100%
           Windf./WC:
-            Windf.:
+            Windfang:
               device_name: light.panels_windfang
-              device_type: light_dim
-              values: 
-                - Aus
-                - 1%
-                - 2%
-                - 5%
-                - 10%
-                - 15%
-                - 20%
-                - 30%
-                - 40%
-                - 60%
-                - 80%
-                - 100%
-            Auf Schrank:
-              device_name: light.auf_garderobenschrank
               device_type: light_dim
               values: 
                 - Aus
@@ -414,8 +382,8 @@ telegram_bot:
               device_name: light.spiegel_wc
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
           Kinder:
             Panels name_la:
               device_name: light.panels_la
@@ -453,8 +421,8 @@ telegram_bot:
               device_name: light.stehlampe_la
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
             Panels name_le:
               device_name: light.panels_le
               device_type: light_dim
@@ -491,33 +459,27 @@ telegram_bot:
               device_name: light.stehlampe_le
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
           NZ/GZ:
             Näht. Decke:
               device_name: light.nahtisch_decke
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
             Schreibt. Decke:
               device_name: light.schreibtisch_decke
               device_type: light_switch
               values: 
-                - An
                 - Aus
-            Schrank:
-              device_name: light.nahzimmerschrank
-              device_type: light_switch
-              values: 
                 - An
-                - Aus
             Gästezimmer:
               device_name: light.gastezimmer
               device_type: light_switch
               values:
-                - An
                 - Aus
+                - An
           Bad OG:
             Panels:
               device_name: light.panels_bad_og
@@ -539,45 +501,39 @@ telegram_bot:
               device_name: light.spiegel_bad_og
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
           Keller:
             Flur:
               device_name: light.flur_keller
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
             Technikraum:
               device_name: light.technikraum
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
             Vorratsraum:
               device_name: light.vorratsraum
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
             Werkelraum:
-              device_name: light.werkelraum_mitte
+              device_name: light.werkelraum
               device_type: light_switch
               values: 
-                - An
                 - Aus
-            Werkbank:
-              device_name: light.werkelraum_werkbank
-              device_type: light_switch
-              values: 
                 - An
-                - Aus
-            Lagerraum:
+            Partyraum:
               device_name: light.lagerraum
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
           Außen:
             LED-Str. CP:
               device_name: light.led_streifen_carport
@@ -599,26 +555,26 @@ telegram_bot:
               device_name: light.spots_carport
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
             Abstellraum:
               device_name: light.abstellraum_carport
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
             Wandw. Süd:
               device_name: light.wandwurfel_suden
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
             Wandw. West:
               device_name: light.wandwurfel_westen
               device_type: light_switch
               values: 
-                - An
                 - Aus
+                - An
       Rollo:
         q1: OK. Welche Jalousie?
         q2: Ok. Wie hoch?
@@ -630,45 +586,55 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             80%:
               device_name: cover.jalousie_kuche
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             60%:
               device_name: cover.jalousie_kuche
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             40%:
               device_name: cover.jalousie_kuche
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             20%:
               device_name: cover.jalousie_kuche
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             hoch:
               device_name: cover.jalousie_kuche
@@ -681,45 +647,55 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             80%:
               device_name: cover.jalousie_hst
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             60%:
               device_name: cover.jalousie_hst
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             40%:
               device_name: cover.jalousie_hst
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             20%:
               device_name: cover.jalousie_hst
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             hoch:
               device_name: cover.jalousie_hst
@@ -732,45 +708,55 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             80%:
               device_name: cover.jalousie_wz_bodentiefes
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             60%:
               device_name: cover.jalousie_wz_bodentiefes
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             40%:
               device_name: cover.jalousie_wz_bodentiefes
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             20%:
               device_name: cover.jalousie_wz_bodentiefes
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             hoch:
               device_name: cover.jalousie_wz_bodentiefes
@@ -783,45 +769,55 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             80%:
               device_name: cover.jalousie_wz_couch
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             60%:
               device_name: cover.jalousie_wz_couch
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             40%:
               device_name: cover.jalousie_wz_couch
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             20%:
               device_name: cover.jalousie_wz_couch
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             hoch:
               device_name: cover.jalousie_wz_couch
@@ -834,45 +830,55 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             80%:
               device_name: cover.jalousie_schlafzimmer
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             60%:
               device_name: cover.jalousie_schlafzimmer
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             40%:
               device_name: cover.jalousie_schlafzimmer
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             20%:
               device_name: cover.jalousie_schlafzimmer
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             hoch:
               device_name: cover.jalousie_schlafzimmer
@@ -885,45 +891,55 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             80%:
               device_name: cover.jalousie_la_bodentiefes
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             60%:
               device_name: cover.jalousie_la_bodentiefes
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             40%:
               device_name: cover.jalousie_la_bodentiefes
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             20%:
               device_name: cover.jalousie_la_bodentiefes
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             hoch:
               device_name: cover.jalousie_la_bodentiefes
@@ -936,45 +952,55 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             80%:
               device_name: cover.jalousie_la_lichtband
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             60%:
               device_name: cover.jalousie_la_lichtband
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             40%:
               device_name: cover.jalousie_la_lichtband
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             20%:
               device_name: cover.jalousie_la_lichtband
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             hoch:
               device_name: cover.jalousie_la_lichtband
@@ -987,18 +1013,22 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             80%:
               device_name: cover.jalousie_nahzimmer
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             60%:
               device_name: cover.jalousie_nahzimmer
@@ -1014,18 +1044,22 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             20%:
               device_name: cover.jalousie_nahzimmer
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             hoch:
               device_name: cover.jalousie_nahzimmer
@@ -1038,45 +1072,55 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             80%:
               device_name: cover.jalousie_le_lichtband
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             60%:
               device_name: cover.jalousie_le_lichtband
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             40%:
               device_name: cover.jalousie_le_lichtband
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             20%:
               device_name: cover.jalousie_le_lichtband
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             hoch:
               device_name: cover.jalousie_le_lichtband
@@ -1089,45 +1133,55 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             80%:
               device_name: cover.jalousie_le_bodentiefes
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             60%:
               device_name: cover.jalousie_le_bodentiefes
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             40%:
               device_name: cover.jalousie_le_bodentiefes
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             20%:
               device_name: cover.jalousie_le_bodentiefes
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             hoch:
               device_name: cover.jalousie_le_bodentiefes
@@ -1140,45 +1194,55 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             80%:
               device_name: cover.jalousie_gastezimmer
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             60%:
               device_name: cover.jalousie_gastezimmer
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             40%:
               device_name: cover.jalousie_gastezimmer
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             20%:
               device_name: cover.jalousie_gastezimmer
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             hoch:
               device_name: cover.jalousie_gastezimmer
@@ -1191,45 +1255,55 @@ telegram_bot:
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             80%:
               device_name: cover.jalousie_bad_og
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             60%:
               device_name: cover.jalousie_bad_og
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             40%:
               device_name: cover.jalousie_bad_og
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             20%:
               device_name: cover.jalousie_bad_og
               device_type: jal
               values: 
                 - auf
-                - 20%
+                - 17%
+                - 33%
                 - 50%
-                - 80%
+                - 67%
+                - 83%
                 - zu
             hoch:
               device_name: cover.jalousie_bad_og
@@ -1247,71 +1321,95 @@ telegram_bot:
             values: 
               - 18
               - 20
+              - 20.5
               - 21
+              - 21.5
               - 22
+              - 22.5
               - 23
+              - 23.5
               - 24
+              - 24.5
               - 25
-              - 26
           Esszimmer:
             device_name: climate.esszimmer
             device_type: heat
             values: 
               - 18
               - 20
+              - 20.5
               - 21
+              - 21.5
               - 22
+              - 22.5
               - 23
+              - 23.5
               - 24
+              - 24.5
               - 25
-              - 26
           Wohnzimmer:
             device_name: climate.wohnzimmer
             device_type: heat
             values: 
               - 18
               - 20
+              - 20.5
               - 21
+              - 21.5
               - 22
+              - 22.5
               - 23
+              - 23.5
               - 24
+              - 24.5
               - 25
-              - 26
           Schlafzimmer:
             device_name: climate.schlafzimmer
             device_type: heat
             values: 
-              - 17
               - 18
-              - 19
               - 20
+              - 20.5
               - 21
+              - 21.5
               - 22
+              - 22.5
               - 23
+              - 23.5
               - 24
+              - 24.5
+              - 25
           Bad EG:
             device_name: climate.bad_eg
             device_type: heat
             values: 
               - 18
+              - 20
+              - 20.5
               - 21
+              - 21.5
               - 22
+              - 22.5
               - 23
+              - 23.5
               - 24
+              - 24.5
               - 25
-              - 26
-              - 27
           Windfang WC:
             device_name: climate.windfang_wc
             device_type: heat
             values: 
               - 18
-              - 19
               - 20
+              - 20.5
               - 21
+              - 21.5
               - 22
+              - 22.5
               - 23
+              - 23.5
               - 24
+              - 24.5
               - 25
           name_la:
             device_name: climate.la
@@ -1319,69 +1417,93 @@ telegram_bot:
             values: 
               - 18
               - 20
+              - 20.5
               - 21
+              - 21.5
               - 22
+              - 22.5
               - 23
+              - 23.5
               - 24
+              - 24.5
               - 25
-              - 26
           Nähzimmer:
             device_name: climate.nahzimmer
             device_type: heat
             values: 
               - 18
               - 20
+              - 20.5
               - 21
+              - 21.5
               - 22
+              - 22.5
               - 23
+              - 23.5
               - 24
+              - 24.5
               - 25
-              - 26
           name_le:
             device_name: climate.le
             device_type: heat
             values: 
               - 18
               - 20
+              - 20.5
               - 21
+              - 21.5
               - 22
+              - 22.5
               - 23
+              - 23.5
               - 24
+              - 24.5
               - 25
-              - 26
           Gästezimmer:
             device_name: climate.gastezimmer
             device_type: heat
             values: 
-              - 17
               - 18
-              - 19
               - 20
+              - 20.5
               - 21
+              - 21.5
               - 22
+              - 22.5
               - 23
+              - 23.5
               - 24
+              - 24.5
+              - 25
           Flur OG:
             device_name: climate.flur_og
             device_type: heat
             values: 
               - 18
-              - 19
               - 20
+              - 20.5
               - 21
+              - 21.5
               - 22
+              - 22.5
               - 23
+              - 23.5
               - 24
+              - 24.5
               - 25
           Bad OG:
             device_name: climate.bad_og
             device_type: heat
             values: 
               - 18
+              - 20
+              - 20.5
               - 21
+              - 21.5
               - 22
+              - 22.5
               - 23
+              - 23.5
               - 24
+              - 24.5
               - 25
-              - 26
-              - 27
