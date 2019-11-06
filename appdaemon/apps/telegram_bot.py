@@ -139,6 +139,10 @@ class telegram_bot(hass.Hass):
             # --- Danke Bitte ---
             if text.lower().startswith("danke"):
                 self.answer_thank_you(chat_id)
+            
+            # --- Treppenlicht Nacht ---
+            if text.lower().startswith("treppe"):
+                self.treppenlicht(chat_id)
 
             # --- Konversation 3-Steps ---
             if text in self.categories_threesteps:
@@ -253,13 +257,19 @@ class telegram_bot(hass.Hass):
                 
 
     def send_temps(self, chat_id):
-        temp_wz = self.get_state("sensor.0x00158d00034d1e34_temperature")
-        lf_wz = self.get_state("sensor.0x00158d00034d1e34_humidity")
-        temp_aussen = self.get_state("sensor.temp_owm")
+        temp_ez = self.get_state("sensor.temp_esszimmer_taster")
+        temp_aussen = self.get_state("sensor.temp_wetterstation")
+        wind = self.get_state("sensor.windgeschwindigkeit_wetterstation_kmh")
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
-                          message="=== 🔥 Temperaturen ❄️ ===\nWohnzimmer: {} °C ({}%)\nDraussen: {} °C".format(temp_wz,lf_wz,temp_aussen))
-        
+                          message="=== 🔥 Temperaturen ❄️ ===\nEsszimmer: {} °C\nDraussen: {} °C\nWind: {} km/h".format(temp_ez,temp_aussen,wind))
+
+    def treppenlicht(self, chat_id):
+        self.turn_on("light.panels_treppe_og",brightness=self.pct_to_byte(5))
+        self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message="Alles klar, gute Nach an die Mädels...")
+
     def send_weather_forecast(self, chat_id):
         self.call_service('telegram_bot/send_photo',
                           target=chat_id,
