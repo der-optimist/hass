@@ -398,7 +398,7 @@ class telegram_bot(hass.Hass):
                 value = 100
             err = False
             try: 
-                value_numeric = float(value)
+                value_numeric = float(self.clean_command(value))
             except:
                 reply = "Sorry, aber ich brauche entweder eine Zahl oder An oder Aus. So geht das nicht"
                 err = True
@@ -420,7 +420,7 @@ class telegram_bot(hass.Hass):
                 reply = "Sorry, ich fresse An und Aus, alles andere wird wieder ausgespuckt..."
         if device_type == "heat":
             try: 
-                value_numeric = float(value)
+                value_numeric = float(self.clean_command(value))
             except:
                 reply = "Sorry, aber ich brauche entweder eine Zahl. So geht das nicht"
                 err = True
@@ -438,7 +438,7 @@ class telegram_bot(hass.Hass):
         return reply
     
     def clean_command(self, command):
-        command_clean = command.replace("%", "")
+        command_clean = command.replace(" %", "").replace("%", "")
         command_clean = command.replace(" °C", "").replace("°C", "").replace(" °", "").replace("°", "")
         return command_clean
     
