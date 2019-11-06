@@ -112,7 +112,7 @@ cards:
             name: Ventil offen
       - type: 'custom:simple-thermostat'
         entity: climate.bad_og
-        name: Bad EG
+        name: Bad OG
         sensors:
           - entity: sensor.stellwert_heizung_bad_og
             name: Ventil offen
