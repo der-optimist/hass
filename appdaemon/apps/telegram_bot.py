@@ -268,7 +268,7 @@ class telegram_bot(hass.Hass):
         self.turn_on("light.panels_treppe_og",brightness=self.pct_to_byte(5))
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
-                          message="Alles klar, gute Nach an die Mädels...")
+                          message="Alles klar, gute Nacht an die Mädels...")
 
     def send_weather_forecast(self, chat_id):
         self.call_service('telegram_bot/send_photo',
