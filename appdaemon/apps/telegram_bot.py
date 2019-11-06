@@ -156,6 +156,7 @@ class telegram_bot(hass.Hass):
     def receive_telegram_command(self, event_id, payload_event, *args):
         assert event_id == 'telegram_command'
         user_id = payload_event['user_id']
+        chat_id = payload_event['chat_id']
         command = payload_event['command']
         self.log(command)
         
@@ -390,7 +391,49 @@ class telegram_bot(hass.Hass):
                 return reply
             device_type = self.conversations["threesteps"][commands[0]]["steps"][commands[1]][commands[2]]["device_type"]
         # Please insert real action command...
-        reply = "OK. Gerät {} ({}) bekommt den Befehl {}.".format(device_name,device_type,value)
+        if device_type == "light_dim":
+            if value == "Aus" or value == "aus":
+                value = 0
+            if value == "An" or value == "an":
+                value = 100
+            err = False
+            try: 
+                value_numeric = float(value)
+            except:
+                reply = "Sorry, aber ich brauche entweder eine Zahl oder An oder Aus. So geht das nicht"
+                err = True
+            if not err:
+                if value_numeric == float(0):
+                    self.turn_off(device_name)
+                    reply = "OK, habe {} ausgeschalten.".format(device_name)
+                else:
+                    self.turn_on(device_name,brightness=self.pct_to_byte(value_numeric))
+                    reply = "OK, habe {} auf Helligkeit {} gestellt.".format(device_name,value)
+        if device_type == "light_switch":
+            if value == "Aus" or value == "aus":
+                self.turn_off(device_name)
+                reply = "OK, habe {} ausgeschalten.".format(device_name)
+            elif value == "An" or value == "an":
+                self.turn_on(device_name)
+                reply = "OK, habe {} eingeschalten.".format(device_name)
+            else:
+                reply = "Sorry, ich fresse An und Aus, alles andere wird wieder ausgespuckt..."
+        if device_type == "heat":
+            try: 
+                value_numeric = float(value)
+            except:
+                reply = "Sorry, aber ich brauche entweder eine Zahl. So geht das nicht"
+                err = True
+            if not err:
+                if value_numeric > float(26):
+                    reply = "Das ist aber ganz schön heiß, das traue ich mich nicht..."
+                    err = True
+                if value_numeric < float(16):
+                    reply = "Das ist aber ganz schön kalt, das traue ich mich nicht..."
+                    err = True
+            if not err:
+                self.call_service("climate/set_temperature", entity_id = device_name, temperature = value_numeric)
+                reply = "OK, habe {} auf {} °C gestellt.".format(device_name,value)
         self.reset_conversation_commands(user_id)
         return reply
     
@@ -438,3 +481,9 @@ class telegram_bot(hass.Hass):
         for secret in self.args["secrets"].keys():
             text = text.replace(secret, self.args["secrets"][secret])
         return text
+
+    def pct_to_byte(self, val_pct):
+        return float(round(val_pct*255/100))
+    
+    def byte_to_pct(self, val_byte):
+        return float(round(val_byte*100/255))
