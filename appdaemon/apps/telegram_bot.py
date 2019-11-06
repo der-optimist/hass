@@ -439,7 +439,7 @@ class telegram_bot(hass.Hass):
     
     def clean_command(self, command):
         command_clean = command.replace(" %", "").replace("%", "")
-        command_clean = command.replace(" °C", "").replace("°C", "").replace(" °", "").replace("°", "")
+        command_clean = command_clean.replace(" °C", "").replace("°C", "").replace(" °", "").replace("°", "")
         return command_clean
     
     def reset_conversation_commands(self, user_id):
