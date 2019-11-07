@@ -377,6 +377,44 @@
              or is_state('binary_sensor.pm_ktr_flur', 'on')
              or is_state('binary_sensor.pm_ktr_treppe', 'on')
              or is_state('binary_sensor.pm_e_wf_garderobe', 'on') }}
+      anwesenheit_eg:
+        friendly_name: "Anwesenheit EG"
+        value_template: >-
+          {{ is_state('binary_sensor.pm_e_ba', 'on')
+             or is_state('binary_sensor.pm_e_ez_bar_kuche', 'on')
+             or is_state('binary_sensor.pm_e_ez_esstisch', 'on')
+             or is_state('binary_sensor.pm_e_fl_flur', 'on')
+             or is_state('binary_sensor.pm_e_fl_treppe_og', 'on')
+             or is_state('binary_sensor.pm_e_fl_windfang', 'on')
+             or is_state('binary_sensor.pm_e_ku_bar_ez', 'on')
+             or is_state('binary_sensor.pm_e_ku_kuche', 'on')
+             or is_state('binary_sensor.pm_e_sz_bett', 'on')
+             or is_state('binary_sensor.pm_e_sz_gang', 'on')
+             or is_state('binary_sensor.pm_e_wc', 'on')
+             or is_state('binary_sensor.pm_e_wf_flur', 'on')
+             or is_state('binary_sensor.pm_e_wf_haustur', 'on')
+             or is_state('binary_sensor.pm_e_wz_couch', 'on')
+             or is_state('binary_sensor.pm_e_wz_durchgang', 'on')
+             or is_state('binary_sensor.pm_ktr_flur', 'on')
+             or is_state('binary_sensor.pm_e_wf_garderobe', 'on') }}
+      anwesenheit_og:
+        friendly_name: "Anwesenheit OG"
+        value_template: >-
+          {{ is_state('binary_sensor.pm_o_ba', 'on')
+             or is_state('binary_sensor.pm_o_fl_flur', 'on')
+             or is_state('binary_sensor.pm_o_fl_treppe', 'on')
+             or is_state('binary_sensor.pm_o_gz', 'on')
+             or is_state('binary_sensor.pm_o_ko_la_raum', 'on')
+             or is_state('binary_sensor.pm_o_ko_la_tuer', 'on')
+             or is_state('binary_sensor.pm_o_kw_le_raum', 'on')
+             or is_state('binary_sensor.pm_o_kw_le_tuer', 'on')
+             or is_state('binary_sensor.pm_o_nz', 'on') }}
+      anwesenheit_haus:
+        friendly_name: "Anwesenheit Haus"
+        value_template: >-
+          {{ is_state('binary_sensor.anwesenheit_eg', 'on')
+             or is_state('binary_sensor.anwesenheit_og', 'on')
+             or is_state('binary_sensor.pm_ktr_treppe', 'on') }}
       tv_ist_an:
         friendly_name: "TV an"
         value_template: "{{ states('sensor.el_leistung_tv')|float > 25 }}"
