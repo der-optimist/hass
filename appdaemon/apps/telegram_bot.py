@@ -415,17 +415,17 @@ class telegram_bot(hass.Hass):
             if not err:
                 if value_numeric == float(0):
                     self.turn_off(device_name)
-                    reply = "OK, habe {} ausgeschalten.".format(device_name)
+                    reply = "OK, habe {} ausgeschalten.".format(commands[2])
                 else:
                     self.turn_on(device_name,brightness=self.pct_to_byte(value_numeric))
-                    reply = "OK, habe {} auf Helligkeit {} gestellt.".format(device_name,value)
+                    reply = "OK, habe {} auf Helligkeit {} gestellt.".format(commands[2],value)
         if device_type == "light_switch":
             if value == "Aus" or value == "aus":
                 self.turn_off(device_name)
-                reply = "OK, habe {} ausgeschalten.".format(device_name)
+                reply = "OK, habe {} ausgeschalten.".format(commands[2])
             elif value == "An" or value == "an":
                 self.turn_on(device_name)
-                reply = "OK, habe {} eingeschalten.".format(device_name)
+                reply = "OK, habe {} eingeschalten.".format(commands[2])
             else:
                 reply = "Sorry, ich fresse An und Aus, alles andere wird wieder ausgespuckt..."
         if device_type == "heat":
@@ -443,7 +443,7 @@ class telegram_bot(hass.Hass):
                     err = True
             if not err:
                 self.call_service("climate/set_temperature", entity_id = device_name, temperature = value_numeric)
-                reply = "OK, habe {} auf {} °C gestellt.".format(device_name,value)
+                reply = "OK, habe die Heizung {} auf {} °C gestellt.".format(commands[1],value)
         self.reset_conversation_commands(user_id)
         return reply
     
