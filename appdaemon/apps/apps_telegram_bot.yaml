@@ -575,7 +575,7 @@ telegram_bot:
               values: 
                 - Aus
                 - An
-      Rollo:
+      Jalousie:
         q1: OK. Welche Jalousie?
         q2: Ok. Wie hoch?
         q3: Gut. Offen oder zu?
