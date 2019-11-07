@@ -117,6 +117,10 @@ class telegram_bot(hass.Hass):
             
         else: # user is not in an active conversation
             
+            # --- Hallo/Start ---
+            if text.lower().startswith("hallo") or text.lower().startswith("start") or text.lower().startswith("was ") or text.lower().startswith("test"):
+                self.say_hello(chat_id)
+            
             # --- Temperaturen ---
             if text.lower().startswith("temp"):
                 self.send_temps(chat_id)
@@ -256,13 +260,31 @@ class telegram_bot(hass.Hass):
                           message=reply.replace("_", "\_"))
                 
 
+    def say_hello(self, chat_id):
+        self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message="Hallo! Ich kann dir bei ein paar Sachen behilflich sein, "\
+                                  "z.B. kann ich dir das Licht an oder aus machen, Heizung einstellen, "\
+                                  "Jalousien runter fahren oder auch einfach nur die aktuellen "\
+                                  "Temperaturen oder die Wettervorschau schicken.\n"\
+                                  "Schreibe mir einfach \"Licht\", \"Jalousie\", \"Heizung\", "\
+                                  "\"Wetter\" oder \"Temperaturen\". Ohne die Anführungszeichen.\n"\
+                                  "Wenn ich mehr wissen muss, dann frage ich schon.\n"\
+                                  "Achso, mit \"Müll\" schalte ich übrigens die aktuelle Müll-Erinngerung aus, "\
+                                  "mit \"Treppe\" oder \"Treppenlicht\" schalte ich die Panels über der Treppe auf 5%.\n"\
+                                  "So, jetzt aber viel Spaß 🙂\n"\
+                                  "Achso, eins noch: toll siehst du aus 😉")
+
     def send_temps(self, chat_id):
         temp_ez = self.get_state("sensor.temp_esszimmer_taster")
         temp_aussen = self.get_state("sensor.temp_wetterstation")
         wind = self.get_state("sensor.windgeschwindigkeit_wetterstation_kmh")
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
-                          message="=== 🔥 Temperaturen ❄️ ===\nEsszimmer: {} °C\nDraussen: {} °C\nWind: {} km/h".format(temp_ez,temp_aussen,wind))
+                          message="=== 🔥 Temperaturen ❄️ ===\n"\
+                                  "Esszimmer: {} °C\n"\
+                                  "Draussen: {} °C\n"\
+                                  "Wind: {} km/h".format(temp_ez,temp_aussen,wind))
 
     def treppenlicht(self, chat_id):
         self.turn_on("light.panels_treppe_og",brightness=self.pct_to_byte(5))
@@ -418,7 +440,7 @@ class telegram_bot(hass.Hass):
                     reply = "OK, habe {} ausgeschalten.".format(commands[2])
                 else:
                     self.turn_on(device_name,brightness=self.pct_to_byte(value_numeric))
-                    reply = "OK, habe {} auf Helligkeit {} gestellt.".format(commands[2],value)
+                    reply = "OK, habe {} auf Helligkeit {}% gestellt.".format(commands[2],value_numeric)
         if device_type == "light_switch":
             if value == "Aus" or value == "aus":
                 self.turn_off(device_name)
@@ -428,7 +450,36 @@ class telegram_bot(hass.Hass):
                 reply = "OK, habe {} eingeschalten.".format(commands[2])
             else:
                 reply = "Sorry, ich fresse An und Aus, alles andere wird wieder ausgespuckt..."
+        if device_type == "jal":
+            if value == "Auf" or value == "auf":
+                value = 0
+            if value == "Zu" or value == "zu":
+                value = 100
+            if value == "Blöde Frage" or value == "blöde Frage":
+                value = 0
+            err = False
+            try: 
+                value_numeric = float(self.clean_command(value))
+            except:
+                reply = "Sorry, aber ich brauche als Winkel entweder eine Zahl oder auf oder zu. So geht das nicht"
+                err = True
+            if not err:
+                if commands[2] == "Runter" or commands[2] == "runter":
+                    value_position_numeric = 100
+                elif commands[2] == "Hoch" or commands[2] == "hoch":
+                    value_position_numeric = 0
+                else:
+                    try: 
+                        value_position_numeric = float(self.clean_command(commands[2]))
+                    except:
+                        reply = "Sorry, aber ich brauche als Position entweder eine Zahl oder hoch oder runter. So geht das nicht"
+                        err = True
+            if not err:
+                self.call_service("cover/set_cover_position", entity_id = device_name, position = value_position_numeric)
+                self.call_service("cover/set_cover_tilt_position", entity_id = device_name, tilt_position = value_numeric)
+                reply = "OK, fahre die Jalousie {} {}% runter und drehe sie {}% zu.".format(commands[1],value_position_numeric,value_numeric)
         if device_type == "heat":
+            err = False
             try: 
                 value_numeric = float(self.clean_command(value))
             except:
@@ -443,7 +494,7 @@ class telegram_bot(hass.Hass):
                     err = True
             if not err:
                 self.call_service("climate/set_temperature", entity_id = device_name, temperature = value_numeric)
-                reply = "OK, habe die Heizung {} auf {} °C gestellt.".format(commands[1],value)
+                reply = "OK, habe die Heizung {} auf {} °C gestellt.".format(commands[1],value_numeric)
         self.reset_conversation_commands(user_id)
         return reply
     
