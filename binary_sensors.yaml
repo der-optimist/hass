@@ -358,15 +358,18 @@
              and is_state('switch.le_schlaft', 'on')
              and is_state('switch.majo_schlafen', 'on') }}
       # On = in der letzten Stunde weniger als 10 Minuten wach
-      schlafen_oder_aufwachen_la:
-        friendly_name: "Schlafen oder Aufwachen La"
-        value_template: "{{ states('sensor.anteil_la_wach_letzte_stunde')|float < 17 }}"
-      schlafen_oder_aufwachen_le:
-        friendly_name: "Schlafen oder Aufwachen Le"
-        value_template: "{{ states('sensor.anteil_le_wach_letzte_stunde')|float < 17 }}"
-      schlafen_oder_aufwachen_majo:
-        friendly_name: "Schlafen oder Aufwachen MaJo"
-        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 17 }}"
+      aufwachphase_la:
+        friendly_name: "Aufwachphase La"
+        value_template: "{{ states('sensor.anteil_la_wach_letzte_stunde')|float < 17
+                            and is_state('switch.la_schlaft', 'off') }}"
+      aufwachphase_le:
+        friendly_name: "Aufwachphase Le"
+        value_template: "{{ states('sensor.anteil_le_wach_letzte_stunde')|float < 17
+                            and is_state('switch.le_schlaft', 'off') }}"
+      aufwachphase_majo:
+        friendly_name: "Aufwachphase MaJo"
+        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 17
+                            and is_state('switch.majo_schlafen', 'off') }}"
       anwesenheit_bildschirm:
         friendly_name: "Anwesenheit Bildschirm"
         value_template: >-
