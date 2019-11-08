@@ -246,7 +246,7 @@ auto_light_o_le_panels:
   keeping_off_entities:
     - switch.le_schlaft
   special_brightness_entities:
-    binary_sensor.schlafen_oder_aufwachen_le: 10
+    binary_sensor.aufwachphase_le: 10
 # - La
 auto_light_o_la_panels:
   module: auto_light_beta
@@ -278,7 +278,7 @@ auto_light_o_la_panels:
   keeping_off_entities:
     - switch.la_schlaft
   special_brightness_entities:
-    binary_sensor.schlafen_oder_aufwachen_la: 10
+    binary_sensor.aufwachphase_la: 10
 # - Flur OG
 auto_light_o_fl_panels:
   module: auto_light_beta
