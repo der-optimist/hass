@@ -213,6 +213,103 @@ auto_light_e_sz_panels:
   illuminance_sensor: sensor.helligkeit_schlafzimmer_pm
   keeping_off_entities:
     - switch.majo_schlafen
+  switching_off_entities:
+    - switch.majo_schlafen
+# - Le
+auto_light_o_le_panels:
+  module: auto_light_beta
+  class: auto_light
+  plugin: NONE
+  debug: few
+  constrain_input_boolean: input_boolean.app_switch_licht_le
+  light: light.panels_le
+  triggers: 
+    - binary_sensor.pm_o_kw_le_raum
+    - binary_sensor.pm_o_kw_le_tuer
+  brightness_values:
+    "00:00": 30
+    "05:30": 50
+    "06:30": 70
+    "08:00": 80
+    "09:00": 90
+    "17:00": 80
+    "18:00": 70
+    "20:00": 50
+    "21:00": 30
+  min_illuminance_values:
+    "00:00": 5
+    "05:30": 20
+    "09:00": 50
+    "18:00": 20
+    "21:00": 5
+  illuminance_sensor: sensor.helligkeit_le_pm
+  keeping_off_entities:
+    - switch.le_schlaft
+# - La
+auto_light_o_la_panels:
+  module: auto_light_beta
+  class: auto_light
+  plugin: NONE
+  debug: few
+  constrain_input_boolean: input_boolean.app_switch_licht_la
+  light: light.panels_la
+  triggers: 
+    - binary_sensor.pm_o_kw_la_raum
+    - binary_sensor.pm_o_kw_la_tuer
+  brightness_values:
+    "00:00": 30
+    "05:30": 50
+    "06:30": 70
+    "08:00": 80
+    "09:00": 90
+    "17:00": 80
+    "18:00": 70
+    "20:00": 50
+    "21:00": 30
+  min_illuminance_values:
+    "00:00": 5
+    "05:30": 20
+    "09:00": 50
+    "18:00": 20
+    "21:00": 5
+  illuminance_sensor: sensor.helligkeit_la_pm
+  keeping_off_entities:
+    - switch.la_schlaft
+# - Flur OG
+auto_light_o_fl_panels:
+  module: auto_light_beta
+  class: auto_light
+  plugin: NONE
+  debug: quiet
+  constrain_input_boolean: input_boolean.app_switch_licht_flur_og
+  light: light.panels_flur_og
+  triggers: 
+    - binary_sensor.pm_o_fl_treppe
+    - binary_sensor.pm_o_fl_flur
+    - binary_sensor.pm_o_ko_la_tuer
+    - binary_sensor.pm_o_kw_le_tuer
+  brightness_values:
+    "00:00": 30
+    "03:00": 10
+    "06:30": 40
+    "08:00": 80
+    "09:00": 90
+    "17:00": 80
+    "18:00": 60
+    "18:30": 30
+  min_illuminance_values:
+    "00:00": 5
+    "06:30": 20
+    "09:00": 25
+    "17:00": 20
+    "19:00": 10
+    "23:00": 5
+  illuminance_sensor: sensor.helligkeit_flur_og_pm
+  keeping_off_entities:
+    - binary_sensor.la_oder_le_schlafen
+  switching_off_entities:
+    - binary_sensor.la_oder_le_schlafen
+
 # - Nähzimmer Schreibtisch
 #auto_light_e_nz_schreibtisch:
 #  module: auto_light
