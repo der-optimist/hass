@@ -7,7 +7,7 @@ import appdaemon.plugins.hass.hassapi as hass
 # Args: no args required
 # 
 
-class toggle_reminder_switches(hass.Hass):
+class toggle_self_created_switches(hass.Hass):
 
     def initialize(self):
         # --- listen for events of self created switches (they are not handeled by HA)
@@ -16,7 +16,7 @@ class toggle_reminder_switches(hass.Hass):
     def toggle_switches(self,event_name,data, kwargs):
         try:
             entity_id = data["service_data"]["entity_id"]
-            if "switch.reminder" in entity_id:
+            if "switch.reminder" in entity_id or "switch.schlafen_oder_aufwachen" in entity_id:
                 if data["service"] == "turn_off":
                     self.log(entity_id + " switched off")
                     self.set_state(entity_id, state = "off")
