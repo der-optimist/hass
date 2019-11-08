@@ -76,9 +76,9 @@ jal_schlafzimmer_abends_helligkeit:
   position: 100
   tilt: 100
 # Other Stuff
-toggle_reminder_switches:
-  module: toggle_reminder_switches
-  class: toggle_reminder_switches
+toggle_self_created_switches:
+  module: toggle_self_created_switches
+  class: toggle_self_created_switches
   plugin: NONE
 custom_notify:
   module: custom_notify
