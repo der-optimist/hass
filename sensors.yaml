@@ -431,6 +431,30 @@
     type: time
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
     end: '{{ now() }}'
+  - platform: history_stats
+    name: Anteil La wach letzte Stunde
+    entity_id: switch.la_schlaft
+    state: 'off'
+    type: ratio
+    end: '{{ now() }}'
+    duration:
+      hours: 1
+  - platform: history_stats
+    name: Anteil Le wach letzte Stunde
+    entity_id: switch.le_schlaft
+    state: 'off'
+    type: ratio
+    end: '{{ now() }}'
+    duration:
+      hours: 1
+  - platform: history_stats
+    name: Anteil MaJo wach letzte Stunde
+    entity_id: switch.majo_schlafen
+    state: 'off'
+    type: ratio
+    end: '{{ now() }}'
+    duration:
+      hours: 1
 
 # Zeit und Datum
   - platform: time_date
