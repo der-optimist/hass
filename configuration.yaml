@@ -134,9 +134,9 @@ owntracks:
 
 speedtestdotnet:
 
-ourgroceries:
-  username: !secret our_groceries_username
-  password: !secret our_groceries_password
+#ourgroceries:
+#  username: !secret our_groceries_username
+#  password: !secret our_groceries_password
 
 # Track the sun
 sun:
