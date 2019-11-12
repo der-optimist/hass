@@ -34,7 +34,7 @@ class telegram_bot(hass.Hass):
         
         self.call_service('telegram_bot/send_message',
                           target=self.args["allowed_user_ids"][0],
-                          message="Bot restarted 👍")
+                          message="Nuc-Bot restarted 👍")
     
     def receive_telegram_text(self, event_id, payload_event, *args):
         assert event_id == 'telegram_text'
