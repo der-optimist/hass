@@ -1,8 +1,8 @@
 secrets: /config/secrets.yaml
 log:
-  errorfile: /usr/share/hassio/homeassistant/appdaemon/logs/errors.log
-  logfile: /usr/share/hassio/homeassistant/appdaemon/logs/logfile.log
-  accessfile: /usr/share/hassio/homeassistant/appdaemon/logs/access.log
+  errorfile: /usr/share/hassio/homeassistant/appdaemon/errors.log
+  logfile: /usr/share/hassio/homeassistant/appdaemon/logfile.log
+  accessfile: /usr/share/hassio/homeassistant/appdaemon/access.log
   log_size: 500000
   log_generations: 5
 appdaemon:
