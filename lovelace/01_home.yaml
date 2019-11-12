@@ -16,7 +16,7 @@ cards:
                 font-size: 2.4em;
               }  
             content: >
-              # [[ sensor.temp_esszimmer_taster ]]°C
+              # {{ states('sensor.temp_esszimmer_taster') }}°C
               
               Wohnzimmer
           - type: markdown
@@ -26,9 +26,9 @@ cards:
                 font-size: 2.4em;
               }
             content: >
-              # [[ sensor.time ]]
+              # {{ states('sensor.time') }}
               
-              [[ sensor.date_template ]]
+              {{ states('sensor.date_template') }}
       - type: custom:mini-graph-card
         style: |
           state__value {
