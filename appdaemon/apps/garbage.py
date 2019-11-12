@@ -5,7 +5,7 @@ import datetime
 # App to handle garbage topics
 # (note: AD-created switched are toggled by separate app)
 #
-# Args: no args required
+# Args: no args required 
 # 
 
 class garbage(hass.Hass):
