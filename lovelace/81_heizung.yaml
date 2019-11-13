@@ -36,6 +36,10 @@ cards:
     sensors:
       - entity: sensor.stellwert_heizung_gastezimmer
         name: Ventil offen
+    control:
+      _names: false
+      _icons: false
+      _headings: false
   - type: entities
     title: Heizungen EG
     show_header_toggle: false
