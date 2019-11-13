@@ -33,6 +33,8 @@ cards:
   - type: 'custom:simple-thermostat'
     entity: climate.gastezimmer
     name: Gästezimmer
+    hide:
+      state: true
     sensors:
       - entity: sensor.stellwert_heizung_gastezimmer
         name: Ventil offen
