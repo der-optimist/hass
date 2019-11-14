@@ -33,15 +33,17 @@ cards:
   - type: 'custom:simple-thermostat'
     entity: climate.gastezimmer
     name: Gästezimmer
-    hide:
-      state: true
     sensors:
       - entity: sensor.stellwert_heizung_gastezimmer
         name: Ventil offen
-    control:
-      _names: false
-      _icons: false
-      _headings: false
+    modes:
+      hvac: 
+        auto: false
+      preset:
+        comfort: false
+        away: false
+        sleep: false
+        eco: false
   - type: entities
     title: Heizungen EG
     show_header_toggle: false
