@@ -43,6 +43,9 @@ cards:
       sensors:
         - entity: sensor.stellwert_heizung_schlafzimmer
           name: Ventil offen
+      control:
+        - preset: false
+        - hvac: false
   - type: entities
     title: "Bad EG"
     show_header_toggle: false
@@ -63,3 +66,6 @@ cards:
       sensors:
         - entity: sensor.stellwert_heizung_bad_eg
           name: Ventil offen
+      control:
+        - preset: false
+        - hvac: false
