@@ -271,7 +271,7 @@ class telegram_bot(hass.Hass):
                                   "\"Wetter\" oder \"Temperaturen\". Ohne die Anführungszeichen.\n"\
                                   "Wenn ich mehr wissen muss, dann frage ich schon.\n"\
                                   "Achso, mit \"Müll\" schalte ich übrigens die aktuelle Müll-Erinngerung aus.\n"\
-                                  "So, jetzt aber viel Spaß 🙂\n"\ 
+                                  "So, jetzt aber viel Spaß 🙂\n"\
                                   "Achso, eins noch: toll siehst du aus 😉")
 
     def send_temps(self, chat_id):
