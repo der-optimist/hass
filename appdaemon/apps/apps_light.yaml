@@ -137,6 +137,10 @@ auto_light_e_fl_panels:
   illuminance_sensor: sensor.helligkeit_flur_eg_pm
   special_brightness_entities:
     switch.majo_schlafen: 5
+  keeping_on_entities:
+    - binary_sensor.pm_k_fl
+  keeping_on_entities:
+    - switching_on_entities.pm_k_fl
 # - Bad EG
 auto_light_e_ba_panels:
   module: auto_light
@@ -313,34 +317,3 @@ auto_light_o_fl_panels:
     - binary_sensor.la_oder_le_schlafen
   switching_off_entities:
     - binary_sensor.la_oder_le_schlafen
-
-# - Nähzimmer Schreibtisch
-#auto_light_e_nz_schreibtisch:
-#  module: auto_light
-#  class: auto_light
-#  plugin: NONE
-#  debug: few
-#  constrain_input_boolean: input_boolean.app_switch_licht_naehzimmer
-#  light: light.schreibtisch_decke
-#  triggers: 
-#    - binary_sensor.pm_o_nz
-#  brightness_values:
-#    "00:00": 100
-#  min_illuminance_values:
-#    "00:00": 70
-#  illuminance_sensor: sensor.helligkeit_nahzimmer_pm
-# - Nähzimmer Nähtisch
-#auto_light_e_nz_nahtisch:
-#  module: auto_light
-#  class: auto_light
-#  plugin: NONE
-#  debug: few
-#  constrain_input_boolean: input_boolean.app_switch_licht_naehzimmer
-#  light: light.nahtisch_decke
-#  triggers: 
-#    - binary_sensor.pm_o_nz
-#  brightness_values:
-#    "00:00": 100
-#  min_illuminance_values:
-#    "00:00": 70
-#  illuminance_sensor: sensor.helligkeit_nahzimmer_pm
