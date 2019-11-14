@@ -36,6 +36,9 @@ cards:
       sensors:
         - entity: sensor.stellwert_heizung_flur_og
           name: Ventil offen
+      control:
+        - preset: false
+        - hvac: false
   - type: entities
     title: "Windfang und WC"
     show_header_toggle: false
@@ -60,6 +63,9 @@ cards:
       sensors:
         - entity: sensor.stellwert_heizung_windfang_wc
           name: Ventil offen
+      control:
+        - preset: false
+        - hvac: false
   - type: entities
     title: "Carport und Eingang"
     show_header_toggle: false
