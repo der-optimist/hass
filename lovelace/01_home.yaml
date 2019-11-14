@@ -128,7 +128,7 @@ cards:
                   border-style: solid;
                   border-color: var(--primary-color);
                 }    
-              title: "Wetterwarnungen"
+#              title: "Wetterwarnungen"
               show_header_toggle: false
             filter:
               include:
