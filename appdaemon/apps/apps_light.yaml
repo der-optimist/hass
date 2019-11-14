@@ -86,6 +86,7 @@ light_e_wf_panels:
   triggers: 
     - binary_sensor.pm_e_wf_haustur
     - binary_sensor.pm_e_wf_garderobe
+    - binary_sensor.pm_e_fl_windfang
   brightness_values:
     "00:00": 60
     "05:00": 50
@@ -139,8 +140,8 @@ auto_light_e_fl_panels:
     switch.majo_schlafen: 5
   keeping_on_entities:
     - binary_sensor.pm_k_fl
-  keeping_on_entities:
-    - switching_on_entities.pm_k_fl
+  switching_on_entities:
+    - binary_sensor.pm_k_fl
 # - Bad EG
 auto_light_e_ba_panels:
   module: auto_light
@@ -194,7 +195,7 @@ auto_light_o_ba_panels:
     switch.bad_og_nachtmodus: 5
 # - Schlafzimmer
 auto_light_e_sz_panels:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   plugin: NONE
   debug: few
@@ -221,7 +222,7 @@ auto_light_e_sz_panels:
     - switch.majo_schlafen
 # - Le
 auto_light_o_le_panels:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   plugin: NONE
   debug: few
@@ -253,7 +254,7 @@ auto_light_o_le_panels:
     binary_sensor.aufwachphase_le: 10
 # - La
 auto_light_o_la_panels:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   plugin: NONE
   debug: few
@@ -285,7 +286,7 @@ auto_light_o_la_panels:
     binary_sensor.aufwachphase_la: 10
 # - Flur OG
 auto_light_o_fl_panels:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   plugin: NONE
   debug: quiet
@@ -319,7 +320,7 @@ auto_light_o_fl_panels:
     - binary_sensor.la_oder_le_schlafen
 # - Panels Treppe OG
 auto_light_o_tr_panels:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   plugin: NONE
   debug: few
