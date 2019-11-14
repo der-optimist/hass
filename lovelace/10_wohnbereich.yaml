@@ -92,6 +92,9 @@ cards:
           name: Ventil Küche
         - entity: sensor.stellwert_heizung_wohnzimmer
           name: Ventil WZ
+      control:
+        - preset: false
+        - hvac: false
   - type: entities
     title: "Wohnzimmer"
     show_header_toggle: false
