@@ -56,8 +56,6 @@ cards:
     title: Sonstige
     show_header_toggle: false
     entities:
-      - entity: sensor.0x00158d00034d1e34_temperature
-        name: Wohnzimmer (Funk)
       - entity: sensor.temp_owm
         name: Draußen (Internet)
       - entity: sensor.temp_wetterstation
