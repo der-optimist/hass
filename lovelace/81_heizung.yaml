@@ -30,15 +30,6 @@ cards:
         name: Flur OG
       - entity: sensor.stellwert_heizung_bad_og
         name: Bad OG
-  - type: 'custom:simple-thermostat'
-    entity: climate.gastezimmer
-    name: Gästezimmer
-    sensors:
-      - entity: sensor.stellwert_heizung_gastezimmer
-        name: Ventil offen
-    control:
-      - preset: false
-      - hvac: false
   - type: entities
     title: Heizungen EG
     show_header_toggle: false
@@ -49,36 +40,54 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_kuche
             name: Ventil offen
+        control:
+          - preset: false
+          - hvac: false
       - type: 'custom:simple-thermostat'
         entity: climate.esszimmer
         name: Esszimmer
         sensors:
           - entity: sensor.stellwert_heizung_esszimmer
             name: Ventil offen
+        control:
+          - preset: false
+          - hvac: false
       - type: 'custom:simple-thermostat'
         entity: climate.wohnzimmer
         name: Wohnzimmer
         sensors:
           - entity: sensor.stellwert_heizung_wohnzimmer
             name: Ventil offen
+        control:
+          - preset: false
+          - hvac: false
       - type: 'custom:simple-thermostat'
         entity: climate.schlafzimmer
         name: Schlafzimmer
         sensors:
           - entity: sensor.stellwert_heizung_schlafzimmer
             name: Ventil offen
+        control:
+          - preset: false
+          - hvac: false
       - type: 'custom:simple-thermostat'
         entity: climate.bad_eg
         name: Bad EG
         sensors:
           - entity: sensor.stellwert_heizung_bad_eg
             name: Ventil offen
+        control:
+          - preset: false
+          - hvac: false
       - type: 'custom:simple-thermostat'
         entity: climate.windfang_wc
         name: Windfang / WC
         sensors:
           - entity: sensor.stellwert_heizung_windfang_wc
             name: Ventil offen
+        control:
+          - preset: false
+          - hvac: false
   - type: entities
     title: Heizungen OG
     show_header_toggle: false
@@ -89,33 +98,51 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_la
             name: Ventil offen
+        control:
+          - preset: false
+          - hvac: false
       - type: 'custom:simple-thermostat'
         entity: climate.nahzimmer
         name: Nähzimmer
         sensors:
           - entity: sensor.stellwert_heizung_nahzimmer
             name: Ventil offen
+        control:
+          - preset: false
+          - hvac: false
       - type: 'custom:simple-thermostat'
         entity: climate.le
         name: !secret name_le
         sensors:
           - entity: sensor.stellwert_heizung_le
             name: Ventil offen
+        control:
+          - preset: false
+          - hvac: false
       - type: 'custom:simple-thermostat'
         entity: climate.gastezimmer
         name: Gästezimmer
         sensors:
           - entity: sensor.stellwert_heizung_gastezimmer
             name: Ventil offen
+        control:
+          - preset: false
+          - hvac: false
       - type: 'custom:simple-thermostat'
         entity: climate.flur_og
         name: Flur OG
         sensors:
           - entity: sensor.stellwert_heizung_flur_og
             name: Ventil offen
+        control:
+          - preset: false
+          - hvac: false
       - type: 'custom:simple-thermostat'
         entity: climate.bad_og
         name: Bad OG
         sensors:
           - entity: sensor.stellwert_heizung_bad_og
             name: Ventil offen
+        control:
+          - preset: false
+          - hvac: false
