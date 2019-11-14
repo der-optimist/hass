@@ -164,6 +164,13 @@
     name: PM_O_BA
     device_class: motion
 
+# Keller
+  - platform: knx
+    state_address: '0/1/100'
+#    sync_state: False
+    name: PM_K_FL
+    device_class: motion
+
 # --- Wetter ---
   - platform: knx
     state_address: '13/0/4'
