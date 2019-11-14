@@ -12,7 +12,9 @@ import random
 # - brightness_values (dict of time and brightness value pairs, for "basic" brightness depending on time. "00:00": XY should be the first)
 # - min_illuminance_values (dict of time and illuminance value pairs, for taget illuminance depending on time. "00:00": XY should be the first)
 # - illuminance_sensor (optional)
+# - switching_off_entities (list of entities, optional). Entity = on means light gets switched off (e.g. sleeping-switch)
 # - keeping_off_entities (list of entities, optional). Entity = on means light stays off (e.g. sleeping-switch)
+# - switching_on_entities (list of entities, optional). Entity = on means light get switched on
 # - keeping_on_entities (list of entities, optional). Entity = on means light stays on
 # - keeping_fix_entities (dict of entity:value pairs, optional). When on, light will be set to brightness and stay on as long as this entity is on
 # - special_brightness_entities (dict of entity:value pairs, optional). Will override basic brightness, but not keeping_fix values
@@ -30,8 +32,10 @@ class auto_light(hass.Hass):
         self.manually_switched_off = False
         self.i_switched_off = False
         self.illuminance_sensor: str = self.args.get("illuminance_sensor", None)
+        self.switching_off_entities: Set[str] = self.args.get("switching_off_entities", set())
         self.keeping_off_entities: Set[str] = self.args.get("keeping_off_entities", set())
         self.check_if_keeping_off_active(None)
+        self.switching_on_entities: Set[str] = self.args.get("switching_on_entities", set())
         self.keeping_on_entities: Set[str] = self.args.get("keeping_on_entities", set())
         self.check_if_keeping_on_active(None)
         self.keeping_fix_entities: Set[str] = self.args.get("keeping_fix_entities", set())
@@ -63,9 +67,15 @@ class auto_light(hass.Hass):
         # set up state listener for each trigger sensor
         for trigger in self.triggers:
             self.listen_state(self.trigger_state_changed, trigger)
+        # set up state listener for each switching-off entity
+        for switching_off_entity in self.switching_off_entities:
+            self.listen_state(self.switching_off_entity_changed, switching_off_entity)
         # set up state listener for each keeping-off entity
         for keeping_off_entity in self.keeping_off_entities:
             self.listen_state(self.keeping_off_entity_changed, keeping_off_entity)
+        # set up state listener for each switching-on entity
+        for switching_on_entity in self.switching_on_entities:
+            self.listen_state(self.switching_on_entity_changed, switching_on_entity)
         # set up state listener for each keeping-on entity
         for keeping_on_entity in self.keeping_on_entities:
             self.listen_state(self.keeping_on_entity_changed, keeping_on_entity)
@@ -182,13 +192,16 @@ class auto_light(hass.Hass):
             if self.get_state(trigger) == "on":
                 self.is_triggered = True
 
+    def switching_off_entity_changed(self, entity, attributes, old, new, kwargs):
+        self.debug_filter("Switching off: {} changed from {} to {}".format(entity, old, new),"few")
+        if new == "on" and old != "on":
+            self.debug_filter("Will turn off the light now, if no other device blocks that","few")
+            self.filter_turn_off_command(None)
+
     def keeping_off_entity_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Keeping off: {} changed from {} to {}".format(entity, old, new),"few")
         self.check_if_keeping_off_active(None)
-        if self.keeping_off:
-            self.debug_filter("Will turn off the light now, if no other device blocks that","few")
-            self.filter_turn_off_command(None)
-        else:
+        if not self.keeping_off:
             self.decide_if_light_is_needed(None)
 
     def check_if_keeping_off_active(self, kwargs):
@@ -199,20 +212,22 @@ class auto_light(hass.Hass):
                 self.keeping_off = True
                 self.debug_filter("Ah, wait! Yes, this one is active: {}".format(keeping_off_entity),"few")
 
+    def switching_on_entity_changed(self, entity, attributes, old, new, kwargs):
+        self.debug_filter("Switching on: {} changed from {} to {}".format(entity, old, new),"few")
+        if new == "on" and old != "on":
+            self.debug_filter("Will turn on the light now, if no other device blocks that","few")
+            self.filter_turn_on_command(None)
+
     def keeping_on_entity_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Keeping on: {} changed from {} to {}".format(entity, old, new),"few")
         self.check_if_keeping_on_active(None)
-        if self.keeping_on:
-            self.debug_filter("Will turn on the light now, if no other device blocks that","few")
-            self.filter_turn_on_command(None)
-        else:
+        if not self.keeping_on:
             if not self.is_triggered:
                 self.filter_turn_off_command(None)
 
     def check_if_keeping_on_active(self, kwargs):
-        self.debug_filter("Will check if one of the keeping-on devices is active","few")
+        self.debug_filter("Will check if one of the keeping-on devices is active. I assume - no.","few")
         self.keeping_on = False
-        self.debug_filter("I assume - no.","few")
         for keeping_on_entity in self.keeping_on_entities:
             if self.get_state(keeping_on_entity) == "on":
                 self.keeping_on = True
