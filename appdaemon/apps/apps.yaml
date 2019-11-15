@@ -8,6 +8,18 @@ permanent_recorder:
   class: permanent_recorder
   db_passwd: !secret permanent_db_passwd
   plugin: NONE
+  light_brightness:
+    - light.panels_flur_eg
+    - light.flur_keller
+  state_string:
+    - binary_sensor.pm_e_fl_flur
+    - binary_sensor.pm_e_wc
+  heating_target_temperature:
+    - climate.esszimmer
+    - climate.le
+  sensor_state_float:
+    - sensor.el_leistung_luftungsanlage
+    - sensor.temp_esszimmer_taster
 test_dim_steps_wz:
   module: dimmer_steps
   class: dimmer_steps
