@@ -53,7 +53,7 @@ class permanent_recorder(hass.Hass):
     def state_string_changed(self, entity, attributes, old, new, kwargs):
         self.client.write_points([{"measurement":entity,"fields":{"state_string":str(new)},"tags":{"domain":entity.split(".")[0]}}])
 
-    def heating_target_temperature(self, entity, attributes, old, new, kwargs):
+    def heating_target_temperature_changed(self, entity, attributes, old, new, kwargs):
         try:
             temperature_float = float(self.get_state(entity, attribute="temperature"))
         except:
