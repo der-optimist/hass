@@ -144,9 +144,9 @@ class telegram_bot(hass.Hass):
             if text.lower().startswith("danke"):
                 self.answer_thank_you(chat_id)
             
-            # --- Treppenlicht Nacht ---
-            if text.lower().startswith("treppe"):
-                self.treppenlicht(chat_id)
+            # --- Licht Carport ---
+            if text.lower().startswith("car"):
+                self.cp_licht(chat_id)
 
             # --- Konversation 3-Steps ---
             if text in self.categories_threesteps:
@@ -294,11 +294,11 @@ class telegram_bot(hass.Hass):
                                   "Draussen: {} °C\n"\
                                   "Wind: {} km/h".format(temp_ez,temp_aussen,wind))
 
-    def treppenlicht(self, chat_id):
-        self.turn_on("light.panels_treppe_og",brightness=self.pct_to_byte(5))
+    def cp_licht(self, chat_id):
+        self.turn_on("light.led_streifen_carport",brightness=self.pct_to_byte(5))
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
-                          message="Alles klar, gute Nacht an die Mädels...")
+                          message="Alles klar, Carport sollte hell sein...")
 
     def send_weather_forecast(self, chat_id):
         self.call_service('telegram_bot/send_photo',
