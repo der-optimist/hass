@@ -291,9 +291,9 @@ class auto_light(hass.Hass):
                     self.debug_filter("Triggered, too dark, light off => should switch on of nothings prevents that","few")
                     self.filter_turn_on_command(None)
                 else:
-                    self.debug_filter("Triggered, too dark, but light is already on. Maybe you should adjust brightness values:","few")
+                    self.debug_filter("Triggered, too dark, but light is already on. Maybe you should adjust brightness values:","all")
                     try:
-                        self.debug_filter("Min. Illuminance: {} - Measured Illuminance: {} - current brightness: {}".format(self.min_illuminance, self.measured_illuminance, self.byte_to_pct(self.get_state(self.light, attribute="brightness"))),"few")
+                        self.debug_filter("Min. Illuminance: {} - Measured Illuminance: {} - current brightness: {}".format(self.min_illuminance, self.measured_illuminance, self.byte_to_pct(self.get_state(self.light, attribute="brightness"))),"all")
                     except:
                         self.debug_filter("Fehler beim Lesen von min. illum., measured illum. oder brightness","few")
             else:
