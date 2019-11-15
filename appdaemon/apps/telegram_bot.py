@@ -283,7 +283,7 @@ class telegram_bot(hass.Hass):
                           message="=== 🔥 Temperaturen ❄️ ===\n"\
                                   "Esszimmer: {} °C\n"\
                                   "Draussen: {} °C\n"\
-                                  "Wind: {} km/h".format(temp_ez,temp_aussen,wind))
+                                  "Wind: {} km/h".format(round(temp_ez,1),round(temp_aussen,1),round(wind)))
 
     def treppenlicht(self, chat_id):
         self.turn_on("light.panels_treppe_og",brightness=self.pct_to_byte(5))
@@ -439,7 +439,7 @@ class telegram_bot(hass.Hass):
                     reply = "OK, habe {} ausgeschalten.".format(commands[2])
                 else:
                     self.turn_on(device_name,brightness=self.pct_to_byte(value_numeric))
-                    reply = "OK, habe {} auf Helligkeit {}% gestellt.".format(commands[2],value_numeric)
+                    reply = "OK, habe {} auf Helligkeit {}% gestellt.".format(commands[2],round(value_numeric))
         if device_type == "light_switch":
             if value == "Aus" or value == "aus":
                 self.turn_off(device_name)
@@ -454,7 +454,7 @@ class telegram_bot(hass.Hass):
                 value = 0
             if value == "Zu" or value == "zu":
                 value = 100
-            if value == "Blöde Frage" or value == "blöde Frage":
+            if value == "Blöde Frage" or value == "blöde Frage" or value == "Egal" or value == "egal":
                 value = 0
             err = False
             try: 
