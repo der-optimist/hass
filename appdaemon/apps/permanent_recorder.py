@@ -9,7 +9,7 @@ from influxdb import InfluxDBClient
 # - state_string (list of entities, state is saved)
 # - state_binary (list of entities, on = true, off = false, everything else not saved)
 # - heating_target_temperature (list of climate entities, target temperature is saved)
-# - sensor_state_float (list of entities, state is converted to float if possible. if not, no value saved)
+# - state_float (list of entities, state is converted to float if possible. if not, no value saved)
 # - db_passwd
 
 class permanent_recorder(hass.Hass):
@@ -28,7 +28,8 @@ class permanent_recorder(hass.Hass):
         self.state_string: Set[str] = self.args.get("state_string", set())
         self.state_boolean: Set[str] = self.args.get("state_boolean", set())
         self.heating_target_temperature: Set[str] = self.args.get("heating_target_temperature", set())
-        self.sensor_state_float: Set[str] = self.args.get("sensor_state_float", set())
+        self.state_float: Set[str] = self.args.get("state_float", set())
+        self.cover: Set[str] = self.args.get("cover", set())
 
         for entity in self.light_brightness:
             self.listen_state(self.light_brightness_changed, entity)
@@ -37,9 +38,12 @@ class permanent_recorder(hass.Hass):
         for entity in self.state_boolean:
             self.listen_state(self.state_boolean_changed, entity)   
         for entity in self.heating_target_temperature:
-            self.listen_state(self.heating_target_temperature_changed, entity)    
-        for entity in self.sensor_state_float:
-            self.listen_state(self.sensor_state_float_changed, entity)    
+            self.listen_state(self.heating_target_temperature_changed, entity, attribute = "temperature")    
+        for entity in self.state_float:
+            self.listen_state(self.state_float_changed, entity)
+        for entity in self.cover:
+            self.listen_state(self.cover_changed, entity, attribute = "current_position")
+            self.listen_state(self.cover_changed, entity, attribute = "current_tilt_position")
     
     def light_brightness_changed(self, entity, attributes, old, new, kwargs):
         if new == "off":
@@ -52,33 +56,41 @@ class permanent_recorder(hass.Hass):
             brightness = self.byte_to_pct(self.get_state(entity, attribute="brightness"))
         except:
             pass
-        self.client.write_points([{"measurement":entity,"fields":{"brightness":brightness},"tags":{"domain":entity.split(".")[0]}}])
+        self.client.write_points([{"measurement":entity,"fields":{"brightness":brightness}}])
 
     def state_string_changed(self, entity, attributes, old, new, kwargs):
-        self.client.write_points([{"measurement":entity,"fields":{"state_string":str(new)},"tags":{"domain":entity.split(".")[0]}}])
+        self.client.write_points([{"measurement":entity,"fields":{"state_string":str(new)}}])
 
-    def sstate_boolean_changed(self, entity, attributes, old, new, kwargs):
+    def state_boolean_changed(self, entity, attributes, old, new, kwargs):
         if new == "off":
             value = False
         elif new == "on":
             value = True
         else:
             return
-        self.client.write_points([{"measurement":entity,"fields":{"state_boolean":value},"tags":{"domain":entity.split(".")[0]}}])
+        self.client.write_points([{"measurement":entity,"fields":{"state_boolean":value}}])
 
     def heating_target_temperature_changed(self, entity, attributes, old, new, kwargs):
         try:
-            temperature_float = float(self.get_state(entity, attribute="temperature"))
+            temperature_float = float(new)
         except:
             return
-        self.client.write_points([{"measurement":entity,"fields":{"temperature":temperature_float},"tags":{"domain":entity.split(".")[0]}}])
+        self.client.write_points([{"measurement":entity,"fields":{"temperature":temperature_float}}])
 
-    def sensor_state_float_changed(self, entity, attributes, old, new, kwargs):
+    def state_float_changed(self, entity, attributes, old, new, kwargs):
         try:
-            state_float = float(new)
+            value_float = float(new)
         except:
             return
-        self.client.write_points([{"measurement":entity,"fields":{"state_float":state_float},"tags":{"domain":entity.split(".")[0]}}])
+        self.client.write_points([{"measurement":entity,"fields":{"state_float":value_float}}])
+
+    def cover_changed(self, entity, attributes, old, new, kwargs):
+        try:
+            position_float = float(self.get_state(entity, attribute="current_position"))
+            tilt_float = float(self.get_state(entity, attribute="current_tilt_position"))
+        except:
+            return
+        self.client.write_points([{"measurement":entity,"fields":{"position":position_float,"tilt":tilt_float}}])
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
