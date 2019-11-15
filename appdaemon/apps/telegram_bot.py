@@ -270,8 +270,8 @@ class telegram_bot(hass.Hass):
                                   "Schreibe mir einfach \"Licht\", \"Jalousie\", \"Heizung\", "\
                                   "\"Wetter\" oder \"Temperaturen\". Ohne die Anführungszeichen.\n"\
                                   "Wenn ich mehr wissen muss, dann frage ich schon.\n"\
-                                  "Achso, mit \"Müll\" schalte ich übrigens die aktuelle Müll-Erinngerung aus"\
-                                  "und \"Carport\" oder car macht das Carport Licht an.\n"\
+                                  "Achso, mit \"Müll\" schalte ich übrigens die aktuelle Müll-Erinngerung aus "\
+                                  "und \"Carport\" oder einfach nur car macht das Carport Licht an.\n"\
                                   "So, jetzt aber viel Spaß 🙂\n"\
                                   "Achso, eins noch: toll siehst du aus 😉")
 
