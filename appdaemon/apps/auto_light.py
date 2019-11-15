@@ -299,7 +299,7 @@ class auto_light(hass.Hass):
             else:
                 self.debug_filter("Triggered, but not too dark, will do nothing","all")
         else:
-            self.debug_filter("Not triggered, will do nothing","few")
+            self.debug_filter("Not triggered, will do nothing","all")
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
