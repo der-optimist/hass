@@ -183,7 +183,7 @@ permanent_recorder:
     - sensor.temp_schlafzimmer_pm
     - sensor.temp_schlafzimmer_taster
     - sensor.temp_wc_pm
-    - sensor.temp_wetterstation	
+    - sensor.temp_wetterstation
     - sensor.temp_windfang_pm
     - sensor.temp_wohnzimmer_pm
     - sensor.windgeschwindigkeit_wetterstation_kmh
