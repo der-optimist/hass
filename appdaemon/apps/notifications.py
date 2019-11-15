@@ -14,10 +14,14 @@ class notifications(hass.Hass):
         # --- send temps in the morning ---
         time_send_temps = datetime.time(4, 45, 00)
         self.run_daily(self.send_temps, time_send_temps)
-        #self.send_temps(None) # for testing, send now
+        self.send_temps(None) # for testing, send now
     
     def send_temps(self, kwargs):
-        temp_wz = self.get_state("sensor.temp_esszimmer_taster")
-        #lf_wz = self.get_state("sensor.0x00158d00034d1e34_humidity")
+        temp_ez = self.get_state("sensor.temp_esszimmer_taster")
         temp_aussen = self.get_state("sensor.temp_wetterstation")
-        self.fire_event("custom_notify", message="=== 🔥 Temperaturen ❄️ ===\nWohnzimmer: {} °C\nDraussen: {} °C".format(temp_wz,temp_aussen), target="telegram_jo")
+        wind = self.get_state("sensor.windgeschwindigkeit_wetterstation_kmh")
+        message="=== 🔥 Temperaturen ❄️ ===\n"\
+                "Esszimmer: {} °C\n"\
+                "Draussen: {} °C\n"\
+                "Wind: {} km/h".format(round(temp_ez,1),round(temp_aussen,1),round(wind))
+        self.fire_event("custom_notify", message=message, target="telegram_jo")
