@@ -6,7 +6,7 @@
 permanent_recorder:
   module: permanent_recorder
   class: permanent_recorder
-  db_passwd: !secret mqtt_pw_1
+  db_passwd: !secret permanent_db_passwd
   plugin: NONE
 test_dim_steps_wz:
   module: dimmer_steps
