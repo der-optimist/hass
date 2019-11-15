@@ -7,6 +7,7 @@ from influxdb import InfluxDBClient
 # Args:
 # - light_brightness (list of light entities, brightness is saved. on/off lights = 100%/0%)
 # - state_string (list of entities, state is saved)
+# - state_binary (list of entities, on = true, off = false, everything else not saved)
 # - heating_target_temperature (list of climate entities, target temperature is saved)
 # - sensor_state_float (list of entities, state is converted to float if possible. if not, no value saved)
 # - db_passwd
@@ -25,6 +26,7 @@ class permanent_recorder(hass.Hass):
         
         self.light_brightness: Set[str] = self.args.get("light_brightness", set())
         self.state_string: Set[str] = self.args.get("state_string", set())
+        self.state_boolean: Set[str] = self.args.get("state_boolean", set())
         self.heating_target_temperature: Set[str] = self.args.get("heating_target_temperature", set())
         self.sensor_state_float: Set[str] = self.args.get("sensor_state_float", set())
 
@@ -32,6 +34,8 @@ class permanent_recorder(hass.Hass):
             self.listen_state(self.light_brightness_changed, entity)
         for entity in self.state_string:
             self.listen_state(self.state_string_changed, entity)    
+        for entity in self.state_boolean:
+            self.listen_state(self.state_boolean_changed, entity)   
         for entity in self.heating_target_temperature:
             self.listen_state(self.heating_target_temperature_changed, entity)    
         for entity in self.sensor_state_float:
@@ -52,6 +56,15 @@ class permanent_recorder(hass.Hass):
 
     def state_string_changed(self, entity, attributes, old, new, kwargs):
         self.client.write_points([{"measurement":entity,"fields":{"state_string":str(new)},"tags":{"domain":entity.split(".")[0]}}])
+
+    def sstate_boolean_changed(self, entity, attributes, old, new, kwargs):
+        if new == "off":
+            value = False
+        elif new == "on":
+            value = True
+        else:
+            return
+        self.client.write_points([{"measurement":entity,"fields":{"state_boolean":value},"tags":{"domain":entity.split(".")[0]}}])
 
     def heating_target_temperature_changed(self, entity, attributes, old, new, kwargs):
         try:
