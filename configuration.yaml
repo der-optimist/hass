@@ -18,9 +18,6 @@ homeassistant:
 zone: !include zones.yaml
 
 frontend: !include frontend.yaml
-#http:
-#  ssl_certificate: certificate.pem
-#  ssl_key: privkey.pem
 
 api:
 
@@ -35,14 +32,9 @@ logger:
 lovelace:
   mode: yaml
 
-# Enables configuration UI
 config:
 
 system_health:
-
-updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
 
 hacs: # HA custom store
   token: !secret github_api_key
@@ -113,21 +105,9 @@ recorder:
   purge_keep_days: 7
 #  db_url: !secret db_url
 
-# Enables support for tracking state changes over time
 history:
 
-# View all events in a logbook
-#logbook:
-
-#device_tracker:
-#  - platform: nmap_tracker
-#    hosts: 192.168.1.6
-#  - platform: bluetooth_le_tracker
-#    track_new_devices: true
-#  - platform: bluetooth_tracker
-
 owntracks:
-#  max_gps_accuracy: 2000
 
 # Enables a map showing the location of tracked devices
 #map:
@@ -198,8 +178,6 @@ camera:
 
 # Cloud
 cloud:
-
-#group: !include groups.yaml
 
 timer:
   zigbee_permit_join:
