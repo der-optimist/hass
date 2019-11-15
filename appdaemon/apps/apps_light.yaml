@@ -308,9 +308,9 @@ auto_light_o_fl_panels:
     "18:30": 50
   min_illuminance_values:
     "00:00": 5
-    "06:30": 20
-    "09:00": 25
-    "17:00": 20
+    "06:30": 25
+    "09:00": 30
+    "17:00": 25
     "19:00": 10
     "23:00": 5
   illuminance_sensor: sensor.helligkeit_flur_og_pm
@@ -341,9 +341,9 @@ auto_light_o_tr_panels:
     "18:30": 50
   min_illuminance_values:
     "00:00": 5
-    "06:30": 20
-    "09:00": 25
-    "17:00": 20
+    "06:30": 25
+    "09:00": 30
+    "17:00": 25
     "19:00": 10
     "23:00": 5
   illuminance_sensor: sensor.helligkeit_flur_og_pm
