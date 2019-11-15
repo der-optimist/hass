@@ -14,7 +14,7 @@ class notifications(hass.Hass):
         # --- send temps in the morning ---
         time_send_temps = datetime.time(4, 45, 00)
         self.run_daily(self.send_temps, time_send_temps)
-        #self.send_temps(None) # for testing, send now
+        self.send_temps(None) # for testing, send now
     
     def send_temps(self, kwargs):
         try:
