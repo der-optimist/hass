@@ -1,12 +1,13 @@
 import appdaemon.plugins.hass.hassapi as hass
 from influxdb import InfluxDBClient
 
-# Saves a state or an attribute to a mysql db (like recorder, but less data => permanent)
+# Saves a state or an attribute to an influx db (like recorder, but less data => permanent)
 #
 # Args:
 # - light_brightness (list of light entities, brightness is saved. on/off lights = 100%/0%)
-# - state (list of entities, state is saved)
+# - state_string (list of entities, state is saved)
 # - heating_target_temperature (list of climate entities, target temperature is saved)
+# - sensor_state_float (list of entities, state is converted to float if possible. if not, no value saved)
 # - db_passwd
 
 class permanent_recorder(hass.Hass):
@@ -21,7 +22,7 @@ class permanent_recorder(hass.Hass):
         
         self.client =InfluxDBClient(self.host, self.port, self.user, self.password, self.dbname)
         
-        self.drop()
+        #self.drop()
         #self.write_test1()
         #self.query_test()
     
