@@ -296,7 +296,7 @@ class telegram_bot(hass.Hass):
                                   "Wind: {} km/h".format(temp_ez,temp_aussen,wind))
 
     def cp_licht(self, chat_id):
-        self.turn_on("light.led_streifen_carport",brightness=self.pct_to_byte(5))
+        self.turn_on("light.led_streifen_carport",brightness=self.pct_to_byte(100))
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message="Alles klar, Carport sollte hell sein...")
