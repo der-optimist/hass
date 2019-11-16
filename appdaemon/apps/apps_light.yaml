@@ -139,9 +139,9 @@ auto_light_e_fl_panels:
   special_brightness_entities:
     switch.majo_schlafen: 5
   keeping_on_entities:
-    - binary_sensor.pm_k_fl
+    - light.flur_keller
   switching_on_entities:
-    - binary_sensor.pm_k_fl
+    - light.flur_keller
 # - Bad EG
 auto_light_e_ba_panels:
   module: auto_light
