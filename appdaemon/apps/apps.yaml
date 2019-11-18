@@ -19,7 +19,6 @@ test_dim_steps_wz:
 heating_helper_windfang_wc:
   module: heating_helper
   class: heating_helper
-  plugin: NONE
   ga_binary: "10/7/6"
   climate_entity: climate.windfang_wc
   ga_text_current_temp: "10/7/8"
@@ -30,7 +29,6 @@ heating_helper_windfang_wc:
 sync_scene_entities:
   module: sync_scene_entities
   class: sync_scene_entities
-  plugin: NONE
 # Cover
 jal_bad_kinder_abends_zeit:
   module: cover_timer
@@ -39,7 +37,6 @@ jal_bad_kinder_abends_zeit:
   time: "18:00"
   position: 100
   tilt: 100
-  plugin: NONE
 jal_bad_kinder_abends_helligkeit:
   module: cover_illuminance
   class: cover_illuminance
@@ -58,7 +55,6 @@ jal_schlafzimmer_abends_zeit:
   time: "18:30"
   position: 100
   tilt: 100
-  plugin: NONE
 jal_schlafzimmer_abends_helligkeit:
   module: cover_illuminance
   class: cover_illuminance
@@ -74,40 +70,32 @@ jal_schlafzimmer_abends_helligkeit:
 toggle_self_created_switches:
   module: toggle_self_created_switches
   class: toggle_self_created_switches
-  plugin: NONE
 custom_notify:
   module: custom_notify
   class: custom_notify
-  plugin: NONE
 locations:
   module: locations
   class: locations
   zone: !secret comp_work_jo_name
   device: !secret device_jo
   name_jo: !secret name_jo
-  plugin: NONE
 notifications:
   module: notifications
   class: notifications
-  plugin: NONE
 garbage:
   module: garbage
   class: garbage
-  plugin: NONE
 log_events:
   module: log_events
   class: log_events
-  plugin: NONE
   constrain_input_boolean: input_boolean.app_switch_log_events
 calendar_and_reminders:
   module: calendar_and_reminders
   class: calendar_and_reminders
-  plugin: NONE
   token: !secret ad_calendar_apps_token
 weather_and_astro:
   module: weather_and_astro
   class: weather_and_astro
-  plugin: NONE
   token_meteograms: !secret token_meteograms
   dwd_warncell_id: !secret dwd_warncell_id
   home_town: !secret home_town
