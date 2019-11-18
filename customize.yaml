@@ -27,6 +27,8 @@ switch.kuhlschrank_keller:
   icon: mdi:fridge-outline
 switch.kuhlschrank_kuche:
   icon: mdi:fridge-outline
+switch.nz_licht_automatik:
+  icon: mdi:auto-fix
 
 # Covers
 cover.jalousie_bad_og:
