@@ -187,3 +187,4 @@ permanent_recorder:
     - sensor.temp_windfang_pm
     - sensor.temp_wohnzimmer_pm
     - sensor.windgeschwindigkeit_wetterstation_kmh
+    - sensor.stromzahler_kochfeld_rohdaten
