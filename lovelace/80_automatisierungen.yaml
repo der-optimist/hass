@@ -24,7 +24,7 @@ cards:
         name: WC
       - entity: input_boolean.app_switch_licht_la
         name: !secret name_la
-      - entity: input_boolean.app_switch_licht_naehzimmer
+      - entity: switch.nz_licht_automatik
         name: Nähzimmer
       - entity: input_boolean.app_switch_licht_le
         name: !secret name_le
