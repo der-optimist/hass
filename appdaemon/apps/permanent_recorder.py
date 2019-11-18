@@ -71,6 +71,8 @@ class permanent_recorder(hass.Hass):
         self.client.write_points([{"measurement":entity,"fields":{"state_boolean":value}}])
 
     def heating_target_temperature_changed(self, entity, attributes, old, new, kwargs):
+        if new == old:
+            return
         try:
             temperature_float = float(new)
         except:
