@@ -339,11 +339,11 @@
     device_class: problem
 
 # --- connection ---
-  - platform: ping
-    host: 192.168.178.26
-    name: ping_bildschirm
-    count: 2
-    scan_interval: 2
+#  - platform: ping
+#    host: 192.168.178.26
+#    name: ping_bildschirm
+#    count: 2
+#    scan_interval: 2
 
 # --- Template ---
   - platform: template

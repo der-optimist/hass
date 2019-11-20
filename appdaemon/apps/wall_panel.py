@@ -18,7 +18,7 @@ class wall_panel(hass.Hass):
         if self.get_state("binary_sensor.anwesenheit_bildschirm") == "on":
             self.send_wake_command(None)
         # reload page
-        self.listen_state(self.wp_online, "binary_sensor.ping_bildschirm", new = "on")
+        #self.listen_state(self.wp_online, "binary_sensor.ping_bildschirm", new = "on")
         #self.run_in(self.send_reload_command, 120) # auskommentiert wegen restart problem
         self.timer_handle = None
 
