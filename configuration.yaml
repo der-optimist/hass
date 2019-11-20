@@ -9,11 +9,11 @@ homeassistant:
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Berlin
   customize: !include customize.yaml
-#  auth_providers:
-#    - type: trusted_networks
-#      trusted_networks:
-#        - 192.168.178.0/24
-#        - 172.29.148.0/24
+  auth_providers:
+    - type: trusted_networks
+      trusted_networks:
+        - 192.168.178.0/24
+        - 172.29.148.0/24
 
 zone: !include zones.yaml
 
@@ -112,7 +112,7 @@ owntracks:
 # Enables a map showing the location of tracked devices
 #map:
 
-speedtestdotnet:
+#speedtestdotnet:
 
 #ourgroceries:
 #  username: !secret our_groceries_username
