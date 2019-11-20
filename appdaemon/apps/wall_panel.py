@@ -11,7 +11,7 @@ class wall_panel(hass.Hass):
 
     def initialize(self):
         # URL for REST api commands
-        self.url = "http://192.168.178.26:2971/api/command"
+        self.url = "http://192.168.178.42:2971/api/command"
         # presence
         self.listen_state(self.presence_on, "binary_sensor.anwesenheit_bildschirm", new = "on")
         self.listen_state(self.presence_off, "binary_sensor.anwesenheit_bildschirm", new = "off")
