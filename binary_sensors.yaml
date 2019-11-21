@@ -388,6 +388,11 @@
         value_template: >-
           {{ is_state('binary_sensor.tv_zeit_abend', 'on')
              and is_state('binary_sensor.tv_ist_an', 'on') }}
+      tv_pizza_abend:
+        friendly_name: "TV Pizza Abend"
+        value_template: >-
+          {{ is_state('binary_sensor.tv_abends_an', 'on')
+             and is_state('binary_sensor.backofen_ist_an', 'on') }}
       anwesenheit_bildschirm:
         friendly_name: "Anwesenheit Bildschirm"
         value_template: >-
