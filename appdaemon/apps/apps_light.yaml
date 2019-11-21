@@ -98,6 +98,8 @@ light_e_wf_panels:
     "19:00": 10
     "23:00": 5
   illuminance_sensor: sensor.helligkeit_windfang_pm
+  special_brightness_entities:
+    switch.majo_schlafen: 10
 # - Flur EG
 auto_light_e_fl_panels:
   module: auto_light
@@ -335,3 +337,155 @@ auto_light_o_tr_panels:
     - binary_sensor.la_oder_le_schlafen
   special_brightness_entities:
     binary_sensor.la_oder_le_schlafen: 10
+# - Esszimmer
+auto_light_e_ez_panels:
+  module: auto_light
+  class: auto_light
+  debug: few
+  constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
+  light: light.panels_esszimmer
+  triggers: 
+    - binary_sensor.pm_e_ez_bar_kuche
+    - binary_sensor.pm_e_ez_esstisch
+    - binary_sensor.pm_e_ku_bar_ez
+    - binary_sensor.pm_e_ku_kuche
+    - binary_sensor.pm_e_wz_durchgang
+  brightness_values:
+    "00:00": 40
+    "04:30": 50
+    "06:00": 60
+    "06:30": 70
+    "07:00": 80
+    "08:00": 90
+    "09:00": 100
+    "17:00": 80
+    "18:30": 50
+    "21:30": 40
+  min_illuminance_values:
+    "00:00": 10
+    "06:30": 20
+    "07:00": 30
+    "08:00": 40
+    "09:00": 50
+    "17:00": 40
+    "18:30": 30
+    "21:30": 10
+  illuminance_sensor: sensor.helligkeit_esszimmer_pm
+  special_brightness_entities:
+    switch.majo_schlafen: 10
+  keeping_off_entities:
+    - binary_sensor.tv_abends_an
+# - Küche
+auto_light_e_ku_panels:
+  module: auto_light
+  class: auto_light
+  debug: few
+  constrain_input_boolean: input_boolean.app_switch_licht_kueche
+  light: light.panels_kuche
+  triggers: 
+    - binary_sensor.pm_e_ez_bar_kuche
+    - binary_sensor.pm_e_ez_esstisch
+    - binary_sensor.pm_e_ku_bar_ez
+    - binary_sensor.pm_e_ku_kuche
+    - binary_sensor.pm_e_wz_durchgang
+  brightness_values:
+    "00:00": 40
+    "04:30": 50
+    "06:00": 60
+    "06:30": 70
+    "07:00": 80
+    "08:00": 90
+    "09:00": 100
+    "17:00": 80
+    "18:30": 70
+    "21:30": 60
+  min_illuminance_values:
+    "00:00": 10
+    "06:30": 20
+    "07:00": 30
+    "08:00": 40
+    "09:00": 50
+    "17:00": 40
+    "18:30": 30
+    "21:30": 10
+  illuminance_sensor: sensor.helligkeit_kuche_pm
+  special_brightness_entities:
+    switch.majo_schlafen: 10
+  keeping_fix_entities:
+    binary_sensor.tv_abends_an: 25
+# - Bar Panels
+auto_light_e_bar_panels:
+  module: auto_light
+  class: auto_light
+  debug: few
+  constrain_input_boolean: input_boolean.app_switch_licht_kueche
+  light: light.panels_bar
+  triggers: 
+    - binary_sensor.pm_e_ez_bar_kuche
+    - binary_sensor.pm_e_ez_esstisch
+    - binary_sensor.pm_e_ku_bar_ez
+    - binary_sensor.pm_e_ku_kuche
+    - binary_sensor.pm_e_wz_durchgang
+  brightness_values:
+    "00:00": 40
+    "04:30": 50
+    "06:00": 60
+    "06:30": 70
+    "07:00": 80
+    "08:00": 90
+    "09:00": 100
+    "17:00": 80
+    "18:30": 70
+    "21:30": 60
+  min_illuminance_values:
+    "00:00": 10
+    "06:30": 20
+    "07:00": 30
+    "08:00": 40
+    "09:00": 50
+    "17:00": 40
+    "18:30": 30
+    "21:30": 10
+  illuminance_sensor: sensor.helligkeit_kuche_pm
+  special_brightness_entities:
+    switch.majo_schlafen: 10
+  keeping_fix_entities:
+    binary_sensor.tv_pizza_abend: 40
+  keeping_off_entities:
+    - binary_sensor.tv_abend_ohne_pizza
+  switching_off_entities:
+    - binary_sensor.tv_abend_ohne_pizza
+# - Wohnzimmer
+auto_light_e_wz_panels:
+  module: auto_light
+  class: auto_light
+  debug: few
+  constrain_input_boolean: input_boolean.app_switch_licht_wohnzimmer
+  light: light.panels_wohnzimmer
+  triggers: 
+    - binary_sensor.pm_e_wz_durchgang
+    - binary_sensor.pm_e_wz_couch
+  brightness_values:
+    "00:00": 50
+    "06:00": 60
+    "06:30": 70
+    "07:00": 80
+    "08:00": 90
+    "09:00": 100
+    "17:00": 80
+    "19:00": 50
+  min_illuminance_values:
+    "00:00": 10
+    "06:30": 20
+    "07:00": 30
+    "08:00": 40
+    "09:00": 50
+    "17:00": 40
+    "18:30": 30
+    "21:30": 10
+  illuminance_sensor: sensor.helligkeit_wohnzimmer_pm
+  special_brightness_entities:
+    binary_sensor.tv_ist_an: 30
+  keeping_fix_entities:
+    binary_sensor.tv_pizza_abend: 20
+    binary_sensor.tv_abend_ohne_pizza: 5
