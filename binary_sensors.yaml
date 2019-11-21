@@ -345,6 +345,12 @@
 #    count: 2
 #    scan_interval: 2
 
+# Time of Day
+  - platform: tod
+    name: TV Zeit Abend
+    after: '19:30'
+    before: '03:00'
+
 # --- Template ---
   - platform: template
     sensors:
@@ -377,6 +383,11 @@
         friendly_name: "Aufwachphase MaJo"
         value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 17
                             and is_state('switch.majo_schlafen', 'off') }}"
+      tv_abends_an:
+        friendly_name: "TV abends an"
+        value_template: >-
+          {{ is_state('binary_sensor.tv_zeit_abend', 'on')
+             and is_state('binary_sensor.tv_ist_an', 'on')
       anwesenheit_bildschirm:
         friendly_name: "Anwesenheit Bildschirm"
         value_template: >-
