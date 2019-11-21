@@ -370,7 +370,7 @@ auto_light_e_ez_panels:
     "17:00": 40
     "18:30": 30
     "21:30": 10
-  illuminance_sensor: helligkeit_esszimmer_pm
+  illuminance_sensor: sensor.helligkeit_esszimmer_pm
   special_brightness_entities:
     switch.majo_schlafen: 10
   keeping_off_entities:
@@ -408,7 +408,7 @@ auto_light_e_ku_panels:
     "17:00": 40
     "18:30": 30
     "21:30": 10
-  illuminance_sensor: helligkeit_kuche_pm
+  illuminance_sensor: sensor.helligkeit_kuche_pm
   special_brightness_entities:
     switch.majo_schlafen: 10
   keeping_fix_entities:
@@ -446,7 +446,7 @@ auto_light_e_bar_panels:
     "17:00": 40
     "18:30": 30
     "21:30": 10
-  illuminance_sensor: helligkeit_kuche_pm
+  illuminance_sensor: sensor.helligkeit_kuche_pm
   special_brightness_entities:
     switch.majo_schlafen: 10
   keeping_fix_entities:
@@ -483,7 +483,7 @@ auto_light_e_wz_panels:
     "17:00": 40
     "18:30": 30
     "21:30": 10
-  illuminance_sensor: helligkeit_wohnzimmer_pm
+  illuminance_sensor: sensor.helligkeit_wohnzimmer_pm
   special_brightness_entities:
     binary_sensor.tv_ist_an: 30
   keeping_fix_entities:
