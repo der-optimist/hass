@@ -98,6 +98,8 @@ light_e_wf_panels:
     "19:00": 10
     "23:00": 5
   illuminance_sensor: sensor.helligkeit_windfang_pm
+  special_brightness_entities:
+    switch.majo_schlafen: 10
 # - Flur EG
 auto_light_e_fl_panels:
   module: auto_light
@@ -335,3 +337,39 @@ auto_light_o_tr_panels:
     - binary_sensor.la_oder_le_schlafen
   special_brightness_entities:
     binary_sensor.la_oder_le_schlafen: 10
+# - Esszimmer
+auto_light_e_ez_panels:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
+  light: light.panels_esszimmer
+  triggers: 
+    - binary_sensor.pm_e_ez_bar_kuche
+    - binary_sensor.pm_e_ez_esstisch
+    - binary_sensor.pm_e_ku_bar_ez
+    - binary_sensor.pm_e_ku_kuche
+    - binary_sensor.pm_e_wz_durchgang
+  brightness_values:
+    "00:00": 40
+    "04:30": 50
+    "06:00": 60
+    "06:30": 70
+    "07:00": 80
+    "08:00": 90
+    "09:00": 100
+    "17:00": 80
+    "18:30": 50
+    "21:30": 40
+  min_illuminance_values:
+    "00:00": 10
+    "06:30": 20
+    "07:00": 30
+    "08:00": 40
+    "09:00": 50
+    "17:00": 40
+    "18:30": 30
+    "21:30": 10
+  illuminance_sensor: helligkeit_esszimmer_pm
+  special_brightness_entities:
+    switch.majo_schlafen: 10
