@@ -12,7 +12,7 @@ class pizza_timer(hass.Hass):
 
     def initialize(self):
         self.listen_state(self.state_change, "input_number.pizza_timer_2")
-        self.url = "http://192.168.178.26:2971/api/command"
+        self.url = "http://192.168.178.42:2971/api/command"
         self.timer_handle = None
         self.time_internal_state = 0
         if not float(self.get_state("input_number.pizza_timer_2")) == float(0):
