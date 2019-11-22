@@ -23,6 +23,10 @@ import random
 class auto_light(hass.Hass):
 
     def initialize(self):
+        # wait for KNX entities
+        self.run_in(self.initialize_delayed,60)
+    
+    def initialize_delayed(self):
         random_second = random.randint(0,30)
         self.light: str = self.args.get("light")
         self.triggers: Set[str] = self.args.get("triggers", set())
