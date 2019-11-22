@@ -52,7 +52,7 @@ class counter_to_power_meter(hass.Hass):
                 current_power = electricity_delta_Ws / time_delta_seconds
                 self.set_state(self.args["ha_power_sensor_name"], state = round(current_power, 1))
                 self.log("Value {} received from counter {}. Calculated new power value: {}".format(new,self.args["knx_counter"],round(current_power, 1)))
-                self.handle_ramp_down_timer = self.run_in(self.ramp_down,round(time_delta_seconds + 0.5))
+                self.handle_ramp_down_timer = self.run_in(self.ramp_down,round(2* time_delta_seconds))
         # save current values in variables for next calculation
         self.time_of_last_event = current_time
         self.value_of_last_event = float(new)
