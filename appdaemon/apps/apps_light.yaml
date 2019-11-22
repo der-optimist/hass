@@ -451,9 +451,7 @@ auto_light_e_bar_panels:
   keeping_fix_entities:
     binary_sensor.tv_pizza_abend: 40
   keeping_off_entities:
-    - binary_sensor.tv_abend_ohne_pizza
-  switching_off_entities:
-    - binary_sensor.tv_abend_ohne_pizza
+    - binary_sensor.kein_tv_pizza_abend
 # - Wohnzimmer
 auto_light_e_wz_panels:
   module: auto_light
