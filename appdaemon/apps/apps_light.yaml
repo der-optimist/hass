@@ -186,7 +186,7 @@ auto_light_o_ba_panels:
     switch.bad_og_nachtmodus: 5
 # - Schlafzimmer
 auto_light_e_sz_panels:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
   debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_schlafzimmer
