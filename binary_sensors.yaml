@@ -156,6 +156,15 @@
 #    sync_state: False
     name: PM_O_FL_Treppe
     device_class: motion
+  - platform: knx
+    state_address: '15/0/41'
+#    sync_state: False
+    name: O FL Logik Bewegung rund um Treppe
+    device_class: motion
+  - platform: knx
+    state_address: '15/0/42'
+#    sync_state: False
+    name: O FL Logik Min Ein Kind schläft
 
 # Bad OG
   - platform: knx
