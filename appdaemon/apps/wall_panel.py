@@ -19,7 +19,7 @@ class wall_panel(hass.Hass):
             self.send_wake_command(None)
         # reload page
         #self.listen_state(self.wp_online, "binary_sensor.ping_bildschirm", new = "on")
-        #self.run_in(self.send_reload_command, 120) # auskommentiert wegen restart problem
+        self.run_in(self.send_reload_command, 60) # auskommentiert wegen restart problem
         self.timer_handle = None
 
     def send_wake_command(self, kwargs):
