@@ -58,16 +58,16 @@ light_e_wc_spiegel:
   triggers: 
     - binary_sensor.pm_e_wc
   brightness_values:
-    "00:00": 20
-    "05:00": 50
-    "06:30": 60
-    "09:00": 100
-    "17:00": 80
-    "18:30": 60
-    "21:00": 20
-  min_illuminance_values:
     "00:00": 100
     "05:00": 100
+  min_illuminance_values:
+    "00:00": 10
+    "05:00": 20
+    "06:30": 30
+    "09:00": 40
+    "17:00": 30
+    "19:00": 20
+    "23:00": 10
   illuminance_sensor: sensor.helligkeit_wc_pm
   keeping_off_entities:
     - switch.majo_schlafen
@@ -92,9 +92,9 @@ light_e_wf_panels:
   min_illuminance_values:
     "00:00": 5
     "05:00": 10
-    "06:30": 20
-    "09:00": 25
-    "17:00": 20
+    "06:30": 12
+    "09:00": 15
+    "17:00": 12
     "19:00": 10
     "23:00": 5
   illuminance_sensor: sensor.helligkeit_windfang_pm
@@ -373,7 +373,9 @@ auto_light_e_ez_panels:
   special_brightness_entities:
     switch.majo_schlafen: 10
   keeping_off_entities:
-    - binary_sensor.tv_abends_an
+    - binary_sensor.tv_zeit_abend
+  switching_off_entities:
+    - switch.majo_schlafen
 # - Küche
 auto_light_e_ku_panels:
   module: auto_light

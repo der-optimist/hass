@@ -357,7 +357,7 @@
 # Time of Day
   - platform: tod
     name: TV Zeit Abend
-    after: '19:30'
+    after: '20:00'
     before: '03:00'
 
 # --- Template ---
