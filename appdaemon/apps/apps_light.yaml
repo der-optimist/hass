@@ -341,7 +341,7 @@ auto_light_o_tr_panels:
 auto_light_e_ez_panels:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
   light: light.panels_esszimmer
   triggers: 
@@ -382,7 +382,7 @@ auto_light_e_ez_panels:
 auto_light_e_ku_panels:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_kueche
   light: light.panels_kuche
   triggers: 
@@ -420,7 +420,7 @@ auto_light_e_ku_panels:
 auto_light_e_bar_panels:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_kueche
   light: light.panels_bar
   triggers: 
