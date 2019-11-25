@@ -1,5 +1,4 @@
-# --- Temperatur ---
-# Außendaten über Internet
+# --- Template ---
   - platform: template
     sensors:
       temp_owm:
@@ -14,6 +13,8 @@
         friendly_name: 'Datum'
         value_template: '{{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}'
         entity_id: sensor.date
+
+# --- Temperatur ---
 # KNX
   - platform: knx
     name: 'Temp. Küche PM'
@@ -320,8 +321,13 @@
   - platform: knx
     name: 'El. Leistung Spülmaschine'
     state_address: '0/0/43'
-#    sync_state: False
     type: power
+  - platform: template
+    sensors:
+      el_leistung_spulmaschine_round:
+        value_template: "{{ '%.1f'%(states('sensor.sensor.el_leistung_spulmaschine') | float) | float }}"
+        friendly_name: 'El. Leistung Spülmaschine (gerundet)'
+        unit_of_measurement: 'W'
   - platform: knx
     name: 'El. Leistung Mixi'
     state_address: '0/0/63'
