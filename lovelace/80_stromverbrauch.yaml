@@ -6,31 +6,31 @@ cards:
     title: Leistung EG
     show_header_toggle: false
     entities:
-      - entity: sensor.el_leistung_backofen
+      - entity: sensor.el_leistung_backofen_round
         name: Backofen
       - entity: sensor.el_leistung_kochfeld
         name: Herd
-      - entity: sensor.el_leistung_kuhlschrank_kuche
+      - entity: sensor.el_leistung_kuhlschrank_kuche_round
         name: Kühlschrank
-      - entity: sensor.el_leistung_mixi
+      - entity: sensor.el_leistung_mixi_round
         name: Mixi
-      - entity: sensor.el_leistung_spulmaschine
+      - entity: sensor.el_leistung_spulmaschine_round
         name: Spülmaschine
-      - entity: sensor.el_leistung_tv
+      - entity: sensor.el_leistung_tv_round
         name: TV
   - type: entities
     title: Leistung Keller
     show_header_toggle: false
     entities:
-      - entity: sensor.el_leistung_luftungsanlage
+      - entity: sensor.el_leistung_luftungsanlage_round
         name: Lüftungsanlage
-      - entity: sensor.el_leistung_waschmaschine
+      - entity: sensor.el_leistung_waschmaschine_round
         name: Waschmaschine
-      - entity: sensor.el_leistung_trockner
+      - entity: sensor.el_leistung_trockner_round
         name: Trockner
-      - entity: sensor.el_leistung_gefrierschrank
+      - entity: sensor.el_leistung_gefrierschrank_round
         name: Gefrierschrank
-      - entity: sensor.el_leistung_kuhlschrank_keller
+      - entity: sensor.el_leistung_kuhlschrank_keller_round
         name: Kühlschrank
       - entity: sensor.el_leistung_warmepumpe
         name: Heizstab Wärmepumpe
