@@ -32,7 +32,7 @@ class counter_to_power_meter(hass.Hass):
         except:
             current_electricity = 0
         self.set_state(self.args["ha_electricity_sensor_name"], state = current_electricity, attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
-        self.set_state(self.args["ha_power_sensor_name"], state = 0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W"})
+        self.set_state(self.args["ha_power_sensor_name"], state = 0.0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W"})
         
     def counter_changed(self, entity, attribute, old, new, kwargs):
         if new == "unavailable" or new == "Nicht verfügbar" or new == old:
@@ -67,7 +67,7 @@ class counter_to_power_meter(hass.Hass):
         electricity_delta_Ws = self.args["knx_sending_every"] * self.args["energy_per_pulse"] * 3600 * 1000
         current_power = electricity_delta_Ws / time_delta_seconds
         if current_power < self.args["cut_power_below"]:
-            self.set_state(self.args["ha_power_sensor_name"], state = 0)
+            self.set_state(self.args["ha_power_sensor_name"], state = 0.0)
             self.log("Rampdown limit of counter {} reached. Will set new power to 0".format(self.args["knx_counter"]))
         else:
             self.set_state(self.args["ha_power_sensor_name"], state = round(current_power, 1))
