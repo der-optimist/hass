@@ -27,8 +27,11 @@ class counter_to_power_meter(hass.Hass):
         self.time_of_last_event = None
         self.value_of_last_event = None
         self.handle_ramp_down_timer = None
-        # ich geh erst mal davon aus, dass der Wert nicht zur Verfügung steht und setze den Sensor auf 0
-        self.set_state(self.args["ha_electricity_sensor_name"], state = 0, attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
+        try:
+            current_electricity = round(self.get_state(self.args["ha_electricity_sensor_name"]))
+        except:
+            current_electricity = 0
+        self.set_state(self.args["ha_electricity_sensor_name"], state = current_electricity, attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
         self.set_state(self.args["ha_power_sensor_name"], state = 0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W"})
         
     def counter_changed(self, entity, attribute, old, new, kwargs):
@@ -39,7 +42,7 @@ class counter_to_power_meter(hass.Hass):
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
         # Update electricity meter sensor
         new_electricity_value = float(new) * self.args["energy_per_pulse"]
-        self.set_state(self.args["ha_electricity_sensor_name"], state = new_electricity_value)
+        self.set_state(self.args["ha_electricity_sensor_name"], state = round(new_electricity_value))
         # calculate power
         if self.time_of_last_event == None:
             self.log("Looks like it is the first event since a restart. Power will be available next time")
