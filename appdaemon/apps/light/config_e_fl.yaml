@@ -1,0 +1,35 @@
+# - Flur EG
+auto_light_e_fl_panels:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  constrain_input_boolean: input_boolean.app_switch_licht_flur_eg
+  light: light.panels_flur_eg
+  triggers: 
+#    - binary_sensor.pm_e_fl_flur
+    - binary_sensor.pm_e_fl_treppe_og
+    - binary_sensor.pm_e_fl_windfang
+    - binary_sensor.pm_e_wf_flur
+    - binary_sensor.pm_e_wf_garderobe
+    - binary_sensor.pm_o_fl_treppe
+    - binary_sensor.pm_e_wc
+    - binary_sensor.pm_e_sz_gang
+    - binary_sensor.pm_ktr_flur
+    - binary_sensor.pm_k_fl
+  brightness_values:
+    "00:00": 35
+    "03:00": 10
+    "06:30": 60
+    "09:00": 80
+    "17:00": 50
+    "18:30": 35
+  min_illuminance_values:
+    "00:00": 5
+    "06:30": 20
+    "09:00": 25
+    "17:00": 10
+    "19:00": 10
+    "23:00": 5
+  illuminance_sensor: sensor.helligkeit_flur_eg_pm
+  special_brightness_entities:
+    switch.majo_schlafen: 5
