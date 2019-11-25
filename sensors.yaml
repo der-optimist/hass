@@ -319,6 +319,7 @@
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_backofen') | float) | float }}"
         friendly_name: 'El. Leistung Backofen (gerundet)'
         unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
   # Kühlschrank Küche
   - platform: knx
     name: 'El. Leistung Kühlschrank Küche'
@@ -330,6 +331,7 @@
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche') | float) | float }}"
         friendly_name: 'El. Leistung Kühlschrank Küche (gerundet)'
         unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
   # Spülmaschine
   - platform: knx
     name: 'El. Leistung Spülmaschine'
@@ -341,6 +343,7 @@
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_spulmaschine') | float) | float }}"
         friendly_name: 'El. Leistung Spülmaschine (gerundet)'
         unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
   # Mixi
   - platform: knx
     name: 'El. Leistung Mixi'
@@ -352,6 +355,7 @@
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_mixi') | float) | float }}"
         friendly_name: 'El. Leistung Mixi (gerundet)'
         unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
   # TV
   - platform: knx
     name: 'El. Leistung TV'
@@ -363,6 +367,7 @@
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_tv') | float) | float }}"
         friendly_name: 'El. Leistung TV (gerundet)'
         unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
   # Waschmaschine
   - platform: knx
     name: 'El. Leistung Waschmaschine'
@@ -374,6 +379,7 @@
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_waschmaschine') | float) | float }}"
         friendly_name: 'El. Leistung Waschmaschine (gerundet)'
         unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
   # Trockner
   - platform: knx
     name: 'El. Leistung Trockner'
@@ -385,6 +391,7 @@
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_trockner') | float) | float }}"
         friendly_name: 'El. Leistung Trockner (gerundet)'
         unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
   # Kühlschrank Keller
   - platform: knx
     name: 'El. Leistung Kühlschrank Keller'
@@ -396,6 +403,7 @@
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float) | float }}"
         friendly_name: 'El. Leistung Kühlschrank Keller (gerundet)'
         unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
   # Gefrierschrank
   - platform: knx
     name: 'El. Leistung Gefrierschrank'
@@ -407,6 +415,7 @@
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_gefrierschrank') | float) | float }}"
         friendly_name: 'El. Leistung Gefrierschrank (gerundet)'
         unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
   # Lüftungsanlage
   - platform: knx
     name: 'El. Leistung Lüftungsanlage'
@@ -418,6 +427,7 @@
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_luftungsanlage') | float) | float }}"
         friendly_name: 'El. Leistung Lüftungsanlage (gerundet)'
         unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
 
 # --- Stromzähler ---
 # Schaltaktor direkt
