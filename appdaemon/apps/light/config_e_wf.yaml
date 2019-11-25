@@ -1,0 +1,29 @@
+# - Windfang
+auto_light_e_wf_panels:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  constrain_input_boolean: input_boolean.app_switch_licht_windfang
+  light: light.panels_windfang
+  triggers: 
+    - binary_sensor.pm_e_wf_haustur
+    - binary_sensor.pm_e_wf_garderobe
+    - binary_sensor.pm_e_fl_windfang
+  brightness_values:
+    "00:00": 60
+    "05:00": 50
+    "06:30": 60
+    "09:00": 100
+    "17:00": 80
+    "18:30": 60
+  min_illuminance_values:
+    "00:00": 5
+    "05:00": 10
+    "06:30": 12
+    "09:00": 15
+    "17:00": 12
+    "19:00": 10
+    "23:00": 5
+  illuminance_sensor: sensor.helligkeit_windfang_pm
+  special_brightness_entities:
+    switch.majo_schlafen: 10
