@@ -375,9 +375,9 @@ auto_light_e_ez_panels:
   special_brightness_entities:
     switch.majo_schlafen: 10
   keeping_off_entities:
-    - binary_sensor.tv_zeit_abend
+    - binary_sensor.abends_und_min_ein_kind_im_bett
   keeping_on_entities:
-    - binary_sensor.tv_zeit_abend
+    - binary_sensor.abends_und_min_ein_kind_im_bett
   switching_off_entities:
     - switch.majo_schlafen
 # - Küche
