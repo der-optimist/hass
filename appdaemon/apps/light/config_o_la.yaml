@@ -1,0 +1,31 @@
+# - La
+auto_light_o_la_panels:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  constrain_input_boolean: input_boolean.app_switch_licht_la
+  light: light.panels_la
+  triggers: 
+    - binary_sensor.pm_o_ko_la_raum
+    - binary_sensor.pm_o_ko_la_tuer
+  brightness_values:
+    "00:00": 30
+    "05:30": 50
+    "06:30": 70
+    "08:00": 80
+    "09:00": 90
+    "17:00": 80
+    "18:00": 50
+    "20:00": 40
+    "21:00": 30
+  min_illuminance_values:
+    "00:00": 5
+    "05:30": 20
+    "09:00": 50
+    "18:00": 20
+    "21:00": 5
+  illuminance_sensor: sensor.helligkeit_la_pm
+  keeping_off_entities:
+    - switch.la_schlaft
+  special_brightness_entities:
+    binary_sensor.aufwachphase_la: 10
