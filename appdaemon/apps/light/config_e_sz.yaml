@@ -1,0 +1,26 @@
+# - Schlafzimmer
+auto_light_e_sz_panels:
+  module: auto_light_beta
+  class: auto_light
+  debug: few
+  constrain_input_boolean: input_boolean.app_switch_licht_schlafzimmer
+  light: light.panels_schlafzimmer
+  triggers: 
+    - binary_sensor.pm_e_sz_bett
+    - binary_sensor.pm_e_sz_gang
+  brightness_values:
+    "00:00": 30
+    "06:30": 50
+    "09:00": 90
+    "17:00": 80
+    "18:00": 70
+    "20:00": 30
+  min_illuminance_values:
+    "00:00": 5
+    "04:30": 10
+    "23:00": 5
+  illuminance_sensor: sensor.helligkeit_schlafzimmer_pm
+  keeping_off_entities:
+    - switch.majo_schlafen
+  switching_off_entities:
+    - switch.majo_schlafen
