@@ -29,7 +29,7 @@ cards:
       - entity: binary_sensor.windalarm_2
       - entity: binary_sensor.windalarm_3
       - entity: binary_sensor.regenalarm
-      - entity: temperaturalarm_wetterstation
+      - entity: binary_sensor.temperaturalarm_wetterstation
   - type: entities
     title: LED Spannungsversorgung
     show_header_toggle: false
