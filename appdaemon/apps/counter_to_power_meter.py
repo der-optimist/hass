@@ -28,7 +28,7 @@ class counter_to_power_meter(hass.Hass):
         self.value_of_last_event = None
         self.handle_ramp_down_timer = None
         try:
-            current_electricity = round(self.get_state(self.args["ha_electricity_sensor_name"]))
+            current_electricity = round(float(self.get_state(self.args["ha_electricity_sensor_name"])))
         except:
             current_electricity = 0
         self.set_state(self.args["ha_electricity_sensor_name"], state = current_electricity, attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
