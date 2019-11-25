@@ -8,6 +8,18 @@ cards:
     entities:
       - entity: binary_sensor.storung_heizaktor_eg
       - entity: binary_sensor.storung_heizaktor_og
+      - entity: sensor.diagnose_heizkreis_kuche
+      - entity: sensor.diagnose_heizkreis_esszimmer
+      - entity: sensor.diagnose_heizkreis_wohnzimmer
+      - entity: sensor.diagnose_heizkreis_schlafzimmer
+      - entity: sensor.diagnose_heizkreis_bad_eg
+      - entity: sensor.diagnose_heizkreis_wc_wf
+      - entity: sensor.diagnose_heizkreis_la
+      - entity: sensor.diagnose_heizkreis_nahzimmer
+      - entity: sensor.diagnose_heizkreis_le
+      - entity: sensor.diagnose_heizkreis_gastezimmer
+      - entity: sensor.diagnose_heizkreis_flur_og
+      - entity: sensor.diagnose_heizkreis_bad_og
   - type: entities
     title: Wetterstation
     show_header_toggle: false
