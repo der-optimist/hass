@@ -1,0 +1,68 @@
+title: Stromverbrauch
+path: stromverbrauch
+icon: mdi:counter
+cards:
+  - type: entities
+    title: Leistung EG
+    show_header_toggle: false
+    entities:
+      - entity: sensor.el_leistung_backofen
+        name: Backofen
+      - entity: sensor.el_leistung_kochfeld
+        name: Herd
+      - entity: sensor.el_leistung_kuhlschrank_kuche
+        name: Kühlschrank
+      - entity: sensor.el_leistung_mixi
+        name: Mixi
+      - entity: sensor.el_leistung_spulmaschine
+        name: Spülmaschine
+      - entity: sensor.el_leistung_tv
+        name: TV
+  - type: entities
+    title: Leistung Keller
+    show_header_toggle: false
+    entities:
+      - entity: sensor.el_leistung_luftungsanlage
+        name: Lüftungsanlage
+      - entity: sensor.el_leistung_waschmaschine
+        name: Waschmaschine
+      - entity: sensor.el_leistung_trockner
+        name: Trockner
+      - entity: sensor.el_leistung_gefrierschrank
+        name: Gefrierschrank
+      - entity: sensor.el_leistung_kuhlschrank_keller
+        name: Kühlschrank
+      - entity: sensor.el_leistung_warmepumpe
+        name: Heizstab Wärmepumpe
+  - type: entities
+    title: Stromzähler EG
+    show_header_toggle: false
+    entities:
+      - entity: sensor.stromzahler_backofen
+        name: Backofen
+      - entity: sensor.stromzahler_kochfeld
+        name: Herd
+      - entity: sensor.stromzahler_kuhlschrank_kuche
+        name: Kühlschrank
+      - entity: sensor.stromzahler_mixi
+        name: Mixi
+      - entity: sensor.stromzahler_spulmaschine
+        name: Spülmaschine
+      - entity: sensor.stromzahler_tv
+        name: TV
+  - type: entities
+    title: Stromzähler Keller
+    show_header_toggle: false
+    entities:
+      - entity: sensor.stromzahler_luftungsanlage
+        name: Lüftungsanlage
+      - entity: sensor.stromzahler_waschmaschine
+        name: Waschmaschine
+      - entity: sensor.stromzahler_trockner
+        name: Trockner
+      - entity: sensor.stromzahler_gefrierschrank
+        name: Gefrierschrank
+      - entity: sensor.stromzahler_kuhlschrank_keller
+        name: Kühlschrank
+      - entity: sensor.stromzahler_warmepumpe
+        name: Heizstab Wärmepumpe
