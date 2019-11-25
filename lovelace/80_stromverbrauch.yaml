@@ -11,7 +11,7 @@ cards:
       - entity: sensor.el_leistung_kochfeld
         name: Herd
       - entity: sensor.el_leistung_kuhlschrank_kuche_round
-        name: Kühlschrank
+        name: Kühlschrank Küche
       - entity: sensor.el_leistung_mixi_round
         name: Mixi
       - entity: sensor.el_leistung_spulmaschine_round
@@ -31,7 +31,7 @@ cards:
       - entity: sensor.el_leistung_gefrierschrank_round
         name: Gefrierschrank
       - entity: sensor.el_leistung_kuhlschrank_keller_round
-        name: Kühlschrank
+        name: Kühlschrank Keller
       - entity: sensor.el_leistung_warmepumpe
         name: Heizstab Wärmepumpe
   - type: entities
