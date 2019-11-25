@@ -355,10 +355,12 @@ auto_light_e_ez_panels:
     "04:30": 50
     "06:00": 60
     "06:30": 70
-    "07:00": 80
-    "08:00": 90
-    "09:00": 100
-    "18:30": 80
+    "06:45": 80
+    "07:00": 90
+    "07:15": 100
+    "09:00": 90
+    "10:00": 80
+    "18:30": 70
     "21:30": 40
   min_illuminance_values:
     "00:00": 10
@@ -397,10 +399,7 @@ auto_light_e_ku_panels:
     "06:00": 60
     "06:30": 70
     "07:00": 80
-    "08:00": 90
-    "09:00": 100
-    "17:00": 80
-    "18:30": 75
+    "18:30": 70
     "21:30": 60
   min_illuminance_values:
     "00:00": 10
@@ -471,9 +470,8 @@ auto_light_e_wz_panels:
     "06:00": 60
     "06:30": 70
     "07:00": 80
-    "08:00": 90
-    "09:00": 100
-    "17:00": 80
+    "07:30": 90
+    "10:00": 80
     "19:00": 50
   min_illuminance_values:
     "00:00": 10
@@ -488,5 +486,5 @@ auto_light_e_wz_panels:
   special_brightness_entities:
     binary_sensor.tv_ist_an: 30
   keeping_fix_entities:
-    binary_sensor.tv_pizza_abend: 20
+    binary_sensor.tv_pizza_abend: 10
     binary_sensor.tv_abend_ohne_pizza: 5
