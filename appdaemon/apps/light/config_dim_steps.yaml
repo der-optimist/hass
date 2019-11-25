@@ -1,0 +1,23 @@
+# --- Dim-Steps ---
+dimmer_steps_panels_le:
+  module: dimmer_steps
+  class: dimmer_steps
+  light_entity: light.panels_le
+  steps:
+    - 0
+    - 5
+    - 30
+    - 80
+    - 100
+  command_ga: "15/0/28"
+dimmer_steps_panels_la:
+  module: dimmer_steps
+  class: dimmer_steps
+  light_entity: light.panels_la
+  steps:
+    - 0
+    - 5
+    - 30
+    - 80
+    - 100
+  command_ga: "15/0/29"
