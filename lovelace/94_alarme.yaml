@@ -1,0 +1,53 @@
+title: Alarme
+path: alarme
+icon: mdi:message-alert-outline
+cards:
+  - type: entities
+    title: Heizungsaktoren
+    show_header_toggle: false
+    entities:
+      - entity: binary_sensor.storung_heizaktor_eg
+      - entity: binary_sensor.storung_heizaktor_og
+  - type: entities
+    title: Wetterstation
+    show_header_toggle: false
+    entities:
+      - entity: binary_sensor.wetterstation_status_gps_signal
+      - entity: binary_sensor.windalarm_1
+      - entity: binary_sensor.windalarm_2
+      - entity: binary_sensor.windalarm_3
+      - entity: binary_sensor.regenalarm
+      - entity: temperaturalarm_wetterstation
+  - type: entities
+    title: LED Spannungsversorgung
+    show_header_toggle: false
+    entities:
+      - entity: binary_sensor.status_24v_led_aktor_1
+      - entity: binary_sensor.status_24v_led_aktor_2
+      - entity: binary_sensor.status_24v_led_aktor_3
+      - entity: binary_sensor.status_24v_led_aktor_4
+      - entity: binary_sensor.status_24v_led_aktor_5
+      - entity: binary_sensor.status_24v_led_aktor_6
+      - entity: binary_sensor.status_24v_led_aktor_7
+  - type: entities
+    title: LED Überstromalarm
+    show_header_toggle: false
+    entities:
+      - entity: binary_sensor.uberstromalarm_led_aktor_1
+      - entity: binary_sensor.uberstromalarm_led_aktor_2
+      - entity: binary_sensor.uberstromalarm_led_aktor_3
+      - entity: binary_sensor.uberstromalarm_led_aktor_4
+      - entity: binary_sensor.uberstromalarm_led_aktor_5
+      - entity: binary_sensor.uberstromalarm_led_aktor_6
+      - entity: binary_sensor.uberstromalarm_led_aktor_7
+  - type: entities
+    title: LED Übertemperaturalarm
+    show_header_toggle: false
+    entities:
+      - entity: binary_sensor.ubertemperaturalarm_led_aktor_1
+      - entity: binary_sensor.ubertemperaturalarm_led_aktor_2
+      - entity: binary_sensor.ubertemperaturalarm_led_aktor_3
+      - entity: binary_sensor.ubertemperaturalarm_led_aktor_4
+      - entity: binary_sensor.ubertemperaturalarm_led_aktor_5
+      - entity: binary_sensor.ubertemperaturalarm_led_aktor_6
+      - entity: binary_sensor.ubertemperaturalarm_led_aktor_7
