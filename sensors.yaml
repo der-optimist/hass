@@ -493,6 +493,56 @@
 #    sync_state: False
     type: 4byte_unsigned
 
+# --- Diagnosemeldungen
+  - platform: knx
+    name: 'Diagnose Heizkreis Küche'
+    state_address: '10/0/6'
+    type: string
+  - platform: knx
+    name: 'Diagnose Heizkreis Esszimmer'
+    state_address: '10/0/26'
+    type: string
+  - platform: knx
+    name: 'Diagnose Heizkreis Wohnzimmer'
+    state_address: '10/0/46'
+    type: string
+  - platform: knx
+    name: 'Diagnose Heizkreis Schlafzimmer'
+    state_address: '10/0/66'
+    type: string
+  - platform: knx
+    name: 'Diagnose Heizkreis Bad EG'
+    state_address: '10/0/86'
+    type: string
+  - platform: knx
+    name: 'Diagnose Heizkreis WC/WF'
+    state_address: '10/0/106'
+    type: string
+  - platform: knx
+    name: 'Diagnose Heizkreis La'
+    state_address: '10/0/126'
+    type: string
+  - platform: knx
+    name: 'Diagnose Heizkreis Nähzimmer'
+    state_address: '10/0/146'
+    type: string
+  - platform: knx
+    name: 'Diagnose Heizkreis Le'
+    state_address: '10/0/166'
+    type: string
+  - platform: knx
+    name: 'Diagnose Heizkreis Gästezimmer'
+    state_address: '10/0/186'
+    type: string
+  - platform: knx
+    name: 'Diagnose Heizkreis Flur OG'
+    state_address: '10/0/206'
+    type: string
+  - platform: knx
+    name: 'Diagnose Heizkreis Bad OG'
+    state_address: '10/0/226'
+    type: string
+    
 # --- Sonstiges ---
 # History
   - platform: history_stats
