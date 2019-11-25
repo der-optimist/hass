@@ -308,16 +308,29 @@
 
 # --- Elektrische Leistung ---
 # Schaltaktor direkt
+  # Backofen
   - platform: knx
     name: 'El. Leistung Backofen'
     state_address: '0/0/3'
-#    sync_state: False
     type: power
+  - platform: template
+    sensors:
+      el_leistung_backofen_round:
+        value_template: "{{ '%.1f'%(states('sensor.el_leistung_backofen') | float) | float }}"
+        friendly_name: 'El. Leistung Backofen (gerundet)'
+        unit_of_measurement: 'W'
+  # Kühlschrank Küche
   - platform: knx
     name: 'El. Leistung Kühlschrank Küche'
     state_address: '0/0/23'
-#    sync_state: False
     type: power
+  - platform: template
+    sensors:
+      el_leistung_kuhlschrank_kuche_round:
+        value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche') | float) | float }}"
+        friendly_name: 'El. Leistung Kühlschrank Küche (gerundet)'
+        unit_of_measurement: 'W'
+  # Spülmaschine
   - platform: knx
     name: 'El. Leistung Spülmaschine'
     state_address: '0/0/43'
@@ -325,44 +338,86 @@
   - platform: template
     sensors:
       el_leistung_spulmaschine_round:
-        value_template: "{{ '%.1f'%(states('sensor.sensor.el_leistung_spulmaschine') | float) | float }}"
+        value_template: "{{ '%.1f'%(states('sensor.el_leistung_spulmaschine') | float) | float }}"
         friendly_name: 'El. Leistung Spülmaschine (gerundet)'
         unit_of_measurement: 'W'
+  # Mixi
   - platform: knx
     name: 'El. Leistung Mixi'
     state_address: '0/0/63'
-#    sync_state: False
     type: power
+  - platform: template
+    sensors:
+      el_leistung_mixi_round:
+        value_template: "{{ '%.1f'%(states('sensor.el_leistung_mixi') | float) | float }}"
+        friendly_name: 'El. Leistung Mixi (gerundet)'
+        unit_of_measurement: 'W'
+  # TV
   - platform: knx
     name: 'El. Leistung TV'
     state_address: '0/0/103'
-#    sync_state: False
     type: power
+  - platform: template
+    sensors:
+      el_leistung_tv_round:
+        value_template: "{{ '%.1f'%(states('sensor.el_leistung_tv') | float) | float }}"
+        friendly_name: 'El. Leistung TV (gerundet)'
+        unit_of_measurement: 'W'
+  # Waschmaschine
   - platform: knx
     name: 'El. Leistung Waschmaschine'
     state_address: '0/1/143'
-#    sync_state: False
     type: power
+  - platform: template
+    sensors:
+      el_leistung_waschmaschine_round:
+        value_template: "{{ '%.1f'%(states('sensor.el_leistung_waschmaschine') | float) | float }}"
+        friendly_name: 'El. Leistung Waschmaschine (gerundet)'
+        unit_of_measurement: 'W'
+  # Trockner
   - platform: knx
     name: 'El. Leistung Trockner'
     state_address: '0/1/163'
-#    sync_state: False
     type: power
+  - platform: template
+    sensors:
+      el_leistung_trockner_round:
+        value_template: "{{ '%.1f'%(states('sensor.el_leistung_trockner') | float) | float }}"
+        friendly_name: 'El. Leistung Trockner (gerundet)'
+        unit_of_measurement: 'W'
+  # Kühlschrank Keller
   - platform: knx
     name: 'El. Leistung Kühlschrank Keller'
     state_address: '0/1/203'
-#    sync_state: False
     type: power
+  - platform: template
+    sensors:
+      el_leistung_kuhlschrank_keller_round:
+        value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float) | float }}"
+        friendly_name: 'El. Leistung Kühlschrank Keller (gerundet)'
+        unit_of_measurement: 'W'
+  # Gefrierschrank
   - platform: knx
     name: 'El. Leistung Gefrierschrank'
     state_address: '0/1/223'
-#    sync_state: False
     type: power
+  - platform: template
+    sensors:
+      el_leistung_gefrierschrank_round:
+        value_template: "{{ '%.1f'%(states('sensor.el_leistung_gefrierschrank') | float) | float }}"
+        friendly_name: 'El. Leistung Gefrierschrank (gerundet)'
+        unit_of_measurement: 'W'
+  # Lüftungsanlage
   - platform: knx
     name: 'El. Leistung Lüftungsanlage'
     state_address: '0/2/143'
-#    sync_state: False
     type: power
+  - platform: template
+    sensors:
+      el_leistung_luftungsanlage_round:
+        value_template: "{{ '%.1f'%(states('sensor.el_leistung_luftungsanlage') | float) | float }}"
+        friendly_name: 'El. Leistung Lüftungsanlage (gerundet)'
+        unit_of_measurement: 'W'
 
 # --- Stromzähler ---
 # Schaltaktor direkt
