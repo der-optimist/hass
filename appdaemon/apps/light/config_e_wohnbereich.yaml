@@ -111,7 +111,7 @@ auto_light_e_bar_panels:
     - binary_sensor.kein_tv_pizza_abend
 # - Wohnzimmer
 auto_light_e_wz_panels:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_wohnzimmer
