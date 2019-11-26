@@ -301,7 +301,7 @@ class auto_light(hass.Hass):
                     except:
                         self.debug_filter("Fehler beim Lesen von min. illum., measured illum. oder brightness","few")
             else:
-                self.debug_filter("Triggered, but not too dark, will do nothing","all")
+                self.debug_filter("Triggered, but not too dark, will do nothing","few")
         else:
             self.debug_filter("Not triggered, will do nothing","all")
 
