@@ -118,7 +118,8 @@ auto_light_e_wz_panels:
   light: light.panels_wohnzimmer
   triggers: 
     - binary_sensor.pm_e_wz_durchgang
-    - binary_sensor.pm_e_wz_couch
+    - binary_sensor.pm_e_wz_couch_links
+    - binary_sensor.pm_e_wz_couch_rechts
   brightness_values:
     "00:00": 50
     "06:00": 60
