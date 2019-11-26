@@ -32,7 +32,12 @@
   - platform: knx
     state_address: '6/1/23'
 #    sync_state: False
-    name: PM_E_WZ_Couch
+    name: PM_E_WZ_Couch_links
+    device_class: motion
+  - platform: knx
+    state_address: '6/1/37'
+#    sync_state: False
+    name: PM_E_WZ_Couch_rechts
     device_class: motion
 
 # Schlafzimmer
