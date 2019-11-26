@@ -55,6 +55,12 @@ mqtt:
   password: !secret mqtt_pw_1
   client_id: home-assistant
   discovery: true
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
 
 media_player:
   - platform: kodi
