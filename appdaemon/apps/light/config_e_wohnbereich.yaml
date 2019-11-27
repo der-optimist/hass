@@ -23,8 +23,6 @@ auto_light_e_ez_panels:
     "06:30": 20
     "07:00": 30
     "08:00": 40
-    "09:00": 50
-    "17:00": 40
     "18:30": 30
     "21:30": 10
   illuminance_sensor: sensor.helligkeit_esszimmer_pm
