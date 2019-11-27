@@ -1,6 +1,6 @@
 # - Esszimmer
 auto_light_e_ez_panels:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
@@ -111,9 +111,9 @@ auto_light_e_bar_panels:
     - binary_sensor.kein_tv_pizza_abend
 # - Wohnzimmer
 auto_light_e_wz_panels:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_wohnzimmer
   light: light.panels_wohnzimmer
   triggers: 
