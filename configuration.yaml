@@ -196,6 +196,9 @@ input_boolean:
   test_trigger:
     name: Testtrigger
     icon: mdi:ray-start-arrow
+  heizung_winter:
+    name: Heizung Winter-Modus
+    icon: mdi:snowflake
   zigbee_permit_join:
     name: Allow devices to join
     initial: off
