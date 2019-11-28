@@ -21,7 +21,7 @@ class heating_winter_mode(hass.Hass):
         if self.get_state(self.args["input_booloean_entity"]) == "off":
             self.turn_off(self.args["switch_entity"])
     
-    def input_changed(self,event_name,data,kwargs):
+    def input_changed(self, entity, attribute, old, new, kwargs):
         if new == "on":
             self.turn_on(self.args["switch_entity"])
         if new == "off":
