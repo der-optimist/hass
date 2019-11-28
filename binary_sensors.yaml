@@ -488,3 +488,6 @@
       backofen_ist_an:
         friendly_name: "Backofen an"
         value_template: "{{ states('sensor.el_leistung_backofen')|float > 2 }}"
+      heizung_winter_sensor:
+        friendly_name: "Heizung Winter-Modus (Sensor)"
+        value_template: "{{ is_state('input_boolean.heizung_winter', 'on') }}"
