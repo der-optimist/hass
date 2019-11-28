@@ -3,9 +3,16 @@ path: heizung
 icon: mdi:fire
 cards:
   - type: entities
-    title: Ventil-Stellungen
+    title: Winter und Ventil-Stellungen
     show_header_toggle: false
     entities:
+      - entity: input_boolean.heizung_winter
+        name: Winter-Modus
+      - type: divider
+        style: 
+          height: 1px
+          background-color: "#ff9c27"
+          opacity: 0.25
       - entity: sensor.stellwert_heizung_kuche
         name: Küche
       - entity: sensor.stellwert_heizung_esszimmer
