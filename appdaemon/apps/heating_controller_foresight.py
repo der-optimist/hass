@@ -29,6 +29,9 @@ class heating_controller_foresight(hass.Hass):
         self.db_field: Set[str] = self.args.get("db_field", set())
         
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=0, second=40))
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=15, second=40))
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=30, second=40))
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=45, second=40))
         self.calc_derivation_hourly(None)
     
     def calc_derivation(self, kwargs):
