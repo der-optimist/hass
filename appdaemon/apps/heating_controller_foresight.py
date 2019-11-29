@@ -38,4 +38,4 @@ class heating_controller_foresight(hass.Hass):
                 derivative = (historic_value - current_value) / hour
                 #self.log(derivative)
                 break
-            self.log("hour: {} / historic_value: {} / derivative: {}".format(hour, round(historic_value,1), round(derivative,4)))
+            self.log("hour: {} / historic_value: {:.1f} / derivative: {:.4f}".format(hour, round(historic_value,1), round(derivative,4)))
