@@ -37,7 +37,7 @@ class heating_controller_foresight(hass.Hass):
             #self.log(historic_value)
             for point in result_points:
                 historic_value = point["last"]
-                derivative = (historic_value - current_value) / hour
+                derivative = (current_value - historic_value) / hour
                 #self.log(derivative)
                 break
             self.log("hour: {} / historic_value: {:.1f} / derivative: {:.4f}".format(hour, round(historic_value,1), round(derivative,4)))
@@ -52,7 +52,7 @@ class heating_controller_foresight(hass.Hass):
             #self.log(historic_value)
             for point in result_points:
                 historic_value = point["last"]
-                derivative = (historic_value - current_value) / hour
+                derivative = (current_value - historic_value) / hour
                 der_list.append(derivative)
                 #self.log(derivative)
                 break
