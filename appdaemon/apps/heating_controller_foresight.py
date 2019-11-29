@@ -34,5 +34,5 @@ class heating_controller_foresight(hass.Hass):
             historic_value = self.client.query(query).get_points()
             self.log(historic_value)
             for point in historic_value:
-                derivative = (historic_value["last"] - current_value) / hour
+                derivative = (point["last"] - current_value) / hour
                 self.log(derivative)
