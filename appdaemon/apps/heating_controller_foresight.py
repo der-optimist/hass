@@ -27,12 +27,15 @@ class heating_controller_foresight(hass.Hass):
         self.calc_derivation(None)
     
     def calc_derivation(self, kwargs):
-        current_value = self.get_state("sensor.temp_esszimmer_taster")
+        current_value = float(self.get_state("sensor.temp_esszimmer_taster"))
         for hour in range(1,9):
             query = 'SELECT last("state_float") FROM "homeassistant_permanent"."autogen"."sensor.temp_esszimmer_taster" WHERE time > now() - 24h AND time < now() - {}h'.format(hour)
-            self.log(query)
-            historic_value = self.client.query(query).get_points()
-            self.log(historic_value)
-            for point in historic_value:
-                derivative = (point["last"] - current_value) / hour
-                self.log(derivative)
+            #self.log(query)
+            result_points = self.client.query(query).get_points()
+            #self.log(historic_value)
+            for point in result_points:
+                historic_value = point["last"]
+                derivative = (historic_value - current_value) / hour
+                #self.log(derivative)
+                break
+            self.log("hour: {} / value: {} / derivative: {}".format(hour, historic_value, derivative))
