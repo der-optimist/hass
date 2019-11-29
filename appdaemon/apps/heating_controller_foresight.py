@@ -10,6 +10,9 @@ import datetime
 # - db_passwd
 # - db_measurement
 # - db_field
+# - multiplicator => e.g. derivative of -0.1 K/h should lead to shift of +0.5K => 5
+# - limit_max
+# - limi_min
 
 class heating_controller_foresight(hass.Hass):
 
@@ -57,3 +60,6 @@ class heating_controller_foresight(hass.Hass):
                 #self.log(derivative)
                 break
         self.log(' // '.join('{}: {:.4f}'.format(*k) for k in enumerate(der_list, start=1)))
+        mean_derivative = (der_list[1] + der_list[3] + der_list[5])/3 # mean of 2, 4 and 6 hours
+        shift_kelvin = (- mean_derivative) * self.args.get("multiplicator", 0)
+        self.log("Calculated Offset: {} K".format(shift_kelvin))
