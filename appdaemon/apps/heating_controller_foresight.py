@@ -1,6 +1,7 @@
 import appdaemon.plugins.hass.hassapi as hass
 from typing import Set
 from influxdb import InfluxDBClient
+import datetime
 
 # Calculates derivation of room temp and increases/lowers target temp. accordingly
 # (kind of adding a D part to a PI controller)
@@ -24,7 +25,8 @@ class heating_controller_foresight(hass.Hass):
         self.db_measurement: Set[str] = self.args.get("db_measurement", set())
         self.db_field: Set[str] = self.args.get("db_field", set())
         
-        self.calc_derivation(None)
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=0, second=40))
+        self.calc_derivation_hourly(None)
     
     def calc_derivation(self, kwargs):
         current_value = float(self.get_state("sensor.temp_esszimmer_taster"))
@@ -39,3 +41,19 @@ class heating_controller_foresight(hass.Hass):
                 #self.log(derivative)
                 break
             self.log("hour: {} / historic_value: {:.1f} / derivative: {:.4f}".format(hour, round(historic_value,1), round(derivative,4)))
+
+    def calc_derivation_hourly(self, kwargs):
+        current_value = float(self.get_state("sensor.temp_esszimmer_taster"))
+        der_list = []
+        for hour in range(1,9):
+            query = 'SELECT last("state_float") FROM "homeassistant_permanent"."autogen"."sensor.temp_esszimmer_taster" WHERE time > now() - 24h AND time < now() - {}h'.format(hour)
+            #self.log(query)
+            result_points = self.client.query(query).get_points()
+            #self.log(historic_value)
+            for point in result_points:
+                historic_value = point["last"]
+                derivative = (historic_value - current_value) / hour
+                der_list.append(derivative)
+                #self.log(derivative)
+                break
+        self.log(' // '.join('{}: {:.4f}'.format(*k) for k in enumerate(der_list, start=1)))
