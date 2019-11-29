@@ -60,6 +60,6 @@ class heating_controller_foresight(hass.Hass):
                 #self.log(derivative)
                 break
         self.log(' // '.join('{}: {:.4f}'.format(*k) for k in enumerate(der_list, start=1)))
-        mean_derivative = (der_list[1] + der_list[3] + der_list[5])/3 # mean of 2, 4 and 6 hours
+        mean_derivative = (der_list[0] + der_list[1] + der_list[2])/3 # mean of 1, 2 and 3 hours
         shift_kelvin = (- mean_derivative) * self.args.get("multiplicator", 0)
-        self.log("Calculated Offset: {} K".format(shift_kelvin))
+        self.log("Calculated Offset: {:.2f} K".format(shift_kelvin))
