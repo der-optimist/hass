@@ -60,9 +60,13 @@ class heating_controller_foresight(hass.Hass):
                 #self.log(derivative)
                 break
         self.log(' // '.join('{}: {:.4f}'.format(*k) for k in enumerate(der_list, start=1)))
+        mean_derivative_1 = der_list[0] # 1
+        mean_derivative_12 = (der_list[0] + der_list[1])/2 # mean of 1, 2 hours
         mean_derivative_123 = (der_list[0] + der_list[1] + der_list[2])/3 # mean of 1, 2 and 3 hours
         mean_derivative_246 = (der_list[1] + der_list[3] + der_list[5])/3 # mean of 1, 2 and 3 hours
+        shift_kelvin_1 = (- mean_derivative_1) * self.args.get("multiplicator", 0)
+        shift_kelvin_12 = (- mean_derivative_12) * self.args.get("multiplicator", 0)
         shift_kelvin_123 = (- mean_derivative_123) * self.args.get("multiplicator", 0)
         shift_kelvin_246 = (- mean_derivative_246) * self.args.get("multiplicator", 0)
-        self.log("Calculated Offset: {:.2f} / {:.2f} K".format(shift_kelvin_123, shift_kelvin_246))
-        self.client.write_points([{"measurement":"test_heating_controller_ez","fields":{"shift_kelvin_123":shift_kelvin_123, "shift_kelvin_246":shift_kelvin_246}}])
+        self.log("Calculated Offset: {:.2f} / {:.2f} / {:.2f} / {:.2f} K".format(shift_kelvin_1, shift_kelvin_12, shift_kelvin_123, shift_kelvin_246))
+        self.client.write_points([{"measurement":"test_heating_controller_ez","fields":{"shift_kelvin_1":shift_kelvin_1, "shift_kelvin_12":shift_kelvin_12, "shift_kelvin_123":shift_kelvin_123, "shift_kelvin_246":shift_kelvin_246}}])
