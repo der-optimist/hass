@@ -37,14 +37,14 @@ class wall_panel(hass.Hass):
             self.log("Error sending reload command to wallpanel via REST api. Error was {}".format(e))
 
     def presence_on(self, entity, attributes, old, new, kwargs):
-        self.log("Wall panel presence on. Will send periodic wake commands")
+        #self.log("Wall panel presence on. Will send periodic wake commands")
         self.send_wake_command(None)
     
     def presence_off(self, entity, attributes, old, new, kwargs):
-        self.log("Wall panel presence off. Will cancel periodic wake commands")
+        #self.log("Wall panel presence off. Will cancel periodic wake commands")
         if self.timer_handle != None:
             self.cancel_timer(self.timer_handle)
-            self.log("Canceled periodic wake commands")
+            #self.log("Canceled periodic wake commands")
         
     def wp_online(self, entity, attributes, old, new, kwargs):
         if old != "on":
