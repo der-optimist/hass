@@ -31,7 +31,7 @@ class heating_controller_foresight(hass.Hass):
         for hour in range(1,9):
             query = 'SELECT last("state_float") FROM "homeassistant_permanent"."autogen"."sensor.temp_esszimmer_taster" WHERE time > now() - 24h AND time < now() - {}h'.format(hour)
             self.log(query)
-            historic_value = self.client.query(query)
+            historic_value = self.client.query(query).get_points()[0]["last"]
             self.log(historic_value)
             derivative = (historic_value - current_value) / hour
             self.log(derivative)
