@@ -199,6 +199,42 @@ input_boolean:
   heizung_winter:
     name: Heizung Winter-Modus
     icon: mdi:snowflake
+  korrektur_heizung_ku:
+    name: Kurrektur Heizung Küche
+    icon: mdi:auto-fix
+  korrektur_heizung_ez:
+    name: Kurrektur Heizung EZ
+    icon: mdi:auto-fix
+  korrektur_heizung_wz:
+    name: Kurrektur Heizung WZ
+    icon: mdi:auto-fix
+  korrektur_heizung_sz:
+    name: Kurrektur Heizung SZ
+    icon: mdi:auto-fix
+  korrektur_heizung_bad_eg:
+    name: Kurrektur Heizung Bad EG
+    icon: mdi:auto-fix
+  korrektur_heizung_wf_wc:
+    name: Kurrektur Heizung Windf./WC
+    icon: mdi:auto-fix
+  korrektur_heizung_la:
+    name: Kurrektur Heizung La
+    icon: mdi:auto-fix
+  korrektur_heizung_nz:
+    name: Kurrektur Heizung Nähzimmer
+    icon: mdi:auto-fix
+  korrektur_heizung_le:
+    name: Kurrektur Heizung Le
+    icon: mdi:auto-fix
+  korrektur_heizung_gz:
+    name: Kurrektur Heizung Gäste
+    icon: mdi:auto-fix
+  korrektur_heizung_flur_og:
+    name: Kurrektur Heizung Flur OG
+    icon: mdi:auto-fix
+  korrektur_heizung_bad_og:
+    name: Kurrektur Heizung Bad OG
+    icon: mdi:auto-fix
   zigbee_permit_join:
     name: Allow devices to join
     initial: off
