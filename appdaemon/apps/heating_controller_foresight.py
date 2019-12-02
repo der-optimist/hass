@@ -75,21 +75,24 @@ class heating_controller_foresight(hass.Hass):
         self.log("Calculated Offset: {:.2f} / {:.2f} / {:.2f} / {:.2f} K".format(shift_kelvin_30, shift_kelvin_60, shift_kelvin_60, shift_kelvin_120))
         self.client.write_points([{"measurement":self.args.get("log_measurement", "test_no_name"),"fields":{"shift_kelvin_30":shift_kelvin_30, "shift_kelvin_60":shift_kelvin_60, "shift_kelvin_90":shift_kelvin_90, "shift_kelvin_120":shift_kelvin_120, "shift_kelvin_3060":shift_kelvin_3060, "shift_kelvin_306090":shift_kelvin_306090, "shift_kelvin_306090120":shift_kelvin_306090120, "shift_kelvin_60120":shift_kelvin_60120, "shift_kelvin_30120180":shift_kelvin_60120180}}])
        
+           
+        shift_kelvin = shift_kelvin_306090
+        self.log("Shift Kelvin: {}".format(shift_kelvin))
+        if shift_kelvin > self.args.get("limit_max", 1):
+            shift_kelvin = self.args.get("limit_max", 1)
+        if shift_kelvin < self.args.get("limit_min", -1):
+            shift_kelvin = self.args.get("limit_min", -1)
+        
+        shift_value = self.args.get("shift_value", 0.1)
+        shift_points = round(shift_kelvin / shift_value)
+        self.log("Shift-Points: {}".format(shift_points))
+        if shift_points > 0:
+            value_byte = shift_points
+        elif shift_points < 0:
+            value_byte = 256 - shift_points
+        else:
+            value_byte = 0
+        self.log("Value byte: {}".format(value_byte))
+        
         if self.args.get("mode", "log") == "active":
-            
-            shift_kelvin = shift_kelvin_306090
-            if shift_kelvin > self.args.get("limit_max", 1):
-                shift_kelvin = self.args.get("limit_max", 1)
-            if shift_kelvin < self.args.get("limit_min", -1):
-                shift_kelvin = self.args.get("limit_min", -1)
-            
-            shift_value = self.args.get("shift_value", 0.1)
-            shift_points = round(shift_kelvin / shift_value)
-            self.log("Shift-Points: {}".format(shift_points))
-            if shift_points > 0:
-                value_byte = shift_points
-            elif shift_points < 0:
-                value_byte = 256 - shift_points
-            else:
-                value_byte = 0
-            self.log("Value byte: {}".format(value_byte))
+            ga = self.args.get("ga_setpoint_shift")
