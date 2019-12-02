@@ -2,6 +2,7 @@ import appdaemon.plugins.hass.hassapi as hass
 from typing import Set
 from influxdb import InfluxDBClient
 import datetime
+import random
 
 # Calculates derivation of room temp and increases/lowers target temp. accordingly
 # (kind of adding a D part to a PI controller)
@@ -33,10 +34,11 @@ class heating_controller_foresight(hass.Hass):
         self.db_measurement: Set[str] = self.args.get("db_measurement", set())
         self.db_field: Set[str] = self.args.get("db_field", set())
         
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=0, second=40))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=15, second=40))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=30, second=40))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=45, second=40))
+        random_second = random.randint(0,59)
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=0, second=random_second))
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=15, second=random_second))
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=30, second=random_second))
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=45, second=random_second))
         self.calc_derivation_hourly(None)
         
         self.listen_state(self.on_off_switch, self.args["on_off_switch"])
@@ -102,9 +104,9 @@ class heating_controller_foresight(hass.Hass):
         self.log("Value byte: {}".format(value_byte))
         
         if self.args.get("mode", "log") == "active" and self.get_state(self.args["on_off_switch"]) == "on":
-            self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = value_byte)
+            self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = [value_byte])
     
     def on_off_switch(self, entity, attribute, old, new, kwargs):
         if new == "off" and old != new:
-            self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = 0)
+            self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = [0])
             self.log("Reset Setpoint Shift to 0")
