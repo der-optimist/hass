@@ -89,7 +89,7 @@ class heating_controller_foresight(hass.Hass):
         if shift_points > 0:
             value_byte = shift_points
         elif shift_points < 0:
-            value_byte = 256 - shift_points
+            value_byte = 256 + shift_points
         else:
             value_byte = 0
         self.log("Value byte: {}".format(value_byte))
