@@ -128,7 +128,7 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_nahzimmer
             name: Ventil offen
-            - entity: sensor.sollwert_heizung_nahzimmer
+          - entity: sensor.sollwert_heizung_nahzimmer
             name: Regler
         control:
           - preset: false
