@@ -14,15 +14,45 @@ test_dim_steps_wz:
     - 85
     - 100
   command_ga: "15/0/49"
-heating_controller_foresight_test:
+heating_controller_foresight_test_ez:
   module: heating_controller_foresight
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_esszimmer_taster
   db_field: state_float
-  multiplicator: 5
+  multiplicator: 2.5
   limit_max: 1
-  limit_min:  -1
+  limit_min: -1
+  ga_setpoint_shift: "10/0/21"
+  shift_value: 0.1
+  mode: active
+  log_measurement: test_heating_controller_ez
+heating_controller_foresight_test_la:
+  module: heating_controller_foresight
+  class: heating_controller_foresight
+  db_passwd: !secret permanent_db_passwd
+  db_measurement: sensor.temp_la_taster
+  db_field: state_float
+  multiplicator: 2.5
+  limit_max: 1
+  limit_min: -1
+  ga_setpoint_shift: "10/0/121"
+  shift_value: 0.1
+  mode: log
+  log_measurement: test_heating_controller_la
+heating_controller_foresight_test_le:
+  module: heating_controller_foresight
+  class: heating_controller_foresight
+  db_passwd: !secret permanent_db_passwd
+  db_measurement: sensor.temp_le_taster
+  db_field: state_float
+  multiplicator: 2.5
+  limit_max: 1
+  limit_min: -1
+  ga_setpoint_shift: "10/0/161"
+  shift_value: 0.1
+  mode: log
+  log_measurement: test_heating_controller_le
 # Main Section
 # Heating
 heating_helper_windfang_wc:
