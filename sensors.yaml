@@ -479,6 +479,7 @@
     type: 4byte_unsigned
 
 # --- Diagnosemeldungen
+  # Heizung
   - platform: knx
     name: 'Diagnose Heizkreis Küche'
     state_address: '10/0/6'
@@ -526,6 +527,55 @@
   - platform: knx
     name: 'Diagnose Heizkreis Bad OG'
     state_address: '10/0/226'
+    type: string
+  # Jalousien
+  - platform: knx
+    name: 'Diagnose Jal Küche'
+    state_address: '9/0/8'
+    type: string
+  - platform: knx
+    name: 'Diagnose Jal HST'
+    state_address: '9/0/28'
+    type: string
+  - platform: knx
+    name: 'Diagnose Jal WZ Bodentiefes'
+    state_address: '9/0/48'
+    type: string
+  - platform: knx
+    name: 'Diagnose Jal WZ Couch'
+    state_address: '9/0/68'
+    type: string
+  - platform: knx
+    name: 'Diagnose Jal Schlafzimmer'
+    state_address: '9/0/88'
+    type: string
+  - platform: knx
+    name: 'Diagnose Jal La Bodentiefes'
+    state_address: '9/0/108'
+    type: string
+  - platform: knx
+    name: 'Diagnose Jal La Lichtband'
+    state_address: '9/0/128'
+    type: string
+  - platform: knx
+    name: 'Diagnose Jal Nähzimmer'
+    state_address: '9/0/148'
+    type: string
+  - platform: knx
+    name: 'Diagnose Jal Le Lichtband'
+    state_address: '9/0/168'
+    type: string
+  - platform: knx
+    name: 'Diagnose Jal Le Bodentiefes'
+    state_address: '9/0/188'
+    type: string
+  - platform: knx
+    name: 'Diagnose Jal Gästezimmer'
+    state_address: '9/0/208'
+    type: string
+  - platform: knx
+    name: 'Diagnose Jal Bad OG'
+    state_address: '9/0/228'
     type: string
     
 # --- Sonstiges ---
