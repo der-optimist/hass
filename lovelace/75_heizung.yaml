@@ -47,6 +47,8 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_kuche
             name: Ventil offen
+          - entity: sensor.sollwert_heizung_kuche
+            name: Regler
         control:
           - preset: false
           - hvac: false
@@ -56,6 +58,8 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_esszimmer
             name: Ventil offen
+          - entity: sensor.sollwert_heizung_esszimmer
+            name: Regler
         control:
           - preset: false
           - hvac: false
@@ -65,6 +69,8 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_wohnzimmer
             name: Ventil offen
+          - entity: sensor.sollwert_heizung_wohnzimmer
+            name: Regler
         control:
           - preset: false
           - hvac: false
@@ -74,6 +80,8 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_schlafzimmer
             name: Ventil offen
+          - entity: sensor.sollwert_heizung_schlafzimmer
+            name: Regler
         control:
           - preset: false
           - hvac: false
@@ -83,6 +91,8 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_bad_eg
             name: Ventil offen
+          - entity: sensor.sollwert_heizung_bad_eg
+            name: Regler
         control:
           - preset: false
           - hvac: false
@@ -92,6 +102,8 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_windfang_wc
             name: Ventil offen
+          - entity: sensor.sollwert_heizung_windfang_wc
+            name: Regler
         control:
           - preset: false
           - hvac: false
@@ -105,6 +117,8 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_la
             name: Ventil offen
+          - entity: sensor.sollwert_heizung_la
+            name: Regler
         control:
           - preset: false
           - hvac: false
@@ -114,6 +128,8 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_nahzimmer
             name: Ventil offen
+            - entity: sensor.sollwert_heizung_nahzimmer
+            name: Regler
         control:
           - preset: false
           - hvac: false
@@ -123,6 +139,8 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_le
             name: Ventil offen
+          - entity: sensor.sollwert_heizung_le
+            name: Regler
         control:
           - preset: false
           - hvac: false
@@ -132,6 +150,8 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_gastezimmer
             name: Ventil offen
+          - entity: sensor.sollwert_heizung_gastezimmer
+            name: Regler
         control:
           - preset: false
           - hvac: false
@@ -141,6 +161,8 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_flur_og
             name: Ventil offen
+          - entity: sensor.sollwert_heizung_flur_og
+            name: Regler
         control:
           - preset: false
           - hvac: false
@@ -150,6 +172,8 @@ cards:
         sensors:
           - entity: sensor.stellwert_heizung_bad_og
             name: Ventil offen
+          - entity: sensor.sollwert_heizung_bad_og
+            name: Regler
         control:
           - preset: false
           - hvac: false
