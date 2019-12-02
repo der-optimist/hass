@@ -21,6 +21,22 @@ cards:
       - entity: sensor.diagnose_heizkreis_flur_og
       - entity: sensor.diagnose_heizkreis_bad_og
   - type: entities
+    title: Jalousieaktoren
+    show_header_toggle: false
+    entities:
+      - entity: sensor.diagnose_jal_kuche
+      - entity: sensor.diagnose_jal_hst
+      - entity: sensor.diagnose_jal_wz_bodentiefes
+      - entity: sensor.diagnose_jal_wz_couch
+      - entity: sensor.diagnose_jal_schlafzimmer
+      - entity: sensor.diagnose_jal_la_bodentiefes
+      - entity: sensor.diagnose_jal_la_lichtband
+      - entity: sensor.diagnose_jal_nahzimmer
+      - entity: sensor.diagnose_jal_le_lichtband
+      - entity: sensor.diagnose_jal_le_bodentiefes
+      - entity: sensor.diagnose_jal_gastezimmer
+      - entity: sensor.diagnose_jal_bad_og
+  - type: entities
     title: Wetterstation
     show_header_toggle: false
     entities:
