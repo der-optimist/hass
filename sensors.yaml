@@ -259,7 +259,7 @@
     state_address: '10/0/162'
     type: temperature
   - platform: knx
-    name: 'Stellwert Heizung Gästezimmer'
+    name: 'Sollwert Heizung Gästezimmer'
     state_address: '10/0/182'
     type: temperature
   - platform: knx
