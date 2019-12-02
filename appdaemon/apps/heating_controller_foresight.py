@@ -12,7 +12,11 @@ import datetime
 # - db_field
 # - multiplicator => e.g. derivative of -0.1 K/h should lead to shift of +0.5K => 5
 # - limit_max
-# - limi_min
+# - limit_min
+# - ga_setpoint_shift (ga for 1byte shift of setpoint)
+# - shift_value (optional, default: 0.1)
+# - mode (active or log)
+# - log_measurement => test_heating_controller_ez
 
 class heating_controller_foresight(hass.Hass):
 
@@ -34,42 +38,58 @@ class heating_controller_foresight(hass.Hass):
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=45, second=40))
         self.calc_derivation_hourly(None)
     
-    def calc_derivation(self, kwargs):
-        current_value = float(self.get_state("sensor.temp_esszimmer_taster"))
-        for hour in range(1,9):
-            query = 'SELECT last("state_float") FROM "homeassistant_permanent"."autogen"."sensor.temp_esszimmer_taster" WHERE time > now() - 24h AND time < now() - {}h'.format(hour)
-            #self.log(query)
-            result_points = self.client.query(query).get_points()
-            #self.log(historic_value)
-            for point in result_points:
-                historic_value = point["last"]
-                derivative = (current_value - historic_value) / hour
-                #self.log(derivative)
-                break
-            self.log("hour: {} / historic_value: {:.1f} / derivative: {:.4f}".format(hour, round(historic_value,1), round(derivative,4)))
 
     def calc_derivation_hourly(self, kwargs):
-        current_value = float(self.get_state("sensor.temp_esszimmer_taster"))
+        current_value = float(self.get_state(self.db_measurement))
         der_list = []
-        for hour in range(1,9):
-            query = 'SELECT last("state_float") FROM "homeassistant_permanent"."autogen"."sensor.temp_esszimmer_taster" WHERE time > now() - 24h AND time < now() - {}h'.format(hour)
+        for minutes in range(30,240,30):
+            query = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h AND time < now() - {}m'.format(self.db_field, self.db_measurement, minutes)
             #self.log(query)
             result_points = self.client.query(query).get_points()
             #self.log(historic_value)
             for point in result_points:
                 historic_value = point["last"]
-                derivative = (current_value - historic_value) / hour
+                derivative = (current_value - historic_value) / (minutes / 60)
                 der_list.append(derivative)
                 #self.log(derivative)
                 break
         self.log(' // '.join('{}: {:.4f}'.format(*k) for k in enumerate(der_list, start=1)))
-        mean_derivative_1 = der_list[0] # 1
-        mean_derivative_12 = (der_list[0] + der_list[1])/2 # mean of 1, 2 hours
-        mean_derivative_123 = (der_list[0] + der_list[1] + der_list[2])/3 # mean of 1, 2 and 3 hours
-        mean_derivative_246 = (der_list[1] + der_list[3] + der_list[5])/3 # mean of 1, 2 and 3 hours
-        shift_kelvin_1 = (- mean_derivative_1) * self.args.get("multiplicator", 0)
-        shift_kelvin_12 = (- mean_derivative_12) * self.args.get("multiplicator", 0)
-        shift_kelvin_123 = (- mean_derivative_123) * self.args.get("multiplicator", 0)
-        shift_kelvin_246 = (- mean_derivative_246) * self.args.get("multiplicator", 0)
-        self.log("Calculated Offset: {:.2f} / {:.2f} / {:.2f} / {:.2f} K".format(shift_kelvin_1, shift_kelvin_12, shift_kelvin_123, shift_kelvin_246))
-        self.client.write_points([{"measurement":"test_heating_controller_ez","fields":{"shift_kelvin_1":shift_kelvin_1, "shift_kelvin_12":shift_kelvin_12, "shift_kelvin_123":shift_kelvin_123, "shift_kelvin_246":shift_kelvin_246}}])
+        mean_derivative_30 = der_list[0]
+        mean_derivative_60 = der_list[1]
+        mean_derivative_90 = der_list[2]
+        mean_derivative_120 = der_list[3]
+        mean_derivative_3060 = (der_list[0] + der_list[1])/2
+        mean_derivative_306090 = (der_list[0] + der_list[1] + der_list[2])/3
+        mean_derivative_306090120 = (der_list[0] + der_list[1] + der_list[2] + der_list[3])/4
+        mean_derivative_60120 = (der_list[1] + der_list[3])/2
+        mean_derivative_60120180 = (der_list[1] + der_list[3] + der_list[5])/3
+        shift_kelvin_30 = (- mean_derivative_30) * self.args.get("multiplicator", 0)
+        shift_kelvin_60 = (- mean_derivative_60) * self.args.get("multiplicator", 0)
+        shift_kelvin_90 = (- mean_derivative_90) * self.args.get("multiplicator", 0)
+        shift_kelvin_120 = (- mean_derivative_120) * self.args.get("multiplicator", 0)
+        shift_kelvin_3060 = (- mean_derivative_3060) * self.args.get("multiplicator", 0)
+        shift_kelvin_306090 = (- mean_derivative_306090) * self.args.get("multiplicator", 0)
+        shift_kelvin_306090120 = (- mean_derivative_306090120) * self.args.get("multiplicator", 0)
+        shift_kelvin_60120 = (- mean_derivative_60120) * self.args.get("multiplicator", 0)
+        shift_kelvin_60120180 = (- mean_derivative_60120180) * self.args.get("multiplicator", 0)
+        self.log("Calculated Offset: {:.2f} / {:.2f} / {:.2f} / {:.2f} K".format(shift_kelvin_30, shift_kelvin_60, shift_kelvin_60, shift_kelvin_120))
+        self.client.write_points([{"measurement":self.args.get("log_measurement", "test_no_name"),"fields":{"shift_kelvin_30":shift_kelvin_30, "shift_kelvin_60":shift_kelvin_60, "shift_kelvin_90":shift_kelvin_90, "shift_kelvin_120":shift_kelvin_120, "shift_kelvin_3060":shift_kelvin_3060, "shift_kelvin_306090":shift_kelvin_306090, "shift_kelvin_306090120":shift_kelvin_306090120, "shift_kelvin_60120":shift_kelvin_60120, "shift_kelvin_30120180":shift_kelvin_60120180}}])
+       
+        if self.args.get("mode", "log") == "active":
+            
+            shift_kelvin = shift_kelvin_306090
+            if shift_kelvin > self.args.get("limit_max", 1):
+                shift_kelvin = self.args.get("limit_max", 1)
+            if shift_kelvin < self.args.get("limit_min", -1):
+                shift_kelvin = self.args.get("limit_min", -1)
+            
+            shift_value = self.args.get("shift_value", 0.1)
+            shift_points = round(shift_kelvin / shift_value)
+            self.log("Shift-Points: {}".format(shift_points))
+            if shift_points > 0:
+                value_byte = shift_points
+            elif shift_points < 0:
+                value_byte = 256 - shift_points
+            else:
+                value_byte = 0
+            self.log("Value byte: {}".format(value_byte))
