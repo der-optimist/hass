@@ -16,6 +16,7 @@ import datetime
 # - ga_setpoint_shift (ga for 1byte shift of setpoint)
 # - shift_value (optional, default: 0.1)
 # - mode (active or log)
+# - on_off_switch: input_boolean.korrektur_heizung_ez
 # - log_measurement => test_heating_controller_ez
 
 class heating_controller_foresight(hass.Hass):
@@ -37,10 +38,16 @@ class heating_controller_foresight(hass.Hass):
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=30, second=40))
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=45, second=40))
         self.calc_derivation_hourly(None)
+        
+        self.listen_state(self.on_off_switch, self.args["on_off_switch"])
     
 
     def calc_derivation_hourly(self, kwargs):
-        current_value = float(self.get_state(self.db_measurement))
+        try:
+            current_value = float(self.get_state(self.db_measurement))
+        except:
+            self.log("Error converting State of {} to float".format(self.db_measurement))
+            return
         der_list = []
         for minutes in range(30,240,30):
             query = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h AND time < now() - {}m'.format(self.db_field, self.db_measurement, minutes)
@@ -94,5 +101,10 @@ class heating_controller_foresight(hass.Hass):
             value_byte = 0
         self.log("Value byte: {}".format(value_byte))
         
-        if self.args.get("mode", "log") == "active":
-            ga = self.args.get("ga_setpoint_shift")
+        if self.args.get("mode", "log") == "active" and self.get_state(self.args["on_off_switch"]) == "on":
+            self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = value_byte)
+    
+    def on_off_switch(self, entity, attribute, old, new, kwargs):
+        if new == "off" and old != new:
+            self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = 0)
+            self.log("Reset Setpoint Shift to 0")
