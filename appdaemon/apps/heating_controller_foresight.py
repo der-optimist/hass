@@ -36,9 +36,11 @@ class heating_controller_foresight(hass.Hass):
         
         random_second = random.randint(0,59)
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=0, second=random_second))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=15, second=random_second))
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=10, second=random_second))
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=20, second=random_second))
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=30, second=random_second))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=45, second=random_second))
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=40, second=random_second))
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=50, second=random_second))
         self.calc_derivation_hourly(None)
         
         self.listen_state(self.on_off_switch, self.args["on_off_switch"])
