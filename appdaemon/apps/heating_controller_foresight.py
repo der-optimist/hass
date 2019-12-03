@@ -36,11 +36,9 @@ class heating_controller_foresight(hass.Hass):
         
         random_second = random.randint(0,59)
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=0, second=random_second))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=10, second=random_second))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=20, second=random_second))
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=15, second=random_second))
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=30, second=random_second))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=40, second=random_second))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=50, second=random_second))
+        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=45, second=random_second))
         self.calc_derivation_hourly(None)
         
         self.listen_state(self.on_off_switch, self.args["on_off_switch"])
@@ -106,6 +104,7 @@ class heating_controller_foresight(hass.Hass):
         self.log("Value byte: {}".format(value_byte))
         
         if self.args.get("mode", "log") == "active" and self.get_state(self.args["on_off_switch"]) == "on":
+            self.log("Will send {} to ga {} now".format(value_byte,self.args.get("ga_setpoint_shift")))
             self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = [value_byte])
     
     def on_off_switch(self, entity, attribute, old, new, kwargs):
