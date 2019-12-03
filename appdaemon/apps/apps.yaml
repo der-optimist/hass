@@ -39,7 +39,7 @@ heating_controller_foresight_test_ku:
   limit_min: -0.5
   ga_setpoint_shift: "10/0/1"
   shift_value: 0.1
-  mode: active
+  mode: log
   on_off_switch: input_boolean.korrektur_heizung_ez
   log_measurement: test_heating_controller_ku
 heating_controller_foresight_test_wz:
@@ -53,7 +53,7 @@ heating_controller_foresight_test_wz:
   limit_min: -0.5
   ga_setpoint_shift: "10/0/41"
   shift_value: 0.1
-  mode: active
+  mode: log
   on_off_switch: input_boolean.korrektur_heizung_ez
   log_measurement: test_heating_controller_wz
 heating_controller_foresight_test_la:
