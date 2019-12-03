@@ -121,15 +121,13 @@ class heating_controller_foresight(hass.Hass):
         query = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC LIMIT 5'.format(self.db_field, self.db_measurement)
         #self.log(query)
         result_points = self.client.query(query).get_points()
-        self.log(result_points)
-        return
         for point in result_points:
-            historic_value = point["last"]
-            derivative = (current_value - historic_value) / (minutes / 60)
-            der_list.append(derivative)
+            self.log(point)
+            #historic_value = point["last"]
+            #derivative = (current_value - historic_value) / (minutes / 60)
+            #der_list.append(derivative)
             #self.log(derivative)
-            break
-        self.log(' // '.join('{}: {:.4f}'.format(*k) for k in enumerate(der_list, start=1)))
+            #break
     
     def on_off_switch(self, entity, attribute, old, new, kwargs):
         if new == "off" and old != new:
