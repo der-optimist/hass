@@ -151,6 +151,18 @@ permanent_recorder:
     - sensor.helligkeit_windfang_pm
     - sensor.helligkeit_wohnzimmer_pm
     - sensor.humidity_owm
+    - sensor.sollwert_heizung_bad_eg
+    - sensor.sollwert_heizung_bad_og
+    - sensor.sollwert_heizung_esszimmer
+    - sensor.sollwert_heizung_flur_og
+    - sensor.sollwert_heizung_gastezimmer
+    - sensor.sollwert_heizung_kuche
+    - sensor.sollwert_heizung_la
+    - sensor.sollwert_heizung_le
+    - sensor.sollwert_heizung_nahzimmer
+    - sensor.sollwert_heizung_schlafzimmer
+    - sensor.sollwert_heizung_windfang_wc
+    - sensor.sollwert_heizung_wohnzimmer
     - sensor.stellwert_heizung_bad_eg
     - sensor.stellwert_heizung_bad_og
     - sensor.stellwert_heizung_esszimmer
