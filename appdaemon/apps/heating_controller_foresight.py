@@ -103,7 +103,7 @@ class heating_controller_foresight(hass.Hass):
             value_byte = 256 + shift_points
         else:
             value_byte = 0
-        self.log("Value byte: {}".format(value_byte))
+        #self.log("Value byte: {}".format(value_byte))
         
         if self.args.get("mode", "log") == "active" and self.get_state(self.args["on_off_switch"]) == "on":
             self.log("Will send {} to ga {} now".format(value_byte,self.args.get("ga_setpoint_shift")))
