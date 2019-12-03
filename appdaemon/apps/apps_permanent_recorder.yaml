@@ -69,7 +69,8 @@ permanent_recorder:
     - binary_sensor.pm_e_wf_flur
     - binary_sensor.pm_e_wf_garderobe
     - binary_sensor.pm_e_wf_haustur
-    - binary_sensor.pm_e_wz_couch
+    - binary_sensor.pm_e_wz_couch_links
+    - binary_sensor.pm_e_wz_couch_rechts
     - binary_sensor.pm_e_wz_durchgang
     - binary_sensor.pm_k_fl
     - binary_sensor.pm_ktr_flur
