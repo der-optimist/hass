@@ -117,12 +117,12 @@ class heating_controller_foresight(hass.Hass):
             self.log("Error converting State of {} to float".format(self.db_measurement))
             return
         der_list = []
-
         query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC LIMIT 5'.format(self.db_field, self.db_measurement)
         #self.log(query)
         result_points = self.client.query(query).get_points()
         for point in result_points:
             self.log(point)
+            self.log(type(point["time"]))
             #historic_value = point["last"]
             #derivative = (current_value - historic_value) / (minutes / 60)
             #der_list.append(derivative)
