@@ -29,3 +29,5 @@ auto_light_o_le_panels:
     - switch.le_schlaft
   special_brightness_entities:
     binary_sensor.aufwachphase_le: 10
+    switch.la_schlaft: 10
+    switch.le_schlaft: 10
