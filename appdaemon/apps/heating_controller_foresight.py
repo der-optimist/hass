@@ -42,6 +42,7 @@ class heating_controller_foresight(hass.Hass):
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=40, second=random_second))
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=50, second=random_second))
         self.calc_derivation_hourly(None)
+        self.beta(None)
         
         self.listen_state(self.on_off_switch, self.args["on_off_switch"])
     
@@ -108,6 +109,27 @@ class heating_controller_foresight(hass.Hass):
         if self.args.get("mode", "log") == "active" and self.get_state(self.args["on_off_switch"]) == "on":
             self.log("Will send {} to ga {} now".format(value_byte,self.args.get("ga_setpoint_shift")))
             self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = [value_byte])
+
+    def beta(self, kwargs):
+        try:
+            current_value = float(self.get_state(self.db_measurement))
+        except:
+            self.log("Error converting State of {} to float".format(self.db_measurement))
+            return
+        der_list = []
+
+        query = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC LIMIT 5'.format(self.db_field, self.db_measurement)
+        #self.log(query)
+        result_points = self.client.query(query).get_points()
+        self.log(result_points)
+        return
+        for point in result_points:
+            historic_value = point["last"]
+            derivative = (current_value - historic_value) / (minutes / 60)
+            der_list.append(derivative)
+            #self.log(derivative)
+            break
+        self.log(' // '.join('{}: {:.4f}'.format(*k) for k in enumerate(der_list, start=1)))
     
     def on_off_switch(self, entity, attribute, old, new, kwargs):
         if new == "off" and old != new:
