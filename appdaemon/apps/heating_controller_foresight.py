@@ -122,13 +122,13 @@ class heating_controller_foresight(hass.Hass):
             #self.log(type(point["time"]))
             if prev_value != None:
                 delta_value = point[self.db_field] - prev_value
-                delta_time = datetime.datetime.strptime(point["time"][:-4] + point["time"][-1:], '%Y-%m-%dT%H:%M:%S.%f%Z') - prev_time
+                delta_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f') - prev_time
                 delta_time_seconds = delta_time.total_seconds()
                 derivative = delta_value / (delta_time_seconds / 3600)
                 der_list.append(derivative)
                 self.log(derivative)
             prev_value = point[self.db_field]
-            prev_time = datetime.datetime.strptime(point["time"][:-4] + point["time"][-1:], '%Y-%m-%dT%H:%M:%S.%f%Z')
+            prev_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f')
 
     
     def on_off_switch(self, entity, attribute, old, new, kwargs):
