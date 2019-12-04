@@ -126,7 +126,7 @@ class heating_controller_foresight(hass.Hass):
                 delta_time_seconds = delta_time.total_seconds()
                 derivative = delta_value / (delta_time_seconds / 3600)
                 der_list.append(derivative)
-                self.log(derivative)
+                self.log("Delta: {} / Hours: {} / derivative: {}".format(delta_value, (delta_time_seconds / 3600), derivative))
             prev_value = point[self.db_field]
             prev_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f')
 
