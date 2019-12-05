@@ -24,3 +24,5 @@ auto_light_e_sz_panels:
     - switch.majo_schlafen
   switching_off_entities:
     - switch.majo_schlafen
+  special_brightness_entities:
+    binary_sensor.schlafen_oder_aufwachphase_majo: 20
