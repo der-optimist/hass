@@ -34,13 +34,21 @@ class heating_controller_foresight(hass.Hass):
         self.db_measurement: Set[str] = self.args.get("db_measurement", set())
         self.db_field: Set[str] = self.args.get("db_field", set())
         
-        random_second = random.randint(0,59)
+        random_second = random.randint(0,57)
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=0, second=random_second))
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=10, second=random_second))
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=20, second=random_second))
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=30, second=random_second))
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=40, second=random_second))
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=50, second=random_second))
+        
+        self.run_hourly(self.beta, datetime.time(hour=0, minute=0, second=random_second+2))
+        self.run_hourly(self.beta, datetime.time(hour=0, minute=10, second=random_second+2))
+        self.run_hourly(self.beta, datetime.time(hour=0, minute=20, second=random_second+2))
+        self.run_hourly(self.beta, datetime.time(hour=0, minute=30, second=random_second+2))
+        self.run_hourly(self.beta, datetime.time(hour=0, minute=40, second=random_second+2))
+        self.run_hourly(self.beta, datetime.time(hour=0, minute=50, second=random_second+2))
+        
         self.calc_derivation_hourly(None)
         self.beta(None)
         
@@ -86,10 +94,33 @@ class heating_controller_foresight(hass.Hass):
         shift_kelvin_60120180 = (- mean_derivative_60120180) * self.args.get("multiplicator", 0)
         self.log("Calculated Offset: {:.2f} / {:.2f} / {:.2f} / {:.2f} K".format(shift_kelvin_30, shift_kelvin_60, shift_kelvin_60, shift_kelvin_120))
         self.client.write_points([{"measurement":self.args.get("log_measurement", "test_no_name"),"fields":{"shift_kelvin_30":shift_kelvin_30, "shift_kelvin_60":shift_kelvin_60, "shift_kelvin_90":shift_kelvin_90, "shift_kelvin_120":shift_kelvin_120, "shift_kelvin_3060":shift_kelvin_3060, "shift_kelvin_306090":shift_kelvin_306090, "shift_kelvin_306090120":shift_kelvin_306090120, "shift_kelvin_60120":shift_kelvin_60120, "shift_kelvin_30120180":shift_kelvin_60120180}}])
-       
-           
-        shift_kelvin = shift_kelvin_306090
-        self.log("Shift Kelvin: {}".format(shift_kelvin))
+
+
+    def beta(self, kwargs):
+        der_list = []
+        query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC LIMIT 5'.format(self.db_field, self.db_measurement)
+        #self.log(query)
+        result_points = self.client.query(query).get_points()
+        prev_value = None
+        prev_time = None
+        for point in result_points:
+            self.log(point)
+            #self.log(type(point["time"]))
+            if prev_value != None:
+                delta_value = point[self.db_field] - prev_value
+                delta_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f') - prev_time
+                delta_time_seconds = delta_time.total_seconds()
+                derivative = delta_value / (delta_time_seconds / 3600)
+                der_list.append(derivative)
+                #self.log("Delta: {} / Hours: {} / derivative: {}".format(delta_value, (delta_time_seconds / 3600), derivative))
+            prev_value = point[self.db_field]
+            prev_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f')
+            
+        mean_derivative = sum(der_list) / len(der_list)
+        shift_kelvin = (- mean_derivative) * self.args.get("multiplicator", 0)
+        self.client.write_points([{"measurement":self.args.get("log_measurement", "test_no_name"),"fields":{"shift_kelvin_beta":shift_kelvin}}])
+        self.log("Shift Kelvin beta: {}".format(shift_kelvin))
+        
         if shift_kelvin > self.args.get("limit_max", 1):
             shift_kelvin = self.args.get("limit_max", 1)
         if shift_kelvin < self.args.get("limit_min", -1):
@@ -109,27 +140,6 @@ class heating_controller_foresight(hass.Hass):
         if self.args.get("mode", "log") == "active" and self.get_state(self.args["on_off_switch"]) == "on":
             self.log("Will send {} to ga {} now".format(value_byte,self.args.get("ga_setpoint_shift")))
             self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = [value_byte])
-
-    def beta(self, kwargs):
-        der_list = []
-        query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC LIMIT 5'.format(self.db_field, self.db_measurement)
-        #self.log(query)
-        result_points = self.client.query(query).get_points()
-        prev_value = None
-        prev_time = None
-        for point in result_points:
-            self.log(point)
-            #self.log(type(point["time"]))
-            if prev_value != None:
-                delta_value = point[self.db_field] - prev_value
-                delta_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f') - prev_time
-                delta_time_seconds = delta_time.total_seconds()
-                derivative = delta_value / (delta_time_seconds / 3600)
-                der_list.append(derivative)
-                self.log("Delta: {} / Hours: {} / derivative: {}".format(delta_value, (delta_time_seconds / 3600), derivative))
-            prev_value = point[self.db_field]
-            prev_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f')
-
     
     def on_off_switch(self, entity, attribute, old, new, kwargs):
         if new == "off" and old != new:
