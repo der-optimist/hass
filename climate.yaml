@@ -16,7 +16,7 @@
     #setpoint_shift_address: '10/0/21'
     #setpoint_shift_state_address: '10/0/21'
     target_temperature_address: '10/0/20'
-    target_temperature_state_address: '10/0/22'
+    target_temperature_state_address: '10/0/20'
     operation_mode_address: '10/0/23'
     controller_status_state_address: '10/0/25'
     min_temp: 17.0
