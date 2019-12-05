@@ -73,7 +73,7 @@ class heating_controller_foresight(hass.Hass):
                 der_list.append(derivative)
                 #self.log(derivative)
                 break
-        self.log(' // '.join('{}: {:.4f}'.format(*k) for k in enumerate(der_list, start=1)))
+        #self.log(' // '.join('{}: {:.4f}'.format(*k) for k in enumerate(der_list, start=1)))
         mean_derivative_30 = der_list[0]
         mean_derivative_60 = der_list[1]
         mean_derivative_90 = der_list[2]
@@ -92,9 +92,9 @@ class heating_controller_foresight(hass.Hass):
         shift_kelvin_306090120 = (- mean_derivative_306090120) * self.args.get("multiplicator", 0)
         shift_kelvin_60120 = (- mean_derivative_60120) * self.args.get("multiplicator", 0)
         shift_kelvin_60120180 = (- mean_derivative_60120180) * self.args.get("multiplicator", 0)
-        self.log("Calculated Offset: {:.2f} / {:.2f} / {:.2f} / {:.2f} K".format(shift_kelvin_30, shift_kelvin_60, shift_kelvin_60, shift_kelvin_120))
+        #self.log("Calculated Offset: {:.2f} / {:.2f} / {:.2f} / {:.2f} K".format(shift_kelvin_30, shift_kelvin_60, shift_kelvin_60, shift_kelvin_120))
         self.client.write_points([{"measurement":self.args.get("log_measurement", "test_no_name"),"fields":{"shift_kelvin_30":shift_kelvin_30, "shift_kelvin_60":shift_kelvin_60, "shift_kelvin_90":shift_kelvin_90, "shift_kelvin_120":shift_kelvin_120, "shift_kelvin_3060":shift_kelvin_3060, "shift_kelvin_306090":shift_kelvin_306090, "shift_kelvin_306090120":shift_kelvin_306090120, "shift_kelvin_60120":shift_kelvin_60120, "shift_kelvin_30120180":shift_kelvin_60120180}}])
-
+        self.log("Shift Kelvin 306090: {}".format(shift_kelvin_306090))
 
     def beta(self, kwargs):
         der_list = []
@@ -104,7 +104,7 @@ class heating_controller_foresight(hass.Hass):
         prev_value = None
         prev_time = None
         for point in result_points:
-            self.log(point)
+            #self.log(point)
             #self.log(type(point["time"]))
             if prev_value != None:
                 delta_value = point[self.db_field] - prev_value
