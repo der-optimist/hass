@@ -21,7 +21,7 @@ cards:
     - entity: switch.majo_schlafen
       name: MaJo
     - entity: binary_sensor.schlafen_oder_aufwachphase_majo
-      name: Schlafen oder Aufwachphase
+      name: Schlafen bzw. Aufwachphase
     - type: section
       label: Jalousie
     - entity: cover.jalousie_schlafzimmer
