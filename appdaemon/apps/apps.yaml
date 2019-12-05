@@ -28,6 +28,34 @@ heating_controller_foresight_test_ez:
   mode: active
   on_off_switch: input_boolean.korrektur_heizung_ez
   log_measurement: test_heating_controller_ez
+heating_controller_foresight_test_ku:
+  module: heating_controller_foresight
+  class: heating_controller_foresight
+  db_passwd: !secret permanent_db_passwd
+  db_measurement: sensor.temp_esszimmer_taster
+  db_field: state_float
+  multiplicator: 2.5
+  limit_max: 0.5
+  limit_min: -0.5
+  ga_setpoint_shift: "10/0/1"
+  shift_value: 0.1
+  mode: active
+  on_off_switch: input_boolean.korrektur_heizung_ez
+  log_measurement: test_heating_controller_ku
+heating_controller_foresight_test_wz:
+  module: heating_controller_foresight
+  class: heating_controller_foresight
+  db_passwd: !secret permanent_db_passwd
+  db_measurement: sensor.temp_esszimmer_taster
+  db_field: state_float
+  multiplicator: 2.5
+  limit_max: 0.5
+  limit_min: -0.5
+  ga_setpoint_shift: "10/0/41"
+  shift_value: 0.1
+  mode: active
+  on_off_switch: input_boolean.korrektur_heizung_ez
+  log_measurement: test_heating_controller_wz
 #heating_controller_foresight_test_la:
 #  module: heating_controller_foresight
 #  class: heating_controller_foresight
