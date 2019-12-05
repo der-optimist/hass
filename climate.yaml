@@ -4,10 +4,10 @@
     temperature_address: '3/0/1'
     #setpoint_shift_address: '10/0/21'
     #setpoint_shift_state_address: '10/0/21'
-    target_temperature_address: '10/0/40'
-    target_temperature_state_address: '10/0/40'
-    operation_mode_address: '10/0/43'
-    controller_status_state_address: '10/0/45'
+    target_temperature_address: '10/0/0'
+    target_temperature_state_address: '10/0/0'
+    operation_mode_address: '10/0/3'
+    controller_status_state_address: '10/0/5'
     min_temp: 17.0
     max_temp: 28.0
   - platform: knx
@@ -26,10 +26,10 @@
     temperature_address: '3/0/1'
     #setpoint_shift_address: '10/0/21'
     #setpoint_shift_state_address: '10/0/21'
-    target_temperature_address: '10/0/0'
-    target_temperature_state_address: '10/0/0'
-    operation_mode_address: '10/0/3'
-    controller_status_state_address: '10/0/5'
+    target_temperature_address: '10/0/40'
+    target_temperature_state_address: '10/0/40'
+    operation_mode_address: '10/0/43'
+    controller_status_state_address: '10/0/45'
     min_temp: 17.0
     max_temp: 28.0
   - platform: knx
