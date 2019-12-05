@@ -20,7 +20,7 @@ cards:
       label: Schläft jemand?
     - entity: switch.majo_schlafen
       name: MaJo
-    - entity: binary_sensor.aufwachphase_majo
+    - entity: binary_sensor.schlafen_oder_aufwachphase_majo
       name: Aufwachphase?
     - type: section
       label: Jalousie
