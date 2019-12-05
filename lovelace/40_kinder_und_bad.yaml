@@ -23,7 +23,7 @@ cards:
     - entity: switch.la_schlaft
       name: Schläft
     - entity: binary_sensor.schlafen_oder_aufwachphase_la
-      name: Aufwachphase?
+      name: Schlafen oder Aufwachphase
     - type: section
       label: Jalousie
     - entity: cover.jalousie_la_bodentiefes
@@ -85,7 +85,7 @@ cards:
     - entity: switch.le_schlaft
       name: Schläft
     - entity: binary_sensor.schlafen_oder_aufwachphase_le
-      name: Aufwachphase?
+      name: Schlafen oder Aufwachphase
     - type: section
       label: Jalousie
     - entity: cover.jalousie_le_bodentiefes
