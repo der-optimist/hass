@@ -102,16 +102,16 @@ class heating_controller_foresight(hass.Hass):
         #self.log(query)
         result_points = self.client.query(query).get_points()
         newest_value = None
-        newest_time = None
+        current_time = None
         for point in result_points:
             #self.log(point)
             #self.log(type(point["time"]))
             if newest_value == None:
                 newest_value = point[self.db_field]
-                newest_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f')
+                current_time = datetime.datetime.now()
             else:
                 delta_value = point[self.db_field] - newest_value
-                delta_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f') - newest_time
+                delta_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f') - current_time
                 delta_time_seconds = delta_time.total_seconds()
                 derivative = delta_value / (delta_time_seconds / 3600)
                 der_list.append(derivative)
