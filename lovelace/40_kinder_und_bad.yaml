@@ -22,7 +22,7 @@ cards:
       label: Schläft jemand?
     - entity: switch.la_schlaft
       name: Schläft
-    - entity: binary_sensor.aufwachphase_la
+    - entity: binary_sensor.schlafen_oder_aufwachphase_la
       name: Aufwachphase?
     - type: section
       label: Jalousie
@@ -84,7 +84,7 @@ cards:
       label: Schläft jemand?
     - entity: switch.le_schlaft
       name: Schläft
-    - entity: binary_sensor.aufwachphase_le
+    - entity: binary_sensor.schlafen_oder_aufwachphase_le
       name: Aufwachphase?
     - type: section
       label: Jalousie
