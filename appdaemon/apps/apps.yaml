@@ -20,6 +20,7 @@ heating_controller_foresight_test_ez:
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_esszimmer_taster
   db_field: state_float
+  number_of_derivatives_for_average: 5
   multiplicator: 2.5
   limit_max: 0.5
   limit_min: -0.5
@@ -34,6 +35,7 @@ heating_controller_foresight_test_ez_pm:
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_esszimmer_pm
   db_field: state_float
+  number_of_derivatives_for_average: 5
   multiplicator: 2.5
   limit_max: 0.5
   limit_min: -0.5
@@ -48,6 +50,7 @@ heating_controller_foresight_test_ku:
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_esszimmer_taster
   db_field: state_float
+  number_of_derivatives_for_average: 5
   multiplicator: 2.5
   limit_max: 0.5
   limit_min: -0.5
@@ -62,6 +65,7 @@ heating_controller_foresight_test_wz:
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_esszimmer_taster
   db_field: state_float
+  number_of_derivatives_for_average: 5
   multiplicator: 2.5
   limit_max: 0.5
   limit_min: -0.5
@@ -76,6 +80,7 @@ heating_controller_foresight_test_wz:
 #  db_passwd: !secret permanent_db_passwd
 #  db_measurement: sensor.temp_la_taster
 #  db_field: state_float
+#  number_of_derivatives_for_average: 5
 #  multiplicator: 2.5
 #  limit_max: 0.5
 #  limit_min: -0.5
@@ -90,6 +95,7 @@ heating_controller_foresight_test_wz:
 #  db_passwd: !secret permanent_db_passwd
 #  db_measurement: sensor.temp_le_taster
 #  db_field: state_float
+#  number_of_derivatives_for_average: 5
 #  multiplicator: 2.5
 #  limit_max: 0.5
 #  limit_min: -0.5
