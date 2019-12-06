@@ -34,6 +34,8 @@ class heating_controller_foresight(hass.Hass):
         self.db_measurement: Set[str] = self.args.get("db_measurement", set())
         self.db_field: Set[str] = self.args.get("db_field", set())
         
+        self.num_for_avg = self.args.get("number_of_derivatives_for_average", 5)
+        
         random_second = random.randint(0,57)
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=0, second=random_second))
         self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=10, second=random_second))
@@ -98,7 +100,7 @@ class heating_controller_foresight(hass.Hass):
 
     def beta(self, kwargs):
         der_list = []
-        query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC LIMIT 5'.format(self.db_field, self.db_measurement)
+        query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC LIMIT {}'.format(self.db_field, self.db_measurement,(self.num_for_avg + 1))
         #self.log(query)
         result_points = self.client.query(query).get_points()
         newest_value = None
