@@ -80,7 +80,7 @@ auto_light_e_ku_arbeitsplatte:
   brightness_values:
     "00:00": 40
     "06:00": 60
-    "06:30": 80
+    "06:30": 65
     "08:00": 90
     "17:30": 70
     "19:30": 60
