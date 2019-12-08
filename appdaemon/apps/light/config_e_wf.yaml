@@ -9,6 +9,7 @@ auto_light_e_wf_panels:
     - binary_sensor.pm_e_wf_haustur
     - binary_sensor.pm_e_wf_garderobe
     - binary_sensor.pm_e_fl_windfang
+    - binary_sensor.pm_e_wc
   brightness_values:
     "00:00": 60
     "05:00": 50
