@@ -62,6 +62,16 @@ mqtt:
     topic: 'hass/status'
     payload: 'offline'
 
+webhook:
+ 
+zigbee2mqtt_networkmap:
+   #topic: your topic (optional, default zigbee2mqtt)
+panel_iframe:
+  networkmap:
+    title: 'Zigbee Map'
+    url: '/local/community/zigbee2mqtt_networkmap/map.html'
+    icon: 'mdi:graphql'
+
 media_player:
   - platform: kodi
     host: 192.168.178.38
@@ -373,3 +383,12 @@ automation:
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.zigbee_permit_join
+  - id: update_networkmap
+    alias: 'Zigbee Map aktualisieren'  
+    hide_entity: true  
+    trigger:
+      platform: time_pattern
+      minutes: '/10'
+      seconds: 00
+    action:
+      service: zigbee2mqtt_networkmap.update
