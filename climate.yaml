@@ -1,7 +1,7 @@
 # Heizung  
   - platform: knx
     name: 'Küche'
-    temperature_address: '3/0/1'
+    temperature_address: '6/0/193'
     #setpoint_shift_address: '10/0/21'
     #setpoint_shift_state_address: '10/0/21'
     target_temperature_address: '10/0/0'
@@ -12,7 +12,7 @@
     max_temp: 28.0
   - platform: knx
     name: 'Esszimmer'
-    temperature_address: '3/0/1'
+    temperature_address: '6/0/193'
     #setpoint_shift_address: '10/0/21'
     #setpoint_shift_state_address: '10/0/21'
     target_temperature_address: '10/0/20'
@@ -23,7 +23,7 @@
     max_temp: 28.0
   - platform: knx
     name: 'Wohnzimmer'
-    temperature_address: '3/0/1'
+    temperature_address: '6/0/193'
     #setpoint_shift_address: '10/0/21'
     #setpoint_shift_state_address: '10/0/21'
     target_temperature_address: '10/0/40'
@@ -34,22 +34,22 @@
     max_temp: 28.0
   - platform: knx
     name: 'Schlafzimmer'
-    temperature_address: '3/2/1'
+    temperature_address: '6/1/193'
     #setpoint_shift_address: '10/0/61'
     #setpoint_shift_state_address: '10/0/61'
     target_temperature_address: '10/0/60'
-    target_temperature_state_address: '10/0/62'
+    target_temperature_state_address: '10/0/60'
     operation_mode_address: '10/0/63'
     controller_status_state_address: '10/0/65'
     min_temp: 17.0
     max_temp: 28.0
   - platform: knx
     name: 'Bad EG'
-    temperature_address: '3/2/129'
+    temperature_address: '6/2/65'
     #setpoint_shift_address: '10/0/81'
     #setpoint_shift_state_address: '10/0/81'
     target_temperature_address: '10/0/80'
-    target_temperature_state_address: '10/0/82'
+    target_temperature_state_address: '10/0/80'
     operation_mode_address: '10/0/83'
     controller_status_state_address: '10/0/85'
     min_temp: 17.0
@@ -60,18 +60,18 @@
     #setpoint_shift_address: '10/0/101'
     #setpoint_shift_state_address: '10/0/101'
     target_temperature_address: '10/0/100'
-    target_temperature_state_address: '10/0/102'
+    target_temperature_state_address: '10/0/100'
     operation_mode_address: '10/0/103'
     controller_status_state_address: '10/0/105'
     min_temp: 17.0
     max_temp: 28.0
   - platform: knx
     name: 'La'
-    temperature_address: '3/3/129'
+    temperature_address: '7/0/65'
     #setpoint_shift_address: '10/0/121'
     #setpoint_shift_state_address: '10/0/121'
     target_temperature_address: '10/0/120'
-    target_temperature_state_address: '10/0/122'
+    target_temperature_state_address: '10/0/120'
     operation_mode_address: '10/0/123'
     controller_status_state_address: '10/0/125'
     min_temp: 17.0
@@ -82,29 +82,29 @@
     #setpoint_shift_address: '10/0/141'
     #setpoint_shift_state_address: '10/0/141'
     target_temperature_address: '10/0/140'
-    target_temperature_state_address: '10/0/142'
+    target_temperature_state_address: '10/0/140'
     operation_mode_address: '10/0/143'
     controller_status_state_address: '10/0/145'
     min_temp: 17.0
     max_temp: 28.0
   - platform: knx
     name: 'Le'
-    temperature_address: '3/4/1'
+    temperature_address: '7/1/65'
     #setpoint_shift_address: '10/0/161'
     #setpoint_shift_state_address: '10/0/161'
     target_temperature_address: '10/0/160'
-    target_temperature_state_address: '10/0/162'
+    target_temperature_state_address: '10/0/160'
     operation_mode_address: '10/0/163'
     controller_status_state_address: '10/0/165'
     min_temp: 17.0
     max_temp: 28.0
   - platform: knx
     name: 'Gästezimmer'
-    temperature_address: '3/4/129'
+    temperature_address: '7/1/193'
     #setpoint_shift_address: '10/0/181'
     #setpoint_shift_state_address: '10/0/181'
     target_temperature_address: '10/0/180'
-    target_temperature_state_address: '10/0/182'
+    target_temperature_state_address: '10/0/180'
     operation_mode_address: '10/0/183'
     controller_status_state_address: '10/0/185'
     min_temp: 17.0
@@ -115,18 +115,18 @@
     #setpoint_shift_address: '10/0/201'
     #setpoint_shift_state_address: '10/0/201'
     target_temperature_address: '10/0/200'
-    target_temperature_state_address: '10/0/202'
+    target_temperature_state_address: '10/0/200'
     operation_mode_address: '10/0/203'
     controller_status_state_address: '10/0/205'
     min_temp: 17.0
     max_temp: 28.0
   - platform: knx
     name: 'Bad OG'
-    temperature_address: '3/5/1'
+    temperature_address: '7/2/193'
     #setpoint_shift_address: '10/0/221'
     #setpoint_shift_state_address: '10/0/221'
     target_temperature_address: '10/0/220'
-    target_temperature_state_address: '10/0/222'
+    target_temperature_state_address: '10/0/220'
     operation_mode_address: '10/0/223'
     controller_status_state_address: '10/0/225'
     min_temp: 17.0
