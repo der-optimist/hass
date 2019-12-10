@@ -3,6 +3,7 @@ from typing import Set
 from influxdb import InfluxDBClient
 import datetime
 import random
+from statistics import median
 
 # Calculates derivation of room temp and increases/lowers target temp. accordingly
 # (kind of adding a D part to a PI controller)
@@ -23,132 +24,99 @@ import random
 class heating_controller_foresight(hass.Hass):
 
     def initialize(self):
+        # initialize database stuff
         self.host = self.args.get("host", "a0d7b954-influxdb")
         self.port=8086
         self.user = self.args.get("user", "appdaemon")
         self.password = self.args.get("db_passwd", None)
         self.dbname = self.args.get("dbname", "homeassistant_permanent")
-        
         self.client =InfluxDBClient(self.host, self.port, self.user, self.password, self.dbname)
-        
         self.db_measurement: Set[str] = self.args.get("db_measurement", set())
         self.db_field: Set[str] = self.args.get("db_field", set())
         
         self.num_for_avg = self.args.get("number_of_derivatives_for_average", 5)
         
-        random_second = random.randint(0,57)
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=0, second=random_second))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=10, second=random_second))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=20, second=random_second))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=30, second=random_second))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=40, second=random_second))
-        self.run_hourly(self.calc_derivation_hourly, datetime.time(hour=0, minute=50, second=random_second))
+        # run every 5 minutes, but at random start time
+        random_second = random.randint(0,59)
+        random_minute = random.randint(0,4)
+        for minute in range(random_minute,random_minute+56,5):
+            self.run_hourly(self.shift_controller_setpoint, datetime.time(hour=0, minute=minute, second=random_second))
+        # especially when testing, also start immediately
+        self.shift_controller_setpoint(None)
         
-        self.run_hourly(self.beta, datetime.time(hour=0, minute=0, second=random_second+2))
-        self.run_hourly(self.beta, datetime.time(hour=0, minute=10, second=random_second+2))
-        self.run_hourly(self.beta, datetime.time(hour=0, minute=20, second=random_second+2))
-        self.run_hourly(self.beta, datetime.time(hour=0, minute=30, second=random_second+2))
-        self.run_hourly(self.beta, datetime.time(hour=0, minute=40, second=random_second+2))
-        self.run_hourly(self.beta, datetime.time(hour=0, minute=50, second=random_second+2))
-        
-        self.calc_derivation_hourly(None)
-        self.beta(None)
-        
+        # reset shift to 0 when switching off this app
         self.listen_state(self.on_off_switch, self.args["on_off_switch"])
-    
+        
+        # drop some measurements from testing
+        self.drop()
 
-    def calc_derivation_hourly(self, kwargs):
-        try:
-            current_value = float(self.get_state(self.db_measurement))
-        except:
-            self.log("Error converting State of {} to float".format(self.db_measurement))
-            return
-        der_list = []
-        for minutes in range(30,240,30):
-            query = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h AND time < now() - {}m'.format(self.db_field, self.db_measurement, minutes)
-            #self.log(query)
-            result_points = self.client.query(query).get_points()
-            #self.log(historic_value)
-            for point in result_points:
-                historic_value = point["last"]
-                derivative = (current_value - historic_value) / (minutes / 60)
-                der_list.append(derivative)
-                #self.log(derivative)
-                break
-        #self.log(' // '.join('{}: {:.4f}'.format(*k) for k in enumerate(der_list, start=1)))
-        mean_derivative_30 = der_list[0]
-        mean_derivative_60 = der_list[1]
-        mean_derivative_90 = der_list[2]
-        mean_derivative_120 = der_list[3]
-        mean_derivative_3060 = (der_list[0] + der_list[1])/2
-        mean_derivative_306090 = (der_list[0] + der_list[1] + der_list[2])/3
-        mean_derivative_306090120 = (der_list[0] + der_list[1] + der_list[2] + der_list[3])/4
-        mean_derivative_60120 = (der_list[1] + der_list[3])/2
-        mean_derivative_60120180 = (der_list[1] + der_list[3] + der_list[5])/3
-        shift_kelvin_30 = (- mean_derivative_30) * self.args.get("multiplicator", 0)
-        shift_kelvin_60 = (- mean_derivative_60) * self.args.get("multiplicator", 0)
-        shift_kelvin_90 = (- mean_derivative_90) * self.args.get("multiplicator", 0)
-        shift_kelvin_120 = (- mean_derivative_120) * self.args.get("multiplicator", 0)
-        shift_kelvin_3060 = (- mean_derivative_3060) * self.args.get("multiplicator", 0)
-        shift_kelvin_306090 = (- mean_derivative_306090) * self.args.get("multiplicator", 0)
-        shift_kelvin_306090120 = (- mean_derivative_306090120) * self.args.get("multiplicator", 0)
-        shift_kelvin_60120 = (- mean_derivative_60120) * self.args.get("multiplicator", 0)
-        shift_kelvin_60120180 = (- mean_derivative_60120180) * self.args.get("multiplicator", 0)
-        #self.log("Calculated Offset: {:.2f} / {:.2f} / {:.2f} / {:.2f} K".format(shift_kelvin_30, shift_kelvin_60, shift_kelvin_60, shift_kelvin_120))
-        self.client.write_points([{"measurement":self.args.get("log_measurement", "test_no_name"),"fields":{"shift_kelvin_30":shift_kelvin_30, "shift_kelvin_60":shift_kelvin_60, "shift_kelvin_90":shift_kelvin_90, "shift_kelvin_120":shift_kelvin_120, "shift_kelvin_3060":shift_kelvin_3060, "shift_kelvin_306090":shift_kelvin_306090, "shift_kelvin_306090120":shift_kelvin_306090120, "shift_kelvin_60120":shift_kelvin_60120, "shift_kelvin_30120180":shift_kelvin_60120180}}])
-        self.log("Shift Kelvin 306090: {}".format(shift_kelvin_306090))
+    def shift_controller_setpoint(self, kwargs):
+        der_list = self.get_list_of_derivatives()
+        # use median. Intention was, that a peak in the measurement should not change the result too much, as it would be the case with average
+        median_of_derivatives = median(der_list)
+        shift_kelvin = (- median_of_derivatives) * self.args.get("multiplicator", 0)
+        
+        # limit the shifting of the setpint, so that this app can't spoil too much :-)
+        if shift_kelvin > self.args.get("limit_max", 1):
+            shift_kelvin_limited = self.args.get("limit_max", 1)
+        elif shift_kelvin < self.args.get("limit_min", -1):
+            shift_kelvin_limited = self.args.get("limit_min", -1)
+        else:
+            shift_kelvin_limited = shift_kelvin
+        
+        # calulate byte value from shift_kelvin
+        value_byte = self.shift_kelvin_to_byte_value(shift_kelvin_limited)
+        
+        if self.args.get("mode", "log") == "active" and self.get_state(self.args["on_off_switch"]) == "on":
+            self.log("Will send {} to ga {} now".format(value_byte,self.args.get("ga_setpoint_shift")))
+            self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = [value_byte])
+            
+        # log the shift values to db
+        self.client.write_points([{"measurement":self.args.get("log_measurement", "shift_heating_setpoint_no_name"),"fields":{"shift_kelvin_calculated":shift_kelvin, "shift_kelvin_limited":shift_kelvin_limited}}])
+        #self.log("Shift Kelvin - calculated: {} / limited: {}".format(round(shift_kelvin,1), round(shift_kelvin_limited,1)))
 
-    def beta(self, kwargs):
+    def get_list_of_derivatives(self):
         der_list = []
         query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC LIMIT {}'.format(self.db_field, self.db_measurement,(self.num_for_avg + 1))
-        #self.log(query)
         result_points = self.client.query(query).get_points()
         newest_value = None
         current_time = None
         for point in result_points:
-            #self.log(point)
-            #self.log(type(point["time"]))
             if newest_value == None:
                 newest_value = point[self.db_field]
                 current_time = datetime.datetime.utcnow()
-                self.log(current_time.strftime("%Y-%m-%d %H:%M:%S"))
+                #self.log(current_time.strftime("%Y-%m-%d %H:%M:%S"))
             else:
                 delta_value = point[self.db_field] - newest_value
                 delta_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f') - current_time
-                self.log(datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f').strftime("%Y-%m-%d %H:%M:%S"))
+                #self.log(datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f').strftime("%Y-%m-%d %H:%M:%S"))
                 delta_time_seconds = delta_time.total_seconds()
                 derivative = delta_value / (delta_time_seconds / 3600)
                 der_list.append(derivative)
-                #self.log(der_list)
-                #self.log("Delta: {} / Hours: {} / derivative: {}".format(delta_value, (delta_time_seconds / 3600), derivative))
-            
-            
-        mean_derivative = sum(der_list) / len(der_list)
-        shift_kelvin = (- mean_derivative) * self.args.get("multiplicator", 0)
-        self.client.write_points([{"measurement":self.args.get("log_measurement", "test_no_name"),"fields":{"shift_kelvin_beta":shift_kelvin}}])
-        self.log("Shift Kelvin beta: {}".format(shift_kelvin))
-        
-        if shift_kelvin > self.args.get("limit_max", 1):
-            shift_kelvin = self.args.get("limit_max", 1)
-        if shift_kelvin < self.args.get("limit_min", -1):
-            shift_kelvin = self.args.get("limit_min", -1)
-        
+        return der_list
+    
+    def shift_kelvin_to_byte_value(self, shift_kelvin):
+        # get the value in K of one shifting point, as it is set in the config of the heating actuator. Defaults to 0.1 K
         shift_value = self.args.get("shift_value", 0.1)
         shift_points = round(shift_kelvin / shift_value)
-        self.log("Shift-Points: {}".format(shift_points))
+        #self.log("Shift-Points: {}".format(shift_points))
         if shift_points > 0:
             value_byte = shift_points
         elif shift_points < 0:
             value_byte = 256 + shift_points
         else:
             value_byte = 0
-        #self.log("Value byte: {}".format(value_byte))
-        
-        if self.args.get("mode", "log") == "active" and self.get_state(self.args["on_off_switch"]) == "on":
-            self.log("Will send {} to ga {} now".format(value_byte,self.args.get("ga_setpoint_shift")))
-            self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = [value_byte])
+        return value_byte
     
     def on_off_switch(self, entity, attribute, old, new, kwargs):
         if new == "off" and old != new:
             self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = [0])
             self.log("Reset Setpoint Shift to 0")
+    
+    def drop(self):
+        self.client.drop_measurement("test_heating_controller_ez")
+        self.client.drop_measurement("test_heating_controller_ez_pm")
+        self.client.drop_measurement("test_heating_controller_ku")
+        self.client.drop_measurement("test_heating_controller_la")
+        self.client.drop_measurement("test_heating_controller_le")
+        self.client.drop_measurement("test_heating_controller_wz")
