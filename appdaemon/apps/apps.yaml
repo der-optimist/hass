@@ -20,7 +20,7 @@ heating_controller_foresight_test_ez:
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_esszimmer_pm
   db_field: state_float
-  number_of_derivatives_for_average: 7
+  number_of_derivatives_for_average: 5
   multiplicator: 4
   limit_max: 1
   limit_min: -1
@@ -28,14 +28,14 @@ heating_controller_foresight_test_ez:
   shift_value: 0.1
   mode: active
   on_off_switch: input_boolean.korrektur_heizung_ez
-  log_measurement: test_heating_controller_ez
+  log_measurement: shift_heating_setpoint_ez
 heating_controller_foresight_test_ku:
   module: heating_controller_foresight
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_esszimmer_pm
   db_field: state_float
-  number_of_derivatives_for_average: 7
+  number_of_derivatives_for_average: 5
   multiplicator: 4
   limit_max: 1
   limit_min: -1
@@ -43,14 +43,14 @@ heating_controller_foresight_test_ku:
   shift_value: 0.1
   mode: active
   on_off_switch: input_boolean.korrektur_heizung_ez
-  log_measurement: test_heating_controller_ku
+  log_measurement: shift_heating_setpoint_ku
 heating_controller_foresight_test_wz:
   module: heating_controller_foresight
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_esszimmer_pm
   db_field: state_float
-  number_of_derivatives_for_average: 7
+  number_of_derivatives_for_average: 5
   multiplicator: 4
   limit_max: 1
   limit_min: -1
@@ -58,7 +58,7 @@ heating_controller_foresight_test_wz:
   shift_value: 0.1
   mode: active
   on_off_switch: input_boolean.korrektur_heizung_ez
-  log_measurement: test_heating_controller_wz
+  log_measurement: shift_heating_setpoint_wz
 #heating_controller_foresight_test_la:
 #  module: heating_controller_foresight
 #  class: heating_controller_foresight
