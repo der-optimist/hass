@@ -206,6 +206,12 @@ input_boolean:
   test_trigger:
     name: Testtrigger
     icon: mdi:ray-start-arrow
+  gaeste_abends:
+    name: Gäste abends
+    icon: mdi:glass-cocktail
+  gaeste_gz:
+    name: Gästezimmer
+    icon: mdi:bed-empty
   heizung_winter:
     name: Heizung Winter-Modus
     icon: mdi:snowflake
