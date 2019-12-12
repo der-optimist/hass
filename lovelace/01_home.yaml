@@ -16,7 +16,7 @@ cards:
                 font-size: 2.4em;
               }  
             content: >
-              # {{ states('sensor.temp_esszimmer_pm') }}°C
+              # {{ '%.1f'%(states('sensor.temp_esszimmer_pm') | float) | float }}°C
               
               Wohnzimmer
           - type: markdown
