@@ -8,6 +8,11 @@ cards:
     entities:
       - entity: input_boolean.heizung_winter
         name: Winter-Modus
+      - type: divider
+        style: 
+          height: 1px
+          background-color: "#ff9c27"
+          opacity: 0.25
       - entity: input_boolean.korrektur_heizung_ez
       - entity: input_boolean.korrektur_heizung_sz
       - entity: input_boolean.korrektur_heizung_bad_eg
