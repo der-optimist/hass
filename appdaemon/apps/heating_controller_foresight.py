@@ -48,7 +48,7 @@ class heating_controller_foresight(hass.Hass):
         self.listen_state(self.on_off_switch, self.args["on_off_switch"])
         
         # drop some measurements from testing
-        self.drop()
+        #self.drop()
 
     def shift_controller_setpoint(self, kwargs):
         der_list = self.get_list_of_derivatives()
@@ -72,7 +72,7 @@ class heating_controller_foresight(hass.Hass):
             self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = [value_byte])
             
         # log the shift values to db
-        self.client.write_points([{"measurement":self.args.get("log_measurement", "shift_heating_setpoint_no_name"),"fields":{"shift_kelvin_calculated":shift_kelvin, "shift_kelvin_limited":shift_kelvin_limited}}])
+        self.client.write_points([{"measurement":self.args.get("log_measurement", "shift_heating_setpoint_no_name"),"fields":{"shift_kelvin_calculated":float(shift_kelvin), "shift_kelvin_limited":float(shift_kelvin_limited)}}])
         #self.log("Shift Kelvin - calculated: {} / limited: {}".format(round(shift_kelvin,1), round(shift_kelvin_limited,1)))
 
     def get_list_of_derivatives(self):
@@ -112,11 +112,8 @@ class heating_controller_foresight(hass.Hass):
         if new == "off" and old != new:
             self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = [0])
             self.log("Reset Setpoint Shift to 0")
+            # log the shift values to db
+            self.client.write_points([{"measurement":self.args.get("log_measurement", "shift_heating_setpoint_no_name"),"fields":{"shift_kelvin_calculated":float(0), "shift_kelvin_limited":float(0)}}])
     
     def drop(self):
         self.client.drop_measurement("test_heating_controller_ez")
-        self.client.drop_measurement("test_heating_controller_ez_pm")
-        self.client.drop_measurement("test_heating_controller_ku")
-        self.client.drop_measurement("test_heating_controller_la")
-        self.client.drop_measurement("test_heating_controller_le")
-        self.client.drop_measurement("test_heating_controller_wz")
