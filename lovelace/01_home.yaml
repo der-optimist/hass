@@ -18,7 +18,7 @@ cards:
             content: >
               # {{ '%.1f'%(states('sensor.temp_esszimmer_pm') | float) | float }}°C
               
-              Wohnzimmer
+              Luftfeuchtigkeit: {{ (states('sensor.0x00158d00033ddc57_humidity') | float) | round }}%
           - type: markdown
             style: |
               h1 {
