@@ -201,3 +201,8 @@ permanent_recorder:
     - sensor.temp_wohnzimmer_pm
     - sensor.windgeschwindigkeit_wetterstation_kmh
     - sensor.stromzahler_kochfeld_rohdaten
+    - sensor.luftfeuchtigkeit_kuche_aqara
+    - sensor.temp_kuche_aqara
+    - sensor.luftdruck_kuche_aqara
+    - sensor.luftfeuchtigkeit_waschkuche_aqara
+    - sensor.temp_waschkuche_aqara
