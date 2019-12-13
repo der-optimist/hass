@@ -139,7 +139,7 @@ jal_bad_kinder_abends_helligkeit:
   constrain_end_time: "17:59:59"
   cover_entity: cover.jalousie_bad_og
   illuminance_sensor: sensor.helligkeit_wetterstation
-  illuminance: 200
+  illuminance: 250
   up_or_down: down
   position: 100
   tilt: 100
@@ -157,7 +157,7 @@ jal_schlafzimmer_abends_helligkeit:
   constrain_end_time: "18:29:59"
   cover_entity: cover.jalousie_schlafzimmer
   illuminance_sensor: sensor.helligkeit_wetterstation
-  illuminance: 100
+  illuminance: 500
   up_or_down: down
   position: 100
   tilt: 100
