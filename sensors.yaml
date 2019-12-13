@@ -33,7 +33,7 @@
         unit_of_measurement: '%'
         value_template: "{{ (states('sensor.0x00158d00034d1e34_humidity') | float) | round }}"
         device_class: humidity
-      temp_kuche_aqara:
+      temp_waschkuche_aqara:
         friendly_name: 'Temp. Waschküche Aqara'
         unit_of_measurement: '°C'
         value_template: "{{ (states('sensor.0x00158d00034d1e34_temperature') | float) | round(1) }}"
