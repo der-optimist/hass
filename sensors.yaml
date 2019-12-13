@@ -6,13 +6,44 @@
         unit_of_measurement: '°C'
         value_template: "{{ state_attr('weather.dark_sky', 'temperature') }}"
       humidity_owm:
-        friendly_name: "Luftfeuchtigkeit"
+        friendly_name: "Luftfeuchtigkeit draußen (Internet)"
         unit_of_measurement: '%'
         value_template: "{{ state_attr('weather.dark_sky', 'humidity') }}"
       date_template:
         friendly_name: 'Datum'
         value_template: '{{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}'
         entity_id: sensor.date
+      luftfeuchtigkeit_kuche_aqara:
+        friendly_name: 'Luftfeuchtigkeit Küche'
+        unit_of_measurement: '%'
+        value_template: "{{ (states('sensor.0x00158d00033ddc57_humidity') | float) | round }}"
+        device_class: humidity
+      temp_kuche_aqara:
+        friendly_name: 'Temp. Küche Aqara'
+        unit_of_measurement: '°C'
+        value_template: "{{ (states('sensor.0x00158d00033ddc57_temperature') | float) | round(1) }}"
+        device_class: temperature
+      luftdruck_kuche_aqara:
+        friendly_name: 'Luftdruck Küche Aqara'
+        unit_of_measurement: 'hPa'
+        value_template: "{{ (states('sensor.0x00158d00033ddc57_pressure') | float) | round }}"
+        device_class: pressure
+      luftfeuchtigkeit_waschkuche_aqara:
+        friendly_name: 'Luftfeuchtigkeit Waschküche'
+        unit_of_measurement: '%'
+        value_template: "{{ (states('sensor.0x00158d00034d1e34_humidity') | float) | round }}"
+        device_class: humidity
+      temp_kuche_aqara:
+        friendly_name: 'Temp. Waschküche Aqara'
+        unit_of_measurement: '°C'
+        value_template: "{{ (states('sensor.0x00158d00034d1e34_temperature') | float) | round(1) }}"
+        device_class: temperature
+      cube_1_side:
+        friendly_name: 'Cube 1 Side'
+        value_template: "{{ state_attr('sensor.0x00158d00027d4507_action', 'side') }}"
+      cube_1_action:
+        friendly_name: 'Cube 1 Action'
+        value_template: "{{ states('sensor.0x00158d00027d4507_action') }}"
 
 # --- Temperatur ---
 # KNX
