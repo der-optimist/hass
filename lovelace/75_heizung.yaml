@@ -9,8 +9,15 @@ cards:
       - entity: input_boolean.heizung_winter
         name: Winter-Modus
       - entity: input_boolean.korrektur_heizung_ez
+      - entity: input_boolean.korrektur_heizung_sz
+      - entity: input_boolean.korrektur_heizung_bad_eg
+      - entity: input_boolean.korrektur_heizung_wf_wc
       - entity: input_boolean.korrektur_heizung_la
+      - entity: input_boolean.korrektur_heizung_nz
       - entity: input_boolean.korrektur_heizung_le
+      - entity: input_boolean.korrektur_heizung_gz
+      - entity: input_boolean.korrektur_heizung_flur_og
+      - entity: input_boolean.korrektur_heizung_bad_og
       - type: divider
         style: 
           height: 1px
