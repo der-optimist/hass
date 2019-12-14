@@ -14,56 +14,36 @@ import appdaemon.plugins.hass.hassapi as hass
 class knx_dim_funk(hass.Hass):
 
     def initialize(self):
-        self.in_action = False
-        self.direction = "down"
         self.light = self.args["light_entity"]
         self.steps = self.args["steps"]
-        self.timer_handle = None
         # listen for knx events
-        self.listen_event(self.received_command, event = "knx_event", address = self.args["command_ga"])
+        self.listen_event(self.received_dim_command, event = "knx_event", address = self.args["command_ga_dim"])
+        self.listen_event(self.received_switch_command, event = "knx_event", address = self.args["command_ga_switch"])
         
-    def received_command(self,event_name,data,kwargs):
+    def received_dim_command(self,event_name,data,kwargs):
         self.log("KNX command for step-dimming detected. Light is: {}. Data is:".format(self.light))
+        self.log(data)
+        try:
+            self.current_brightness = self.byte_to_pct(self.get_state(self.light, attribute="brightness"))
+        except:
+            self.current_brightness = float(0)
+        if data["data"] == 0:
+            next_step = self.find_next_lower_value()
+        elif data["data"] == 1:
+            next_step = self.find_next_higher_value()
+        self.turn_on(self.light,brightness=self.pct_to_byte(next_step))
+        else:
+            self.log("Not 0 and not 1? command_ga_dim should be binary! Please check config")
+
+    def received_switch_command(self,event_name,data,kwargs):
+        self.log("KNX command for swtiching detected. Light is: {}. Data is:".format(self.light))
         self.log(data)
         if data["data"] == 0:
             self.turn_off(self.light)
-            self.log("Switching off {}".format(self.light))
         elif data["data"] == 1:
-            # first, cancel the reset timer
-            if self.timer_handle != None:
-                self.cancel_timer(self.timer_handle)
-            # if first dimming event, check current brightness 
-            # (following steps use internal value, as brightness status es sent only after dimming time)
-            if not self.in_action:
-                try:
-                    self.current_brightness = self.byte_to_pct(self.get_state(self.light, attribute="brightness"))
-                except:
-                    self.current_brightness = float(0)
-            self.log("Current Brightness is {}. Will calculate next dimming step now".format(self.current_brightness))
-            # up or down?
-            if self.current_brightness <= min(self.steps):
-                self.log("dimming up")
-                self.direction = "up"
-            if self.current_brightness >= max(self.steps):
-                self.log("dimming down")
-                self.direction = "down"
-            # find next dimming step
-            if self.direction == "up":
-                next_step = self.find_next_higher_value()
-            else:
-                next_step = self.find_next_lower_value()
-            self.turn_on(self.light,brightness=self.pct_to_byte(next_step))
-            self.current_brightness = next_step
-            self.in_action = True
-            self.timer_handle = self.run_in(self.reset, 10)
+            self.turn_on(self.light,brightness=self.pct_to_byte(100))
         else:
-            self.log("Not 0 and not 1? command_ga should be binary! Please check config")
-
-    def reset(self, kwargs):
-        self.in_action = False
-        self.direction = "down"
-        self.current_brightness = None
-        self.timer_handle = None
+            self.log("Not 0 and not 1? command_ga_dim should be binary! Please check config")
     
     def find_next_higher_value(self):
         for step in sorted(self.steps):
