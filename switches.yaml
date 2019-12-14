@@ -81,6 +81,10 @@
     name: 'Bad OG Nachtmodus'
     address: '15/0/39'
     state_address: '15/0/40'
+  - platform: knx
+    name: 'Gäste schlafen'
+    address: '15/0/53'
+    state_address: '15/0/54'
 
 # --- Heizung ---
   # Switch um an GA zu senden. Richtet sich über AppDaemon App nach der Input Boolean, da 
