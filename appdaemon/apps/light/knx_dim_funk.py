@@ -29,9 +29,10 @@ class knx_dim_funk(hass.Hass):
             self.current_brightness = float(0)
         if data["data"] == 0:
             next_step = self.find_next_lower_value()
+            self.turn_on(self.light,brightness=self.pct_to_byte(next_step))
         elif data["data"] == 1:
             next_step = self.find_next_higher_value()
-        self.turn_on(self.light,brightness=self.pct_to_byte(next_step))
+            self.turn_on(self.light,brightness=self.pct_to_byte(next_step))
         else:
             self.log("Not 0 and not 1? command_ga_dim should be binary! Please check config")
 
