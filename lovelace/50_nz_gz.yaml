@@ -42,8 +42,10 @@ cards:
     entities:
     - type: section
       label: Licht
-    - entity: light.gastezimmer
+    type: custom:slider-entity-row
+      entity: light.0x00158d0003418897_light
       name: Deckenlicht
+      toggle: true
     - type: section
       label: Jalousie
     - entity: cover.jalousie_gastezimmer
