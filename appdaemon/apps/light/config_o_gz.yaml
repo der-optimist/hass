@@ -23,3 +23,15 @@ auto_light_o_gz_deckenlicht:
     - input_boolean.gaeste_gz
   keeping_on_entities:
     - input_boolean.gaeste_gz
+knx_dim_funk_gz_deckenlicht:
+  module: knx_dim_funk
+  class: knx_dim_funk
+  light_entity: light.0x00158d0003418897_light
+  steps:
+    - 0
+    - 5
+    - 30
+    - 70
+    - 100
+  command_ga_dim: "15/0/51"
+  command_ga_switch: "15/0/52"
