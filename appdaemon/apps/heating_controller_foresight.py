@@ -68,7 +68,7 @@ class heating_controller_foresight(hass.Hass):
         value_byte = self.shift_kelvin_to_byte_value(shift_kelvin_limited)
         
         if self.args.get("mode", "log") == "active" and self.get_state(self.args["on_off_switch"]) == "on":
-            self.log("Will send {} to ga {} now".format(value_byte,self.args.get("ga_setpoint_shift")))
+            #self.log("Will send {} to ga {} now".format(value_byte,self.args.get("ga_setpoint_shift")))
             self.call_service("knx/send", address = self.args.get("ga_setpoint_shift"), payload = [value_byte])
             
         # log the shift values to db
