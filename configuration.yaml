@@ -114,7 +114,6 @@ recorder:
       - sensor.yr_symbol
       - sensor.time
       - sensor.last_boot
-      - sensor.windgeschwindigkeit_wetterstation
       - sensor.windfang_wc_temp_ist_text
       - sensor.windfang_wc_temp_soll_text
   purge_interval: 1
