@@ -10,6 +10,17 @@ dimmer_steps_panels_le:
     - 80
     - 100
   command_ga: "15/0/28"
+dimmer_steps_wuerfel_le:
+  module: dimmer_steps
+  class: dimmer_steps
+  light_entity: light.wandwurfel_le
+  steps:
+    - 0
+    - 1
+    - 20
+    - 75
+    - 100
+  command_ga: "15/0/47"
 dimmer_steps_panels_la:
   module: dimmer_steps
   class: dimmer_steps
@@ -21,3 +32,14 @@ dimmer_steps_panels_la:
     - 80
     - 100
   command_ga: "15/0/29"
+dimmer_steps_wuerfel_la:
+  module: dimmer_steps
+  class: dimmer_steps
+  light_entity: light.wandwurfel_la
+  steps:
+    - 0
+    - 1
+    - 20
+    - 75
+    - 100
+  command_ga: "15/0/48"
