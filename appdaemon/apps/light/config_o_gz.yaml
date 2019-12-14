@@ -4,12 +4,17 @@ auto_light_o_gz_deckenlicht:
   class: auto_light
   debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_gaestezimmer
-  light: light.gastezimmer
+  light: light.0x00158d0003418897_light
   triggers: 
     - binary_sensor.pm_o_gz
   brightness_values:
-    "00:00": 100
-    "05:00": 100
+    "00:00": 20
+    "08:00": 60
+    "09:00": 80
+    "10:00": 100
+    "20:00": 70
+    "22:00": 40
+    "23:00": 20
   min_illuminance_values:
     "00:00": 10
     "05:00": 20
@@ -20,9 +25,7 @@ auto_light_o_gz_deckenlicht:
     "23:00": 10
   illuminance_sensor: sensor.helligkeit_gastezimmer_pm
   keeping_off_entities:
-    - input_boolean.gaeste_gz
-  keeping_on_entities:
-    - input_boolean.gaeste_gz
+    - switch.gaste_schlafen
 knx_dim_funk_gz_deckenlicht:
   module: knx_dim_funk
   class: knx_dim_funk
