@@ -1,0 +1,25 @@
+# - Gästezimmer
+auto_light_o_gz_deckenlicht:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  constrain_input_boolean: input_boolean.app_switch_licht_gaestezimmer
+  light: light.gastezimmer
+  triggers: 
+    - binary_sensor.pm_o_gz
+  brightness_values:
+    "00:00": 100
+    "05:00": 100
+  min_illuminance_values:
+    "00:00": 10
+    "05:00": 20
+    "06:30": 30
+    "09:00": 40
+    "17:00": 30
+    "19:00": 20
+    "23:00": 10
+  illuminance_sensor: sensor.helligkeit_gastezimmer_pm
+  keeping_off_entities:
+    - input_boolean.gaeste_gz
+  keeping_on_entities:
+    - input_boolean.gaeste_gz
