@@ -18,7 +18,7 @@ cards:
             content: >
               # {{ '%.1f'%(states('sensor.temp_esszimmer_pm') | float) | float }}°C
               
-              Luftfeuchtigkeit: {{ states('luftfeuchtigkeit_kuche_aqara') }}%
+              Luftfeuchtigkeit: {{ states('sensor.luftfeuchtigkeit_kuche_aqara') }}%
           - type: markdown
             style: |
               h1 {
