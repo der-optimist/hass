@@ -2,7 +2,7 @@
 auto_light_o_gz_deckenlicht:
   module: auto_light
   class: auto_light
-  debug: quiet
+  debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_gaestezimmer
   light: light.gastezimmer
   triggers: 
