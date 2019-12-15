@@ -36,8 +36,8 @@ auto_light_o_la_wuerfel:
   constrain_input_boolean: input_boolean.app_switch_licht_la
   light: light.wandwurfel_la
   triggers: 
-    - binary_sensor.pm_o_kw_la_raum
-    - binary_sensor.pm_o_kw_la_tuer
+    - binary_sensor.pm_o_ko_la_raum
+    - binary_sensor.pm_o_ko_la_tuer
   brightness_values:
     "00:00": 30
     "05:30": 40
