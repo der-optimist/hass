@@ -19,6 +19,7 @@ class gas_prices(hass.Hass):
         list_of_station_ids = []
         for station in self.stations:
             list_of_station_ids.append(station)
+        self.log(list_of_station_ids)
         self.url_params = {
                 'apikey': self.args["tankerkoenig_api_key"],
                 'ids': list_of_station_ids
