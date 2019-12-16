@@ -151,6 +151,15 @@ class telegram_bot(hass.Hass):
             # --- Diesel-Preise ---
             if text.lower().startswith("diesel"):
                 self.send_gas_prices_diesel(chat_id)
+            
+            # --- Benzin-Preise ---
+            if text.lower().startswith("benzin"):
+                self.send_gas_prices_e5(chat_id)
+            
+            # --- Benzin- und Diesel-Preise ---
+            if text.lower().startswith("tank"):
+                self.send_gas_prices_diesel(chat_id)
+                self.send_gas_prices_e5(chat_id)
 
             # --- Konversation 3-Steps ---
             if text in self.categories_threesteps:
@@ -312,7 +321,7 @@ class telegram_bot(hass.Hass):
     
     def send_gas_prices_diesel(self, chat_id):
         list_of_station_names = ["schindele","jet_fn","marktkauf","aral_mecka","hannober","amtzell"]
-        message="Aktuelle Diesel-Preise:\n"
+        message="Aktuelle Diesel-Preise:\n=== ⛽ ===\n"
         for station in list_of_station_names:
             friendly_name = self.get_state("sensor.diesel_{}".format(station),attribute="friendly_name")[9:]
             price = self.get_state("sensor.diesel_{}".format(station))
@@ -321,12 +330,29 @@ class telegram_bot(hass.Hass):
                 status = "offen"
             elif status == "closed":
                 status = "geschlossen"
-            message = message + "{}: {} ({})\n".format(friendly_name,price,status)
+            message = message + "=== ⛽ ===\n{} - {} ({})\n".format(price,friendly_name,status)
         message = message + "Stand: {}".format(self.get_state("sensor.last_update_gas_prices"))
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=message)
-        
+    
+    def send_gas_prices_e5(self, chat_id):
+        list_of_station_names = ["schindele","jet_fn","marktkauf","aral_mecka","hannober","amtzell"]
+        message="Aktuelle Benzin-Preise (Super):\n=== ⛽ ===\n"
+        for station in list_of_station_names:
+            friendly_name = self.get_state("sensor.e5_{}".format(station),attribute="friendly_name")[9:]
+            price = self.get_state("sensor.e5_{}".format(station))
+            status = self.get_state("sensor.status_{}".format(station))
+            if status == "open":
+                status = "offen"
+            elif status == "closed":
+                status = "geschlossen"
+            message = message + "=== ⛽ ===\n{} - {} ({})\n".format(price,friendly_name,status)
+        message = message + "Stand: {}".format(self.get_state("sensor.last_update_gas_prices"))
+        self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message=message)
+    
     def answer_thank_you(self, chat_id):
         reply = random.choice(["Gerne 😘", 
                            "Hey, du bist der Boss, ich mach nur was du sagst 😉", 
