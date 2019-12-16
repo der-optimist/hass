@@ -98,6 +98,12 @@ permanent_recorder:
     - switch.la_schlaft
     - switch.le_schlaft
     - switch.majo_schlafen
+    - sensor.status_amtzell
+    - sensor.status_aral_mecka
+    - sensor.status_hannober
+    - sensor.status_jet_fn
+    - sensor.status_marktkauf
+    - sensor.status_schindele
   heating_target_temperature:
     - climate.bad_eg
     - climate.bad_og
@@ -206,3 +212,21 @@ permanent_recorder:
     - sensor.luftdruck_kuche_aqara
     - sensor.luftfeuchtigkeit_waschkuche_aqara
     - sensor.temp_waschkuche_aqara
+    - sensor.diesel_amtzell
+    - sensor.diesel_aral_mecka
+    - sensor.diesel_hannober
+    - sensor.diesel_jet_fn
+    - sensor.diesel_marktkauf
+    - sensor.diesel_schindele
+    - sensor.e10_amtzell
+    - sensor.e10_aral_mecka
+    - sensor.e10_hannober
+    - sensor.e10_jet_fn
+    - sensor.e10_marktkauf
+    - sensor.e10_schindele
+    - sensor.e5_amtzell
+    - sensor.e5_aral_mecka
+    - sensor.e5_hannober
+    - sensor.e5_jet_fn
+    - sensor.e5_marktkauf
+    - sensor.e5_schindele
