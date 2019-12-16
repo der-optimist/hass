@@ -49,6 +49,7 @@ class gas_prices(hass.Hass):
                 self.set_state("sensor.e5_{}".format(station_name_), state = e5, attributes = {"friendly_name": "Super - {}".format(station_name), "icon": "mdi:gas-station"})
                 self.set_state("sensor.e10_{}".format(station_name_), state = e10, attributes = {"friendly_name": "E10 - {}".format(station_name), "icon": "mdi:gas-station"})
                 self.set_state("sensor.status_{}".format(station_name_), state = status, attributes = {"friendly_name": "Status - {}".format(station_name), "icon": "mdi:lock-clock"})
+            self.set_state("sensor.last_update_gas_prices", state = datetime.datetime.now().strftime("%m.%d. %H:%M"), attributes = {"friendly_name": "Letztes Update Tankstellenpreise", "icon": "mdi:clock-check-outline"})
         else:
             # log http error. no second try here, as update will be done in a few minutes anyway
             self.log("downloading gas prices from tankerkoenig failed. http error {}".format(r.status_code))
