@@ -37,8 +37,8 @@ class gas_prices(hass.Hass):
             return
         if r.status_code == 200:
             self.log(r.text)
-            data_json = r.json
-            for station_id in data_json['prices'].keys():
+            data_json = r.json()
+            for station_id in data_json['prices']:
                 station_name = self.stations[station_id]
                 station_name_ = re.sub("[!@#$%^&*()[]{};:,./<>?\|`~-=_+äöüßÄÖÜ]", "", station_name)
                 self.log(station_name_)
