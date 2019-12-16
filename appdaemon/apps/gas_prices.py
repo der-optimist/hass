@@ -1,8 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 from typing import Set
-import re
-import requests, io
-import json
+import requests
 import datetime
 
 #
@@ -24,9 +22,10 @@ class gas_prices(hass.Hass):
                 'apikey': self.args["tankerkoenig_api_key"],
                 'ids': ",".join(map(str, list_of_station_ids))
                 }
+        self.update_interval_minutes = 5 # minutes
+        for i in range(1,60,self.update_interval_minutes):
+            self.run_hourly(self.load_prices, datetime.time(hour=0, minute=i, second=12))
         self.load_prices(None)
-        #self.run_every(self.load_prices, datetime.datetime.now(), 5 * 60) # update every 5 minutes
-
 
     def load_prices(self, kwargs):
         try:
@@ -40,14 +39,16 @@ class gas_prices(hass.Hass):
             data_json = r.json()
             for station_id in data_json['prices']:
                 station_name = self.stations[station_id]
-                station_name_ = station_name.replace(' ','').replace('ä','ae').replace('ö','oe').replace('ü','ue').replace('ß','ss').replace('Ä','Ae').replace('Ö','Oe').replace('Ü','Ue')
+                station_name_ = station_name.replace(' ','_').replace('ä','ae').replace('ö','oe').replace('ü','ue').replace('ß','ss').replace('Ä','Ae').replace('Ö','Oe').replace('Ü','Ue').lower()
                 self.log(station_name_)
                 diesel = data_json['prices'][station_id]['diesel']
                 e5 = data_json['prices'][station_id]['e5']
-                self.set_state("diesel_{}".format(station_name_), state = diesel, attributes = {"friendly_name": "Diesel - {}".format(station_name), "icon": "mdi:gas-station"})
-                self.set_state("super_e5_{}".format(station_name_), state = e5, attributes = {"friendly_name": "Super - {}".format(station_name), "icon": "mdi:gas-station"})
-
-            
+                e10 = data_json['prices'][station_id]['e10']
+                status = data_json['prices'][station_id]['status']
+                self.set_state("sensor.diesel_{}".format(station_name_), state = diesel, attributes = {"friendly_name": "Diesel - {}".format(station_name), "icon": "mdi:gas-station"})
+                self.set_state("sensor.e5_{}".format(station_name_), state = e5, attributes = {"friendly_name": "Super - {}".format(station_name), "icon": "mdi:gas-station"})
+                self.set_state("sensor.e10_{}".format(station_name_), state = e10, attributes = {"friendly_name": "E10 - {}".format(station_name), "icon": "mdi:gas-station"})
+                self.set_state("sensor.status_{}".format(station_name_), state = status, attributes = {"friendly_name": "Status - {}".format(station_name), "icon": "mdi:lock-clock"})
         else:
             # log http error. no second try here, as update will be done in a few minutes anyway
             self.log("downloading gas prices from tankerkoenig failed. http error {}".format(r.status_code))
