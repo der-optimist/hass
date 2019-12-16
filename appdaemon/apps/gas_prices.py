@@ -1,5 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 from typing import Set
+import re
 import requests, io
 import json
 import datetime
@@ -19,7 +20,6 @@ class gas_prices(hass.Hass):
         list_of_station_ids = []
         for station in self.stations:
             list_of_station_ids.append(station)
-        self.log(list_of_station_ids)
         self.url_params = {
                 'apikey': self.args["tankerkoenig_api_key"],
                 'ids': ",".join(map(str, list_of_station_ids))
@@ -36,10 +36,18 @@ class gas_prices(hass.Hass):
             self.log("Error while loading gas prices from tankerkoenig. Maybe connection problem")
             return
         if r.status_code == 200:
-            self.log("loaded")
-            #self.log(r.content)
-            #self.log(r.raw)
             self.log(r.text)
+            data_json = r.json
+            for station_id in data_json['prices']:
+                station_name = self.stations[station_id]
+                station_name_ = re.sub("[!@#$%^&*()[]{};:,./<>?\|`~-=_+äöüßÄÖÜ]", "", station_name)
+                self.log(station_name_)
+                diesel = data_json['prices'][station_id]['diesel']
+                e5 = data_json['prices'][station_id]['e5']
+                self.log(e5)
+                self.log(type(diesel))
+
+            
         else:
             # log http error. no second try here, as update will be done in a few minutes anyway
             self.log("downloading gas prices from tankerkoenig failed. http error {}".format(r.status_code))
