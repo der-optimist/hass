@@ -14,6 +14,10 @@ test_dim_steps_wz:
     - 85
     - 100
   command_ga: "15/0/49"
+test_cube:
+  module: test_cube
+  class: test_cube
+  constrain_input_boolean: input_boolean.test_trigger
 gas_prices:
   module: gas_prices
   class: gas_prices
