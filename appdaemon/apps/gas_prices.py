@@ -40,13 +40,12 @@ class gas_prices(hass.Hass):
             data_json = r.json()
             for station_id in data_json['prices']:
                 station_name = self.stations[station_id]
-                station_name_ = re.sub("[!@#$%^&*()[]{};:,./<>?\|`~-=_+äöüßÄÖÜ]", "", station_name)
+                station_name_ = station_name.replace(' ','').replace('ä','ae').replace('ö','oe').replace('ü','ue').replace('ß','ss').replace('Ä','Ae').replace('Ö','Oe').replace('Ü','Ue')
                 self.log(station_name_)
                 diesel = data_json['prices'][station_id]['diesel']
                 e5 = data_json['prices'][station_id]['e5']
-                self.log(e5)
-                self.log(type(diesel))
                 self.set_state("diesel_{}".format(station_name_), state = diesel, attributes = {"friendly_name": "Diesel - {}".format(station_name), "icon": "mdi:gas-station"})
+                self.set_state("super_e5_{}".format(station_name_), state = e5, attributes = {"friendly_name": "Super - {}".format(station_name), "icon": "mdi:gas-station"})
 
             
         else:
