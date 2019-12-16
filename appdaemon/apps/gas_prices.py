@@ -22,7 +22,7 @@ class gas_prices(hass.Hass):
         self.log(list_of_station_ids)
         self.url_params = {
                 'apikey': self.args["tankerkoenig_api_key"],
-                'ids': list_of_station_ids
+                'ids': ",".join(map(str, list_of_station_ids))
                 }
         self.load_prices(None)
         #self.run_every(self.load_prices, datetime.datetime.now(), 5 * 60) # update every 5 minutes
