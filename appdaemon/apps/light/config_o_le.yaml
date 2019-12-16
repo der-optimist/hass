@@ -33,7 +33,7 @@ auto_light_o_le_panels:
 auto_light_o_le_wuerfel:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_le
   light: light.wandwurfel_le
   triggers: 
