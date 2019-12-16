@@ -14,20 +14,22 @@ import datetime
 class gas_prices(hass.Hass):
 
     def initialize(self):
-        self.base_url = "https://creativecommons.tankerkoenig.de/json/prices.php?apikey={}&ids=".format(self.args["tankerkoenig_api_key"])
+        self.base_url = "https://creativecommons.tankerkoenig.de/json/prices.php"
         self.stations: Set[str] = self.args.get("stations", set())
         list_of_station_ids = []
         for station in self.stations:
             list_of_station_ids.append(station)
-        self.request_url = self.base_url + ','.join(list_of_station_ids)
-        self.log(self.request_url)
+        self.url_params = {
+                'apikey': self.args["tankerkoenig_api_key"],
+                'ids': list_of_station_ids
+                }
         self.load_prices(None)
         #self.run_every(self.load_prices, datetime.datetime.now(), 5 * 60) # update every 5 minutes
 
 
     def load_prices(self, kwargs):
         try:
-            r = requests.get(self.base_url, allow_redirects=True)
+            r = requests.get(self.base_url, params = self.url_params)
         except:
             # catch connection error - r does not get a status code then
             self.log("Error while loading gas prices from tankerkoenig. Maybe connection problem")
