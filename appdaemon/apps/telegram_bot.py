@@ -330,8 +330,8 @@ class telegram_bot(hass.Hass):
                 status = "offen"
             elif status == "closed":
                 status = "geschlossen"
-            message = message + "=== ⛽ ===\n{} - {} ({})\n".format(price,friendly_name,status)
-        message = message + "Stand: {}".format(self.get_state("sensor.last_update_gas_prices"))
+            message = message + "{} - {} ({})\n".format(price,friendly_name,status)
+        message = message + "=== ⛽ ===\nStand: {}".format(self.get_state("sensor.last_update_gas_prices"))
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=message)
@@ -340,15 +340,15 @@ class telegram_bot(hass.Hass):
         list_of_station_names = ["schindele","jet_fn","marktkauf","aral_mecka","hannober","amtzell"]
         message="Aktuelle Benzin-Preise (Super):\n=== ⛽ ===\n"
         for station in list_of_station_names:
-            friendly_name = self.get_state("sensor.e5_{}".format(station),attribute="friendly_name")[9:]
+            friendly_name = self.get_state("sensor.diesel_{}".format(station),attribute="friendly_name")[9:]
             price = self.get_state("sensor.e5_{}".format(station))
             status = self.get_state("sensor.status_{}".format(station))
             if status == "open":
                 status = "offen"
             elif status == "closed":
                 status = "geschlossen"
-            message = message + "=== ⛽ ===\n{} - {} ({})\n".format(price,friendly_name,status)
-        message = message + "Stand: {}".format(self.get_state("sensor.last_update_gas_prices"))
+            message = message + "{} - {} ({})\n".format(price,friendly_name,status)
+        message = message + "=== ⛽ ===\nStand: {}".format(self.get_state("sensor.last_update_gas_prices"))
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=message)
