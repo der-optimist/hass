@@ -20,6 +20,7 @@ class gas_prices(hass.Hass):
         for station in self.stations:
             list_of_station_ids.append(station)
         self.request_url = self.base_url + ','.join(list_of_station_ids)
+        self.log(self.request_url)
         self.load_prices(None)
         #self.run_every(self.load_prices, datetime.datetime.now(), 5 * 60) # update every 5 minutes
 
@@ -33,8 +34,8 @@ class gas_prices(hass.Hass):
             return
         if r.status_code == 200:
             self.log("loaded")
-            self.log(r.content)
-            self.log(r.raw)
+            #self.log(r.content)
+            #self.log(r.raw)
             self.log(r.text)
         else:
             # log http error. no second try here, as update will be done in a few minutes anyway
