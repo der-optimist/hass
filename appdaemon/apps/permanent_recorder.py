@@ -62,9 +62,9 @@ class permanent_recorder(hass.Hass):
         self.client.write_points([{"measurement":entity,"fields":{"state_string":str(new)}}])
 
     def state_boolean_changed(self, entity, attributes, old, new, kwargs):
-        if new == "off":
+        if new == "off" or new == "closed":
             value = False
-        elif new == "on":
+        elif new == "on" or new == "open":
             value = True
         else:
             return
