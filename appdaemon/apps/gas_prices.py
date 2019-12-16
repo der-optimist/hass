@@ -35,12 +35,11 @@ class gas_prices(hass.Hass):
             self.log("Error while loading gas prices from tankerkoenig. Maybe connection problem")
             return
         if r.status_code == 200:
-            self.log(r.text)
+            #self.log(r.text)
             data_json = r.json()
             for station_id in data_json['prices']:
                 station_name = self.stations[station_id]
                 station_name_ = station_name.replace(' ','_').replace('ä','ae').replace('ö','oe').replace('ü','ue').replace('ß','ss').replace('Ä','Ae').replace('Ö','Oe').replace('Ü','Ue').lower()
-                self.log(station_name_)
                 diesel = data_json['prices'][station_id]['diesel']
                 e5 = data_json['prices'][station_id]['e5']
                 e10 = data_json['prices'][station_id]['e10']
