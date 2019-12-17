@@ -224,7 +224,7 @@ class weather_and_astro(hass.Hass):
             try:
                 self.input_values.append(float(new))
                 if len(self.input_values) > 4:
-                    speed_kmh = sum(self.input_values) / len(self.input_values) * 3.6
+                    speed_kmh = max(self.input_values) * 3.6
                     self.set_state("sensor.windgeschwindigkeit_wetterstation_kmh", state = round(speed_kmh, 0), attributes = {"icon":"mdi:weather-windy", "friendly_name": "Windgeschwindigkeit", "unit_of_measurement": "km/h"})
                     self.input_values = []
             except Exception as e:
