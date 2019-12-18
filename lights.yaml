@@ -55,6 +55,10 @@
     state_address: '1/1/81'
     brightness_address: '1/1/83'
     brightness_state_address: '1/1/84'
+  - platform: knx
+    name: 'SD Fussraum Bar'
+    address: '0/2/160'
+    state_address: '0/2/161'
 
 # Wohnzimmer
   - platform: knx
