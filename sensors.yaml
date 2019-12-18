@@ -136,6 +136,10 @@
     state_address: '13/0/0'
     sync_state: False
     type: temperature
+  - platform: knx
+    name: 'Temp. Test onewire'
+    state_address: '12/7/0'
+    type: temperature
 
 # 1-wire
 
