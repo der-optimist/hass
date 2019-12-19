@@ -93,4 +93,3 @@
     name: 'Heizung Wintermodus'
     address: '10/7/3'
     state_address: '10/7/9'
-    sync_state: False
