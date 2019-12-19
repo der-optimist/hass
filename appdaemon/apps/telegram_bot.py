@@ -320,7 +320,7 @@ class telegram_bot(hass.Hass):
                           file= "/config/www/meteograms/meteogram.png")
     
     def send_gas_prices_diesel(self, chat_id):
-        list_of_station_names = ["schindele","jet_fn","marktkauf","aral_mecka","hannober","amtzell"]
+        list_of_station_names = ["schindele","jet_fn","marktkauf","aral_mecka","pinoil_tt","hannober","amtzell"]
         message="Aktuelle Diesel-Preise:\n=== ⛽ ===\n"
         for station in list_of_station_names:
             friendly_name = self.get_state("sensor.diesel_{}".format(station),attribute="friendly_name")[9:]
@@ -337,7 +337,7 @@ class telegram_bot(hass.Hass):
                           message=message)
     
     def send_gas_prices_e5(self, chat_id):
-        list_of_station_names = ["schindele","jet_fn","marktkauf","aral_mecka","hannober","amtzell"]
+        list_of_station_names = ["schindele","jet_fn","marktkauf","aral_mecka","pinoil_tt","hannober","amtzell"]
         message="Aktuelle Benzin-Preise (Super):\n=== ⛽ ===\n"
         for station in list_of_station_names:
             friendly_name = self.get_state("sensor.diesel_{}".format(station),attribute="friendly_name")[9:]
