@@ -141,6 +141,41 @@
     state_address: '12/7/0'
     sync_state: False
     type: temperature
+  - platform: knx
+    name: 'Temp. Estrich Küche'
+    state_address: '12/0/0'
+    sync_state: False
+    type: temperature
+  - platform: knx
+    name: 'Temp. Estrich Esszimmer'
+    state_address: '12/0/1'
+    sync_state: False
+    type: temperature
+  - platform: knx
+    name: 'Temp. Estrich Wohnzimmer'
+    state_address: '12/0/2'
+    sync_state: False
+    type: temperature
+  - platform: knx
+    name: 'Temp. Estrich Schlafzimmer'
+    state_address: '12/0/3'
+    sync_state: False
+    type: temperature
+  - platform: knx
+    name: 'Temp. Estrich Bad EG'
+    state_address: '12/0/4'
+    sync_state: False
+    type: temperature
+  - platform: knx
+    name: 'Temp. Estrich WC'
+    state_address: '12/0/6'
+    sync_state: False
+    type: temperature
+  - platform: knx
+    name: 'Temp. Estrich Bad OG'
+    state_address: '12/0/12'
+    sync_state: False
+    type: temperature
 
 # 1-wire
 
