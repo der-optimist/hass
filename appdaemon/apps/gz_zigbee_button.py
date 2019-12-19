@@ -15,7 +15,7 @@ class gz_zigbee_button(hass.Hass):
         self.sensor = self.args["sensor_entity"]
         self.switch = self.args["sleep_mode_switch_entity"]
         self.light = self.args["light_entity"]
-        self.listen_state(self.sensor_state_changed, self.sensor)
+        self.listen_state(self.sensor_state_changed, self.sensor, attribute = "click")
         
     def sensor_state_changed(self, entity, attribute, old, new, kwargs):
         if new == "single" and new != old:
