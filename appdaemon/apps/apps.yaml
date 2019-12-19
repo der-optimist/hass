@@ -23,7 +23,7 @@ supervise_knx_sensor_estrich_wc:
   class: supervise_knx_sensor
   ga: "12/0/6"
   sensor_name: Onewire Estrich WC
-  minutes: 30
+  minutes: 3
 gas_prices:
   module: gas_prices
   class: gas_prices
