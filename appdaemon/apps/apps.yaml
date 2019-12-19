@@ -18,6 +18,12 @@ test_cube:
   module: test_cube
   class: test_cube
   constrain_input_boolean: input_boolean.test_trigger
+supervise_knx_sensor_estrich_wc:
+  module: supervise_knx_sensor
+  class: supervise_knx_sensor
+  ga: "12/0/6"
+  sensor_name: Onewire Estrich WC
+  minutes: 30
 gas_prices:
   module: gas_prices
   class: gas_prices
