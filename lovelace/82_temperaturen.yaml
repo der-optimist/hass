@@ -68,7 +68,7 @@ cards:
         name: Estrich Bad EG
       - entity: sensor.temp_estrich_wc
         name: Estrich WC
-- type: entities
+  - type: entities
     title: Sonstige
     show_header_toggle: false
     entities:
