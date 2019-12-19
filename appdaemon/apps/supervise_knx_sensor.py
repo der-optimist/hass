@@ -1,6 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 
-#
+# 
 # App to check if a knx sensor send frequently. Otherwise, notify
 #
 # Args:
