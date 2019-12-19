@@ -53,6 +53,22 @@ cards:
       - entity: sensor.temp_bad_og_pm
         name: Bad OG PM
   - type: entities
+    title: Fußboden-Sensoren
+    show_header_toggle: false
+    entities:
+      - entity: sensor.temp_estrich_kuche
+        name: Estrich Küche
+      - entity: sensor.temp_estrich_esszimmer
+        name: Estrich Esszimmer
+      - entity: sensor.temp_estrich_wohnzimmer
+        name: Estrich Wohnzimmer
+      - entity: sensor.temp_estrich_schlafzimmer
+        name: Estrich Schlafzimmer
+      - entity: sensor.temp_estrich_bad_eg
+        name: Estrich Bad EG
+      - entity: sensor.temp_estrich_wc
+        name: Estrich WC
+- type: entities
     title: Sonstige
     show_header_toggle: false
     entities:
