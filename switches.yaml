@@ -89,7 +89,7 @@
 # --- Heizung ---
   # Switch um an GA zu senden. Richtet sich über AppDaemon App nach der Input Boolean, da 
   # diese bei Neustart wiederhergestellt wird. Diesen Schalter also nicht manuell betätigen
-  - platform: knx
-    name: 'Heizung Wintermodus'
-    address: '10/7/3'
-    state_address: '10/7/9'
+#  - platform: knx
+#    name: 'Heizung Wintermodus'
+#    address: '10/7/3'
+#    state_address: '10/7/9'
