@@ -13,7 +13,7 @@ class heating_winter_mode(hass.Hass):
 
     def initialize(self):
         # wait for KNX entities 
-        self.ga = self.args["ga"])
+        self.ga = self.args["ga"]
         self.run_in(self.send_update,110)
         self.listen_state(self.input_changed, self.args["input_booloean_entity"])
         run_time = datetime.time(0, 38, 26) # more or less random timme
