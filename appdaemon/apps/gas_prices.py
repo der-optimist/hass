@@ -40,10 +40,22 @@ class gas_prices(hass.Hass):
             for station_id in data_json['prices']:
                 station_name = self.stations[station_id]
                 station_name_ = station_name.replace(' ','_').replace('ä','ae').replace('ö','oe').replace('ü','ue').replace('ß','ss').replace('Ä','Ae').replace('Ö','Oe').replace('Ü','Ue').lower()
-                diesel = data_json['prices'][station_id]['diesel']
-                e5 = data_json['prices'][station_id]['e5']
-                e10 = data_json['prices'][station_id]['e10']
-                status = data_json['prices'][station_id]['status']
+                try:
+                    diesel = data_json['prices'][station_id]['diesel']
+                except KeyError:
+                    diesel = "unbekannt"
+                try:
+                    e5 = data_json['prices'][station_id]['e5']
+                except KeyError:
+                    e5 = "unbekannt"
+                try:
+                    e10 = data_json['prices'][station_id]['e10']
+                except KeyError:
+                    e10 = "unbekannt"
+                try:
+                    status = data_json['prices'][station_id]['status']
+                except KeyError:
+                    status = "unbekannt"
                 self.set_state("sensor.diesel_{}".format(station_name_), state = diesel, attributes = {"friendly_name": "Diesel - {}".format(station_name), "icon": "mdi:gas-station"})
                 self.set_state("sensor.e5_{}".format(station_name_), state = e5, attributes = {"friendly_name": "Super - {}".format(station_name), "icon": "mdi:gas-station"})
                 self.set_state("sensor.e10_{}".format(station_name_), state = e10, attributes = {"friendly_name": "E10 - {}".format(station_name), "icon": "mdi:gas-station"})
