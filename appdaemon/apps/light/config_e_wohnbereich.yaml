@@ -156,14 +156,14 @@ auto_light_e_wz_panels:
     "19:00": 50
     "21:00": 30
   min_illuminance_values:
-    "00:00": 10
+    "00:00": 20
     "06:30": 20
     "07:00": 30
     "08:00": 40
     "09:00": 50
     "17:00": 40
     "18:30": 30
-    "21:30": 10
+    "21:30": 20
   illuminance_sensor: sensor.helligkeit_wohnzimmer_pm
   special_brightness_entities:
     binary_sensor.tv_ist_an: 30
