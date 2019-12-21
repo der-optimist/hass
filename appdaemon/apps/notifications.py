@@ -15,8 +15,10 @@ class notifications(hass.Hass):
         time_send_temps = datetime.time(4, 45, 00)
         self.run_daily(self.send_temps, time_send_temps)
         #self.send_temps(None) # for testing, send now
-        time_ma_morning = datetime.time(7, 30, 00)
-        self.run_daily(self.ma_morning, time_ma_morning)
+        time_ma_morning_we = datetime.time(7, 30, 00)
+        time_ma_morning_wd = datetime.time(6, 15, 00)
+        self.run_daily(self.ma_morning, time_ma_morning_wd, constrain_days="mon,tue,wed,thu,fri")
+        self.run_daily(self.ma_morning, time_ma_morning_we, constrain_days="sat,sun")
         #self.ma_morning(None)
     
     def send_temps(self, kwargs):
