@@ -15,7 +15,9 @@ class notifications(hass.Hass):
         time_send_temps = datetime.time(4, 45, 00)
         self.run_daily(self.send_temps, time_send_temps)
         #self.send_temps(None) # for testing, send now
-        self.ma_morning(None)
+        time_ma_morning = datetime.time(7, 30, 00)
+        self.run_daily(self.ma_morning, time_ma_morning)
+        #self.ma_morning(None)
     
     def send_temps(self, kwargs):
         try:
@@ -46,10 +48,10 @@ class notifications(hass.Hass):
         except:
             wind = "??"
         message="Guten Morgen, schönste Frau der Welt!\n"\
-                "Draußen hat es\n"\
+                "Draußen hat es:\n"\
                 "{} °C und\n"\
                 "{} km/h Wind.\n"\
                 "Ich schick dir noch das Wetter für die nächsten Tage:".format(temp_aussen,wind)
-        self.call_service("notify/telegram_jo", message=message)
-        self.call_service("notify/telegram_jo", message="Wetter", data={"photo":{"file":"/config/www/meteograms/meteogram.png", "caption":"Ich wünsch dir einen schönen Tag!"}})
+        self.call_service("notify/telegram_ma", message=message)
+        self.call_service("notify/telegram_ma", message="Wetter", data={"photo":{"file":"/config/www/meteograms/meteogram.png", "caption":"Ich wünsch dir einen schönen Tag!"}})
                 
