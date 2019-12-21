@@ -50,6 +50,6 @@ class notifications(hass.Hass):
                 "{} °C und\n"\
                 "{} km/h Wind.\n"\
                 "Ich wünsch dir einen schönen Tag und schicke "\
-                "dir noch das Wetter für die nächsten Tage:".format(temp_ez,temp_aussen,wind)
+                "dir noch das Wetter für die nächsten Tage:".format(temp_aussen,wind)
         self.call_service("notify/telegram_jo", message="Wetter", data={"photo":{"file":"/config/www/meteograms/meteogram.png"}})
                 
