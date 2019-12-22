@@ -13,7 +13,7 @@ class test_cube(hass.Hass):
     def action(self, entity, attribute, old, new, kwargs):
         if new != "":
             side = self.get_state("sensor.cube_1_side")
-            self.fire_event("custom_notify", message="Cube Action changed: {} / Side zu dem Zeitpunkt: {}".format(new,side), target="telegram_jo")
+            self.fire_event("custom_notify", message="Cube Action changed: {} / Side zu dem Zeitpunkt: {}".format(new.replace("_"," "),side), target="telegram_jo")
 
     def side(self, entity, attribute, old, new, kwargs):
         self.fire_event("custom_notify", message="Cube Side changed: {}".format(new), target="telegram_jo")
