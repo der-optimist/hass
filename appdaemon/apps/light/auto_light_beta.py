@@ -121,16 +121,12 @@ class auto_light(hass.Hass):
         self.decide_if_light_is_needed(None)
 
     def light_state_changed(self, entity, attributes, old, new, kwargs):
-        if old == "on" and new == "off" and self.is_triggered:
-            self.run_in(self.delayed_check_if_really_manually_switched_off,3)
+        if old == "on" and new == "off" and self.is_triggered and not self.i_switched_off:
+            self.manually_switched_off = True
         if new == "on" and old != "on":
             self.debug_filter("Light switched on, will set manually_switched_off to False","few")
             self.manually_switched_off = False
         self.i_switched_off = False
-
-    def delayed_check_if_really_manually_switched_off(self, kwargs):
-        if not self.i_switched_off:
-            self.manually_switched_off = True
 
     def trigger_state_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Light Trigger: {} changed from {} to {}".format(entity, old, new),"few")
