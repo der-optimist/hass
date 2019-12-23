@@ -27,6 +27,8 @@ class knx_dim_funk(hass.Hass):
             self.current_brightness = self.byte_to_pct(self.get_state(self.light, attribute="brightness"))
         except:
             self.current_brightness = float(0)
+        if self.get_state(self.light) == "off":
+            self.current_brightness = float(0)
         if data["data"] == 0:
             next_step = self.find_next_lower_value()
             self.turn_on(self.light,brightness=self.pct_to_byte(next_step))
