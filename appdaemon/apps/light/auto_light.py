@@ -178,8 +178,9 @@ class auto_light(hass.Hass):
             self.debug_filter("A keeping-fix entity is active, wont do anything","few")
             return
         self.debug_filter("Will turn off the light now","few")
-        self.turn_off(self.light)
+                                 
         self.i_switched_off = True
+        self.turn_off(self.light)
 
     def check_if_too_dark(self, kwargs):
         if self.measured_illuminance < self.min_illuminance:
@@ -199,8 +200,9 @@ class auto_light(hass.Hass):
     def switching_off_entity_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Switching off: {} changed from {} to {}".format(entity, old, new),"few")
         if new == "on" and old != "on":
-            self.debug_filter("Will turn off the light now, if no other device blocks that","few")
-            self.filter_turn_off_command(None)
+            self.debug_filter("Will turn off the light now, no matter what my colleagues want","few")
+            self.i_switched_off = True
+            self.turn_off(self.light)
 
     def keeping_off_entity_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Keeping off: {} changed from {} to {}".format(entity, old, new),"few")
