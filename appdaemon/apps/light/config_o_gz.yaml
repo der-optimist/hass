@@ -1,6 +1,6 @@
 # - Gästezimmer
 auto_light_o_gz_deckenlicht:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
   debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_gaestezimmer

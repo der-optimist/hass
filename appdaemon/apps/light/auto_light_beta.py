@@ -1,6 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 from typing import Set
-import datetime
+import datetime, time
 import random
 
 #
@@ -121,6 +121,7 @@ class auto_light(hass.Hass):
         self.decide_if_light_is_needed(None)
 
     def light_state_changed(self, entity, attributes, old, new, kwargs):
+        time.sleep(2)
         if old == "on" and new == "off" and self.is_triggered and not self.i_switched_off:
             self.manually_switched_off = True
         if new == "on" and old != "on":
