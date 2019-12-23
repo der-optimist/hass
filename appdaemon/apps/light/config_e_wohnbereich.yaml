@@ -1,6 +1,6 @@
 # - Esszimmer
 auto_light_e_ez_panels:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
@@ -37,7 +37,7 @@ auto_light_e_ez_panels:
     - switch.majo_schlafen
     - binary_sensor.tv_abends_an
 auto_light_e_ez_christbaum:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
