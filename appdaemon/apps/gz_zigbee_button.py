@@ -18,7 +18,7 @@ class gz_zigbee_button(hass.Hass):
         self.listen_state(self.sensor_state_changed, self.sensor, attribute = "click")
         
     def sensor_state_changed(self, entity, attribute, old, new, kwargs):
-        if new == "single" and new != old:
+        if (new == "single" or new == "double") and new != old:
             self.toggle(self.switch)
             self.log("ZigBee Button Press single => Will toggle sleep mode switch")
 #        if new == "double" and new != old:
