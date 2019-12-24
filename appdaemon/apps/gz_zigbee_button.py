@@ -21,8 +21,8 @@ class gz_zigbee_button(hass.Hass):
         if new == "single" and new != old:
             self.toggle(self.switch)
             self.log("ZigBee Button Press single => Will toggle sleep mode switch")
-        if new == "double" and new != old:
-            if self.get_state(self.light) == "on":
-                self.turn_off(self.light)
-            else:
-                self.turn_on(self.light, brightness = 25)
+#        if new == "double" and new != old:
+#            if self.get_state(self.light) == "on":
+#                self.turn_off(self.light)
+#            else:
+#                self.turn_on(self.light, brightness = 25)
