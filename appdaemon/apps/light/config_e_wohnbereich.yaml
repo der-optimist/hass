@@ -28,6 +28,7 @@ auto_light_e_ez_panels:
   illuminance_sensor: sensor.helligkeit_esszimmer_pm
   special_brightness_entities:
     switch.majo_schlafen: 10
+    input_boolean.gaeste_abends: 35
   keeping_off_entities:
     - binary_sensor.tv_abends_an
 #    - binary_sensor.abends_und_min_ein_kind_im_bett
@@ -96,6 +97,7 @@ auto_light_e_ku_panels:
   illuminance_sensor: sensor.helligkeit_kuche_pm
   special_brightness_entities:
     switch.majo_schlafen: 10
+    input_boolean.gaeste_abends: 35
   keeping_fix_entities:
     binary_sensor.tv_abends_an: 25
 auto_light_e_ku_arbeitsplatte:
@@ -126,6 +128,7 @@ auto_light_e_ku_arbeitsplatte:
   illuminance_sensor: sensor.helligkeit_kuche_pm
   special_brightness_entities:
     switch.majo_schlafen: 20
+    input_boolean.gaeste_abends: 35
 # - Bar Panels
 auto_light_e_bar_panels:
   module: auto_light
@@ -182,6 +185,7 @@ auto_light_e_wz_panels:
     "06:30": 70
     "07:00": 80
     "19:00": 50
+    "20:00": 40
     "21:00": 30
   min_illuminance_values:
     "00:00": 20
