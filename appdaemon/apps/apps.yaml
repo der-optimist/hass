@@ -18,6 +18,10 @@ test_cube:
   module: test_cube
   class: test_cube
   constrain_input_boolean: input_boolean.test_trigger
+treppenhausalarm:
+  module: treppenhausalarm
+  class: treppenhausalarm
+  constrain_input_boolean: input_boolean.treppenhausalarm
 supervise_knx_sensor_estrich_wc:
   module: supervise_knx_sensor
   class: supervise_knx_sensor
