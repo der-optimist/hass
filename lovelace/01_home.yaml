@@ -118,6 +118,11 @@ cards:
               include:
                 - entity_id: "*battery"
                   state: '< 15'
+          - type: entities
+            show_header_toggle: false
+            entities:
+            - entity: input_boolean.gaeste_abends
+              name: Gäste
           - break
           - type: custom:monster-card
             show_empty: false
