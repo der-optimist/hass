@@ -18,6 +18,12 @@ cards:
     filter:
       include:
         - entity_id: "binary_sensor.pm_o*"
+  - type: entities
+    title: Alarme
+    show_header_toggle: false
+    entities:
+    - entity: input_boolean.treppenhausalarm
+      name: Flur-Alarm
   - type: custom:monster-card
     card:
       type: entities
