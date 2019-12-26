@@ -208,6 +208,9 @@ input_boolean:
   gaeste_abends:
     name: Gäste abends
     icon: mdi:glass-cocktail
+  treppenhausalarm:
+    name: Treppenhausalarm
+    icon: mdi:motion-sensor
   gaeste_gz:
     name: Gästezimmer
     icon: mdi:bed-empty
