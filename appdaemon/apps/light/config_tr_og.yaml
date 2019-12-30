@@ -28,5 +28,7 @@ auto_light_o_tr_panels:
   illuminance_sensor: sensor.helligkeit_flur_og_pm
   keeping_off_entities:
     - binary_sensor.la_oder_le_schlafen
+  keeping_on_entities:
+    - binary_sensor.la_oder_le_schlafen
   special_brightness_entities:
     binary_sensor.la_oder_le_schlafen: 10
