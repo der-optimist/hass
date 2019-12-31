@@ -106,6 +106,36 @@ heating_controller_foresight_bad_eg:
   mode: active
   on_off_switch: input_boolean.korrektur_heizung_bad_eg
   log_measurement: shift_heating_setpoint_bad_eg
+heating_controller_foresight_le:
+  module: heating_controller_foresight
+  class: heating_controller_foresight
+  db_passwd: !secret permanent_db_passwd
+  db_measurement: sensor.temp_le_pm
+  db_field: state_float
+  number_of_derivatives_for_average: 5
+  multiplicator: 7
+  limit_max: 1.5
+  limit_min: -1.5
+  ga_setpoint_shift: "10/0/161"
+  shift_value: 0.1
+  mode: active
+  on_off_switch: input_boolean.korrektur_heizung_le
+  log_measurement: shift_heating_setpoint_le
+heating_controller_foresight_la:
+  module: heating_controller_foresight
+  class: heating_controller_foresight
+  db_passwd: !secret permanent_db_passwd
+  db_measurement: sensor.temp_la_pm
+  db_field: state_float
+  number_of_derivatives_for_average: 5
+  multiplicator: 7
+  limit_max: 1.5
+  limit_min: -1.5
+  ga_setpoint_shift: "10/0/121"
+  shift_value: 0.1
+  mode: active
+  on_off_switch: input_boolean.korrektur_heizung_la
+  log_measurement: shift_heating_setpoint_la
 #heating_controller_foresight_test_la:
 #  module: heating_controller_foresight
 #  class: heating_controller_foresight
