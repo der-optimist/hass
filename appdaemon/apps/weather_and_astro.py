@@ -172,8 +172,8 @@ class weather_and_astro(hass.Hass):
                         else:
                             if event == "UV-Warnung":
                                 self.fire_event("custom_notify", message="Warnung - {}:\n{}\nGefahr (0-4): {}".format(start_end_readable,"Hohe UV-Werte",warning[0]), target="telegram_jo")
-                            #else:
-                            #    self.fire_event("custom_notify", message="Warnung - {}:\n{}\nGefahr (0-4): {}".format(start_end_readable,warning[9],warning[0]), target="telegram_jo")
+                            else:
+                                self.fire_event("custom_notify", message="Warnung - {}:\n{}\nGefahr (0-4): {}".format(start_end_readable,warning[9],warning[0]), target="telegram_jo")
                 #else:
                     #self.log("Sensor {} ist wohl nicht neu".format(sensor_name))
                 self.set_state(sensor_name, state = start_end_readable, attributes = attributes)
