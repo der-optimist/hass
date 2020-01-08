@@ -7,7 +7,7 @@ dimmer_steps_panels_le:
     - 0
     - 5
     - 30
-    - 80
+    - 70
     - 100
   command_ga: "15/0/28"
 dimmer_steps_wuerfel_le:
@@ -18,7 +18,7 @@ dimmer_steps_wuerfel_le:
     - 0
     - 1
     - 20
-    - 75
+    - 55
     - 100
   command_ga: "15/0/47"
 dimmer_steps_panels_la:
@@ -29,7 +29,7 @@ dimmer_steps_panels_la:
     - 0
     - 5
     - 30
-    - 80
+    - 70
     - 100
   command_ga: "15/0/29"
 dimmer_steps_wuerfel_la:
@@ -40,6 +40,6 @@ dimmer_steps_wuerfel_la:
     - 0
     - 1
     - 20
-    - 75
+    - 55
     - 100
   command_ga: "15/0/48"
