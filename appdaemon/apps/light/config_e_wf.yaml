@@ -19,13 +19,13 @@ auto_light_e_wf_panels:
     "17:00": 80
     "18:30": 60
   min_illuminance_values:
-    "00:00": 5
-    "05:00": 10
-    "06:30": 12
-    "09:00": 15
-    "17:00": 12
-    "19:00": 10
-    "23:00": 5
+    "00:00": 10
+    "05:00": 15
+    "06:30": 20
+    "09:00": 25
+    "17:00": 20
+    "19:00": 15
+    "23:00": 10
   illuminance_sensor: sensor.helligkeit_windfang_pm
   special_brightness_entities:
     switch.majo_schlafen: 10
