@@ -43,15 +43,15 @@ class gas_prices(hass.Hass):
                 try:
                     diesel = data_json['prices'][station_id]['diesel']
                 except KeyError:
-                    diesel = "unbekannt"
+                    diesel = "0.0"
                 try:
                     e5 = data_json['prices'][station_id]['e5']
                 except KeyError:
-                    e5 = "unbekannt"
+                    e5 = "0.0"
                 try:
                     e10 = data_json['prices'][station_id]['e10']
                 except KeyError:
-                    e10 = "unbekannt"
+                    e10 = "0.0"
                 try:
                     status = data_json['prices'][station_id]['status']
                 except KeyError:
@@ -73,4 +73,3 @@ class gas_prices(hass.Hass):
         else:
             # log http error. no second try here, as update will be done in a few minutes anyway
             self.log("downloading gas prices from tankerkoenig failed. http error {}".format(r.status_code))
-
