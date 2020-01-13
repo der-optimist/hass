@@ -43,15 +43,15 @@ class gas_prices(hass.Hass):
                 try:
                     diesel = data_json['prices'][station_id]['diesel']
                 except KeyError:
-                    diesel = "0.0"
+                    diesel = "0.000"
                 try:
                     e5 = data_json['prices'][station_id]['e5']
                 except KeyError:
-                    e5 = "0.0"
+                    e5 = "0.000"
                 try:
                     e10 = data_json['prices'][station_id]['e10']
                 except KeyError:
-                    e10 = "0.0"
+                    e10 = "0.000"
                 try:
                     status = data_json['prices'][station_id]['status']
                 except KeyError:
