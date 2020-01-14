@@ -306,7 +306,10 @@ input_boolean:
   app_switch_licht_treppe_keller:
     name: Automatik Licht Kellertreppe
     icon: mdi:auto-fix
-  app_switch_jalousie_kueche:
+  app_switch_licht_aussen_carport:
+    name: Automatik Licht Carport
+    icon: mdi:auto-fix
+app_switch_jalousie_kueche:
     name: Automatik Jalousie Küche
     icon: mdi:auto-fix
   app_switch_jalousie_esszimmer:
