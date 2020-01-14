@@ -84,6 +84,9 @@ permanent_recorder:
     - binary_sensor.pm_o_kw_le_raum
     - binary_sensor.pm_o_kw_le_tuer
     - binary_sensor.pm_o_nz
+    - binary_sensor.pm_a_eg
+    - binary_sensor.pm_a_cp
+    - binary_sensor.pm_a_ar
     - binary_sensor.regenalarm
     - binary_sensor.storung_heizaktor_eg
     - binary_sensor.storung_heizaktor_og
