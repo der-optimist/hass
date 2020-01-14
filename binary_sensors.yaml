@@ -185,6 +185,20 @@
     name: PM_K_FL
     device_class: motion
 
+# Aussen
+  - platform: knx
+    state_address: '8/0/60'
+    name: PM_A_EG
+    device_class: motion
+  - platform: knx
+    state_address: '8/0/80'
+    name: PM_A_CP
+    device_class: motion
+  - platform: knx
+    state_address: '8/0/100'
+    name: PM_A_AR
+    device_class: motion
+
 # --- Wetter ---
   - platform: knx
     state_address: '13/0/4'
