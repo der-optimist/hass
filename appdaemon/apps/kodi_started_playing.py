@@ -21,6 +21,9 @@ class kodi_started_playing(hass.Hass):
             if self.get_state(self.active_time_entity) == "on":
                 self.turn_on(self.bool_var)
                 self.run_in(self.reset_bool_var,2)
+                self.log("Kodi started playing, we are in active time, did set Variable to on")
+            else:
+                self.log("Kodi started playing, but we are not in active time")
     
     def reset_bool_var(self, kwargs):
         self.turn_off(self.bool_var)
