@@ -37,30 +37,31 @@ auto_light_e_ez_panels:
   switching_off_entities:
     - switch.majo_schlafen
     - binary_sensor.tv_abends_an
-#auto_light_e_ez_christbaum:
-#  module: auto_light
-#  class: auto_light
-#  debug: quiet
-#  constrain_input_boolean: input_boolean.app_switch_licht_christbaum
-#  light: light.sd_fussraum_bar
-#  triggers: 
-#    - binary_sensor.pm_e_ez_bar_kuche
-#    - binary_sensor.pm_e_ez_esstisch
-#    - binary_sensor.pm_e_ku_bar_ez
-#    - binary_sensor.pm_e_ku_kuche
-#    - binary_sensor.pm_e_wz_durchgang
-#  brightness_values:
-#    "00:00": 100
-#    "01:00": 100
-#  min_illuminance_values:
-#    "00:00": 400
-#    "06:30": 400
-#  illuminance_sensor: sensor.helligkeit_esszimmer_pm
-#  keeping_off_entities:
-#    - binary_sensor.tv_abends_an
-#  switching_off_entities:
-#    - switch.majo_schlafen
-#    - binary_sensor.tv_abends_an
+auto_light_e_ez_christbaum:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  constrain_input_boolean: input_boolean.app_switch_licht_christbaum
+  light: light.sd_fussraum_bar
+  triggers: 
+    - binary_sensor.pm_e_ez_bar_kuche
+    - binary_sensor.pm_e_ez_esstisch
+    - binary_sensor.pm_e_ku_bar_ez
+    - binary_sensor.pm_e_ku_kuche
+    - binary_sensor.pm_e_wz_durchgang
+  brightness_values:
+    "00:00": 100
+    "01:00": 100
+  min_illuminance_values:
+    "00:00": 400
+    "06:30": 400
+  illuminance_sensor: sensor.helligkeit_esszimmer_pm
+  keeping_off_entities:
+    - binary_sensor.tv_abends_an
+  switching_off_entities:
+    - switch.majo_schlafen
+    - binary_sensor.tv_abends_an
+    - input_boolean.kodi_just_started_playing
 # - Küche
 auto_light_e_ku_panels:
   module: auto_light
@@ -125,6 +126,8 @@ auto_light_e_ku_arbeitsplatte:
   special_brightness_entities:
     switch.majo_schlafen: 20
     input_boolean.gaeste_abends: 35
+  switching_off_entities:
+    - input_boolean.kodi_just_started_playing
 # - Bar Panels
 auto_light_e_bar_panels:
   module: auto_light
@@ -156,6 +159,8 @@ auto_light_e_bar_panels:
   special_brightness_entities:
     switch.majo_schlafen: 10
     binary_sensor.tv_pizza_abend: 50
+  switching_off_entities:
+    - input_boolean.kodi_just_started_playing
 # - Wohnzimmer
 auto_light_e_wz_panels:
   module: auto_light
