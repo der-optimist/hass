@@ -265,6 +265,9 @@ input_boolean:
   app_switch_licht_esszimmer:
     name: Automatik Licht Esszimmer
     icon: mdi:auto-fix
+  app_switch_licht_christbaum:
+    name: Automatik Licht Christbaum
+    icon: mdi:auto-fix
   app_switch_licht_wohnzimmer:
     name: Automatik Licht Wohnzimmer
     icon: mdi:auto-fix
@@ -340,6 +343,10 @@ input_boolean:
   app_switch_log_events:
     name: Logging HA events in AD
     icon: mdi:note-text
+  kodi_just_started_playing:
+    name: Kodi just started playing
+    icon: mdi:play-circle-outline
+    initial: off
 input_number:
   pizza_timer_2:
     name: Pizza Timer
