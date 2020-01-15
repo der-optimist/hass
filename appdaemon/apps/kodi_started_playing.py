@@ -16,7 +16,7 @@ class kodi_started_playing(hass.Hass):
         self.active_time_entity = "binary_sensor.tv_zeit_abend"
         self.listen_state(self.kodi_state_changed, "media_player.kodi")
     
-    def sensor_state_changed(self, entity, attribute, old, new, kwargs):
+    def kodi_state_changed(self, entity, attribute, old, new, kwargs):
         if new == "playing" and old != new:
             if self.get_state(self.active_time_entity) == "on":
                 self.turn_on(self.bool_var)
