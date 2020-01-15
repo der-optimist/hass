@@ -12,8 +12,8 @@ auto_light_a_cp_led_streifen:
     "00:00": 100
     "01:00": 100
   min_illuminance_values:
-    "00:00": 250
-    "01:00": 250
+    "00:00": 400
+    "01:00": 400
   illuminance_sensor: sensor.helligkeit_wetterstation
 # - Spots Carport
 auto_light_a_cp_spots:
@@ -29,6 +29,6 @@ auto_light_a_cp_spots:
     "00:00": 100
     "01:00": 100
   min_illuminance_values:
-    "00:00": 800
-    "01:00": 800
+    "00:00": 1000
+    "01:00": 1000
   illuminance_sensor: sensor.helligkeit_wetterstation
