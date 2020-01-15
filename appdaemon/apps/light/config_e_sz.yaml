@@ -2,7 +2,7 @@
 auto_light_e_sz_panels:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_schlafzimmer
   light: light.panels_schlafzimmer
   triggers: 
