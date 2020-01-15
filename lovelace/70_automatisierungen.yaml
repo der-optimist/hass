@@ -10,6 +10,8 @@ cards:
         name: Küche
       - entity: input_boolean.app_switch_licht_esszimmer
         name: Esszimmer
+      - entity: input_boolean.app_switch_licht_christbaum
+        name: Weihnachtsbaum
       - entity: input_boolean.app_switch_licht_wohnzimmer
         name: Wohnzimmer
       - entity: input_boolean.app_switch_licht_schlafzimmer
