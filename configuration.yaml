@@ -212,8 +212,11 @@ input_boolean:
   gaeste_abends:
     name: Gäste abends
     icon: mdi:glass-cocktail
-  treppenhausalarm:
-    name: Treppenhausalarm
+  flur_alarm_jo:
+    name: Flur-Alarm Jo
+    icon: mdi:motion-sensor
+  flur_alarm_ma:
+    name: Flur-Alarm Ma
     icon: mdi:motion-sensor
   gaeste_gz:
     name: Gästezimmer
