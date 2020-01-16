@@ -61,7 +61,6 @@ auto_light_e_ez_christbaum:
   switching_off_entities:
     - switch.majo_schlafen
     - binary_sensor.tv_abends_an
-    - input_boolean.kodi_just_started_playing
 # - Küche
 auto_light_e_ku_panels:
   module: auto_light
@@ -126,8 +125,7 @@ auto_light_e_ku_arbeitsplatte:
   special_brightness_entities:
     switch.majo_schlafen: 20
     input_boolean.gaeste_abends: 35
-  switching_off_entities:
-    - input_boolean.kodi_just_started_playing
+    binary_sensor.kodi_abends: 0
 # - Bar Panels
 auto_light_e_bar_panels:
   module: auto_light
@@ -159,8 +157,10 @@ auto_light_e_bar_panels:
   special_brightness_entities:
     switch.majo_schlafen: 10
     binary_sensor.tv_pizza_abend: 50
+  keeping_off_entities:
+    - binary_sensor.kodi_abends
   switching_off_entities:
-    - input_boolean.kodi_just_started_playing
+    - binary_sensor.kodi_abends
 # - Wohnzimmer
 auto_light_e_wz_panels:
   module: auto_light
@@ -192,6 +192,6 @@ auto_light_e_wz_panels:
   illuminance_sensor: sensor.helligkeit_wohnzimmer_pm
   special_brightness_entities:
     binary_sensor.tv_ist_an: 30
+    binary_sensor.tv_abend_ohne_pizza: 0
   keeping_fix_entities:
-    binary_sensor.tv_pizza_abend: 10
-    binary_sensor.tv_abend_ohne_pizza: 5
+    binary_sensor.tv_pizza_abend: 5
