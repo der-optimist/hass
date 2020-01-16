@@ -22,8 +22,8 @@ cards:
     title: Alarme
     show_header_toggle: false
     entities:
-    - entity: input_boolean.treppenhausalarm
-      name: Flur-Alarm
+    - entity: input_boolean.flur_alarm_jo
+    - entity: input_boolean.flur_alarm_ma
   - type: custom:monster-card
     card:
       type: entities
