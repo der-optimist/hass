@@ -24,10 +24,16 @@ kodi_started_playing:
 sync_target_temp_ez_wz_ku:
   module: sync_target_temp_ez_wz_ku
   class: sync_target_temp_ez_wz_ku
-treppenhausalarm:
-  module: treppenhausalarm
-  class: treppenhausalarm
-  constrain_input_boolean: input_boolean.treppenhausalarm
+flur_alarm_jo:
+  module: flur_alarm
+  class: flur_alarm
+  constrain_input_boolean: input_boolean.flur_alarm_jo
+  target: telegram_jo
+flur_alarm_ma:
+  module: flur_alarm
+  class: flur_alarm
+  constrain_input_boolean: input_boolean.flur_alarm_ma
+  target: telegram_ma
 supervise_knx_sensor_estrich_wc:
   module: supervise_knx_sensor
   class: supervise_knx_sensor
