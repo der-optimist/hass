@@ -37,6 +37,9 @@ config:
 
 system_health:
 
+sentry:
+  dsn: !secret sentry_dsn
+
 hacs: # HA custom store
   token: !secret github_api_key
   appdaemon: True
