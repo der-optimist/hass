@@ -122,7 +122,7 @@ auto_light_e_ku_arbeitsplatte:
   special_brightness_entities:
     switch.majo_schlafen: 20
     input_boolean.gaeste_abends: 35
-    binary_sensor.kodi_abends: 0
+    binary_sensor.kodi_abends: 0.3
 # - Bar Panels
 auto_light_e_bar_panels:
   module: auto_light
