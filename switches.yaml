@@ -85,6 +85,10 @@
     name: 'Gäste schlafen'
     address: '15/0/53'
     state_address: '15/0/54'
+  - platform: knx
+    name: 'Bleib so, WZ-Licht!'
+    address: '15/0/56'
+    state_address: '15/0/57'
 
 # --- Heizung ---
   # Switch um an GA zu senden. Richtet sich über AppDaemon App nach der Input Boolean, da 
