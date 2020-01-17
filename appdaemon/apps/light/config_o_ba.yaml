@@ -8,13 +8,11 @@ auto_light_o_ba_panels:
   triggers: 
     - binary_sensor.pm_o_ba
   brightness_values:
-    "00:00": 5
-    "06:30": 50
+    "00:00": 50
     "09:00": 90
     "17:00": 80
     "18:00": 70
-    "20:00": 20
-    "21:00": 5
+    "20:00": 50
   min_illuminance_values:
     "00:00": 25
     "06:00": 35
