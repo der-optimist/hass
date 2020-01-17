@@ -19,11 +19,13 @@ class custom_notify(hass.Hass):
         self.list_waiting_messages = []
         
     def send_notification(self,event_name,data,kwargs):
+        # remove markdown commands
+        message = date["message"].replace("_"," ").replace("*"," ")
         response_before = os.system("ping -c 1 -w2 google.com")
         if response_before == 0:
         #if response_before == "test":
             self.log("google is up! will send message immediately")
-            self.notify(data["message"], name = data["target"])
+            self.notify(message, name = data["target"])
             response_after = os.system("ping -c 1 -w2 google.com")
             if response_after == 0:
                 self.log("google is still up, should be delivered")
@@ -31,12 +33,12 @@ class custom_notify(hass.Hass):
                 self.log("connection to google died during sending. will send later")
                 if self.list_waiting_messages == []: # only trigger if this is the first waiting message. otherwise loop ist already running
                     self.run_in(self.send_waiting_notifications, 60)
-                self.list_waiting_messages.append({"message":data["message"], "target":data["target"], "dt":datetime.datetime.now().strftime("%d.%m. %H:%M")})
+                self.list_waiting_messages.append({"message":message, "target":data["target"], "dt":datetime.datetime.now().strftime("%d.%m. %H:%M")})
         else:
             self.log("google is down! will send notification later")
             if self.list_waiting_messages == []: # only trigger if this is the first waiting message. otherwise loop ist already running
                 self.run_in(self.send_waiting_notifications, 60)
-            self.list_waiting_messages.append({"message":data["message"], "target":data["target"], "dt":datetime.datetime.now().strftime("%d.%m. %H:%M")})
+            self.list_waiting_messages.append({"message":message, "target":data["target"], "dt":datetime.datetime.now().strftime("%d.%m. %H:%M")})
         
     def send_waiting_notifications(self, kwargs):
         response_before = os.system("ping -c 1 -w2 google.com")
