@@ -9,6 +9,7 @@ auto_light_o_ba_panels:
     - binary_sensor.pm_o_ba
   brightness_values:
     "00:00": 50
+    "06:00": 60
     "09:00": 90
     "17:00": 80
     "18:00": 70
