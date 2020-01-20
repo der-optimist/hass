@@ -96,7 +96,7 @@ auto_light_e_ku_panels:
 auto_light_e_ku_arbeitsplatte:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_kueche
   light: light.arbeitsplatte
   triggers: 
@@ -111,13 +111,13 @@ auto_light_e_ku_arbeitsplatte:
     "19:30": 50
     "22:00": 40
   min_illuminance_values:
-    "00:00": 50
-    "06:00": 60
-    "08:30": 70
-    "09:00": 80
-    "17:00": 70
-    "20:00": 60
-    "22:00": 50
+    "00:00": 80
+    "06:00": 90
+    "08:30": 100
+    "09:00": 120
+    "17:00": 110
+    "20:00": 100
+    "22:00": 80
   illuminance_sensor: sensor.helligkeit_kuche_pm
   special_brightness_entities:
     switch.majo_schlafen: 20
