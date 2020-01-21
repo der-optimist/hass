@@ -160,6 +160,12 @@ class telegram_bot(hass.Hass):
             if text.lower().startswith("tank"):
                 self.send_gas_prices_diesel(chat_id)
                 self.send_gas_prices_e5(chat_id)
+            
+            # --- Flur-Alarm an/aus ---
+            if text.lower().startswith("alarm ma"):
+                self.toggle_flur_alarm_ma(chat_id)
+            elif text.lower().startswith("alarm"):
+                self.toggle_flur_alarm_jo(chat_id)
 
             # --- Konversation 3-Steps ---
             if text in self.categories_threesteps:
@@ -352,7 +358,31 @@ class telegram_bot(hass.Hass):
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=message)
-    
+
+    def toggle_flur_alarm_ma(self, chat_id):
+        self.toggle("input_boolean.flur_alarm_ma")
+        if self.get_state("input_boolean.flur_alarm_ma") == "on":
+            message = "OK. Flur-Alarm für {} ist jetzt aktiv".format(self.args["name_ma"])
+        elif self.get_state("input_boolean.flur_alarm_ma") == "off":
+            message = "OK. Flur-Alarm für {} ist jetzt aus".format(self.args["name_ma"])
+        else:
+            message = "Irgendwas stimmt glaub nicht. Flur-Alarm für {} ist jetzt auf {}".format(self.args["name_ma"],self.get_state("input_boolean.flur_alarm_ma"))
+        self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message=message)
+
+    def toggle_flur_alarm_jo(self, chat_id):
+        self.toggle("input_boolean.flur_alarm_jo")
+        if self.get_state("input_boolean.flur_alarm_jo") == "on":
+            message = "OK. Flur-Alarm für {} ist jetzt aktiv".format(self.args["name_jo"])
+        elif self.get_state("input_boolean.flur_alarm_jo") == "off":
+            message = "OK. Flur-Alarm für {} ist jetzt aus".format(self.args["name_jo"])
+        else:
+            message = "Irgendwas stimmt glaub nicht. Flur-Alarm für {} ist jetzt auf {}".format(self.args["name_jo"],self.get_state("input_boolean.flur_alarm_jo"))
+        self.call_service('telegram_bot/send_message',
+                          target=chat_id,
+                          message=message)
+
     def answer_thank_you(self, chat_id):
         reply = random.choice(["Gerne 😘", 
                            "Hey, du bist der Boss, ich mach nur was du sagst 😉", 
@@ -405,7 +435,7 @@ class telegram_bot(hass.Hass):
         self.conv_handler_curr_commands.update( {user_id : commands} )
         # check if there is a device for the given input
         try:
-            device_name = self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device_name"]
+            self.conversations["twosteps"][commands[0]]["steps"][commands[1]]["device_name"]
         except KeyError as e:
             message = "Sorry - leider konnte ich zu {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1])
             self.reset_conversation_commands(user_id)
@@ -444,7 +474,7 @@ class telegram_bot(hass.Hass):
         self.conv_handler_curr_commands.update( {user_id : commands} )
         # check if there is a device for the given input
         try:
-            device_name = self.conversations["threesteps"][commands[0]]["steps"][commands[1]][commands[2]]["device_name"]
+            self.conversations["threesteps"][commands[0]]["steps"][commands[1]][commands[2]]["device_name"]
         except KeyError as e:
             message = "Sorry - leider konnte ich zu {}, {} kein passendes Gerät finden. Vielleicht vertippt?".format(commands[1], commands[2])
             self.reset_conversation_commands(user_id)
