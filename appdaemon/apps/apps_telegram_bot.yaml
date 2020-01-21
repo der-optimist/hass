@@ -7,6 +7,8 @@ telegram_bot:
   secrets:
     name_la: !secret name_la
     name_le: !secret name_le
+    name_ma: !secret name_ma
+    name_jo: !secret name_jo
   conversations:
     threesteps:
       Licht:
