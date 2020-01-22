@@ -155,9 +155,9 @@ heating_controller_foresight_bad_og:
   db_measurement: sensor.temp_bad_og_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
-  multiplicator: 5
-  limit_max: 1
-  limit_min: -1
+  multiplicator: 7
+  limit_max: 1.5
+  limit_min: -1.5
   ga_setpoint_shift: "10/0/221"
   shift_value: 0.1
   mode: active
