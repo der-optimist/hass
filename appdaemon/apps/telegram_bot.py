@@ -361,7 +361,7 @@ class telegram_bot(hass.Hass):
 
     def toggle_flur_alarm_ma(self, chat_id):
         self.toggle("input_boolean.flur_alarm_ma")
-        time.sleep(0.1)
+        time.sleep(0.2)
         if self.get_state("input_boolean.flur_alarm_ma") == "on":
             message = "OK. Flur-Alarm für {} ist jetzt aktiv".format(self.args["secrets"]["name_ma"])
         elif self.get_state("input_boolean.flur_alarm_ma") == "off":
@@ -374,7 +374,7 @@ class telegram_bot(hass.Hass):
 
     def toggle_flur_alarm_jo(self, chat_id):
         self.toggle("input_boolean.flur_alarm_jo")
-        time.sleep(0.1)
+        time.sleep(0.2)
         if self.get_state("input_boolean.flur_alarm_jo") == "on":
             message = "OK. Flur-Alarm für {} ist jetzt aktiv".format(self.args["secrets"]["name_jo"])
         elif self.get_state("input_boolean.flur_alarm_jo") == "off":
