@@ -362,11 +362,11 @@ class telegram_bot(hass.Hass):
     def toggle_flur_alarm_ma(self, chat_id):
         self.toggle("input_boolean.flur_alarm_ma")
         if self.get_state("input_boolean.flur_alarm_ma") == "on":
-            message = "OK. Flur-Alarm für {} ist jetzt aktiv".format(self.args["name_ma"])
+            message = "OK. Flur-Alarm für {} ist jetzt aktiv".format(self.args["secrets"]["name_ma"])
         elif self.get_state("input_boolean.flur_alarm_ma") == "off":
-            message = "OK. Flur-Alarm für {} ist jetzt aus".format(self.args["name_ma"])
+            message = "OK. Flur-Alarm für {} ist jetzt aus".format(self.args["secrets"]["name_ma"])
         else:
-            message = "Irgendwas stimmt glaub nicht. Flur-Alarm für {} ist jetzt auf {}".format(self.args["name_ma"],self.get_state("input_boolean.flur_alarm_ma"))
+            message = "Irgendwas stimmt glaub nicht. Flur-Alarm für {} ist jetzt auf {}".format(self.args["secrets"]["name_ma"],self.get_state("input_boolean.flur_alarm_ma"))
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=message)
@@ -374,11 +374,11 @@ class telegram_bot(hass.Hass):
     def toggle_flur_alarm_jo(self, chat_id):
         self.toggle("input_boolean.flur_alarm_jo")
         if self.get_state("input_boolean.flur_alarm_jo") == "on":
-            message = "OK. Flur-Alarm für {} ist jetzt aktiv".format(self.args["name_jo"])
+            message = "OK. Flur-Alarm für {} ist jetzt aktiv".format(self.args["secrets"]["name_jo"])
         elif self.get_state("input_boolean.flur_alarm_jo") == "off":
-            message = "OK. Flur-Alarm für {} ist jetzt aus".format(self.args["name_jo"])
+            message = "OK. Flur-Alarm für {} ist jetzt aus".format(self.args["secrets"]["name_jo"])
         else:
-            message = "Irgendwas stimmt glaub nicht. Flur-Alarm für {} ist jetzt auf {}".format(self.args["name_jo"],self.get_state("input_boolean.flur_alarm_jo"))
+            message = "Irgendwas stimmt glaub nicht. Flur-Alarm für {} ist jetzt auf {}".format(self.args["secrets"]["name_jo"],self.get_state("input_boolean.flur_alarm_jo"))
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=message)
