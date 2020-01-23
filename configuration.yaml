@@ -360,6 +360,9 @@ input_number:
     min: 0
     max: 30
     step: 1
+input_text:
+  location_jo_roh:
+    initial: unbekannt
 
 automation:
   - id: enable_zigbee_join
