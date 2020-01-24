@@ -362,7 +362,7 @@ input_number:
     step: 1
 input_text:
   location_jo_roh:
-    initial: unbekannt
+    name: Location Jo roh
 
 automation:
   - id: enable_zigbee_join
