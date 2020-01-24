@@ -260,8 +260,6 @@ custom_notify:
 locations:
   module: locations
   class: locations
-  zone: !secret comp_work_jo_name
-  device: !secret device_jo
   name_jo: !secret name_jo
 notifications:
   module: notifications
