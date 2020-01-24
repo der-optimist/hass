@@ -19,10 +19,10 @@ class locations(hass.Hass):
         self.listen_state(self.location_changed, self.input_location_jo_roh)
         # show the current location immediately after restart
         current_value = self.get_state(self.input_location_jo_roh)
-        self.set_location_sensor(current_value, "restart")
+        self.process_location(current_value, "restart")
         
     def location_changed(self, entity, attribute, old, new, kwargs):
-        self.set_location_sensor(new, old)
+        self.process_location(new, old)
         
     def process_location(self, location, old_location):
         if location == "Arbeit":
