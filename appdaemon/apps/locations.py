@@ -20,11 +20,22 @@ class locations(hass.Hass):
         # show the current location immediately after restart
         current_value = self.get_state(self.input_location_jo_roh)
         self.process_location(current_value, "restart")
+        # is jo at work?
+        if current_value == "Arbeit":
+            self.set_state("binary_sensor.jo_at_work_appdaemon", "on")
+        else:
+            self.set_state("binary_sensor.jo_at_work_appdaemon", "off")
         
     def location_changed(self, entity, attribute, old, new, kwargs):
         self.process_location(new, old)
         
     def process_location(self, location, old_location):
+        # at work or not?
+        if location == "Arbeit":
+            self.set_state("binary_sensor.jo_at_work_appdaemon", "on")
+        else:
+            self.set_state("binary_sensor.jo_at_work_appdaemon", "off")
+        # really process the location now
         if location == "Arbeit":
             self.set_state(self.sensor_location_jo, state = "Bei der Arbeit", attributes={"entity_picture":"/local/icons/locations/manager.svg", "friendly_name": self.name_jo})
             time_at_work = self.get_state("sensor.jo_at_work")
