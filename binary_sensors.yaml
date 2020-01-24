@@ -384,7 +384,7 @@
              and is_state('input_boolean.gaeste_gz', 'off') }}
       jo_at_work:
         friendly_name: "Jo bei der Arbeit (binary)"
-        value_template: "{{ is_state('input_text.location_jo_roh'), 'Arbeit' }}"
+        value_template: "{{ is_state('input_text.location_jo_roh', 'Arbeit') }}"
       anwesenheit_bildschirm:
         friendly_name: "Anwesenheit Bildschirm"
         value_template: >-
