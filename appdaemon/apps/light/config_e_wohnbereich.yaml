@@ -15,7 +15,7 @@ auto_light_e_ez_panels:
     "00:00": 50
     "06:00": 60
     "06:30": 78
-    "19:30": 65
+    "19:00": 55
     "21:30": 50
   min_illuminance_values:
     "00:00": 10
@@ -33,6 +33,66 @@ auto_light_e_ez_panels:
   switching_off_entities:
     - switch.majo_schlafen
     - binary_sensor.tv_abends_an
+auto_light_e_ez_wandleuchten_hell:
+  module: auto_light
+  class: auto_light
+  debug: few
+  constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
+  light: light.wandleuchten_esszimmer_hell
+  triggers: 
+    - binary_sensor.pm_e_ez_bar_kuche
+    - binary_sensor.pm_e_ez_esstisch
+    - binary_sensor.pm_e_ku_bar_ez
+    - binary_sensor.pm_e_ku_kuche
+    - binary_sensor.pm_e_wz_durchgang
+  brightness_values:
+    "00:00": 50
+    "06:00": 60
+    "06:30": 70
+    "19:30": 55
+    "21:30": 50
+  min_illuminance_values:
+    "00:00": 10
+    "06:30": 20
+    "07:00": 30
+    "08:00": 40
+    "18:30": 30
+    "21:30": 10
+  illuminance_sensor: sensor.helligkeit_esszimmer_pm
+  keeping_off_entities:
+    - switch.majo_schlafen
+    - binary_sensor.tv_zeit_abend
+    - input_boolean.gaeste_abends
+  switching_off_entities:
+    - switch.majo_schlafen
+    - binary_sensor.tv_zeit_abend
+    - input_boolean.gaeste_abends
+auto_light_e_ez_wandleuchten_warm:
+  module: auto_light
+  class: auto_light
+  debug: few
+  constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
+  light: light.wandleuchten_esszimmer_gemutlich
+  triggers: 
+    - binary_sensor.pm_e_ez_bar_kuche
+    - binary_sensor.pm_e_ez_esstisch
+    - binary_sensor.pm_e_ku_bar_ez
+    - binary_sensor.pm_e_ku_kuche
+    - binary_sensor.pm_e_wz_durchgang
+  brightness_values:
+    "00:00": 0
+    "06:00": 0
+  min_illuminance_values:
+    "00:00": 100
+    "06:30": 100
+  illuminance_sensor: sensor.helligkeit_esszimmer_pm
+  special_brightness_entities:
+    switch.majo_schlafen: 20
+    binary_sensor.tv_zeit_abend: 80
+  keeping_fix_entities:
+    binary_sensor.kodi_abends: 20
+  switching_off_entities:
+    - switch.majo_schlafen
 auto_light_e_ez_christbaum:
   module: auto_light
   class: auto_light
@@ -61,7 +121,7 @@ auto_light_e_ez_christbaum:
 auto_light_e_ku_panels:
   module: auto_light
   class: auto_light
-  debug: quiet
+  debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_kueche
   light: light.panels_kuche
   triggers: 
@@ -90,8 +150,7 @@ auto_light_e_ku_panels:
   special_brightness_entities:
     switch.majo_schlafen: 10
     input_boolean.gaeste_abends: 35
-  keeping_fix_entities:
-    binary_sensor.tv_abends_an: 25
+    binary_sensor.kodi_abends: 0.3
 auto_light_e_ku_arbeitsplatte:
   module: auto_light
   class: auto_light
