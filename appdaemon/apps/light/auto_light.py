@@ -24,7 +24,7 @@ class auto_light(hass.Hass):
 
     def initialize(self):
         # wait for KNX entities 
-        random_delay = random.randint(50,90)
+        random_delay = random.randint(60,90)
         self.run_in(self.initialize_delayed,random_delay)
     
     def initialize_delayed(self, kwargs):
