@@ -15,6 +15,8 @@ class sync_scene_entities(hass.Hass):
         # listen for knx scene events
         self.listen_event(self.scene, event = "knx_event", address = "15/0/50")
         self.run_daily(self.reset_sleep_switches, datetime.time(9, 0, 0))
+        # set "Bad OG Nachtmodus" if one of the children sleeps...
+        self.listen_state(self.children_sleeping_changed, "binary_sensor.la_oder_le_schlafen")
         
     def scene(self,event_name,data,kwargs):
         self.log("KNX scene detected. data is:")
@@ -39,3 +41,9 @@ class sync_scene_entities(hass.Hass):
         # if "wake up button" was not used
         self.turn_off("switch.la_schlaft")
         self.turn_off("switch.le_schlaft")
+
+    def children_sleeping_changed(self, entity, attribute, old, new, kwargs):
+        if new == "on" and old != "on":
+            self.turn_on("switch.bad_og_nachtmodus")
+        elif new == "off" and old != "off":
+            self.turn_off("switch.bad_og_nachtmodus")
