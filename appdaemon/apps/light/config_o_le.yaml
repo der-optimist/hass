@@ -27,6 +27,8 @@ auto_light_o_le_panels:
   illuminance_sensor: sensor.helligkeit_le_pm
   keeping_off_entities:
     - switch.le_schlaft
+  switching_off_entities:
+    - switch.le_schlaft
   special_brightness_entities:
     binary_sensor.schlafen_oder_aufwachphase_le: 10
     switch.la_schlaft: 20
@@ -58,3 +60,23 @@ auto_light_o_le_wuerfel:
   illuminance_sensor: sensor.helligkeit_le_pm
   keeping_fix_entities:
     switch.le_schlaft: 1
+auto_light_o_le_stehlampe:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  constrain_input_boolean: input_boolean.app_switch_licht_le
+  light: light.stehlampe_le
+  triggers: 
+    - binary_sensor.pm_o_ko_le_raum
+    - binary_sensor.pm_o_ko_le_tuer
+  brightness_values:
+    "00:00": 0
+    "01:00": 0
+  min_illuminance_values:
+    "00:00": 100
+    "01:00": 100
+  illuminance_sensor: sensor.helligkeit_le_pm
+  keeping_off_entities:
+    - switch.le_schlaft
+  switching_off_entities:
+    - switch.le_schlaft
