@@ -342,7 +342,7 @@
         value_template: "{{ states('sensor.anteil_le_wach_letzte_stunde')|float < 17 }}"
       schlafen_oder_aufwachphase_majo:
         friendly_name: "Schlafen oder Aufwachphase MaJo"
-        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 17 }}"
+        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 10 }}"
       tv_abends_an:
         friendly_name: "TV abends an"
         value_template: >-
