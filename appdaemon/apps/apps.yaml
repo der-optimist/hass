@@ -210,9 +210,9 @@ heating_winter_mode:
   input_booloean_entity: input_boolean.heizung_winter
   ga: '10/7/3'
 # Scenes
-sync_scene_entities:
-  module: sync_scene_entities
-  class: sync_scene_entities
+sync_scene_and_night_entities:
+  module: sync_scene_and_night_entities
+  class: sync_scene_and_night_entities
 # Cover
 jal_bad_kinder_abends_zeit:
   module: cover_timer
