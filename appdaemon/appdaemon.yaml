@@ -1,17 +1,24 @@
 secrets: /config/secrets.yaml
-log:
-  errorfile: /config/appdaemon/logs/errors.log
-  logfile: /config/appdaemon/logs/logfile.log
-  log_size: 500000
-  log_generations: 5
+logs:
+  main_log:
+    filename: /config/appdaemon/logs/logfile.log
+    log_generations: 5
+  error_log:
+    filename: /config/appdaemon/logs/errors.log
+    log_generations: 2
 appdaemon:
-  threads: 10
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
+  time_zone: Europe/Berlin
   utility_delay: 10
   utility_skew: 9
-  app_dir: /config/appdaemon/apps
   plugins:
     HASS:
       type: hass
-      ha_url: http://hassio/homeassistant
       appdaemon_startup_conditions:
         delay: 90
+http:
+  url: http://127.0.0.1:5050
+admin:
+api:
