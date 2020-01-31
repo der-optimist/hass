@@ -9,7 +9,7 @@ import datetime
 #
 
 
-class sync_scene_entities(hass.Hass):
+class sync_scene_and_night_entities(hass.Hass):
 
     def initialize(self):
         # listen for knx scene events
