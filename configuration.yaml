@@ -184,10 +184,15 @@ cover: !include covers.yaml
 
 climate: !include climate.yaml
 
+stream:
 camera:
   - platform: local_file
     name: Meteogram
     file_path: /config/www/meteograms/meteogram.png
+  - platform: onvif
+    host: 192.168.178.47
+    password: !secret mqtt_pw_1
+    port: 8080
 
 # Text to speech
 #tts:
