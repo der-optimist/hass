@@ -36,7 +36,7 @@ auto_light_e_ez_panels:
 auto_light_e_ez_wandleuchten_hell:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
   light: light.wandleuchten_esszimmer_hell
   triggers: 
@@ -70,7 +70,7 @@ auto_light_e_ez_wandleuchten_hell:
 auto_light_e_ez_wandleuchten_warm:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
   light: light.wandleuchten_esszimmer_gemutlich
   triggers: 
@@ -121,7 +121,7 @@ auto_light_e_ez_christbaum:
 auto_light_e_ku_panels:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_kueche
   light: light.panels_kuche
   triggers: 
