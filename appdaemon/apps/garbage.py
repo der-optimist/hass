@@ -213,7 +213,11 @@ class garbage(hass.Hass):
         sensor_names = [self.sensor_display_waste, self.sensor_display_organic, self.sensor_display_paper, self.sensor_display_plastic]
         timestamps = []
         for sensor in sensor_names:
-            timestamps.append(self.get_state(sensor, attribute = "timestamp"))
+            timestamp = self.get_state(sensor, attribute = "timestamp")
+            if timestamp == None:
+                timestamps.append(9999999999)
+            else:
+                timestamps.append(timestamp)
         self.log(timestamps)
         zipped_pairs = zip(timestamps, sensor_names)
         sensor_names_sorted = [x for _, x in sorted(zipped_pairs)] 
