@@ -6,7 +6,7 @@ auto_light_o_ba_panels:
   constrain_input_boolean: input_boolean.app_switch_licht_bad_og
   light: light.panels_bad_og
   triggers: 
-    - light.spiegel_bad_og
+    - binary_sensor.pm_bad_og
   brightness_values:
     "00:00": 50
     "06:00": 60
@@ -29,7 +29,7 @@ auto_light_o_ba_spiegel:
   constrain_input_boolean: input_boolean.app_switch_licht_bad_og
   light: light.spiegel_bad_og
   triggers: 
-    - light.spiegel_bad_og
+    - binary_sensor.pm_bad_og
   brightness_values:
     "00:00": 0
     "01:00": 0
