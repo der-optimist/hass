@@ -53,7 +53,7 @@ class garbage(hass.Hass):
         # --- initialize sensors and switches
         self.create_display_sensors(None)
         self.create_reminder_switches(None)
-        self.update_all_displays(None)
+        self.run_in(self.update_all_displays, 30)
         
     def check_next_day(self, kwargs):
         self.log("Checking if tomorrow is some garbage collection")
@@ -214,6 +214,7 @@ class garbage(hass.Hass):
         timestamps = []
         for sensor in sensor_names:
             timestamps.append(self.get_state(sensor, attribute = "timestamp"))
+        self.log(timestamps)
         zipped_pairs = zip(timestamps, sensor_names)
         sensor_names_sorted = [x for _, x in sorted(zipped_pairs)] 
         self.set_state(self.sensor_display_1, state = self.get_state(sensor_names_sorted[0]), attributes={"entity_picture":self.get_state(sensor_names_sorted[0], attribute = "entity_picture"), "friendly_name":self.get_state(sensor_names_sorted[0], attribute = "friendly_name")})
