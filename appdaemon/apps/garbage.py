@@ -48,8 +48,8 @@ class garbage(hass.Hass):
         self.listen_state(self.end_paper, self.calendar_paper, attribute="end_time")
         self.listen_state(self.end_plastic, self.calendar_plastic, attribute="end_time")
         # --- restarts ---
-        self.listen_event(self.startup, "plugin_started")
-        self.listen_event(self.startup, "appd_started")
+        #self.listen_event(self.startup, "plugin_started")
+        #self.listen_event(self.startup, "appd_started")
         # --- initialize sensors and switches
         self.create_display_sensors(None)
         self.create_reminder_switches(None)
