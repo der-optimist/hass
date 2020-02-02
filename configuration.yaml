@@ -195,7 +195,7 @@ camera:
     port: 8080
 
 folder_watcher:
-  - folder: /share/abstellraum
+  - folder: /share/abstellraum/
 
 # Text to speech
 #tts:
