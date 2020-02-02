@@ -194,6 +194,9 @@ camera:
     password: !secret mqtt_pw_1
     port: 8080
 
+folder_watcher:
+  - folder: /share/abstellraum
+
 # Text to speech
 #tts:
 #  - platform: google
