@@ -1,5 +1,8 @@
 ---
 # Test Area
+camera_motion_alarm:
+  module: camera_motion_alarm
+  class: camera_motion_alarm
 #day_night:
 #  module: day_night
 #  class: day_night
