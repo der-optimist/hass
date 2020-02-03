@@ -12,7 +12,7 @@ class camera_motion_alarm(hass.Hass):
     def initialize(self):
         self.listen_event(self.folder_watcher_event, "folder_watcher", event_type = 'created')
         self.camera_image_path = "/config/www/camera_abstellraum/last_motion.jpg"
-        copyfile('/share/abstellraum/20200203/images/A20020308260010.jpg', self.camera_image_path)
+#        copyfile('/share/abstellraum/20200203/images/A20020308260010.jpg', self.camera_image_path)
     
     def folder_watcher_event(self, event_name, data, kwargs):
         self.log(event_name)
