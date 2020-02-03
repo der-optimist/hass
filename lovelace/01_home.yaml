@@ -123,11 +123,17 @@ cards:
             entities:
             - entity: input_boolean.gaeste_abends
               name: Gäste
-          - type: picture-glance
-            title: Abstellraum
-            entities: []
-            camera_image: camera.onvif_camera
-            camera_view: live
+          - type: picture-elements
+            image: /local/camera_abstellraum/last_motion.jpg
+            elements:
+              - type: image
+                entity: camera.abstellraum_letze_bewegung
+                camera_image: camera.abstellraum_letze_bewegung
+                style:
+                  left: 50%
+                  top: 50%
+                  width: 100%
+                  height: 100%
           - break
           - type: custom:monster-card
             show_empty: false
