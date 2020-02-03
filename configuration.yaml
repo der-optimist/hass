@@ -191,6 +191,9 @@ camera:
   - platform: local_file
     name: Meteogram
     file_path: /config/www/meteograms/meteogram.png
+  - platform: local_file
+    name: Abstellraum_letze_Bewegung
+    file_path: /config/www/camera_abstellraum/last_motion.jpg
   - platform: onvif
     host: 192.168.178.47
     password: !secret mqtt_pw_1
