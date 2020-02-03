@@ -161,26 +161,39 @@ class garbage(hass.Hass):
             self.set_state(self.switch_reminder_plastic, state = "off", attributes={"entity_picture":self.icon_plastic_blink, "friendly_name": "RaWeg herrichten"})
 
     def create_display_sensors(self, kwargs):
+        initial_timestamp = 9999999999
         if self.entity_exists(self.sensor_display_waste):
             curr_state = self.get_state(self.sensor_display_waste)
-            self.set_state(self.sensor_display_waste, state = curr_state, attributes={"entity_picture":self.icon_waste, "friendly_name": "Restmüll"})
+            timestamp = self.get_state(self.sensor_display_waste, attribute = "timestamp")
+            if timestamp == None:
+                timestamp = initial_timestamp
+            self.set_state(self.sensor_display_waste, state = curr_state, attributes={"entity_picture":self.icon_waste, "friendly_name": "Restmüll", "timestamp": timestamp})
         else:
-            self.set_state(self.sensor_display_waste, state = "warte...", attributes={"entity_picture":self.icon_waste, "friendly_name": "Restmüll", "timestamp": 0})
+            self.set_state(self.sensor_display_waste, state = "warte...", attributes={"entity_picture":self.icon_waste, "friendly_name": "Restmüll", "timestamp": initial_timestamp})
         if self.entity_exists(self.sensor_display_organic):
             curr_state = self.get_state(self.sensor_display_organic)
-            self.set_state(self.sensor_display_organic, state = curr_state, attributes={"entity_picture":self.icon_organic, "friendly_name": "Biotonne"})
+            timestamp = self.get_state(self.sensor_display_organic, attribute = "timestamp")
+            if timestamp == None:
+                timestamp = initial_timestamp
+            self.set_state(self.sensor_display_organic, state = curr_state, attributes={"entity_picture":self.icon_organic, "friendly_name": "Biotonne", "timestamp": timestamp})
         else:
-            self.set_state(self.sensor_display_organic, state = "warte...", attributes={"entity_picture":self.icon_organic, "friendly_name": "Biotonne", "timestamp": 0})
+            self.set_state(self.sensor_display_organic, state = "warte...", attributes={"entity_picture":self.icon_organic, "friendly_name": "Biotonne", "timestamp": initial_timestamp})
         if self.entity_exists(self.sensor_display_paper):
             curr_state = self.get_state(self.sensor_display_paper)
-            self.set_state(self.sensor_display_paper, state = curr_state, attributes={"entity_picture":self.icon_paper, "friendly_name": "Papiertonne"})
+            timestamp = self.get_state(self.sensor_display_paper, attribute = "timestamp")
+            if timestamp == None:
+                timestamp = initial_timestamp
+            self.set_state(self.sensor_display_paper, state = curr_state, attributes={"entity_picture":self.icon_paper, "friendly_name": "Papiertonne", "timestamp": timestamp})
         else:
-            self.set_state(self.sensor_display_paper, state = "warte...", attributes={"entity_picture":self.icon_paper, "friendly_name": "Papiertonne", "timestamp": 0})
+            self.set_state(self.sensor_display_paper, state = "warte...", attributes={"entity_picture":self.icon_paper, "friendly_name": "Papiertonne", "timestamp": initial_timestamp})
         if self.entity_exists(self.sensor_display_plastic):
             curr_state = self.get_state(self.sensor_display_plastic)
-            self.set_state(self.sensor_display_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic, "friendly_name": "RaWeg"})
+            timestamp = self.get_state(self.sensor_display_plastic, attribute = "timestamp")
+            if timestamp == None:
+                timestamp = initial_timestamp
+            self.set_state(self.sensor_display_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic, "friendly_name": "RaWeg", "timestamp": timestamp})
         else:
-            self.set_state(self.sensor_display_plastic, state = "warte...", attributes={"entity_picture":self.icon_plastic, "friendly_name": "RaWeg", "timestamp": 0})
+            self.set_state(self.sensor_display_plastic, state = "warte...", attributes={"entity_picture":self.icon_plastic, "friendly_name": "RaWeg", "timestamp": initial_timestamp})
         self.set_state(self.sensor_display_1, state = "warte...")
         self.set_state(self.sensor_display_2, state = "warte...")
         self.set_state(self.sensor_display_3, state = "warte...")
@@ -196,7 +209,9 @@ class garbage(hass.Hass):
             printtext = "morgen"
         else:
             printtext = end_time_datetime.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
-        self.set_state(display_sensor_name, state=printtext, attributes={"timestamp":end_time_datetime.timestamp()})
+        attributes = self.set_state(display_sensor_name, attribute="all")
+        attributes["timestamp"] = end_time_datetime.timestamp()
+        self.set_state(display_sensor_name, state=printtext, attributes=attributes)
         #self.log(printtext)
         
     def calc_days(self, calendar_name):
