@@ -28,7 +28,7 @@ auto_light_e_wc_panels:
 auto_light_e_wc_spiegel:
   module: auto_light
   class: auto_light
-  debug: quiet
+  debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_wc
   light: light.spiegel_wc
   triggers: 
