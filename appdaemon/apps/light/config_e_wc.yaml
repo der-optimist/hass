@@ -1,10 +1,11 @@
 # - WC panels
 auto_light_e_wc_panels:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_wc
   light: light.panels_wc
+  type: dim
   triggers: 
     - binary_sensor.pm_e_wc
   brightness_values:
@@ -26,16 +27,14 @@ auto_light_e_wc_panels:
     switch.majo_schlafen: 5
 # - WC Spiegel
 auto_light_e_wc_spiegel:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
   debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_wc
   light: light.spiegel_wc
+  type: switch
   triggers: 
     - binary_sensor.pm_e_wc
-  brightness_values:
-    "00:00": 100
-    "05:00": 100
   min_illuminance_values:
     "00:00": 10
     "05:00": 20
