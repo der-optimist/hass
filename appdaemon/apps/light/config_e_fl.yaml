@@ -5,8 +5,8 @@ auto_light_e_fl_panels:
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_flur_eg
   light: light.panels_flur_eg
+  type: dim
   triggers: 
-#    - binary_sensor.pm_e_fl_flur
     - binary_sensor.pm_e_fl_treppe_og
     - binary_sensor.pm_e_fl_windfang
     - binary_sensor.pm_e_wf_flur
