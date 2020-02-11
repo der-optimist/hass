@@ -5,6 +5,7 @@ auto_light_o_gz_deckenlicht:
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_gaestezimmer
   light: light.0x00158d0003418897_light
+  type: dim
   triggers: 
     - binary_sensor.pm_o_gz
   brightness_values:
