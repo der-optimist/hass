@@ -122,12 +122,14 @@ class auto_light(hass.Hass):
         self.decide_if_light_is_needed(None)
 
     def light_state_changed(self, entity, attributes, old, new, kwargs):
-        if old == "on" and new == "off" and self.is_triggered and not self.i_switched_off:
-            self.manually_switched_off = True
+        if old == "on" and new == "off":
+            if self.is_triggered and not self.i_switched_off:
+                self.manually_switched_off = True
+            self.i_switched_off = False
         if new == "on" and old != "on":
             self.debug_filter("Light switched on, will set manually_switched_off to False","few")
             self.manually_switched_off = False
-        self.i_switched_off = False
+            self.i_switched_off = False
 
     def trigger_state_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Light Trigger: {} changed from {} to {}".format(entity, old, new),"few")
@@ -179,7 +181,6 @@ class auto_light(hass.Hass):
             self.debug_filter("A keeping-fix entity is active, wont do anything","few")
             return
         self.debug_filter("Will turn off the light now","few")
-                                 
         self.i_switched_off = True
         self.turn_off(self.light)
 
