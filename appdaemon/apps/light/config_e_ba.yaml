@@ -5,6 +5,7 @@ auto_light_e_ba_panels:
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_bad_eg
   light: light.panels_bad_eg
+  type: dim
   triggers: 
     - binary_sensor.pm_e_ba
   brightness_values:
@@ -28,8 +29,7 @@ auto_light_e_ba_spiegel:
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_bad_eg
   light: light.spiegel_bad_eg
-  brightness_values:
-    "00:00": 100
+  type: dim
   min_illuminance_values:
     "00:00": 0
   switching_off_entities:
