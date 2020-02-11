@@ -119,6 +119,7 @@ class auto_light(hass.Hass):
         self.min_illuminance = current_min_illuminance
         self.debug_filter("Min illuminance set to {}".format(self.min_illuminance),"few")
         self.check_if_too_dark(None)
+        self.check_if_too_bright(None)
 
     def illuminance_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("illuminance sensor: {} changed from {} to {}".format(entity, old, new),"all")
