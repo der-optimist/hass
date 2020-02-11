@@ -1,8 +1,8 @@
 # - WC panels
 auto_light_e_wc_panels:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_wc
   light: light.panels_wc
   type: dim
