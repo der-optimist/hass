@@ -19,6 +19,7 @@ import random
 # - keeping_on_entities (list of entities, optional). Entity = on means light stays on
 # - keeping_fix_entities (dict of entity:value pairs, optional). When on, light will be set to brightness and stay on as long as this entity is on
 # - special_brightness_entities (dict of entity:value pairs, optional). Will override basic brightness, but not keeping_fix values
+# - switching_off_offset ("hysteresis" value. if measured illum. > (min. illuminance + switching_off_offset) => switch off. Optional. Default = 100)
 # 
 
 class auto_light(hass.Hass):
@@ -50,6 +51,8 @@ class auto_light(hass.Hass):
         self.check_if_keeping_on_active(None)
         self.keeping_fix_entities: Set[str] = self.args.get("keeping_fix_entities", set())
         self.special_brightness_entities: Set[str] = self.args.get("special_brightness_entities", set())
+        self.switching_off_offset = float(self.args.get("switching_off_offset", 100))
+        self.debug_filter("switching_off_offset: {}".format(self.switching_off_offset),"few")
         self.debug_filter(self.keeping_fix_entities,"all")
         # brightness depending on time
         if self.type == "dim":
@@ -125,6 +128,7 @@ class auto_light(hass.Hass):
                 self.debug_filter("Received illuminance can not be coverted to float. will use 0. Error was {}".format(e),"few")
                 self.measured_illuminance = float(0)
         self.check_if_too_dark(None)
+        self.check_if_too_bright(None)
         self.decide_if_light_is_needed(None)
 
     def light_state_changed(self, entity, attributes, old, new, kwargs):
@@ -205,6 +209,14 @@ class auto_light(hass.Hass):
         else:
             self.is_too_dark = False
             self.debug_filter("is not too dark. measured: {}, min_illum.: {}".format(self.measured_illuminance, self.min_illuminance),"all")
+
+    def check_if_too_bright(self, kwargs):
+        if self.measured_illuminance > (self.min_illuminance + self.switching_off_offset):
+            self.is_too_bright = True
+            self.debug_filter("is too bright. measured: {}, min_illum.: {}, offset: {}".format(self.measured_illuminance, self.min_illuminance, self.switching_off_offset),"all")
+        else:
+            self.is_too_bright = False
+            self.debug_filter("is not too bright. measured: {}, min_illum.: {} offset: {}".format(self.measured_illuminance, self.min_illuminance, self.switching_off_offset),"all")
 
     def check_if_any_trigger_active(self, kwargs):
         self.debug_filter("Will check if one of the triggers is active","all")
@@ -318,7 +330,7 @@ class auto_light(hass.Hass):
         if self.is_triggered:
             if self.is_too_dark:
                 if self.get_state(self.light) != "on":
-                    self.debug_filter("Triggered, too dark, light off => should switch on of nothings prevents that","few")
+                    self.debug_filter("Triggered, too dark, light off => should switch on if nothings prevents that","few")
                     self.filter_turn_on_command(None)
                 else:
                     if self.type == "dim":
@@ -329,8 +341,14 @@ class auto_light(hass.Hass):
                             self.debug_filter("Fehler beim Lesen von min. illum., measured illum. oder brightness","few")
                     else:
                         self.debug_filter("Triggered, too dark, but light is already on. Maybe your light is not as bright as you would like...","all")
+            elif self.is_too_bright:
+                if self.get_state(self.light) == "on":
+                    self.debug_filter("Triggered, too bright, light on => should switch off if nothings prevents that","few")
+                    self.filter_turn_off_command(None)
+                else:
+                    self.debug_filter("Triggered, brighter than needed, but light is already off. Well - I cannot switch off the sun or other lights...","all")
             else:
-                self.debug_filter("Triggered, but not too dark, will do nothing","few")
+                self.debug_filter("Triggered, but not too dark and not too bright, will do nothing","few")
         else:
             self.debug_filter("Not triggered, will do nothing","all")
 
