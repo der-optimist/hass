@@ -5,6 +5,7 @@ auto_light_e_sz_panels:
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_schlafzimmer
   light: light.panels_schlafzimmer
+  type: dim
   triggers: 
     - binary_sensor.pm_e_sz_bett
     - binary_sensor.pm_e_sz_gang
