@@ -5,6 +5,7 @@ auto_light_o_fl_panels:
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_flur_og
   light: light.panels_flur_og
+  type: dim
   triggers: 
     - binary_sensor.pm_o_fl_treppe
     - binary_sensor.pm_o_fl_flur
