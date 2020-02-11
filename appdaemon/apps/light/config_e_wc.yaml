@@ -1,8 +1,8 @@
 # - WC panels
 auto_light_e_wc_panels:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
-  debug: quiet
+  debug: few
   constrain_input_boolean: input_boolean.app_switch_licht_wc
   light: light.panels_wc
   type: dim
@@ -23,6 +23,7 @@ auto_light_e_wc_panels:
     "19:00": 10
     "23:00": 5
   illuminance_sensor: sensor.helligkeit_wc_pm
+  switching_off_offset: 20
   special_brightness_entities:
     switch.majo_schlafen: 5
 # - WC Spiegel
