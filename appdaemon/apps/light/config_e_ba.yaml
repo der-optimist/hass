@@ -31,6 +31,6 @@ auto_light_e_ba_spiegel:
   light: light.spiegel_bad_eg
   type: dim
   min_illuminance_values:
-    "00:00": 0
+    "00:00": 10000
   switching_off_entities:
     - switch.majo_schlafen
