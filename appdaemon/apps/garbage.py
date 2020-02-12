@@ -60,25 +60,25 @@ class garbage(hass.Hass):
         # check waste
         if self.calc_days(self.calendar_waste) == 1:
             self.log("Tomorrow is waste collection")
-            attributes = self.get_state(self.switch_reminder_waste, attribute="all")
+            attributes = self.get_state(self.switch_reminder_waste, attribute="all")["attributes"]
             self.set_state(self.switch_reminder_waste, state = "on", attributes=attributes)
             self.fire_event("custom_notify", message="Morgen ist Restmülltonne", target="telegram_jo")
         # check organic
         if self.calc_days(self.calendar_organic) == 1:
             self.log("Tomorrow is organic waste collection")
-            attributes = self.get_state(self.switch_reminder_organic, attribute="all")
+            attributes = self.get_state(self.switch_reminder_organic, attribute="all")["attributes"]
             self.set_state(self.switch_reminder_organic, state = "on", attributes=attributes)
             self.fire_event("custom_notify", message="Morgen ist Biotonne", target="telegram_jo")
         # check paper
         if self.calc_days(self.calendar_paper) == 1:
             self.log("Tomorrow is paper collection")
-            attributes = self.get_state(self.switch_reminder_paper, attribute="all")
+            attributes = self.get_state(self.switch_reminder_paper, attribute="all")["attributes"]
             self.set_state(self.switch_reminder_paper, state = "on", attributes=attributes)
             self.fire_event("custom_notify", message="Morgen ist Papiertonne", target="telegram_jo")
         # check plastic
         if self.calc_days(self.calendar_plastic) == 1:
             self.log("Tomorrow is plastic collection")
-            attributes = self.get_state(self.switch_reminder_plastic, attribute="all")
+            attributes = self.get_state(self.switch_reminder_plastic, attribute="all")["attributes"]
             self.set_state(self.switch_reminder_plastic, state = "on", attributes=attributes)
             self.fire_event("custom_notify", message="Morgen ist RaWeg", target="telegram_jo")
 
@@ -86,28 +86,28 @@ class garbage(hass.Hass):
         if new is not None:
             self.update_waste_display(None)
         self.log("Reseting waste reminder")
-        attributes = self.get_state(self.switch_reminder_waste, attribute="all")
+        attributes = self.get_state(self.switch_reminder_waste, attribute="all")["attributes"]
         self.set_state(self.switch_reminder_waste, state = "off", attributes=attributes)
 
     def end_organic(self, entity, attribute, old, new, kwargs):
         if new is not None:
             self.update_organic_display(None)
         self.log("Reseting organic waste reminder")
-        attributes = self.get_state(self.switch_reminder_organic, attribute="all")
+        attributes = self.get_state(self.switch_reminder_organic, attribute="all")["attributes"]
         self.set_state(self.switch_reminder_organic, state = "off", attributes=attributes)
 
     def end_paper(self, entity, attribute, old, new, kwargs):
         if new is not None:
             self.update_paper_display(None)
         self.log("Reseting paper reminder")
-        attributes = self.get_state(self.switch_reminder_paper, attribute="all")
+        attributes = self.get_state(self.switch_reminder_paper, attribute="all")["attributes"]
         self.set_state(self.switch_reminder_paper, state = "off", attributes=attributes)
 
     def end_plastic(self, entity, attribute, old, new, kwargs):
         if new is not None:
             self.update_plastic_display(None)
         self.log("Reseting plastic reminder")
-        attributes = self.get_state(self.switch_reminder_plastic, attribute="all")
+        attributes = self.get_state(self.switch_reminder_plastic, attribute="all")["attributes"]
         self.set_state(self.switch_reminder_plastic, state = "off", attributes=attributes)
     
     def update_waste_display(self, kwargs):
@@ -217,7 +217,8 @@ class garbage(hass.Hass):
             printtext = "morgen"
         else:
             printtext = end_time_datetime.strftime('{}, %d.%m. ({} T.)').format(weekdays[end_time_datetime.weekday()], days)
-        attributes = self.get_state(display_sensor_name, attribute="all")
+        attributes = self.get_state(display_sensor_name, attribute="all")["attributes"]
+        self.log(attributes)
         attributes["timestamp"] = end_time_datetime.timestamp()
         self.set_state(display_sensor_name, state=printtext, attributes=attributes)
         #self.log(printtext)
