@@ -42,7 +42,7 @@ custom_header:
     - conditions:
         user: Bildschirm
       config:
-        background: "#404040"
+        background: "#202020"
         all_tabs_color: "#ff9c27"
         menu_color: "#ff9c27"
         voice_color: "#ff9c27"
