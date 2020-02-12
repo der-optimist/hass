@@ -64,9 +64,9 @@ cards:
             name: Ventil offen
           - entity: sensor.sollwert_heizung_kuche
             name: Regler
-        control:
-          - preset: false
-          - hvac: false
+        icon: false
+        control: false
+        step_layout: row
       - type: 'custom:simple-thermostat'
         entity: climate.esszimmer
         name: Esszimmer
