@@ -1,19 +1,19 @@
 resources:
-  - url: /local/custom_ui/weather-card/weather-card-hours.js
-    type: module
+#  - url: /local/custom_ui/weather-card/weather-card-hours.js
+#    type: module
   - url: /local/custom_ui/bignumber-card/bignumber-card.js?v=1.0.0
     type: js
   - url: /local/custom_ui/monster-card/monster-card.js?v=1.0.0
     type: js
-  - url: /local/custom_ui/kiosk/kiosk.js
-    type: js
+#  - url: /local/custom_ui/kiosk/kiosk.js
+#    type: js
   - url: /local/custom_ui/card-tools/card-tools.js?v=0.4.0
     type: js
   - url: /local/custom_ui/layout-card/layout-card.js?v=0.1.0
     type: js
   - url: /local/custom_ui/state-switch/state-switch.js?v=0.1.0
     type: js
-  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+  - url: /community_plugin/custom-header/custom-header.js
     type: module
   - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
     type: module 
@@ -35,17 +35,18 @@ resources:
     type: js
 
 title: Lieblingshaus
-cch:
-  sidebar_closed: true
-  swipe: true
-  swipe_animate: swipe
+custom_header:
+  compact_mode: true
+  header_text: '{{ states.sensor.time.state }}'
   exceptions:
     - conditions:
         user: Bildschirm
       config:
         background: "#303030"
         all_tabs_color: "#ff9c27"
-        all_buttons_color: "#ff9c27"
+        menu_color: "#ff9c27"
+        voice_color: "#ff9c27"
+        options_color: "#ff9c27"
         tab_indicator_color:  "#ff9c27"
         notify_indicator_color: "#eeeeee"
 
