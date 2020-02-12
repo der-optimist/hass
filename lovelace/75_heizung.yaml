@@ -60,11 +60,11 @@ cards:
         entity: climate.kuche
         step_layout: row
         name: Küche
-        sensors:
-          - entity: sensor.stellwert_heizung_kuche
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_kuche
-            name: Regler
+#        sensors:
+#          - entity: sensor.stellwert_heizung_kuche
+#            name: Ventil offen
+#          - entity: sensor.sollwert_heizung_kuche
+#            name: Regler
         icon: false
         control: false
       - type: 'custom:simple-thermostat'
