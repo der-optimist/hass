@@ -58,6 +58,7 @@ cards:
     entities:
       - type: 'custom:simple-thermostat'
         entity: climate.kuche
+        step_layout: row
         name: Küche
         sensors:
           - entity: sensor.stellwert_heizung_kuche
@@ -66,7 +67,6 @@ cards:
             name: Regler
         icon: false
         control: false
-        step_layout: row
       - type: 'custom:simple-thermostat'
         entity: climate.esszimmer
         name: Esszimmer
