@@ -1,8 +1,8 @@
 resources:
 #  - url: /local/custom_ui/weather-card/weather-card-hours.js
 #    type: module
-  - url: /local/custom_ui/bignumber-card/bignumber-card.js?v=1.0.0
-    type: js
+#  - url: /local/custom_ui/bignumber-card/bignumber-card.js?v=1.0.0
+#    type: js
   - url: /local/custom_ui/monster-card/monster-card.js?v=1.0.0
     type: js
 #  - url: /local/custom_ui/kiosk/kiosk.js
