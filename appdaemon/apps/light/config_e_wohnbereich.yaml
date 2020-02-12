@@ -223,7 +223,7 @@ auto_light_e_bar_panels:
     - input_boolean.gaeste_abends
 # - Wohnzimmer
 auto_light_e_wz_panels:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
   debug: quiet
   constrain_input_boolean: input_boolean.app_switch_licht_wohnzimmer
@@ -241,6 +241,7 @@ auto_light_e_wz_panels:
     "19:00": 50
     "20:00": 40
     "21:00": 30
+    "22:00": 20
   min_illuminance_values:
     "00:00": 20
     "06:30": 20
