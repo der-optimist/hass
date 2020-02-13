@@ -23,7 +23,7 @@ auto_light_e_wc_panels:
     "19:00": 10
     "23:00": 5
   illuminance_sensor: sensor.helligkeit_wc_pm
-  switching_off_offset: 80
+  switching_off_offset: 120
   special_brightness_entities:
     switch.majo_schlafen: 5
 # - WC Spiegel
@@ -45,5 +45,6 @@ auto_light_e_wc_spiegel:
     "19:00": 20
     "23:00": 10
   illuminance_sensor: sensor.helligkeit_wc_pm
+  switching_off_offset: 120
   keeping_off_entities:
     - switch.majo_schlafen
