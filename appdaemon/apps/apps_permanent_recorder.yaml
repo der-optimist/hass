@@ -52,8 +52,10 @@ permanent_recorder:
     - binary_sensor.anwesenheit_bildschirm
     - binary_sensor.anwesenheit_haus
     - binary_sensor.backofen_ist_an
+    - binary_sensor.eimer_hebeanlage_voll
     - binary_sensor.heizungsanforderung_eg
     - binary_sensor.heizungsanforderung_og
+    - binary_sensor.hst_offen
     - binary_sensor.mixi_ist_an
     - binary_sensor.pm_e_ba
     - binary_sensor.pm_e_ez_bar_kuche
@@ -93,6 +95,8 @@ permanent_recorder:
     - binary_sensor.tag_nacht_wetterstation
     - binary_sensor.temperaturalarm_wetterstation
     - binary_sensor.tv_ist_an
+    - binary_sensor.wasser_boden_bei_hebeanlage
+    - binary_sensor.wasser_unter_spule
     - binary_sensor.wetterstation_status_gps_signal
     - binary_sensor.windalarm_1
     - binary_sensor.windalarm_2
@@ -145,6 +149,9 @@ permanent_recorder:
     - sensor.el_leistung_trockner
     - sensor.el_leistung_tv
     - sensor.el_leistung_waschmaschine
+    - sensor.el_leistung_wp_heizstab
+    - sensor.el_leistung_wp_innenteil
+    - sensor.el_leistung_wp_aussenteil
     - sensor.helligkeit_bad_eg_pm
     - sensor.helligkeit_bad_og_pm
     - sensor.helligkeit_esszimmer_pm
@@ -185,6 +192,21 @@ permanent_recorder:
     - sensor.stellwert_heizung_schlafzimmer
     - sensor.stellwert_heizung_windfang_wc
     - sensor.stellwert_heizung_wohnzimmer
+    - sensor.stromzahler_backofen
+    - sensor.stromzahler_gefrierschrank
+    - sensor.stromzahler_kochfeld
+    - sensor.stromzahler_kochfeld_rohdaten
+    - sensor.stromzahler_kuhlschrank_keller
+    - sensor.stromzahler_kuhlschrank_kuche
+    - sensor.stromzahler_luftungsanlage
+    - sensor.stromzahler_mixi
+    - sensor.stromzahler_spulmaschine
+    - sensor.stromzahler_trockner
+    - sensor.stromzahler_tv
+    - sensor.stromzahler_waschmaschine
+    - sensor.stromzahler_wp_aussenteil
+    - sensor.stromzahler_wp_heizstab
+    - sensor.stromzahler_wp_innenteil
     - sensor.temp_bad_eg_pm
     - sensor.temp_bad_eg_taster
     - sensor.temp_bad_og_pm
