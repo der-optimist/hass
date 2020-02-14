@@ -545,8 +545,16 @@
     state_address: '11/0/21'
     type: 4byte_unsigned
   - platform: knx
-    name: 'Stromzähler Wärmepumpe Rohdaten'
+    name: 'Stromzähler WP Heizstab Rohdaten'
     state_address: '11/0/20'
+    type: 4byte_unsigned
+  - platform: knx
+    name: 'Stromzähler WP Innenteil Rohdaten'
+    state_address: '11/0/22'
+    type: 4byte_unsigned
+  - platform: knx
+    name: 'Stromzähler WP Aussenteil Rohdaten'
+    state_address: '11/0/23'
     type: 4byte_unsigned
 
 # --- Diagnosemeldungen
