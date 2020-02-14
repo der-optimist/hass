@@ -32,8 +32,12 @@ cards:
         name: Gefrierschrank
       - entity: sensor.el_leistung_kuhlschrank_keller_round
         name: Kühlschrank Keller
-      - entity: sensor.el_leistung_warmepumpe
-        name: Heizstab Wärmepumpe
+      - entity: sensor.el_leistung_wp_heizstab
+        name: WP Heizstab
+      - entity: sensor.el_leistung_wp_innenteil
+        name: WP Innenteil
+      - entity: sensor.el_leistung_wp_aussenteil
+        name: WP Aussenteil
   - type: entities
     title: Stromzähler EG
     show_header_toggle: false
@@ -64,5 +68,9 @@ cards:
         name: Gefrierschrank
       - entity: sensor.stromzahler_kuhlschrank_keller
         name: Kühlschrank
-      - entity: sensor.stromzahler_warmepumpe
-        name: Heizstab Wärmepumpe
+      - entity: sensor.stromzahler_wp_heizstab
+        name: WP Heizstab
+      - entity: sensor.stromzahler_wp_innenteil
+        name: WP Innenteil
+      - entity: sensor.stromzahler_wp_aussenteil
+        name: WP Aussenteil
