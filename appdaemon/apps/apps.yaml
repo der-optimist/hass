@@ -293,17 +293,39 @@ weather_and_astro:
 pizza_timer:
   module: pizza_timer
   class: pizza_timer
-counter_to_power_meter_waermepumpe:
+counter_to_power_meter_wp_heizstab:
   module: counter_to_power_meter
   class: counter_to_power_meter
-  knx_counter: sensor.stromzahler_warmepumpe_rohdaten
-  ha_electricity_sensor_name: sensor.stromzahler_warmepumpe
-  ha_electricity_sensor_friendly_name: Stromzähler Wärmepumpe
-  ha_power_sensor_name: sensor.el_leistung_warmepumpe
-  ha_power_sensor_friendly_name: El. Leistung Wärmepumpe
+  knx_counter: sensor.stromzahler_wp_heizstab_rohdaten
+  ha_electricity_sensor_name: sensor.stromzahler_wp_heizstab
+  ha_electricity_sensor_friendly_name: Stromzähler WP Heizstab
+  ha_power_sensor_name: sensor.el_leistung_wp_heizstab
+  ha_power_sensor_friendly_name: El. Leistung WP Heizstab
   energy_per_pulse: 0.0005
   knx_sending_every: 5
   cut_power_below: 10
+counter_to_power_meter_wp_innenteil:
+  module: counter_to_power_meter
+  class: counter_to_power_meter
+  knx_counter: sensor.stromzahler_wp_innenteil_rohdaten
+  ha_electricity_sensor_name: sensor.stromzahler_wp_innenteil
+  ha_electricity_sensor_friendly_name: Stromzähler WP Innenteil
+  ha_power_sensor_name: sensor.el_leistung_wp_innenteil
+  ha_power_sensor_friendly_name: El. Leistung WP Innenteil
+  energy_per_pulse: 0.0005
+  knx_sending_every: 2
+  cut_power_below: 2
+counter_to_power_meter_wp_aussenteil:
+  module: counter_to_power_meter
+  class: counter_to_power_meter
+  knx_counter: sensor.stromzahler_wp_aussenteil_rohdaten
+  ha_electricity_sensor_name: sensor.stromzahler_wp_aussenteil
+  ha_electricity_sensor_friendly_name: Stromzähler WP Aussenteil
+  ha_power_sensor_name: sensor.el_leistung_wp_aussenteil
+  ha_power_sensor_friendly_name: El. Leistung WP Aussenteil
+  energy_per_pulse: 0.001
+  knx_sending_every: 10
+  cut_power_below: 5
 counter_to_power_meter_kochfeld:
   module: counter_to_power_meter
   class: counter_to_power_meter
