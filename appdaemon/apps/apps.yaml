@@ -24,6 +24,55 @@ test_cube:
 kodi_started_playing:
   module: kodi_started_playing
   class: kodi_started_playing
+alarm_jo_wasser_spuelmaschine:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.wasser_unter_spule
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Alarm! Wasser unter der Spüle / Spülmaschine!!!"
+alarm_jo_wasser_boden_hebeanlage:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.wasser_boden_bei_hebeanlage
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Alarm! Wasser in der Waschküche (Boden bei Hebeanlage)!!!"
+alarm_jo_eimer_hebeanlage_voll:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.eimer_hebeanlage_voll
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Alarm! Eimer von Hebeanlage ist voll gelaufen!!! Vermutlich Hebeanlage defekt oder ohne Strom"
+alarm_jo_sicherung_keller_sd_raus:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.sicherung_keller_sd_rausgeflogen
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Alarm! Sicherung Keller-Steckdosen ist rausgeflogen!!! Hebeanlage hat keinen Strom"
+alarm_jo_sicherung_keller_sd_rein:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.sicherung_keller_sd_rausgeflogen
+  status_to_match: "off"
+  notify_target: telegram_jo
+  message: "Info: Keller-Steckdosen haben wieder Strom"
+info_jo_hst_offen:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.hst_offen
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Info: HST geöffnet"
+info_jo_hst_offen:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.hst_offen
+  status_to_match: "off"
+  notify_target: telegram_jo
+  message: "Info: HST geschlossen"
 sync_target_temp_ez_wz_ku:
   module: sync_target_temp_ez_wz_ku
   class: sync_target_temp_ez_wz_ku
