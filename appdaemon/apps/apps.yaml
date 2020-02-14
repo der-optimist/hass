@@ -56,11 +56,12 @@ alarm_jo_sicherung_keller_sd_raus:
   notify_target: telegram_jo
   message: "Alarm! Sicherung Keller-Steckdosen ist rausgeflogen!!! Hebeanlage hat keinen Strom"
   init_delay: 63
-alarm_jo_sicherung_keller_sd_rein:
+info_jo_sicherung_keller_sd_rein:
   module: notify_when_status_matched
   class: notify_when_status_matched
   entity: binary_sensor.sicherung_keller_sd_rausgeflogen
   status_to_match: "off"
+  previous_status: "on"
   notify_target: telegram_jo
   message: "Info: Keller-Steckdosen haben wieder Strom"
   init_delay: 64
@@ -69,6 +70,7 @@ info_jo_hst_offen:
   class: notify_when_status_matched
   entity: binary_sensor.hst_offen
   status_to_match: "on"
+  previous_status: "off"
   notify_target: telegram_jo
   message: "Info: HST geöffnet"
   init_delay: 65
@@ -77,6 +79,7 @@ info_jo_hst_geschlossen:
   class: notify_when_status_matched
   entity: binary_sensor.hst_offen
   status_to_match: "off"
+  previous_status: "on"
   notify_target: telegram_jo
   message: "Info: HST geschlossen"
   init_delay: 66
