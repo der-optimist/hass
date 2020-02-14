@@ -3,6 +3,23 @@ path: alarme
 icon: mdi:message-alert-outline
 cards:
   - type: entities
+    title: Wasser
+    show_header_toggle: false
+    entities:
+      - entity: binary_sensor.wasser_unter_spule
+      - entity: binary_sensor.eimer_hebeanlage_voll
+      - entity: binary_sensor.wasser_boden_bei_hebeanlage
+  - type: entities
+    title: Sicherungen
+    show_header_toggle: false
+    entities:
+      - entity: binary_sensor.sicherung_keller_sd_rausgeflogen
+  - type: entities
+    title: Türen
+    show_header_toggle: false
+    entities:
+      - entity: binary_sensor.hst_offen
+  - type: entities
     title: Heizungsaktoren
     show_header_toggle: false
     entities:
