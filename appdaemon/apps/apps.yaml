@@ -31,6 +31,7 @@ alarm_jo_wasser_spuelmaschine:
   status_to_match: "on"
   notify_target: telegram_jo
   message: "Alarm! Wasser unter der Spüle / Spülmaschine!!!"
+  init_delay: 60
 alarm_jo_wasser_boden_hebeanlage:
   module: notify_when_status_matched
   class: notify_when_status_matched
@@ -38,6 +39,7 @@ alarm_jo_wasser_boden_hebeanlage:
   status_to_match: "on"
   notify_target: telegram_jo
   message: "Alarm! Wasser in der Waschküche (Boden bei Hebeanlage)!!!"
+  init_delay: 61
 alarm_jo_eimer_hebeanlage_voll:
   module: notify_when_status_matched
   class: notify_when_status_matched
@@ -45,6 +47,7 @@ alarm_jo_eimer_hebeanlage_voll:
   status_to_match: "on"
   notify_target: telegram_jo
   message: "Alarm! Eimer von Hebeanlage ist voll gelaufen!!! Vermutlich Hebeanlage defekt oder ohne Strom"
+  init_delay: 62
 alarm_jo_sicherung_keller_sd_raus:
   module: notify_when_status_matched
   class: notify_when_status_matched
@@ -52,6 +55,7 @@ alarm_jo_sicherung_keller_sd_raus:
   status_to_match: "on"
   notify_target: telegram_jo
   message: "Alarm! Sicherung Keller-Steckdosen ist rausgeflogen!!! Hebeanlage hat keinen Strom"
+  init_delay: 63
 alarm_jo_sicherung_keller_sd_rein:
   module: notify_when_status_matched
   class: notify_when_status_matched
@@ -59,6 +63,7 @@ alarm_jo_sicherung_keller_sd_rein:
   status_to_match: "off"
   notify_target: telegram_jo
   message: "Info: Keller-Steckdosen haben wieder Strom"
+  init_delay: 64
 info_jo_hst_offen:
   module: notify_when_status_matched
   class: notify_when_status_matched
@@ -66,6 +71,7 @@ info_jo_hst_offen:
   status_to_match: "on"
   notify_target: telegram_jo
   message: "Info: HST geöffnet"
+  init_delay: 65
 info_jo_hst_geschlossen:
   module: notify_when_status_matched
   class: notify_when_status_matched
@@ -73,6 +79,7 @@ info_jo_hst_geschlossen:
   status_to_match: "off"
   notify_target: telegram_jo
   message: "Info: HST geschlossen"
+  init_delay: 66
 sync_target_temp_ez_wz_ku:
   module: sync_target_temp_ez_wz_ku
   class: sync_target_temp_ez_wz_ku
