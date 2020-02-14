@@ -65,7 +65,7 @@ info_jo_hst_offen:
   entity: binary_sensor.hst_offen
   status_to_match: "on"
   notify_target: telegram_jo
-  message: "Info: HST geöffnet"
+  message: "Info: HST offen"
 info_jo_hst_offen:
   module: notify_when_status_matched
   class: notify_when_status_matched
