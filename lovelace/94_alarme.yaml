@@ -14,6 +14,7 @@ cards:
     show_header_toggle: false
     entities:
       - entity: binary_sensor.sicherung_keller_sd_rausgeflogen
+        name: Sicherung Keller-SD (Hebeanl.)
   - type: entities
     title: Türen
     show_header_toggle: false
