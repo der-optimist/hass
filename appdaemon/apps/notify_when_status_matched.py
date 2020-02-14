@@ -6,10 +6,10 @@ import appdaemon.plugins.hass.hassapi as hass
 # Args:
 # - entity
 # - status_to_match
-# - previous_status (optinal)
+# - previous_status (optional, can avoid notifications on startup)
 # - notify_target
 # - message
-# - init_delay
+# - init_delay (min. 1)
 #
 
 class notify_when_status_matched(hass.Hass):
