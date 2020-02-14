@@ -8,6 +8,10 @@
     state_address: '6/0/23'
     name: PM_E_KU_Bar_EZ
     device_class: motion
+  - platform: knx
+    state_address: '14/0/3'
+    name: Wasser unter Spüle
+    device_class: problem
 
 # Esszimmer
   - platform: knx
@@ -18,6 +22,10 @@
     state_address: '6/0/151'
     name: PM_E_EZ_Esstisch
     device_class: motion
+  - platform: knx
+    state_address: '11/0/0'
+    name: HST offen
+    device_class: door
 
 # Wohnzimmer
   - platform: knx
@@ -153,6 +161,18 @@
     state_address: '0/1/100'
     name: PM_K_FL
     device_class: motion
+  - platform: knx
+    state_address: '14/0/1'
+    name: Eimer Hebeanlage voll
+    device_class: problem
+  - platform: knx
+    state_address: '14/0/2'
+    name: Wasser Boden bei Hebeanlage
+    device_class: problem
+  - platform: knx
+    state_address: '14/0/4'
+    name: Sicherung Keller SD rausgeflogen
+    device_class: problem
 
 # Aussen
   - platform: knx
