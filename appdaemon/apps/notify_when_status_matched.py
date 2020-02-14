@@ -18,7 +18,7 @@ class notify_when_status_matched(hass.Hass):
         self.run_in(self.initialize_delayed, int(self.args["previous_status"]))
         
     def initialize_delayed(self, kwargs):
-        if self.args["previous_status"] == None
+        if self.args["previous_status"] == None:
             self.log("prev_state ist None")
             self.listen_state(self.sensor_state_changed, self.args["entity"], new = self.args["status_to_match"])
         else:
