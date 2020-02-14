@@ -32,12 +32,12 @@ class custom_notify(hass.Hass):
             else:
                 self.log("connection to google died during sending. will send later")
                 if self.list_waiting_messages == []: # only trigger if this is the first waiting message. otherwise loop ist already running
-                    self.run_in(self.send_waiting_notifications, 60)
+                    self.run_in(self.send_waiting_notifications, 20)
                 self.list_waiting_messages.append({"message":message, "target":data["target"], "dt":datetime.datetime.now().strftime("%d.%m. %H:%M")})
         else:
             self.log("google is down! will send notification later")
             if self.list_waiting_messages == []: # only trigger if this is the first waiting message. otherwise loop ist already running
-                self.run_in(self.send_waiting_notifications, 60)
+                self.run_in(self.send_waiting_notifications, 20)
             self.list_waiting_messages.append({"message":message, "target":data["target"], "dt":datetime.datetime.now().strftime("%d.%m. %H:%M")})
         
     def send_waiting_notifications(self, kwargs):
@@ -53,6 +53,6 @@ class custom_notify(hass.Hass):
                 self.list_waiting_messages = []
             else:
                 self.log("connection to google died during sending. will send again")
-                self.run_in(self.send_waiting_notifications, 60)
+                self.run_in(self.send_waiting_notifications, 20)
         else:
-            self.run_in(self.send_waiting_notifications, 60)
+            self.run_in(self.send_waiting_notifications, 20)
