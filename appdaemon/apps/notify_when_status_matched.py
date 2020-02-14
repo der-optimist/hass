@@ -9,11 +9,15 @@ import appdaemon.plugins.hass.hassapi as hass
 # - previous_status (optinal)
 # - notify_target
 # - message
+# - init_delay
 #
 
 class notify_when_status_matched(hass.Hass):
 
     def initialize(self):
+        self.run_in(self.initialize_delayed, int(self.args["previous_status"]))
+        
+    def initialize_delayed(self, kwargs):
         if self.args["previous_status"] == None
             self.log("prev_state ist None")
             self.listen_state(self.sensor_state_changed, self.args["entity"], new = self.args["status_to_match"])
