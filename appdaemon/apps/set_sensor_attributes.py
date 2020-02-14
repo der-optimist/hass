@@ -19,8 +19,11 @@ class set_sensor_attributes(hass.Hass):
             #if sensor.startswith("sensor.el_leistung"):
             #    self.set_state(sensor, attributes={"icon":"mdi:speedometer", "unit_of_measurement": "W"})
             if sensor.startswith("sensor.stromzahler"):
-                self.set_state(sensor, attributes={"icon":"mdi:counter", "unit_of_measurement": "kWh"})
+                curr_state = self.get_state(sensor)
+                self.set_state(sensor, state=curr_state, attributes={"icon":"mdi:counter", "unit_of_measurement": "kWh"})
             if sensor.startswith("sensor.helligkeit"):
-                self.set_state(sensor, attributes={"icon":"mdi:weather-sunny", "unit_of_measurement": "lx"})
+                curr_state = self.get_state(sensor)
+                self.set_state(sensor, state=curr_state, attributes={"icon":"mdi:weather-sunny", "unit_of_measurement": "lx"})
             if sensor.startswith("sensor.windgeschwindigkeit"):
-                self.set_state(sensor, attributes={"icon":"mdi:weather-windy", "unit_of_measurement": "km/h"})
+                curr_state = self.get_state(sensor)
+                self.set_state(sensor, state=curr_state, attributes={"icon":"mdi:weather-windy", "unit_of_measurement": "km/h"})
