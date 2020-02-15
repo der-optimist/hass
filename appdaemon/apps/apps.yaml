@@ -81,7 +81,7 @@ info_jo_hst_geschlossen:
   status_to_match: "off"
   previous_status: "on"
   notify_target: telegram_jo
-  message: "Info: HST geschlossen"
+  message: "!  Info: HST geschlossen"
   init_delay: 66
 sync_target_temp_ez_wz_ku:
   module: sync_target_temp_ez_wz_ku
