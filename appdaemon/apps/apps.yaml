@@ -29,7 +29,7 @@ alarm_jo_wasser_spuelmaschine:
   class: notify_when_status_matched
   entity: binary_sensor.wasser_unter_spule
   status_to_match: "on"
-  notify_target: telegram_jo
+  notify_target: telegram_alarm_gruppe
   message: "Alarm! Wasser unter der Spüle / Spülmaschine!!!"
   init_delay: 60
 alarm_jo_wasser_boden_hebeanlage:
@@ -37,7 +37,7 @@ alarm_jo_wasser_boden_hebeanlage:
   class: notify_when_status_matched
   entity: binary_sensor.wasser_boden_bei_hebeanlage
   status_to_match: "on"
-  notify_target: telegram_jo
+  notify_target: telegram_alarm_gruppe
   message: "Alarm! Wasser in der Waschküche (Boden bei Hebeanlage)!!!"
   init_delay: 61
 alarm_jo_eimer_hebeanlage_voll:
@@ -45,7 +45,7 @@ alarm_jo_eimer_hebeanlage_voll:
   class: notify_when_status_matched
   entity: binary_sensor.eimer_hebeanlage_voll
   status_to_match: "on"
-  notify_target: telegram_jo
+  notify_target: telegram_alarm_gruppe
   message: "Alarm! Eimer von Hebeanlage ist voll gelaufen!!! Vermutlich Hebeanlage defekt oder ohne Strom"
   init_delay: 62
 alarm_jo_sicherung_keller_sd_raus:
@@ -53,7 +53,7 @@ alarm_jo_sicherung_keller_sd_raus:
   class: notify_when_status_matched
   entity: binary_sensor.sicherung_keller_sd_rausgeflogen
   status_to_match: "on"
-  notify_target: telegram_jo
+  notify_target: telegram_alarm_gruppe
   message: "Alarm! Sicherung Keller-Steckdosen ist rausgeflogen!!! Hebeanlage hat keinen Strom"
   init_delay: 63
 info_jo_sicherung_keller_sd_rein:
@@ -62,7 +62,7 @@ info_jo_sicherung_keller_sd_rein:
   entity: binary_sensor.sicherung_keller_sd_rausgeflogen
   status_to_match: "off"
   previous_status: "on"
-  notify_target: telegram_jo
+  notify_target: telegram_alarm_gruppe
   message: "Info: Keller-Steckdosen haben wieder Strom"
   init_delay: 64
 info_jo_hst_offen:
@@ -71,7 +71,7 @@ info_jo_hst_offen:
   entity: binary_sensor.hst_offen
   status_to_match: "on"
   previous_status: "off"
-  notify_target: telegram_alarm_gruppe
+  notify_target: telegram_jo
   message: "Info: HST geöffnet"
   init_delay: 65
 info_jo_hst_geschlossen:
