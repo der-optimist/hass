@@ -86,6 +86,7 @@ telegram_bot:
     allowed_chat_ids:
       - !secret telegram_id_1
       - !secret telegram_id_2
+      - !secret telegram_id_alarm_gruppe
 
 notify:
   - name: telegram_jo
@@ -94,6 +95,9 @@ notify:
   - name: telegram_ma
     platform: telegram
     chat_id: !secret telegram_id_2
+  - name: telegram_alarm_gruppe
+    platform: telegram
+    chat_id: !secret telegram_id_alarm_gruppe
   - platform: kodi
     name: kodi_wz
     host: 192.168.178.38
