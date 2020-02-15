@@ -71,7 +71,7 @@ info_jo_hst_offen:
   entity: binary_sensor.hst_offen
   status_to_match: "on"
   previous_status: "off"
-  notify_target: telegram_jo
+  notify_target: telegram_alarm_gruppe
   message: "Info: HST geöffnet"
   init_delay: 65
 info_jo_hst_geschlossen:
