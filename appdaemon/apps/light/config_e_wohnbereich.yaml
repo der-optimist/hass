@@ -253,7 +253,7 @@ auto_light_e_wz_panels:
     "21:30": 20
   illuminance_sensor: sensor.helligkeit_wohnzimmer_pm
   special_brightness_entities:
-    binary_sensor.tv_ist_an: 30
+    binary_sensor.tv_ist_an: 50
   keeping_fix_entities:
     binary_sensor.tv_pizza_abend: 5
     binary_sensor.tv_abend_ohne_pizza: 2
