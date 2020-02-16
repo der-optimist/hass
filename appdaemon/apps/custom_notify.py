@@ -21,12 +21,12 @@ class custom_notify(hass.Hass):
     def send_notification(self,event_name,data,kwargs):
         # remove markdown commands
         message = data["message"].replace("_"," ").replace("*"," ")
-        response_before = os.system("ping -c 1 -w2 google.com")
+        response_before = os.system("ping -c 1 -W 2 google.com")
         if response_before == 0:
         #if response_before == "test":
             self.log("google is up! will send message immediately")
             self.notify(message, name = data["target"])
-            response_after = os.system("ping -c 1 -w2 google.com")
+            response_after = os.system("ping -c 1 -W 2 google.com")
             if response_after == 0:
                 self.log("google is still up, should be delivered")
             else:
@@ -41,13 +41,13 @@ class custom_notify(hass.Hass):
             self.list_waiting_messages.append({"message":message, "target":data["target"], "dt":datetime.datetime.now().strftime("%d.%m. %H:%M")})
         
     def send_waiting_notifications(self, kwargs):
-        response_before = os.system("ping -c 1 -w2 google.com")
+        response_before = os.system("ping -c 1 -W 2 google.com")
         if response_before == 0:
             self.log("google is up now! will send waiting notifications")
             for notification in self.list_waiting_messages:
                 message_modified = notification["message"] + " \n(gespeicherte Nachricht vom " + notification["dt"] + ")"
                 self.notify(message_modified, name = notification["target"])
-            response_after = os.system("ping -c 1 -w2 google.com")
+            response_after = os.system("ping -c 1 -W 2 google.com")
             if response_after == 0:
                 self.log("google is still up, should be delivered")
                 self.list_waiting_messages = []
