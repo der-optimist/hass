@@ -172,10 +172,10 @@ auto_light_e_ku_arbeitsplatte:
     "22:00": 40
   min_illuminance_values:
     "00:00": 80
-    "06:00": 90
-    "08:30": 100
-    "09:00": 120
-    "17:00": 110
+    "06:00": 100
+    "08:30": 125
+    "09:00": 150
+    "17:00": 125
     "20:00": 100
     "22:00": 80
   illuminance_sensor: sensor.helligkeit_kuche_pm
