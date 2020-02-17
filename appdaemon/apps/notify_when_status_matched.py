@@ -8,6 +8,8 @@ import appdaemon.plugins.hass.hassapi as hass
 # - status_to_match
 # - previous_status (optional, can avoid notifications on startup)
 # - notify_target
+# - special_bot_api_key (only if notify_target = special_bot. Token of a telegram bot)
+# - special_bot_chat_id (only if notify_target = special_bot. Chat-ID the message should be sent to. Group-ID or personal telegram ID)
 # - message
 # - init_delay (min. 1)
 #
