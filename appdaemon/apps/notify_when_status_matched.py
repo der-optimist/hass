@@ -32,5 +32,7 @@ class notify_when_status_matched(hass.Hass):
                     self.log("When target is special bot, the special_bot_api_key and special_bot_chat_id must be provided!")
                 else:
                     self.fire_event("custom_notify", message=self.args["message"], target=self.args["notify_target"], special_bot_api_key=self.args["special_bot_api_key"], special_bot_chat_id=self.args["special_bot_chat_id"])
+                    self.log("fired message to special bot")
             else:
                 self.fire_event("custom_notify", message=self.args["message"], target=self.args["notify_target"])
+                self.log("fired message to standard target")
