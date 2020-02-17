@@ -1,6 +1,7 @@
 import appdaemon.plugins.hass.hassapi as hass
 import os
 import datetime
+import requests
 
 #
 # When there's no internet connection at the moment a telegram notification 
@@ -10,22 +11,24 @@ import datetime
 # Args: no args required
 # Usage: use e.g. self.fire_event("custom_notify", message="My Message", target="telegram_jo") in other app
 #        target is the name defined in coniguration.yaml under notify:
+#        or target can be "special_bot", then also "special_bot_api_key" and "special_bot_chat_id" must be provided. This
+#        can be used to send messages via other telegram bots (e.g. special bot for urgent alarms)
 # 
 
 class custom_notify(hass.Hass):
 
     def initialize(self):
-        self.listen_event(self.send_notification, event = "custom_notify")
+        self.listen_event(self.notification_received, event = "custom_notify")
         self.list_waiting_messages = []
         
-    def send_notification(self,event_name,data,kwargs):
+    def notification_received(self,event_name,data,kwargs):
         # remove markdown commands
-        message = data["message"].replace("_"," ").replace("*"," ")
+        data["message"] = data["message"].replace("_"," ").replace("*"," ")
         response_before = os.system("ping -c 1 -W 2 google.com")
         if response_before == 0:
         #if response_before == "test":
             self.log("google is up! will send message immediately")
-            self.notify(message, name = data["target"])
+            self.send_notification(data)
             response_after = os.system("ping -c 1 -W 2 google.com")
             if response_after == 0:
                 self.log("google is still up, should be delivered")
@@ -33,20 +36,21 @@ class custom_notify(hass.Hass):
                 self.log("connection to google died during sending. will send later")
                 if self.list_waiting_messages == []: # only trigger if this is the first waiting message. otherwise loop ist already running
                     self.run_in(self.send_waiting_notifications, 20)
-                self.list_waiting_messages.append({"message":message, "target":data["target"], "dt":datetime.datetime.now().strftime("%d.%m. %H:%M")})
+                data["message"] = data["message"] + " \n(gespeicherte Nachricht vom " + datetime.datetime.now().strftime("%d.%m. %H:%M") + ")"
+                self.list_waiting_messages.append(data)
         else:
             self.log("google is down! will send notification later")
             if self.list_waiting_messages == []: # only trigger if this is the first waiting message. otherwise loop ist already running
                 self.run_in(self.send_waiting_notifications, 20)
-            self.list_waiting_messages.append({"message":message, "target":data["target"], "dt":datetime.datetime.now().strftime("%d.%m. %H:%M")})
+            data["message"] = data["message"] + " \n(gespeicherte Nachricht vom " + datetime.datetime.now().strftime("%d.%m. %H:%M") + ")"
+            self.list_waiting_messages.append(data)
         
     def send_waiting_notifications(self, kwargs):
         response_before = os.system("ping -c 1 -W 2 google.com")
         if response_before == 0:
             self.log("google is up now! will send waiting notifications")
-            for notification in self.list_waiting_messages:
-                message_modified = notification["message"] + " \n(gespeicherte Nachricht vom " + notification["dt"] + ")"
-                self.notify(message_modified, name = notification["target"])
+            for notification_data in self.list_waiting_messages:
+                self.send_notification(notification_data)
             response_after = os.system("ping -c 1 -W 2 google.com")
             if response_after == 0:
                 self.log("google is still up, should be delivered")
@@ -56,3 +60,11 @@ class custom_notify(hass.Hass):
                 self.run_in(self.send_waiting_notifications, 20)
         else:
             self.run_in(self.send_waiting_notifications, 20)
+
+    def send_notification(self, notification_data):
+        if notification_data["target"] == "special_bot":
+            url_send = 'https://api.telegram.org/bot' + notification_data["special_bot_api_key"] + '/sendMessage?chat_id=' + notification_data["special_bot_chat_id"] + '&parse_mode=Markdown&text=' + notification_data["message"]
+            response = requests.get(url_send)
+            self.log("http response special bot: {}".format(response))
+        else:
+            self.notify(notification_data["message"], name = notification_data["target"])
