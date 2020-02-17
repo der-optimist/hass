@@ -19,12 +19,18 @@ class notify_when_status_matched(hass.Hass):
         
     def initialize_delayed(self, kwargs):
         if self.args.get("previous_status", None) == None:
-            self.log("prev_state ist None")
+            #self.log("prev_state ist None")
             self.listen_state(self.sensor_state_changed, self.args["entity"], new = self.args["status_to_match"])
         else:
             self.listen_state(self.sensor_state_changed, self.args["entity"], new = self.args["status_to_match"], old = self.args["previous_status"])
-            self.log("prev_state ist {}".format(self.args["previous_status"]))
+            #self.log("prev_state ist {}".format(self.args["previous_status"]))
     
     def sensor_state_changed(self, entity, attribute, old, new, kwargs):
         if new != old:
-            self.fire_event("custom_notify", message=self.args["message"], target=self.args["notify_target"])
+            if self.args["notify_target"] == "special_bot":
+                if self.args.get("special_bot_api_key", None) == None or self.args.get("special_bot_chat_id", None) == None:
+                    self.log("When target is special bot, the special_bot_api_key and special_bot_chat_id must be provided!")
+                else:
+                    self.fire_event("custom_notify", message=self.args["message"], target=self.args["notify_target"], special_bot_api_key=self.args["special_bot_api_key"], special_bot_chat_id=self.args["special_bot_chat_id"])
+            else:
+                self.fire_event("custom_notify", message=self.args["message"], target=self.args["notify_target"])
