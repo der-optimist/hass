@@ -9,6 +9,7 @@ homeassistant:
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Berlin
   customize: !include customize.yaml
+  customize_glob: !include cutomize_glob.yaml
   auth_providers:
     - type: trusted_networks
       trusted_networks:
