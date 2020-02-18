@@ -455,9 +455,9 @@ counter_to_power_meter_kochfeld:
   energy_per_pulse: 0.0005
   knx_sending_every: 5
   cut_power_below: 10
-set_sensor_attributes:
-  module: set_sensor_attributes
-  class: set_sensor_attributes
+#set_sensor_attributes:
+#  module: set_sensor_attributes
+#  class: set_sensor_attributes
 wall_panel:
   module: wall_panel
   class: wall_panel
