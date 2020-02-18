@@ -32,7 +32,7 @@ class counter_to_power_meter(hass.Hass):
         except:
             current_electricity = 0
         self.set_state(self.args["ha_electricity_sensor_name"], state = current_electricity, attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
-        self.set_state(self.args["ha_power_sensor_name"], state = 0.0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W"})
+        self.set_state(self.args["ha_power_sensor_name"], state = 0.0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W", "device_class": "power"})
         
     def counter_changed(self, entity, attribute, old, new, kwargs):
         if new == "unavailable" or new == "Nicht verfügbar" or new == old:
@@ -42,7 +42,8 @@ class counter_to_power_meter(hass.Hass):
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
         # Update electricity meter sensor
         new_electricity_value = float(new) * self.args["energy_per_pulse"]
-        self.set_state(self.args["ha_electricity_sensor_name"], state = round(new_electricity_value))
+        attributes = self.get_state(self.args["ha_electricity_sensor_name"], attribute="all")["attributes"]
+        self.set_state(self.args["ha_electricity_sensor_name"], state = round(new_electricity_value), attributes=attributes)
         # calculate power
         if self.time_of_last_event == None:
             self.log("Looks like it is the first event since a restart. Power will be available next time")
@@ -53,7 +54,8 @@ class counter_to_power_meter(hass.Hass):
                 time_delta_seconds = (current_time - self.time_of_last_event).total_seconds()
                 electricity_delta_Ws = (float(new) - self.value_of_last_event) * self.args["energy_per_pulse"] * 3600 * 1000
                 current_power = electricity_delta_Ws / time_delta_seconds
-                self.set_state(self.args["ha_power_sensor_name"], state = round(current_power, 1))
+                attributes = self.get_state(self.args["ha_power_sensor_name"], attribute="all")["attributes"]
+                self.set_state(self.args["ha_power_sensor_name"], state = round(current_power, 1), attributes=attributes)
                 #self.log("Value {} received from counter {}. Calculated new power value: {}".format(new,self.args["knx_counter"],round(current_power, 1)))
                 self.handle_ramp_down_timer = self.run_in(self.ramp_down,round(2 * time_delta_seconds + 1))
         # save current values in variables for next calculation
@@ -67,9 +69,11 @@ class counter_to_power_meter(hass.Hass):
         electricity_delta_Ws = self.args["knx_sending_every"] * self.args["energy_per_pulse"] * 3600 * 1000
         current_power = electricity_delta_Ws / time_delta_seconds
         if current_power < self.args["cut_power_below"]:
-            self.set_state(self.args["ha_power_sensor_name"], state = 0.0)
+            attributes = self.get_state(self.args["ha_power_sensor_name"], attribute="all")["attributes"]
+            self.set_state(self.args["ha_power_sensor_name"], state = 0.0, attributes=attributes)
             self.log("Rampdown limit of counter {} reached. Will set new power to 0".format(self.args["knx_counter"]))
         else:
-            self.set_state(self.args["ha_power_sensor_name"], state = round(current_power, 1))
+            attributes = self.get_state(self.args["ha_power_sensor_name"], attribute="all")["attributes"]
+            self.set_state(self.args["ha_power_sensor_name"], state = round(current_power, 1), attributes=attributes)
             #self.log("Rampdown set counter {} to new power value: {}".format(self.args["knx_counter"],round(current_power, 1)))
             self.handle_ramp_down_timer = self.run_in(self.ramp_down,round(time_delta_seconds + 0.5))
