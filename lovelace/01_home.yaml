@@ -118,17 +118,17 @@ cards:
               include:
                 - entity_id: "*battery"
                   state: '< 15'
-          - type: picture-elements
-            image: /local/camera_abstellraum/last_motion.jpg
-            elements:
-              - type: image
-                entity: camera.abstellraum_letze_bewegung
-                camera_image: camera.abstellraum_letze_bewegung
-                style:
-                  left: 50%
-                  top: 50%
-                  width: 100%
-                  height: 100%
+#          - type: picture-elements
+#            image: /local/camera_abstellraum/last_motion.jpg
+#            elements:
+#              - type: image
+#                entity: camera.abstellraum_letze_bewegung
+#                camera_image: camera.abstellraum_letze_bewegung
+#                style:
+#                  left: 50%
+#                  top: 50%
+#                  width: 100%
+#                  height: 100%
           - type: entities
             show_header_toggle: false
             entities:
