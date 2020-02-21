@@ -128,10 +128,8 @@ info_jo_hst_offen:
   entity: binary_sensor.hst_offen
   status_to_match: "on"
   previous_status: "off"
-  notify_target: special_bot
-  special_bot_api_key: !secret telegram_api_key_alarm_bot
-  special_bot_chat_id: !secret telegram_id_1
-  message: "Test-Alarm: HST geöffnet"
+  notify_target: telegram_jo
+  message: "Info: HST geöffnet"
   init_delay: 65
 info_jo_hst_geschlossen:
   module: notify_when_status_matched
