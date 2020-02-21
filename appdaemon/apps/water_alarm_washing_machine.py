@@ -1,7 +1,7 @@
 import appdaemon.plugins.hass.hassapi as hass
 
 #
-# App to notify when status matches given status:
+# App to turn the washing machine off in critical cases
 #
 # Args:
 # none
@@ -21,19 +21,19 @@ class water_alarm_washing_machine(hass.Hass):
         if new != old:
             self.turn_off("switch.waschmaschine")
             message = "Eimer Hebeanlage voll - habe die Waschmaschinen-Steckdose ausgeschalten!"
-            self.fire_event("custom_notify", message=message", target="telegram_jo")
-            self.fire_event("custom_notify", message=message", target="telegram_ma")
+            self.fire_event("custom_notify", message=message, target="telegram_jo")
+            self.fire_event("custom_notify", message=message, target="telegram_ma")
                             
     def wasser_boden(self, entity, attribute, old, new, kwargs):
         if new != old:
             self.turn_off("switch.waschmaschine")
             message = "Wasser auf dem Boden bei der Hebeanlage - habe die Waschmaschinen-Steckdose ausgeschalten!"
-            self.fire_event("custom_notify", message=message", target="telegram_jo")
-            self.fire_event("custom_notify", message=message", target="telegram_ma")
+            self.fire_event("custom_notify", message=message, target="telegram_jo")
+            self.fire_event("custom_notify", message=message, target="telegram_ma")
 
     def sicherung_hebeanlage_raus(self, entity, attribute, old, new, kwargs):
         if new != old:
             self.turn_off("switch.waschmaschine")
             message = "Sicherung Keller-Steckdosen (Hebeanlage!) rausgeflogen - habe die Waschmaschinen-Steckdose ausgeschalten!"
-            self.fire_event("custom_notify", message=message", target="telegram_jo")
-            self.fire_event("custom_notify", message=message", target="telegram_ma")
+            self.fire_event("custom_notify", message=message, target="telegram_jo")
+            self.fire_event("custom_notify", message=message, target="telegram_ma")
