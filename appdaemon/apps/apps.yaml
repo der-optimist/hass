@@ -24,6 +24,9 @@ test_cube:
 kodi_started_playing:
   module: kodi_started_playing
   class: kodi_started_playing
+water_alarm_washing_machine:
+  module: water_alarm_washing_machine
+  class: water_alarm_washing_machine
 alarm_jo_wasser_spuelmaschine:
   module: notify_when_status_matched
   class: notify_when_status_matched
