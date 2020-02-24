@@ -289,9 +289,16 @@ class auto_light(hass.Hass):
                     self.log("Keeping fix doesn't make much sense with a switch light. But I will switch it on now.")
                     self.turn_on(self.light)
             else:
-                self.decide_if_light_is_needed(None)
-            if (not self.is_triggered) and (not self.keeping_fix):
-                self.filter_turn_off_command(None)
+                if self.is_triggered:
+                    if not self.is_too_bright:
+                        self.debug_filter("Triggered, not too bright, keeping fix ended => should switch on with normal brightness if nothings prevents that","few")
+                        self.filter_turn_on_command(None)
+                    else:
+                        self.debug_filter("Triggered, too bright, keeping fix ended => should switch off if nothings prevents that","few")
+                        self.filter_turn_off_command(None)
+                else:
+                    self.debug_filter("keeping fix ended while not triggered => should switch off if nothings prevents that","few")
+                    self.filter_turn_off_command(None)
 
     def check_if_keeping_fix_active(self, kwargs):
         self.debug_filter("Will check if a keeping-fix entity is active. First, I assume - no.","few")
