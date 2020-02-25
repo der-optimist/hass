@@ -35,6 +35,7 @@ class auto_light(hass.Hass):
         self.light: str = self.args.get("light")
         self.type: str = self.args.get("type")
         self.app_switch: str = self.args.get("app_switch")
+        self.listen_state(self.app_switched_on, self.app_switch, new = "on", old = "off")
         if not self.type in ["switch","dim"]:
             self.log("Please add \"type: dim\" or \"type: switch\" to the config of this auto light. Will stop now...")
             return
@@ -104,6 +105,8 @@ class auto_light(hass.Hass):
         # listen for state change of the light, e.g. when manually turned off during beeing triggered
         self.listen_state(self.light_state_changed, self.light)
 
+    def app_switched_on(self, entity, attributes, old, new, kwargs):
+        self.initialize_delayed(None)
 
     def update_basic_brightness_value(self, kwargs):
         now = datetime.datetime.now()
