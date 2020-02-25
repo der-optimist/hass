@@ -178,32 +178,23 @@ class auto_light(hass.Hass):
         if self.keeping_fix:
             self.debug_filter("A keeping-fix entity is active, wont do anything","few")
             return
+        if self.get_state(self.app_switch) != "on":
+            self.debug_filter("filter_turn_on_command, but the app-switch is not on! Will not do anything...","few")
+            return
         if self.special_brightness_active:
             if self.type == "dim":
                 self.debug_filter("Will turn on the light now with special brightness {}".format(self.special_brightness),"few")
-                if self.get_state(self.app_switch) == "on":
-                    self.turn_on(self.light,brightness=self.pct_to_byte(self.special_brightness))
-                else:
-                    self.debug_filter("Oh no, stop, the app-switch is not on! Will not do anything...","few")
+                self.turn_on(self.light,brightness=self.pct_to_byte(self.special_brightness))
             else: # switch
                 self.debug_filter("Special Brightniess active for a switch type light? Please remove special brigthness entries. Will switch on the light now anyway","few")
-                if self.get_state(self.app_switch) == "on":
-                    self.turn_on(self.light)
-                else:
-                    self.debug_filter("Oh no, stop, the app-switch is not on! Will not do anything...","few")
+                self.turn_on(self.light)
         else:
             if self.type == "dim":
                 self.debug_filter("Will turn on the light now with basic brightness {}".format(self.basic_brightness),"few")
-                if self.get_state(self.app_switch) == "on":
-                    self.turn_on(self.light,brightness=self.pct_to_byte(self.basic_brightness))
-                else:
-                    self.debug_filter("Oh no, stop, the app-switch is not on! Will not do anything...","few")
+                self.turn_on(self.light,brightness=self.pct_to_byte(self.basic_brightness))
             else: # switch
                 self.debug_filter("Will switch on the light now","few")
-                if self.get_state(self.app_switch) == "on":
-                    self.turn_on(self.light)
-                else:
-                    self.debug_filter("Oh no, stop, the app-switch is not on! Will not do anything...","few")
+                self.turn_on(self.light)
 
     def filter_turn_off_command(self, kwargs):
         self.debug_filter("Will decide now if light should be turned off","all")
@@ -213,12 +204,12 @@ class auto_light(hass.Hass):
         if self.keeping_fix:
             self.debug_filter("A keeping-fix entity is active, wont do anything","few")
             return
+        if self.get_state(self.app_switch) != "on":
+            self.debug_filter("filter_turn_off_command, but the app-switch is not on! Will not do anything...","few")
+            return
         self.debug_filter("Will turn off the light now","few")
         self.i_switched_off = True
-        if self.get_state(self.app_switch) == "on":
-            self.turn_off(self.light)
-        else:
-            self.debug_filter("Oh no, stop, the app-switch is not on! Will not do anything...","few")
+        self.turn_off(self.light)
 
     def check_if_too_dark(self, kwargs):
         if self.measured_illuminance < self.min_illuminance:
@@ -245,13 +236,13 @@ class auto_light(hass.Hass):
 
     def switching_off_entity_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Switching off: {} changed from {} to {}".format(entity, old, new),"few")
+        if self.get_state(self.app_switch) != "on":
+            self.debug_filter("switching_off_entity_changed, but the app-switch is not on! Will not do anything...","few")
+            return
         if new == "on" and old != "on":
             self.debug_filter("Will turn off the light now, no matter what my colleagues want","few")
             self.i_switched_off = True
-            if self.get_state(self.app_switch) == "on":
-                self.turn_off(self.light)
-            else:
-                self.debug_filter("Oh no, stop, the app-switch is not on! Will not do anything...","few")
+            self.turn_off(self.light)
 
     def keeping_off_entity_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Keeping off: {} changed from {} to {}".format(entity, old, new),"few")
@@ -293,33 +284,27 @@ class auto_light(hass.Hass):
         if new == "on":
             self.keeping_fix = True
             fix_brightness = self.keeping_fix_entities[entity]
+            if self.get_state(self.app_switch) != "on":
+                self.debug_filter("keeping_fix_entity_changed to on, but the app-switch is not on! Will not do anything...","few")
+                return
             self.debug_filter("Will set fixed brightness to {}".format(fix_brightness),"few")
             if self.type == "dim":
-                if self.get_state(self.app_switch) == "on":
-                    self.turn_on(self.light,brightness=self.pct_to_byte(fix_brightness))
-                else:
-                    self.debug_filter("Oh no, stop, the app-switch is not on! Will not do anything...","few")
+                self.turn_on(self.light,brightness=self.pct_to_byte(fix_brightness))
             else:
                 self.log("Keeping fix doesn't make much sense with a switch light. But I will switch it on now.")
-                if self.get_state(self.app_switch) == "on":
-                    self.turn_on(self.light)
-                else:
-                    self.debug_filter("Oh no, stop, the app-switch is not on! Will not do anything...","few")
+                self.turn_on(self.light)
         else: # this one is not on, but maybe another one
             fix_brightness = self.check_if_keeping_fix_active(None)
+            if self.get_state(self.app_switch) != "on":
+                self.debug_filter("keeping_fix_entity_changed to off, but the app-switch is not on! Will not do anything...","few")
+                return
             if self.keeping_fix:
                 self.debug_filter("Will set fixed brightness to {}".format(fix_brightness),"few")
                 if self.type == "dim":
-                    if self.get_state(self.app_switch) == "on":
-                        self.turn_on(self.light,brightness=self.pct_to_byte(fix_brightness))
-                    else:
-                        self.debug_filter("Oh no, stop, the app-switch is not on! Will not do anything...","few")
+                    self.turn_on(self.light,brightness=self.pct_to_byte(fix_brightness))
                 else:
                     self.log("Keeping fix doesn't make much sense with a switch light. But I will switch it on now.")
-                    if self.get_state(self.app_switch) == "on":
-                        self.turn_on(self.light)
-                    else:
-                        self.debug_filter("Oh no, stop, the app-switch is not on! Will not do anything...","few")
+                    self.turn_on(self.light)
             else:
                 if self.is_triggered:
                     if not self.is_too_bright:
