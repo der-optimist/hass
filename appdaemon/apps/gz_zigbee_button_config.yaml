@@ -1,0 +1,6 @@
+gz_zigbee_button:
+  module: gz_zigbee_button
+  class: gz_zigbee_button
+  sensor_entity: sensor.0x00158d00025f2262_click
+  sleep_mode_switch_entity: switch.gaste_schlafen
+  light_entity: light.0x00158d0003418897_light
