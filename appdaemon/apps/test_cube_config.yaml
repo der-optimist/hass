@@ -1,0 +1,4 @@
+test_cube:
+  module: test_cube
+  class: test_cube
+  constrain_input_boolean: input_boolean.test_trigger
