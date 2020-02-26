@@ -1,0 +1,12 @@
+gas_prices:
+  module: gas_prices
+  class: gas_prices
+  tankerkoenig_api_key: !secret tankerkoenig_api_key
+  stations:
+    00060015-0090-4444-8888-acdc00000090: Schindele
+    51d4b719-a095-1aa0-e100-80009459e03a: Jet FN
+    c5c5e0eb-86fe-4025-9b6b-8dc8e380fabd: Marktkauf
+    325b88ea-8b32-4b8d-8290-a731325ba378: Aral Mecka
+    6f9b92c0-aa67-44f1-a817-af95d72ee26c: Pinoil TT
+    9856f757-477e-4bd2-9fa4-648f8d33d849: Hannober
+    047b02b8-dcb5-4161-9a3a-17738a6833b8: Amtzell
