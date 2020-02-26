@@ -1,0 +1,8 @@
+weather_and_astro:
+  module: weather_and_astro
+  class: weather_and_astro
+  token_meteograms: !secret token_meteograms
+  dwd_warncell_id: !secret dwd_warncell_id
+  home_town: !secret home_town
+  home_latitude: !secret home_latitude
+  home_longitude: !secret home_longitude
