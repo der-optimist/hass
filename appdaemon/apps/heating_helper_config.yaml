@@ -1,0 +1,9 @@
+heating_helper_windfang_wc:
+  module: heating_helper
+  class: heating_helper
+  ga_binary: "10/7/6"
+  climate_entity: climate.windfang_wc
+  ga_text_current_temp: "10/7/8"
+  ga_text_target_temp: "10/7/7"
+  sensor_name_current_temp_text: sensor.windfang_wc_temp_ist_text
+  sensor_name_target_temp_text: sensor.windfang_wc_temp_soll_text
