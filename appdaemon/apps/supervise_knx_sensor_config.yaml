@@ -1,0 +1,6 @@
+supervise_knx_sensor_estrich_wc:
+  module: supervise_knx_sensor
+  class: supervise_knx_sensor
+  ga: "12/0/6"
+  sensor_name: Onewire Estrich WC
+  minutes: 30
