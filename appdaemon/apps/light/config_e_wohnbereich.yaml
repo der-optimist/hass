@@ -288,7 +288,7 @@ auto_light_e_wz_panels:
     - switch.bleib_so_wz_licht
   keeping_off_entities:
     - switch.bleib_so_wz_licht
-test_dim_steps_wz:
+dim_steps_wz:
   module: dimmer_steps
   class: dimmer_steps
   light_entity: light.panels_wohnzimmer
