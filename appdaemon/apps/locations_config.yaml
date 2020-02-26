@@ -1,0 +1,4 @@
+locations:
+  module: locations
+  class: locations
+  name_jo: !secret name_jo
