@@ -1,0 +1,3 @@
+toggle_self_created_switches:
+  module: toggle_self_created_switches
+  class: toggle_self_created_switches
