@@ -1,0 +1,5 @@
+heating_winter_mode:
+  module: heating_winter_mode
+  class: heating_winter_mode
+  input_booloean_entity: input_boolean.heizung_winter
+  ga: '10/7/3'
