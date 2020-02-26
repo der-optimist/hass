@@ -1,0 +1,10 @@
+flur_alarm_jo:
+  module: flur_alarm
+  class: flur_alarm
+  constrain_input_boolean: input_boolean.flur_alarm_jo
+  target: telegram_jo
+flur_alarm_ma:
+  module: flur_alarm
+  class: flur_alarm
+  constrain_input_boolean: input_boolean.flur_alarm_ma
+  target: telegram_ma
