@@ -1,0 +1,3 @@
+pizza_timer:
+  module: pizza_timer
+  class: pizza_timer
