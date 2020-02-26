@@ -1,0 +1,116 @@
+alarm_jo_wasser_spuelmaschine:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.wasser_unter_spule
+  status_to_match: "on"
+  notify_target: special_bot
+  special_bot_api_key: !secret telegram_api_key_alarm_bot
+  special_bot_chat_id: !secret telegram_id_1
+  message: "Alarm! Wasser unter der Spüle / Spülmaschine!!!"
+  init_delay: 60
+alarm_ma_wasser_spuelmaschine:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.wasser_unter_spule
+  status_to_match: "on"
+  notify_target: special_bot
+  special_bot_api_key: !secret telegram_api_key_alarm_bot
+  special_bot_chat_id: !secret telegram_id_2
+  message: "Alarm! Wasser unter der Spüle / Spülmaschine!!!"
+  init_delay: 60
+alarm_jo_wasser_boden_hebeanlage:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.wasser_boden_bei_hebeanlage
+  status_to_match: "on"
+  notify_target: special_bot
+  special_bot_api_key: !secret telegram_api_key_alarm_bot
+  special_bot_chat_id: !secret telegram_id_1
+  message: "Alarm! Wasser in der Waschküche (Boden bei Hebeanlage)!!!"
+  init_delay: 61
+alarm_ma_wasser_boden_hebeanlage:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.wasser_boden_bei_hebeanlage
+  status_to_match: "on"
+  notify_target: special_bot
+  special_bot_api_key: !secret telegram_api_key_alarm_bot
+  special_bot_chat_id: !secret telegram_id_2
+  message: "Alarm! Wasser in der Waschküche (Boden bei Hebeanlage)!!!"
+  init_delay: 61
+alarm_jo_eimer_hebeanlage_voll:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.eimer_hebeanlage_voll
+  status_to_match: "on"
+  notify_target: special_bot
+  special_bot_api_key: !secret telegram_api_key_alarm_bot
+  special_bot_chat_id: !secret telegram_id_1
+  message: "Alarm! Eimer von Hebeanlage ist voll gelaufen!!! Vermutlich Hebeanlage defekt oder ohne Strom"
+  init_delay: 62
+alarm_ma_eimer_hebeanlage_voll:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.eimer_hebeanlage_voll
+  status_to_match: "on"
+  notify_target: special_bot
+  special_bot_api_key: !secret telegram_api_key_alarm_bot
+  special_bot_chat_id: !secret telegram_id_2
+  message: "Alarm! Eimer von Hebeanlage ist voll gelaufen!!! Vermutlich Hebeanlage defekt oder ohne Strom"
+  init_delay: 62
+alarm_jo_sicherung_keller_sd_raus:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.sicherung_keller_sd_rausgeflogen
+  status_to_match: "on"
+  notify_target: special_bot
+  special_bot_api_key: !secret telegram_api_key_alarm_bot
+  special_bot_chat_id: !secret telegram_id_1
+  message: "Alarm! Sicherung Keller-Steckdosen ist rausgeflogen!!! Hebeanlage hat keinen Strom"
+  init_delay: 63
+alarm_ma_sicherung_keller_sd_raus:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.sicherung_keller_sd_rausgeflogen
+  status_to_match: "on"
+  notify_target: special_bot
+  special_bot_api_key: !secret telegram_api_key_alarm_bot
+  special_bot_chat_id: !secret telegram_id_2
+  message: "Alarm! Sicherung Keller-Steckdosen ist rausgeflogen!!! Hebeanlage hat keinen Strom"
+  init_delay: 63
+info_jo_sicherung_keller_sd_rein:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.sicherung_keller_sd_rausgeflogen
+  status_to_match: "off"
+  previous_status: "on"
+  notify_target: telegram_jo
+  message: "Info: Keller-Steckdosen haben wieder Strom"
+  init_delay: 64
+info_ma_sicherung_keller_sd_rein:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.sicherung_keller_sd_rausgeflogen
+  status_to_match: "off"
+  previous_status: "on"
+  notify_target: telegram_ma
+  message: "Info: Keller-Steckdosen haben wieder Strom"
+  init_delay: 64
+info_jo_hst_offen:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.hst_offen
+  status_to_match: "on"
+  previous_status: "off"
+  notify_target: telegram_jo
+  message: "Info: HST geöffnet"
+  init_delay: 65
+info_jo_hst_geschlossen:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.hst_offen
+  status_to_match: "off"
+  previous_status: "on"
+  notify_target: telegram_jo
+  message: "Info: HST geschlossen"
+  init_delay: 66
