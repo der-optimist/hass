@@ -1,0 +1,4 @@
+log_events:
+  module: log_events
+  class: log_events
+  constrain_input_boolean: input_boolean.app_switch_log_events
