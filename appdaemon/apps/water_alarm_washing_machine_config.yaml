@@ -1,0 +1,3 @@
+water_alarm_washing_machine:
+  module: water_alarm_washing_machine
+  class: water_alarm_washing_machine
