@@ -1,0 +1,4 @@
+calendar_and_reminders:
+  module: calendar_and_reminders
+  class: calendar_and_reminders
+  token: !secret ad_calendar_apps_token
