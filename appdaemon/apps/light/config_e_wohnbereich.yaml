@@ -308,6 +308,7 @@ auto_light_e_wz_schrankbeleuchtung:
   keeping_fix_entities:
     binary_sensor.tv_pizza_abend: 40
     binary_sensor.tv_abend_ohne_pizza: 25
+    input_boolean.gaeste_abends: 80
 dim_steps_wz:
   module: dimmer_steps
   class: dimmer_steps
