@@ -113,7 +113,7 @@ auto_light_e_ez_theke_warm:
   special_brightness_entities:
     switch.majo_schlafen: 20
     binary_sensor.tv_zeit_abend: 60
-    input_boolean.gaeste_abends: 100
+    input_boolean.gaeste_abends: 90
   keeping_fix_entities:
     binary_sensor.kodi_abends: 10
 auto_light_e_ez_christbaum:
@@ -276,9 +276,6 @@ auto_light_e_wz_panels:
   illuminance_sensor: sensor.helligkeit_wohnzimmer_pm
   special_brightness_entities:
     binary_sensor.tv_ist_an: 50
-  keeping_fix_entities:
-    binary_sensor.tv_pizza_abend: 5
-    binary_sensor.tv_abend_ohne_pizza: 2
   keeping_on_entities:
     - switch.bleib_so_wz_licht
   keeping_off_entities:
@@ -306,8 +303,8 @@ auto_light_e_wz_schrankbeleuchtung:
   special_brightness_entities:
     binary_sensor.tv_zeit_abend: 80
   keeping_fix_entities:
-    binary_sensor.tv_pizza_abend: 40
-    binary_sensor.tv_abend_ohne_pizza: 25
+    binary_sensor.tv_pizza_abend: 30
+    binary_sensor.tv_abend_ohne_pizza: 20
     input_boolean.gaeste_abends: 80
 dim_steps_wz:
   module: dimmer_steps
