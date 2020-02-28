@@ -225,6 +225,12 @@ input_boolean:
   test_trigger:
     name: Testtrigger
     icon: mdi:ray-start-arrow
+  gewitter:
+    name: Gewitter
+    icon: mdi:flash-alert
+  anwesenheit_simulieren:
+    name: Anwesenheit simulieren
+    icon: mdi:bag-checked
   gaeste_abends:
     name: Gäste abends
     icon: mdi:glass-cocktail
