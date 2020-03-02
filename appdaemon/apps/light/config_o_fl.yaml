@@ -3,7 +3,7 @@ auto_light_o_fl_panels:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_flur_og
+  app_switch: input_boolean.app_switch_licht_flur_og
   light: light.panels_flur_og
   type: dim
   triggers: 
