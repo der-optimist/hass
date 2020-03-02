@@ -3,7 +3,7 @@ auto_light_o_ba_panels:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_bad_og
+  app_switch: input_boolean.app_switch_licht_bad_og
   light: light.panels_bad_og
   type: dim
   triggers: 
@@ -27,7 +27,7 @@ auto_light_o_ba_spiegel:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_bad_og
+  app_switch: input_boolean.app_switch_licht_bad_og
   light: light.spiegel_bad_og
   type: switch
   triggers: 
