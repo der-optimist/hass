@@ -43,7 +43,7 @@ cards:
     - type: section
       label: Licht
     - type: custom:slider-entity-row
-      entity: light.0x00158d0003418897_light
+      entity: light.innr_e14_gz_decke_light
       name: Deckenlicht
       toggle: true
     - type: section
