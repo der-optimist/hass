@@ -3,7 +3,7 @@ auto_light_e_wf_panels:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_windfang
+  app_switch: input_boolean.app_switch_licht_windfang
   light: light.panels_windfang
   type: dim
   triggers: 
