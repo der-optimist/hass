@@ -55,7 +55,7 @@ hacs: # HA custom store
 #conversation:
 
 mqtt:
-  broker: a0d7b954-mqtt
+  broker: core-mosquitto
   username: !secret mqtt_user_1
   password: !secret mqtt_pw_1
   client_id: home-assistant
