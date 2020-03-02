@@ -3,7 +3,7 @@ auto_light_e_ez_panels:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
+  app_switch: input_boolean.app_switch_licht_esszimmer
   light: light.panels_esszimmer
   type: dim
   triggers: 
@@ -37,7 +37,7 @@ auto_light_e_ez_wandleuchten_hell:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
+  app_switch: input_boolean.app_switch_licht_esszimmer
   light: light.wandleuchten_esszimmer_hell
   type: dim
   triggers: 
@@ -71,7 +71,7 @@ auto_light_e_ez_wandleuchten_warm:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
+  app_switch: input_boolean.app_switch_licht_esszimmer
   light: light.wandleuchten_esszimmer_gemutlich
   type: dim
   triggers: 
@@ -95,7 +95,7 @@ auto_light_e_ez_theke_warm:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_esszimmer
+  app_switch: input_boolean.app_switch_licht_esszimmer
   light: light.bar_beleuchtung
   type: dim
   triggers: 
@@ -120,7 +120,7 @@ auto_light_e_ez_christbaum:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_christbaum
+  app_switch: input_boolean.app_switch_licht_christbaum
   light: light.sd_fussraum_bar
   type: switch
   triggers: 
@@ -141,7 +141,7 @@ auto_light_e_ku_panels:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_kueche
+  app_switch: input_boolean.app_switch_licht_kueche
   light: light.panels_kuche
   type: dim
   triggers: 
@@ -177,7 +177,7 @@ auto_light_e_ku_arbeitsplatte:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_kueche
+  app_switch: input_boolean.app_switch_licht_kueche
   light: light.arbeitsplatte
   type: dim
   triggers: 
@@ -210,7 +210,7 @@ auto_light_e_bar_panels:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_kueche
+  app_switch: input_boolean.app_switch_licht_kueche
   light: light.panels_bar
   type: dim
   triggers: 
@@ -245,7 +245,7 @@ auto_light_e_bar_panels:
     - input_boolean.gaeste_abends
 # - Wohnzimmer
 auto_light_e_wz_panels:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_wohnzimmer
@@ -286,7 +286,7 @@ auto_light_e_wz_schrankbeleuchtung:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_wohnzimmer
+  app_switch: input_boolean.app_switch_licht_wohnzimmer
   light: light.schrankbeleuchtung_wohnzimmer
   type: dim
   triggers: 
