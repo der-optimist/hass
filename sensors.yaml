@@ -16,34 +16,34 @@
       luftfeuchtigkeit_kuche_aqara:
         friendly_name: 'Luftfeuchtigkeit Küche'
         unit_of_measurement: '%'
-        value_template: "{{ (states('sensor.0x00158d00033ddc57_humidity') | float) | round }}"
+        value_template: "{{ (states('sensor.aqara_temp_lf_kuche_humidity') | float) | round }}"
         device_class: humidity
       temp_kuche_aqara:
         friendly_name: 'Temp. Küche Aqara'
         unit_of_measurement: '°C'
-        value_template: "{{ (states('sensor.0x00158d00033ddc57_temperature') | float) | round(1) }}"
+        value_template: "{{ (states('sensor.aqara_temp_lf_kuche_temperature') | float) | round(1) }}"
         device_class: temperature
       luftdruck_kuche_aqara:
         friendly_name: 'Luftdruck Küche Aqara'
         unit_of_measurement: 'hPa'
-        value_template: "{{ (states('sensor.0x00158d00033ddc57_pressure') | float) | round }}"
+        value_template: "{{ (states('sensor.aqara_temp_lf_kuche_pressure') | float) | round }}"
         device_class: pressure
       luftfeuchtigkeit_waschkuche_aqara:
         friendly_name: 'Luftfeuchtigkeit Waschküche'
         unit_of_measurement: '%'
-        value_template: "{{ (states('sensor.0x00158d00034d1e34_humidity') | float) | round }}"
+        value_template: "{{ (states('sensor.aqara_temp_lf_waschkuche_humidity') | float) | round }}"
         device_class: humidity
       temp_waschkuche_aqara:
         friendly_name: 'Temp. Waschküche Aqara'
         unit_of_measurement: '°C'
-        value_template: "{{ (states('sensor.0x00158d00034d1e34_temperature') | float) | round(1) }}"
+        value_template: "{{ (states('sensor.aqara_temp_lf_waschkuche_temperature') | float) | round(1) }}"
         device_class: temperature
       cube_1_side:
         friendly_name: 'Cube 1 Side'
-        value_template: "{{ state_attr('sensor.0x00158d00027d4507_action', 'side') }}"
+        value_template: "{{ state_attr('sensor.aqara_cube_1_action', 'side') }}"
       cube_1_action:
         friendly_name: 'Cube 1 Action'
-        value_template: "{{ states('sensor.0x00158d00027d4507_action') }}"
+        value_template: "{{ states('sensor.aqara_cube_1_action') }}"
 
 # --- Temperatur ---
 # KNX
