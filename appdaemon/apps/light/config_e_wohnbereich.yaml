@@ -274,7 +274,7 @@ auto_light_e_wz_panels:
     "21:30": 20
   illuminance_sensor: sensor.helligkeit_wohnzimmer_pm
   special_brightness_entities:
-    binary_sensor.tv_ist_an: 50
+    binary_sensor.tv_ist_an: 55
   keeping_on_entities:
     - switch.bleib_so_wz_licht
   keeping_off_entities:
