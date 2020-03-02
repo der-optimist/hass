@@ -3,7 +3,7 @@ auto_light_a_cp_led_streifen:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_aussen_carport
+  app_switch: input_boolean.app_switch_licht_aussen_carport
   light: light.led_streifen_carport
   type: dim
   triggers: 
@@ -19,7 +19,7 @@ auto_light_a_cp_spots:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_aussen_carport
+  app_switch: input_boolean.app_switch_licht_aussen_carport
   light: light.spots_carport
   type: switch
   triggers: 
