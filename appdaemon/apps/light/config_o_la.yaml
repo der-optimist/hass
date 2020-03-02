@@ -3,7 +3,7 @@ auto_light_o_la_panels:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_la
+  app_switch: input_boolean.app_switch_licht_la
   light: light.panels_la
   type: dim
   triggers: 
@@ -36,7 +36,7 @@ auto_light_o_la_wuerfel:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_la
+  app_switch: input_boolean.app_switch_licht_la
   light: light.wandwurfel_la
   type: dim
   triggers: 
@@ -65,7 +65,7 @@ auto_light_o_la_stehlampe:
   module: auto_light
   class: auto_light
   debug: quiet
-  constrain_input_boolean: input_boolean.app_switch_licht_la
+  app_switch: input_boolean.app_switch_licht_la
   light: light.stehlampe_la
   type: switch
   triggers: 
