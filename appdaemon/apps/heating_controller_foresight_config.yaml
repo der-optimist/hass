@@ -43,6 +43,21 @@ heating_controller_foresight_wz:
   mode: active
   on_off_switch: input_boolean.korrektur_heizung_ez
   log_measurement: shift_heating_setpoint_wz
+heating_controller_foresight_sz:
+  module: heating_controller_foresight
+  class: heating_controller_foresight
+  db_passwd: !secret permanent_db_passwd
+  db_measurement: sensor.temp_schlafzimmer_pm
+  db_field: state_float
+  number_of_derivatives_for_average: 5
+  multiplicator: 7
+  limit_max: 1.5
+  limit_min: -1.5
+  ga_setpoint_shift: "10/0/61"
+  shift_value: 0.1
+  mode: active
+  on_off_switch: input_boolean.korrektur_heizung_sz
+  log_measurement: shift_heating_setpoint_sz
 heating_controller_foresight_bad_eg:
   module: heating_controller_foresight
   class: heating_controller_foresight
@@ -58,6 +73,21 @@ heating_controller_foresight_bad_eg:
   mode: active
   on_off_switch: input_boolean.korrektur_heizung_bad_eg
   log_measurement: shift_heating_setpoint_bad_eg
+heating_controller_foresight_wf_wc:
+  module: heating_controller_foresight
+  class: heating_controller_foresight
+  db_passwd: !secret permanent_db_passwd
+  db_measurement: sensor.temp_estrich_wc
+  db_field: state_float
+  number_of_derivatives_for_average: 2
+  multiplicator: 1
+  limit_max: 1
+  limit_min: -1
+  ga_setpoint_shift: "10/0/101"
+  shift_value: 0.1
+  mode: active
+  on_off_switch: input_boolean.korrektur_heizung_wf_wc
+  log_measurement: shift_heating_setpoint_wf_wc
 heating_controller_foresight_le:
   module: heating_controller_foresight
   class: heating_controller_foresight
@@ -88,6 +118,51 @@ heating_controller_foresight_la:
   mode: active
   on_off_switch: input_boolean.korrektur_heizung_la
   log_measurement: shift_heating_setpoint_la
+heating_controller_foresight_nz:
+  module: heating_controller_foresight
+  class: heating_controller_foresight
+  db_passwd: !secret permanent_db_passwd
+  db_measurement: sensor.temp_nahzimmer_pm
+  db_field: state_float
+  number_of_derivatives_for_average: 5
+  multiplicator: 7
+  limit_max: 1.5
+  limit_min: -1.5
+  ga_setpoint_shift: "10/0/141"
+  shift_value: 0.1
+  mode: active
+  on_off_switch: input_boolean.korrektur_heizung_nz
+  log_measurement: shift_heating_setpoint_nz
+heating_controller_foresight_gz:
+  module: heating_controller_foresight
+  class: heating_controller_foresight
+  db_passwd: !secret permanent_db_passwd
+  db_measurement: sensor.temp_gastezimmer_pm
+  db_field: state_float
+  number_of_derivatives_for_average: 5
+  multiplicator: 7
+  limit_max: 1.5
+  limit_min: -1.5
+  ga_setpoint_shift: "10/0/181"
+  shift_value: 0.1
+  mode: active
+  on_off_switch: input_boolean.korrektur_heizung_gz
+  log_measurement: shift_heating_setpoint_gz
+heating_controller_foresight_flur_og:
+  module: heating_controller_foresight
+  class: heating_controller_foresight
+  db_passwd: !secret permanent_db_passwd
+  db_measurement: sensor.temp_flur_og_pm
+  db_field: state_float
+  number_of_derivatives_for_average: 5
+  multiplicator: 7
+  limit_max: 1.5
+  limit_min: -1.5
+  ga_setpoint_shift: "10/0/201"
+  shift_value: 0.1
+  mode: active
+  on_off_switch: input_boolean.korrektur_heizung_flur_og
+  log_measurement: shift_heating_setpoint_flur_og
 heating_controller_foresight_bad_og:
   module: heating_controller_foresight
   class: heating_controller_foresight
