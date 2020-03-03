@@ -3,7 +3,7 @@ jal_bad_og_sichtschutz_morgens:
   class: cover_tilt_pos_when_state_matched
   constrain_input_boolean: input_boolean.app_switch_jalousie_bad_og
   constrain_start_time: "04:00:00"
-  constrain_end_time: "16:00:00"
+  constrain_end_time: "11:00:00"
   cover_entity: cover.jalousie_bad_og
   mode: tilt
   target_tilt: 17
