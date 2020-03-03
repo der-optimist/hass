@@ -25,8 +25,8 @@ resources:
     type: module
   - url: /community_plugin/bar-card/bar-card.js
     type: js
-  - url: /community_plugin/our-groceries-card/our-groceries-card.js
-    type: js
+#  - url: /community_plugin/our-groceries-card/our-groceries-card.js
+#    type: js
   - url: /local/custom_ui/markdown-mod/markdown-mod.js
     type: module
   - url: /community_plugin/lovelace-card-mod/card-mod.js
