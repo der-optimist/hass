@@ -3,6 +3,12 @@ path: wetterstation
 icon: mdi:weather-snowy-rainy
 cards:
   - type: entities
+    title: Gewitter
+    show_header_toggle: false
+    entities:
+      - entity: input_boolean.gewitter
+        name: Gewitter!
+  - type: entities
     title: Temperatur, Helligkeit, Regen
     show_header_toggle: false
     entities:
