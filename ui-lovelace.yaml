@@ -3,8 +3,6 @@ resources:
 #    type: module
 #  - url: /local/custom_ui/bignumber-card/bignumber-card.js?v=1.0.0
 #    type: js
-  - url: /local/custom_ui/monster-card/monster-card.js?v=1.0.0
-    type: js
 #  - url: /local/custom_ui/kiosk/kiosk.js
 #    type: js
   - url: /local/custom_ui/card-tools/card-tools.js?v=0.4.0
@@ -33,6 +31,8 @@ resources:
     type: module
   - url: /community_plugin/secondaryinfo-entity-row/secondaryinfo-entity-row.js
     type: js
+  - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+    type: module
 
 title: Lieblingshaus
 custom_header:
