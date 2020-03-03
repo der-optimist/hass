@@ -11,8 +11,8 @@ resources:
     type: js
   - url: /local/custom_ui/layout-card/layout-card.js?v=0.1.0
     type: js
-  - url: /local/custom_ui/state-switch/state-switch.js?v=0.1.0
-    type: js
+#  - url: /local/custom_ui/state-switch/state-switch.js?v=0.1.0
+#    type: js
   - url: /community_plugin/custom-header/custom-header.js
     type: module
   - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
@@ -27,8 +27,8 @@ resources:
     type: js
 #  - url: /community_plugin/our-groceries-card/our-groceries-card.js
 #    type: js
-  - url: /local/custom_ui/markdown-mod/markdown-mod.js
-    type: module
+#  - url: /local/custom_ui/markdown-mod/markdown-mod.js
+#    type: module
   - url: /community_plugin/lovelace-card-mod/card-mod.js
     type: module
   - url: /community_plugin/secondaryinfo-entity-row/secondaryinfo-entity-row.js
