@@ -4,7 +4,7 @@ auto_light_o_gz_deckenlicht:
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_gaestezimmer
-  light: light.0x00158d0003418897_light
+  light: light.innr_e14_gz_decke_light
   type: dim
   triggers: 
     - binary_sensor.pm_o_gz
@@ -32,7 +32,7 @@ auto_light_o_gz_deckenlicht:
 knx_dim_funk_gz_deckenlicht:
   module: knx_dim_funk
   class: knx_dim_funk
-  light_entity: light.0x00158d0003418897_light
+  light_entity: light.innr_e14_gz_decke_light
   steps:
     - 0
     - 5
