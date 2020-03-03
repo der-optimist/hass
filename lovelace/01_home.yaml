@@ -99,7 +99,7 @@ cards:
         layout: vertical
         max_width: [34%, 66%]
         cards:
-          - type: custom:monster-card
+          - type: custom:auto-entities
             show_empty: false
             card:
               type: entities
@@ -109,7 +109,7 @@ cards:
               include:
                 - entity_id: "switch.reminder*"
                   state: "on"
-          - type: custom:monster-card
+          - type: custom:auto-entities
             show_empty: false
             card:
               type: glance
@@ -135,7 +135,7 @@ cards:
             - entity: input_boolean.gaeste_abends
               name: Gäste
           - break
-          - type: custom:monster-card
+          - type: custom:auto-entities
             show_empty: false
             card:
               type: entities
@@ -156,7 +156,7 @@ cards:
             column_width: 250
             max_width: [50%, 50%]
             cards:
-              - type: custom:monster-card
+              - type: custom:auto-entities
                 show_empty: false
                 card:
                   type: entities
@@ -166,7 +166,7 @@ cards:
                   include:
                     - entity_id: "sensor.abfall_anzeige*"
               - break
-              - type: custom:monster-card
+              - type: custom:auto-entities
                 show_empty: false
                 card:
                   type: entities
