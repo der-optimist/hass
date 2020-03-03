@@ -13,7 +13,7 @@ import appdaemon.plugins.hass.hassapi as hass
 # - match_state_old
 # 
 
-class cover_tilt_when_state_matched(hass.Hass):
+class cover_tilt_pos_when_state_matched(hass.Hass):
 
     def initialize(self):
         self.listen_state(self.state_matched, self.args["match_entity"], old = self.args["match_state_old"], new = self.args["match_state_new"])
