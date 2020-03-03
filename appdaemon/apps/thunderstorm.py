@@ -16,7 +16,7 @@ class thunderstorm(hass.Hass):
         self.log("Gewitter!")
         message = "Gewitter! Ich nehme TV, Mixi, Lüftung, Waschmaschine und Trockner jetzt den Strom"
         self.fire_event("custom_notify", message=message, target="telegram_jo")
-#        self.fire_event("custom_notify", message=message, target="telegram_ma")
+        self.fire_event("custom_notify", message=message, target="telegram_ma")
         # TV
         self.turn_off("switch.tv")
         # Mixi
@@ -27,14 +27,14 @@ class thunderstorm(hass.Hass):
         if float(self.get_state("sensor.el_leistung_waschmaschine")) > 12:
             message = "Waschmaschine ist wohl grad an. Die lasse ich an"
             self.fire_event("custom_notify", message=message, target="telegram_jo")
-#            self.fire_event("custom_notify", message=message, target="telegram_ma")
+            self.fire_event("custom_notify", message=message, target="telegram_ma")
         else:
             self.turn_off("switch.waschmaschine")
         # Trockner
         if float(self.get_state("sensor.el_leistung_trockner")) > 4:
             message = "Trockner läuft wohl gerade. Den lasse ich an"
             self.fire_event("custom_notify", message=message, target="telegram_jo")
-#            self.fire_event("custom_notify", message=message, target="telegram_ma")
+            self.fire_event("custom_notify", message=message, target="telegram_ma")
         else:
             self.turn_off("switch.trockner")
 
@@ -42,7 +42,7 @@ class thunderstorm(hass.Hass):
         self.log("Gewitter ist wohl vorbei, gut")
         message = "Gewitter ist wohl vorbei, gut. Ich geb TV, Mixi, Lüftung, Waschmaschine und Trockner jetzt wieder Strom"
         self.fire_event("custom_notify", message=message, target="telegram_jo")
-#        self.fire_event("custom_notify", message=message, target="telegram_ma")
+        self.fire_event("custom_notify", message=message, target="telegram_ma")
         self.turn_on("switch.tv")
         self.turn_on("switch.mixi")
         self.turn_on("switch.luftungsanlage")
