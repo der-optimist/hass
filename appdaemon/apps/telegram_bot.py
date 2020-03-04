@@ -170,7 +170,7 @@ class telegram_bot(hass.Hass):
             # --- Gewitter ---
             if text.lower() == "gewitter" or text.lower() == "gewitter an":
                 self.gewitter_an(chat_id)
-            if text.lower() == "gewitter vorbei" or text.lower() == "gewitter aus":
+            if text.lower() == "gewitter vorbei" or text.lower() == "gewitter ist vorbei" or text.lower() == "gewitter aus":
                 self.gewitter_aus(chat_id)
 
             # ---V-V-V-V-V--- Chat ---V-V-V-V-V---
