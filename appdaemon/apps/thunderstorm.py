@@ -10,8 +10,8 @@ class thunderstorm(hass.Hass):
 
     def initialize(self):
         pass
-#        self.listen_state(self.gewitter_an, "input_boolean.gewitter", old = "off", new = "on")
-#        self.listen_state(self.gewitter_aus, "input_boolean.gewitter", old = "on", new = "off")
+        self.listen_state(self.gewitter_an, "input_boolean.gewitter", old = "off", new = "on")
+        self.listen_state(self.gewitter_aus, "input_boolean.gewitter", old = "on", new = "off")
 
     def gewitter_an(self, entity, attributes, old, new, kwargs):
         self.log("Gewitter!")
