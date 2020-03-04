@@ -167,6 +167,14 @@ class telegram_bot(hass.Hass):
             elif text.lower().startswith("alarm"):
                 self.toggle_flur_alarm_jo(chat_id)
 
+            # --- Gewitter ---
+            if text.lower() == "gewitter" or text.lower() == "gewitter an":
+                self.gewitter_an(chat_id)
+            if text.lower() == "gewitter vorbei" or text.lower() == "gewitter aus":
+                self.gewitter_aus(chat_id)
+
+            # ---V-V-V-V-V--- Chat ---V-V-V-V-V---
+
             # --- Konversation 3-Steps ---
             if text in self.categories_threesteps:
                 self.log("Keyword of 3 Step Conversation Found")
@@ -394,6 +402,22 @@ class telegram_bot(hass.Hass):
                           target=chat_id,
                           message=reply,
                           disable_notification=True)
+    
+    def gewitter_an(self, chat_id):
+        self.turn_on("input_boolean.gewitter")
+        self.call_service('telegram_bot/send_message',
+                  target=chat_id,
+                  message="OK, werde den Gewitter-Kopf an machen",
+                  disable_notification=True)
+        
+    def gewitter_aus(self, chat_id):
+        self.turn_off("input_boolean.gewitter")
+        self.call_service('telegram_bot/send_message',
+                  target=chat_id,
+                  message="OK, werde den Gewitter-Kopf wieder aus machen",
+                  disable_notification=True)
+    
+    # ---V-V-V-V-V--- Chat ---V-V-V-V-V---
     
     def react_on_keyword_twostep(self, user_id, chat_id, text):
         self.log("2 Step Conversation started")
