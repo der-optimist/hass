@@ -3,7 +3,7 @@ import appdaemon.plugins.hass.hassapi as hass
 #
 # react on "thunderstorm" button
 #
-# Args: 
+# Args:
 
 
 class thunderstorm(hass.Hass):
