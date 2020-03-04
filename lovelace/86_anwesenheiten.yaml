@@ -2,7 +2,7 @@ title: Wo ist jemand
 path: anwesenheiten
 icon: mdi:motion-sensor
 cards:
-  - type: custom:monster-card
+  - type: custom:auto-entities
     card:
       type: entities
       title: "EG"
@@ -10,7 +10,7 @@ cards:
     filter:
       include:
         - entity_id: "binary_sensor.pm_e*"
-  - type: custom:monster-card
+  - type: custom:auto-entities
     card:
       type: entities
       title: "OG"
@@ -24,7 +24,7 @@ cards:
     entities:
     - entity: input_boolean.flur_alarm_jo
     - entity: input_boolean.flur_alarm_ma
-  - type: custom:monster-card
+  - type: custom:auto-entities
     card:
       type: entities
       title: "Keller/Außen"
@@ -33,7 +33,7 @@ cards:
       include:
         - entity_id: "binary_sensor.pm_k*"
         - entity_id: "binary_sensor.pm_a*"
-  - type: custom:monster-card
+  - type: custom:auto-entities
     card:
       type: entities
       title: "Sonstige"
