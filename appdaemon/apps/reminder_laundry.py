@@ -24,22 +24,26 @@ class reminder_laundry(hass.Hass):
     def waschmaschine_fertig(self, entity, attribute, old, new, kwargs):
         self.set_state(self.switch_reminder_wm, state = "on", attributes = self.attributes_reminder_wm)
         self.timer_handle_wm = self.run_in(self.remind_waschmaschine,600)
+        self.fire_event("custom_notify", message="WM an", target="telegram_jo")
         
     def waschmaschine_geleert(self, entity, attribute, old, new, kwargs):
         self.set_state(self.switch_reminder_wm, state = "off", attributes = self.attributes_reminder_wm)
         if self.timer_handle_wm != None:
             self.cancel_timer(self.timer_handle_wm)
             self.timer_handle_wm = None
+          self.fire_event("custom_notify", message="WM aus", target="telegram_jo")
 
     def trockner_fertig(self, entity, attribute, old, new, kwargs):
         self.set_state(self.switch_reminder_tr, state = "on", attributes = self.attributes_reminder_tr)
         self.timer_handle_tr = self.run_in(self.remind_trockner,600)
+        self.fire_event("custom_notify", message="TR an", target="telegram_jo")
 
     def trockner_geleert(self, entity, attribute, old, new, kwargs):
         self.set_state(self.switch_reminder_tr, state = "off", attributes = self.attributes_reminder_tr)
         if self.timer_handle_tr != None:
             self.cancel_timer(self.timer_handle_tr)
             self.timer_handle_tr = None
+          self.fire_event("custom_notify", message="TR aus", target="telegram_jo")
 
     def remind_waschmaschine(self, kwargs):
         message = "Waschmaschine ist seit 10 Minuten fertig"
