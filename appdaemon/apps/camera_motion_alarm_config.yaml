@@ -1,3 +1,5 @@
 camera_motion_alarm:
   module: camera_motion_alarm
   class: camera_motion_alarm
+  constrain_start_time: "18:00:00"
+  constrain_end_time: "08:00:00"
