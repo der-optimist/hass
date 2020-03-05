@@ -75,6 +75,7 @@ permanent_recorder:
     - binary_sensor.pm_e_wz_couch_rechts
     - binary_sensor.pm_e_wz_durchgang
     - binary_sensor.pm_k_fl
+    - binary_sensor.pm_k_te
     - binary_sensor.pm_ktr_flur
     - binary_sensor.pm_ktr_treppe
     - binary_sensor.pm_o_ba
