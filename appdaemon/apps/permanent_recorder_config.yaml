@@ -10,6 +10,8 @@ permanent_recorder:
     - light.bettbeleuchtung
     - light.flur_keller
     - light.gastezimmer
+    - light.innr_e14_2_light
+    - light.innr_e14_gz_decke_light
     - light.lagerraum
     - light.led_streifen_carport
     - light.nahtisch_decke
@@ -95,17 +97,35 @@ permanent_recorder:
     - binary_sensor.storung_heizaktor_og
     - binary_sensor.tag_nacht_wetterstation
     - binary_sensor.temperaturalarm_wetterstation
+    - binary_sensor.trockner_ist_an
     - binary_sensor.tv_ist_an
+    - binary_sensor.waschmaschine_ist_an
     - binary_sensor.wasser_boden_bei_hebeanlage
     - binary_sensor.wasser_unter_spule
     - binary_sensor.wetterstation_status_gps_signal
     - binary_sensor.windalarm_1
     - binary_sensor.windalarm_2
     - binary_sensor.windalarm_3
+    - switch.backofen
     - switch.bad_og_nachtmodus
+    - switch.bleib_so_wz_licht
+    - switch.gaste_schlafen
+    - switch.gefrierschrank
+    - switch.kuhlschrank_keller
+    - switch.kuhlschrank_kuche
     - switch.la_schlaft
     - switch.le_schlaft
+    - switch.luftungsanlage
     - switch.majo_schlafen
+    - switch.mixi
+    - switch.nz_licht_automatik
+    - switch.spulmaschine
+    - switch.trockner
+    - switch.tv
+    - switch.waschmaschine
+    - switch.wz_steckdose
+    - switch.aqara_steckdose_garderobe_switch
+    - switch.aqara_steckdose_luftentf_wk_switch
     - sensor.status_amtzell
     - sensor.status_aral_mecka
     - sensor.status_hannober
@@ -139,6 +159,14 @@ permanent_recorder:
     - cover.jalousie_wz_bodentiefes
     - cover.jalousie_wz_couch
   state_float:
+    - sensor.aqara_temp_lf_kuche_humidity
+    - sensor.aqara_temp_lf_kuche_pressure
+    - sensor.aqara_temp_lf_kuche_temperature
+    - sensor.aqara_temp_lf_kuche_battery
+    - sensor.aqara_temp_lf_waschkuche_battery
+    - sensor.aqara_temp_lf_waschkuche_humidity
+    - sensor.aqara_temp_lf_waschkuche_pressure
+    - sensor.aqara_temp_lf_waschkuche_temperature
     - sensor.el_leistung_backofen
     - sensor.el_leistung_gefrierschrank
     - sensor.el_leistung_kochfeld
@@ -148,6 +176,7 @@ permanent_recorder:
     - sensor.el_leistung_mixi
     - sensor.el_leistung_spulmaschine
     - sensor.el_leistung_trockner
+    - sensor.el_leistung_trockner_float_average
     - sensor.el_leistung_tv
     - sensor.el_leistung_waschmaschine
     - sensor.el_leistung_wp_heizstab
@@ -169,6 +198,7 @@ permanent_recorder:
     - sensor.helligkeit_windfang_pm
     - sensor.helligkeit_wohnzimmer_pm
     - sensor.humidity_owm
+    - sensor.memory_use_percent
     - sensor.sollwert_heizung_bad_eg
     - sensor.sollwert_heizung_bad_og
     - sensor.sollwert_heizung_esszimmer
@@ -271,3 +301,9 @@ permanent_recorder:
     - sensor.temp_estrich_schlafzimmer
     - sensor.temp_estrich_wc
     - sensor.temp_estrich_wohnzimmer
+  state_string:
+    - sensor.0x00158d00040b112f_click
+    - sensor.aqara_button_gaeste_action
+    - sensor.aqara_button_gaeste_click
+    - sensor.cube_1_action
+    - sensor.cube_1_side
