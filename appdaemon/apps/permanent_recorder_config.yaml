@@ -98,6 +98,7 @@ permanent_recorder:
     - binary_sensor.tag_nacht_wetterstation
     - binary_sensor.temperaturalarm_wetterstation
     - binary_sensor.trockner_ist_an
+    - binary_sensor.trockner_ist_geleert
     - binary_sensor.tv_ist_an
     - binary_sensor.waschmaschine_ist_an
     - binary_sensor.wasser_boden_bei_hebeanlage
