@@ -165,7 +165,7 @@
     state_address: '8/0/20'
     name: PM_K_TE
     device_class: motion
-- platform: knx
+  - platform: knx
     state_address: '14/0/1'
     name: Eimer Hebeanlage voll
     device_class: problem
