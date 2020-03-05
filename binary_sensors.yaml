@@ -467,3 +467,9 @@
       backofen_ist_an:
         friendly_name: "Backofen an"
         value_template: "{{ states('sensor.el_leistung_backofen')|float > 2 }}"
+      waschmaschine_ist_an:
+        friendly_name: "Waschmaschine läuft"
+        value_template: "{{ states('sensor.el_leistung_waschmaschine')|float > 15 }}"
+      trockner_ist_an:
+        friendly_name: "Trockner läuft"
+        value_template: "{{ states('sensor.el_leistung_trockner_float_average')|float > 80 }}"
