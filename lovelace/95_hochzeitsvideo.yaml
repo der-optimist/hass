@@ -1,0 +1,8 @@
+title: Hochzeitsvideo
+path: tochzeitsvideo
+icon: mdi:cards-heart
+panel: true
+cards:
+  - type: iframe
+    url: /local/hochzeitsvideo/player.html
+    aspect_ratio: 40%
