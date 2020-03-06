@@ -5,4 +5,4 @@ panel: true
 cards:
   - type: iframe
     url: https://www.tagesschau.de/multimedia/video/video-670699~player_branded-true.html
-    aspect_ratio: 56%
+    aspect_ratio: 45%
