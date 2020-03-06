@@ -5,4 +5,4 @@ panel: true
 cards:
   - type: iframe
     url: /local/hochzeitsvideo/player.html
-    aspect_ratio: 40%
+    aspect_ratio: 56.25%
