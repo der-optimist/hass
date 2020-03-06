@@ -162,7 +162,7 @@
     name: PM_K_FL
     device_class: motion
   - platform: knx
-    state_address: '8/0/20'
+    state_address:  '0/1/120'
     name: PM_K_TE
     device_class: motion
   - platform: knx
