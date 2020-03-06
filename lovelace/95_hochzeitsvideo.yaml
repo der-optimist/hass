@@ -5,7 +5,7 @@ panel: true
 cards:
   - type: custom:layout-card
     layout: vertical
-    column_width: 1800px
+    column_width: 100%
     cards:
       - type: iframe
         url: /local/hochzeitsvideo/player.html
