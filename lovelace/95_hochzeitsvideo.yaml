@@ -3,10 +3,6 @@ path: hochzeitsvideo
 icon: mdi:cards-heart
 panel: true
 cards:
-  - type: custom:layout-card
-    layout: vertical
-    column_width: 100%
-    cards:
-      - type: iframe
-        url: /local/hochzeitsvideo/player.html
-        aspect_ratio: 56.25%
+  - type: iframe
+    url: /local/hochzeitsvideo/player.html
+    aspect_ratio: 58%
