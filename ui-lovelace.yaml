@@ -67,4 +67,5 @@ views:
   - !include lovelace/86_anwesenheiten.yaml
   - !include lovelace/90_technik.yaml
   - !include lovelace/94_alarme.yaml
+  - !include lovelace/96_tagesschau.yaml
 #  - !include lovelace/98_einkaufen.yaml
