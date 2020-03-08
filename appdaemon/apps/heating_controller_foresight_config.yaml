@@ -64,8 +64,8 @@ heating_controller_foresight_bad_eg:
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_bad_eg_pm
   db_field: state_float
-  number_of_derivatives_for_average: 5
-  multiplicator: 5
+  number_of_derivatives_for_average: 3
+  multiplicator: 6
   limit_max: 1
   limit_min: -1
   ga_setpoint_shift: "10/0/81"
