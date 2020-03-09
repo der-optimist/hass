@@ -10,7 +10,7 @@ import datetime
 # What args it needs:
 # 
 
-class weather_and_astro(hass.Hass):
+class feed_news(hass.Hass):
 
     def initialize(self):
         # --- DWD weather warnings ---
@@ -42,35 +42,5 @@ class weather_and_astro(hass.Hass):
             self.log(tree)
             root = tree.getroot()
             self.log(root)
-            return
-            
-            # initialize vars
-            Events = []
-            Severities = []
-            Times_onset = []
-            Times_expires = []
-            Start_readable = []
-            End_readable = []
-            EC_Groups = []
-            Parametervalues = []
-            Descriptions = []
 
-            # read warnings from xml
-            for warning in root.findall('wfs:member', namespaces):
-                event = warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text
-                if (event != "FROST") and (event != "HITZE_off"):
-                    Events.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text)
-                    Severities.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:SEVERITY', namespaces)[0].text)
-                    Times_onset.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text)
-                    start_dt = datetime.datetime.strptime(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:ONSET', namespaces)[0].text, "%Y-%m-%dT%H:%M:%SZ")
-                    Start_readable.append(self.datetime_readable(start_dt))
-                    Times_expires.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EXPIRES', namespaces)[0].text)
-                    end_dt = datetime.datetime.strptime(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EXPIRES', namespaces)[0].text, "%Y-%m-%dT%H:%M:%SZ")
-                    End_readable.append(self.datetime_readable(end_dt))
-                    EC_Groups.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EC_GROUP', namespaces)[0].text)
-                    try:
-                        Parametervalues.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:PARAMATERVALUE', namespaces)[0].text)
-                    except IndexError:
-                        Parametervalues.append("")
-                    Descriptions.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:DESCRIPTION', namespaces)[0].text)
-            Severities_sortable = [Severities_dict.get(item,item) for item in Severities]
+
