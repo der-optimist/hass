@@ -25,6 +25,7 @@ class weather_and_astro(hass.Hass):
             # catch connection error - r does not get a status code then
             self.log("Error while loading Tagesschau in 100s. Maybe connection problem")
             return
+        self.log(r.status_code)
         if r.status_code == 200:
             xml = io.BytesIO(r.content)
             self.log(xml)
