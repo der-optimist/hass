@@ -10,7 +10,7 @@ import datetime
 # What args it needs:
 # 
 
-class feed_news(hass.Hass):
+class weather_and_astro(hass.Hass):
 
     def initialize(self):
         # --- DWD weather warnings ---
@@ -29,8 +29,7 @@ class feed_news(hass.Hass):
         if r.status_code == 200:
             xml = io.BytesIO(r.content)
             self.log(xml)
-            link = xml["links"][0]["href"]
-            self.log(link)
+
             # Define Namespaces and load xml data
             namespaces = {
                 'content': 'http://purl.org/rss/1.0/modules/content/', 
@@ -42,5 +41,3 @@ class feed_news(hass.Hass):
             self.log(tree)
             root = tree.getroot()
             self.log(root)
-
-
