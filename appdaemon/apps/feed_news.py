@@ -37,5 +37,6 @@ class feed_news(hass.Hass):
             }
             tree = ET.parse(xml)
             root = tree.getroot()
-            link = root.findall('channel')[0].findall('item')[0]
+            link = root.findall('channel')[0].findall('item')[0].findall('enclosure')[0]
             self.log(link)
+            self.log(link.attrib)
