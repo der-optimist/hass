@@ -36,6 +36,6 @@ class feed_news(hass.Hass):
                 'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd'
             }
             tree = ET.parse(xml)
-            self.log(tree)
             root = tree.getroot()
-            self.log(root)
+            link = root.findall('channel')[0].findall('item')[0]
+            self.log(link)
