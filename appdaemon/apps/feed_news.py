@@ -27,6 +27,7 @@ class weather_and_astro(hass.Hass):
             return
         if r.status_code == 200:
             xml = io.BytesIO(r.content)
+            self.log(xml)
             # Define Namespaces and load xml data
             namespaces = {
                 'content': 'http://purl.org/rss/1.0/modules/content/', 
@@ -35,6 +36,7 @@ class weather_and_astro(hass.Hass):
                 'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd'
             }
             tree = ET.parse(xml)
+            self.log(tree)
             root = tree.getroot()
             self.log(root)
             return
