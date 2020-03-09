@@ -15,6 +15,8 @@ class feed_news(hass.Hass):
     def initialize(self):
         # --- DWD weather warnings ---
         self.url_tagesschau_100s = "https://www.tagesschau.de/export/video-podcast/webxl/tagesschau-in-100-sekunden_https/"
+        self.path_player_html = "/config/www/tagesschau/player_appdaemon.html"
+        self.url_video = None
         #self.run_every(self.load_tagesschau_100s, datetime.datetime.now() + datetime.timedelta(seconds=3), 5 * 60) # update every 5 minutes
         self.load_tagesschau_100s(None)
 
@@ -28,15 +30,22 @@ class feed_news(hass.Hass):
         self.log(r.status_code)
         if r.status_code == 200:
             xml = io.BytesIO(r.content)
-            # Define Namespaces and load xml data
-            namespaces = {
-                'content': 'http://purl.org/rss/1.0/modules/content/', 
-                'wfw': 'http://wellformedweb.org/CommentAPI/',
-                'dc': 'http://purl.org/dc/elements/1.1/',
-                'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd'
-            }
             tree = ET.parse(xml)
             root = tree.getroot()
             link = root.findall('channel')[0].findall('item')[0].findall('enclosure')[0].get("url")
             self.log(link)
-            #self.log(link.attrib)
+            self.url_video = link
+            self.write_player_html()
+
+    def write_player_html(self):
+        f = open(self.path_player_html, "w")
+        f.write('<!DOCTYPE html>')
+        f.write('<html>')
+        f.write('<body>')
+        f.write('<video width="95%" autoplay controls>')
+        f.write('  <source src="{}" type="video/mp4">'.format(self.url_video))
+        f.write('  Your browser does not support the video tag.')
+        f.write('</video>')
+        f.write('</body>')
+        f.write('</html>')
+        f.close()
