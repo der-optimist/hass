@@ -2,6 +2,7 @@ import appdaemon.plugins.hass.hassapi as hass
 import xml.etree.ElementTree as ET
 import requests, io
 import json
+import datetime
 
 #
 # What it does:
@@ -9,7 +10,7 @@ import json
 # What args it needs:
 # 
 
-class weather_and_astro(hass.Hass):
+class feed_news(hass.Hass):
 
     def initialize(self):
         # --- DWD weather warnings ---
@@ -27,8 +28,6 @@ class weather_and_astro(hass.Hass):
         self.log(r.status_code)
         if r.status_code == 200:
             xml = io.BytesIO(r.content)
-            self.log(xml)
-            
             # Define Namespaces and load xml data
             namespaces = {
                 'content': 'http://purl.org/rss/1.0/modules/content/', 
