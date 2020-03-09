@@ -2,7 +2,6 @@ import appdaemon.plugins.hass.hassapi as hass
 import xml.etree.ElementTree as ET
 import requests, io
 import json
-import datetime
 
 #
 # What it does:
