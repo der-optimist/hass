@@ -1,0 +1,8 @@
+title: Tagesschau 2
+path: tagesschau_2
+icon: mdi:youtube-tv
+panel: true
+cards:
+  - type: iframe
+    url: https://www.tagesschau.de/100sekunden/
+    aspect_ratio: 50%
