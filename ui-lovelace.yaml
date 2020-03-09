@@ -69,4 +69,5 @@ views:
   - !include lovelace/94_alarme.yaml
   - !include lovelace/95_hochzeitsvideo.yaml
   - !include lovelace/96_tagesschau.yaml
+  - !include lovelace/96_tagesschau_2.yaml
 #  - !include lovelace/98_einkaufen.yaml
