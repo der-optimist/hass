@@ -7,7 +7,7 @@ import appdaemon.plugins.hass.hassapi as hass
 class test_cube(hass.Hass):
 
     def initialize(self):
-        self.listen_state(self.action, "sensor.0x00158d00027d4507_action")
+        self.listen_state(self.action, "sensor.aqara_cube_1_action")
         self.listen_state(self.side, "sensor.cube_1_side")
         
     def action(self, entity, attribute, old, new, kwargs):
