@@ -27,14 +27,15 @@ class feed_news(hass.Hass):
             # catch connection error - r does not get a status code then
             self.log("Error while loading Tagesschau in 100s. Maybe connection problem")
             return
-        self.log(r.status_code)
+        #self.log(r.status_code)
         if r.status_code == 200:
             xml = io.BytesIO(r.content)
             tree = ET.parse(xml)
             root = tree.getroot()
             link = root.findall('channel')[0].findall('item')[0].findall('enclosure')[0].get("url")
             if self.url_video != link:
-                self.log("Jhu, neue Tagesschau!")
+                self.log("Jhu, neue Tagesschau:")
+                self.log(link)
                 self.url_video = link
                 self.write_player_html()
             else:
