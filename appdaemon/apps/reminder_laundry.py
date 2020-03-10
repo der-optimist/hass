@@ -19,6 +19,7 @@ class reminder_laundry(hass.Hass):
         icon_reminder_wm = "/local/icons/reminders/washing-machine_orange_blink.svg"
         self.attributes_reminder_wm = {"entity_picture": icon_reminder_wm, "friendly_name": "Waschmaschine ist fertig"}
         self.timer_handle_wm = None
+        self.timer_handle_wm_open = None
         # define dryer switch
         self.switch_reminder_tr = "switch.reminder_trockner_leeren"
         icon_reminder_tr = "/local/icons/reminders/dryer_orange_blink.svg"
@@ -26,6 +27,11 @@ class reminder_laundry(hass.Hass):
         self.timer_handle_tr = None
     
     def waschmaschine_fertig(self, entity, attribute, old, new, kwargs):
+        self.fire_event("custom_notify", message="WM fertig, aber noch zu", target="telegram_jo")
+        self.timer_handle_wm_open = self.run_in(self.waschmaschine_fertig_delayed, 180)
+    
+    def waschmaschine_fertig_delayed(self, kwargs):
+        self.timer_handle_wm_open = None
         self.set_state(self.switch_reminder_wm, state = "on", attributes = self.attributes_reminder_wm)
         self.timer_handle_wm = self.run_in(self.remind_waschmaschine,3600)
         self.fire_event("custom_notify", message="WM fertig", target="telegram_jo")
@@ -34,6 +40,9 @@ class reminder_laundry(hass.Hass):
         if self.get_state(self.switch_reminder_wm) == "on":
             self.fire_event("custom_notify", message="WM geleert", target="telegram_jo")
         self.set_state(self.switch_reminder_wm, state = "off", attributes = self.attributes_reminder_wm)
+        if self.timer_handle_wm_open != None:
+            self.cancel_timer(self.timer_handle_wm_open)
+            self.timer_handle_wm_open = None
         if self.timer_handle_wm != None:
             self.cancel_timer(self.timer_handle_wm)
             self.timer_handle_wm = None
