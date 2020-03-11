@@ -1,3 +1,4 @@
+# Wasser-Alarm
 alarm_jo_wasser_spuelmaschine:
   module: notify_when_status_matched
   class: notify_when_status_matched
@@ -58,6 +59,8 @@ alarm_ma_eimer_hebeanlage_voll:
   special_bot_chat_id: !secret telegram_id_2
   message: "Alarm! Eimer von Hebeanlage ist voll gelaufen!!! Vermutlich Hebeanlage defekt oder ohne Strom"
   init_delay: 62
+
+# Sicherung Keller
 alarm_jo_sicherung_keller_sd_raus:
   module: notify_when_status_matched
   class: notify_when_status_matched
@@ -96,6 +99,8 @@ info_ma_sicherung_keller_sd_rein:
   notify_target: telegram_ma
   message: "Info: Keller-Steckdosen haben wieder Strom"
   init_delay: 64
+
+# HST (Test)
 info_jo_hst_offen:
   module: notify_when_status_matched
   class: notify_when_status_matched
@@ -114,3 +119,174 @@ info_jo_hst_geschlossen:
   notify_target: telegram_jo
   message: "Info: HST geschlossen"
   init_delay: 66
+
+# Störung Heizungsaktor
+info_jo_stoerung_heizaktor_eg:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.storung_heizaktor_eg
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Störung Heizungsaktor EG"
+  init_delay: 91
+info_jo_stoerung_heizaktor_og:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.storung_heizaktor_og
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Störung Heizungsaktor OG"
+  init_delay: 92
+
+# LED-Treiber - Übertemperatur
+info_jo_stoerung_led_temp_1:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.ubertemperaturalarm_led_aktor_1
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Übertemperatur-Alarm LED-Aktor 1"
+  init_delay: 93
+info_jo_stoerung_led_temp_2:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.ubertemperaturalarm_led_aktor_2
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Übertemperatur-Alarm LED-Aktor 2"
+  init_delay: 94
+info_jo_stoerung_led_temp_3:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.ubertemperaturalarm_led_aktor_3
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Übertemperatur-Alarm LED-Aktor 3"
+  init_delay: 95
+info_jo_stoerung_led_temp_4:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.ubertemperaturalarm_led_aktor_4
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Übertemperatur-Alarm LED-Aktor 4"
+  init_delay: 96
+info_jo_stoerung_led_temp_5:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.ubertemperaturalarm_led_aktor_5
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Übertemperatur-Alarm LED-Aktor 5"
+  init_delay: 97
+info_jo_stoerung_led_temp_6:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.ubertemperaturalarm_led_aktor_6
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Übertemperatur-Alarm LED-Aktor 6"
+  init_delay: 98
+info_jo_stoerung_led_temp_7:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.ubertemperaturalarm_led_aktor_7
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Übertemperatur-Alarm LED-Aktor 7"
+  init_delay: 99
+# LED-Treiber - Überstrom
+info_jo_stoerung_led_strom_1:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.uberstromalarm_led_aktor_1
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Überstrom-Alarm LED-Aktor 1"
+  init_delay: 100
+info_jo_stoerung_led_strom_2:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.uberstromalarm_led_aktor_2
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Überstrom-Alarm LED-Aktor 2"
+  init_delay: 101
+info_jo_stoerung_led_strom_3:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.uberstromalarm_led_aktor_3
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Überstrom-Alarm LED-Aktor 3"
+  init_delay: 102
+info_jo_stoerung_led_strom_4:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.uberstromalarm_led_aktor_4
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Überstrom-Alarm LED-Aktor 4"
+  init_delay: 103
+info_jo_stoerung_led_strom_5:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.uberstromalarm_led_aktor_5
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Überstrom-Alarm LED-Aktor 5"
+  init_delay: 104
+info_jo_stoerung_led_strom_6:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.uberstromalarm_led_aktor_6
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Überstrom-Alarm LED-Aktor 6"
+  init_delay: 105
+info_jo_stoerung_led_strom_7:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.uberstromalarm_led_aktor_7
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Überstrom-Alarm LED-Aktor 7"
+  init_delay: 106
+
+# GPS Wetterstation
+info_jo_stoerung_gps_wetterstation:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.wetterstation_status_gps_signal
+  status_to_match: "off"
+  notify_target: telegram_jo
+  message: "Wetterstation: kein GPS-Signal"
+  init_delay: 130
+info_jo_stoerung_gps_wetterstation_vorbei:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.wetterstation_status_gps_signal
+  status_to_match: "on"
+  previous_status: "off"
+  notify_target: telegram_jo
+  message: "Wetterstation hat wieder GPS-Signal"
+  init_delay: 131
+
+# Wind-Alarm
+info_jo_windalarm_2_beginn:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.binary_sensor.windalarm_2
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Windalarm 60 kmh - Beginn"
+  init_delay: 107
+info_jo_windalarm_2_ende:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.binary_sensor.windalarm_2
+  status_to_match: "off"
+  previous_status: "on"
+  notify_target: telegram_jo
+  message: "Windalarm 60 kmh - Ende"
+  init_delay: 108
