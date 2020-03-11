@@ -19,9 +19,10 @@ cards:
       include:
         - entity_id: "binary_sensor.pm_o*"
   - type: entities
-    title: Alarme
+    title: Wir sind unterwegs...
     show_header_toggle: false
     entities:
+    - entity: input_boolean.anwesenheit_simulieren
     - entity: input_boolean.flur_alarm_jo
     - entity: input_boolean.flur_alarm_ma
   - type: custom:auto-entities
