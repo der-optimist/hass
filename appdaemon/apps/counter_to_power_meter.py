@@ -13,6 +13,7 @@ import datetime
 # ha_electricity_sensor_friendly_name = "Stromzähler XYZ"
 # ha_power_sensor_name = "sensor.el_leistung_xyz"
 # ha_power_sensor_friendly_name = "El. Leistung XYZ"
+# phases: 1 or 3 (for checking plausibility)
 # energy_per_pulse = 0.0005 (in kWh => 2000 pulses per kWh => 0.0005 kWh/pulse)
 # knx_sending_every = 5 (expect to receive a new value after 10 pulses. Used only for calulating ramp-down values)
 # cut_power_below: 10 (set to 0 if ramp-down goes below this value)
@@ -21,6 +22,7 @@ import datetime
 class counter_to_power_meter(hass.Hass):
 
     def initialize(self):
+        self.max_plausible_watt_per_phase = 7360 # would be 32A @ 230V
         # listen for new values
         self.listen_state(self.counter_changed, self.args["knx_counter"])
         # initialize internal variables
@@ -54,10 +56,13 @@ class counter_to_power_meter(hass.Hass):
                 time_delta_seconds = (current_time - self.time_of_last_event).total_seconds()
                 electricity_delta_Ws = (float(new) - self.value_of_last_event) * self.args["energy_per_pulse"] * 3600 * 1000
                 current_power = electricity_delta_Ws / time_delta_seconds
-                attributes = self.get_state(self.args["ha_power_sensor_name"], attribute="all")["attributes"]
-                self.set_state(self.args["ha_power_sensor_name"], state = round(current_power, 1), attributes=attributes)
-                #self.log("Value {} received from counter {}. Calculated new power value: {}".format(new,self.args["knx_counter"],round(current_power, 1)))
-                self.handle_ramp_down_timer = self.run_in(self.ramp_down,round(2 * time_delta_seconds + 1))
+                if current_power > (float(self.args["phases"]) * self.max_plausible_watt_per_phase):
+                    self.log("Unplausibler Wert für Leistung: {} Watt - werde ihn ignorieren".format(round(current_power, 1)))
+                else:
+                    attributes = self.get_state(self.args["ha_power_sensor_name"], attribute="all")["attributes"]
+                    self.set_state(self.args["ha_power_sensor_name"], state = round(current_power, 1), attributes=attributes)
+                    #self.log("Value {} received from counter {}. Calculated new power value: {}".format(new,self.args["knx_counter"],round(current_power, 1)))
+                    self.handle_ramp_down_timer = self.run_in(self.ramp_down,round(2 * time_delta_seconds + 1))
         # save current values in variables for next calculation
         self.time_of_last_event = current_time
         self.value_of_last_event = float(new)
