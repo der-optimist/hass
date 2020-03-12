@@ -12,8 +12,10 @@ class simulate_presence(hass.Hass):
         # App Status
         if self.get_state("input_boolean.anwesenheit_simulieren") == "on" and self.get_state("binary_sensor.anwesenheit_haus") == "off":
             self.active = True
+            self.log("Anwesenheitssiumlation aktiviert")
         else:
             self.active = False
+            self.log("Anwesenheitssiumlation deaktiviert")
         self.listen_state("input_boolean.anwesenheit_simulieren", self.app_status_changed)
         self.listen_state("binary_sensor.anwesenheit_haus", self.app_status_changed)
         # Wind Status
@@ -170,8 +172,10 @@ class simulate_presence(hass.Hass):
     def app_status_changed(self, entity, attribute, old, new, kwargs):
         if self.get_state("input_boolean.anwesenheit_simulieren") == "on" and self.get_state("binary_sensor.anwesenheit_haus") == "off":
             self.active = True
+            self.log("Anwesenheitssiumlation aktiviert")
         else:
             self.active = False
+            self.log("Anwesenheitssiumlation deaktiviert")
             if entity == "binary_sensor.anwesenheit_simulieren" and new == "off" and self.get_state("binary_sensor.anwesenheit_haus") == "off":
                 self.turn_off("light.panels_flur_og")
                 self.turn_off("light.panels_bad_og")
@@ -203,17 +207,21 @@ class simulate_presence(hass.Hass):
 
 
     def light_on(self, kwargs):
-        self.turn_on(kwargs["light"], brightness=self.pct_to_byte(self.basic_brightness))
+        if self.active:
+            self.turn_on(kwargs["light"], brightness=self.pct_to_byte(self.basic_brightness))
 
     def light_off(self, kwargs):
-        self.turn_off(kwargs["light"])
+        if self.active:
+            self.turn_off(kwargs["light"])
     
     def cover_up(self, kwargs):
-        self.call_service("cover/set_cover_position", entity_id = kwargs["cover"], position = 0)
+        if self.active:
+            self.call_service("cover/set_cover_position", entity_id = kwargs["cover"], position = 0)
         
     def cover_down(self, kwargs):
-        if not self.windalarm:
-            self.call_service("cover/set_cover_position", entity_id = kwargs["cover"], position = 100)
+        if self.active:
+            if not self.windalarm:
+                self.call_service("cover/set_cover_position", entity_id = kwargs["cover"], position = 100)
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
