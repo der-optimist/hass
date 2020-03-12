@@ -16,14 +16,14 @@ class simulate_presence(hass.Hass):
         else:
             self.active = False
             self.log("Anwesenheitssiumlation deaktiviert")
-        self.listen_state("input_boolean.anwesenheit_simulieren", self.app_status_changed)
-        self.listen_state("binary_sensor.anwesenheit_haus", self.app_status_changed)
+        self.listen_state(self.app_status_changed,"input_boolean.anwesenheit_simulieren")
+        self.listen_state(self.app_status_changed,"binary_sensor.anwesenheit_haus")
         # Wind Status
         if self.get_state("binary_sensor.windalarm_1") == "on":
             self.windalarm = True
         else:
             self.windalarm = False
-        self.listen_state("binary_sensor.windalarm_1", self.wind_status_changed)
+        self.listen_state(self.wind_status_changed, "binary_sensor.windalarm_1")
         # Monday, Wednesday, Friday morning
         self.run_daily(self.light_off, "06:31:00", constrain_days="mon,wed,fri", light="light.wandwurfel_la")
         self.run_daily(self.light_off, "06:31:30", constrain_days="mon,wed,fri", light="light.wandwurfel_le")
