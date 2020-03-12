@@ -276,7 +276,7 @@ info_jo_stoerung_gps_wetterstation_vorbei:
 info_jo_windalarm_2_beginn:
   module: notify_when_status_matched
   class: notify_when_status_matched
-  entity: binary_sensor.binary_sensor.windalarm_2
+  entity: binary_sensor.windalarm_2
   status_to_match: "on"
   notify_target: telegram_jo
   message: "Windalarm 60 kmh - Beginn"
@@ -284,7 +284,7 @@ info_jo_windalarm_2_beginn:
 info_jo_windalarm_2_ende:
   module: notify_when_status_matched
   class: notify_when_status_matched
-  entity: binary_sensor.binary_sensor.windalarm_2
+  entity: binary_sensor.windalarm_2
   status_to_match: "off"
   previous_status: "on"
   notify_target: telegram_jo
