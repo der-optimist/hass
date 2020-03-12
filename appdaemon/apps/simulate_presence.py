@@ -9,21 +9,24 @@ import appdaemon.plugins.hass.hassapi as hass
 class simulate_presence(hass.Hass):
 
     def initialize(self):
+        pass
         # App Status
-        if self.get_state("input_boolean.anwesenheit_simulieren") == "on" and self.get_state("binary_sensor.anwesenheit_haus") == "off":
-            self.active = True
-            self.log("Anwesenheitssiumlation aktiviert")
-        else:
-            self.active = False
-            self.log("Anwesenheitssiumlation deaktiviert")
-        self.listen_state(self.app_status_changed,"input_boolean.anwesenheit_simulieren")
-        self.listen_state(self.app_status_changed,"binary_sensor.anwesenheit_haus")
-        # Wind Status
-        if self.get_state("binary_sensor.windalarm_1") == "on":
-            self.windalarm = True
-        else:
-            self.windalarm = False
-        self.listen_state(self.wind_status_changed, "binary_sensor.windalarm_1")
+# =============================================================================
+#         if self.get_state("input_boolean.anwesenheit_simulieren") == "on" and self.get_state("binary_sensor.anwesenheit_haus") == "off":
+#             self.active = True
+#             self.log("Anwesenheitssiumlation aktiviert")
+#         else:
+#             self.active = False
+#             self.log("Anwesenheitssiumlation deaktiviert")
+#         self.listen_state(self.app_status_changed,"input_boolean.anwesenheit_simulieren")
+#         self.listen_state(self.app_status_changed,"binary_sensor.anwesenheit_haus")
+#         # Wind Status
+#         if self.get_state("binary_sensor.windalarm_1") == "on":
+#             self.windalarm = True
+#         else:
+#             self.windalarm = False
+#         self.listen_state(self.wind_status_changed, "binary_sensor.windalarm_1")
+# =============================================================================
         # Monday, Wednesday, Friday morning
 # =============================================================================
 #         self.run_daily(self.light_off, "06:31:00", constrain_days="mon,wed,fri", light="light.wandwurfel_la")
