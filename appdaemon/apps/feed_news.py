@@ -38,8 +38,8 @@ class feed_news(hass.Hass):
                 self.log(link)
                 self.url_video = link
                 self.write_player_html()
-            else:
-                self.log("alte Tagesschau")
+#            else:
+#                self.log("alte Tagesschau")
 
     def write_player_html(self):
         f = open(self.path_player_html, "w")
