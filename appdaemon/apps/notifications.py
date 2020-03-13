@@ -39,6 +39,7 @@ class notifications(hass.Hass):
                 "Draussen: {} °C\n"\
                 "Wind: {} km/h".format(temp_ez,temp_aussen,wind)
         self.fire_event("custom_notify", message=message, target="telegram_jo")
+        self.call_service("notify/telegram_jo", message="Wetter", data={"photo":{"file":"/config/www/meteograms/meteogram.png", "caption":"Ich wünsch dir einen schönen Tag!"}})
 
     def ma_morning(self, kwargs):
         try:
