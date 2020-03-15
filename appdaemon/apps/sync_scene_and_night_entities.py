@@ -21,14 +21,14 @@ class sync_scene_and_night_entities(hass.Hass):
     def scene(self,event_name,data,kwargs):
         self.log("KNX scene detected. data is:")
         self.log(data)
-        #if data["data"] == [0]:
-        #    self.log("La geht ins Bett")
-        #    self.turn_on("switch.la_schlaft")
+        if data["data"] == [0]:
+            self.log("La geht ins Bett")
+            self.turn_on("light.innr_e14_2_light", brightness=204)
         #elif data["data"] == [1]:
         #    self.log("Le geht ins Bett")
         #    self.turn_on("switch.le_schlaft")
         #elif data["data"] == [3]:
-        if data["data"] == [3]:
+        elif data["data"] == [3]:
             self.log("Fernseh-Szene")
         elif data["data"] == [4]:
             self.log("La steht auf")
