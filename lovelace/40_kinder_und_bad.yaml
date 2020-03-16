@@ -16,8 +16,12 @@ cards:
       entity: light.wandwurfel_la
       name: Wandwürfel
       toggle: true
-    - entity: light.stehlampe_la
+    - type: custom:slider-entity-row
+      entity: light.innr_e14_2_light
       name: Stehlampe
+      toggle: true
+    - entity: light.stehlampe_la
+      name: Strom Stehlampe
     - type: section
       label: Schläft jemand?
     - entity: switch.la_schlaft
