@@ -46,6 +46,8 @@ cards:
       entity: light.innr_e14_gz_decke_light
       name: Deckenlicht
       toggle: true
+    - entity: light.gastezimmer
+      name: Strom Deckenlicht
     - type: section
       label: Jalousie
     - entity: cover.jalousie_gastezimmer
