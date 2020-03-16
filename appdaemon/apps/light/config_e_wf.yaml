@@ -28,5 +28,36 @@ auto_light_e_wf_panels:
     "19:00": 15
     "23:00": 10
   illuminance_sensor: sensor.helligkeit_windfang_pm
+  switching_off_entities:
+    - switch.majo_schlafen
+  keeping_off_entities:
+    - switch.majo_schlafen
+auto_light_e_wf_brettlicht:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  app_switch: input_boolean.app_switch_licht_windfang
+  light: light.brettlicht_windfang
+  type: dim
+  triggers: 
+    - binary_sensor.pm_e_wf_haustur
+    - binary_sensor.pm_e_wf_garderobe
+    - binary_sensor.pm_e_fl_windfang
+    - binary_sensor.pm_e_wc
+  brightness_values:
+    "00:00": 70
+    "08:00": 75
+    "09:00": 80
+    "16:00": 75
+    "17:00": 70
+  min_illuminance_values:
+    "00:00": 30
+    "05:00": 40
+    "06:30": 50
+    "09:00": 60
+    "17:00": 50
+    "19:00": 40
+    "23:00": 30
+  illuminance_sensor: sensor.helligkeit_windfang_pm
   special_brightness_entities:
-    switch.majo_schlafen: 10
+    switch.majo_schlafen: 60
