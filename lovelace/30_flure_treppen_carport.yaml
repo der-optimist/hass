@@ -50,6 +50,10 @@ cards:
       name: Panels Windfang
       toggle: true
     - type: custom:slider-entity-row
+      entity: light.brettlicht_windfang
+      name: Brettlicht
+      toggle: true
+    - type: custom:slider-entity-row
       entity: light.panels_wc
       name: Panel WC
       toggle: true
