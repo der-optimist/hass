@@ -24,10 +24,10 @@ cards:
       entity: light.stufenbeleuchtung_treppe
       name: Treppenstufen
       toggle: true
-    - type: custom:slider-entity-row
-      entity: light.treppe_keller
-      name: Kellertreppe
-      toggle: true
+#    - type: custom:slider-entity-row
+#      entity: light.treppe_keller
+#      name: Kellertreppe
+#      toggle: true
     - type: section
       label: Heizung Flur OG
     - type: 'custom:simple-thermostat'
