@@ -147,12 +147,12 @@
     state_address: '0/0/141'
 
 # Treppe EG-Keller
-  - platform: knx
-    name: 'Treppe Keller'
-    address: '1/3/80'
-    state_address: '1/3/81'
-    brightness_address: '1/3/83'
-    brightness_state_address: '1/3/84'
+#  - platform: knx
+#    name: 'Treppe Keller'
+#    address: '1/3/80'
+#    state_address: '1/3/81'
+#    brightness_address: '1/3/83'
+#    brightness_state_address: '1/3/84'
 
 # Kind Ost - La
   - platform: knx
