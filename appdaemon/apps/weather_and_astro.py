@@ -47,7 +47,7 @@ class weather_and_astro(hass.Hass):
             "precipitationAxisMax": "40",
             "precipitationAxisScale": "fixed",
             "pressure": "false",
-            "cloudLayers": "false",
+            "cloudLayers": "true",
             "windSpeed": "true",
             "windSpeedMinMaxLabels": "false",
             "windSpeedUnit": "km/h",
@@ -62,7 +62,7 @@ class weather_and_astro(hass.Hass):
         self.path_meteogram = "/config/www/meteograms/meteogram.png"
         time_load_meteogram = datetime.time(4, 40, 20) # update time for meteogram
         self.run_daily(self.load_meteogram, time_load_meteogram)
-        #self.load_meteogram(None) # for testing, load now 
+        self.load_meteogram(None) # for testing, load now 
         # --- DWD weather warnings ---
         self.dwd_warncell_id = self.args["dwd_warncell_id"]
         #self.dwd_warncell_id = 809180117 #Garmisch, for testing
