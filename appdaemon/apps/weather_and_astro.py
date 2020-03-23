@@ -44,7 +44,7 @@ class weather_and_astro(hass.Hass):
             "headerUpdateTime": "false",
             "precipitationSeries": "expected",
             "precipitationAxisMin": "0",
-            "precipitationAxisMax": "40",
+            "precipitationAxisMax": "30",
             "precipitationAxisScale": "fixed",
             "pressure": "false",
             "cloudLayers": "true",
