@@ -48,6 +48,7 @@ class weather_and_astro(hass.Hass):
             "precipitationAxisScale": "fixed",
             "pressure": "false",
             "cloudLayers": "true",
+            "cloudLayersSharedColor": "true",
             "windSpeed": "true",
             "windSpeedMinMaxLabels": "false",
             "windSpeedUnit": "km/h",
