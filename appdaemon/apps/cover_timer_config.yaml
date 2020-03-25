@@ -3,7 +3,7 @@ jal_bad_kinder_abends_zeit:
   class: cover_timer
   constrain_input_boolean: input_boolean.app_switch_jalousie_bad_og
   cover_entity: cover.jalousie_bad_og
-  time: "18:00"
+  time: "18:30"
   position: 100
   tilt: 100
 jal_schlafzimmer_abends_zeit:
