@@ -66,7 +66,7 @@ jal_sz_sichtschutz_morgens:
   constrain_end_time: "11:00:00"
   cover_entity: cover.jalousie_schlafzimmer
   mode: tilt
-  target_tilt: 15
+  target_tilt: 10
   match_entity: switch.majo_schlafen
   match_state_new: 'off'
   match_state_old: 'on'
