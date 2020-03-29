@@ -207,12 +207,12 @@ camera:
 folder_watcher:
   - folder: /share/abstellraum/
 
-feedreader:
-  urls:
-    - https://www.tagesschau.de/export/video-podcast/webxl/tagesschau-in-100-sekunden_https/
-  scan_interval:
-    minutes: 11
-  max_entries: 1
+#feedreader:
+#  urls:
+#    - https://www.tagesschau.de/export/video-podcast/webxl/tagesschau-in-100-sekunden_https/
+#  scan_interval:
+#    minutes: 11
+#  max_entries: 1
 
 # Text to speech
 #tts:
