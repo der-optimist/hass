@@ -5,7 +5,7 @@ jal_bad_kinder_abends_zeit:
   cover_entity: cover.jalousie_bad_og
   time: "18:30"
   position: 100
-  tilt: 100
+  tilt: 17
 jal_schlafzimmer_abends_zeit:
   module: cover_timer
   class: cover_timer
