@@ -95,12 +95,18 @@
     state_address: '1/2/41'
     brightness_address: '1/2/43'
     brightness_state_address: '1/2/44'
-#  - platform: knx
-#    name: 'Regal Bad EG'
-#    address: '1/2/80'
-#    state_address: '1/2/81'
-#    brightness_address: '1/2/83'
-#    brightness_state_address: '1/2/84'
+  - platform: knx
+    name: 'Regal Bad EG'
+    address: '1/2/80'
+    state_address: '1/2/81'
+    brightness_address: '1/2/83'
+    brightness_state_address: '1/2/84'
+  - platform: knx
+    name: 'LED auf Spiegelschrank Bad EG'
+    address: '1/2/120'
+    state_address: '1/2/121'
+    brightness_address: '1/2/123'
+    brightness_state_address: '1/2/124'
   - platform: knx
     name: 'Spiegel Bad EG'
     address: '0/0/120'
@@ -225,6 +231,12 @@
     name: 'Spiegel Bad OG'
     address: '0/1/80'
     state_address: '0/1/81'
+  - platform: knx
+    name: 'LED auf Spiegelschrank Bad OG'
+    address: '1/4/120'
+    state_address: '1/4/121'
+    brightness_address: '1/4/123'
+    brightness_state_address: '1/4/124'
 
 # Treppe OG
   - platform: knx
@@ -269,6 +281,12 @@
     state_address: '1/5/1'
     brightness_address: '1/5/3'
     brightness_state_address: '1/5/4'
+  - platform: knx
+    name: 'Bodenlicht Eingang'
+    address: '1/5/160'
+    state_address: '1/5/161'
+    brightness_address: '1/5/163'
+    brightness_state_address: '1/5/164'
   - platform: knx
     name: 'Spots Carport'
     address: '0/2/60'
