@@ -140,6 +140,10 @@ cards:
       entity: light.panels_bad_og
       name: Panels Bad
       toggle: true
+    - type: custom:slider-entity-row
+      entity: light.led_auf_spiegelschrank_bad_og
+      name: Spiegel oben
+      toggle: true
     - entity: light.spiegel_bad_og
       name: Spiegel
     - type: section
