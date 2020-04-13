@@ -80,6 +80,10 @@ cards:
       entity: light.led_streifen_carport
       name: Streifen Eingang
       toggle: true
+    - type: custom:slider-entity-row
+      entity: light.bodenlicht_eingang
+      name: Bodenlicht
+      toggle: true
     - entity: light.spots_carport
       name: Spots Carport
     - entity: light.abstellraum_carport
