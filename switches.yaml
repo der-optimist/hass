@@ -63,6 +63,10 @@
     name: 'Lüftungsanlage'
     address: '0/2/140'
     state_address: '0/2/141'
+  - platform: knx
+    name: 'LED-Netzteil 8'
+    address: '0/2/180'
+    state_address: '0/2/181'
 
 # Schlafen und Nachtmodus
   - platform: knx
