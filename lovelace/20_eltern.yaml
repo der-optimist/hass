@@ -56,8 +56,16 @@ cards:
       entity: light.panels_bad_eg
       name: Panels Bad
       toggle: true
+    - type: custom:slider-entity-row
+      entity: light.regal_bad_eg
+      name: Regal
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.led_auf_spiegelschrank_bad_eg
+      name: Spiegel oben
+      toggle: true
     - entity: light.spiegel_bad_eg
-      name: Spiegel
+      name: Spiegel vorne
     - type: section
       label: Heizung
     - type: 'custom:simple-thermostat'
