@@ -14,7 +14,8 @@ auto_light_e_ba_panels:
     "07:00": 60
     "08:00": 80
     "17:00": 70
-    "18:00": 30
+    "18:00": 40
+    "22:00": 30
   min_illuminance_values:
     "00:00": 10
     "06:00": 25
@@ -67,7 +68,7 @@ auto_light_e_ba_spiegel_oben:
     "07:00": 40
     "08:00": 50
     "17:00": 40
-    "18:00": 20
+    "18:00": 30
   illuminance_sensor: sensor.helligkeit_bad_eg_pm
 auto_light_e_ba_spiegel:
   module: auto_light
