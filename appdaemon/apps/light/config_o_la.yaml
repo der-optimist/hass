@@ -22,6 +22,7 @@ auto_light_o_la_panels:
   min_illuminance_values:
     "00:00": 5
     "05:30": 20
+    "07:30": 40
     "09:00": 50
     "18:00": 20
     "21:00": 5
