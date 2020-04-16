@@ -299,7 +299,7 @@ auto_light_e_wz_schrankbeleuchtung:
     "19:00": 80
     "22:00": 50
   min_illuminance_values:
-    "00:00": 120
+    "00:00": 200
   illuminance_sensor: sensor.helligkeit_wohnzimmer_pm
   keeping_fix_entities:
     binary_sensor.tv_pizza_abend: 30
