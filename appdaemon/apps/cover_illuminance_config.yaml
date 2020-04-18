@@ -3,7 +3,7 @@ jal_schlafzimmer_abends_helligkeit:
   class: cover_illuminance
   constrain_input_boolean: input_boolean.app_switch_jalousie_schlafzimmer
   constrain_start_time: "15:30:00"
-  constrain_end_time: "18:29:59"
+  constrain_end_time: "21:29:59"
   cover_entity: cover.jalousie_schlafzimmer
   illuminance_sensor: sensor.helligkeit_wetterstation
   illuminance: 700
