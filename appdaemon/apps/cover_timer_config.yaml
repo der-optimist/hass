@@ -11,6 +11,6 @@ jal_schlafzimmer_abends_zeit:
   class: cover_timer
   constrain_input_boolean: input_boolean.app_switch_jalousie_schlafzimmer
   cover_entity: cover.jalousie_schlafzimmer
-  time: "18:30"
+  time: "21:30"
   position: 100
   tilt: 100
