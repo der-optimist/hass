@@ -9,6 +9,8 @@ auto_light_a_cp_led_streifen:
   triggers: 
     - binary_sensor.pm_a_eg
     - binary_sensor.pm_a_cp
+  keeping_on_entities:
+    - binary_sensor.pm_a_ar
   brightness_values:
     "00:00": 100
   min_illuminance_values:
@@ -24,6 +26,8 @@ auto_light_a_eg_bodenlicht:
   triggers: 
     - binary_sensor.pm_a_eg
     - binary_sensor.pm_a_cp
+  keeping_on_entities:
+    - binary_sensor.pm_a_ar
   brightness_values:
     "00:00": 70
   min_illuminance_values:
@@ -40,6 +44,24 @@ auto_light_a_cp_spots:
   triggers: 
     - binary_sensor.pm_a_eg
     - binary_sensor.pm_a_cp
+  keeping_on_entities:
+    - binary_sensor.pm_a_ar
   min_illuminance_values:
     "00:00": 1000
+  illuminance_sensor: sensor.helligkeit_wetterstation
+# - Abstellraum
+auto_light_a_abstellraum:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  app_switch: input_boolean.app_switch_licht_aussen_carport
+  light: light.abstellraum_carport
+  type: switch
+  triggers: 
+    - binary_sensor.pm_a_ar
+  keeping_on_entities:
+    - binary_sensor.pm_a_eg
+    - binary_sensor.pm_a_cp
+  min_illuminance_values:
+    "00:00": 5000
   illuminance_sensor: sensor.helligkeit_wetterstation
