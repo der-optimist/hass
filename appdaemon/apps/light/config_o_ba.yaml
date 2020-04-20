@@ -12,12 +12,10 @@ auto_light_o_ba_panels:
     "00:00": 50
     "06:00": 60
     "09:00": 90
-    "16:00": 100
-    "21:00": 90
+    "17:00": 50
   min_illuminance_values:
     "00:00": 25
     "06:00": 40
-    "21:00": 25
   illuminance_sensor: sensor.helligkeit_bad_og_pm
   keeping_off_entities:
     - switch.bad_og_nachtmodus
