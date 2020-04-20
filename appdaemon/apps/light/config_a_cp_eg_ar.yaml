@@ -63,5 +63,5 @@ auto_light_a_abstellraum:
     - binary_sensor.pm_a_eg
     - binary_sensor.pm_a_cp
   min_illuminance_values:
-    "00:00": 15000
+    "00:00": 20000
   illuminance_sensor: sensor.helligkeit_wetterstation
