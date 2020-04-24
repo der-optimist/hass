@@ -11,4 +11,4 @@ auto_light_k_kellertreppe:
   brightness_values:
     "00:00": 40
   min_illuminance_values:
-    "00:00": 0
+    "00:00": 1
