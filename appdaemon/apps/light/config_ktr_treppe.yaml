@@ -1,7 +1,7 @@
 auto_light_k_kellertreppe:
   module: auto_light
   class: auto_light
-  debug: quiet
+  debug: few
   app_switch: input_boolean.app_switch_licht_treppe_keller
   light: light.shelly_shdm_1_d472fe
   type: dim
