@@ -1,0 +1,13 @@
+auto_light_k_kellertreppe:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  app_switch: input_boolean.app_switch_licht_treppe_keller
+  light: light.shelly_shdm_1_d472fe
+  type: dim
+  triggers: 
+    - binary_sensor.pm_ktr_treppe
+    - binary_sensor.pm_k_fl
+  brightness_values:
+    "00:00": 40
+    
