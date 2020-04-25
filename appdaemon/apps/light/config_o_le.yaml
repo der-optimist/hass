@@ -20,12 +20,12 @@ auto_light_o_le_panels:
     "20:00": 40
     "21:00": 30
   min_illuminance_values:
-    "00:00": 5
-    "05:30": 20
+    "00:00": 20
+    "05:30": 30
     "07:30": 40
     "09:00": 50
-    "18:00": 20
-    "21:00": 5
+    "18:00": 35
+    "21:00": 20
   illuminance_sensor: sensor.helligkeit_le_pm
   keeping_off_entities:
     - switch.le_schlaft
