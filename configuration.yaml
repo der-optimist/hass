@@ -47,7 +47,7 @@ hacs: # HA custom store
   theme: True
 
 # Discover some devices automatically
-#discovery:
+discovery:
 #  ignore:
 #    - igd
 
