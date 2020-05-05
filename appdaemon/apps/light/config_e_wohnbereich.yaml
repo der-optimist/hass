@@ -16,6 +16,7 @@ auto_light_e_ez_panels:
     "00:00": 50
     "06:00": 65
     "06:30": 85
+    "09:00": 90
     "19:00": 78
     "21:30": 50
   min_illuminance_values:
