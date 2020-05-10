@@ -202,6 +202,7 @@ auto_light_e_ku_arbeitsplatte:
     input_boolean.gaeste_abends: 35
     binary_sensor.kodi_abends: 5
     binary_sensor.tv_abends_an: 30
+  switching_off_offset: 200
 auto_light_e_ku_sockel:
   module: auto_light
   class: auto_light
