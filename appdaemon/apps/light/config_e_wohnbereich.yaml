@@ -28,7 +28,7 @@ auto_light_e_ez_panels:
   illuminance_sensor: sensor.helligkeit_esszimmer_pm
   special_brightness_entities:
     switch.majo_schlafen: 10
-    input_boolean.gaeste_abends: 50
+    input_boolean.gaeste_abends: 60
   switching_off_entities:
     - binary_sensor.tv_abends_an
   keeping_off_entities:
@@ -210,7 +210,11 @@ auto_light_e_ku_sockel:
   light: light.sockelbeleuchtung
   type: dim
   triggers: 
+    - binary_sensor.pm_e_ez_bar_kuche
+    - binary_sensor.pm_e_ez_esstisch
+    - binary_sensor.pm_e_ku_bar_ez
     - binary_sensor.pm_e_ku_kuche
+    - binary_sensor.pm_e_wz_durchgang
   brightness_values:
     "00:00": 45
     "09:00": 0
