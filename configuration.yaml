@@ -181,14 +181,14 @@ scene:
 
 light: !include lights.yaml
 
-yeelight:
-  devices:
-    192.168.178.53:
-      name: Wuerfel gross Ecke
-      model: color2
-    192.168.178.55:
-      name: Wuerfel klein
-      model: color2
+#yeelight:
+#  devices:
+#    192.168.178.53:
+#      name: Wuerfel gross Ecke
+#      model: color2
+#    192.168.178.55:
+#      name: Wuerfel klein
+#      model: color2
 #    192.168.178.53:
 #      name: Wuerfel gross Feuerstelle
 
