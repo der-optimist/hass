@@ -347,7 +347,7 @@
     name: 'Windgeschwindigkeit Wetterstation'
     state_address: '13/0/1'
     sync_state: False
-    type: speed_ms
+    type: wind_speed_ms
   - platform: knx
     name: 'Sonnenschutz Fassade 1 Position'
     state_address: '13/0/14'
