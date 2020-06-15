@@ -125,9 +125,7 @@ recorder:
       - sensor.last_boot
       - sensor.windfang_wc_temp_ist_text
       - sensor.windfang_wc_temp_soll_text
-  purge_interval: 1
   purge_keep_days: 7
-#  db_url: !secret db_url
 
 history:
 
@@ -216,24 +214,12 @@ camera:
 folder_watcher:
   - folder: /share/abstellraum/
 
-#feedreader:
-#  urls:
-#    - https://www.tagesschau.de/export/video-podcast/webxl/tagesschau-in-100-sekunden_https/
-#  scan_interval:
-#    minutes: 11
-#  max_entries: 1
-
 # Text to speech
 #tts:
 #  - platform: google
 
 # Cloud
 cloud:
-
-timer:
-  zigbee_permit_join:
-    name: Time remaining
-    duration: 1800 # Updated this to the number of seconds you wish
 
 # Inputs
 input_boolean:
@@ -401,60 +387,3 @@ input_number:
 input_text:
   location_jo_roh:
     name: Location Jo roh
-
-automation:
-  - id: enable_zigbee_join
-    alias: Enable Zigbee joining
-    hide_entity: true
-    trigger:
-      platform: state
-      entity_id: input_boolean.zigbee_permit_join
-      to: 'on'
-    action:
-    - service: mqtt.publish
-      data:
-        topic: zigbee2mqtt/bridge/config/permit_join
-        payload: 'true'
-    - service: timer.start
-      data:
-        entity_id: timer.zigbee_permit_join
-  - id: disable_zigbee_join
-    alias: Disable Zigbee joining
-    trigger:
-    - entity_id: input_boolean.zigbee_permit_join
-      platform: state
-      to: 'off'
-    action:
-    - data:
-        payload: 'false'
-        topic: zigbee2mqtt/bridge/config/permit_join
-      service: mqtt.publish
-    - data:
-        entity_id: timer.zigbee_permit_join
-      service: timer.cancel
-    hide_entity: true
-  - id: disable_zigbee_join_timer
-    alias: Disable Zigbee joining by timer
-    hide_entity: true
-    trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.zigbee_permit_join
-    action:
-    - service: mqtt.publish
-      data:
-        topic: zigbee2mqtt/bridge/config/permit_join
-        payload: 'false'
-    - service: input_boolean.turn_off
-      data:
-        entity_id: input_boolean.zigbee_permit_join
-#  - id: update_networkmap
-#    alias: 'Zigbee Map aktualisieren'  
-#    hide_entity: true  
-#    trigger:
-#      platform: time_pattern
-#      minutes: '/10'
-#      seconds: 00
-#    action:
-#      service: zigbee2mqtt_networkmap.update
