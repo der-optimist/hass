@@ -85,7 +85,7 @@ cards:
             entity: scene.jal_wohnbereich_hoch
       - break
       - type: picture-elements
-        image: /local/meteograms/meteogram.png
+#        image: /local/meteograms/meteogram.png
         elements:
           - type: image
             entity: camera.meteogram
