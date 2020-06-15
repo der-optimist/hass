@@ -44,7 +44,7 @@ system_health:
 hacs: # HA custom store
   token: !secret github_api_key
   appdaemon: True
-  theme: True
+#  theme: True
 
 # Discover some devices automatically
 discovery:
