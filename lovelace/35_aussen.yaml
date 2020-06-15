@@ -1,0 +1,36 @@
+title: Außen
+path: aussen
+icon: mdi:flower-tulip-outline
+cards:
+  - type: entities
+    title: "Carport und Eingang"
+    show_header_toggle: false
+    entities:
+    - type: section
+      label: Licht
+    - type: custom:slider-entity-row
+      entity: light.led_streifen_carport
+      name: Streifen Eingang
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.bodenlicht_eingang
+      name: Bodenlicht
+      toggle: true
+    - entity: light.spots_carport
+      name: Spots Carport
+    - entity: light.abstellraum_carport
+      name: Abstellraum
+  - type: entities
+    title: "Terrasse"
+    show_header_toggle: false
+    entities:
+    - type: section
+      label: Licht
+    - entity: light.wandwurfel_suden
+      name: Wandwürfel Süd
+    - entity: light.wandwurfel_westen
+      name: Wandwürfel West
+    - entity: light.wuerfel_gross_ecke
+      name: Würfelhocker groß Ecke
+    - entity: light.wuerfel_klein
+      name: Würfelhocker klein
