@@ -30,7 +30,7 @@ cards:
       name: Wandwürfel Süd
     - entity: light.wandwurfel_westen
       name: Wandwürfel West
-    - entity: light.wuerfel_gross_ecke
-      name: Würfelhocker groß Ecke
-    - entity: light.wuerfel_klein
-      name: Würfelhocker klein
+#    - entity: light.wuerfel_gross_ecke
+#      name: Würfelhocker groß Ecke
+#    - entity: light.wuerfel_klein
+#      name: Würfelhocker klein
