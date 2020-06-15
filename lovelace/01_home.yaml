@@ -84,8 +84,9 @@ cards:
                 entity_id: scene.jal_wohnbereich_hoch
             entity: scene.jal_wohnbereich_hoch
       - break
-      - type: picture-elements
-#        image: /local/meteograms/meteogram.png
+      - type: custom:hui-element
+        card_type: picture-elements
+        image: /local/meteograms/meteogram.png
         elements:
           - type: image
             entity: camera.meteogram
