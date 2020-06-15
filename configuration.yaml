@@ -183,11 +183,11 @@ light: !include lights.yaml
 yeelight:
   devices:
     192.168.178.53:
-      name: LED-Würfel gross Ecke
+      name: Wuerfel gross Ecke
     192.168.178.55:
-      name: LED-Würfel klein
+      name: Wuerfel klein
 #    192.168.178.53:
-#      name: LED-Würfel gross Feuerstelle
+#      name: Wuerfel gross Feuerstelle
 
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
