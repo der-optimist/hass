@@ -33,6 +33,8 @@ resources:
     type: js
   - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
     type: module
+  - url: /hacsfiles/lovelace-hui-element/hui-element.js
+    type: module
 
 title: Lieblingshaus
 custom_header:
