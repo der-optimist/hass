@@ -156,7 +156,7 @@ knx:
   fire_event_filter: ["*/*/*"]
   state_updater: true
   expose:
-  - type: 'speed_ms'
+  - type: 'wind_speed_kmh'
     entity_id: 'sensor.windgeschwindigkeit_wetterstation_kmh'
     address: '13/0/50'
   - type: 'string'
