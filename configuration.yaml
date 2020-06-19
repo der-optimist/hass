@@ -225,4 +225,14 @@ folder_watcher:
 cloud:
 
 # Inputs
-!include inputs.yaml
+input_boolean: !include input_boolean.yaml
+input_number:
+  pizza_timer_2:
+    name: Pizza Timer
+    initial: 0
+    min: 0
+    max: 30
+    step: 1
+input_text:
+  location_jo_roh:
+    name: Location Jo roh
