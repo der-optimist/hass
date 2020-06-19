@@ -74,9 +74,13 @@
     address: '15/0/30'
     state_address: '15/0/31'
   - platform: knx
-    name: 'Le schläft'
-    address: '15/0/32'
-    state_address: '15/0/33'
+    name: 'Kinder schon wach'
+    address: '15/0/61'
+    state_address: '15/0/62'
+  - platform: knx
+    name: 'Knutschen'
+    address: '15/0/63'
+    state_address: '15/0/64'
   - platform: knx
     name: 'La schläft'
     address: '15/0/34'
