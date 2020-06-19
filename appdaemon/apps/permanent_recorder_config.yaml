@@ -10,8 +10,6 @@ permanent_recorder:
     - light.bettbeleuchtung
     - light.flur_keller
     - light.gastezimmer
-    - light.innr_e14_2_light
-    - light.innr_e14_gz_decke_light
     - light.lagerraum
     - light.led_streifen_carport
     - light.nahtisch_decke
@@ -125,8 +123,8 @@ permanent_recorder:
     - switch.tv
     - switch.waschmaschine
     - switch.wz_steckdose
-    - switch.aqara_steckdose_garderobe_switch
-    - switch.aqara_steckdose_luftentf_wk_switch
+    - switch.innr_sp_120_3f148903_on_off
+    - switch.innr_sp_120_88138903_on_off
     - sensor.status_amtzell
     - sensor.status_aral_mecka
     - sensor.status_hannober
@@ -160,14 +158,6 @@ permanent_recorder:
     - cover.jalousie_wz_bodentiefes
     - cover.jalousie_wz_couch
   state_float:
-    - sensor.aqara_temp_lf_kuche_humidity
-    - sensor.aqara_temp_lf_kuche_pressure
-    - sensor.aqara_temp_lf_kuche_temperature
-    - sensor.aqara_temp_lf_kuche_battery
-    - sensor.aqara_temp_lf_waschkuche_battery
-    - sensor.aqara_temp_lf_waschkuche_humidity
-    - sensor.aqara_temp_lf_waschkuche_pressure
-    - sensor.aqara_temp_lf_waschkuche_temperature
     - sensor.el_leistung_backofen
     - sensor.el_leistung_gefrierschrank
     - sensor.el_leistung_kochfeld
@@ -302,9 +292,5 @@ permanent_recorder:
     - sensor.temp_estrich_schlafzimmer
     - sensor.temp_estrich_wc
     - sensor.temp_estrich_wohnzimmer
-  state_string:
-    - sensor.0x00158d00040b112f_click
-    - sensor.aqara_button_gaeste_action
-    - sensor.aqara_button_gaeste_click
-    - sensor.cube_1_action
-    - sensor.cube_1_side
+    - sensor.innr_sp_120_3f148903_electrical_measurement
+    - sensor.innr_sp_120_88138903_electrical_measurement
