@@ -14,16 +14,22 @@ cards:
       label: Geräte
     - entity: switch.waschmaschine
       name: Waschmaschine
-      secondary_info: "[[ sensor.el_leistung_waschmaschine.state ]] W"
     - entity: switch.trockner
       name: Trockner
-      secondary_info: "[[ sensor.el_leistung_trockner.state ]] W"
     - entity: sensor.el_leistung_wp_heizstab
       name: WP Heizstab
     - entity: sensor.el_leistung_wp_innenteil
       name: WP Innenteil
     - entity: sensor.el_leistung_wp_aussenteil
       name: WP Aussenteil
+    - entity: sensor.lumi_lumi_plug_mmeu01_e3a3753c_electrical_measurement
+      name: Strom Luftentfeuchter
+    - type: section
+      label: Luft
+    - entity: sensor.temp_waschkuche_aqara
+      name: Temperatur
+    - entity: sensor.luftfeuchtigkeit_waschkuche_aqara
+      name: Luftfeuchtigkeit
   - type: entities
     title: "Flur und Treppe"
     show_header_toggle: false
