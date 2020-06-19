@@ -105,6 +105,7 @@ permanent_recorder:
     - binary_sensor.windalarm_1
     - binary_sensor.windalarm_2
     - binary_sensor.windalarm_3
+    - binary_sensor.lumi_lumi_sensor_magnet_aq2_ddf99f04_on_off
     - switch.backofen
     - switch.bad_og_nachtmodus
     - switch.bleib_so_wz_licht
