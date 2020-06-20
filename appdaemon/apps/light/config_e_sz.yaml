@@ -52,4 +52,4 @@ auto_light_e_sz_bett:
   illuminance_sensor: sensor.helligkeit_schlafzimmer_pm
   keeping_fix_entities:
     switch.majo_schlafen: 3
-    switch.knutschen: 40
+    switch.knutschen: 70
