@@ -19,7 +19,7 @@ jal_ku_sichtschutz_morgens:
   cover_entity: cover.jalousie_kuche
   mode: tilt
   target_tilt: 10
-  match_entity: switch.majo_schlafen
+  match_entity: binary_sensor.nachtmodus_wohnbereich
   match_state_new: 'off'
   match_state_old: 'on'
 jal_hst_sichtschutz_morgens:
@@ -31,7 +31,7 @@ jal_hst_sichtschutz_morgens:
   cover_entity: cover.jalousie_hst
   mode: tilt
   target_tilt: 10
-  match_entity: switch.majo_schlafen
+  match_entity: binary_sensor.nachtmodus_wohnbereich
   match_state_new: 'off'
   match_state_old: 'on'
 jal_wz_bodent_sichtschutz_morgens:
@@ -43,7 +43,7 @@ jal_wz_bodent_sichtschutz_morgens:
   cover_entity: cover.jalousie_wz_bodentiefes
   mode: tilt
   target_tilt: 10
-  match_entity: switch.majo_schlafen
+  match_entity: binary_sensor.nachtmodus_wohnbereich
   match_state_new: 'off'
   match_state_old: 'on'
 jal_wz_couch_sichtschutz_morgens:
@@ -55,7 +55,7 @@ jal_wz_couch_sichtschutz_morgens:
   cover_entity: cover.jalousie_wz_couch
   mode: tilt
   target_tilt: 10
-  match_entity: switch.majo_schlafen
+  match_entity: binary_sensor.nachtmodus_wohnbereich
   match_state_new: 'off'
   match_state_old: 'on'
 jal_sz_sichtschutz_morgens:
