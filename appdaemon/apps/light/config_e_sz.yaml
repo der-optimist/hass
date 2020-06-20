@@ -25,8 +25,10 @@ auto_light_e_sz_panels:
   keeping_off_entities:
     - switch.majo_schlafen
     - binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo
+    - switch.knutschen
   switching_off_entities:
     - switch.majo_schlafen
+    - switch.knutschen
   special_brightness_entities:
     binary_sensor.schlafen_oder_aufwachphase_majo: 10
 auto_light_e_sz_bett:
@@ -50,3 +52,4 @@ auto_light_e_sz_bett:
   illuminance_sensor: sensor.helligkeit_schlafzimmer_pm
   keeping_fix_entities:
     switch.majo_schlafen: 3
+    switch.knutschen: 40
