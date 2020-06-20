@@ -370,7 +370,7 @@
       schlafen_oder_licht_noch_aus_lassen_majo:
         friendly_name: "Schlafen oder Licht noch aus lassen MaJo"
         value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 50
-                            and states('sensor.helligkeit_wetterstation')|float < 1000 }}"
+                            and states('sensor.helligkeit_wetterstation')|float > 1000 }}"
       tv_abends_an:
         friendly_name: "TV abends an"
         value_template: >-
