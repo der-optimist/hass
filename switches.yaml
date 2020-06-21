@@ -86,6 +86,10 @@
     address: '15/0/34'
     state_address: '15/0/35'
   - platform: knx
+    name: 'Le schläft'
+    address: '15/0/32'
+    state_address: '15/0/33'
+  - platform: knx
     name: 'Bad OG Nachtmodus'
     address: '15/0/39'
     state_address: '15/0/40'
