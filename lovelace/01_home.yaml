@@ -7,7 +7,8 @@ cards:
     layout: vertical
     max_width: [25%, 75%]
     cards:
-      - type: horizontal-stack
+      - type: custom:vertical-stack-in-card
+        horizontal: true
         cards:
           - type: markdown
             style: |
@@ -53,7 +54,8 @@ cards:
           - type: custom:slider-entity-row
             entity: input_number.pizza_timer_2
             full_row: true
-      - type: horizontal-stack
+      - type: custom:vertical-stack-in-card
+        horizontal: true
         cards:
           - type: entity-button
             name: Pizza
