@@ -40,6 +40,8 @@ cards:
         name: Treppe OG
       - entity: input_boolean.app_switch_licht_treppe_keller
         name: Kellertreppe
+      - entity: input_boolean.app_switch_licht_keller
+        name: Keller
       - entity: input_boolean.app_switch_licht_aussen_carport
         name: Carport
   - type: entities
