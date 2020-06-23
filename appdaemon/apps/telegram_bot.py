@@ -41,6 +41,9 @@ class telegram_bot(hass.Hass):
         chat_id = payload_event['chat_id']
         user_id = payload_event['user_id']
         text = payload_event['text']
+        # Synonyme
+        if text.lower() == "rollo":
+            text = "Jalousie"
         self.log(text)
         
         # --- check if user allowed
