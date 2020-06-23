@@ -17,6 +17,8 @@ class sync_scene_and_night_entities(hass.Hass):
         self.run_daily(self.reset_sleep_switches, datetime.time(9, 0, 0))
         # set "Bad OG Nachtmodus" if one of the children sleeps...
         self.listen_state(self.children_sleeping_changed, "binary_sensor.la_oder_le_schlafen")
+        # set "Kater-Knopf" to off when majo_sleep turned off
+        self.listen_state(self.reset_kater_knopf, "switch.majo_schlafen", new = "off")
         
     def scene(self,event_name,data,kwargs):
         self.log("KNX scene detected. data is:")
@@ -47,3 +49,7 @@ class sync_scene_and_night_entities(hass.Hass):
             self.turn_on("switch.bad_og_nachtmodus")
         elif new == "off" and old != "off":
             self.turn_off("switch.bad_og_nachtmodus")
+
+    def reset_kater_knopf(self, entity, attribute, old, new, kwargs):
+        if old != "off":
+            self.turn_off("switch.kinder_schon_wach")
