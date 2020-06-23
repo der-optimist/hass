@@ -39,7 +39,7 @@ permanent_recorder:
     - light.stehlampe_le
     - light.stufenbeleuchtung_treppe
     - light.technikraum
-    - light.treppe_keller
+    - light.shelly_shdm_1_d472fe
     - light.vorratsraum
     - light.wandleuchten_esszimmer_gemutlich
     - light.wandleuchten_esszimmer_hell
