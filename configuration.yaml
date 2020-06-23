@@ -203,10 +203,10 @@ camera:
   - platform: local_file
     name: Abstellraum_letze_Bewegung
     file_path: /config/www/camera_abstellraum/last_motion.jpg
-  - platform: onvif
-    host: 192.168.178.47
-    password: !secret mqtt_pw_1
-    port: 8080
+#  - platform: onvif
+#    host: 192.168.178.47
+#    password: !secret mqtt_pw_1
+#    port: 8080
 
 folder_watcher:
   - folder: /share/abstellraum/
