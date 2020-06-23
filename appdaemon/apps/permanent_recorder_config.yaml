@@ -106,6 +106,7 @@ permanent_recorder:
     - binary_sensor.windalarm_2
     - binary_sensor.windalarm_3
     - binary_sensor.lumi_lumi_sensor_magnet_aq2_ddf99f04_on_off
+    - binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off
     - switch.lumi_lumi_plug_mmeu01_e3a3753c_on_off
     - switch.backofen
     - switch.bad_og_nachtmodus
@@ -127,6 +128,9 @@ permanent_recorder:
     - switch.wz_steckdose
     - switch.innr_sp_120_3f148903_on_off
     - switch.innr_sp_120_88138903_on_off
+    - switch.innr_sp_220_da3e72fe_on_off
+    - switch.innr_sp_220_fa3b72fe_on_off
+    - switch.lumi_lumi_plug_mmeu01_e3a3753c_on_off
     - sensor.status_amtzell
     - sensor.status_aral_mecka
     - sensor.status_hannober
@@ -261,6 +265,11 @@ permanent_recorder:
     - sensor.luftdruck_kuche_aqara
     - sensor.luftfeuchtigkeit_waschkuche_aqara
     - sensor.temp_waschkuche_aqara
+    - sensor.lumi_lumi_weather_57dc3d03_power
+    - sensor.lumi_lumi_weather_341e4d03_power
+    - sensor.lumi_lumi_sensor_swit_62225f02_power
+    - sensor.lumi_lumi_sensor_magnet_aq2_ddf99f04_power
+    - sensor.lumi_lumi_sensor_magnet_aq2_83155c04_power
     - sensor.diesel_amtzell
     - sensor.diesel_aral_mecka
     - sensor.diesel_hannober
@@ -297,3 +306,5 @@ permanent_recorder:
     - sensor.innr_sp_120_3f148903_electrical_measurement
     - sensor.innr_sp_120_88138903_electrical_measurement
     - sensor.lumi_lumi_plug_mmeu01_e3a3753c_electrical_measurement
+  state_string:
+    - sensor.lumi_lumi_sensor_swit_62225f02_multistate_input
