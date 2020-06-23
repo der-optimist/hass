@@ -173,6 +173,12 @@ class telegram_bot(hass.Hass):
             if text.lower() == "gewitter vorbei" or text.lower() == "gewitter ist vorbei" or text.lower() == "gewitter aus":
                 self.gewitter_aus(chat_id)
 
+            # --- Gästemodus Wohnbereich ---
+            if text.lower() == "gäste" or text.lower() == "gäste da" or text.lower() == "gäste an" or text.lower() == "gästemodus":
+                self.gaeste_an(chat_id)
+            if text.lower() == "gäste weg" or text.lower() == "gäste aus" or text.lower() == "gästemodus aus":
+                self.gaeste_aus(chat_id)
+
             # ---V-V-V-V-V--- Chat ---V-V-V-V-V---
 
             # --- Konversation 3-Steps ---
@@ -417,6 +423,20 @@ class telegram_bot(hass.Hass):
                   message="OK, werde den Gewitter-Kopf wieder aus machen",
                   disable_notification=True)
     
+    def gaeste_an(self, chat_id):
+        self.turn_on("input_boolean.gaeste_abends")
+        self.call_service('telegram_bot/send_message',
+                  target=chat_id,
+                  message="OK, liebe Grüße an die Gäste 😊",
+                  disable_notification=True)
+
+    def gaeste_aus(self, chat_id):
+        self.turn_off("input_boolean.gaeste_abends")
+        self.call_service('telegram_bot/send_message',
+                  target=chat_id,
+                  message="OK, Gäste sind weg, dann wahrscheinlich gute Nacht jetzt...",
+                  disable_notification=True)
+        
     # ---V-V-V-V-V--- Chat ---V-V-V-V-V---
     
     def react_on_keyword_twostep(self, user_id, chat_id, text):
