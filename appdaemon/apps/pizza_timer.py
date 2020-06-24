@@ -60,6 +60,10 @@ class pizza_timer(hass.Hass):
             self.call_service("kodi/call_method", entity_id = "media_player.kodi", method = "Player.PlayPause", playerid = 1)
         else:
             self.fire_event("custom_notify", message="Pizza ist fertig, aber Kodi läuft gerade nicht - hoffentlich schaust du wenigstens aufs Handy...", target="telegram_jo")
+            try:
+                self.call_service("notify/kodi_wz", title = "Pizza", message = "ist fertig", data = {"displaytime": 15000, "icon": "http://odroidxu4/sonstiges/pizza2.jpg"})
+            except Exception as e:
+                self.log("Error sending pizza info to kodi. Error was {}".format(e))
         #self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"speak\":\"Pizza ist fertig!\"}", qos = "2")
         # via REST api
         try:
