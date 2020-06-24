@@ -22,7 +22,7 @@ cards:
       name: WP Innenteil
     - entity: sensor.el_leistung_wp_aussenteil
       name: WP Aussenteil
-    - entity: sensor.lumi_lumi_plug_mmeu01_e3a3753c_electrical_measurement
+    - entity: sensor.innr_sp_120_88138903_electrical_measurement
       name: Strom Luftentfeuchter
     - type: section
       label: Luft
