@@ -3,4 +3,4 @@ path: zigbee
 icon: mdi:zigbee
 panel: true
 cards:
-  - type: ''custom:zha-network-card''
+  - type: 'custom:zha-network-card'
