@@ -67,7 +67,7 @@ auto_light_o_la_stehlampe:
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_la
-  light: light.innr_e14_2_light
+  light: light.innr_rb_245_0b674403_level_on_off
   type: dim
   triggers: 
     - binary_sensor.pm_o_ko_la_raum
