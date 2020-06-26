@@ -1,0 +1,17 @@
+air_dryer:
+  module: air_dryer
+  class: air_dryer
+  air_dryer_switch: switch.innr_sp_120_88138903_on_off
+  energy_measurement_sensor: sensor.innr_sp_120_88138903_electrical_measurement
+  humidity_sensor: sensor.luftfeuchtigkeit_waschkuche_aqara
+  humidity_standard_max: 63
+  humidity_standard_min: 60
+  humidity_special_max: 57
+  humidity_special_min: 55
+  zha_device_ieee: '00:15:8d:00:04:0b:11:2f'
+  zha_device_command_time_1: left_single
+  time_1_hours: 4
+  zha_device_command_time_2: left_double
+  time_2_hours: 8
+  input_number_timer_special_humidity: input_number.timer_spezial_luftf_waschk
+  
