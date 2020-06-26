@@ -12,15 +12,17 @@ import appdaemon.plugins.hass.hassapi as hass
 class gz_zigbee_button(hass.Hass):
 
     def initialize(self):
-        self.sensor = self.args["sensor_entity"]
+        self.zha_device_ieee = self.args["zha_device_ieee"]
         self.switch = self.args["sleep_mode_switch_entity"]
         self.light = self.args["light_entity"]
-        self.listen_state(self.sensor_state_changed, self.sensor, attribute = "click")
+        self.listen_event(self.button_pressed, "zha_event", device_ieee = self.zha_device_ieee)
+#        self.listen_event(self.button_single, "zha_event", device_ieee = self.zha_device_ieee, command = "single")
+#        self.listen_event(self.button_double, "zha_event", device_ieee = self.zha_device_ieee, command = "double")
         
-    def sensor_state_changed(self, entity, attribute, old, new, kwargs):
-        if (new == "single" or new == "double") and new != old:
-            self.toggle(self.switch)
-            self.log("ZigBee Button Press single => Will toggle sleep mode switch")
+    def button_pressed(self,event_name,data,kwargs):
+        self.toggle(self.switch)
+        self.log("ZigBee Button Press => Will toggle sleep mode switch")
+
 #        if new == "double" and new != old:
 #            if self.get_state(self.light) == "on":
 #                self.turn_off(self.light)
