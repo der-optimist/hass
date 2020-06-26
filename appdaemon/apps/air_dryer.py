@@ -27,8 +27,8 @@ class air_dryer(hass.Hass):
         self.listen_state(self.timer_state_changed, self.input_number_timer_special_humidity)
         self.listen_state(self.humidity_state_changed, self.humidity_sensor)
         self.listen_state(self.electrical_measurement_state_changed, self.energy_measurement_sensor)
-        self.listen_event(self.button_time_1, "zha_event", device_ieee = self.zha_device_ieee, command = "zha_device_command_time_1")
-        self.listen_event(self.button_time_2, "zha_event", device_ieee = self.zha_device_ieee, command = "zha_device_command_time_2")
+        self.listen_event(self.button_time_1, "zha_event", device_ieee = self.zha_device_ieee, command = self.zha_device_command_time_1)
+        self.listen_event(self.button_time_2, "zha_event", device_ieee = self.zha_device_ieee, command = self.zha_device_command_time_2)
         
         self.timer_handle = None
         self.time_internal_state = 0
