@@ -49,6 +49,10 @@ cards:
     - entity: light.gastezimmer
       name: Strom Deckenlicht
     - type: section
+      label: schläft jemand?
+    - entity: switch.gaste_schlafen
+      name: Schlafen
+    - type: section
       label: Jalousie
     - entity: cover.jalousie_gastezimmer
       name: Bodentiefes
