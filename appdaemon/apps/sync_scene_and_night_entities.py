@@ -26,9 +26,9 @@ class sync_scene_and_night_entities(hass.Hass):
         if data["data"] == [0]:
             self.log("La geht ins Bett")
             self.turn_on("light.innr_rb_245_0b674403_level_on_off", brightness=255)
-        #elif data["data"] == [1]:
-        #    self.log("Le geht ins Bett")
-        #    self.turn_on("switch.le_schlaft")
+        elif data["data"] == [1]:
+            self.log("Le geht ins Bett")
+            self.turn_on("light.innr_rb_248_t_2192ebfe_level_light_color_on_off", brightness=255)
         #elif data["data"] == [3]:
         elif data["data"] == [3]:
             self.log("Fernseh-Szene")
