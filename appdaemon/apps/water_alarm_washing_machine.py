@@ -16,6 +16,7 @@ class water_alarm_washing_machine(hass.Hass):
         self.listen_state(self.eimer_hebeanlage_voll, "binary_sensor.eimer_hebeanlage_voll", new = "on")
         self.listen_state(self.wasser_boden, "binary_sensor.wasser_boden_bei_hebeanlage", new = "on")
         self.listen_state(self.sicherung_hebeanlage_raus, "binary_sensor.sicherung_keller_sd_rausgeflogen", new = "on")
+        self.listen_event(self.button_wm_strom_an, "zha_event", device_ieee = "00:15:8d:00:04:0b:11:2f", command = "right_single")
     
     def eimer_hebeanlage_voll(self, entity, attribute, old, new, kwargs):
         if new != old:
@@ -37,3 +38,8 @@ class water_alarm_washing_machine(hass.Hass):
             message = "Sicherung Keller-Steckdosen (Hebeanlage!) rausgeflogen - habe die Waschmaschinen-Steckdose ausgeschalten!"
             self.fire_event("custom_notify", message=message, target="telegram_jo")
             self.fire_event("custom_notify", message=message, target="telegram_ma")
+            
+    def button_wm_strom_an(self,event_name,data,kwargs):
+        self.turn_on("switch.waschmaschine")
+        message = "Waschmaschine hat (wieder) Strom"
+        self.fire_event("custom_notify", message=message, target="telegram_jo")
