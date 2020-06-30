@@ -148,6 +148,9 @@
   app_switch_jalousie_bad_og:
     name: Automatik Jalousie Bad OG
     icon: mdi:auto-fix
+  app_switch_luftentfeuchter_waschkueche:
+    name: Automatik Luftentf. Waschküche
+    icon: mdi:auto-fix
   app_switch_log_events:
     name: Logging HA events in AD
     icon: mdi:note-text
