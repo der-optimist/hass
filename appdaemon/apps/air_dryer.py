@@ -23,6 +23,8 @@ class air_dryer(hass.Hass):
         self.zha_device_command_time_2 = self.args["zha_device_command_time_2"]
         self.time_2_hours = int(self.args["time_2_hours"])
         self.input_number_timer_special_humidity = self.args["input_number_timer_special_humidity"]
+        self.name_reminder_switch_tank_full = self.args["name_reminder_switch_tank_full"]
+        self.text_reminder_switch_tank_full = self.args["text_reminder_switch_tank_full"]
         
         self.listen_state(self.timer_state_changed, self.input_number_timer_special_humidity)
         self.listen_state(self.humidity_state_changed, self.humidity_sensor)
@@ -30,15 +32,56 @@ class air_dryer(hass.Hass):
         self.listen_event(self.button_time_1, "zha_event", device_ieee = self.zha_device_ieee, command = self.zha_device_command_time_1)
         self.listen_event(self.button_time_2, "zha_event", device_ieee = self.zha_device_ieee, command = self.zha_device_command_time_2)
         
+        # define tank full reminder switch
+        icon_reminder_tank = "/local/icons/reminders/drop_orange_blink.svg"
+        self.attributes_reminder_tank_full = {"entity_picture": icon_reminder_tank, "friendly_name": self.text_reminder_switch_tank_full}
+        self.set_state(self.name_reminder_switch_tank_full, state = "off", attributes = self.attributes_reminder_tank_full)
+        
         self.timer_handle = None
         self.time_internal_state = 0
         if not float(self.get_state(self.input_number_timer_special_humidity)) == float(0):
             self.log("Timer nicht Null als ich gestartet wurde, werde jetzt weiter runter zaehlen")
             self.special_mode = True
-            self.stunde_abgelaufen(None)
+            self.time_internal_state = round(float(self.get_state(self.input_number_timer_special_humidity)))
+            self.timer_handle = self.run_in(self.stunde_abgelaufen,3600)
         else:
             self.log("Timer ist Null als ich gestartet wurde, alles ruhig hier...")
             self.special_mode = False
+        
+        #dryer already running?
+        self.check_if_dryer_running()
+        
+        # dryer needed?
+        self.current_humidity = float(self.get_state(self.humidity_sensor))
+        self.check_if_dryer_needed()
+        
+        self.check_if_dryer_full()
+
+    def check_if_dryer_needed(self):
+        if self.special_mode:
+            if self.current_humidity >= self.humidity_special_max:
+                self.turn_on(self.air_dryer_switch)
+                self.run_in(self.check_if_dryer_running,60)
+                self.dryer_needed = True
+                self.log("Special Mode, Dryer needed")
+            elif self.current_humidity < self.humidity_special_min:
+                self.turn_off(self.air_dryer_switch)
+                self.dryer_needed = False
+                self.log("Special Mode, Dryer not needed")
+            else:
+                self.log("Special Mode, Humidity in target range, will do nothing")
+        else:
+            if self.current_humidity >= self.humidity_standard_max:
+                self.turn_on(self.air_dryer_switch)
+                self.run_in(self.check_if_dryer_running,60)
+                self.dryer_needed = True
+                self.log("Standard Mode, Dryer needed")
+            elif self.current_humidity < self.humidity_standard_min:
+                self.turn_off(self.air_dryer_switch)
+                self.dryer_needed = False
+                self.log("Standard Mode, Dryer not needed") 
+            else:
+                self.log("Standard Mode, Humidity in target range, will do nothing")
     
     def timer_state_changed(self, entity, attributes, old, new, kwargs):
         self.log("State Change in Humidity Timer erkannt: {}".format(new))
@@ -66,14 +109,31 @@ class air_dryer(hass.Hass):
                     self.log("Timer wurde abgebrochen")
                 self.time_internal_state = round(float(new))
                 self.timer_handle = self.run_in(self.stunde_abgelaufen,3600)
+        self.check_if_dryer_needed()
 
     def humidity_state_changed(self, entity, attributes, old, new, kwargs):
-        if self.special_mode:
-            pass
+        self.current_humidity = float(self.get_state(self.humidity_sensor))
+        self.check_if_dryer_needed()
             
     def electrical_measurement_state_changed(self, entity, attributes, old, new, kwargs):
-        pass
-        # Tank voll?
+        if float(new) > 1.0:
+            self.dryer_is_running = True
+        else:
+            self.dryer_is_running = False
+            self.check_if_dryer_full()
+        
+    def check_if_dryer_running(self):
+        if float(self.get_state(self.humidity_sensor)) > 1.0:
+            self.dryer_is_running = True
+        else:
+            self.dryer_is_running = False
+    
+    def check_if_dryer_full(self):
+        if self.dryer_needed and not self.dryer_is_running:
+            self.log("Tank Luftdrockner ist wohl voll")
+            self.set_state(self.name_reminder_switch_tank_full, state = "on", attributes = self.attributes_reminder_tank_full)
+        else:
+            self.set_state(self.name_reminder_switch_tank_full, state = "off", attributes = self.attributes_reminder_tank_full)
         
     def button_time_1(self,event_name,data,kwargs):
         self.time_internal_state = self.time_1_hours
