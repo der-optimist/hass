@@ -22,8 +22,17 @@ cards:
       name: WP Innenteil
     - entity: sensor.el_leistung_wp_aussenteil
       name: WP Aussenteil
+    - entity: switch.innr_sp_120_88138903_on_off
+      name: Steckdose Luftentfeuchter
     - entity: sensor.innr_sp_120_88138903_electrical_measurement
       name: Strom Luftentfeuchter
+    - type: entities
+      title: Timer trockenere Luft
+      show_header_toggle: false
+      entities:
+        - type: custom:slider-entity-row
+          entity: input_number.timer_spezial_luftf_waschk
+          full_row: true
     - type: section
       label: Luft
     - entity: sensor.temp_waschkuche_aqara
