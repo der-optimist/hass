@@ -17,7 +17,7 @@ cards:
       name: Wandwürfel
       toggle: true
     - type: custom:slider-entity-row
-      entity: light.innr_e14_2_light
+      entity: light.innr_rb_245_0b674403_level_on_off
       name: Stehlampe
       toggle: true
     - entity: light.stehlampe_la
@@ -82,8 +82,12 @@ cards:
       entity: light.wandwurfel_le
       name: Wandwürfel
       toggle: true
-    - entity: light.stehlampe_le
+    - type: custom:slider-entity-row
+      entity: light.innr_rb_248_t_2192ebfe_level_light_color_on_off
       name: Stehlampe
+      toggle: true
+    - entity: light.stehlampe_le
+      name: Strom Stehlampe
     - type: section
       label: Schläft jemand?
     - entity: switch.le_schlaft
