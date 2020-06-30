@@ -1,4 +1,4 @@
-air_dryer:
+luftentfeuchter_waschkueche:
   module: air_dryer
   class: air_dryer
   air_dryer_switch: switch.innr_sp_120_88138903_on_off
@@ -14,4 +14,5 @@ air_dryer:
   zha_device_command_time_2: left_double
   time_2_hours: 8
   input_number_timer_special_humidity: input_number.timer_spezial_luftf_waschk
-  
+  name_reminder_switch_tank_full: switch.reminder_luftentfeuchter_waschkueche_tank
+  text_reminder_switch_tank_full: "Tank Luftentfeucher Waschküche leeren"
