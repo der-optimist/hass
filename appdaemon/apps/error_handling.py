@@ -10,7 +10,7 @@ class error_handling(hass.Hass):
 
     def initialize(self):
         self.listen_event(self.error_event, "system_log_event", level = "ERROR")
-        self.listen_event(self.warning_event, "system_log_event", level = "WARNING")
+#        self.listen_event(self.warning_event, "system_log_event", level = "WARNING")
 
     def error_event(self,event_name,data,kwargs):
         self.log("Error erkannt. Source ist {}".format(data["source"]))
