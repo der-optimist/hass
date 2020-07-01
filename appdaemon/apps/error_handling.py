@@ -12,6 +12,7 @@ class error_handling(hass.Hass):
         self.listen_event(self.error_event, "system_log_event", level = "ERROR")
 
     def error_event(self,event_name,data,kwargs):
+        self.log("Error erkannt. Source ist {}".format(data["source"]))
         message = "Home Assistant Error"\
                   "source: "\
                   "{}"\
