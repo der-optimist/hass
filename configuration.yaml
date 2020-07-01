@@ -140,13 +140,13 @@ owntracks:
 # Track the sun
 sun:
 
-#weather:
-#  - platform: darksky
-#    api_key: !secret darksky_api_key
-#    name: Dark Sky
-#    mode: hourly
-#  - platform: openweathermap
-#    api_key: !secret owm_api_key
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    name: Dark Sky
+    mode: hourly
+  - platform: openweathermap
+    api_key: !secret owm_api_key
 
 knx:
   fire_event: true
