@@ -118,6 +118,7 @@ class air_dryer(hass.Hass):
     def electrical_measurement_state_changed(self, entity, attributes, old, new, kwargs):
         if float(new) > 1.0:
             self.dryer_is_running = True
+            self.set_state(self.name_reminder_switch_tank_full, state = "off", attributes = self.attributes_reminder_tank_full)
         else:
             self.dryer_is_running = False
             self.check_if_dryer_full()
