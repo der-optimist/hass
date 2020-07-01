@@ -24,9 +24,11 @@ zone: !include zones.yaml
 frontend: 
   themes: !include_dir_merge_named themes
 
-zha_map:
-
 api:
+
+system_log:
+  max_entries: 100
+  fire_event: true
 
 logger:
   default: info
@@ -138,13 +140,13 @@ owntracks:
 # Track the sun
 sun:
 
-weather:
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    name: Dark Sky
+#weather:
+#  - platform: darksky
+#    api_key: !secret darksky_api_key
+#    name: Dark Sky
 #    mode: hourly
-  - platform: openweathermap
-    api_key: !secret owm_api_key
+#  - platform: openweathermap
+#    api_key: !secret owm_api_key
 
 knx:
   fire_event: true
