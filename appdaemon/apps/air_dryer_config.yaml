@@ -4,7 +4,7 @@ luftentfeuchter_waschkueche:
   air_dryer_switch: switch.innr_sp_120_88138903_on_off
   energy_measurement_sensor: sensor.innr_sp_120_88138903_electrical_measurement
   humidity_sensor: sensor.luftfeuchtigkeit_waschkuche_aqara
-  humidity_standard_max: 62
+  humidity_standard_max: 61
   humidity_standard_min: 60
   humidity_special_max: 56
   humidity_special_min: 55
