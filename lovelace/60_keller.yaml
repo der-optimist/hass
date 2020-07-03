@@ -44,7 +44,7 @@ cards:
     - entity: light.flur_keller
       name: Flur
     - type: custom:slider-entity-row
-      entity: light.treppe_keller
+      entity: light.shelly_shdm_1_d472fe
       name: Kellertreppe
       toggle: true
   - type: entities
