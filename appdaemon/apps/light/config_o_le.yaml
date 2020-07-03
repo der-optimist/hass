@@ -62,7 +62,7 @@ auto_light_o_le_wuerfel:
     "21:00": 5
   illuminance_sensor: sensor.helligkeit_le_pm
   keeping_fix_entities:
-    switch.le_schlaft: 1
+    switch.le_schlaft: 3
 auto_light_o_le_stehlampe:
   module: auto_light
   class: auto_light
