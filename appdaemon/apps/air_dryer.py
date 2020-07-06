@@ -49,7 +49,7 @@ class air_dryer(hass.Hass):
             self.special_mode = False
         
         #dryer already running?
-        self.check_if_dryer_running()
+        self.check_if_dryer_running(None)
         
         # dryer needed?
         self.current_humidity = float(self.get_state(self.humidity_sensor))
@@ -123,7 +123,7 @@ class air_dryer(hass.Hass):
             self.dryer_is_running = False
             self.check_if_dryer_full()
         
-    def check_if_dryer_running(self):
+    def check_if_dryer_running(self, kwargs):
         if float(self.get_state(self.humidity_sensor)) > 1.0:
             self.dryer_is_running = True
         else:
