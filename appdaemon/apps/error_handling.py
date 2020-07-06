@@ -23,8 +23,13 @@ class error_handling(hass.Hass):
                       "exception:\n"\
                       "{}".format(data["source"],data["message"],data["exception"])
             self.fire_event("custom_notify", message=message, target="telegram_jo")
-            if data["source"] == "homeassistant.core" and data["message"].startswith("Error doing job: Task exception was never retrieved"):
-                self.fire_event("custom_notify", message="KNX-Fehler erkannt", target="telegram_jo")
+            if "knx" in data["source"] and "Error doing job: Task exception was never retrieved" in data["message"]:
+                self.fire_event("custom_notify", message="KNX-Fehler erkannt. Werde HA in 30 Sekunden neu starten", target="telegram_jo")
+                self.log("KNX Error erkannt. Werde in 30s HA neu starten")
+                self.run_in(self.restart_ha,30)
+    
+    def restart_ha(self, kwargs):
+        self.call_service("homeassistant/restart")
 
     def warning_event(self,event_name,data,kwargs):
         self.log("Warning erkannt. Source ist {}".format(data["source"]))
