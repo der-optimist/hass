@@ -44,6 +44,14 @@ class permanent_recorder(hass.Hass):
         for entity in self.cover:
             self.listen_state(self.cover_changed, entity, attribute = "current_position")
             self.listen_state(self.cover_changed, entity, attribute = "current_tilt_position")
+        
+        # Heizung
+        self.listen_state(self.heating_supply_temp, "sensor.actual_supply_temp")
+        self.listen_state(self.heating_water_heater, "water_heater.dhw1")
+        self.listen_state(self.heating_heating_water, "climate.hc1")
+        self.listen_state(self.heating_health_status, "sensor.health_status")
+        self.listen_state(self.heating_outdoor_temp, "sensor.outdoor_temperature")
+        self.listen_state(self.heating_return_temp, "sensor.return_temp")
     
     def light_brightness_changed(self, entity, attributes, old, new, kwargs):
         if new == "off":
@@ -94,6 +102,95 @@ class permanent_recorder(hass.Hass):
         except:
             return
         self.client.write_points([{"measurement":entity,"fields":{"position":position_float,"tilt":tilt_float}}])
+    
+    def heating_supply_temp(self, entity, attributes, old, new, kwargs):
+        try:
+            value_float = float(new)
+        except:
+            return
+        self.client.write_points([{"measurement":"heating.supply_temp","fields":{"state_float":value_float}}])
+    
+    def heating_water_heater(self, entity, attributes, old, new, kwargs):
+        # State
+        if new != None and new != "":
+            self.client.write_points([{"measurement":"heating.water_heater","fields":{"state_string":str(new)}}])
+        # operation_mode
+        try:
+            operation_mode = str(attributes["operation_mode"])
+            self.client.write_points([{"measurement":"heating.water_heater","fields":{"operation_mode_string":str(operation_mode)}}])
+        except:
+            return
+        # bosch_state
+        try:
+            bosch_state = str(attributes["bosch_state"])
+            self.client.write_points([{"measurement":"heating.water_heater","fields":{"bosch_state_string":str(bosch_state)}}])
+        except:
+            return
+        # setpoint
+        try:
+            setpoint = str(attributes["setpoint"])
+            self.client.write_points([{"measurement":"heating.water_heater","fields":{"setpoint_string":str(setpoint)}}])
+        except:
+            return
+        # target temp
+        try:
+            temperature = float(attributes["temperature"])
+            self.client.write_points([{"measurement":"heating.water_heater","fields":{"target_temperature_float":str(temperature)}}])
+        except:
+            return
+        # current temp
+        try:
+            current_temperature = float(attributes["current_temperature"])
+            self.client.write_points([{"measurement":"heating.water_heater","fields":{"current_temperature_float":str(current_temperature)}}])
+        except:
+            return
+    
+    def heating_heating_water(self, entity, attributes, old, new, kwargs):
+        # State
+        if new != None and new != "":
+            self.client.write_points([{"measurement":"heating.heating","fields":{"state_string":str(new)}}])
+        # bosch_state
+        try:
+            bosch_state = str(attributes["bosch_state"])
+            self.client.write_points([{"measurement":"heating.heating","fields":{"bosch_state_string":str(bosch_state)}}])
+        except:
+            return
+        # setpoint
+        try:
+            setpoint = str(attributes["setpoint"])
+            self.client.write_points([{"measurement":"heating.heating","fields":{"setpoint_string":str(setpoint)}}])
+        except:
+            return
+        # target temp
+        try:
+            temperature = float(attributes["temperature"])
+            self.client.write_points([{"measurement":"heating.heating","fields":{"target_temperature_float":str(temperature)}}])
+        except:
+            return
+        # current temp
+        try:
+            current_temperature = float(attributes["current_temperature"])
+            self.client.write_points([{"measurement":"heating.heating","fields":{"current_temperature_float":str(current_temperature)}}])
+        except:
+            return
+    
+    def heating_health_status(self, entity, attributes, old, new, kwargs):
+        if new != None and new != "":
+            self.client.write_points([{"measurement":"heating.health_status","fields":{"state_string":str(new)}}])
+    
+    def heating_outdoor_temp(self, entity, attributes, old, new, kwargs):
+        try:
+            value_float = float(new)
+        except:
+            return
+        self.client.write_points([{"measurement":"heating.outdoor_temp","fields":{"state_float":value_float}}])
+    
+    def heating_return_temp(self, entity, attributes, old, new, kwargs):
+        try:
+            value_float = float(new)
+        except:
+            return
+        self.client.write_points([{"measurement":"heating.return_temp","fields":{"state_float":value_float}}])
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
