@@ -177,10 +177,8 @@ class telegram_bot(hass.Hass):
                 self.gewitter_aus(chat_id)
 
             # --- Gästemodus Wohnbereich ---
-            if text.lower() == "gäste" or text.lower() == "gäste da" or text.lower() == "gäste an" or text.lower() == "gästemodus":
-                self.gaeste_an(chat_id)
-            if text.lower() == "gäste weg" or text.lower() == "gäste aus" or text.lower() == "gästemodus aus":
-                self.gaeste_aus(chat_id)
+            if text.lower().startswith("gäste"):
+                self.toggle_gaeste_wohnbereich(chat_id)
 
             # ---V-V-V-V-V--- Chat ---V-V-V-V-V---
 
@@ -426,19 +424,20 @@ class telegram_bot(hass.Hass):
                   message="OK, werde den Gewitter-Kopf wieder aus machen",
                   disable_notification=True)
     
-    def gaeste_an(self, chat_id):
-        self.turn_on("input_boolean.gaeste_abends")
+    def toggle_gaeste_wohnbereich(self, chat_id):
+        self.toggle("input_boolean.gaeste_abends")
+        time.sleep(0.2)
+        if self.get_state("input_boolean.gaeste_abends") == "on":
+            message = "OK, liebe Grüße an die Gäste 😊"
+        elif self.get_state("input_boolean.gaeste_abends") == "off":
+            message = "OK, Gäste sind weg, dann wahrscheinlich gute Nacht jetzt..."
+        else:
+            message = "Irgendwas stimmt glaub nicht mit Gaeste-Modus per Bot umschalten, sorry"
         self.call_service('telegram_bot/send_message',
-                  target=chat_id,
-                  message="OK, liebe Grüße an die Gäste 😊",
-                  disable_notification=True)
+                          target=chat_id,
+                          message=message,
+                          disable_notification=True)
 
-    def gaeste_aus(self, chat_id):
-        self.turn_off("input_boolean.gaeste_abends")
-        self.call_service('telegram_bot/send_message',
-                  target=chat_id,
-                  message="OK, Gäste sind weg, dann wahrscheinlich gute Nacht jetzt...",
-                  disable_notification=True)
         
     # ---V-V-V-V-V--- Chat ---V-V-V-V-V---
     
