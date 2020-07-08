@@ -171,8 +171,20 @@
     state_address: '12/0/12'
     sync_state: False
     type: temperature
+  - platform: knx
+    name: 'Temp. Waschkueche DHT01 via knx'
+    state_address: '12/0/13'
+    sync_state: False
+    type: temperature
 
 # 1-wire
+
+# --- Luftfeuchtigkeit ---
+  - platform: knx
+    name: 'Luftf. Waschkueche DHT01 via knx'
+    state_address: '12/0/14'
+    sync_state: False
+    type: humidity
 
 # --- Helligkeit ---
 # KNX
