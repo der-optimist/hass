@@ -100,7 +100,7 @@ dimmer_steps_wuerfel_le:
   light_entity: light.wandwurfel_le
   steps:
     - 0
-    - 1
+    - 3
     - 20
     - 55
     - 100
@@ -111,7 +111,7 @@ dimmer_steps_stehlampe_le:
   light_entity: light.innr_rb_248_t_2192ebfe_level_light_color_on_off
   steps:
     - 0
-    - 1
+    - 3
     - 15
     - 50
     - 100
