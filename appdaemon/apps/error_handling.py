@@ -13,7 +13,7 @@ class error_handling(hass.Hass):
 #        self.listen_event(self.warning_event, "system_log_event", level = "WARNING")
 
     def error_event(self,event_name,data,kwargs):
-        self.log("Error erkannt. Source ist {}".format(data["source"]))
+        self.log("Error erkannt. Source ist ({}) Message ist ({})".format(data["source"],data["message"]))
         if not ("telegram api limit" in data["message"] or "Flood control exceeded" in data["message"] or "Message is too long" in data["message"]):
             message = "Home Assistant ERROR\n"\
                       "source:\n"\
