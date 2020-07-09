@@ -25,8 +25,24 @@ class dimmer_steps(hass.Hass):
         self.log("KNX command for step-dimming detected. Light is: {}. Data is:".format(self.light))
         self.log(data)
         if data["data"] == 0:
-            self.turn_off(self.light)
-            self.log("Switching off {}".format(self.light))
+            # first, cancel the reset timer
+            if self.timer_handle != None:
+                self.cancel_timer(self.timer_handle)
+            light_state = self.get_state(self.light)
+            self.in_action = True
+            if light_state == "on":
+                self.turn_off(self.light)
+                self.log("Switching off {}".format(self.light))
+                self.current_brightness = float(0)
+                self.direction = "up"
+            elif light_state == "off":
+                self.turn_on(self.light,brightness=255)
+                self.log("Switching on {}".format(self.light))
+                self.current_brightness = float(100)
+                self.direction = "down"
+            else:
+                self.log("Light is not on and not off? It is {}".format(light_state))
+            self.timer_handle = self.run_in(self.reset, 20)
         elif data["data"] == 1:
             # first, cancel the reset timer
             if self.timer_handle != None:
@@ -54,7 +70,7 @@ class dimmer_steps(hass.Hass):
             self.turn_on(self.light,brightness=self.pct_to_byte(next_step))
             self.current_brightness = next_step
             self.in_action = True
-            self.timer_handle = self.run_in(self.reset, 10)
+            self.timer_handle = self.run_in(self.reset, 20)
         else:
             self.log("Not 0 and not 1? command_ga should be binary! Please check config")
 
