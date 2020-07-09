@@ -107,6 +107,8 @@ permanent_recorder:
     - binary_sensor.windalarm_3
     - binary_sensor.lumi_lumi_sensor_magnet_aq2_ddf99f04_on_off
     - binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off
+    - binary_sensor.ping_fritzbox
+    - binary_sensor.ping_odroidxu4
     - switch.lumi_lumi_plug_mmeu01_e3a3753c_on_off
     - switch.backofen
     - switch.bad_og_nachtmodus
@@ -306,5 +308,9 @@ permanent_recorder:
     - sensor.innr_sp_120_3f148903_electrical_measurement
     - sensor.innr_sp_120_88138903_electrical_measurement
     - sensor.lumi_lumi_plug_mmeu01_e3a3753c_electrical_measurement
+    - sensor.dht22_waschkueche_humidity
+    - sensor.dht22_waschkueche_temperature
+    - sensor.luftf_waschkueche_dht01_via_knx
+    - sensor.temp_waschkueche_dht01_via_knx
   state_string:
     - sensor.lumi_lumi_sensor_swit_62225f02_multistate_input
