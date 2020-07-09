@@ -82,3 +82,37 @@ auto_light_o_le_stehlampe:
     - switch.le_schlaft
   switching_off_entities:
     - switch.le_schlaft
+# --- Dim-Steps ---
+dimmer_steps_panels_le:
+  module: dimmer_steps
+  class: dimmer_steps
+  light_entity: light.panels_le
+  steps:
+    - 0
+    - 5
+    - 30
+    - 70
+    - 100
+  command_ga: "15/0/28"
+dimmer_steps_wuerfel_le:
+  module: dimmer_steps
+  class: dimmer_steps
+  light_entity: light.wandwurfel_le
+  steps:
+    - 0
+    - 1
+    - 20
+    - 55
+    - 100
+  command_ga: "15/0/47"
+dimmer_steps_stehlampe_le:
+  module: dimmer_steps
+  class: dimmer_steps
+  light_entity: light.innr_rb_248_t_2192ebfe_level_light_color_on_off
+  steps:
+    - 0
+    - 1
+    - 15
+    - 50
+    - 100
+  command_ga: "15/0/65"
