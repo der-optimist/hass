@@ -23,6 +23,12 @@ class error_handling(hass.Hass):
                       "exception:\n"\
                       "{}".format(data["source"],data["message"],data["exception"])
             self.fire_event("custom_notify", message=message, target="telegram_jo")
+            if "knx" in data["source"]:
+                self.fire_event("custom_notify", message="KNX in Error erkannt", target="telegram_jo")
+                self.log("KNX in Error erkannt")
+            if "Task exception was never retrieved" in data["message"]:
+                self.fire_event("custom_notify", message="Task exception was never retrieved in Error erkannt", target="telegram_jo")
+                self.log("Task exception was never retrieved in Error erkannt")
             if "knx" in data["source"] and "Task exception was never retrieved" in data["message"]:
                 self.fire_event("custom_notify", message="KNX-Fehler erkannt. Werde HA in 30 Sekunden neu starten", target="telegram_jo")
                 self.log("KNX Error erkannt. Werde in 30s HA neu starten")
