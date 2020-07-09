@@ -104,6 +104,7 @@ class air_dryer(hass.Hass):
             if round(float(new)) == self.time_internal_state:
                 self.log("Event wurde wohl durch mich selber ausgelöst weil eine Stunde um ist, werde eine neue Stunde timen...")
                 self.timer_handle = self.run_in(self.stunde_abgelaufen,3600)
+                self.special_mode = True
             else:
                 self.log("Es wurde wohl eine neue Zeit eingestellt. Werde neuen Timer setzen")
                 if self.timer_handle != None:
@@ -111,6 +112,7 @@ class air_dryer(hass.Hass):
                     self.log("Timer wurde abgebrochen")
                 self.time_internal_state = round(float(new))
                 self.timer_handle = self.run_in(self.stunde_abgelaufen,3600)
+                self.special_mode = True
         self.check_if_dryer_needed()
 
     def humidity_state_changed(self, entity, attributes, old, new, kwargs):
