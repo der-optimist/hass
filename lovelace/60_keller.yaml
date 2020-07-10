@@ -32,9 +32,13 @@ cards:
     - type: section
       label: Luft
     - entity: sensor.temp_waschkuche_aqara
-      name: Temperatur
+      name: Temperatur Funk
+    - entity: sensor.dht22_waschkueche_temperature
+      name: Temperatur DHT
+    - entity: sensor.dht22_waschkueche_humidity
+      name: Luftfeuchtigkeit Funk
     - entity: sensor.luftfeuchtigkeit_waschkuche_aqara
-      name: Luftfeuchtigkeit
+      name: Luftfeuchtigkeit DHT
   - type: entities
     title: "Flur und Treppe"
     show_header_toggle: false
