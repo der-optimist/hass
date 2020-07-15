@@ -14,7 +14,11 @@ class error_handling(hass.Hass):
 
     def error_event(self,event_name,data,kwargs):
         self.log("Error erkannt. Source ist ({}) Message ist ({})".format(data["source"],data["message"]))
-        if not ("telegram api limit" in data["message"] or "Flood control exceeded" in data["message"] or "Message is too long" in data["message"]):
+        if "telegram api limit" in data["message"][0] or "Flood control exceeded" in data["message"][0] or "Message is too long" in data["message"][0]:
+            self.log("Telegram error. Will not send via Telegram...")
+        elif "Error handling request" in data["message"][0] and "google" in data["source"][0]:
+            self.log("Google Request error. Will not send via Telegram")
+        else:
             message = "Home Assistant ERROR\n"\
                       "source:\n"\
                       "{}\n"\
@@ -23,13 +27,13 @@ class error_handling(hass.Hass):
                       "exception:\n"\
                       "{}".format(data["source"],data["message"],data["exception"])
             self.fire_event("custom_notify", message=message, target="telegram_jo")
-            if "knx" in data["source"]:
+            if "knx" in data["source"][0]:
                 self.fire_event("custom_notify", message="KNX in Error erkannt", target="telegram_jo")
                 self.log("KNX in Error erkannt")
-            if "Task exception was never retrieved" in data["message"]:
+            if "Task exception was never retrieved" in data["message"][0]:
                 self.fire_event("custom_notify", message="Task exception was never retrieved in Error erkannt", target="telegram_jo")
                 self.log("Task exception was never retrieved in Error erkannt")
-            if "knx" in data["source"] and "Task exception was never retrieved" in data["message"]:
+            if "knx" in data["source"][0] and "Task exception was never retrieved" in data["message"][0]:
                 self.fire_event("custom_notify", message="KNX-Fehler erkannt. Werde HA in 30 Sekunden neu starten", target="telegram_jo")
                 self.log("KNX Error erkannt. Werde in 30s HA neu starten")
                 self.run_in(self.restart_ha,30)
