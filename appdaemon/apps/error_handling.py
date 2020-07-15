@@ -16,8 +16,8 @@ class error_handling(hass.Hass):
         self.log("Error erkannt. Source ist ({}) Message ist ({})".format(data["source"],data["message"]))
         if "telegram api limit" in data["message"][0] or "Flood control exceeded" in data["message"][0] or "Message is too long" in data["message"][0]:
             self.log("Telegram error. Will not send via Telegram...")
-        elif "Error handling request" in data["message"][0] and "google" in data["source"][0]:
-            self.log("Google Request error. Will not send via Telegram")
+        elif ("Error handling request" in data["message"][0] or "Update" in data["message"][0]) and "google" in data["source"][0]:
+            self.log("Google Request or Update error. Will not send via Telegram")
         else:
             message = "Home Assistant ERROR\n"\
                       "source:\n"\
