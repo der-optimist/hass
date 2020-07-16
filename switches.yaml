@@ -27,10 +27,10 @@
     state_address: '0/0/101'
 
 # Nähzimmer
-  - platform: knx
-    name: 'NZ Licht Automatik'
-    address: '15/0/44'
-    state_address: '15/0/45'
+#  - platform: knx
+#    name: 'NZ Licht Automatik'
+#    address: '15/0/44'
+#    state_address: '15/0/45'
 
 # Bad OG
 #  - platform: knx
