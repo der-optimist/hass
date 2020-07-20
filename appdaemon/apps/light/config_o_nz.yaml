@@ -10,6 +10,7 @@ auto_light_o_nz_naehtisch:
   min_illuminance_values:
     "00:00": 0
   illuminance_sensor: sensor.helligkeit_nahzimmer_pm
+  switching_off_offset: 400
 auto_light_o_nz_schreibtisch:
   module: auto_light
   class: auto_light
@@ -22,3 +23,4 @@ auto_light_o_nz_schreibtisch:
   min_illuminance_values:
     "00:00": 0
   illuminance_sensor: sensor.helligkeit_nahzimmer_pm
+  switching_off_offset: 400
