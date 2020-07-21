@@ -240,4 +240,5 @@ input_text:
   location_jo_roh:
     name: Location Jo roh
   saved_reminder_001:
+    max: 255
     name: saved_reminder_001
