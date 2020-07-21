@@ -1,0 +1,3 @@
+save_reminders:
+  module: save_reminders
+  class: save_reminders
