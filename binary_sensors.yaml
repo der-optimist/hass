@@ -489,7 +489,7 @@
         value_template: "{{ states('sensor.el_leistung_waschmaschine')|float > 15 }}"
       trockner_ist_an:
         friendly_name: "Trockner läuft"
-        value_template: "{{ states('sensor.el_leistung_trockner_float_average')|float > 80 }}"
+        value_template: "{{ states('sensor.el_leistung_trockner_float_average')|float > 10 }}"
       trockner_ist_geleert:
         friendly_name: "Trockner geleert"
         value_template: "{{ states('sensor.el_leistung_trockner')|float < 5 }}"
