@@ -26,6 +26,8 @@ class save_reminders(hass.Hass):
             self.log(switch)
             if switch.startswith("switch.reminder_"):
                 self.log("reminder!")
+                if self.get_state(switch) == "on":
+                    self.log("der ist aktiv!")
 
                 
         #self.listen_state(self.illuminance_changed, self.args["illuminance_sensor"])
