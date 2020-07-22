@@ -10,7 +10,7 @@ class save_reminders(hass.Hass):
 
     def initialize(self):
         # restore saved reminders after restart
-        #self.restore_reminders(None)
+        self.restore_reminders(None)
        
         self.listen_state(self.update_saved_reminders, "switch")
 
