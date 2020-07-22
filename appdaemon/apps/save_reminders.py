@@ -15,6 +15,7 @@ class save_reminders(hass.Hass):
         self.listen_state(self.update_saved_reminders, "switch")
 
     def update_saved_reminders(self, entity, attributes, old, new, kwargs):
+        self.log("saving reminders")
         counter = 1
         for switch in self.get_state("switch"):
             if switch.startswith("switch.reminder_"):
