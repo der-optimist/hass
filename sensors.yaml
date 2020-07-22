@@ -702,7 +702,7 @@
     entity_id: sensor.el_leistung_trockner
     filters:
       - filter: time_simple_moving_average
-        window_size: 00:03
+        window_size: 00:04
         precision: 1
 
 # Zeit und Datum
