@@ -18,11 +18,14 @@ class save_reminders(hass.Hass):
             switch_name = "switch.reminder_" + text.split("::")[0]
             friendly_name = text.split("::")[1]
             icon = text.split("::")[2]
-            self.set_state(switch_name, state = "on", attributes={"entity_picture":icon, "friendly_name": friendly_name})
+#            self.set_state(switch_name, state = "on", attributes={"entity_picture":icon, "friendly_name": friendly_name})
         else:
             self.log("input_text sollte 2 mal :: enthalten")
         
-        self.log(self.get_state("switch"))
+        for switch in self.get_state("switch"):
+            self.log(switch)
+            if switch.startswith("switch.reminder_"):
+                self.log("reminder!")
 
                 
         #self.listen_state(self.illuminance_changed, self.args["illuminance_sensor"])
