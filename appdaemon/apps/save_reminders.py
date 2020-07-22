@@ -11,6 +11,7 @@ class save_reminders(hass.Hass):
 
     def initialize(self):
         self.set_textvalue("input_text.saved_reminder_001", "wiederhergestellteerinnerung::Test: Tu was::/local/icons/reminders/exclamation_mark_blink.svg")
+        
         time.sleep(1)
         text = self.get_state("input_text.saved_reminder_001")
         if len(text.split("::")) == 3:
@@ -20,6 +21,12 @@ class save_reminders(hass.Hass):
             self.set_state(switch_name, state = "on", attributes={"entity_picture":icon, "friendly_name": friendly_name})
         else:
             self.log("input_text sollte 2 mal :: enthalten")
+        
+        for switch in self.get_state("switch"):
+            self.log(switch)
+            self.log(type(switch))
+
+                
         #self.listen_state(self.illuminance_changed, self.args["illuminance_sensor"])
 
     def illuminance_changed(self, entity, attributes, old, new, kwargs):
