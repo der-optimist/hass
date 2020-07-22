@@ -22,12 +22,15 @@ class save_reminders(hass.Hass):
         else:
             self.log("input_text sollte 2 mal :: enthalten")
         
+        counter = 2
         for switch in self.get_state("switch"):
-            self.log(switch)
             if switch.startswith("switch.reminder_"):
-                self.log("reminder!")
                 if self.get_state(switch) == "on":
-                    self.log("der ist aktiv!")
+                    friendly_name = self.get_state(switch, attribute="friendly_name")
+                    icon = self.get_state(switch, attribute="entity_picture")
+                    input_text_entity = "input_text.saved_reminder_0" + str(counter)
+                    input_text_text = switch.split("switch.reminder_")[1] + "::" + friendly_name + "::" + icon
+                    self.set_textvalue(input_text_entity, input_text_text)
 
                 
         #self.listen_state(self.illuminance_changed, self.args["illuminance_sensor"])
