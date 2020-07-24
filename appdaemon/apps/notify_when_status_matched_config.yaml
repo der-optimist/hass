@@ -100,26 +100,6 @@ info_ma_sicherung_keller_sd_rein:
   message: "Info: Keller-Steckdosen haben wieder Strom"
   init_delay: 64
 
-# HST (Test)
-info_jo_hst_offen:
-  module: notify_when_status_matched
-  class: notify_when_status_matched
-  entity: binary_sensor.hst_offen
-  status_to_match: "on"
-  previous_status: "off"
-  notify_target: telegram_jo
-  message: "Info: HST geöffnet"
-  init_delay: 65
-info_jo_hst_geschlossen:
-  module: notify_when_status_matched
-  class: notify_when_status_matched
-  entity: binary_sensor.hst_offen
-  status_to_match: "off"
-  previous_status: "on"
-  notify_target: telegram_jo
-  message: "Info: HST geschlossen"
-  init_delay: 66
-
 # Störung Heizungsaktor
 info_jo_stoerung_heizaktor_eg:
   module: notify_when_status_matched
