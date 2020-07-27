@@ -67,6 +67,8 @@ cards:
       entity: light.wandleuchten_esszimmer_gemutlich
       name: Wandleuchten warm
       toggle: true
+    - entity: light.sd_fussraum_bar
+      name: SD Weihnachtsbaum
     - type: section
       label: Jalousie
     - entity: cover.jalousie_hst
