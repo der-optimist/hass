@@ -11,7 +11,7 @@ import random
 class expose_sensor_to_knx(hass.Hass):
 
     def initialize(self):
-        self.run_every(self.trigger_expose,60*self.args["interval_minutes"])
+        self.run_every(self.trigger_expose, "now+16", 60*self.args["interval_minutes"])
 
     def trigger_expose(self, kwargs):
         random_number = random.randint(0,1e9)
