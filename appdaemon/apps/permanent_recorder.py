@@ -111,6 +111,7 @@ class permanent_recorder(hass.Hass):
         self.client.write_points([{"measurement":"heating.supply_temp","fields":{"state_float":value_float}}])
     
     def heating_water_heater(self, entity, attributes, old, new, kwargs):
+        self.log("Water Heater State Changed")
         # State
         if new != None and new != "":
             self.client.write_points([{"measurement":"heating.water_heater","fields":{"state_string":str(new)}}])
@@ -146,6 +147,7 @@ class permanent_recorder(hass.Hass):
             return
     
     def heating_heating_water(self, entity, attributes, old, new, kwargs):
+        self.log("Heating State Changed")
         # State
         if new != None and new != "":
             self.client.write_points([{"measurement":"heating.heating","fields":{"state_string":str(new)}}])
