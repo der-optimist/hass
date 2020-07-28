@@ -166,6 +166,9 @@ knx:
 #  - type: 'temperature'
 #    entity_id: 'sensor.temp_owm'
 #    address: '13/0/0'
+  - type: 'temperature'
+    entity_id: 'sensor.onewire_15_estrich_wc_1'
+    address: '12/0/6'
 scene:
   - name: Jal Wohnbereich runter
     platform: knx
