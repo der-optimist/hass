@@ -18,7 +18,7 @@ class expose_sensor_to_knx(hass.Hass):
 
     def initialize_delayed(self, kwargs):
         interval = int(60 * self.args["interval_minutes"])
-        self.run_every(self.trigger_expose, datetime.datetime.now(), interval)
+        self.run_every(self.trigger_expose, (datetime.datetime.now() + datetime.timedelta(seconds=5)), interval)
 
     def trigger_expose(self, kwargs):
         random_number = random.randint(0,1e9)
