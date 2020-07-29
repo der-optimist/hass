@@ -111,6 +111,8 @@ cards:
       entity: light.schrankbeleuchtung_wohnzimmer
       name: Hängeschränke
       toggle: true
+    - entity: switch.bleib_so_wz_licht
+      name: Bleib so, Licht!
     - type: divider
       style: 
         height: 1px
