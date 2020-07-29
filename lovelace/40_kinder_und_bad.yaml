@@ -90,6 +90,8 @@ cards:
       toggle: true
     - entity: light.stehlampe_le
       name: Strom Stehlampe
+    - entity: switch.bleib_so_le_licht
+      name: Bleib so, Licht!
     - type: section
       label: Schläft jemand?
     - entity: switch.le_schlaft
