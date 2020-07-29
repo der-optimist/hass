@@ -101,6 +101,14 @@
     name: 'Bleib so, WZ-Licht!'
     address: '15/0/56'
     state_address: '15/0/57'
+  - platform: knx
+    name: 'Bleib so, Lea-Licht!'
+    address: '15/0/67'
+    state_address: '15/0/68'
+  - platform: knx
+    name: 'Bleib so, Lara-Licht!'
+    address: '15/0/69'
+    state_address: '15/0/70'
 
 # --- Heizung ---
   # Switch um an GA zu senden. Richtet sich über AppDaemon App nach der Input Boolean, da 
