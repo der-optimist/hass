@@ -24,5 +24,7 @@ class expose_sensor_to_knx(hass.Hass):
         random_number = random.randint(0,1e9)
         current_state = self.get_state(self.args["sensor_entity"])
         attributes = self.get_state(self.args["sensor_entity"], attribute="all")
+        self.log(attributes)
         attributes["random_number"] = random_number
-        self.set_state(self.args["sensor_entity"], state = current_state, attributes = attributes)
+        self.log(attributes)
+        #self.set_state(self.args["sensor_entity"], state = current_state, attributes = attributes)
