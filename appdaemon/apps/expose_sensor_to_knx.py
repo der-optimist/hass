@@ -1,5 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 import random
+import datetime
 
 # 
 # App to trigger a "knx expose" for a sensor ever X minutes
@@ -11,7 +12,9 @@ import random
 class expose_sensor_to_knx(hass.Hass):
 
     def initialize(self):
-        self.run_every(self.trigger_expose, "now+16", 60)
+        start_time = (datetime.datetime.now() + datetime.timedelta(seconds=63)).time()
+        interval = int(60 * self.args["interval_minutes"])
+        self.run_every(self.trigger_expose, start_time, interval)
 
     def trigger_expose(self, kwargs):
         random_number = random.randint(0,1e9)
