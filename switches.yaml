@@ -102,11 +102,11 @@
     address: '15/0/56'
     state_address: '15/0/57'
   - platform: knx
-    name: 'Bleib so, Lea-Licht!'
+    name: 'Bleib so, Le-Licht!'
     address: '15/0/67'
     state_address: '15/0/68'
   - platform: knx
-    name: 'Bleib so, Lara-Licht!'
+    name: 'Bleib so, La-Licht!'
     address: '15/0/69'
     state_address: '15/0/70'
 
