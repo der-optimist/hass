@@ -1,5 +1,5 @@
-#expose_sensor_to_knx_estich_wc_1:
-#  module: expose_sensor_to_knx
-#  class: expose_sensor_to_knx
-#  sensor_entity: sensor.onewire_15_estrich_wc_1
-#  interval_minutes: 1
+expose_sensor_to_knx_estich_wc_1:
+  module: expose_sensor_to_knx
+  class: expose_sensor_to_knx
+  sensor_entity: sensor.onewire_15_estrich_wc_1
+  interval_minutes: 1
