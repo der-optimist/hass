@@ -77,7 +77,7 @@ heating_controller_foresight_wf_wc:
   module: heating_controller_foresight
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
-  db_measurement: sensor.temp_estrich_wc
+  db_measurement: sensor.onewire_15_estrich_wc_1
   db_field: state_float
   number_of_derivatives_for_average: 2
   multiplicator: 2
