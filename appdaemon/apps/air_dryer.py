@@ -121,8 +121,10 @@ class air_dryer(hass.Hass):
         if float(new) > 1.0:
             self.dryer_is_running = True
             self.set_state(self.name_reminder_switch_tank_full, state = "off", attributes = self.attributes_reminder_tank_full)
+            self.log("measurement changed, above 1, set reminder to off")
         else:
             self.dryer_is_running = False
+            self.log("measurement changed, below 1, will check if dryer full")
             self.check_if_dryer_full()
         
     def check_if_dryer_running(self, kwargs):
@@ -137,6 +139,7 @@ class air_dryer(hass.Hass):
             self.set_state(self.name_reminder_switch_tank_full, state = "on", attributes = self.attributes_reminder_tank_full)
         else:
             self.set_state(self.name_reminder_switch_tank_full, state = "off", attributes = self.attributes_reminder_tank_full)
+            self.log("Tank ist wohl nicht voll. dryer_needed ist {}, dryer_is_running ist {}".format(self.dryer_needed, self.dryer_is_running))
         
     def button_time_1(self,event_name,data,kwargs):
         self.time_internal_state = self.time_1_hours
@@ -151,4 +154,3 @@ class air_dryer(hass.Hass):
         self.time_internal_state = self.time_internal_state - 1
         old_state = round(float(self.get_state(self.input_number_timer_special_humidity)))
         self.set_value(self.input_number_timer_special_humidity, old_state - 1)
-
