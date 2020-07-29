@@ -12,9 +12,13 @@ import datetime
 class expose_sensor_to_knx(hass.Hass):
 
     def initialize(self):
-        start_time = datetime.time(0, 3, random.randint(0,59)) 
+        # wait for KNX entities 
+        random_delay = random.randint(60,90)
+        self.run_in(self.initialize_delayed,random_delay)
+
+    def initialize_delayed(self, kwargs):
         interval = int(60 * self.args["interval_minutes"])
-        self.run_every(self.trigger_expose, start_time, interval)
+        self.run_every(self.trigger_expose, datetime.datetime.now(), interval)
 
     def trigger_expose(self, kwargs):
         random_number = random.randint(0,1e9)
