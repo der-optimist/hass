@@ -12,7 +12,7 @@ import datetime
 class expose_sensor_to_knx(hass.Hass):
 
     def initialize(self):
-        start_time = (datetime.datetime.now() + datetime.timedelta(seconds=63)).time()
+        start_time = datetime.time(0, 3, random.randint(0,59)) 
         interval = int(60 * self.args["interval_minutes"])
         self.run_every(self.trigger_expose, start_time, interval)
 
