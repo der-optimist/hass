@@ -29,6 +29,9 @@ auto_light_o_le_panels:
   illuminance_sensor: sensor.helligkeit_le_pm
   keeping_off_entities:
     - switch.le_schlaft
+    - switch.bleib_so_le_licht
+  keeping_on_entities:
+    - switch.bleib_so_le_licht
   switching_off_entities:
     - switch.le_schlaft
   special_brightness_entities:
@@ -63,6 +66,10 @@ auto_light_o_le_wuerfel:
   illuminance_sensor: sensor.helligkeit_le_pm
   keeping_fix_entities:
     switch.le_schlaft: 3
+  keeping_off_entities:
+    - switch.bleib_so_le_licht
+  keeping_on_entities:
+    - switch.bleib_so_le_licht
 auto_light_o_le_stehlampe:
   module: auto_light
   class: auto_light
