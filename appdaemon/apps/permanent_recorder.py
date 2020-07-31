@@ -158,6 +158,7 @@ class permanent_recorder(hass.Hass):
                 value_float = float(new)
             except:
                 return
+            self.log("Will write {} to database".format(value_float))
             self.client.write_points([{"measurement":"heating.water_heater","fields":{"current_temperature_float":value_float}}])
     
     def heating_heating_state(self, entity, attributes, old, new, kwargs):
