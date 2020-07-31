@@ -47,8 +47,20 @@ class permanent_recorder(hass.Hass):
         
         # Heizung
         self.listen_state(self.heating_supply_temp, "sensor.actual_supply_temp")
-        self.listen_state(self.heating_water_heater, "water_heater.dhw1")
-        self.listen_state(self.heating_heating_water, "climate.hc1")
+        #
+        self.listen_state(self.heating_water_heater_state, "water_heater.dhw1")
+        self.listen_state(self.heating_water_heater_operation_mode, "water_heater.dhw1", attribute = "operation_mode")
+        self.listen_state(self.heating_water_heater_bosch_state, "water_heater.dhw1", attribute = "bosch_state")
+        self.listen_state(self.heating_water_heater_setpoint, "water_heater.dhw1", attribute = "setpoint")
+        self.listen_state(self.heating_water_heater_target_temp, "water_heater.dhw1", attribute = "temperature")
+        self.listen_state(self.heating_water_heater_current_temp, "water_heater.dhw1", attribute = "current_temperature")
+        #
+        self.listen_state(self.heating_heating_state, "climate.hc1")
+        self.listen_state(self.heating_heating_state, "climate.hc1", attribute = "bosch_state")
+        self.listen_state(self.heating_heating_setpoint, "climate.hc1", attribute = "setpoint")
+        self.listen_state(self.heating_heating_target_temp, "climate.hc1", attribute = "temperature")
+        self.listen_state(self.heating_heating_current_temp, "climate.hc1", attribute = "current_temperature")
+        #
         self.listen_state(self.heating_health_status, "sensor.health_status")
         self.listen_state(self.heating_outdoor_temp, "sensor.outdoor_temperature")
         self.listen_state(self.heating_return_temp, "sensor.return_temp")
@@ -110,71 +122,76 @@ class permanent_recorder(hass.Hass):
             return
         self.client.write_points([{"measurement":"heating.supply_temp","fields":{"state_float":value_float}}])
     
-    def heating_water_heater(self, entity, attributes, old, new, kwargs):
+    def heating_water_heater_state(self, entity, attributes, old, new, kwargs):
         self.log("Water Heater State Changed")
-        # State
         if new != None and new != "":
             self.client.write_points([{"measurement":"heating.water_heater","fields":{"state_string":str(new)}}])
-        # operation_mode
-        try:
-            operation_mode = str(attributes["operation_mode"])
-            self.client.write_points([{"measurement":"heating.water_heater","fields":{"operation_mode_string":str(operation_mode)}}])
-        except:
-            return
-        # bosch_state
-        try:
-            bosch_state = str(attributes["bosch_state"])
-            self.client.write_points([{"measurement":"heating.water_heater","fields":{"bosch_state_string":str(bosch_state)}}])
-        except:
-            return
-        # setpoint
-        try:
-            setpoint = str(attributes["setpoint"])
-            self.client.write_points([{"measurement":"heating.water_heater","fields":{"setpoint_string":str(setpoint)}}])
-        except:
-            return
-        # target temp
-        try:
-            temperature = float(attributes["temperature"])
-            self.client.write_points([{"measurement":"heating.water_heater","fields":{"target_temperature_float":str(temperature)}}])
-        except:
-            return
-        # current temp
-        try:
-            current_temperature = float(attributes["current_temperature"])
-            self.client.write_points([{"measurement":"heating.water_heater","fields":{"current_temperature_float":str(current_temperature)}}])
-        except:
-            return
+            
+    def heating_water_heater_operation_mode(self, entity, attributes, old, new, kwargs):
+        self.log("Water Heater Operation Mode Changed")
+        if new != None and new != "":
+            self.client.write_points([{"measurement":"heating.water_heater","fields":{"operation_mode_string":str(new)}}])
+
+    def heating_water_heater_bosch_state(self, entity, attributes, old, new, kwargs):
+        self.log("Water Heater Bosch State Changed")
+        if new != None and new != "":
+            self.client.write_points([{"measurement":"heating.water_heater","fields":{"bosch_state_string":str(new)}}])
+
+    def heating_water_heater_setpoint(self, entity, attributes, old, new, kwargs):
+        self.log("Water Heater Setpoint Changed")
+        if new != None and new != "":
+            self.client.write_points([{"measurement":"heating.water_heater","fields":{"setpoint_string":str(new)}}])
+
+    def heating_water_heater_target_temp(self, entity, attributes, old, new, kwargs):
+        self.log("Water Heater Target Temperature Changed")
+        if new != None and new != "":
+            try:
+                value_float = float(new)
+            except:
+                return
+            self.client.write_points([{"measurement":"heating.water_heater","fields":{"target_temperature_float":value_float}}])
+
+    def heating_water_heater_current_temp(self, entity, attributes, old, new, kwargs):
+        self.log("Water Heater Current Temp Changed")
+        if new != None and new != "":
+            try:
+                value_float = float(new)
+            except:
+                return
+            self.client.write_points([{"measurement":"heating.water_heater","fields":{"current_temperature_float":value_float}}])
     
-    def heating_heating_water(self, entity, attributes, old, new, kwargs):
+    def heating_heating_state(self, entity, attributes, old, new, kwargs):
         self.log("Heating State Changed")
-        # State
         if new != None and new != "":
             self.client.write_points([{"measurement":"heating.heating","fields":{"state_string":str(new)}}])
-        # bosch_state
-        try:
-            bosch_state = str(attributes["bosch_state"])
-            self.client.write_points([{"measurement":"heating.heating","fields":{"bosch_state_string":str(bosch_state)}}])
-        except:
-            return
-        # setpoint
-        try:
-            setpoint = str(attributes["setpoint"])
-            self.client.write_points([{"measurement":"heating.heating","fields":{"setpoint_string":str(setpoint)}}])
-        except:
-            return
-        # target temp
-        try:
-            temperature = float(attributes["temperature"])
-            self.client.write_points([{"measurement":"heating.heating","fields":{"target_temperature_float":str(temperature)}}])
-        except:
-            return
-        # current temp
-        try:
-            current_temperature = float(attributes["current_temperature"])
-            self.client.write_points([{"measurement":"heating.heating","fields":{"current_temperature_float":str(current_temperature)}}])
-        except:
-            return
+
+    def heating_heating_bosch_state(self, entity, attributes, old, new, kwargs):
+        self.log("Heating Bosch-State Changed")
+        if new != None and new != "":
+            self.client.write_points([{"measurement":"heating.heating","fields":{"bosch_state_string":str(new)}}])
+
+    def heating_heating_setpoint(self, entity, attributes, old, new, kwargs):
+        self.log("Heating Setpoint Changed")
+        if new != None and new != "":
+            self.client.write_points([{"measurement":"heating.heating","fields":{"setpoint_string":str(new)}}])
+
+    def heating_heating_target_temp(self, entity, attributes, old, new, kwargs):
+        self.log("Heating Target Temp Changed")
+        if new != None and new != "":
+            try:
+                value_float = float(new)
+            except:
+                return
+            self.client.write_points([{"measurement":"heating.heating","fields":{"target_temperature_float":value_float}}])
+
+    def heating_heating_current_temp(self, entity, attributes, old, new, kwargs):
+        self.log("Heating Current Temp Changed")
+        if new != None and new != "":
+            try:
+                value_float = float(new)
+            except:
+                return
+            self.client.write_points([{"measurement":"heating.heating","fields":{"current_temperature_float":value_float}}])
     
     def heating_health_status(self, entity, attributes, old, new, kwargs):
         if new != None and new != "":
