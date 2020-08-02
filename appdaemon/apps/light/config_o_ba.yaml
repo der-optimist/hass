@@ -33,8 +33,7 @@ auto_light_o_ba_spiegel_oben:
   brightness_values:
     "00:00": 90
   min_illuminance_values:
-    "00:00": 0
-    "17:00": 90
+    "00:00": 90
   illuminance_sensor: sensor.helligkeit_bad_eg_pm
   special_brightness_entities:
     switch.bad_og_nachtmodus: 13
