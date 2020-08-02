@@ -64,7 +64,7 @@ auto_light_o_la_wuerfel:
     "21:00": 5
   illuminance_sensor: sensor.helligkeit_la_pm
   keeping_fix_entities:
-    switch.la_schlaft: 3
+    switch.la_schlaft: 2
   keeping_off_entities:
     - switch.bleib_so_la_licht
   keeping_on_entities:
