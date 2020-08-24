@@ -342,6 +342,10 @@
     name: TV Zeit Abend
     after: '19:00'
     before: '03:00'
+  - platform: tod
+    name: Bettgehzeit Kinder
+    after: '18:00'
+    before: '23:00'
 
 # --- Template ---
   - platform: template
@@ -376,6 +380,10 @@
         friendly_name: "Schlafen oder Licht noch aus lassen MaJo"
         value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 50
                             and states('sensor.helligkeit_wetterstation')|float > 1000 }}"
+      la_schon_im_bett:
+        friendly_name: "La schon im Bett"
+        value_template: "{{ is_state('switch.la_schlaft', 'on')
+                            and is_state('binary_sensor.bettgehzeit_kinder', 'on') }}"
       nachtmodus_wohnbereich:
         friendly_name: "Nachtmodus Wohnbereich"
         value_template: "{{ is_state('switch.majo_schlafen', 'on')
