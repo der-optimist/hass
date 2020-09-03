@@ -16,10 +16,8 @@ appdaemon:
   plugins:
     HASS:
       type: hass
-      refresh_delay: 580
-      retry_secs: 10
       appdaemon_startup_conditions:
-        delay: 50
+        delay: 90
 http:
   url: http://127.0.0.1:5050
 admin:
