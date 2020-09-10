@@ -5,7 +5,7 @@ import datetime
 
 #
 # What it does:
-#   - Load Birthday events into a HA variable (displayed in flex-table-card)
+#   - Load Birthday events into a HA sensors
 #   - Check "Reminders Calendar" for events and set a reminder
 # What args it needs:
 #   - token: a long lived token from HA
