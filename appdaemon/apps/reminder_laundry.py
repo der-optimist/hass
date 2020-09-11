@@ -48,9 +48,12 @@ class reminder_laundry(hass.Hass):
             self.timer_handle_wm = None
 
     def trockner_fertig(self, entity, attribute, old, new, kwargs):
-        self.set_state(self.switch_reminder_tr, state = "on", attributes = self.attributes_reminder_tr)
-        self.timer_handle_tr = self.run_in(self.remind_trockner,7200)
-        self.fire_event("custom_notify", message="TR fertig", target="telegram_jo")
+        if self.get_state("binary_sensor.trockner_ist_geleert") == "off":
+            self.set_state(self.switch_reminder_tr, state = "on", attributes = self.attributes_reminder_tr)
+            self.timer_handle_tr = self.run_in(self.remind_trockner,7200)
+            self.fire_event("custom_notify", message="TR fertig", target="telegram_jo")
+        else:
+            self.log("Trockner als fertig erkannt, ist aber wohl schon geleert. Werde keine Erinnerung ausloesen")
 
     def trockner_geleert(self, entity, attribute, old, new, kwargs):
         self.set_state(self.switch_reminder_tr, state = "off", attributes = self.attributes_reminder_tr)
