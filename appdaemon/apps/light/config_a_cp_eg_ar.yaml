@@ -12,7 +12,7 @@ auto_light_a_cp_led_streifen:
   keeping_on_entities:
     - binary_sensor.pm_a_ar
   brightness_values:
-    "00:00": 100
+    "00:00": 60
   min_illuminance_values:
     "00:00": 600
   illuminance_sensor: sensor.helligkeit_wetterstation
