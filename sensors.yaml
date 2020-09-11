@@ -643,13 +643,6 @@
     end: '{{ now() }}'
     duration:
       hours: 1
-  - platform: filter
-    name: El Leistung Trockner float average
-    entity_id: sensor.el_leistung_trockner
-    filters:
-      - filter: time_simple_moving_average
-        window_size: 00:04
-        precision: 1
 
 # Zeit und Datum
   - platform: time_date
