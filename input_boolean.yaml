@@ -158,3 +158,6 @@
     name: Kodi just started playing
     icon: mdi:play-circle-outline
     initial: off
+  appdaemon_production_mode:
+    name: AppDaemon Production Mode
+    icon: mdi:lock
