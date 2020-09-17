@@ -1,5 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
-import os
+#import os
+import subprocess
 import datetime
 import requests
 
@@ -24,12 +25,12 @@ class custom_notify(hass.Hass):
     def notification_received(self,event_name,data,kwargs):
         # remove markdown commands
         data["message"] = data["message"].replace("_"," ").replace("*"," ")
-        response_before = os.system("ping -c 1 -W 2 google.com")
+        response_before = self.check_online_status()
         if response_before == 0:
         #if response_before == "test":
             self.log("google is up! will send message immediately")
             self.send_notification(data)
-            response_after = os.system("ping -c 1 -W 2 google.com")
+            response_after = self.check_online_status()
             if response_after == 0:
                 self.log("google is still up, should be delivered")
             else:
@@ -38,20 +39,24 @@ class custom_notify(hass.Hass):
                     self.run_in(self.send_waiting_notifications, 20)
                 data["message"] = data["message"] + " \n(gespeicherte Nachricht vom " + datetime.datetime.now().strftime("%d.%m. %H:%M") + ")"
                 self.list_waiting_messages.append(data)
+                if len(self.list_waiting_messages) > 20:
+                    del(self.list_waiting_messages[0])
         else:
             self.log("google is down! will send notification later")
             if self.list_waiting_messages == []: # only trigger if this is the first waiting message. otherwise loop ist already running
                 self.run_in(self.send_waiting_notifications, 20)
             data["message"] = data["message"] + " \n(gespeicherte Nachricht vom " + datetime.datetime.now().strftime("%d.%m. %H:%M") + ")"
             self.list_waiting_messages.append(data)
+            if len(self.list_waiting_messages) > 20:
+                del(self.list_waiting_messages[0])
         
     def send_waiting_notifications(self, kwargs):
-        response_before = os.system("ping -c 1 -W 2 google.com")
+        response_before = self.check_online_status()
         if response_before == 0:
             self.log("google is up now! will send waiting notifications")
             for notification_data in self.list_waiting_messages:
                 self.send_notification(notification_data)
-            response_after = os.system("ping -c 1 -W 2 google.com")
+            response_after = self.check_online_status()
             if response_after == 0:
                 self.log("google is still up, should be delivered")
                 self.list_waiting_messages = []
@@ -71,3 +76,7 @@ class custom_notify(hass.Hass):
                 self.log("http response special bot: {}".format(response))
         else:
             self.notify(notification_data["message"], name = notification_data["target"])
+
+    def check_online_status(self):
+        status = subprocess.call(['ping', '-c', '1', '-W', '2', 'google.com'],stdout=subprocess.DEVNULL)
+        return status
