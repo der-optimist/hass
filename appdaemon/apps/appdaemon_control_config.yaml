@@ -1,0 +1,3 @@
+appdaemon_control:
+  module: appdaemon_control
+  class: appdaemon_control
