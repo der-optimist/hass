@@ -27,18 +27,18 @@ class reminder_laundry(hass.Hass):
         self.timer_handle_tr = None
     
     def waschmaschine_fertig(self, entity, attribute, old, new, kwargs):
-        self.fire_event("custom_notify", message="WM fertig, aber noch zu", target="telegram_jo")
+        #self.fire_event("custom_notify", message="WM fertig, aber noch zu", target="telegram_jo")
         self.timer_handle_wm_open = self.run_in(self.waschmaschine_fertig_delayed, 180)
     
     def waschmaschine_fertig_delayed(self, kwargs):
         self.timer_handle_wm_open = None
         self.set_state(self.switch_reminder_wm, state = "on", attributes = self.attributes_reminder_wm)
         self.timer_handle_wm = self.run_in(self.remind_waschmaschine,3600)
-        self.fire_event("custom_notify", message="WM fertig", target="telegram_jo")
+        #self.fire_event("custom_notify", message="WM fertig", target="telegram_jo")
         
     def waschmaschine_geleert(self, entity, attribute, old, new, kwargs):
         if self.get_state(self.switch_reminder_wm) == "on":
-            self.fire_event("custom_notify", message="WM geleert", target="telegram_jo")
+            #self.fire_event("custom_notify", message="WM geleert", target="telegram_jo")
         self.set_state(self.switch_reminder_wm, state = "off", attributes = self.attributes_reminder_wm)
         if self.timer_handle_wm_open != None:
             self.cancel_timer(self.timer_handle_wm_open)
@@ -51,7 +51,7 @@ class reminder_laundry(hass.Hass):
         if self.get_state("binary_sensor.trockner_ist_geleert") == "off":
             self.set_state(self.switch_reminder_tr, state = "on", attributes = self.attributes_reminder_tr)
             self.timer_handle_tr = self.run_in(self.remind_trockner,7200)
-            self.fire_event("custom_notify", message="TR fertig", target="telegram_jo")
+            #self.fire_event("custom_notify", message="TR fertig", target="telegram_jo")
         else:
             self.log("Trockner als fertig erkannt, ist aber wohl schon geleert. Werde keine Erinnerung ausloesen")
 
@@ -60,7 +60,7 @@ class reminder_laundry(hass.Hass):
         if self.timer_handle_tr != None:
             self.cancel_timer(self.timer_handle_tr)
             self.timer_handle_tr = None
-        self.fire_event("custom_notify", message="TR geleert", target="telegram_jo")
+        #self.fire_event("custom_notify", message="TR geleert", target="telegram_jo")
 
     def remind_waschmaschine(self, kwargs):
         message = "Waschmaschine ist seit einer Stunde fertig"
