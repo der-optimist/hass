@@ -18,6 +18,10 @@ class error_handling(hass.Hass):
             self.log("Telegram error. Will not send via Telegram...")
         elif ("Error handling request" in data["message"][0] or "Update" in data["message"][0]) and "google" in data["source"][0]:
             self.log("Google Request or Update error. Will not send via Telegram")
+        elif "/hacs/" in data["source"][0]:
+            self.log("HACS error. Will not send via Telegram")
+        elif "already exists" in data["message"][0] and "lightning" in data["message"][0]:
+            self.log("HACS error. Will not send via Telegram")
         else:
             message = "Home Assistant ERROR\n"\
                       "source:\n"\
@@ -27,12 +31,6 @@ class error_handling(hass.Hass):
                       "exception:\n"\
                       "{}".format(data["source"],data["message"],data["exception"])
             self.fire_event("custom_notify", message=message, target="telegram_jo")
-            if "knx" in data["source"][0]:
-                self.fire_event("custom_notify", message="KNX in Error erkannt", target="telegram_jo")
-                self.log("KNX in Error erkannt")
-            if "Task exception was never retrieved" in data["message"][0]:
-                self.fire_event("custom_notify", message="Task exception was never retrieved in Error erkannt", target="telegram_jo")
-                self.log("Task exception was never retrieved in Error erkannt")
             if "knx" in data["source"][0] and "Task exception was never retrieved" in data["message"][0]:
                 self.fire_event("custom_notify", message="KNX-Fehler erkannt. Werde HA in 30 Sekunden neu starten", target="telegram_jo")
                 self.log("KNX Error erkannt. Werde in 30s HA neu starten")
