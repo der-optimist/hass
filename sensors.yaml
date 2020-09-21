@@ -39,85 +39,62 @@
         value_template: "{{ (states('sensor.lumi_lumi_weather_341e4d03_temperature') | float) | round(1) }}"
         device_class: temperature
 
-
-
-# --- Elektrische Leistung ---
-# Schaltaktor direkt
-  # Backofen
-  - platform: template
-    sensors:
+      # --- Elektrische Leistung ---
+      # Backofen
       el_leistung_backofen_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_backofen') | float) | float }}"
         friendly_name: 'El. Leistung Backofen (gerundet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-  # Kühlschrank Küche
-  - platform: template
-    sensors:
+      # Kühlschrank Küche
       el_leistung_kuhlschrank_kuche_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche') | float) | float }}"
         friendly_name: 'El. Leistung Kühlschrank Küche (gerundet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-  # Spülmaschine
-  - platform: template
-    sensors:
+      # Spülmaschine
       el_leistung_spulmaschine_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_spulmaschine') | float) | float }}"
         friendly_name: 'El. Leistung Spülmaschine (gerundet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-  # Mixi
-  - platform: template
-    sensors:
+      # Mixi
       el_leistung_mixi_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_mixi') | float) | float }}"
         friendly_name: 'El. Leistung Mixi (gerundet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-  # TV
-  - platform: template
-    sensors:
+      # TV
       el_leistung_tv_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_tv') | float) | float }}"
         friendly_name: 'El. Leistung TV (gerundet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-  # Waschmaschine
-  - platform: template
-    sensors:
+      # Waschmaschine
       el_leistung_waschmaschine_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_waschmaschine') | float) | float }}"
         friendly_name: 'El. Leistung Waschmaschine (gerundet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-  # Trockner
-  - platform: template
-    sensors:
+      # Trockner
       el_leistung_trockner_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_trockner') | float) | float }}"
         friendly_name: 'El. Leistung Trockner (gerundet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-  # Kühlschrank Keller
-  - platform: template
-    sensors:
+      # Kühlschrank Keller
       el_leistung_kuhlschrank_keller_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float) | float }}"
         friendly_name: 'El. Leistung Kühlschrank Keller (gerundet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-  # Gefrierschrank
-  - platform: template
-    sensors:
+      # Gefrierschrank
       el_leistung_gefrierschrank_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_gefrierschrank') | float) | float }}"
         friendly_name: 'El. Leistung Gefrierschrank (gerundet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-  # Lüftungsanlage
-  - platform: template
-    sensors:
+      # Lüftungsanlage
       el_leistung_luftungsanlage_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_luftungsanlage') | float) | float }}"
         friendly_name: 'El. Leistung Lüftungsanlage (gerundet)'
