@@ -1,0 +1,132 @@
+  - name: "Jalousie Küche"
+    move_long_address: '9/0/0'
+    move_short_address: '9/0/1'
+    position_address: '9/0/2'
+    position_state_address: '9/0/3'
+    angle_address: '9/0/4'
+    angle_state_address: '9/0/5'
+    invert_position: true
+    invert_angle: true
+    travelling_time_down: 21
+    travelling_time_up: 21
+  - name: "Jalousie HST"
+    move_long_address: '9/0/20'
+    move_short_address: '9/0/21'
+    position_address: '9/0/22'
+    position_state_address: '9/0/23'
+    angle_address: '9/0/24'
+    angle_state_address: '9/0/25'
+    invert_position: true
+    invert_angle: true
+    travelling_time_down: 55
+    travelling_time_up: 55
+  - name: "Jalousie WZ Bodentiefes"
+    move_long_address: '9/0/40'
+    move_short_address: '9/0/41'
+    position_address: '9/0/42'
+    position_state_address: '9/0/43'
+    angle_address: '9/0/44'
+    angle_state_address: '9/0/45'
+    invert_position: true
+    invert_angle: true
+    travelling_time_down: 55
+    travelling_time_up: 55
+  - name: "Jalousie WZ Couch"
+    move_long_address: '9/0/60'
+    move_short_address: '9/0/61'
+    position_address: '9/0/62'
+    position_state_address: '9/0/63'
+    angle_address: '9/0/64'
+    angle_state_address: '9/0/65'
+    invert_position: true
+    invert_angle: true
+    travelling_time_down: 35
+    travelling_time_up: 35
+  - name: "Jalousie Schlafzimmer"
+    move_long_address: '9/0/80'
+    move_short_address: '9/0/81'
+    position_address: '9/0/82'
+    position_state_address: '9/0/83'
+    angle_address: '9/0/84'
+    angle_state_address: '9/0/85'
+    invert_position: true
+    invert_angle: true
+    travelling_time_down: 35
+    travelling_time_up: 35
+  - name: "Jalousie La Bodentiefes"
+    move_long_address: '9/0/100'
+    move_short_address: '9/0/101'
+    position_address: '9/0/102'
+    position_state_address: '9/0/103'
+    angle_address: '9/0/104'
+    angle_state_address: '9/0/105'
+    invert_position: true
+    invert_angle: true
+    travelling_time_down: 55
+    travelling_time_up: 55
+  - name: "Jalousie La Lichtband"
+    move_long_address: '9/0/120'
+    move_short_address: '9/0/121'
+    position_address: '9/0/122'
+    position_state_address: '9/0/123'
+    angle_address: '9/0/124'
+    angle_state_address: '9/0/125'
+    invert_position: true
+    invert_angle: true
+    travelling_time_down: 21
+    travelling_time_up: 21
+  - name: "Jalousie Nähzimmer"
+    move_long_address: '9/0/140'
+    move_short_address: '9/0/141'
+    position_address: '9/0/142'
+    position_state_address: '9/0/143'
+    angle_address: '9/0/144'
+    angle_state_address: '9/0/145'
+    invert_position: true
+    invert_angle: true
+    travelling_time_down: 21
+    travelling_time_up: 21
+  - name: "Jalousie Le Lichtband"
+    move_long_address: '9/0/160'
+    move_short_address: '9/0/161'
+    position_address: '9/0/162'
+    position_state_address: '9/0/163'
+    angle_address: '9/0/164'
+    angle_state_address: '9/0/165'
+    invert_position: true
+    invert_angle: true
+    travelling_time_down: 21
+    travelling_time_up: 21
+  - name: "Jalousie Le Bodentiefes"
+    move_long_address: '9/0/180'
+    move_short_address: '9/0/181'
+    position_address: '9/0/182'
+    position_state_address: '9/0/183'
+    angle_address: '9/0/184'
+    angle_state_address: '9/0/185'
+    invert_position: true
+    invert_angle: true
+    travelling_time_down: 55
+    travelling_time_up: 55
+  - name: "Jalousie Gästezimmer"
+    move_long_address: '9/0/200'
+    move_short_address: '9/0/201'
+    position_address: '9/0/202'
+    position_state_address: '9/0/203'
+    angle_address: '9/0/204'
+    angle_state_address: '9/0/205'
+    invert_position: true
+    invert_angle: true
+    travelling_time_down: 55
+    travelling_time_up: 55
+  - name: "Jalousie Bad OG"
+    move_long_address: '9/0/220'
+    move_short_address: '9/0/221'
+    position_address: '9/0/222'
+    position_state_address: '9/0/223'
+    angle_address: '9/0/224'
+    angle_state_address: '9/0/225'
+    invert_position: true
+    invert_angle: true
+    travelling_time_down: 35
+    travelling_time_up: 35
