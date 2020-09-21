@@ -153,6 +153,12 @@ knx:
   fire_event: true
   fire_event_filter: ["*/*/*"]
   state_updater: true
+  binary_sensor: !include knx_binary_sensor.yaml
+  switch: !include knx_switch.yaml
+  sensor: !include knx_sensor.yaml
+  cover: !include knx_cover.yaml
+  light: !include knx_light.yaml
+  scene: !include knx_scene.yaml
   expose:
   - type: 'wind_speed_kmh'
     entity_id: 'sensor.windgeschwindigkeit_wetterstation_kmh'
@@ -169,17 +175,8 @@ knx:
   - type: 'temperature'
     entity_id: 'sensor.onewire_15_estrich_wc_1'
     address: '12/0/6'
-scene:
-  - name: Jal Wohnbereich runter
-    platform: knx
-    address: 15/0/50
-    scene_number: 7
-  - name: Jal Wohnbereich hoch
-    platform: knx
-    address: 15/0/50
-    scene_number: 8
 
-light: !include lights.yaml
+light:
 
 #yeelight:
 #  devices:
@@ -195,9 +192,9 @@ light: !include lights.yaml
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
 
-switch: !include switches.yaml
+switch:
 
-cover: !include covers.yaml
+cover:
 
 climate: !include climate.yaml
 
