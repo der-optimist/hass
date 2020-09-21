@@ -1,8 +1,6 @@
   - name: Jal Wohnbereich runter
-    platform: knx
     address: 15/0/50
     scene_number: 7
   - name: Jal Wohnbereich hoch
-    platform: knx
     address: 15/0/50
     scene_number: 8
