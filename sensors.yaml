@@ -40,299 +40,10 @@
         device_class: temperature
 
 
-# --- Temperatur ---
-# KNX
-  - platform: knx
-    name: 'Temp. Küche PM'
-    state_address: '6/0/65'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Esszimmer PM'
-    state_address: '6/0/193'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Esszimmer Taster'
-    state_address: '3/0/1'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Wohnzimmer PM'
-    state_address: '6/1/65'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Schlafzimmer PM'
-    state_address: '6/1/193'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Schlafzimmer Taster'
-    state_address: '3/2/1'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Bad EG PM'
-    state_address: '6/2/65'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Bad EG Taster'
-    state_address: '3/2/129'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Flur EG PM'
-    state_address: '6/2/193'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Windfang PM'
-    state_address: '6/3/65'
-    type: temperature
-  - platform: knx
-    name: 'Temp. WC PM'
-    state_address: '6/3/193'
-    type: temperature
-  - platform: knx
-    name: 'Temp. La PM'
-    state_address: '7/0/65'
-    type: temperature
-  - platform: knx
-    name: 'Temp. La Taster'
-    state_address: '3/3/129'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Nähzimmer PM'
-    state_address: '7/0/193'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Le PM'
-    state_address: '7/1/65'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Le Taster'
-    state_address: '3/4/1'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Gästezimmer PM'
-    state_address: '7/1/193'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Gästezimmer Taster'
-    state_address: '3/4/129'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Flur OG PM'
-    state_address: '7/2/65'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Bad OG PM'
-    state_address: '7/2/193'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Bad OG Taster'
-    state_address: '3/5/1'
-    type: temperature
-  - platform: knx
-    name: 'Temp. Wetterstation'
-    state_address: '13/0/0'
-    sync_state: False
-    type: temperature
-
-# --- Helligkeit ---
-# KNX
-  - platform: knx
-    name: 'Helligkeit Küche PM'
-    state_address: '6/0/56'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit Esszimmer PM'
-    state_address: '6/0/184'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit Wohnzimmer PM'
-    state_address: '6/1/56'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit Schlafzimmer PM'
-    state_address: '6/1/184'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit Bad EG PM'
-    state_address: '6/2/56'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit Flur EG PM'
-    state_address: '6/2/184'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit Windfang PM'
-    state_address: '6/3/56'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit WC PM'
-    state_address: '6/3/184'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit La PM'
-    state_address: '7/0/56'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit Nähzimmer PM'
-    state_address: '7/0/184'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit Le PM'
-    state_address: '7/1/56'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit Gästezimmer PM'
-    state_address: '7/1/184'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit Flur OG PM'
-    state_address: '7/2/56'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit Bad OG PM'
-    state_address: '7/2/184'
-    type: illuminance
-  - platform: knx
-    name: 'Helligkeit Wetterstation'
-    state_address: '13/0/2'
-    type: illuminance
-
-# --- Stellwerte Heizung ---
-  - platform: knx
-    name: 'Stellwert Heizung Küche'
-    state_address: '10/0/4'
-    type: percent
-  - platform: knx
-    name: 'Stellwert Heizung Esszimmer'
-    state_address: '10/0/24'
-    type: percent
-  - platform: knx
-    name: 'Stellwert Heizung Wohnzimmer'
-    state_address: '10/0/44'
-    type: percent
-  - platform: knx
-    name: 'Stellwert Heizung Schlafzimmer'
-    state_address: '10/0/64'
-    type: percent
-  - platform: knx
-    name: 'Stellwert Heizung Bad EG'
-    state_address: '10/0/84'
-    type: percent
-  - platform: knx
-    name: 'Stellwert Heizung Windfang/WC'
-    state_address: '10/0/104'
-    type: percent
-  - platform: knx
-    name: 'Stellwert Heizung La'
-    state_address: '10/0/124'
-    type: percent
-  - platform: knx
-    name: 'Stellwert Heizung Nähzimmer'
-    state_address: '10/0/144'
-    type: percent
-  - platform: knx
-    name: 'Stellwert Heizung Le'
-    state_address: '10/0/164'
-    type: percent
-  - platform: knx
-    name: 'Stellwert Heizung Gästezimmer'
-    state_address: '10/0/184'
-    type: percent
-  - platform: knx
-    name: 'Stellwert Heizung Flur OG'
-    state_address: '10/0/204'
-    type: percent
-  - platform: knx
-    name: 'Stellwert Heizung Bad OG'
-    state_address: '10/0/224'
-    type: percent
-
-# --- Sollwert Heizung, Basis + Shift ---
-  - platform: knx
-    name: 'Sollwert Heizung Küche'
-    state_address: '10/0/2'
-    type: temperature
-  - platform: knx
-    name: 'Sollwert Heizung Esszimmer'
-    state_address: '10/0/22'
-    type: temperature
-  - platform: knx
-    name: 'Sollwert Heizung Wohnzimmer'
-    state_address: '10/0/42'
-    type: temperature
-  - platform: knx
-    name: 'Sollwert Heizung Schlafzimmer'
-    state_address: '10/0/62'
-    type: temperature
-  - platform: knx
-    name: 'Sollwert Heizung Bad EG'
-    state_address: '10/0/82'
-    type: temperature
-  - platform: knx
-    name: 'Sollwert Heizung Windfang/WC'
-    state_address: '10/0/102'
-    type: temperature
-  - platform: knx
-    name: 'Sollwert Heizung La'
-    state_address: '10/0/122'
-    type: temperature
-  - platform: knx
-    name: 'Sollwert Heizung Nähzimmer'
-    state_address: '10/0/142'
-    type: temperature
-  - platform: knx
-    name: 'Sollwert Heizung Le'
-    state_address: '10/0/162'
-    type: temperature
-  - platform: knx
-    name: 'Sollwert Heizung Gästezimmer'
-    state_address: '10/0/182'
-    type: temperature
-  - platform: knx
-    name: 'Sollwert Heizung Flur OG'
-    state_address: '10/0/202'
-    type: temperature
-  - platform: knx
-    name: 'Sollwert Heizung Bad OG'
-    state_address: '10/0/222'
-    type: temperature
-
-# --- Wetterstation - Sonstige ---
-  - platform: knx
-    name: 'Windgeschwindigkeit Wetterstation'
-    state_address: '13/0/1'
-    sync_state: False
-    type: wind_speed_ms
-  - platform: knx
-    name: 'Sonnenschutz Fassade 1 Position'
-    state_address: '13/0/14'
-    type: percent
-  - platform: knx
-    name: 'Sonnenschutz Fassade 1 Lamellen'
-    state_address: '13/0/15'
-    type: percent
-  - platform: knx
-    name: 'Sonnenschutz Fassade 2 Position'
-    state_address: '13/0/18'
-    type: percent
-  - platform: knx
-    name: 'Sonnenschutz Fassade 2 Lamellen'
-    state_address: '13/0/19'
-    type: percent
-  - platform: knx
-    name: 'Sonnenschutz Fassade 3 Position'
-    state_address: '13/0/22'
-    type: percent
-  - platform: knx
-    name: 'Sonnenschutz Fassade 3 Lamellen'
-    state_address: '13/0/23'
-    type: percent
 
 # --- Elektrische Leistung ---
 # Schaltaktor direkt
   # Backofen
-  - platform: knx
-    name: 'El. Leistung Backofen'
-    state_address: '0/0/3'
-    type: power
   - platform: template
     sensors:
       el_leistung_backofen_round:
@@ -341,10 +52,6 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
   # Kühlschrank Küche
-  - platform: knx
-    name: 'El. Leistung Kühlschrank Küche'
-    state_address: '0/0/23'
-    type: power
   - platform: template
     sensors:
       el_leistung_kuhlschrank_kuche_round:
@@ -353,10 +60,6 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
   # Spülmaschine
-  - platform: knx
-    name: 'El. Leistung Spülmaschine'
-    state_address: '0/0/43'
-    type: power
   - platform: template
     sensors:
       el_leistung_spulmaschine_round:
@@ -365,10 +68,6 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
   # Mixi
-  - platform: knx
-    name: 'El. Leistung Mixi'
-    state_address: '0/0/63'
-    type: power
   - platform: template
     sensors:
       el_leistung_mixi_round:
@@ -377,10 +76,6 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
   # TV
-  - platform: knx
-    name: 'El. Leistung TV'
-    state_address: '0/0/103'
-    type: power
   - platform: template
     sensors:
       el_leistung_tv_round:
@@ -389,10 +84,6 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
   # Waschmaschine
-  - platform: knx
-    name: 'El. Leistung Waschmaschine'
-    state_address: '0/1/143'
-    type: power
   - platform: template
     sensors:
       el_leistung_waschmaschine_round:
@@ -401,10 +92,6 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
   # Trockner
-  - platform: knx
-    name: 'El. Leistung Trockner'
-    state_address: '0/1/163'
-    type: power
   - platform: template
     sensors:
       el_leistung_trockner_round:
@@ -413,10 +100,6 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
   # Kühlschrank Keller
-  - platform: knx
-    name: 'El. Leistung Kühlschrank Keller'
-    state_address: '0/1/203'
-    type: power
   - platform: template
     sensors:
       el_leistung_kuhlschrank_keller_round:
@@ -425,10 +108,6 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
   # Gefrierschrank
-  - platform: knx
-    name: 'El. Leistung Gefrierschrank'
-    state_address: '0/1/223'
-    type: power
   - platform: template
     sensors:
       el_leistung_gefrierschrank_round:
@@ -437,10 +116,6 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
   # Lüftungsanlage
-  - platform: knx
-    name: 'El. Leistung Lüftungsanlage'
-    state_address: '0/2/143'
-    type: power
   - platform: template
     sensors:
       el_leistung_luftungsanlage_round:
@@ -448,167 +123,6 @@
         friendly_name: 'El. Leistung Lüftungsanlage (gerundet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-
-# --- Stromzähler ---
-# Schaltaktor direkt
-  - platform: knx
-    name: 'Stromzähler Backofen'
-    state_address: '0/0/4'
-    type: 4byte_signed
-  - platform: knx
-    name: 'Stromzähler Kühlschrank Küche'
-    state_address: '0/0/24'
-    type: 4byte_signed
-  - platform: knx
-    name: 'Stromzähler Spülmaschine'
-    state_address: '0/0/44'
-    type: 4byte_signed
-  - platform: knx
-    name: 'Stromzähler Mixi'
-    state_address: '0/0/64'
-    type: 4byte_signed
-  - platform: knx
-    name: 'Stromzähler TV'
-    state_address: '0/0/104'
-    type: 4byte_signed
-  - platform: knx
-    name: 'Stromzähler Waschmaschine'
-    state_address: '0/1/144'
-    type: 4byte_signed
-  - platform: knx
-    name: 'Stromzähler Trockner'
-    state_address: '0/1/164'
-    type: 4byte_signed
-  - platform: knx
-    name: 'Stromzähler Kühlschrank Keller'
-    state_address: '0/1/204'
-    type: 4byte_signed
-  - platform: knx
-    name: 'Stromzähler Gefrierschrank'
-    state_address: '0/1/224'
-    type: 4byte_signed
-  - platform: knx
-    name: 'Stromzähler Lüftungsanlage'
-    state_address: '0/2/144'
-    type: 4byte_signed
-
-# Binäreingang Rohdaten
-  - platform: knx
-    name: 'Stromzähler Kochfeld Rohdaten'
-    state_address: '11/0/21'
-    type: 4byte_unsigned
-  - platform: knx
-    name: 'Stromzähler WP Heizstab Rohdaten'
-    state_address: '11/0/20'
-    type: 4byte_unsigned
-  - platform: knx
-    name: 'Stromzähler WP Innenteil Rohdaten'
-    state_address: '11/0/22'
-    type: 4byte_unsigned
-  - platform: knx
-    name: 'Stromzähler WP Aussenteil Rohdaten'
-    state_address: '11/0/23'
-    type: 4byte_unsigned
-
-# --- Diagnosemeldungen
-  # Heizung
-  - platform: knx
-    name: 'Diagnose Heizkreis Küche'
-    state_address: '10/0/6'
-    type: string
-  - platform: knx
-    name: 'Diagnose Heizkreis Esszimmer'
-    state_address: '10/0/26'
-    type: string
-  - platform: knx
-    name: 'Diagnose Heizkreis Wohnzimmer'
-    state_address: '10/0/46'
-    type: string
-  - platform: knx
-    name: 'Diagnose Heizkreis Schlafzimmer'
-    state_address: '10/0/66'
-    type: string
-  - platform: knx
-    name: 'Diagnose Heizkreis Bad EG'
-    state_address: '10/0/86'
-    type: string
-  - platform: knx
-    name: 'Diagnose Heizkreis WC/WF'
-    state_address: '10/0/106'
-    type: string
-  - platform: knx
-    name: 'Diagnose Heizkreis La'
-    state_address: '10/0/126'
-    type: string
-  - platform: knx
-    name: 'Diagnose Heizkreis Nähzimmer'
-    state_address: '10/0/146'
-    type: string
-  - platform: knx
-    name: 'Diagnose Heizkreis Le'
-    state_address: '10/0/166'
-    type: string
-  - platform: knx
-    name: 'Diagnose Heizkreis Gästezimmer'
-    state_address: '10/0/186'
-    type: string
-  - platform: knx
-    name: 'Diagnose Heizkreis Flur OG'
-    state_address: '10/0/206'
-    type: string
-  - platform: knx
-    name: 'Diagnose Heizkreis Bad OG'
-    state_address: '10/0/226'
-    type: string
-  # Jalousien
-  - platform: knx
-    name: 'Diagnose Jal Küche'
-    state_address: '9/0/8'
-    type: string
-  - platform: knx
-    name: 'Diagnose Jal HST'
-    state_address: '9/0/28'
-    type: string
-  - platform: knx
-    name: 'Diagnose Jal WZ Bodentiefes'
-    state_address: '9/0/48'
-    type: string
-  - platform: knx
-    name: 'Diagnose Jal WZ Couch'
-    state_address: '9/0/68'
-    type: string
-  - platform: knx
-    name: 'Diagnose Jal Schlafzimmer'
-    state_address: '9/0/88'
-    type: string
-  - platform: knx
-    name: 'Diagnose Jal La Bodentiefes'
-    state_address: '9/0/108'
-    type: string
-  - platform: knx
-    name: 'Diagnose Jal La Lichtband'
-    state_address: '9/0/128'
-    type: string
-  - platform: knx
-    name: 'Diagnose Jal Nähzimmer'
-    state_address: '9/0/148'
-    type: string
-  - platform: knx
-    name: 'Diagnose Jal Le Lichtband'
-    state_address: '9/0/168'
-    type: string
-  - platform: knx
-    name: 'Diagnose Jal Le Bodentiefes'
-    state_address: '9/0/188'
-    type: string
-  - platform: knx
-    name: 'Diagnose Jal Gästezimmer'
-    state_address: '9/0/208'
-    type: string
-  - platform: knx
-    name: 'Diagnose Jal Bad OG'
-    state_address: '9/0/228'
-    type: string
     
 # --- Sonstiges ---
 # History
@@ -663,9 +177,3 @@
     command: "cat /sys/class/thermal/thermal_zone0/temp"
     unit_of_measurement: "°C"
     value_template: '{{ value | multiply(0.001) | round(1) }}'
-
-# MQTT
-#  - platform: mqtt
-#    name: Bridge state
-#    state_topic: "zigbee2mqtt/bridge/state"
-#    icon: mdi:router-wireless
