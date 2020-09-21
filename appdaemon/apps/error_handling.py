@@ -21,7 +21,7 @@ class error_handling(hass.Hass):
         elif "/hacs/" in data["source"][0]:
             self.log("HACS error. Will not send via Telegram")
         elif "already exists" in data["message"][0] and "lightning" in data["message"][0]:
-            self.log("HACS error. Will not send via Telegram")
+            self.log("Blitzortung error. Will not send via Telegram")
         else:
             message = "Home Assistant ERROR\n"\
                       "source:\n"\
