@@ -27,8 +27,10 @@ class expose_sensor_to_knx(hass.Hass):
         try:
             if self.up_down == "down":
                 current_state = float(current_state) - 0.0001
+                self.up_down = "up"
             else:
                 current_state = float(current_state) + 0.0001
+                self.up_down = "down"
         except Exception as e:
             self.log("Error modifing sensor state. Error was {}".format(e))
         attributes = self.get_state(self.args["sensor_entity"], attribute="all")["attributes"]
