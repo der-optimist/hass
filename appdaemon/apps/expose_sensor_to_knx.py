@@ -14,6 +14,7 @@ class expose_sensor_to_knx(hass.Hass):
     def initialize(self):
         # wait for KNX entities 
         random_delay = random.randint(60,90)
+        self.up_down = "down"
         self.run_in(self.initialize_delayed,random_delay)
 
     def initialize_delayed(self, kwargs):
@@ -23,6 +24,12 @@ class expose_sensor_to_knx(hass.Hass):
     def trigger_expose(self, kwargs):
         random_number = random.randint(0,1e9)
         current_state = self.get_state(self.args["sensor_entity"])
+        try:
+            if self.up_down == "down":
+                current_state = current_state - 0.0001
+            else:
+                current_state = current_state + 0.0001
+        except Exception as e:
+            self.log("Error modifing sensor state. Error was {}".format(e))
         attributes = self.get_state(self.args["sensor_entity"], attribute="all")["attributes"]
-        attributes["random_number"] = random_number
         self.set_state(self.args["sensor_entity"], state = current_state, attributes = attributes)
