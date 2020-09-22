@@ -113,6 +113,11 @@
       jo_at_work:
         friendly_name: "Jo bei der Arbeit (binary)"
         value_template: "{{ is_state('input_text.location_jo_roh', 'Arbeit') }}"
+      anwesenheit_vorratsraum:
+        friendly_name: "Anwesenheit Vorratsraum"
+        delay_off:
+          minutes: 5
+        value_template: "{{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off','on') }}"
       anwesenheit_bildschirm:
         friendly_name: "Anwesenheit Bildschirm"
         value_template: >-
