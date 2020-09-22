@@ -56,17 +56,17 @@ cards:
     title: Fußboden-Sensoren
     show_header_toggle: false
     entities:
-      - entity: sensor.temp_estrich_kuche
+      - entity: sensor.onewire_07_estrich_kueche
         name: Estrich Küche
-      - entity: sensor.temp_estrich_esszimmer
+      - entity: sensor.onewire_16_estrich_esszimmer
         name: Estrich Esszimmer
-      - entity: sensor.temp_estrich_wohnzimmer
+      - entity: sensor.onewire_14_estrich_wohnzimmer
         name: Estrich Wohnzimmer
-      - entity: sensor.temp_estrich_schlafzimmer
+      - entity: sensor.onewire_25_estrich_schlafzimmer
         name: Estrich Schlafzimmer
-      - entity: sensor.temp_estrich_bad_eg
+      - entity: sensor.onewire_20_estrich_bad_eg
         name: Estrich Bad EG
-      - entity: sensor.temp_estrich_wc
+      - entity: sensor.onewire_15_estrich_wc_1
         name: Estrich WC
   - type: entities
     title: Sonstige
@@ -78,3 +78,5 @@ cards:
         name: Draußen (Wetterst.)
       - entity: sensor.cpu_temperatur
         name: CPU HA-Server
+      - entity: sensor.onewire_serverschrank
+        name: Server-Schrank (onewire)
