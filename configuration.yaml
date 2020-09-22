@@ -198,7 +198,7 @@ switch:
 
 cover:
 
-climate: !include climate.yaml
+climate:
 
 stream:
 camera:
