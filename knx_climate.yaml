@@ -1,6 +1,5 @@
 # Heizung  
-  - platform: knx
-    name: 'Küche'
+  - name: 'Küche'
     temperature_address: '6/0/193'
     #setpoint_shift_address: '10/0/21'
     #setpoint_shift_state_address: '10/0/21'
@@ -10,8 +9,7 @@
     controller_status_state_address: '10/0/5'
     min_temp: 17.0
     max_temp: 28.0
-  - platform: knx
-    name: 'Esszimmer'
+  - name: 'Esszimmer'
     temperature_address: '6/0/193'
     #setpoint_shift_address: '10/0/21'
     #setpoint_shift_state_address: '10/0/21'
@@ -21,8 +19,7 @@
     controller_status_state_address: '10/0/25'
     min_temp: 17.0
     max_temp: 28.0
-  - platform: knx
-    name: 'Wohnzimmer'
+  - name: 'Wohnzimmer'
     temperature_address: '6/0/193'
     #setpoint_shift_address: '10/0/21'
     #setpoint_shift_state_address: '10/0/21'
@@ -32,8 +29,7 @@
     controller_status_state_address: '10/0/45'
     min_temp: 17.0
     max_temp: 28.0
-  - platform: knx
-    name: 'Schlafzimmer'
+  - name: 'Schlafzimmer'
     temperature_address: '6/1/193'
     #setpoint_shift_address: '10/0/61'
     #setpoint_shift_state_address: '10/0/61'
@@ -43,8 +39,7 @@
     controller_status_state_address: '10/0/65'
     min_temp: 17.0
     max_temp: 28.0
-  - platform: knx
-    name: 'Bad EG'
+  - name: 'Bad EG'
     temperature_address: '6/2/65'
     #setpoint_shift_address: '10/0/81'
     #setpoint_shift_state_address: '10/0/81'
@@ -54,8 +49,7 @@
     controller_status_state_address: '10/0/85'
     min_temp: 17.0
     max_temp: 28.0
-  - platform: knx
-    name: 'Windfang WC'
+  - name: 'Windfang WC'
     temperature_address: '12/0/6'
     #setpoint_shift_address: '10/0/101'
     #setpoint_shift_state_address: '10/0/101'
@@ -65,8 +59,7 @@
     controller_status_state_address: '10/0/105'
     min_temp: 17.0
     max_temp: 28.0
-  - platform: knx
-    name: 'La'
+  - name: 'La'
     temperature_address: '7/0/65'
     #setpoint_shift_address: '10/0/121'
     #setpoint_shift_state_address: '10/0/121'
@@ -76,8 +69,7 @@
     controller_status_state_address: '10/0/125'
     min_temp: 17.0
     max_temp: 28.0
-  - platform: knx
-    name: 'Nähzimmer'
+  - name: 'Nähzimmer'
     temperature_address: '7/0/193'
     #setpoint_shift_address: '10/0/141'
     #setpoint_shift_state_address: '10/0/141'
@@ -87,8 +79,7 @@
     controller_status_state_address: '10/0/145'
     min_temp: 17.0
     max_temp: 28.0
-  - platform: knx
-    name: 'Le'
+  - name: 'Le'
     temperature_address: '7/1/65'
     #setpoint_shift_address: '10/0/161'
     #setpoint_shift_state_address: '10/0/161'
@@ -98,8 +89,7 @@
     controller_status_state_address: '10/0/165'
     min_temp: 17.0
     max_temp: 28.0
-  - platform: knx
-    name: 'Gästezimmer'
+  - name: 'Gästezimmer'
     temperature_address: '7/1/193'
     #setpoint_shift_address: '10/0/181'
     #setpoint_shift_state_address: '10/0/181'
@@ -109,8 +99,7 @@
     controller_status_state_address: '10/0/185'
     min_temp: 17.0
     max_temp: 28.0
-  - platform: knx
-    name: 'Flur OG'
+  - name: 'Flur OG'
     temperature_address: '7/2/65'
     #setpoint_shift_address: '10/0/201'
     #setpoint_shift_state_address: '10/0/201'
@@ -120,8 +109,7 @@
     controller_status_state_address: '10/0/205'
     min_temp: 17.0
     max_temp: 28.0
-  - platform: knx
-    name: 'Bad OG'
+  - name: 'Bad OG'
     temperature_address: '7/2/193'
     #setpoint_shift_address: '10/0/221'
     #setpoint_shift_state_address: '10/0/221'
