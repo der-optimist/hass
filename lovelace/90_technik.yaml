@@ -44,7 +44,7 @@ cards:
     title: "Kodi"
     show_header_toggle: false
     entities:
-      - entity: media_player.kodi
+      - entity: media_player.kodi_wz
   - type: entities
     title: "AppDaemon"
     show_header_toggle: false
