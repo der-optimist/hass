@@ -168,7 +168,7 @@
   - state_address: '13/0/13'
     name: Wetterstation Status GPS-Signal
     device_class: power
-  - pstate_address: '13/0/28'
+  - state_address: '13/0/28'
     name: Status Waermeschutz
   - state_address: '13/0/29'
     name: Status Waermegewinnung
