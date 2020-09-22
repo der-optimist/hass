@@ -94,7 +94,7 @@
         friendly_name: "Kodi abends"
         value_template: >-
           {{ is_state('binary_sensor.tv_zeit_abend', 'on')
-             and is_state('media_player.kodi', 'playing') }}
+             and is_state('media_player.kodi_wz', 'playing') }}
       abends_und_min_ein_kind_im_bett:
         friendly_name: "abends und min. 1 Kind im Bett"
         value_template: >-
