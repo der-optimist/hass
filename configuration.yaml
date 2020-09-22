@@ -157,6 +157,7 @@ knx:
   switch: !include knx_switch.yaml
   sensor: !include knx_sensor.yaml
   cover: !include knx_cover.yaml
+  climate: !include knx_climate.yaml
   light: !include knx_light.yaml
   scene: !include knx_scene.yaml
   expose:
