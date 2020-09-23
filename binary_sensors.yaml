@@ -171,6 +171,11 @@
           {{ is_state('binary_sensor.anwesenheit_eg', 'on')
              or is_state('binary_sensor.anwesenheit_og', 'on')
              or is_state('binary_sensor.pm_ktr_treppe', 'on') }}
+      wuerfel_terrasse:
+        friendly_name: "Würfel Terrasse"
+        value_template: >-
+          {{ is_state('binary_sensor.hst_offen', 'on')
+             and states('sensor.helligkeit_wetterstation')|float < 500 }}
       tv_ist_an:
         friendly_name: "TV an"
         delay_off:
