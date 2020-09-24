@@ -119,9 +119,11 @@ cards:
         background-color: "#ff9c27"
         opacity: 0.25
     - entity: switch.wz_steckdose
-      name: Steckdose
+      name: Steckdose neben Sideboard
+    - entity: switch.tv
+      name: Steckdose Fernseher
     - entity: binary_sensor.tv_ist_an
-      name: TV an?
+      name: Läuft der Fernseher?
     - type: section
       label: Jalousie
     - entity: cover.jalousie_wz_bodentiefes
