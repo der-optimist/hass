@@ -69,7 +69,7 @@ auto_light_a_abstellraum:
 auto_light_a_tr_wurfel_ecke_gross:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   app_switch: input_boolean.app_switch_licht_aussen_carport
   light: light.innr_color_terrasse_ecke_gross_level_light_color_on_off
   type: switch
@@ -81,7 +81,7 @@ auto_light_a_tr_wurfel_ecke_gross:
 auto_light_a_tr_wurfel_ecke_klein:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   app_switch: input_boolean.app_switch_licht_aussen_carport
   light: light.innr_color_terrasse_ecke_klein_level_light_color_on_off
   type: switch
@@ -93,7 +93,7 @@ auto_light_a_tr_wurfel_ecke_klein:
 auto_light_a_tr_wurfel_feuerstelle:
   module: auto_light
   class: auto_light
-  debug: few
+  debug: quiet
   app_switch: input_boolean.app_switch_licht_aussen_carport
   light: light.innr_color_terrasse_feuerstelle_level_light_color_on_off
   type: switch
