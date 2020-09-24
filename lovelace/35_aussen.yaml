@@ -22,7 +22,7 @@ cards:
       name: Abstellraum
   - type: entities
     title: "Terrasse"
-    show_header_toggle: false
+    show_header_toggle: true
     entities:
     - type: section
       label: Licht
@@ -30,6 +30,12 @@ cards:
       name: Wandwürfel Süd
     - entity: light.wandwurfel_westen
       name: Wandwürfel West
+    - entity: light.innr_color_terrasse_ecke_gross_level_light_color_on_off
+      name: Leuchtwürfel Ecke groß
+    - entity: light.innr_color_terrasse_ecke_klein_level_light_color_on_off
+      name: Leuchtwürfel Ecke klein
+    - entity: light.innr_color_terrasse_feuerstelle_level_light_color_on_off
+      name: Leuchtwürfel Feuerplatz
 #    - entity: light.wuerfel_gross_ecke
 #      name: Würfelhocker groß Ecke
 #    - entity: light.wuerfel_klein
