@@ -1,5 +1,4 @@
 import appdaemon.plugins.hass.hassapi as hass
-import random
 import datetime
 
 # 
@@ -13,9 +12,9 @@ class expose_sensor_to_knx(hass.Hass):
 
     def initialize(self):
         # wait for KNX entities 
-        random_delay = random.randint(60,90)
+        delay_seconds = self.args["init_delay_minutes"]*60
         self.up_down = "down"
-        self.run_in(self.initialize_delayed,random_delay)
+        self.run_in(self.initialize_delayed,delay_seconds)
 
     def initialize_delayed(self, kwargs):
         interval = int(60 * self.args["interval_minutes"])
