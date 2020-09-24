@@ -3,3 +3,4 @@ expose_sensor_to_knx_estich_wc_1:
   class: expose_sensor_to_knx
   sensor_entity: sensor.onewire_15_estrich_wc_1
   interval_minutes: 5
+  init_delay_minutes: 11
