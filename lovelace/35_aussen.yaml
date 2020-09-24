@@ -30,6 +30,11 @@ cards:
       name: Wandwürfel Süd
     - entity: light.wandwurfel_westen
       name: Wandwürfel West
+    - type: divider
+      style: 
+        height: 1px
+        background-color: "#ff9c27"
+        opacity: 0.25
     - entity: light.innr_color_terrasse_ecke_gross_level_light_color_on_off
       name: Leuchtwürfel Ecke groß
     - entity: light.innr_color_terrasse_ecke_klein_level_light_color_on_off
