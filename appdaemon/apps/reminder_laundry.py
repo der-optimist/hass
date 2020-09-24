@@ -2,8 +2,8 @@ import appdaemon.plugins.hass.hassapi as hass
 
 #
 # App to remind if washing mashine or dryer are done
-# 
-# Args:
+#
+# Args: 
 # none
 #
 
