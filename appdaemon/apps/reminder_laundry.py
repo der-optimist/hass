@@ -1,3 +1,4 @@
+
 import appdaemon.plugins.hass.hassapi as hass
 
 #
@@ -39,7 +40,7 @@ class reminder_laundry(hass.Hass):
     def waschmaschine_geleert(self, entity, attribute, old, new, kwargs):
         if self.get_state(self.switch_reminder_wm) == "on":
             #self.fire_event("custom_notify", message="WM geleert", target="telegram_jo")
-        self.set_state(self.switch_reminder_wm, state = "off", attributes = self.attributes_reminder_wm)
+            self.set_state(self.switch_reminder_wm, state = "off", attributes = self.attributes_reminder_wm)
         if self.timer_handle_wm_open != None:
             self.cancel_timer(self.timer_handle_wm_open)
             self.timer_handle_wm_open = None
