@@ -25,7 +25,7 @@ cards:
       name: Treppenstufen
       toggle: true
     - type: custom:slider-entity-row
-      entity: light.shelly_shdm_1_d472fe
+      entity: light.shellydimmer_d472fe_light_0
       name: Kellertreppe
       toggle: true
     - type: section
