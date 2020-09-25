@@ -106,25 +106,24 @@ google:
   client_id: !secret google_calendar_client_id
   client_secret: !secret google_calendar_secret
 
-#recorder:
-#  include:
-#    domains:
-#      - sensor
-#      - binary_sensor
-#      - switch
-#      - climate
-#      - cover
-#      - light
-#      - device_tracker
-#      - input_boolean
-#  exclude:
-#    entities:
-#      - sensor.yr_symbol
-#      - sensor.time
-#      - sensor.last_boot
-#      - sensor.windfang_wc_temp_ist_text
-#      - sensor.windfang_wc_temp_soll_text
-#  purge_keep_days: 7
+recorder:
+  include:
+    domains:
+      - sensor
+      - binary_sensor
+      - switch
+      - climate
+      - cover
+      - light
+      - device_tracker
+      - input_boolean
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.last_boot
+      - sensor.windfang_wc_temp_ist_text
+      - sensor.windfang_wc_temp_soll_text
+  purge_keep_days: 7
 
 history:
 
