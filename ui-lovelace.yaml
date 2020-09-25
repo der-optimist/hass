@@ -1,7 +1,8 @@
 resources:
   - url: /hacsfiles/lovelace-card-tools/card-tools.js
     type: module
-  - url: /hacsfiles/lovelace-layout-card/layout-card.js
+#  - url: /hacsfiles/lovelace-layout-card/layout-card.js
+  - url: /local/custom_cards_without_hacs/layout-card.js
     type: module
   - url: /hacsfiles/custom-header/custom-header.js
     type: module
