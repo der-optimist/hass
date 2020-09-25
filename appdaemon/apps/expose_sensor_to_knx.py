@@ -21,7 +21,7 @@ class expose_sensor_to_knx(hass.Hass):
         self.run_every(self.trigger_expose, (datetime.datetime.now() + datetime.timedelta(seconds=5)), interval)
 
     def trigger_expose(self, kwargs):
-        random_number = random.randint(0,1e9)
+        #random_number = random.randint(0,1e9)
         current_state = self.get_state(self.args["sensor_entity"])
         try:
             if self.up_down == "down":
