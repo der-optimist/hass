@@ -26,6 +26,8 @@ frontend:
 
 api:
 mobile_app:
+hacs: # HA custom store	
+  token: !secret github_api_key
 
 system_log:
   max_entries: 100
