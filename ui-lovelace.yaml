@@ -5,7 +5,8 @@ resources:
 #  - url: /hacsfiles/lovelace-layout-card/layout-card.js
   - url: /local/custom_cards_without_hacs/layout-card.js
     type: module
-  - url: /hacsfiles/custom-header/custom-header.js
+#  - url: /hacsfiles/custom-header/custom-header.js
+  - url: /local/custom_cards_without_hacs/custom-header.js
     type: module
 #  - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
   - url: /local/custom_cards_without_hacs/slider-entity-row.js
