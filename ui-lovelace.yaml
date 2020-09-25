@@ -14,7 +14,8 @@ resources:
     type: module
   - url: /hacsfiles/button-card/button-card.js
     type: module
-  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+#  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+  - url: /local/custom_cards_without_hacs/mini-graph-card-bundle
     type: module
   - url: /hacsfiles/bar-card/bar-card.js
     type: module
@@ -22,9 +23,11 @@ resources:
     type: module
   - url: /hacsfiles/secondaryinfo-entity-row/secondaryinfo-entity-row.js
     type: module
-  - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+#  - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+  - url: /local/custom_cards_without_hacs/auto-entities.js
     type: module
-  - url: /hacsfiles/lovelace-hui-element/hui-element.js
+#  - url: /hacsfiles/lovelace-hui-element/hui-element.js
+  - url: /local/custom_cards_without_hacs/hui-element.js
     type: module
   - url: /local/custom_cards_without_hacs/zha-network-visualization-card.js
     type: module
