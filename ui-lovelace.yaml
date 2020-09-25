@@ -17,7 +17,7 @@ resources:
   - url: /hacsfiles/button-card/button-card.js
     type: module
 #  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
-  - url: /local/custom_cards_without_hacs/mini-graph-card-bundle
+  - url: /local/custom_cards_without_hacs/mini-graph-card-bundle.js
     type: module
   - url: /hacsfiles/bar-card/bar-card.js
     type: module
