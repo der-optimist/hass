@@ -1,8 +1,8 @@
 luftentfeuchter_waschkueche:
   module: air_dryer
   class: air_dryer
-  air_dryer_switch: switch.innr_sp_120_88138903_on_off
-  energy_measurement_sensor: sensor.innr_sp_120_88138903_electrical_measurement
+  air_dryer_switch: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
+  energy_measurement_sensor: sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
   humidity_sensor: sensor.dht22_waschkueche_humidity
   humidity_standard_max: 59
   humidity_standard_min: 54
