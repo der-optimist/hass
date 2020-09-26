@@ -75,7 +75,7 @@ auto_light_o_le_stehlampe:
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_le
-  light: light.innr_rb_248_t_2192ebfe_level_light_color_on_off
+  light: light.innr_e14_tw_stehlampe_lea_level_light_color_on_off
   type: dim
   triggers: 
     - binary_sensor.pm_o_kw_le_raum
@@ -115,7 +115,7 @@ dimmer_steps_wuerfel_le:
 dimmer_steps_stehlampe_le:
   module: dimmer_steps
   class: dimmer_steps
-  light_entity: light.innr_rb_248_t_2192ebfe_level_light_color_on_off
+  light_entity: light.innr_e14_tw_stehlampe_lea_level_light_color_on_off
   steps:
     - 0
     - 3
