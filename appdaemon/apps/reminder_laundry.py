@@ -12,7 +12,7 @@ class reminder_laundry(hass.Hass):
 
     def initialize(self):
         self.listen_state(self.waschmaschine_fertig, "binary_sensor.waschmaschine_ist_an", new = "off", old = "on")
-        self.listen_state(self.waschmaschine_geleert, "binary_sensor.lumi_lumi_sensor_magnet_aq2_ddf99f04_on_off", new = "on")
+        self.listen_state(self.waschmaschine_geleert, "binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off", new = "on")
         self.listen_state(self.trockner_fertig, "binary_sensor.trockner_ist_an", new = "off", old = "on")
         self.listen_state(self.trockner_geleert, "binary_sensor.trockner_ist_geleert", new = "on")
         self.switch_reminder_wm = "switch.reminder_waschmaschine_leeren"
