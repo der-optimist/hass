@@ -53,7 +53,7 @@ cards:
       toggle: true
     - type: custom:slider-entity-row
       entity: light.bar_beleuchtung
-      name: Barbeleuchtung
+      name: Thekenlicht
       toggle: true
     - type: custom:slider-entity-row
       entity: light.schrankbeleuchtung_esszimmer
