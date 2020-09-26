@@ -16,6 +16,10 @@ cards:
       entity: light.bettbeleuchtung
       name: Bettbeleuchtung
       toggle: true
+    - type: custom:slider-entity-row
+      entity: light.innr_e14_tw_kugellampe_schlafzimmer_level_light_color_on_off
+      name: Kugellampe
+      toggle: true
     - type: section
       label: Schläft jemand?
     - entity: switch.majo_schlafen
