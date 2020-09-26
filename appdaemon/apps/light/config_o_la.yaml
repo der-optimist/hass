@@ -114,7 +114,7 @@ dimmer_steps_wuerfel_la:
 dimmer_steps_stehlampe_la:
   module: dimmer_steps
   class: dimmer_steps
-  light_entity: light.innr_rb_245_0b674403_level_on_off
+  light_entity: light.innr_e14_ww_stehlampe_lara_level_on_off
   steps:
     - 0
     - 3
