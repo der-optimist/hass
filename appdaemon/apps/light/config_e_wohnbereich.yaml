@@ -69,7 +69,7 @@ auto_light_e_ez_wandleuchten_hell:
 auto_light_e_ez_wandleuchten_warm:
   module: auto_light
   class: auto_light
-  debug: quiet
+  debug: few
   app_switch: input_boolean.app_switch_licht_esszimmer
   light: light.wandleuchten_esszimmer_gemutlich
   type: dim
