@@ -10,3 +10,15 @@ auto_light_k_vorratsraum:
     - binary_sensor.anwesenheit_vorratsraum
   min_illuminance_values:
     "00:00": 1
+auto_light_k_werkelraum:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  app_switch: input_boolean.app_switch_licht_keller
+  light: light.werkelraum
+  type: switch
+  triggers: 
+    - binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
+    - binary_sensor.lumi_lumi_sensor_motion_aq2_ias_zone
+  min_illuminance_values:
+    "00:00": 1
