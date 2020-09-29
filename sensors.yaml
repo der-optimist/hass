@@ -11,7 +11,8 @@
         value_template: "{{ state_attr('weather.dark_sky', 'humidity') }}"
       date_template:
         friendly_name: 'Datum'
-        value_template: '{{ states('sensor.date') and as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}'
+        value_template: '{{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}'
+        entity_id: sensor.date
       luftfeuchtigkeit_kuche_aqara:
         friendly_name: 'Luftfeuchtigkeit Küche'
         unit_of_measurement: '%'
