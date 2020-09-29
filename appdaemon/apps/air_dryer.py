@@ -10,6 +10,7 @@ class air_dryer(hass.Hass):
 
     def initialize(self):
         # Args
+        self.zigbee = self.args["zigbee"]
         self.air_dryer_switch = self.args["air_dryer_switch"]
         self.energy_measurement_sensor = self.args["energy_measurement_sensor"]
         self.humidity_sensor = self.args["humidity_sensor"]
@@ -17,20 +18,22 @@ class air_dryer(hass.Hass):
         self.humidity_standard_min = float(self.args["humidity_standard_min"])
         self.humidity_special_max = float(self.args["humidity_special_max"])
         self.humidity_special_min = float(self.args["humidity_special_min"])
-        self.zha_device_ieee = self.args["zha_device_ieee"]
-        self.zha_device_command_time_1 = self.args["zha_device_command_time_1"]
-        self.time_1_hours = int(self.args["time_1_hours"])
-        self.zha_device_command_time_2 = self.args["zha_device_command_time_2"]
-        self.time_2_hours = int(self.args["time_2_hours"])
         self.input_number_timer_special_humidity = self.args["input_number_timer_special_humidity"]
         self.name_reminder_switch_tank_full = self.args["name_reminder_switch_tank_full"]
         self.text_reminder_switch_tank_full = self.args["text_reminder_switch_tank_full"]
+        if self.zigbee:
+            self.zha_device_ieee = self.args["zha_device_ieee"]
+            self.zha_device_command_time_1 = self.args["zha_device_command_time_1"]
+            self.time_1_hours = int(self.args["time_1_hours"])
+            self.zha_device_command_time_2 = self.args["zha_device_command_time_2"]
+            self.time_2_hours = int(self.args["time_2_hours"])
         
         self.listen_state(self.timer_state_changed, self.input_number_timer_special_humidity)
         self.listen_state(self.humidity_state_changed, self.humidity_sensor)
         self.listen_state(self.electrical_measurement_state_changed, self.energy_measurement_sensor)
-        self.listen_event(self.button_time_1, "zha_event", device_ieee = self.zha_device_ieee, command = self.zha_device_command_time_1)
-        self.listen_event(self.button_time_2, "zha_event", device_ieee = self.zha_device_ieee, command = self.zha_device_command_time_2)
+        if self.zigbee:
+            self.listen_event(self.button_time_1, "zha_event", device_ieee = self.zha_device_ieee, command = self.zha_device_command_time_1)
+            self.listen_event(self.button_time_2, "zha_event", device_ieee = self.zha_device_ieee, command = self.zha_device_command_time_2)
         
         # define tank full reminder switch
         icon_reminder_tank = "/local/icons/reminders/drop_orange_blink.svg"
