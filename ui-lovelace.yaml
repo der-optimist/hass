@@ -33,6 +33,8 @@ resources:
     type: module
   - url: /local/custom_cards_without_hacs/zha-network-visualization-card.js
     type: module
+  - url: /hacsfiles/rgb-light-card/card.js
+    type: module
 
 title: Lieblingshaus
 custom_header:
