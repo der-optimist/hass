@@ -31,12 +31,8 @@ cards:
       full_row: true
     - type: section
       label: Luft
-    - entity: sensor.temp_waschkuche_aqara
-      name: Temperatur Funk
     - entity: sensor.dht22_waschkueche_temperature
       name: Temperatur DHT
-    - entity: sensor.luftfeuchtigkeit_waschkuche_aqara
-      name: Luftfeuchtigkeit Funk
     - entity: sensor.dht22_waschkueche_humidity
       name: Luftfeuchtigkeit DHT
   - type: entities
@@ -78,6 +74,19 @@ cards:
     - entity: switch.luftungsanlage
       name: Lüftungsanlage
       secondary_info: "[[ sensor.el_leistung_luftungsanlage ]] W"
+    - entity: switch.innr_sp_120_test_on_off
+      name: Steckdose Luftentfeuchter
+    - entity: sensor.innr_sp_120_test_electrical_measurement
+      name: Strom Luftentfeuchter
+    - type: custom:slider-entity-row
+      entity: input_number.timer_spezial_luftf_werkelraum
+      full_row: true
+    - type: section
+      label: Luft
+    - entity: sensor.lumi_lumi_weather_temperature
+      name: Temperatur Funk
+    - entity: sensor.lumi_lumi_weather_humidity
+      name: Luftfeuchtigkeit Funk
   - type: entities
     title: "Partyraum"
     show_header_toggle: false
