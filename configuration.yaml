@@ -234,6 +234,12 @@ input_number:
     min: 0
     max: 12
     step: 1
+  timer_spezial_luftf_werkelraum:
+    name: Timer verringerte Luftfeuchtigkeit Werkelraum
+    initial: 0
+    min: 0
+    max: 12
+    step: 1
 input_text:
   location_jo_roh:
     name: Location Jo roh
