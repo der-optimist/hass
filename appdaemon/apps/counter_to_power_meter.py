@@ -45,7 +45,7 @@ class counter_to_power_meter(hass.Hass):
             self.log("updated self.raw_value_persistent so {}".format(self.raw_value_persistent))
             self.log("self.raw_value_offset_persistent_to_knx is {}".format(self.raw_value_offset_persistent_to_knx))
         # set states
-        self.set_state(self.args["ha_electricity_sensor_name"], state = round(((self.raw_value_persistent * self.args["energy_per_pulse"]),3) + self.offset_kwh), attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
+        self.set_state(self.args["ha_electricity_sensor_name"], state = round(((self.raw_value_persistent * self.args["energy_per_pulse"]) + self.offset_kwh),3), attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
         self.set_state(self.args["ha_power_sensor_name"], state = 0.0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W", "device_class": "power"})
         # listen for new values
         self.listen_state(self.counter_changed, self.args["knx_counter"])
