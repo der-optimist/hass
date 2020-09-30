@@ -3,6 +3,7 @@ counter_to_power_meter_wp_heizstab:
   class: counter_to_power_meter
   offset_kwh: 0
   knx_counter: sensor.stromzahler_wp_heizstab_rohdaten
+  raw_value_persistent: input_number.speicher_stromzaehler_rohdaten_wp_heizstab
   ha_electricity_sensor_name: sensor.stromzahler_wp_heizstab
   ha_electricity_sensor_friendly_name: Stromzähler WP Heizstab
   ha_power_sensor_name: sensor.el_leistung_wp_heizstab
@@ -16,6 +17,7 @@ counter_to_power_meter_wp_innenteil:
   class: counter_to_power_meter
   offset_kwh: 0
   knx_counter: sensor.stromzahler_wp_innenteil_rohdaten
+  raw_value_persistent: input_number.speicher_stromzaehler_rohdaten_wp_innen
   ha_electricity_sensor_name: sensor.stromzahler_wp_innenteil
   ha_electricity_sensor_friendly_name: Stromzähler WP Innenteil
   ha_power_sensor_name: sensor.el_leistung_wp_innenteil
@@ -29,6 +31,7 @@ counter_to_power_meter_wp_aussenteil:
   class: counter_to_power_meter
   offset_kwh: 0
   knx_counter: sensor.stromzahler_wp_aussenteil_rohdaten
+  raw_value_persistent: input_number.speicher_stromzaehler_rohdaten_wp_aussen
   ha_electricity_sensor_name: sensor.stromzahler_wp_aussenteil
   ha_electricity_sensor_friendly_name: Stromzähler WP Aussenteil
   ha_power_sensor_name: sensor.el_leistung_wp_aussenteil
@@ -42,6 +45,7 @@ counter_to_power_meter_kochfeld:
   class: counter_to_power_meter
   offset_kwh: 0
   knx_counter: sensor.stromzahler_kochfeld_rohdaten
+  raw_value_persistent: input_number.speicher_stromzaehler_rohdaten_kochfeld
   ha_electricity_sensor_name: sensor.stromzahler_kochfeld
   ha_electricity_sensor_friendly_name: Stromzähler Kochfeld
   ha_power_sensor_name: sensor.el_leistung_kochfeld
