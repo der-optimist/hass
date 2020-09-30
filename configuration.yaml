@@ -240,6 +240,22 @@ input_number:
     min: 0
     max: 12
     step: 1
+  speicher_stromzaehler_rohdaten_wp_innen:
+    name: Speicher Stromz. Rohdat. WP innen
+    min: 0
+    max: 4294967294
+  speicher_stromzaehler_rohdaten_wp_aussen:
+    name: Speicher Stromz. Rohdat. WP aussen
+    min: 0
+    max: 4294967294
+  speicher_stromzaehler_rohdaten_wp_heizstab:
+    name: Speicher Stromz. Rohdat. WP Heizstab
+    min: 0
+    max: 4294967294
+  speicher_stromzaehler_rohdaten_kochfeld:
+    name: Speicher Stromz. Rohdat. Kochfeld
+    min: 0
+    max: 4294967294
 input_text:
   location_jo_roh:
     name: Location Jo roh
