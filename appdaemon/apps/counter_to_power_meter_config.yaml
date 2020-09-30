@@ -8,7 +8,7 @@ counter_to_power_meter_wp_heizstab:
   ha_power_sensor_friendly_name: El. Leistung WP Heizstab
   phases: 3
   energy_per_pulse: 0.0005
-  knx_sending_every: 5
+  knx_sending_every: 50
   cut_power_below: 10
 counter_to_power_meter_wp_innenteil:
   module: counter_to_power_meter
@@ -44,5 +44,5 @@ counter_to_power_meter_kochfeld:
   ha_power_sensor_friendly_name: El. Leistung Kochfeld
   phases: 3
   energy_per_pulse: 0.0005
-  knx_sending_every: 5
+  knx_sending_every: 10
   cut_power_below: 10
