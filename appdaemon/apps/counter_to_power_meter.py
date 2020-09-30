@@ -31,8 +31,10 @@ class counter_to_power_meter(hass.Hass):
         self.handle_ramp_down_timer = None
         try:
             current_electricity = round(float(self.get_state(self.args["ha_electricity_sensor_name"])))
-        except:
+            self.log("current electricity ist {}".format(current_electricity))
+        except Exception as e:
             current_electricity = 0
+            self.log("error while loading current electrcity. error is {}".format(e))
         self.set_state(self.args["ha_electricity_sensor_name"], state = current_electricity, attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
         self.set_state(self.args["ha_power_sensor_name"], state = 0.0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W", "device_class": "power"})
         
