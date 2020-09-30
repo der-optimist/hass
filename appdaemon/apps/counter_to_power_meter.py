@@ -60,7 +60,7 @@ class counter_to_power_meter(hass.Hass):
         self.log("debug: reveived new knx value {}. self.raw_value_offset_persistent_to_knx is {}".format(new,self.raw_value_offset_persistent_to_knx ))
         if float(new) < self.raw_value_persistent:
             self.log("received raw value from knx lower than ast persistent value. will update internal offset")
-            self.raw_value_offset_persistent_to_knx = self.raw_value_persistent - new + self.args["knx_sending_every"]
+            self.raw_value_offset_persistent_to_knx = self.raw_value_persistent - float(new) + self.args["knx_sending_every"]
         # Update electricity meter sensor
         self.raw_value_persistent = float(new) + self.raw_value_offset_persistent_to_knx
         self.log("self.raw_value_persistent is {}".format(self.raw_value_persistent))
