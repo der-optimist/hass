@@ -13,9 +13,7 @@ counter_to_power_meter_wp_heizstab:
 counter_to_power_meter_wp_innenteil:
   module: counter_to_power_meter
   class: counter_to_power_meter
-  db_passwd: !secret permanent_db_passwd
-  db_measurement: sensor.el_leistung_wp_innenteil
-  db_field: state_float
+  offset_kwh: 11
   knx_counter: sensor.stromzahler_wp_innenteil_rohdaten
   ha_electricity_sensor_name: sensor.stromzahler_wp_innenteil
   ha_electricity_sensor_friendly_name: Stromzähler WP Innenteil
