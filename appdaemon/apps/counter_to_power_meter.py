@@ -40,7 +40,7 @@ class counter_to_power_meter(hass.Hass):
         if self.raw_value_offset_persistent_to_knx < 0:
             self.log("last saved persistent value below knx value. will update persistent value")
             self.raw_value_persistent = self.raw_value_knx
-            self.raw_value_offset_knx_to_persistent = 0
+            self.raw_value_offset_persistent_to_knx = 0
             self.set_value(self.args["input_number_raw_value_persistent"], self.raw_value_persistent)
             self.log("updated self.raw_value_persistent so {}".format(self.raw_value_persistent))
             self.log("self.raw_value_offset_persistent_to_knx is {}".format(self.raw_value_offset_persistent_to_knx))
