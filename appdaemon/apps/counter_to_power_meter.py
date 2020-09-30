@@ -36,11 +36,14 @@ class counter_to_power_meter(hass.Hass):
         self.raw_value_knx = round(float(self.get_state(self.args["knx_counter"])))
         self.log("current knx value is {}".format(self.raw_value_knx))
         self.raw_value_offset_persistent_to_knx = self.raw_value_persistent - self.raw_value_knx
+        self.log("self.raw_value_offset_persistent_to_knx is {}".format(self.raw_value_offset_persistent_to_knx))
         if self.raw_value_offset_persistent_to_knx < 0:
             self.log("last saved persistent value below knx value. will update persistent value")
             self.raw_value_persistent = self.raw_value_knx
             self.raw_value_offset_knx_to_persistent = 0
             self.set_value(self.args["input_number_raw_value_persistent"], self.raw_value_persistent)
+            self.log("updated self.raw_value_persistent so {}".format(self.raw_value_persistent))
+            self.log("self.raw_value_offset_persistent_to_knx is {}".format(self.raw_value_offset_persistent_to_knx))
         # set states
         self.set_state(self.args["ha_electricity_sensor_name"], state = ((self.raw_value_persistent * self.args["energy_per_pulse"]) + self.offset_kwh), attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
         self.set_state(self.args["ha_power_sensor_name"], state = 0.0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W", "device_class": "power"})
@@ -54,12 +57,15 @@ class counter_to_power_meter(hass.Hass):
             self.cancel_timer(self.handle_ramp_down_timer)
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
         # check if raw value is higher than last saved persistent value (can be 0 when knx device rebooted)
+        self.log("debug: reveived new knx value {}. self.raw_value_offset_persistent_to_knx is {}".format(new,self.raw_value_offset_persistent_to_knx ))
         if float(new) < self.raw_value_persistent:
             self.log("received raw value from knx lower than ast persistent value. will update internal offset")
             self.raw_value_offset_persistent_to_knx = self.raw_value_persistent - new + self.args["knx_sending_every"]
         # Update electricity meter sensor
         self.raw_value_persistent = float(new) + self.raw_value_offset_persistent_to_knx
+        self.log("self.raw_value_persistent is {}".format(self.raw_value_persistent))
         new_electricity_value = (self.raw_value_persistent * self.args["energy_per_pulse"]) + self.offset_kwh
+        self.log("new_electricity_value is {}".format(new_electricity_value))
         attributes = self.get_state(self.args["ha_electricity_sensor_name"], attribute="all")["attributes"]
         self.set_state(self.args["ha_electricity_sensor_name"], state = round(new_electricity_value), attributes=attributes)
         self.set_value(self.args["input_number_raw_value_persistent"], self.raw_value_persistent)
