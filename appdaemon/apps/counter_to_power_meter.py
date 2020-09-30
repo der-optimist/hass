@@ -58,7 +58,7 @@ class counter_to_power_meter(hass.Hass):
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
         # check if raw value is higher than last saved persistent value (can be 0 when knx device rebooted)
         self.log("debug: reveived new knx value {}. self.raw_value_offset_persistent_to_knx is {}".format(new,self.raw_value_offset_persistent_to_knx ))
-        if float(new) < self.raw_value_persistent:
+        if (float(new) + self.raw_value_offset_persistent_to_knx) < self.raw_value_persistent:
             self.log("received raw value from knx lower than ast persistent value. will update internal offset")
             self.raw_value_offset_persistent_to_knx = self.raw_value_persistent - float(new) + self.args["knx_sending_every"]
         # Update electricity meter sensor
