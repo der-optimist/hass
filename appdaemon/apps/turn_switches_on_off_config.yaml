@@ -1,12 +1,12 @@
 ladesteckdose_jo_mittags_an:
   module: turn_switches_on_off
   class: turn_switches_on_off
-  switch_entity: switch.innr_sp_120_3f148903_on_off
+  switch_entity: switch.lumi_lumi_plug_mmeu01_on_off
   time: "12:02"
   on_off: "on"
 ladesteckdose_jo_abends_an:
   module: turn_switches_on_off
   class: turn_switches_on_off
-  switch_entity: switch.innr_sp_120_3f148903_on_off
+  switch_entity: switch.lumi_lumi_plug_mmeu01_on_off
   time: "18:02"
   on_off: "on"
