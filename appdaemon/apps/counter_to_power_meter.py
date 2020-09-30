@@ -9,6 +9,7 @@ import datetime
 #
 # Args:
 # offset_kwh = Offset for electricity sensor
+# input_number_raw_value_persistent = an input number: input_number.xyz
 # knx_counter = "sensor.stromzahler_xyz_rohdaten"
 # ha_electricity_sensor_name = "sensor.stromzahler_xyz"
 # ha_electricity_sensor_friendly_name = "Stromzähler XYZ"
@@ -24,32 +25,44 @@ class counter_to_power_meter(hass.Hass):
 
     def initialize(self):
         self.max_plausible_watt_per_phase = 7360 # would be 32A @ 230V
-        # listen for new values
-        self.listen_state(self.counter_changed, self.args["knx_counter"])
         # initialize internal variables
         self.time_of_last_event = None
         self.value_of_last_event = None
         self.handle_ramp_down_timer = None
         self.offset_kwh = self.args["offset_kwh"]
-        try:
-            current_electricity = round(float(self.get_state(self.args["ha_electricity_sensor_name"])))
-            self.log("current electricity ist {}".format(current_electricity))
-        except Exception as e:
-            current_electricity = 0
-            self.log("error while loading current electrcity. error is {}".format(e))
-        self.set_state(self.args["ha_electricity_sensor_name"], state = (current_electricity + self.offset_kwh), attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
+        # persistent stuff
+        self.raw_value_persistent = round(float(self.get_state(self.args["input_number_raw_value_persistent"])))
+        self.log("current persistent raw value is {}".format(self.raw_value_persistent))
+        self.raw_value_knx = round(float(self.get_state(self.args["knx_counter"])))
+        self.log("current knx value is {}".format(self.raw_value_knx))
+        self.raw_value_offset_persistent_to_knx = self.raw_value_persistent - self.raw_value_knx
+        if self.raw_value_offset_persistent_to_knx < 0:
+            self.log("last saved persistent value below knx value. will update persistent value")
+            self.raw_value_persistent = self.raw_value_knx
+            self.raw_value_offset_knx_to_persistent = 0
+            self.set_value(self.args["input_number_raw_value_persistent"], self.raw_value_persistent)
+        # set states
+        self.set_state(self.args["ha_electricity_sensor_name"], state = ((self.raw_value_persistent * self.args["energy_per_pulse"]) + self.offset_kwh), attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
         self.set_state(self.args["ha_power_sensor_name"], state = 0.0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W", "device_class": "power"})
-        
+        # listen for new values
+        self.listen_state(self.counter_changed, self.args["knx_counter"])
+
     def counter_changed(self, entity, attribute, old, new, kwargs):
         if new == "unavailable" or new == "Nicht verfügbar" or new == old:
             return
         if self.handle_ramp_down_timer != None:
             self.cancel_timer(self.handle_ramp_down_timer)
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
+        # check if raw value is higher than last saved persistent value (can be 0 when knx device rebooted)
+        if new < self.raw_value_persistent:
+            self.log("received raw value from knx lower than ast persistent value. will update internal offset")
+            self.raw_value_offset_persistent_to_knx = self.raw_value_persistent - new + self.args["knx_sending_every"]
         # Update electricity meter sensor
-        new_electricity_value = (float(new) * self.args["energy_per_pulse"]) + self.offset_kwh
+        self.raw_value_persistent = float(new) + self.raw_value_offset_persistent_to_knx
+        new_electricity_value = (self.raw_value_persistent * self.args["energy_per_pulse"]) + self.offset_kwh
         attributes = self.get_state(self.args["ha_electricity_sensor_name"], attribute="all")["attributes"]
         self.set_state(self.args["ha_electricity_sensor_name"], state = round(new_electricity_value), attributes=attributes)
+        self.set_value(self.args["input_number_raw_value_persistent"], self.raw_value_persistent)
         # calculate power
         if self.time_of_last_event == None:
             self.log("Looks like it is the first event since a restart. Power will be available next time")
@@ -58,7 +71,7 @@ class counter_to_power_meter(hass.Hass):
                 self.log("I have a time of the last event, but no value... no idea how that can happen. Look for a bug!")
             else:
                 time_delta_seconds = (current_time - self.time_of_last_event).total_seconds()
-                electricity_delta_Ws = (float(new) - self.value_of_last_event) * self.args["energy_per_pulse"] * 3600 * 1000
+                electricity_delta_Ws = (self.raw_value_persistent - self.value_of_last_event) * self.args["energy_per_pulse"] * 3600 * 1000
                 current_power = electricity_delta_Ws / time_delta_seconds
                 if (current_power > (float(self.args["phases"]) * self.max_plausible_watt_per_phase)) or current_power < 0:
                     self.log("Unplausibler Wert für Leistung: {} Watt - werde ihn ignorieren".format(round(current_power, 1)))
@@ -69,10 +82,11 @@ class counter_to_power_meter(hass.Hass):
                     self.handle_ramp_down_timer = self.run_in(self.ramp_down,round(2 * time_delta_seconds + 1))
         # save current values in variables for next calculation
         self.time_of_last_event = current_time
-        self.value_of_last_event = float(new)
+        self.value_of_last_event = self.raw_value_persistent
 
     def ramp_down(self, kwargs):
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
+#        new_virtual_electricity_value = (self.value_of_last_event + self.args["knx_sending_every"]) * self.args["energy_per_pulse"]
         time_delta_seconds = (current_time - self.time_of_last_event).total_seconds()
         electricity_delta_Ws = self.args["knx_sending_every"] * self.args["energy_per_pulse"] * 3600 * 1000
         current_power = electricity_delta_Ws / time_delta_seconds
