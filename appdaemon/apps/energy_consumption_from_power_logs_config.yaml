@@ -2,5 +2,9 @@ energy_consumption_from_power_logs:
   module: energy_consumption_from_power_logs
   class: energy_consumption_from_power_logs
   db_passwd: !secret permanent_db_passwd
-  db_measurement: sensor.el_leistung_luftungsanlage
   db_field: state_float
+  special_date: "2020-09-30"
+  db_measurements: 
+    - sensor.el_leistung_luftungsanlage
+    - sensor.el_leistung_kuhlschrank_kuche
+    - sensor.el_leistung_gefrierschrank
