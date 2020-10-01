@@ -64,7 +64,7 @@ class energy_consumption_from_power_logs(hass.Hass):
         self.log("Verbrauch: {} Ws bzw. {} kWh".format(consumption_Ws, consumption_kWh))
         # save to db
         ts_save_local_ns = datetime.datetime.strptime(self.date + 'T23:59:59.0', '%Y-%m-%dT%H:%M:%S.%f').timestamp() * 1e9
-        self.client.write_points([{"measurement":"energy_consumption_test","fields":{"lueftungsanlage":consumption_kWh},"time":ts_save_local_ns}])
+        self.client.write_points([{"measurement":"energy_consumption_test","fields":{"lueftungsanlage":consumption_kWh},"time":int(ts_save_local_ns)}])
 #            if newest_value == None:
 #                newest_value = point[self.db_field]
 #                current_time = datetime.datetime.utcnow()
