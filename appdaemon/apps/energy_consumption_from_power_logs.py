@@ -25,7 +25,6 @@ class energy_consumption_from_power_logs(hass.Hass):
         self.db_measurement: Set[str] = self.args.get("db_measurement", set())
         self.db_field: Set[str] = self.args.get("db_field", set())
         
-        self.listen_state(self.on_off_switch, self.args["on_off_switch"])
         self.date = "2020-09-30"
         
         self.calculate_energy_consumption(None)
