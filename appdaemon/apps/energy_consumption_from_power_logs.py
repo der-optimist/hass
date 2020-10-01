@@ -33,9 +33,12 @@ class energy_consumption_from_power_logs(hass.Hass):
         #self.drop()
 
     def calculate_energy_consumption(self, kwargs):
-        ts_start = datetime.datetime.strptime(self.date + 'T00:00:00.0', '%Y-%m-%dT%H:%M:%S.%f').timestamp() * 1e9
-        ts_end = datetime.datetime.strptime(self.date + 'T23:59:59.999999', '%Y-%m-%dT%H:%M:%S.%f').timestamp() * 1e9 + 999
-        query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_measurement, int(ts_start), int(ts_end))
+        ts_start = datetime.datetime.strptime(self.date + 'T00:00:00.0', '%Y-%m-%dT%H:%M:%S.%f').timestamp()
+        ts_start_ns = ts_start  * 1e9
+        ts_start_ns_plus_buffer = ts_start_ns - 12*3600*1e9 # +12 hours for query to know value before that day started
+        ts_end = datetime.datetime.strptime(self.date + 'T23:59:59.999999', '%Y-%m-%dT%H:%M:%S.%f').timestamp()
+        ts_end_ns = ts_end * 1e9 + 999
+        query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_measurement, int(ts_start_ns_plus_buffer), int(ts_end_ns))
         self.log(query)
         result_points = self.client.query(query).get_points()
         self.log(result_points)
