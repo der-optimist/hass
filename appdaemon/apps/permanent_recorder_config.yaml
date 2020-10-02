@@ -219,6 +219,29 @@ permanent_recorder:
     - cover.jalousie_wz_bodentiefes
     - cover.jalousie_wz_couch
   state_float:
+    - sensor.dht22_waschkueche_humidity
+    - sensor.dht22_waschkueche_temperature
+    - sensor.diesel_amtzell
+    - sensor.diesel_aral_mecka
+    - sensor.diesel_hannober
+    - sensor.diesel_jet_fn
+    - sensor.diesel_marktkauf
+    - sensor.diesel_pinoil_tt
+    - sensor.diesel_schindele
+    - sensor.e10_amtzell
+    - sensor.e10_aral_mecka
+    - sensor.e10_hannober
+    - sensor.e10_jet_fn
+    - sensor.e10_marktkauf
+    - sensor.e10_pinoil_tt
+    - sensor.e10_schindele
+    - sensor.e5_amtzell
+    - sensor.e5_aral_mecka
+    - sensor.e5_hannober
+    - sensor.e5_jet_fn
+    - sensor.e5_marktkauf
+    - sensor.e5_pinoil_tt
+    - sensor.e5_schindele
     - sensor.el_leistung_backofen
     - sensor.el_leistung_gefrierschrank
     - sensor.el_leistung_kochfeld
@@ -230,9 +253,9 @@ permanent_recorder:
     - sensor.el_leistung_trockner
     - sensor.el_leistung_tv
     - sensor.el_leistung_waschmaschine
+    - sensor.el_leistung_wp_aussenteil
     - sensor.el_leistung_wp_heizstab
     - sensor.el_leistung_wp_innenteil
-    - sensor.el_leistung_wp_aussenteil
     - sensor.helligkeit_bad_eg_pm
     - sensor.helligkeit_bad_og_pm
     - sensor.helligkeit_esszimmer_pm
@@ -248,8 +271,29 @@ permanent_recorder:
     - sensor.helligkeit_wetterstation
     - sensor.helligkeit_windfang_pm
     - sensor.helligkeit_wohnzimmer_pm
-    - sensor.humidity_owm
-    - sensor.memory_use_percent
+    - sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
+    - sensor.innr_sp_120_test_electrical_measurement
+    - sensor.luftdruck_kuche_aqara
+    - sensor.luftfeuchtigkeit_kuche_aqara
+    - sensor.lumi_lumi_remote_b286acn01_power
+    - sensor.lumi_lumi_sensor_magnet_aq2_83155c04_power
+    - sensor.lumi_lumi_sensor_magnet_aq2_power
+    - sensor.lumi_lumi_sensor_motion_aq2_illuminance
+    - sensor.lumi_lumi_sensor_motion_aq2_power
+    - sensor.lumi_lumi_weather_57dc3d03_humidity
+    - sensor.lumi_lumi_weather_57dc3d03_power
+    - sensor.lumi_lumi_weather_57dc3d03_temperature
+    - sensor.lumi_lumi_weather_humidity
+    - sensor.lumi_lumi_weather_power
+    - sensor.lumi_lumi_weather_temperature
+    - sensor.onewire_07_estrich_kueche
+    - sensor.onewire_14_estrich_wohnzimmer
+    - sensor.onewire_15_estrich_wc_1
+    - sensor.onewire_16_estrich_esszimmer
+    - sensor.onewire_20_estrich_bad_eg
+    - sensor.onewire_21_estrich_wc_2
+    - sensor.onewire_25_estrich_schlafzimmer
+    - sensor.onewire_serverschrank
     - sensor.sollwert_heizung_bad_eg
     - sensor.sollwert_heizung_bad_og
     - sensor.sollwert_heizung_esszimmer
@@ -278,6 +322,7 @@ permanent_recorder:
     - sensor.stromzahler_gefrierschrank
     - sensor.stromzahler_kochfeld
     - sensor.stromzahler_kochfeld_rohdaten
+    - sensor.stromzahler_kochfeld_rohdaten
     - sensor.stromzahler_kuhlschrank_keller
     - sensor.stromzahler_kuhlschrank_kuche
     - sensor.stromzahler_luftungsanlage
@@ -299,6 +344,7 @@ permanent_recorder:
     - sensor.temp_flur_og_pm
     - sensor.temp_gastezimmer_pm
     - sensor.temp_gastezimmer_taster
+    - sensor.temp_kuche_aqara
     - sensor.temp_kuche_pm
     - sensor.temp_la_pm
     - sensor.temp_la_taster
@@ -308,50 +354,22 @@ permanent_recorder:
     - sensor.temp_owm
     - sensor.temp_schlafzimmer_pm
     - sensor.temp_schlafzimmer_taster
+    - sensor.temp_waschkuche_aqara
     - sensor.temp_wc_pm
     - sensor.temp_wetterstation
     - sensor.temp_windfang_pm
     - sensor.temp_wohnzimmer_pm
     - sensor.windgeschwindigkeit_wetterstation_kmh
-    - sensor.stromzahler_kochfeld_rohdaten
-    - sensor.luftfeuchtigkeit_kuche_aqara
-    - sensor.temp_kuche_aqara
-    - sensor.luftdruck_kuche_aqara
-    - sensor.luftfeuchtigkeit_waschkuche_aqara
-    - sensor.temp_waschkuche_aqara
-    - sensor.lumi_lumi_weather_57dc3d03_power
-    - sensor.lumi_lumi_weather_341e4d03_power
-    - sensor.lumi_lumi_sensor_swit_62225f02_power
-    - sensor.lumi_lumi_sensor_magnet_aq2_ddf99f04_power
-    - sensor.lumi_lumi_sensor_magnet_aq2_83155c04_power
-    - sensor.diesel_amtzell
-    - sensor.diesel_aral_mecka
-    - sensor.diesel_hannober
-    - sensor.diesel_jet_fn
-    - sensor.diesel_marktkauf
-    - sensor.diesel_schindele
-    - sensor.e10_amtzell
-    - sensor.e10_aral_mecka
-    - sensor.e10_hannober
-    - sensor.e10_jet_fn
-    - sensor.e10_marktkauf
-    - sensor.e10_schindele
-    - sensor.e5_amtzell
-    - sensor.e5_aral_mecka
-    - sensor.e5_hannober
-    - sensor.e5_jet_fn
-    - sensor.e5_marktkauf
-    - sensor.e5_schindele
-    - sensor.onewire_07_estrich_kueche
-    - sensor.onewire_14_estrich_wohnzimmer
-    - sensor.onewire_15_estrich_wc_1
-    - sensor.onewire_16_estrich_esszimmer
-    - sensor.onewire_20_estrich_bad_eg
-    - sensor.onewire_21_estrich_wc_2
-    - sensor.onewire_25_estrich_schlafzimmer
-    - sensor.onewire_serverschrank
-    - sensor.innr_sp_120_3f148903_electrical_measurement
-    - sensor.innr_sp_120_88138903_electrical_measurement
-    - sensor.lumi_lumi_plug_mmeu01_e3a3753c_electrical_measurement
-    - sensor.dht22_waschkueche_humidity
-    - sensor.dht22_waschkueche_temperature
+  state_string:
+    - sensor.diagnose_heizkreis_bad_eg
+    - sensor.diagnose_heizkreis_bad_og
+    - sensor.diagnose_heizkreis_esszimmer
+    - sensor.diagnose_heizkreis_flur_og
+    - sensor.diagnose_heizkreis_gastezimmer
+    - sensor.diagnose_heizkreis_kuche
+    - sensor.diagnose_heizkreis_la
+    - sensor.diagnose_heizkreis_le
+    - sensor.diagnose_heizkreis_nahzimmer
+    - sensor.diagnose_heizkreis_schlafzimmer
+    - sensor.diagnose_heizkreis_wc_wf
+    - sensor.diagnose_heizkreis_wohnzimmer
