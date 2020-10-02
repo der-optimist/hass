@@ -4,7 +4,11 @@ energy_consumption_from_power_logs:
   db_passwd: !secret permanent_db_passwd
   db_field: state_float
   special_date: "2020-09-30"
-  db_measurements: 
+  db_measurements_Watt: 
     - sensor.el_leistung_luftungsanlage
     - sensor.el_leistung_kuhlschrank_kuche
     - sensor.el_leistung_gefrierschrank
+  db_measurements_kWh:
+    - sensor.stromzahler_wp_aussenteil
+    - sensor.stromzahler_wp_innenteil
+    - sensor.stromzahler_kochfeld
