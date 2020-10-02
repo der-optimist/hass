@@ -46,7 +46,6 @@ class permanent_recorder(hass.Hass):
             self.listen_state(self.cover_changed, entity, attribute = "current_tilt_position")
         
         # Heizung
-        self.listen_state(self.heating_supply_temp, "sensor.actual_supply_temp")
         #
         self.listen_state(self.heating_water_heater_state, "water_heater.dhw1")
         self.listen_state(self.heating_water_heater_operation_mode, "water_heater.dhw1", attribute = "operation_mode")
@@ -54,16 +53,24 @@ class permanent_recorder(hass.Hass):
         self.listen_state(self.heating_water_heater_setpoint, "water_heater.dhw1", attribute = "setpoint")
         self.listen_state(self.heating_water_heater_target_temp, "water_heater.dhw1", attribute = "temperature")
         self.listen_state(self.heating_water_heater_current_temp, "water_heater.dhw1", attribute = "current_temperature")
+        self.listen_state(self.heating_water_heater_charge, "sensor.dhw1_charge")
         #
         self.listen_state(self.heating_heating_state, "climate.hc1")
-        self.listen_state(self.heating_heating_state, "climate.hc1", attribute = "bosch_state")
+        self.listen_state(self.heating_heating_bosch_state, "climate.hc1", attribute = "bosch_state")
         self.listen_state(self.heating_heating_setpoint, "climate.hc1", attribute = "setpoint")
+        self.listen_state(self.heating_heating_supplytempsetpoint, "sensor.hc1_supplytemperaturesetpoint")
         self.listen_state(self.heating_heating_target_temp, "climate.hc1", attribute = "temperature")
         self.listen_state(self.heating_heating_current_temp, "climate.hc1", attribute = "current_temperature")
+        self.listen_state(self.heating_heating_s_w_switchmode, "sensor.hc1_summer_winter_switchmode")
+        self.listen_state(self.heating_heating_pump_modulation, "sensor.hc1_pump_modulation")
         #
-        self.listen_state(self.heating_health_status, "sensor.health_status")
-        self.listen_state(self.heating_outdoor_temp, "sensor.outdoor_temperature")
+        self.listen_state(self.heating_health_status, "sensor.bosch_health_status")
+        self.listen_state(self.heating_notifications, "sensor.bosch_notifications")
+        self.listen_state(self.heating_outdoor_temp, "sensor.bosch_outdoor_temperature")
+        self.listen_state(self.heating_supply_temp, "sensor.actual_supply_temp")
+        self.listen_state(self.heating_supply_temp_setpoint, "sensor.supply_temp_setpoint")
         self.listen_state(self.heating_return_temp, "sensor.return_temp")
+        self.listen_state(self.heating_number_of_starts, "sensor.bosch_numberofstarts")
     
     def light_brightness_changed(self, entity, attributes, old, new, kwargs):
         if new == "off":
@@ -115,6 +122,7 @@ class permanent_recorder(hass.Hass):
             return
         self.client.write_points([{"measurement":entity,"fields":{"position":position_float,"tilt":tilt_float}}])
     
+    # ------ heating ----------
     def heating_supply_temp(self, entity, attributes, old, new, kwargs):
         try:
             value_float = float(new)
@@ -161,6 +169,11 @@ class permanent_recorder(hass.Hass):
             self.log("Will write {} to database".format(value_float))
             self.client.write_points([{"measurement":"heating.water_heater","fields":{"current_temperature_float":value_float}}])
     
+    def heating_water_heater_charge(self, entity, attributes, old, new, kwargs):
+        self.log("Water Heater Charge State Changed")
+        if new != None and new != "":
+            self.client.write_points([{"measurement":"heating.water_heater","fields":{"charge_state_string":str(new)}}])
+    
     def heating_heating_state(self, entity, attributes, old, new, kwargs):
         self.log("Heating State Changed")
         if new != None and new != "":
@@ -175,6 +188,15 @@ class permanent_recorder(hass.Hass):
         self.log("Heating Setpoint Changed")
         if new != None and new != "":
             self.client.write_points([{"measurement":"heating.heating","fields":{"setpoint_string":str(new)}}])
+
+    def heating_heating_supplytempsetpoint(self, entity, attributes, old, new, kwargs):
+        self.log("Heating SuppltempSetpoint Changed")
+        if new != None and new != "":
+            try:
+                value_float = float(new)
+            except:
+                return
+            self.client.write_points([{"measurement":"heating.heating","fields":{"supplytempsetpoint_float":value_float}}])
 
     def heating_heating_target_temp(self, entity, attributes, old, new, kwargs):
         self.log("Heating Target Temp Changed")
@@ -193,11 +215,28 @@ class permanent_recorder(hass.Hass):
             except:
                 return
             self.client.write_points([{"measurement":"heating.heating","fields":{"current_temperature_float":value_float}}])
-    
+
+    def heating_heating_s_w_switchmode(self, entity, attributes, old, new, kwargs):
+        if new != None and new != "":
+            self.client.write_points([{"measurement":"heating.heating","fields":{"s_w_switchmode_string":str(new)}}])
+
+    def heating_heating_pump_modulation(self, entity, attributes, old, new, kwargs):
+        self.log("Heating Pump Modulation Changed")
+        if new != None and new != "":
+            try:
+                value_float = float(new)
+            except:
+                return
+            self.client.write_points([{"measurement":"heating.heating","fields":{"pump_modulation_float":value_float}}])
+
     def heating_health_status(self, entity, attributes, old, new, kwargs):
         if new != None and new != "":
             self.client.write_points([{"measurement":"heating.health_status","fields":{"state_string":str(new)}}])
-    
+
+    def heating_notifications(self, entity, attributes, old, new, kwargs):
+        if new != None and new != "":
+            self.client.write_points([{"measurement":"heating.notifications","fields":{"state_string":str(new)}}])
+            
     def heating_outdoor_temp(self, entity, attributes, old, new, kwargs):
         try:
             value_float = float(new)
@@ -211,6 +250,20 @@ class permanent_recorder(hass.Hass):
         except:
             return
         self.client.write_points([{"measurement":"heating.return_temp","fields":{"state_float":value_float}}])
+
+    def heating_supply_temp_setpoint(self, entity, attributes, old, new, kwargs):
+        try:
+            value_float = float(new)
+        except:
+            return
+        self.client.write_points([{"measurement":"heating.supply_temp_setpoint","fields":{"state_float":value_float}}])
+
+    def heating_number_of_starts(self, entity, attributes, old, new, kwargs):
+        try:
+            value_int = int(new)
+        except:
+            return
+        self.client.write_points([{"measurement":"heating.number_of_starts","fields":{"state_int":value_int}}])
 
     def pct_to_byte(self, val_pct):
         return float(round(val_pct*255/100))
