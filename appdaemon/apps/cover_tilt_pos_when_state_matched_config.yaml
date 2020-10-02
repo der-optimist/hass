@@ -58,15 +58,15 @@ jal_wz_couch_sichtschutz_morgens:
   match_entity: binary_sensor.nachtmodus_wohnbereich_jalousie
   match_state_new: 'off'
   match_state_old: 'on'
-jal_sz_sichtschutz_morgens:
-  module: cover_tilt_pos_when_state_matched
-  class: cover_tilt_pos_when_state_matched
-  constrain_input_boolean: input_boolean.app_switch_jalousie_schlafzimmer
-  constrain_start_time: "04:00:00"
-  constrain_end_time: "11:00:00"
-  cover_entity: cover.jalousie_schlafzimmer
-  mode: tilt
-  target_tilt: 80
-  match_entity: switch.majo_schlafen
-  match_state_new: 'off'
-  match_state_old: 'on'
+#jal_sz_sichtschutz_morgens:
+#  module: cover_tilt_pos_when_state_matched
+#  class: cover_tilt_pos_when_state_matched
+#  constrain_input_boolean: input_boolean.app_switch_jalousie_schlafzimmer
+#  constrain_start_time: "04:00:00"
+#  constrain_end_time: "11:00:00"
+#  cover_entity: cover.jalousie_schlafzimmer
+#  mode: tilt
+#  target_tilt: 80
+#  match_entity: switch.majo_schlafen
+#  match_state_new: 'off'
+#  match_state_old: 'on'
