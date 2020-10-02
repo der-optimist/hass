@@ -243,10 +243,33 @@ permanent_recorder:
     - sensor.e5_pinoil_tt
     - sensor.e5_schindele
     - sensor.el_leistung_backofen
+    - sensor.el_leistung_berechnet_zigbee_licht_gaestezimmer
+    - sensor.el_leistung_berechnet_zigbee_stehlampe_le
+    - sensor.el_leistung_berechnet_zigbee_stehlampe_la
+    - sensor.el_leistung_berechnet_zigbee_kugellampe_sz
+    - sensor.el_leistung_berechnet_zigbee_terrasse_ecke_gr
+    - sensor.el_leistung_berechnet_zigbee_terrasse_ecke_kl
+    - sensor.el_leistung_berechnet_zigbee_terrasse_feuerstelle
+    - sensor.el_leistung_berechnet_licht_flur_keller
+    - sensor.el_leistung_berechnet_licht_technikraum
+    - sensor.el_leistung_berechnet_licht_vorratsraum
+    - sensor.el_leistung_berechnet_licht_werkelraum
+    - sensor.el_leistung_berechnet_licht_partyraum
+    - sensor.el_leistung_berechnet_spots_carport
+    - sensor.el_leistung_berechnet_wandwuerfel_sued
+    - sensor.el_leistung_berechnet_wandwuerfel_west
+    - sensor.el_leistung_berechnet_abstellraum
+    - sensor.el_leistung_berechnet_naehtisch_nz
+    - sensor.el_leistung_berechnet_schreibtisch_nz
+    - sensor.el_leistung_berechnet_spiegel_bad_eg
+    - sensor.el_leistung_berechnet_spiegel_bad_og
+    - sensor.el_leistung_berechnet_spiegel_wc
+    - sensor.el_leistung_berechnete_lichter
     - sensor.el_leistung_gefrierschrank
     - sensor.el_leistung_kochfeld
     - sensor.el_leistung_kuhlschrank_keller
     - sensor.el_leistung_kuhlschrank_kuche
+    - sensor.el_leistung_licht_gesamt
     - sensor.el_leistung_luftungsanlage
     - sensor.el_leistung_mixi
     - sensor.el_leistung_spulmaschine
