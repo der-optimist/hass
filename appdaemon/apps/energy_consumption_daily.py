@@ -17,7 +17,7 @@ class energy_consumption_daily(hass.Hass):
     def initialize(self):
         # define daily time to run the calculation:
         #daily_time =  datetime.time(4, 35, 43)
-        daily_time =  datetime.time(10, 2, 0)
+        daily_time =  datetime.time(10, 9, 0)
         # initialize database stuff
         self.host = self.args.get("host", "a0d7b954-influxdb")
         self.port=8086
@@ -28,6 +28,7 @@ class energy_consumption_daily(hass.Hass):
         self.db_measurements_Watt = self.args["db_measurements_Watt"]
         self.db_measurements_kWh = self.args["db_measurements_kWh"]
         self.db_field: Set[str] = self.args.get("db_field", set())
+        self.price_per_kWh = self.args.get("price_per_kWh", 0.0)
         special_date = self.args.get("special_date", None)
         # calculate for a given single date
         if special_date is not None:
@@ -42,7 +43,8 @@ class energy_consumption_daily(hass.Hass):
         yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
         self.log("running consumption calclulation for " + yesterday_str)
         consumption_total = self.calculate_energy_consumption(yesterday_str)
-        self.fire_event("custom_notify", message="Stromverbrauch gestern: {} kWh".format(consumption_total), target="telegram_jo")
+        cost_total = consumption_total * self.price_per_kWh
+        self.fire_event("custom_notify", message="Stromverbrauch gestern: {} kWh, also {} €".format(round(consumption_total,1),round(cost_total,2)), target="telegram_jo")
         
 
     def calculate_energy_consumption(self, date_str):
@@ -82,7 +84,7 @@ class energy_consumption_daily(hass.Hass):
                 if start_time_reached:
                     break
             consumption_kWh = consumption_Ws / 3600000
-            self.log("Verbrauch {}: {} kWh (berechnet aus Leistung)".format(sensor_name, consumption_kWh))
+            self.log("Verbrauch {}: {} kWh (berechnet aus Leistung)".format(sensor_name, round(consumption_kWh,2)))
             # save to db
             self.client.write_points([{"measurement":"energy_consumption_test","fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
             known_consumption_kWh_total = known_consumption_kWh_total + consumption_kWh
@@ -101,11 +103,11 @@ class energy_consumption_daily(hass.Hass):
             for point in counter_end_generator:
                 counter_end = point["last"]
             consumption_kWh = counter_end - counter_start
-            self.log("Verbrauch {}: {} kWh (berechnet aus Zaehlerstand)".format(sensor_name, consumption_kWh))
+            self.log("Verbrauch {}: {} kWh (berechnet aus Zaehlerstand)".format(sensor_name, round(consumption_kWh,2)))
             # save to db
             self.client.write_points([{"measurement":"energy_consumption_test","fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
             known_consumption_kWh_total = known_consumption_kWh_total + consumption_kWh
-        self.log("Stromverbrauch von bekannten Dingen, {}: {} kWh".format(date_str, known_consumption_kWh_total))
+        self.log("Stromverbrauch von bekannten Dingen, {}: {} kWh".format(date_str, round(known_consumption_kWh_total,1)))
         return [known_consumption_kWh_total]
             
 
