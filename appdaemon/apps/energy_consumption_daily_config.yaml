@@ -12,3 +12,4 @@ energy_consumption_daily:
     - sensor.stromzahler_wp_aussenteil
     - sensor.stromzahler_wp_innenteil
     - sensor.stromzahler_kochfeld
+#
