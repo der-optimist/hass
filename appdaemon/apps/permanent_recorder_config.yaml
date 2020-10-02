@@ -8,9 +8,13 @@ permanent_recorder:
     - light.arbeitsplatte
     - light.bar_beleuchtung
     - light.bettbeleuchtung
+    - light.bodenlicht_eingang
+    - light.brettlicht_windfang
     - light.flur_keller
     - light.gastezimmer
     - light.lagerraum
+    - light.led_auf_spiegelschrank_bad_eg
+    - light.led_auf_spiegelschrank_bad_og
     - light.led_streifen_carport
     - light.nahtisch_decke
     - light.panels_bad_eg
@@ -27,6 +31,7 @@ permanent_recorder:
     - light.panels_wc
     - light.panels_windfang
     - light.panels_wohnzimmer
+    - light.regal_bad_eg
     - light.schrankbeleuchtung_esszimmer
     - light.schrankbeleuchtung_wohnzimmer
     - light.schreibtisch_decke
@@ -39,7 +44,6 @@ permanent_recorder:
     - light.stehlampe_le
     - light.stufenbeleuchtung_treppe
     - light.technikraum
-    - light.shelly_shdm_1_d472fe
     - light.vorratsraum
     - light.wandleuchten_esszimmer_gemutlich
     - light.wandleuchten_esszimmer_hell
@@ -48,15 +52,37 @@ permanent_recorder:
     - light.wandwurfel_suden
     - light.wandwurfel_westen
     - light.werkelraum
+    - light.innr_e14_tw_kugellampe_schlafzimmer_level_light_color_on_off
+    - light.innr_e14_tw_stehlampe_lea_level_light_color_on_off
+    - light.innr_e14_ww_decke_gastezimmer_level_on_off
+    - light.innr_e14_ww_stehlampe_lara_level_on_off
+    - light.innr_e27_color_terrasse_ecke_gross_level_light_color_on_off
+    - light.innr_rb_285_c_55f50405_level_light_color_on_off
+    - light.innr_rb_285_c_7cc30105_level_light_color_on_off
+    - light.shellydimmer_d472fe_light_0
   state_boolean:
     - binary_sensor.anwesenheit_bildschirm
     - binary_sensor.anwesenheit_haus
     - binary_sensor.backofen_ist_an
     - binary_sensor.eimer_hebeanlage_voll
+    - binary_sensor.gaeste_nur_abends
     - binary_sensor.heizungsanforderung_eg
     - binary_sensor.heizungsanforderung_og
     - binary_sensor.hst_offen
+    - binary_sensor.jemand_schlaeft
+    - binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off
+    - binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
+    - binary_sensor.lumi_lumi_sensor_motion_aq2_ias_zone
+    - binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
     - binary_sensor.mixi_ist_an
+    - binary_sensor.nachtmodus_wohnbereich_jalousie
+    - binary_sensor.nachtmodus_wohnbereich_licht
+    - binary_sensor.o_fl_logik_bewegung_rund_um_treppe
+    - binary_sensor.ping_fritzbox
+    - binary_sensor.ping_odroidxu4
+    - binary_sensor.pm_a_eg
+    - binary_sensor.pm_a_cp
+    - binary_sensor.pm_a_ar
     - binary_sensor.pm_e_ba
     - binary_sensor.pm_e_ez_bar_kuche
     - binary_sensor.pm_e_ez_esstisch
@@ -76,6 +102,7 @@ permanent_recorder:
     - binary_sensor.pm_e_wz_durchgang
     - binary_sensor.pm_k_fl
     - binary_sensor.pm_k_te
+    - binary_sensor.pm_k_timer_magnetsensor_vorratsraum
     - binary_sensor.pm_ktr_flur
     - binary_sensor.pm_ktr_treppe
     - binary_sensor.pm_o_ba
@@ -87,10 +114,22 @@ permanent_recorder:
     - binary_sensor.pm_o_kw_le_raum
     - binary_sensor.pm_o_kw_le_tuer
     - binary_sensor.pm_o_nz
-    - binary_sensor.pm_a_eg
-    - binary_sensor.pm_a_cp
-    - binary_sensor.pm_a_ar
     - binary_sensor.regenalarm
+    - binary_sensor.remote_ui
+    - binary_sensor.schlafen_oder_aufwachphase_la
+    - binary_sensor.schlafen_oder_aufwachphase_le
+    - binary_sensor.schlafen_oder_aufwachphase_majo
+    - binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo
+    - binary_sensor.sicherung_keller_sd_rausgeflogen
+    - binary_sensor.status_24v_led_aktor_1
+    - binary_sensor.status_24v_led_aktor_2
+    - binary_sensor.status_24v_led_aktor_3
+    - binary_sensor.status_24v_led_aktor_4
+    - binary_sensor.status_24v_led_aktor_5
+    - binary_sensor.status_24v_led_aktor_6
+    - binary_sensor.status_24v_led_aktor_7
+    - binary_sensor.status_waermegewinnung
+    - binary_sensor.status_waermeschutz
     - binary_sensor.storung_heizaktor_eg
     - binary_sensor.storung_heizaktor_og
     - binary_sensor.tag_nacht_wetterstation
@@ -98,6 +137,21 @@ permanent_recorder:
     - binary_sensor.trockner_ist_an
     - binary_sensor.trockner_ist_geleert
     - binary_sensor.tv_ist_an
+    - binary_sensor.tv_pizza_abend
+    - binary_sensor.uberstromalarm_led_aktor_1
+    - binary_sensor.uberstromalarm_led_aktor_2
+    - binary_sensor.uberstromalarm_led_aktor_3
+    - binary_sensor.uberstromalarm_led_aktor_4
+    - binary_sensor.uberstromalarm_led_aktor_5
+    - binary_sensor.uberstromalarm_led_aktor_6
+    - binary_sensor.uberstromalarm_led_aktor_7
+    - binary_sensor.ubertemperaturalarm_led_aktor_1
+    - binary_sensor.ubertemperaturalarm_led_aktor_2
+    - binary_sensor.ubertemperaturalarm_led_aktor_3
+    - binary_sensor.ubertemperaturalarm_led_aktor_4
+    - binary_sensor.ubertemperaturalarm_led_aktor_5
+    - binary_sensor.ubertemperaturalarm_led_aktor_6
+    - binary_sensor.ubertemperaturalarm_led_aktor_7
     - binary_sensor.waschmaschine_ist_an
     - binary_sensor.wasser_boden_bei_hebeanlage
     - binary_sensor.wasser_unter_spule
@@ -105,21 +159,26 @@ permanent_recorder:
     - binary_sensor.windalarm_1
     - binary_sensor.windalarm_2
     - binary_sensor.windalarm_3
-    - binary_sensor.lumi_lumi_sensor_magnet_aq2_ddf99f04_on_off
-    - binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off
-    - binary_sensor.ping_fritzbox
-    - binary_sensor.ping_odroidxu4
-    - switch.lumi_lumi_plug_mmeu01_e3a3753c_on_off
     - switch.backofen
     - switch.bad_og_nachtmodus
+    - switch.bleib_so_la_licht
+    - switch.bleib_so_le_licht
     - switch.bleib_so_wz_licht
     - switch.gaste_schlafen
     - switch.gefrierschrank
+    - switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
+    - switch.innr_sp_120_test_on_off
+    - switch.innr_sp_220_repeater_garderobenschrank_on_off
+    - switch.innr_sp_220_repeater_waschkuche_on_off
+    - switch.kinder_schon_wach
+    - switch.knutschen
     - switch.kuhlschrank_keller
     - switch.kuhlschrank_kuche
     - switch.la_schlaft
     - switch.le_schlaft
+    - switch.led_netzteil_8
     - switch.luftungsanlage
+    - switch.lumi_lumi_plug_mmeu01_on_off
     - switch.majo_schlafen
     - switch.mixi
     - switch.spulmaschine
@@ -127,11 +186,6 @@ permanent_recorder:
     - switch.tv
     - switch.waschmaschine
     - switch.wz_steckdose
-    - switch.innr_sp_120_3f148903_on_off
-    - switch.innr_sp_120_88138903_on_off
-    - switch.innr_sp_220_da3e72fe_on_off
-    - switch.innr_sp_220_fa3b72fe_on_off
-    - switch.lumi_lumi_plug_mmeu01_e3a3753c_on_off
     - sensor.status_amtzell
     - sensor.status_aral_mecka
     - sensor.status_hannober
