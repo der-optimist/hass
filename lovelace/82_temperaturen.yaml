@@ -72,8 +72,6 @@ cards:
     title: Sonstige
     show_header_toggle: false
     entities:
-      - entity: sensor.temp_owm
-        name: Draußen (Internet)
       - entity: sensor.temp_wetterstation
         name: Draußen (Wetterst.)
       - entity: sensor.cpu_temperatur
