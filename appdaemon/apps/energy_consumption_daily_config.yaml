@@ -23,5 +23,4 @@ energy_consumption_daily:
     - sensor.stromzahler_wp_aussenteil
     - sensor.stromzahler_wp_heizstab
     - sensor.stromzahler_wp_innenteil
-    - sensor.shellydimmer_d472fe_energy
 #
