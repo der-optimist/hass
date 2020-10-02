@@ -1,14 +1,6 @@
 # --- Template ---
   - platform: template
     sensors:
-      temp_owm:
-        friendly_name: "Temp. draußen"
-        unit_of_measurement: '°C'
-        value_template: "{{ state_attr('weather.dark_sky', 'temperature') }}"
-      humidity_owm:
-        friendly_name: "Luftfeuchtigkeit draußen (Internet)"
-        unit_of_measurement: '%'
-        value_template: "{{ state_attr('weather.dark_sky', 'humidity') }}"
       date_template:
         friendly_name: 'Datum'
         value_template: '{{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}'
@@ -28,16 +20,6 @@
         unit_of_measurement: 'hPa'
         value_template: "{{ (states('sensor.lumi_lumi_weather_57dc3d03_pressure') | float) | round }}"
         device_class: pressure
-      luftfeuchtigkeit_waschkuche_aqara:
-        friendly_name: 'Luftfeuchtigkeit Waschküche'
-        unit_of_measurement: '%'
-        value_template: "{{ (states('sensor.lumi_lumi_weather_341e4d03_humidity') | float) | round }}"
-        device_class: humidity
-      temp_waschkuche_aqara:
-        friendly_name: 'Temp. Waschküche Aqara'
-        unit_of_measurement: '°C'
-        value_template: "{{ (states('sensor.lumi_lumi_weather_341e4d03_temperature') | float) | round(1) }}"
-        device_class: temperature
 
       # --- Elektrische Leistung ---
       # Backofen
