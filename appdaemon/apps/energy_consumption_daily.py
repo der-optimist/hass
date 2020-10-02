@@ -16,19 +16,20 @@ class energy_consumption_daily(hass.Hass):
 
     def initialize(self):
         # define daily time to run the calculation:
-        #daily_time =  datetime.time(4, 35, 43)
-        daily_time =  datetime.time(15, 16, 0)
+        daily_time =  datetime.time(4, 35, 43)
+        #daily_time =  datetime.time(15, 16, 0)
         # initialize database stuff
         self.host = self.args.get("host", "a0d7b954-influxdb")
         self.port=8086
         self.user = self.args.get("user", "appdaemon")
         self.password = self.args.get("db_passwd", None)
         self.dbname = self.args.get("dbname", "homeassistant_permanent")
-        self.client =InfluxDBClient(self.host, self.port, self.user, self.password, self.dbname)
+        self.client = InfluxDBClient(self.host, self.port, self.user, self.password, self.dbname)
         self.db_measurements_Watt = self.args["db_measurements_Watt"]
         self.db_measurements_kWh = self.args["db_measurements_kWh"]
         self.db_field: Set[str] = self.args.get("db_field", set())
         self.price_per_kWh = self.args.get("price_per_kWh", 0.0)
+        self.save_measurement_name = self.args.get("save_measurement_name", "energy_consumption_daily")
         special_date = self.args.get("special_date", None)
         # calculate for a given single date
         if special_date is not None:
@@ -88,7 +89,7 @@ class energy_consumption_daily(hass.Hass):
             cost = consumption_kWh * self.price_per_kWh
             self.log("Verbrauch {}: {} kWh, also {} EUR (berechnet aus Leistung)".format(sensor_name, round(consumption_kWh,2),round(cost,2)))
             # save to db
-            self.client.write_points([{"measurement":"energy_consumption_test","fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
+            self.client.write_points([{"measurement":self.save_measurement_name,"fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
             known_consumption_kWh_total = known_consumption_kWh_total + consumption_kWh
         # calculate from consumption logs in kWh:
         for measurement in self.db_measurements_kWh:
@@ -108,7 +109,7 @@ class energy_consumption_daily(hass.Hass):
             cost = consumption_kWh * self.price_per_kWh
             self.log("Verbrauch {}: {} kWh, also {} EUR (berechnet aus Zaehlerstand)".format(sensor_name, round(consumption_kWh,2),round(cost,2)))
             # save to db
-            self.client.write_points([{"measurement":"energy_consumption_test","fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
+            self.client.write_points([{"measurement":self.save_measurement_name,"fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
             known_consumption_kWh_total = known_consumption_kWh_total + consumption_kWh
         self.log("Stromverbrauch von bekannten Dingen, {}: {} kWh, also {} EUR ".format(date_str, round(known_consumption_kWh_total,1),round(cost,2)))
         return [known_consumption_kWh_total]
