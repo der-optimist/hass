@@ -188,6 +188,38 @@
         friendly_name: 'El. Leistung Spiegel WC (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      el_leistung_berechnete_lichter:
+        value_template: >-
+          {{ states("sensor.el_leistung_berechnet_zigbee_licht_gaestezimmer") | float
+           + states("sensor.el_leistung_berechnet_zigbee_stehlampe_le") | float
+           + states("sensor.el_leistung_berechnet_zigbee_stehlampe_la") | float
+           + states("sensor.el_leistung_berechnet_zigbee_kugellampe_sz") | float
+           + states("sensor.el_leistung_berechnet_zigbee_terrasse_ecke_gr") | float
+           + states("sensor.el_leistung_berechnet_zigbee_terrasse_ecke_kl") | float
+           + states("sensor.el_leistung_berechnet_zigbee_terrasse_feuerstelle") | float
+           + states("sensor.el_leistung_berechnet_licht_flur_keller") | float
+           + states("sensor.el_leistung_berechnet_licht_technikraum") | float
+           + states("sensor.el_leistung_berechnet_licht_vorratsraum") | float
+           + states("sensor.el_leistung_berechnet_licht_werkelraum") | float
+           + states("sensor.el_leistung_berechnet_licht_partyraum") | float
+           + states("sensor.el_leistung_berechnet_spots_carport") | float
+           + states("sensor.el_leistung_berechnet_wandwuerfel_sued") | float
+           + states("sensor.el_leistung_berechnet_wandwuerfel_west") | float
+           + states("sensor.el_leistung_berechnet_abstellraum") | float
+           + states("sensor.el_leistung_berechnet_naehtisch_nz") | float
+           + states("sensor.el_leistung_berechnet_schreibtisch_nz") | float
+           + states("sensor.el_leistung_berechnet_spiegel_bad_eg") | float
+           + states("sensor.el_leistung_berechnet_spiegel_bad_og") | float
+           + states("sensor.el_leistung_berechnet_spiegel_wc") | float }}
+        friendly_name: 'El. Leistung berechnete Lichter'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      el_leistung_licht_gesamt:
+        value_template: >-
+          {{ states("sensor.el_leistung_berechnete_lichter") | float }}
+        friendly_name: 'El. Leistung Licht gesamt'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
     
 # --- Sonstiges ---
 # History
