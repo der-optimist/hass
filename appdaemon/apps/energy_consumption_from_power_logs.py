@@ -12,7 +12,7 @@ import datetime
 # - db_field
 
 
-class energy_consumption_from_power_logs(hass.Hass):
+class energy_consumption_daily(hass.Hass):
 
     def initialize(self):
         # initialize database stuff
@@ -22,7 +22,8 @@ class energy_consumption_from_power_logs(hass.Hass):
         self.password = self.args.get("db_passwd", None)
         self.dbname = self.args.get("dbname", "homeassistant_permanent")
         self.client =InfluxDBClient(self.host, self.port, self.user, self.password, self.dbname)
-        self.db_measurements = self.args["db_measurements"]
+        self.db_measurements_Watt = self.args["db_measurements_Watt"]
+        self.db_measurements_kWh = self.args["db_measurements_kWh"]
         self.db_field: Set[str] = self.args.get("db_field", set())
         special_date = self.args.get("special_date", None)
         if special_date is not None:
@@ -32,13 +33,16 @@ class energy_consumption_from_power_logs(hass.Hass):
         #self.drop()
 
     def calculate_energy_consumption(self, date_str):
+        known_consumption_kWh_total = 0
         ts_start_local = datetime.datetime.strptime(date_str + 'T00:00:00.0', '%Y-%m-%dT%H:%M:%S.%f').timestamp()
         ts_start_local_ns = ts_start_local  * 1e9
         ts_start_local_ns_plus_buffer = ts_start_local_ns - 12*3600*1e9 # +12 hours for query to know value before that day started
         ts_end_local = datetime.datetime.strptime(date_str + 'T23:59:59.999999', '%Y-%m-%dT%H:%M:%S.%f').timestamp()
         ts_end_local_ns = ts_end_local * 1e9 + 999
+        ts_save_local_ns = datetime.datetime.strptime(date_str + 'T23:59:59.0', '%Y-%m-%dT%H:%M:%S.%f').timestamp() * 1e9
         utc_offset_timestamp = datetime.datetime.now().timestamp() - datetime.datetime.utcnow().timestamp()
-        for measurement in self.db_measurements:
+        # calculate from power logs in Watt
+        for measurement in self.db_measurements_Watt:
             if measurement.startswith("sensor."):
                 sensor_name = measurement.split("sensor.")[1]
             else:
@@ -65,22 +69,30 @@ class energy_consumption_from_power_logs(hass.Hass):
                 if start_time_reached:
                     break
             consumption_kWh = consumption_Ws / 3600000
-            self.log("Verbrauch {}: {} Ws bzw. {} kWh".format(sensor_name, consumption_Ws, consumption_kWh))
+            self.log("Verbrauch {}: {} kWh (berechnet aus Leistung)".format(sensor_name, consumption_kWh))
             # save to db
-            ts_save_local_ns = datetime.datetime.strptime(date_str + 'T23:59:59.0', '%Y-%m-%dT%H:%M:%S.%f').timestamp() * 1e9
             self.client.write_points([{"measurement":"energy_consumption_test","fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
-#            if newest_value == None:
-#                newest_value = point[self.db_field]
-#                current_time = datetime.datetime.utcnow()
-                #self.log(current_time.strftime("%Y-%m-%d %H:%M:%S"))
-#            else:
-#                delta_value = point[self.db_field] - newest_value
-#                delta_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f') - current_time
-                #self.log(datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f').strftime("%Y-%m-%d %H:%M:%S"))
-#                delta_time_seconds = delta_time.total_seconds()
-#                derivative = delta_value / (delta_time_seconds / 3600)
-#                der_list.append(derivative)
-
+            known_consumption_kWh_total = known_consumption_kWh_total + consumption_kWh
+        # calculate from consumption logs in kWh:
+        for measurement in self.db_measurements_kWh:
+            if measurement.startswith("sensor."):
+                sensor_name = measurement.split("sensor.")[1]
+            else:
+                sensor_name = measurement
+            query_start = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time <= {}'.format(self.db_field, measurement, int(ts_start_local_ns))
+            counter_start_generator = result_points = self.client.query(query_start).get_points()
+            for point in counter_start_generator:
+                counter_start = point[self.db_field]
+            query_end = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time <= {}'.format(self.db_field, measurement, int(ts_end_local_ns))
+            counter_end_generator = result_points = self.client.query(query_end).get_points()
+            for point in counter_end_generator:
+                counter_end = point[self.db_field]
+            consumption_kWh = counter_end - counter_start
+            self.log("Verbrauch {}: {} kWh (berechnet aus Zaehlerstand)".format(sensor_name, consumption_kWh))
+            # save to db
+            self.client.write_points([{"measurement":"energy_consumption_test","fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
+            known_consumption_kWh_total = known_consumption_kWh_total + consumption_kWh
+        self.log("Stromverbrauch von bekannten Dingen, {}: {} kWh".format(date_str, known_consumption_kWh_total))
             
 
 
