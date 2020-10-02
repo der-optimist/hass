@@ -82,6 +82,44 @@
         friendly_name: 'El. Leistung Lüftungsanlage (gerundet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      # Licht
+      el_leistung_berechnet_zigbee_licht_gaestezimmer:
+        value_template: "{{ '%.1f'%(state_attr('light.innr_e14_ww_decke_gastezimmer_level_on_off', 'brightness') | float / 255 * 5.3)| float }}"
+        friendly_name: 'El. Leistung Licht Gästezimmer (berechnet)'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      el_leistung_berechnet_zigbee_stehlampe_le:
+        value_template: "{{ '%.1f'%(state_attr('light.innr_e14_tw_stehlampe_lea_level_light_color_on_off', 'brightness') | float / 255 * 5.8)| float }}"
+        friendly_name: 'El. Leistung Stehlampe Le (berechnet)'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      el_leistung_berechnet_zigbee_stehlampe_la:
+        value_template: "{{ '%.1f'%(state_attr('light.innr_e14_ww_stehlampe_lara_level_on_off', 'brightness') | float / 255 * 5.3)| float }}"
+        friendly_name: 'El. Leistung Stehlampe La (berechnet)'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      el_leistung_berechnet_zigbee_kugellicht_sz:
+        value_template: "{{ '%.1f'%(state_attr('light.innr_e14_tw_kugellampe_schlafzimmer_level_light_color_on_off', 'brightness') | float / 255 * 5.8)| float }}"
+        friendly_name: 'El. Leistung Kugellicht SZ (berechnet)'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      el_leistung_berechnet_zigbee_terrasse_ecke_gr:
+        value_template: "{{ '%.1f'%(state_attr('light.innr_e27_color_terrasse_ecke_gross_level_light_color_on_off', 'brightness') | float / 255 * 9.5)| float }}"
+        friendly_name: 'El. Leistung Würfel Terrasse Ecke groß (berechnet)'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      el_leistung_berechnet_zigbee_terrasse_ecke_kl:
+        value_template: "{{ '%.1f'%(state_attr('light.innr_rb_285_c_55f50405_level_light_color_on_off', 'brightness') | float / 255 * 9.5)| float }}"
+        friendly_name: 'El. Leistung Würfel Terrasse Ecke klein (berechnet)'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      el_leistung_berechnet_zigbee_terrasse_feuerstelle:
+        value_template: "{{ '%.1f'%(state_attr('light.innr_rb_285_c_7cc30105_level_light_color_on_off', 'brightness') | float / 255 * 9.5)| float }}"
+        friendly_name: 'El. Leistung Würfel Terrasse Feuerstelle (berechnet)'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+        
+        
     
 # --- Sonstiges ---
 # History
