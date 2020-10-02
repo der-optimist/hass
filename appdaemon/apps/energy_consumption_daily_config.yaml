@@ -1,6 +1,7 @@
 energy_consumption_daily:
   module: energy_consumption_daily
   class: energy_consumption_daily
+  price_per_kWh: 0.2809
   db_passwd: !secret permanent_db_passwd
   db_field: state_float
   special_date: "2020-09-30"
