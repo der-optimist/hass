@@ -216,7 +216,8 @@
         icon_template: mdi:speedometer
       el_leistung_licht_gesamt:
         value_template: >-
-          {{ states('sensor.el_leistung_berechnete_lichter') | float }}
+          {{ states('sensor.el_leistung_berechnete_lichter') | float 
+           + states('sensor.shellydimmer_d472fe_power') | float }}
         friendly_name: 'El. Leistung Licht gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
