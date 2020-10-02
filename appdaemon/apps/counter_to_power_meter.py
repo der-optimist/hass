@@ -24,6 +24,10 @@ import datetime
 class counter_to_power_meter(hass.Hass):
 
     def initialize(self):
+        # wait for KNX entities 
+        self.run_in(self.initialize_delayed,30)
+        
+    def initialize_delayed(self, kwargs):
         self.max_plausible_watt_per_phase = 7360 # would be 32A @ 230V
         # initialize internal variables
         self.time_of_last_event = None
