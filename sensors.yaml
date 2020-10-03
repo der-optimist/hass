@@ -217,6 +217,8 @@
       el_leistung_licht_gesamt:
         value_template: >-
           {{ states('sensor.el_leistung_berechnete_lichter') | float 
+           + states('sensor.el_leistung_licht_sicherung_3_2') | float
+           + states('sensor.el_leistung_licht_sicherung_3_3') | float
            + states('sensor.shellydimmer_d472fe_power') | float }}
         friendly_name: 'El. Leistung Licht gesamt'
         unit_of_measurement: 'W'
