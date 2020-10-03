@@ -306,7 +306,6 @@
   - name: 'Stromzähler Lüftungsanlage'
     state_address: '0/2/144'
     type: 4byte_signed
-    type: 4byte_signed
   - name: 'Stromzähler Licht Sicherung 3-2'
     state_address: '0/2/204'
     type: 4byte_signed
