@@ -266,6 +266,13 @@
     state_address: '0/2/143'
     type: power
 
+  # Licht
+  - name: 'El. Leistung Licht Sicherung 3-2'
+    state_address: '0/2/203'
+    type: power
+  - name: 'El. Leistung Licht Sicherung 3-3'
+    state_address: '0/2/223'
+    type: power
 
 # --- Stromzähler ---
 # Schaltaktor direkt
@@ -298,6 +305,13 @@
     type: 4byte_signed
   - name: 'Stromzähler Lüftungsanlage'
     state_address: '0/2/144'
+    type: 4byte_signed
+    type: 4byte_signed
+  - name: 'Stromzähler Licht Sicherung 3-2'
+    state_address: '0/2/204'
+    type: 4byte_signed
+  - name: 'Stromzähler Licht Sicherung 3-3'
+    state_address: '0/2/224'
     type: 4byte_signed
 
 # Binäreingang Rohdaten
