@@ -88,7 +88,7 @@ auto_light_a_tr_wurfel_ecke_klein:
   app_switch: input_boolean.app_switch_licht_aussen_carport
   light: light.innr_rb_285_c_55f50405_level_light_color_on_off
   type: color
-  rgb_color: [255, 0, 127]
+  rgb_color: [255, 127, 0]
   triggers: 
     - binary_sensor.hst_offen
   min_illuminance_values:
