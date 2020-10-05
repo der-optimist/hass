@@ -17,7 +17,7 @@ class energy_consumption_daily(hass.Hass):
     def initialize(self):
         # define daily time to run the calculation:
         #daily_time =  datetime.time(4, 35, 43)
-        daily_time =  datetime.time(9, 9, 0)
+        daily_time =  datetime.time(9, 14, 0)
         # initialize database stuff
         self.host = self.args.get("host", "a0d7b954-influxdb")
         self.port=8086
@@ -93,7 +93,7 @@ class energy_consumption_daily(hass.Hass):
             self.log("Verbrauch {}: {} kWh, also {} EUR (berechnet aus Leistung)".format(sensor_name, round(consumption_kWh,2),round(cost,2)))
             # save to db
             self.client.write_points([{"measurement":self.save_measurement_name,"fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
-            details_dict[self.db_measurements_Watt.get(sensor_name,sensor_name)] = consumption_kWh
+            details_dict[self.db_measurements_Watt.get(measurement,sensor_name)] = consumption_kWh
             known_consumption_kWh_total = known_consumption_kWh_total + consumption_kWh
         # calculate from consumption logs in kWh:
         for measurement in self.db_measurements_kWh.keys():
@@ -114,7 +114,7 @@ class energy_consumption_daily(hass.Hass):
             self.log("Verbrauch {}: {} kWh, also {} EUR (berechnet aus Zaehlerstand)".format(sensor_name, round(consumption_kWh,2),round(cost,2)))
             # save to db
             self.client.write_points([{"measurement":self.save_measurement_name,"fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
-            details_dict[self.db_measurements_kWh.get(sensor_name,sensor_name)] = consumption_kWh
+            details_dict[self.db_measurements_kWh.get(measurement,sensor_name)] = consumption_kWh
             known_consumption_kWh_total = known_consumption_kWh_total + consumption_kWh
         known_consumption_costs = known_consumption_kWh_total  * self.price_per_kWh
         self.log("Stromverbrauch von bekannten Dingen, {}: {} kWh, also {} EUR ".format(date_str, round(known_consumption_kWh_total,1),round(known_consumption_costs,2)))
