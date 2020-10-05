@@ -4,25 +4,25 @@ energy_consumption_daily:
   price_per_kWh: 0.2809
   db_passwd: !secret permanent_db_passwd
   db_field: state_float
-  save_measurement_name: energy_consumption_daily
+  #save_measurement_name: energy_consumption_daily
   #special_date: "2020-09-30"
   db_measurements_Watt: 
-    - sensor.el_leistung_backofen
-    - sensor.el_leistung_gefrierschrank
-    - sensor.el_leistung_kuhlschrank_keller
-    - sensor.el_leistung_kuhlschrank_kuche
-    - sensor.el_leistung_licht_gesamt
-    - sensor.el_leistung_luftungsanlage
-    - sensor.el_leistung_mixi
-    - sensor.el_leistung_spulmaschine
-    - sensor.el_leistung_trockner
-    - sensor.el_leistung_tv
-    - sensor.el_leistung_waschmaschine
-    - sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
-    - sensor.innr_sp_120_test_electrical_measurement
+    sensor.el_leistung_backofen: Backofen
+    sensor.el_leistung_gefrierschrank: Gefrierschrank
+    sensor.el_leistung_kuhlschrank_keller: Kühlschr. Keller
+    sensor.el_leistung_kuhlschrank_kuche: Kühlschr. Küche
+    sensor.el_leistung_licht_gesamt: Licht
+    sensor.el_leistung_luftungsanlage: Lüftung
+    sensor.el_leistung_mixi: Mixi
+    sensor.el_leistung_spulmaschine: Spülmaschine
+    sensor.el_leistung_trockner: Trockner
+    sensor.el_leistung_tv: TV
+    sensor.el_leistung_waschmaschine: Waschmaschine
+    sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement: Luftentf. Waschk.
+    sensor.innr_sp_120_test_electrical_measurement: Luftentf. Werkelr.
   db_measurements_kWh:
-    - sensor.stromzahler_kochfeld
-    - sensor.stromzahler_wp_aussenteil
-    - sensor.stromzahler_wp_heizstab
-    - sensor.stromzahler_wp_innenteil
+    sensor.stromzahler_kochfeld: Kochfeld
+    sensor.stromzahler_wp_aussenteil: WP außen
+    sensor.stromzahler_wp_heizstab: WP innnen
+    sensor.stromzahler_wp_innenteil: WP Heizstab
 #
