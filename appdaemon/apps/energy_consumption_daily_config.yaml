@@ -18,6 +18,8 @@ energy_consumption_daily:
     - sensor.el_leistung_trockner
     - sensor.el_leistung_tv
     - sensor.el_leistung_waschmaschine
+    - sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
+    - sensor.innr_sp_120_test_electrical_measurement
   db_measurements_kWh:
     - sensor.stromzahler_kochfeld
     - sensor.stromzahler_wp_aussenteil
