@@ -43,9 +43,7 @@ class energy_consumption_daily(hass.Hass):
     def generate_data_for_yesterday(self, kwargs):
         yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
         self.log("running consumption calclulation for " + yesterday_str)
-        consumption_list = self.calculate_energy_consumption(yesterday_str)
-        consumption_total = consumption_list[0]
-        cost_total = consumption_total * self.price_per_kWh
+        consumption_total, cost_total = self.calculate_energy_consumption(yesterday_str)
         self.fire_event("custom_notify", message="Stromverbrauch gestern: {} kWh, also {} €".format(round(consumption_total,1),round(cost_total,2)), target="telegram_jo")
         
 
@@ -111,8 +109,9 @@ class energy_consumption_daily(hass.Hass):
             # save to db
             self.client.write_points([{"measurement":self.save_measurement_name,"fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
             known_consumption_kWh_total = known_consumption_kWh_total + consumption_kWh
-        self.log("Stromverbrauch von bekannten Dingen, {}: {} kWh, also {} EUR ".format(date_str, round(known_consumption_kWh_total,1),round(cost,2)))
-        return [known_consumption_kWh_total]
+        known_consumption_costs = known_consumption_kWh_total  * self.price_per_kWh
+        self.log("Stromverbrauch von bekannten Dingen, {}: {} kWh, also {} EUR ".format(date_str, round(known_consumption_kWh_total,1),round(known_consumption_costs,2)))
+        return known_consumption_kWh_total, known_consumption_costs
             
 
 
