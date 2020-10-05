@@ -17,7 +17,7 @@ class energy_consumption_daily(hass.Hass):
     def initialize(self):
         # define daily time to run the calculation:
         #daily_time =  datetime.time(4, 35, 43)
-        daily_time =  datetime.time(9, 14, 0)
+        #daily_time =  datetime.time(9, 14, 0)
         # initialize database stuff
         self.host = self.args.get("host", "a0d7b954-influxdb")
         self.port=8086
@@ -44,7 +44,7 @@ class energy_consumption_daily(hass.Hass):
         yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
         self.log("running consumption calclulation for " + yesterday_str)
         consumption_total, cost_total, details_dict = self.calculate_energy_consumption(yesterday_str)
-        message_text = "Stromverbrauch gestern: {} kWh => {} €\n\nVerbrauch im Detail:".format(round(consumption_total,1),round(cost_total,2))
+        message_text = "Verbrauch gestern: {} kWh => {} €\n\nVerbrauch im Detail:".format(round(consumption_total,1),round(cost_total,2))
         details_sorted = sorted(details_dict.items(), key=lambda x: x[1], reverse=True)
         for i in details_sorted:
             message_text = message_text + "\n{}: {} kWh => {} €".format(i[0],round(i[1],1),round(i[1]*self.price_per_kWh,2))
