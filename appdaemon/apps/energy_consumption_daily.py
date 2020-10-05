@@ -16,8 +16,8 @@ class energy_consumption_daily(hass.Hass):
 
     def initialize(self):
         # define daily time to run the calculation:
-        daily_time =  datetime.time(4, 35, 43)
-        #daily_time =  datetime.time(15, 16, 0)
+        #daily_time =  datetime.time(4, 35, 43)
+        daily_time =  datetime.time(7, 42, 0)
         # initialize database stuff
         self.host = self.args.get("host", "a0d7b954-influxdb")
         self.port=8086
@@ -29,7 +29,7 @@ class energy_consumption_daily(hass.Hass):
         self.db_measurements_kWh = self.args["db_measurements_kWh"]
         self.db_field: Set[str] = self.args.get("db_field", set())
         self.price_per_kWh = self.args.get("price_per_kWh", 0.0)
-        self.save_measurement_name = self.args.get("save_measurement_name", "energy_consumption_daily")
+        self.save_measurement_name = self.args.get("save_measurement_name", "energy_consumption_test")
         special_date = self.args.get("special_date", None)
         # calculate for a given single date
         if special_date is not None:
@@ -57,7 +57,7 @@ class energy_consumption_daily(hass.Hass):
         ts_save_local_ns = datetime.datetime.strptime(date_str + 'T23:59:59.0', '%Y-%m-%dT%H:%M:%S.%f').timestamp() * 1e9
         utc_offset_timestamp = datetime.datetime.now().timestamp() - datetime.datetime.utcnow().timestamp()
         # calculate from power logs in Watt
-        for measurement in self.db_measurements_Watt:
+        for measurement in self.db_measurements_Watt.keys():
             if measurement.startswith("sensor."):
                 sensor_name = measurement.split("sensor.")[1]
             else:
@@ -90,7 +90,7 @@ class energy_consumption_daily(hass.Hass):
             self.client.write_points([{"measurement":self.save_measurement_name,"fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
             known_consumption_kWh_total = known_consumption_kWh_total + consumption_kWh
         # calculate from consumption logs in kWh:
-        for measurement in self.db_measurements_kWh:
+        for measurement in self.db_measurements_kWh.keys():
             if measurement.startswith("sensor."):
                 sensor_name = measurement.split("sensor.")[1]
             else:
