@@ -38,6 +38,8 @@ cards:
         name: WP Innenteil
       - entity: sensor.el_leistung_wp_aussenteil
         name: WP Aussenteil
+      - entity: sensor.el_leistung_licht_gesamt
+        name: Licht gesamt
   - type: entities
     title: Stromzähler EG
     show_header_toggle: false
