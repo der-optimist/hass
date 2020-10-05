@@ -131,7 +131,7 @@ class air_dryer(hass.Hass):
             self.check_if_dryer_full()
         
     def check_if_dryer_running(self, kwargs):
-        if float(self.get_state(self.humidity_sensor)) > 1.0:
+        if float(self.get_state(self.energy_measurement_sensor)) > 1.0:
             self.dryer_is_running = True
         else:
             self.dryer_is_running = False
