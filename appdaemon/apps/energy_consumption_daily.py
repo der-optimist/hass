@@ -16,7 +16,7 @@ class energy_consumption_daily(hass.Hass):
 
     def initialize(self):
         # define daily time to run the calculation:
-        #daily_time =  datetime.time(4, 35, 43)
+        daily_time =  datetime.time(4, 35, 43)
         #daily_time =  datetime.time(9, 14, 0)
         # initialize database stuff
         self.host = self.args.get("host", "a0d7b954-influxdb")
