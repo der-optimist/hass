@@ -23,6 +23,6 @@ energy_consumption_daily:
   db_measurements_kWh:
     sensor.stromzahler_kochfeld: Kochfeld
     sensor.stromzahler_wp_aussenteil: WP außen
-    sensor.stromzahler_wp_heizstab: WP innnen
-    sensor.stromzahler_wp_innenteil: WP Heizstab
+    sensor.stromzahler_wp_heizstab: WP Heizstab
+    sensor.stromzahler_wp_innenteil: WP innen
 #
