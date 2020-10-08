@@ -257,6 +257,14 @@
     end: '{{ now() }}'
     duration:
       hours: 1
+  - platform: history_stats
+    name: Anteil Kinder wach letzte Stunde
+    entity_id: binary_sensor.la_oder_le_schlafen
+    state: 'off'
+    type: ratio
+    end: '{{ now() }}'
+    duration:
+      hours: 1
 
 # Zeit und Datum
   - platform: time_date
