@@ -11,6 +11,9 @@
   gaeste_abends:
     name: Gäste abends
     icon: mdi:glass-cocktail
+  arbeit_theke:
+    name: Arbeit Theke
+    icon: mdi:laptop-chromebook
   flur_alarm_jo:
     name: Flur-Alarm Jo
     icon: mdi:motion-sensor
