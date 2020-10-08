@@ -52,6 +52,9 @@
       schlafen_oder_aufwachphase_le:
         friendly_name: "Schlafen oder Aufwachphase Le"
         value_template: "{{ states('sensor.anteil_le_wach_letzte_stunde')|float < 17 }}"
+      schlafen_oder_aufwachphase_kinder:
+        friendly_name: "Schlafen oder Aufwachphase Kinder"
+        value_template: "{{ states('sensor.anteil_kinder_wach_letzte_stunde')|float < 17 }}"
       schlafen_oder_aufwachphase_majo:
         friendly_name: "Schlafen oder Aufwachphase MaJo"
         value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 10 }}"
