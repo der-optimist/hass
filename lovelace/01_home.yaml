@@ -135,6 +135,8 @@ cards:
             entities:
             - entity: input_boolean.gaeste_abends
               name: Gäste
+            - entity: input_boolean.arbeit_theke
+              name: Arbeit Theke
           - break
           - type: custom:auto-entities
             show_empty: false
