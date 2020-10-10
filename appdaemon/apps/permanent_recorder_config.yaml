@@ -344,6 +344,7 @@ permanent_recorder:
     - sensor.stellwert_heizung_schlafzimmer
     - sensor.stellwert_heizung_windfang_wc
     - sensor.stellwert_heizung_wohnzimmer
+    - sensor.stromzaehler_netzbezug
     - sensor.stromzahler_backofen
     - sensor.stromzahler_gefrierschrank
     - sensor.stromzahler_kochfeld
@@ -353,6 +354,7 @@ permanent_recorder:
     - sensor.stromzahler_luftungsanlage
     - sensor.stromzahler_mixi
     - sensor.stromzahler_spulmaschine
+    - sensor.stromzahler_sum_active_instantaneous_power
     - sensor.stromzahler_trockner
     - sensor.stromzahler_tv
     - sensor.stromzahler_waschmaschine
