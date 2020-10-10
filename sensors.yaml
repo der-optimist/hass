@@ -21,6 +21,13 @@
         value_template: "{{ (states('sensor.lumi_lumi_weather_57dc3d03_pressure') | float) | round }}"
         device_class: pressure
 
+      # --- Stromverbrauch ---
+      stromzaehler_netzbezug:
+        value_template: "{{ '%.1f'%(states('sensor.stromzahler_positive_active_energy_in_tariff_t1') | float /1000) | float }}"
+        friendly_name: 'Stromzähler Netzbezug'
+        unit_of_measurement: 'kWh'
+        icon_template: mdi:counter
+
       # --- Elektrische Leistung ---
       # Backofen
       el_leistung_backofen_round:
