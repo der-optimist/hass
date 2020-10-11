@@ -285,11 +285,11 @@
     serial_port: /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AR0JH225-if00-port0
 
 # Bank
-  - platform: fints
-    bank_identification_number: !secret bank_blz
-    username: !secret bank_username
-    pin: !secret bank_pin
-    url: !secret bank_url
+#  - platform: fints
+#    bank_identification_number: !secret bank_blz
+#    username: !secret bank_username
+#    pin: !secret bank_pin
+#    url: !secret bank_url
 
 # System 
   - platform: systemmonitor
