@@ -22,6 +22,8 @@ cards:
     title: Leistung Keller
     show_header_toggle: false
     entities:
+      - entity: sensor.stromzahler_sum_active_instantaneous_power
+        name: Gesamtleistung Netz
       - entity: sensor.el_leistung_luftungsanlage_round
         name: Lüftungsanlage
       - entity: sensor.el_leistung_waschmaschine_round
@@ -60,6 +62,8 @@ cards:
     title: Stromzähler Keller
     show_header_toggle: false
     entities:
+      - entity: sensor.stromzaehler_netzbezug
+        name: Stromzähler Netzbezug
       - entity: sensor.stromzahler_luftungsanlage
         name: Lüftungsanlage
       - entity: sensor.stromzahler_waschmaschine
