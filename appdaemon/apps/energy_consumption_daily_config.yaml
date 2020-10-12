@@ -4,7 +4,7 @@ energy_consumption_daily:
   price_per_kWh: 0.2809
   db_passwd: !secret permanent_db_passwd
   db_field: state_float
-  #save_measurement_name: energy_consumption_daily
+  save_measurement_name: energy_consumption_daily
   #special_date: "2020-09-30"
   db_measurement_total_kWh: sensor.stromzaehler_netzbezug
   db_measurements_Watt: 
