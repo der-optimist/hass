@@ -33,4 +33,4 @@ auto_light_o_fl_panels:
   switching_off_entities:
     - binary_sensor.la_oder_le_schlafen
   special_brightness_entities:
-    binary_sensor.schlafen_oder_aufwachphase_kinder: 20
+    binary_sensor.aufwachphase_kinder: 20
