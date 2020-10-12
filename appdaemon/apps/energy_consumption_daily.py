@@ -16,8 +16,8 @@ class energy_consumption_daily(hass.Hass):
 
     def initialize(self):
         # define daily time to run the calculation:
-        daily_time =  datetime.time(4, 35, 43)
-        #daily_time =  datetime.time(9, 14, 0)
+        #daily_time =  datetime.time(4, 35, 43)
+        daily_time =  datetime.time(9, 49, 0)
         # initialize database stuff
         self.host = self.args.get("host", "a0d7b954-influxdb")
         self.port=8086
@@ -25,8 +25,10 @@ class energy_consumption_daily(hass.Hass):
         self.password = self.args.get("db_passwd", None)
         self.dbname = self.args.get("dbname", "homeassistant_permanent")
         self.client = InfluxDBClient(self.host, self.port, self.user, self.password, self.dbname)
+        self.db_measurement_total_kWh = self.args["db_measurement_total_kWh"]
         self.db_measurements_Watt = self.args["db_measurements_Watt"]
         self.db_measurements_kWh = self.args["db_measurements_kWh"]
+        self.permanent_consumers = self.args["permanent_consumers"]
         self.db_field: Set[str] = self.args.get("db_field", set())
         self.price_per_kWh = self.args.get("price_per_kWh", 0.0)
         self.save_measurement_name = self.args.get("save_measurement_name", "energy_consumption_test")
@@ -43,11 +45,14 @@ class energy_consumption_daily(hass.Hass):
     def generate_data_for_yesterday(self, kwargs):
         yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
         self.log("running consumption calclulation for " + yesterday_str)
-        consumption_total, cost_total, details_dict = self.calculate_energy_consumption(yesterday_str)
-        message_text = "Verbrauch gestern: {} kWh => {} €\n\nVerbrauch im Detail:".format(round(consumption_total,1),round(cost_total,2))
+        consumption_kWh_total, total_consumption_cost, known_consumption_kWh_total, known_consumption_costs, unknown_consumption_kWh, unknown_consumers_cost, details_dict = self.calculate_energy_consumption(yesterday_str)
+        message_text = "Verbrauch gestern: {} kWh => {} €\n\nVerbrauch im Detail:".format(round(consumption_kWh_total,1),round(total_consumption_cost,2))
         details_sorted = sorted(details_dict.items(), key=lambda x: x[1], reverse=True)
         for i in details_sorted:
             message_text = message_text + "\n{}: {} kWh => {} €".format(i[0],round(i[1],1),round(i[1]*self.price_per_kWh,2))
+        message_text = message_text + "\n\nunbekannte Verbraucher: {} kWh => {} €".format(round(unknown_consumption_kWh,1),round(unknown_consumers_cost,2))
+        if consumption_kWh_total > 0:
+            message_text = message_text + "\n{} % vom Stromverbrauch sind zugeordnet".format(int(round(100*known_consumption_kWh_total/consumption_kWh_total,0)))
         self.fire_event("custom_notify", message=message_text, target="telegram_jo")
         
 
@@ -116,9 +121,37 @@ class energy_consumption_daily(hass.Hass):
             self.client.write_points([{"measurement":self.save_measurement_name,"fields":{sensor_name:consumption_kWh},"time":int(ts_save_local_ns)}])
             details_dict[self.db_measurements_kWh.get(measurement,sensor_name)] = consumption_kWh
             known_consumption_kWh_total = known_consumption_kWh_total + consumption_kWh
+        # calculate permanent consumers:
+        permanent_consumers_watt = 0
+        for consumer in self.permanent_consumers.keys():
+            permanent_consumers_watt = permanent_consumers_watt + self.permanent_consumers.get(consumer)
+        permanent_consumers_kWh = permanent_consumers_watt * 24 / 1000
+        self.log("Dauerverbraucher: {} kWh, also {} EUR".format(round(permanent_consumers_kWh,1),round(permanent_consumers_kWh*self.price_per_kWh,2)))
+        self.client.write_points([{"measurement":self.save_measurement_name,"fields":{"permanent_consumers":permanent_consumers_kWh},"time":int(ts_save_local_ns)}])
+        details_dict["Dauerverbraucher ({})W".format(int(round(permanent_consumers_watt,0)))] = permanent_consumers_kWh
+        known_consumption_kWh_total = known_consumption_kWh_total + permanent_consumers_kWh
+        # total consumption
+        query_start = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time <= {}'.format(self.db_field, self.db_measurement_total_kWh, int(ts_start_local_ns))
+        counter_start_generator = result_points = self.client.query(query_start).get_points()
+        for point in counter_start_generator:
+            counter_start = point["last"]
+        query_end = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time <= {}'.format(self.db_field, self.db_measurement_total_kWh, int(ts_end_local_ns))
+        counter_end_generator = result_points = self.client.query(query_end).get_points()
+        for point in counter_end_generator:
+            counter_end = point["last"]
+        consumption_kWh_total = counter_end - counter_start
+        total_consumption_cost = consumption_kWh_total * self.price_per_kWh
+        self.log("Verbrauch gesamt (Stromzaehler): {} kWh, also {} EUR (berechnet aus Zaehlerstand)".format(round(consumption_kWh_total,1),round(total_consumption_cost,2)))
+        self.client.write_points([{"measurement":self.save_measurement_name,"fields":{"total_consumption_power_meter":consumption_kWh_total},"time":int(ts_save_local_ns)}])
+        unknown_consumption_kWh = consumption_kWh - known_consumption_kWh_total
+        unknown_consumers_cost = unknown_consumption_kWh * self.price_per_kWh
+        self.log("unbekannte Verbraucher: {} kWh, also {} EUR (berechnet aus Zaehlerstand)".format(round(unknown_consumption_kWh,1),round(unknown_consumers_cost,2)))
+        self.client.write_points([{"measurement":self.save_measurement_name,"fields":{"unknown_consumers":unknown_consumption_kWh},"time":int(ts_save_local_ns)}])
+        
+        
         known_consumption_costs = known_consumption_kWh_total  * self.price_per_kWh
         self.log("Stromverbrauch von bekannten Dingen, {}: {} kWh, also {} EUR ".format(date_str, round(known_consumption_kWh_total,1),round(known_consumption_costs,2)))
-        return known_consumption_kWh_total, known_consumption_costs, details_dict
+        return consumption_kWh_total, total_consumption_cost, known_consumption_kWh_total, known_consumption_costs, unknown_consumption_kWh, unknown_consumers_cost, details_dict
             
 
 
