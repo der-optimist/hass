@@ -17,7 +17,7 @@ class energy_consumption_daily(hass.Hass):
     def initialize(self):
         # define daily time to run the calculation:
         #daily_time =  datetime.time(4, 35, 43)
-        daily_time =  datetime.time(9, 49, 0)
+        daily_time =  datetime.time(9, 58, 0)
         # initialize database stuff
         self.host = self.args.get("host", "a0d7b954-influxdb")
         self.port=8086
@@ -128,7 +128,7 @@ class energy_consumption_daily(hass.Hass):
         permanent_consumers_kWh = permanent_consumers_watt * 24 / 1000
         self.log("Dauerverbraucher: {} kWh, also {} EUR".format(round(permanent_consumers_kWh,1),round(permanent_consumers_kWh*self.price_per_kWh,2)))
         self.client.write_points([{"measurement":self.save_measurement_name,"fields":{"permanent_consumers":permanent_consumers_kWh},"time":int(ts_save_local_ns)}])
-        details_dict["Dauerverbraucher ({})W".format(int(round(permanent_consumers_watt,0)))] = permanent_consumers_kWh
+        details_dict["Dauerverbraucher {} W".format(int(round(permanent_consumers_watt,0)))] = permanent_consumers_kWh
         known_consumption_kWh_total = known_consumption_kWh_total + permanent_consumers_kWh
         # total consumption
         query_start = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time <= {}'.format(self.db_field, self.db_measurement_total_kWh, int(ts_start_local_ns))
@@ -143,7 +143,7 @@ class energy_consumption_daily(hass.Hass):
         total_consumption_cost = consumption_kWh_total * self.price_per_kWh
         self.log("Verbrauch gesamt (Stromzaehler): {} kWh, also {} EUR (berechnet aus Zaehlerstand)".format(round(consumption_kWh_total,1),round(total_consumption_cost,2)))
         self.client.write_points([{"measurement":self.save_measurement_name,"fields":{"total_consumption_power_meter":consumption_kWh_total},"time":int(ts_save_local_ns)}])
-        unknown_consumption_kWh = consumption_kWh - known_consumption_kWh_total
+        unknown_consumption_kWh = consumption_kWh_total - known_consumption_kWh_total
         unknown_consumers_cost = unknown_consumption_kWh * self.price_per_kWh
         self.log("unbekannte Verbraucher: {} kWh, also {} EUR (berechnet aus Zaehlerstand)".format(round(unknown_consumption_kWh,1),round(unknown_consumers_cost,2)))
         self.client.write_points([{"measurement":self.save_measurement_name,"fields":{"unknown_consumers":unknown_consumption_kWh},"time":int(ts_save_local_ns)}])
