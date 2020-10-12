@@ -7,17 +7,26 @@ import datetime
 # Calculate Energy consumption from power data and write it to influxdb
 #
 # Args:
-# - db_passwd
-# - db_measurement
-# - db_field
+#  price_per_kWh: 0.2809
+#  db_passwd: !secret permanent_db_passwd
+#  db_field: state_float
+#  #save_measurement_name: energy_consumption_daily (if not provided, energy_consumption_test will be used)
+#  #special_date: "2020-09-30" (if provided, at app start this date will be calculated and saved to database. please remove after that one-time-calculation)
+#  db_measurement_total_kWh: sensor.stromzaehler_netzbezug (measured total consumption from power meter)
+#  db_measurements_Watt: (dict, measurement name in db : readable name for notification)
+#    sensor.el_leistung_backofen: Backofen
+#  db_measurements_kWh: (dict, measurement name in db : readable name for notification)
+#    sensor.stromzahler_kochfeld: Kochfeld
+#  permanent_consumers: (dict, device and permanent consumption in W)
+#    fritzbox: 13
 
 
 class energy_consumption_daily(hass.Hass):
 
     def initialize(self):
         # define daily time to run the calculation:
-        #daily_time =  datetime.time(4, 35, 43)
-        daily_time =  datetime.time(10, 3, 0)
+        daily_time =  datetime.time(4, 35, 43)
+        #daily_time =  datetime.time(10, 3, 0)
         # initialize database stuff
         self.host = self.args.get("host", "a0d7b954-influxdb")
         self.port=8086
@@ -53,7 +62,7 @@ class energy_consumption_daily(hass.Hass):
         if unknown_consumption_kWh >= 0:
             message_text = message_text + "\n\nunbekannte Verbraucher: {} kWh => {} €".format(round(unknown_consumption_kWh,1),round(unknown_consumers_cost,2))
         else:
-            message_text = message_text + "\n\nzugeordneter Stromverbrauch größer als tatsächlicher. Leistungsfaktoren anpassen!"
+            message_text = message_text + "\n\nZugeordneter Stromverbrauch größer als tatsächlicher. Leistungsfaktoren anpassen!"
         if consumption_kWh_total > 0:
             message_text = message_text + "\n\n{} % vom Stromverbrauch sind zugeordnet".format(int(round(100*known_consumption_kWh_total/consumption_kWh_total,0)))
         self.fire_event("custom_notify", message=message_text, target="telegram_jo")
