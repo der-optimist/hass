@@ -71,8 +71,8 @@ class air_dryer(hass.Hass):
                 self.turn_off(self.air_dryer_switch)
                 self.dryer_needed = False
                 self.log("Special Mode, Dryer not needed")
-            else:
-                self.log("Special Mode, Humidity in target range, will do nothing")
+#            else:
+#                self.log("Special Mode, Humidity in target range, will do nothing")
         else:
             if self.current_humidity >= self.humidity_standard_max:
                 self.turn_on(self.air_dryer_switch)
@@ -83,8 +83,8 @@ class air_dryer(hass.Hass):
                 self.turn_off(self.air_dryer_switch)
                 self.dryer_needed = False
                 self.log("Standard Mode, Dryer not needed") 
-            else:
-                self.log("Standard Mode, Humidity in target range, will do nothing")
+#            else:
+#                self.log("Standard Mode, Humidity in target range, will do nothing")
     
     def timer_state_changed(self, entity, attributes, old, new, kwargs):
         self.log("State Change in Humidity Timer erkannt: {}".format(new))
