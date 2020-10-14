@@ -14,6 +14,9 @@ class sync_scene_and_night_entities(hass.Hass):
     def initialize(self):
         # listen for knx scene events
         self.listen_event(self.scene, event = "knx_event", address = "15/0/50")
+        # toggle HA switches via KNX button
+        self.listen_event(self.toggle_poweroutlet_phone_ma, event = "knx_event", address = "0/3/20")
+        self.listen_event(self.toggle_poweroutlet_phone_jo, event = "knx_event", address = "0/3/40")
         self.run_daily(self.reset_sleep_switches, datetime.time(9, 0, 0))
         # set "Bad OG Nachtmodus" if one of the children sleeps...
         self.listen_state(self.children_sleeping_changed, "binary_sensor.la_oder_le_schlafen")
@@ -38,6 +41,14 @@ class sync_scene_and_night_entities(hass.Hass):
         elif data["data"] == [5]:
             self.log("Le steht auf")
             self.turn_off("switch.le_schlaft")
+            
+    def toggle_poweroutlet_phone_ma(self,event_name,data,kwargs):
+        self.log("Toggle poweroutlet phone ma")
+        self.toggle("switch.shellyswitch25_10521c45de0b_relay_0")
+        
+    def toggle_poweroutlet_phone_jo(self,event_name,data,kwargs):
+        self.log("Toggle poweroutlet phone jo")
+        self.toggle("switch.shellyswitch25_10521c45de0b_relay_1")
     
     def reset_sleep_switches(self,kwargs):
         # if "wake up button" was not used
