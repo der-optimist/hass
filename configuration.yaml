@@ -173,6 +173,12 @@ knx:
   - type: 'temperature'
     entity_id: 'sensor.onewire_15_estrich_wc_1'
     address: '12/0/6'
+  - type: 'binary'
+    entity_id: 'switch.shellyswitch25_10521c45de0b_relay_0'
+    address: '0/3/21'
+  - type: 'binary'
+    entity_id: 'switch.shellyswitch25_10521c45de0b_relay_1'
+    address: '0/3/41'
 
 light:
 
