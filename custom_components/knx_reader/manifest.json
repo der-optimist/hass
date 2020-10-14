@@ -1,8 +1,0 @@
-{
-  "domain": "knx_reader",
-  "name": "KNX Read Service (async)",
-  "documentation": "https://gist.github.com/ct-23/b707f3c2d8406c8697a25a3ce619f3c2",
-  "dependencies": ["knx"],
-  "codeowners": [],
-  "requirements": []
-}
