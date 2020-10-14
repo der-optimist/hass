@@ -1,56 +1,46 @@
 resources:
-#  - url: /hacsfiles/lovelace-card-tools/card-tools.js
-  - url: /local/custom_cards_without_hacs/card-tools.js
+  - url: /hacsfiles/lovelace-card-tools/card-tools.js
     type: module
-#  - url: /hacsfiles/lovelace-layout-card/layout-card.js
-  - url: /local/custom_cards_without_hacs/layout-card.js
+  - url: /hacsfiles/lovelace-layout-card/layout-card.js
     type: module
 #  - url: /hacsfiles/custom-header/custom-header.js
-  - url: /local/custom_cards_without_hacs/custom-header.js
-    type: module
-#  - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
-  - url: /local/custom_cards_without_hacs/slider-entity-row.js
+#    type: module
+  - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
     type: module 
-#  - url: /hacsfiles/simple-thermostat/simple-thermostat.js
-  - url: /local/custom_cards_without_hacs/simple-thermostat.js
+  - url: /hacsfiles/simple-thermostat/simple-thermostat.js
     type: module
-  - url: /hacsfiles/button-card/button-card.js
-    type: module
-#  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
-  - url: /local/custom_cards_without_hacs/mini-graph-card-bundle.js
+#  - url: /hacsfiles/button-card/button-card.js
+#    type: module
+  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
     type: module
   - url: /hacsfiles/bar-card/bar-card.js
     type: module
   - url: /hacsfiles/lovelace-card-mod/card-mod.js
     type: module
-  - url: /hacsfiles/secondaryinfo-entity-row/secondaryinfo-entity-row.js
+#  - url: /hacsfiles/secondaryinfo-entity-row/secondaryinfo-entity-row.js
+#    type: module
+  - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
     type: module
-#  - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
-  - url: /local/custom_cards_without_hacs/auto-entities.js
-    type: module
-#  - url: /hacsfiles/lovelace-hui-element/hui-element.js
-  - url: /local/custom_cards_without_hacs/hui-element.js
-    type: module
-  - url: /local/custom_cards_without_hacs/zha-network-visualization-card.js
+  - url: /hacsfiles/lovelace-hui-element/hui-element.js
     type: module
   - url: /hacsfiles/rgb-light-card/card.js
     type: module
 
 title: Lieblingshaus
-custom_header:
-  compact_mode: true
-  header_text: '{{ states.sensor.time.state }}'
-  exceptions:
-    - conditions:
-        user: Bildschirm
-      config:
-        background: "#202020"
-        all_tabs_color: "#ff9c27"
-        menu_color: "#ff9c27"
-        voice_color: "#ff9c27"
-        options_color: "#ff9c27"
-        tab_indicator_color:  "#ff9c27"
-        notify_indicator_color: "#eeeeee"
+#custom_header:
+#  compact_mode: true
+#  header_text: '{{ states.sensor.time.state }}'
+#  exceptions:
+#    - conditions:
+#        user: Bildschirm
+#      config:
+#        background: "#202020"
+#        all_tabs_color: "#ff9c27"
+#        menu_color: "#ff9c27"
+#        voice_color: "#ff9c27"
+#        options_color: "#ff9c27"
+#        tab_indicator_color:  "#ff9c27"
+#        notify_indicator_color: "#eeeeee"
 
 views:
   - !include lovelace/01_home.yaml
