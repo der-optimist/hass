@@ -24,6 +24,12 @@ zone: !include zones.yaml
 frontend: 
   themes: !include_dir_merge_named themes
 
+panel_iframe:
+  tasmoadmin:
+    title: TasmoAdmin
+    icon: mdi:lightbulb-on
+    url: http://192.168.178.39:9541
+
 api:
 mobile_app:
 #hacs: # HA custom store	
