@@ -31,6 +31,12 @@ cards:
     - entity: switch.knutschen
       name: Knutschen
     - type: section
+      label: Steckdosen
+    - entity: switch.shellyswitch25_10521c45de0b_relay_0
+      name: Handysteckdose Ma
+    - entity: switch.shellyswitch25_10521c45de0b_relay_1
+      name: Handysteckdose Jo
+    - type: section
       label: Jalousie
     - entity: cover.jalousie_schlafzimmer
       name: Schlafzimmer
