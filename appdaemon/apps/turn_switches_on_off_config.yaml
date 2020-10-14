@@ -10,3 +10,15 @@ ladesteckdose_jo_abends_an:
   switch_entity: switch.shellyswitch25_10521c45de0b_relay_1
   time: "18:02"
   on_off: "on"
+ladesteckdose_ma_mittags_an:
+  module: turn_switches_on_off
+  class: turn_switches_on_off
+  switch_entity: switch.shellyswitch25_10521c45de0b_relay_0
+  time: "12:03"
+  on_off: "on"
+ladesteckdose_ma_abends_an:
+  module: turn_switches_on_off
+  class: turn_switches_on_off
+  switch_entity: switch.shellyswitch25_10521c45de0b_relay_0
+  time: "18:03"
+  on_off: "on"
