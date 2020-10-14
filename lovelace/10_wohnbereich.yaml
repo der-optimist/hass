@@ -111,6 +111,10 @@ cards:
       entity: light.schrankbeleuchtung_wohnzimmer
       name: Hängeschränke
       toggle: true
+    - type: custom:slider-entity-row
+      entity: light.innr_e27_color_stehlampe_wz_level_light_color_on_off
+      name: Stehlampe
+      toggle: true
     - entity: switch.bleib_so_wz_licht
       name: Bleib so, Licht!
     - type: divider
