@@ -27,21 +27,6 @@ resources:
     type: module
 
 title: Lieblingshaus
-#custom_header:
-#  compact_mode: true
-#  header_text: '{{ states.sensor.time.state }}'
-#  exceptions:
-#    - conditions:
-#        user: Bildschirm
-#      config:
-#        background: "#202020"
-#        all_tabs_color: "#ff9c27"
-#        menu_color: "#ff9c27"
-#        voice_color: "#ff9c27"
-#        options_color: "#ff9c27"
-#        tab_indicator_color:  "#ff9c27"
-#        notify_indicator_color: "#eeeeee"
-
 views:
   - !include lovelace/01_home.yaml
   - !include lovelace/10_wohnbereich.yaml
@@ -59,9 +44,7 @@ views:
   - !include lovelace/84_wetterstation.yaml
   - !include lovelace/86_anwesenheiten.yaml
   - !include lovelace/90_technik.yaml
-#  - !include lovelace/92_zigbee.yaml
   - !include lovelace/94_alarme.yaml
   - !include lovelace/95_hochzeitsvideo.yaml
   - !include lovelace/96_tagesschau.yaml
-  - !include lovelace/96_tagesschau_2.yaml
 #  - !include lovelace/98_einkaufen.yaml
