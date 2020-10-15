@@ -350,7 +350,7 @@ auto_light_e_wz_schrankbeleuchtung:
     binary_sensor.tv_abend_ohne_pizza: 20
     input_boolean.gaeste_abends: 80
 auto_light_e_wz_stehlampe:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_wohnzimmer
