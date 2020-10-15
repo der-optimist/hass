@@ -38,4 +38,10 @@ energy_consumption_daily:
     knx: 15
     klingel: 10
     babyphone: 6
+    drucker: 0
+    klingel: 0
+    kodi: 0
+    repeater_wz: 0
+    repeater_keller: 0
+    relais_sicherung_keller: 0
 #
