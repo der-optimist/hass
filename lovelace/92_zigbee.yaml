@@ -1,6 +1,0 @@
-title: Zigbee
-path: zigbee
-icon: mdi:zigbee
-panel: true
-cards:
-  - type: 'custom:zha-network-visualization-card'
