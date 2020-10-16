@@ -22,8 +22,13 @@ cards:
     title: Leistung Keller
     show_header_toggle: false
     entities:
-      - entity: sensor.stromzahler_sum_active_instantaneous_power
+      - entity: sensor.el_leistung_stromzaehler_netzbezug
         name: Gesamtleistung Netz
+      - type: divider
+        style: 
+          height: 1px
+          background-color: "#ff9c27"
+          opacity: 0.25
       - entity: sensor.el_leistung_luftungsanlage_round
         name: Lüftungsanlage
       - entity: sensor.el_leistung_waschmaschine_round
