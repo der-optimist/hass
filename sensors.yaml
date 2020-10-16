@@ -30,6 +30,12 @@
 
       # --- Elektrische Leistung ---
       # Backofen
+      el_leistung_stromzaehler_netzbezug:
+        value_template: "{{ states('sensor.stromzahler_sum_active_instantaneous_power') }}"
+        friendly_name: 'El. Leistung Stromzähler Netzbezug'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      # Backofen
       el_leistung_backofen_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_backofen') | float) | float }}"
         friendly_name: 'El. Leistung Backofen (gerundet)'
@@ -223,10 +229,10 @@
         icon_template: mdi:speedometer
       el_leistung_licht_gesamt:
         value_template: >-
-          {{ states('sensor.el_leistung_berechnete_lichter') | float 
+          {{ '%.1f'%(states('sensor.el_leistung_berechnete_lichter') | float 
            + states('sensor.el_leistung_licht_sicherung_3_2') | float
            + states('sensor.el_leistung_licht_sicherung_3_3') | float
-           + states('sensor.shellydimmer_d472fe_power') | float }}
+           + states('sensor.shellydimmer_d472fe_power') | float) | float }}
         friendly_name: 'El. Leistung Licht gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
