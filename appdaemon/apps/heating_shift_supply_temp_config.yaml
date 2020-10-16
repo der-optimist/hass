@@ -6,5 +6,6 @@ heating_shift_supply_temp:
   temp_limit_max: 25
   valve_target_min: 75
   valve_target_max: 95
-  step_size: 0.5
+  step_size_up: 1.0
+  step_size_down: 0.5
   heating_entity: climate.hc1
