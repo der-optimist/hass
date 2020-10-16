@@ -265,6 +265,7 @@ permanent_recorder:
     - sensor.el_leistung_berechnet_spiegel_bad_og
     - sensor.el_leistung_berechnet_spiegel_wc
     - sensor.el_leistung_berechnete_lichter
+    - sensor.el_leistung_bildschirm_theke
     - sensor.el_leistung_gefrierschrank
     - sensor.el_leistung_kochfeld
     - sensor.el_leistung_kuhlschrank_keller
