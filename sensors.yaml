@@ -287,6 +287,29 @@
     duration:
       hours: 1
 
+# Max. Stellung Heizkreisventile
+  - platform: min_max
+    type: max
+    name: Stellwert Heizung aktueller MaxWert
+    entity_ids:
+      - sensor.stellwert_heizung_bad_eg
+      - sensor.stellwert_heizung_bad_og
+      - sensor.stellwert_heizung_esszimmer
+      - sensor.stellwert_heizung_flur_og
+      - sensor.stellwert_heizung_gastezimmer
+      - sensor.stellwert_heizung_kuche
+      - sensor.stellwert_heizung_la
+      - sensor.stellwert_heizung_le
+      - sensor.stellwert_heizung_nahzimmer
+      - sensor.stellwert_heizung_schlafzimmer
+      - sensor.stellwert_heizung_windfang_wc
+      - sensor.stellwert_heizung_wohnzimmer
+  - platform: statistics
+    name: Stellwert Heizung Zeitverlauf MaxWert
+    entity_id: sensor.stellwert_heizung_aktueller_maxwert
+    max_age:
+      minutes: 30
+
 # Zeit und Datum
   - platform: time_date
     display_options:
