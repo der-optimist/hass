@@ -244,6 +244,11 @@
           {% else %}
             6
           {% endif %}
+      # max Stellwert Heizkreise Zeitverlauf
+      stellwert_heizung_zeitverlauf_max:
+        friendly_name: "Stellwert Heizung Zeitverlauf Max"
+        value_template: "{{ state_attr('sensor.stellwert_heizung_zeitverlauf_mean', 'max_value') }}"
+        unit_of_measurement: '%'
     
 # --- Sonstiges ---
 # History
@@ -305,8 +310,9 @@
       - sensor.stellwert_heizung_windfang_wc
       - sensor.stellwert_heizung_wohnzimmer
   - platform: statistics
-    name: Stellwert Heizung Zeitverlauf MaxWert
+    name: Stellwert Heizung Zeitverlauf Mean
     entity_id: sensor.stellwert_heizung_aktueller_maxwert
+    sampling_size: 2000
     max_age:
       minutes: 30
 
