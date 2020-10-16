@@ -249,6 +249,17 @@
         friendly_name: "Stellwert Heizung Zeitverlauf Max"
         value_template: "{{ state_attr('sensor.stellwert_heizung_zeitverlauf_mean', 'max_value') }}"
         unit_of_measurement: '%'
+      # Warmwasser
+      water_heater_target_temp:
+        friendly_name: "Warmwasser Zieltemperatur"
+        value_template: "{{ state_attr('water_heater.dhw1', 'temperature') }}"
+        unit_of_measurement: '°C'
+        device_class: temperature
+      water_heater_current_temp:
+        friendly_name: "Warmwasser aktuelle Temperatur"
+        value_template: "{{ state_attr('water_heater.dhw1', 'current_temperature') }}"
+        unit_of_measurement: '°C'
+        device_class: temperature
     
 # --- Sonstiges ---
 # History
