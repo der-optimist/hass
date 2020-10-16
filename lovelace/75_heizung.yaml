@@ -3,6 +3,26 @@ path: heizung
 icon: mdi:fire
 cards:
   - type: entities
+    title: Heizung
+    show_header_toggle: false
+    entities:
+      - type: section
+        label: Fussbodenheizung
+      - entity: sensor.supply_temp_setpoint
+        name: Zieltemperatur Vorlauf
+      - entity: sensor.actual_supply_temp
+        name: Vorlauf aktuell
+      - entity: sensor.return_temp
+        name: Rücklauf aktuell
+      - entity: sensor.stellwert_heizung_aktueller_maxwert
+        name: Max. Stellung Ventile aktuell
+      - type: section
+        label: Warmwasser
+      - entity: sensor.water_heater_target_temp
+        name: Zieltemperatur
+      - entity: sensor.water_heater_current_temp
+        name: Temperatur aktuell
+  - type: entities
     title: Winter und Ventil-Stellungen
     show_header_toggle: false
     entities:
