@@ -230,6 +230,14 @@
         friendly_name: 'El. Leistung Licht gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      el_leistung_bildschirm_theke:
+        friendly_name: "El. Leistung Bildschirm Theke"
+        value_template: >-
+          {% if is_state('binary_sensor.anwesenheit_bildschirm', 'on') %}
+            10
+          {% else %}
+            6
+          {% endif %}
     
 # --- Sonstiges ---
 # History
