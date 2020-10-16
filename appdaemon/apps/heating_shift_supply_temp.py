@@ -17,13 +17,14 @@ class heating_shift_supply_temp(hass.Hass):
         self.temp_limit_min = self.args["temp_limit_min"]
         self.valve_target_min = self.args["valve_target_min"]
         self.valve_target_max = self.args["valve_target_max"]
-        self.step_size = self.args["step_size"]
+        self.step_size_up = self.args["step_size_up"]
+        self.step_size_down = self.args["step_size_down"]
         self.heating_entity = self.args["heating_entity"]
         # run regularly
         time_first_run = datetime.datetime.strptime("00:03:03","%H:%M:%S")
         self.run_every(self.adjust_room_target_temp, time_first_run, interval_hours * 3600)
         # testing:
-        self.adjust_room_target_temp(None) # run at app startup
+        #self.adjust_room_target_temp(None) # run at app startup
 
     def adjust_room_target_temp(self, kwargs):
         try:
@@ -35,7 +36,7 @@ class heating_shift_supply_temp(hass.Hass):
         if max_valve_value > self.valve_target_max:
             self.log("Should shift room target temp up")
             if current_room_target_temp < self.temp_limit_max:
-                new_room_target_temp = current_room_target_temp + self.step_size
+                new_room_target_temp = current_room_target_temp + self.step_size_up
                 self.log("Will shift room target temp from {} to {}".format(current_room_target_temp, new_room_target_temp))
                 self.call_service("climate/set_temperature", entity_id = self.heating_entity, temperature = new_room_target_temp)
             else:
@@ -43,7 +44,7 @@ class heating_shift_supply_temp(hass.Hass):
         elif max_valve_value < self.valve_target_min:
             self.log("Should shift room target temp down")
             if current_room_target_temp > self.temp_limit_min:
-                new_room_target_temp = current_room_target_temp - self.step_size
+                new_room_target_temp = current_room_target_temp - self.step_size_down
                 self.log("Will shift room target temp from {} to {}".format(current_room_target_temp, new_room_target_temp))
                 self.call_service("climate/set_temperature", entity_id = self.heating_entity, temperature = new_room_target_temp)
             else:
