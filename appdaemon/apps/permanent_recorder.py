@@ -160,7 +160,7 @@ class permanent_recorder(hass.Hass):
             self.client.write_points([{"measurement":"heating.water_heater","fields":{"target_temperature_float":value_float}}])
 
     def heating_water_heater_current_temp(self, entity, attributes, old, new, kwargs):
-        self.log("Water Heater Current Temp Changed")
+        #self.log("Water Heater Current Temp Changed")
         if new != None and new != "":
             try:
                 value_float = float(new)
