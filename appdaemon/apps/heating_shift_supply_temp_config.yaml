@@ -1,0 +1,10 @@
+heating_shift_supply_temp:
+  module: heating_shift_supply_temp
+  class: heating_shift_supply_temp
+  interval_hours: 3
+  temp_limit_max: 20
+  temp_limit_min: 25
+  valve_target_min: 75
+  valve_target_max: 95
+  step_size: 0.5
+  heating_entity: climate.hc1
