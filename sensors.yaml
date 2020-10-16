@@ -249,6 +249,12 @@
         friendly_name: "Stellwert Heizung Zeitverlauf Max"
         value_template: "{{ state_attr('sensor.stellwert_heizung_zeitverlauf_mean', 'max_value') }}"
         unit_of_measurement: '%'
+      # Heizung
+      heating_room_target_temp:
+        friendly_name: "Heizung Zieltemperatur Raum"
+        value_template: "{{ state_attr('climate.hc1', 'temperature') }}"
+        unit_of_measurement: '°C'
+        device_class: temperature
       # Warmwasser
       water_heater_target_temp:
         friendly_name: "Warmwasser Zieltemperatur"
