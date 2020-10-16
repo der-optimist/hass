@@ -16,6 +16,8 @@ cards:
         name: Rücklauf aktuell
       - entity: sensor.stellwert_heizung_aktueller_maxwert
         name: Max. Stellung Ventile aktuell
+      - entity: sensor.stellwert_heizung_zeitverlauf_mean
+        name: Mittelwert max. Stellung 30min
       - entity: sensor.heating_room_target_temp
         name: Regeltemperatur Raum
       - type: section
