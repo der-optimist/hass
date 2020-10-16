@@ -22,6 +22,14 @@ cards:
         name: Zieltemperatur
       - entity: sensor.water_heater_current_temp
         name: Temperatur aktuell
+      - type: section
+        label: Leistung
+      - entity: sensor.el_leistung_wp_innenteil
+        name: WP Innenteil
+      - entity: sensor.el_leistung_wp_aussenteil
+        name: WP Aussenteil
+      - entity: sensor.el_leistung_wp_heizstab
+        name: WP Heizstab
   - type: entities
     title: Winter und Ventil-Stellungen
     show_header_toggle: false
