@@ -20,7 +20,7 @@ class heating_shift_supply_temp(hass.Hass):
         self.step_size = self.args["step_size"]
         self.heating_entity = self.args["heating_entity"]
         # run regularly
-        time_first_run = datetime.time(hour=0, minute=3, second=3)
+        time_first_run = datetime.datetime.strptime("00:03:03","%H:%M:%S")
         self.run_every(self.adjust_room_target_temp, time_first_run, interval_hours * 3600)
         # testing:
         self.adjust_room_target_temp(None) # run at app startup
