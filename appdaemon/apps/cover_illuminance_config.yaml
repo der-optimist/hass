@@ -10,18 +10,18 @@ jal_schlafzimmer_abends_helligkeit:
   up_or_down: down
   position: 100
   tilt: 100
-jal_schlafzimmer_morgens_helligkeit:
-  module: cover_illuminance
-  class: cover_illuminance
-  constrain_input_boolean: input_boolean.app_switch_jalousie_schlafzimmer
-  constrain_start_time: "08:00:00"
-  constrain_end_time: "12:00:00"
-  cover_entity: cover.jalousie_schlafzimmer
-  illuminance_sensor: sensor.helligkeit_wetterstation
-  illuminance: 3000
-  up_or_down: up
-  position: 100
-  tilt: 50
+#jal_schlafzimmer_morgens_helligkeit:
+#  module: cover_illuminance
+#  class: cover_illuminance
+#  constrain_input_boolean: input_boolean.app_switch_jalousie_schlafzimmer
+#  constrain_start_time: "08:00:00"
+#  constrain_end_time: "12:00:00"
+#  cover_entity: cover.jalousie_schlafzimmer
+#  illuminance_sensor: sensor.helligkeit_wetterstation
+#  illuminance: 3000
+#  up_or_down: up
+#  position: 100
+#  tilt: 50
 jal_bad_kinder_abends_helligkeit:
   module: cover_illuminance
   class: cover_illuminance
