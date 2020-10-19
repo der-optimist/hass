@@ -321,6 +321,7 @@ permanent_recorder:
     - sensor.onewire_25_estrich_schlafzimmer
     - sensor.onewire_serverschrank
     - sensor.shellydimmer_d472fe_power
+    - sensor.shellyplug_s_169d16_power
     - sensor.sollwert_heizung_bad_eg
     - sensor.sollwert_heizung_bad_og
     - sensor.sollwert_heizung_esszimmer
