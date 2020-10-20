@@ -101,126 +101,115 @@ cards:
         control: false
       - type: 'custom:simple-thermostat'
         entity: climate.esszimmer
+        step_layout: row
         name: Esszimmer
         sensors:
           - entity: sensor.stellwert_heizung_esszimmer
             name: Ventil offen
           - entity: sensor.sollwert_heizung_esszimmer
             name: Regler
-        control:
-          - preset: false
-          - hvac: false
+        control: false
       - type: 'custom:simple-thermostat'
         entity: climate.wohnzimmer
+        step_layout: row
         name: Wohnzimmer
         sensors:
           - entity: sensor.stellwert_heizung_wohnzimmer
             name: Ventil offen
           - entity: sensor.sollwert_heizung_wohnzimmer
             name: Regler
-        control:
-          - preset: false
-          - hvac: false
+        control: false
       - type: 'custom:simple-thermostat'
         entity: climate.schlafzimmer
+        step_layout: row
         name: Schlafzimmer
         sensors:
           - entity: sensor.stellwert_heizung_schlafzimmer
             name: Ventil offen
           - entity: sensor.sollwert_heizung_schlafzimmer
             name: Regler
-        control:
-          - preset: false
-          - hvac: false
+        control: false
       - type: 'custom:simple-thermostat'
         entity: climate.bad_eg
+        step_layout: row
         name: Bad EG
         sensors:
           - entity: sensor.stellwert_heizung_bad_eg
             name: Ventil offen
           - entity: sensor.sollwert_heizung_bad_eg
             name: Regler
-        control:
-          - preset: false
-          - hvac: false
+        control: false
       - type: 'custom:simple-thermostat'
         entity: climate.windfang_wc
+        step_layout: row
         name: Windfang / WC
         sensors:
           - entity: sensor.stellwert_heizung_windfang_wc
             name: Ventil offen
           - entity: sensor.sollwert_heizung_windfang_wc
             name: Regler
-        control:
-          - preset: false
-          - hvac: false
+        control: false
   - type: entities
     title: Heizungen OG
     show_header_toggle: false
     entities:
       - type: 'custom:simple-thermostat'
         entity: climate.la
+        step_layout: row
         name: !secret name_la
         sensors:
           - entity: sensor.stellwert_heizung_la
             name: Ventil offen
           - entity: sensor.sollwert_heizung_la
             name: Regler
-        control:
-          - preset: false
-          - hvac: false
+        control: false
       - type: 'custom:simple-thermostat'
         entity: climate.nahzimmer
+        step_layout: row
         name: Nähzimmer
         sensors:
           - entity: sensor.stellwert_heizung_nahzimmer
             name: Ventil offen
           - entity: sensor.sollwert_heizung_nahzimmer
             name: Regler
-        control:
-          - preset: false
-          - hvac: false
+        control: false
       - type: 'custom:simple-thermostat'
         entity: climate.le
+        step_layout: row
         name: !secret name_le
         sensors:
           - entity: sensor.stellwert_heizung_le
             name: Ventil offen
           - entity: sensor.sollwert_heizung_le
             name: Regler
-        control:
-          - preset: false
-          - hvac: false
+        control: false
       - type: 'custom:simple-thermostat'
         entity: climate.gastezimmer
+        step_layout: row
         name: Gästezimmer
         sensors:
           - entity: sensor.stellwert_heizung_gastezimmer
             name: Ventil offen
           - entity: sensor.sollwert_heizung_gastezimmer
             name: Regler
-        control:
-          - preset: false
-          - hvac: false
+        control: false
       - type: 'custom:simple-thermostat'
         entity: climate.flur_og
+        step_layout: row
         name: Flur OG
         sensors:
           - entity: sensor.stellwert_heizung_flur_og
             name: Ventil offen
           - entity: sensor.sollwert_heizung_flur_og
             name: Regler
-        control:
-          - preset: false
-          - hvac: false
+        control: false
       - type: 'custom:simple-thermostat'
         entity: climate.bad_og
+        step_layout: row
         name: Bad OG
         sensors:
           - entity: sensor.stellwert_heizung_bad_og
             name: Ventil offen
           - entity: sensor.sollwert_heizung_bad_og
             name: Regler
-        control:
-          - preset: false
-          - hvac: false
+        control: false
