@@ -34,10 +34,8 @@ cards:
         name: WP Aussenteil
       - entity: sensor.el_leistung_wp_heizstab
         name: WP Heizstab
-  - type: entities
-    title: Winter und Ventil-Stellungen
-    show_header_toggle: false
-    entities:
+      - type: section
+        label: Ventile
       - entity: input_boolean.heizung_winter
         name: Winter-Modus
       - type: divider
