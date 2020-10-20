@@ -5,7 +5,6 @@ visible:
   - user: 3a060b5cc69a4bb8826ff70866146111 # Jo-Handy
   - user: f893f5e9db1c44fdbf00ee548d57bdd3 # Ma-Handy
   - user: f2058f3d61c94ec6b017839ee1cb4aa9 # Laptop-Admin
-panel: true
 cards:
   - type: picture-elements
     image: /local/meteograms/meteogram.png
