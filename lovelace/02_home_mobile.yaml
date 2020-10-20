@@ -1,5 +1,5 @@
 title: Home
-path: home
+path: home_mobile
 icon: mdi:home-outline
 visible:
   - user: 3a060b5cc69a4bb8826ff70866146111 # Jo-Handy
