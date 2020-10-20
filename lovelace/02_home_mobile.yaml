@@ -1,0 +1,157 @@
+title: Home
+path: home
+icon: mdi:home-outline
+visible:
+  - user: 3a060b5cc69a4bb8826ff70866146111 # Jo-Handy
+  - user: f893f5e9db1c44fdbf00ee548d57bdd3 # Ma-Handy
+panel: true
+cards:
+  - type: custom:hui-element
+    card_type: picture-elements
+    image: /local/meteograms/meteogram.png
+    elements:
+      - type: image
+        entity: camera.meteogram
+        camera_image: camera.meteogram
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+          height: 100%
+  - type: markdown
+    style: |
+      h1 {
+        font-weight: 300;
+        font-size: 2.4em;
+      }  
+    content: >
+      # {{ '%.1f'%(states('sensor.temp_esszimmer_pm') | float) | float }}°C
+
+      Luftfeuchtigkeit: {{ states('sensor.luftfeuchtigkeit_kuche_aqara') }}%
+  - type: custom:mini-graph-card
+    style: |
+      state__value {
+        font-size: 2em;
+      }
+    entities: 
+      - sensor.temp_wetterstation
+    name: Außentemperatur
+    hour24: true
+    decimals: 1
+    show:
+      labels: true
+  - type: entities
+    title: "Wer ist wo..."
+    show_header_toggle: false
+    entities:
+      - entity: sensor.location_jo
+  - type: entities
+    title: Pizza Timer
+    show_header_toggle: false
+    entities:
+      - type: custom:slider-entity-row
+        entity: input_number.pizza_timer_2
+        full_row: true
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        name: Pizza
+        icon: mdi:pizza
+        tap_action:
+          action: call-service
+          service: input_number.set_value
+          service_data:
+            entity_id: input_number.pizza_timer_2
+            value: 11
+        entity: input_number.pizza_timer_2
+      - type: entity-button
+        name: runter
+        icon: mdi:arrow-down-bold-box-outline
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.jal_wohnbereich_runter
+        entity: scene.jal_wohnbereich_runter
+      - type: entity-button
+        name: hoch
+        icon: mdi:arrow-up-bold-box-outline
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.jal_wohnbereich_hoch
+        entity: scene.jal_wohnbereich_hoch
+  - type: custom:auto-entities
+    show_empty: false
+    card:
+      type: entities
+      title: "zu erledigen"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "switch.reminder*"
+          state: "on"
+  - type: custom:auto-entities
+    show_empty: false
+    card:
+      type: glance
+      title: Batterie wechseln
+    filter:
+      include:
+        - entity_id: "*battery"
+          state: '< 15'
+#          - type: picture-elements
+#            image: /local/camera_abstellraum/last_motion.jpg
+#            elements:
+#              - type: image
+#                entity: camera.abstellraum_letze_bewegung
+#                camera_image: camera.abstellraum_letze_bewegung
+#                style:
+#                  left: 50%
+#                  top: 50%
+#                  width: 100%
+#                  height: 100%
+  - type: entities
+    show_header_toggle: false
+    entities:
+    - entity: input_boolean.gaeste_abends
+      name: Gäste
+    - entity: input_boolean.arbeit_theke
+      name: Arbeit Theke
+  - type: custom:auto-entities
+    show_empty: false
+    card:
+      type: entities
+      style: |
+        ha-card {
+          border-style: solid;
+          border-color: var(--primary-color);
+        }    
+#              title: "Wetterwarnungen"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "sensor.dwd_warn*"
+      exclude:
+        - state: "off"
+  - type: custom:auto-entities
+    show_empty: false
+    card:
+      type: entities
+      title: "Abfall"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "sensor.abfall_anzeige*"
+  - type: custom:auto-entities
+    show_empty: false
+    card:
+      type: entities
+      title: "Geburtstage"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "sensor.birthday*"
+      exclude:
+        - state: "off"
