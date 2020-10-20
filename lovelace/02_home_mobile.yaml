@@ -7,8 +7,7 @@ visible:
   - user: f2058f3d61c94ec6b017839ee1cb4aa9 # Laptop-Admin
 panel: true
 cards:
-  - type: custom:hui-element
-    card_type: picture-elements
+  - type: picture-elements
     image: /local/meteograms/meteogram.png
     elements:
       - type: image
