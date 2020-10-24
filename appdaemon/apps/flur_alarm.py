@@ -12,6 +12,8 @@ class flur_alarm(hass.Hass):
     def initialize(self):
         self.listen_state(self.sensor_state_changed, "binary_sensor.pm_o_fl_flur")
         self.listen_state(self.sensor_state_changed, "binary_sensor.pm_o_fl_treppe")
+        self.listen_state(self.sensor_state_changed, "binary_sensor.pm_o_la_tuer")
+        self.listen_state(self.sensor_state_changed, "binary_sensor.pm_o_le_tuer")
         self.listen_state(self.sensor_state_changed, "binary_sensor.pm_e_fl_treppe_og")
         self.listen_state(self.sensor_state_changed, "binary_sensor.pm_e_fl_flur")
         self.listen_state(self.sensor_state_changed, "binary_sensor.pm_e_wf_flur")
@@ -29,6 +31,10 @@ class flur_alarm(hass.Hass):
                 readable_name = "Treppe OG (oben)"
             elif entity == "binary_sensor.pm_e_fl_treppe_og":
                 readable_name = "Treppe OG (unten)"
+            elif entity == "binary_sensor.pm_o_le_tuer":
+                readable_name = "Le Tür"
+            elif entity == "binary_sensor.pm_o_la_tuer":
+                readable_name = "La Tür"
             elif entity == "binary_sensor.pm_e_fl_flur":
                 readable_name = "Flur EG"
             elif entity == "binary_sensor.pm_e_wf_flur":
