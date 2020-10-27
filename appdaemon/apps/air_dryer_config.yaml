@@ -23,10 +23,10 @@ luftentfeuchter_werkelraum:
   air_dryer_switch: switch.innr_sp_120_test_on_off
   energy_measurement_sensor: sensor.innr_sp_120_test_electrical_measurement
   humidity_sensor: sensor.lumi_lumi_weather_humidity
-  humidity_standard_max: 66
-  humidity_standard_min: 64
-  humidity_special_max: 61
-  humidity_special_min: 59
+  humidity_standard_max: 61
+  humidity_standard_min: 59
+  humidity_special_max: 56
+  humidity_special_min: 54
   zigbee: False
   input_number_timer_special_humidity: input_number.timer_spezial_luftf_werkelraum
   name_reminder_switch_tank_full: switch.reminder_luftentfeuchter_werkelraum_tank
