@@ -135,6 +135,7 @@ class air_dryer(hass.Hass):
             self.dryer_is_running = True
         else:
             self.dryer_is_running = False
+            self.check_if_dryer_full()
     
     def check_if_dryer_full(self):
         if self.dryer_needed and not self.dryer_is_running:
