@@ -14,7 +14,7 @@ auto_light_e_ez_panels:
     - binary_sensor.pm_e_wz_durchgang
   brightness_values:
     "00:00": 50
-    "06:00": 65
+    "06:00": 75
     "06:30": 85
     "09:00": 90
     "19:00": 78
