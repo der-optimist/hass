@@ -1,0 +1,10 @@
+humidity_manager_partyraum:
+  module: humidity_manager
+  class: humidity_manager
+  sensor_humidity_inside: sensor.lumi_lumi_weather_humidity
+  sensor_temp_inside: sensor.lumi_lumi_weather_temperature
+  sensor_humidity_outside: sensor.humidity_outside_internet
+  sensor_temp_outside: sensor.temp_outside_internet
+  max_humidity_inside: 65
+  notification_entity: sensor.humidity_manager_partyraum
+  notification_friendly_name: "Luft Partyraum"
