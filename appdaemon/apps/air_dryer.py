@@ -36,7 +36,7 @@ class air_dryer(hass.Hass):
             self.listen_event(self.button_time_2, "zha_event", device_ieee = self.zha_device_ieee, command = self.zha_device_command_time_2)
         
         # define tank full reminder switch
-        icon_reminder_tank = "/local/icons/reminders/drop_orange_blink.svg"
+        icon_reminder_tank = "/local/icons/reminders/drop_blue_blink.svg"
         self.attributes_reminder_tank_full = {"entity_picture": icon_reminder_tank, "friendly_name": self.text_reminder_switch_tank_full}
         self.set_state(self.name_reminder_switch_tank_full, state = "off", attributes = self.attributes_reminder_tank_full)
         
