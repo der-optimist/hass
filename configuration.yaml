@@ -90,6 +90,9 @@ telegram_bot:
       - !secret telegram_id_1
       - !secret telegram_id_2
       - !secret telegram_id_alarm_gruppe
+twilio:
+  account_sid: !secret twilio_account_sid
+  auth_token: !secret twilio_access_token
 
 notify:
   - name: telegram_jo
@@ -104,6 +107,9 @@ notify:
   - platform: kodi
     name: kodi_wz
     host: 192.168.178.38
+  - name: twilio_phone
+    platform: twilio_call
+    from_number: !secret twilio_phone_number
 
 google:
   client_id: !secret google_calendar_client_id
