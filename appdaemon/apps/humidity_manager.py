@@ -76,6 +76,6 @@ class humidity_manager(hass.Hass):
             if r_in < (humidity_inside - 3):
                 status = "Lüften möglich ({} => {}%)".format(int(round(humidity_inside,0)), int(round(r_in,0)))
             else:
-                status = "Bitte nicht lüften (sonst {} => {}%)".format(int(round(humidity_inside,0)), int(round(r_in,0)))
+                status = "Nicht lüften (sonst {} => {}%)".format(int(round(humidity_inside,0)), int(round(r_in,0)))
                 
         self.set_state(self.notification_entity, state = status, attributes = self.attributes_notification_entity)
