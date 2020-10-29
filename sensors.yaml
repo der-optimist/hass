@@ -20,6 +20,16 @@
         unit_of_measurement: 'hPa'
         value_template: "{{ (states('sensor.lumi_lumi_weather_57dc3d03_pressure') | float) | round }}"
         device_class: pressure
+      temp_outside_internet:
+        friendly_name: "Temperatur außen Internet"
+        value_template: "{{ state_attr('weather.lieblingshaus', 'temperature') }}"
+        unit_of_measurement: '°C'
+        device_class: temperature
+      humidity_outside_internet:
+        friendly_name: "Luftfeuchtigkeit außen Internet"
+        value_template: "{{ state_attr('weather.lieblingshaus', 'humidity') }}"
+        unit_of_measurement: '%'
+        device_class: humidity
 
       # --- Stromverbrauch ---
       stromzaehler_netzbezug:
