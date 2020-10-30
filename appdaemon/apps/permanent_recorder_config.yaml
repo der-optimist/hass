@@ -334,6 +334,10 @@ permanent_recorder:
     - sensor.sollwert_heizung_schlafzimmer
     - sensor.sollwert_heizung_windfang_wc
     - sensor.sollwert_heizung_wohnzimmer
+    - sensor.sonoff_pow_r2_1_energie
+    - sensor.sonoff_pow_r2_1_leistungsfaktor
+    - sensor.sonoff_pow_r2_1_scheinleistung
+    - sensor.sonoff_pow_r2_1_wirkleistung
     - sensor.stellwert_heizung_aktueller_maxwert
     - sensor.stellwert_heizung_bad_eg
     - sensor.stellwert_heizung_bad_og
