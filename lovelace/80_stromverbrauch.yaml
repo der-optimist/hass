@@ -3,6 +3,18 @@ path: stromverbrauch
 icon: mdi:counter
 cards:
   - type: entities
+    title: mobil
+    show_header_toggle: false
+    entities:
+      - entity: sensor.sonoff_pow_r2_1_wirkleistung
+        name: POW R2 1 - Wirkleistung
+      - entity: sensor.sonoff_pow_r2_1_scheinleistung
+        name: POW R2 1 - Scheinleistung
+      - entity: sensor.sonoff_pow_r2_1_leistungsfaktor
+        name: POW R2 1 - Cos Phi
+      - entity: sensor.sonoff_pow_r2_1_energie
+        name: POW R2 1 - Energie
+  - type: entities
     title: Leistung EG
     show_header_toggle: false
     entities:
