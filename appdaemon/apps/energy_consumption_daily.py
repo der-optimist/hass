@@ -54,7 +54,7 @@ class energy_consumption_daily(hass.Hass):
     def generate_data_for_yesterday(self, kwargs):
         yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
         self.log("running consumption calclulation for " + yesterday_str)
-        consumption_kWh_total, total_consumption_cost, known_consumption_kWh_total, known_consumption_costs, unknown_consumption_kWh, unknown_consumers_cost, details_dict = self.calculate_energy_consumption(yesterday_str)
+        consumption_kWh_total, total_consumption_cost, known_consumption_kWh_total, known_consumption_costs, unknown_consumption_kWh, unknown_consumers_cost, details_dict, text_cos_phi = self.calculate_energy_consumption(yesterday_str)
         message_text = "Verbrauch gestern: {} kWh => {} €\n\nVerbrauch im Detail:\n".format(round(consumption_kWh_total,1),round(total_consumption_cost,2))
         details_sorted = sorted(details_dict.items(), key=lambda x: x[1], reverse=True)
         for i in details_sorted:
@@ -66,6 +66,9 @@ class energy_consumption_daily(hass.Hass):
         if consumption_kWh_total > 0:
             message_text = message_text + "\n\n{} % vom Stromverbrauch sind zugeordnet".format(int(round(100*known_consumption_kWh_total/consumption_kWh_total,0)))
         self.fire_event("custom_notify", message=message_text, target="telegram_jo")
+        # temporary section for power factor:
+        self.fire_event("custom_notify", message=text_cos_phi, target="telegram_jo")
+        
         
 
     def calculate_energy_consumption(self, date_str):
@@ -160,10 +163,72 @@ class energy_consumption_daily(hass.Hass):
         self.log("unbekannte Verbraucher: {} kWh, also {} EUR (berechnet aus Zaehlerstand)".format(round(unknown_consumption_kWh,1),round(unknown_consumers_cost,2)))
         self.client.write_points([{"measurement":self.save_measurement_name,"fields":{"unknown_consumers":unknown_consumption_kWh},"time":int(ts_save_local_ns)}])
         
+        # temporary section for power facor
+        # energy meter
+        measurement = "sensor.sonoff_pow_r2_1_energie"
+        query_start = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time <= {}'.format(self.db_field, measurement, int(ts_start_local_ns))
+        counter_start_generator = result_points = self.client.query(query_start).get_points()
+        for point in counter_start_generator:
+            counter_start = point["last"]
+        query_end = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time <= {}'.format(self.db_field, measurement, int(ts_end_local_ns))
+        counter_end_generator = result_points = self.client.query(query_end).get_points()
+        for point in counter_end_generator:
+            counter_end = point["last"]
+        consumption_kWh_from_kwh = counter_end - counter_start
+        # apparent power
+        measurement = "sensor.sonoff_pow_r2_1_scheinleistung"
+        query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, measurement, int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
+        #self.log(query)
+        result_points = self.client.query(query).get_points()
+        consumption_Ws = 0.0
+        past_timestep = ts_end_local
+        start_time_reached = False
+        for point in result_points:
+            #self.log(point)
+            timestamp_local = datetime.datetime.strptime(point["time"], '%Y-%m-%dT%H:%M:%S.%fZ').timestamp() + utc_offset_timestamp
+            #self.log("timestamp local: {}".format(timestamp_local))
+            if timestamp_local < ts_start_local:
+                timestamp_local = ts_start_local
+                start_time_reached = True
+            time_delta_s = past_timestep - timestamp_local
+            #self.log("timedelta: {} s".format(time_delta_s))
+            energy_Ws = point[self.db_field] * time_delta_s
+            #self.log("energy: {} Ws".format(energy_Ws))
+            consumption_Ws = consumption_Ws + energy_Ws
+            past_timestep = timestamp_local
+            if start_time_reached:
+                break
+        consumption_apparentpower_from_W = consumption_Ws / 3600000
+        # power
+        measurement = "sensor.sonoff_pow_r2_1_wirkleistung"
+        query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, measurement, int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
+        #self.log(query)
+        result_points = self.client.query(query).get_points()
+        consumption_Ws = 0.0
+        past_timestep = ts_end_local
+        start_time_reached = False
+        for point in result_points:
+            #self.log(point)
+            timestamp_local = datetime.datetime.strptime(point["time"], '%Y-%m-%dT%H:%M:%S.%fZ').timestamp() + utc_offset_timestamp
+            #self.log("timestamp local: {}".format(timestamp_local))
+            if timestamp_local < ts_start_local:
+                timestamp_local = ts_start_local
+                start_time_reached = True
+            time_delta_s = past_timestep - timestamp_local
+            #self.log("timedelta: {} s".format(time_delta_s))
+            energy_Ws = point[self.db_field] * time_delta_s
+            #self.log("energy: {} Ws".format(energy_Ws))
+            consumption_Ws = consumption_Ws + energy_Ws
+            past_timestep = timestamp_local
+            if start_time_reached:
+                break
+        consumption_power_from_W = consumption_Ws / 3600000
+        cos_phi_day = consumption_power_from_W / consumption_apparentpower_from_W
+        text_cos_phi = "Verbrauch aus kWh: {} kWh\nVerbrauch aus W: {} kWh\nScheinenergie: {} kWh\nmittlerer cos phi: {}".format(round(consumption_kWh_from_kwh,2),round(consumption_power_from_W,2),round(consumption_apparentpower_from_W,2),round(cos_phi_day,3))
         
         known_consumption_costs = known_consumption_kWh_total  * self.price_per_kWh
         self.log("Stromverbrauch von bekannten Dingen, {}: {} kWh, also {} EUR ".format(date_str, round(known_consumption_kWh_total,1),round(known_consumption_costs,2)))
-        return consumption_kWh_total, total_consumption_cost, known_consumption_kWh_total, known_consumption_costs, unknown_consumption_kWh, unknown_consumers_cost, details_dict
+        return consumption_kWh_total, total_consumption_cost, known_consumption_kWh_total, known_consumption_costs, unknown_consumption_kWh, unknown_consumers_cost, details_dict, text_cos_phi
             
 
 
