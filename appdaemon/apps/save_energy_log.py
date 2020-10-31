@@ -20,5 +20,6 @@ class save_energy_log(hass.Hass):
         energy = float(self.get_state("sensor.sonoff_pow_r2_1_energie"))
         ts_local = datetime.datetime.strptime(date_str + 'T00:00:00.0', '%Y-%m-%dT%H:%M:%S.%f').timestamp()
         line = "{}\t{}\t{}\t{}\\t{}".format(ts_local,power,apparentpower,cos_phi,energy)
+        self.log(line)
         with open("/config/appdaemon/logs/energy_log.tab", "a") as myfile:
             myfile.write(line)
