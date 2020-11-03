@@ -15,16 +15,16 @@ class save_energy_log(hass.Hass):
 
     def save_log(self, kwargs):
         # POW R2 1 - Licht 3.3
-        power = float(self.get_state("sensor.sonoff_pow_r2_1_wirkleistung"))
-        apparentpower = float(self.get_state("sensor.sonoff_pow_r2_1_scheinleistung"))
-        cos_phi = float(self.get_state("sensor.sonoff_pow_r2_1_leistungsfaktor"))
-        energy = float(self.get_state("sensor.sonoff_pow_r2_1_energie"))
-        ts_local = datetime.datetime.now().timestamp()
-        power_compare = float(self.get_state("sensor.el_leistung_licht_sicherung_3_3"))
-        line = "\n{}\t{}\t{}\t{}\t{}\t{}".format(ts_local,power,apparentpower,cos_phi,energy,power_compare)
+        #power = float(self.get_state("sensor.sonoff_pow_r2_1_wirkleistung"))
+        #apparentpower = float(self.get_state("sensor.sonoff_pow_r2_1_scheinleistung"))
+        #cos_phi = float(self.get_state("sensor.sonoff_pow_r2_1_leistungsfaktor"))
+        #energy = float(self.get_state("sensor.sonoff_pow_r2_1_energie"))
+        #ts_local = datetime.datetime.now().timestamp()
+        #power_compare = float(self.get_state("sensor.el_leistung_licht_sicherung_3_3"))
+        #line = "\n{}\t{}\t{}\t{}\t{}\t{}".format(ts_local,power,apparentpower,cos_phi,energy,power_compare)
         #self.log(line)
-        with open("/config/appdaemon/logs/energy_log_licht_3_3_v2.tab", "a") as myfile:
-            myfile.write(line)
+        #with open("/config/appdaemon/logs/energy_log_licht_3_3_v2.tab", "a") as myfile:
+        #    myfile.write(line)
 
         # POW R2 2 - Licht 3.2
         power = float(self.get_state("sensor.sonoff_pow_r2_2_wirkleistung"))
