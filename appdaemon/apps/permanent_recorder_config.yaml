@@ -297,6 +297,7 @@ permanent_recorder:
     - sensor.helligkeit_wetterstation
     - sensor.helligkeit_windfang_pm
     - sensor.helligkeit_wohnzimmer_pm
+    - sensor.humidity_outside_internet
     - sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
     - sensor.innr_sp_120_test_electrical_measurement
     - sensor.luftdruck_kuche_aqara
@@ -402,6 +403,7 @@ permanent_recorder:
     - sensor.temp_le_pm
     - sensor.temp_le_taster
     - sensor.temp_nahzimmer_pm
+    - sensor.temp_outside_internet
     - sensor.temp_schlafzimmer_pm
     - sensor.temp_schlafzimmer_taster
     - sensor.temp_wc_pm
