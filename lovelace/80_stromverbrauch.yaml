@@ -6,6 +6,8 @@ cards:
     title: mobil
     show_header_toggle: false
     entities:
+      - type: section
+        label: Sonoff POW R2 1
       - entity: sensor.sonoff_pow_r2_1_wirkleistung
         name: POW R2 1 - Wirkleistung
       - entity: sensor.sonoff_pow_r2_1_scheinleistung
@@ -14,10 +16,26 @@ cards:
         name: POW R2 1 - Cos Phi
       - entity: sensor.sonoff_pow_r2_1_energie
         name: POW R2 1 - Energie
+      - type: section
+        label: Sonoff POW R2 2
+      - entity: sensor.sonoff_pow_r2_2_wirkleistung
+        name: POW R2 2 - Wirkleistung
+      - entity: sensor.sonoff_pow_r2_2_scheinleistung
+        name: POW R2 2 - Scheinleistung
+      - entity: sensor.sonoff_pow_r2_2_leistungsfaktor
+        name: POW R2 2 - Cos Phi
+      - entity: sensor.sonoff_pow_r2_2_energie
+        name: POW R2 2 - Energie
   - type: entities
-    title: Leistung EG
+    title: Leistung
     show_header_toggle: false
     entities:
+      - type: section
+        label: Netz
+      - entity: sensor.el_leistung_stromzaehler_netzbezug
+        name: Gesamtleistung Netz
+      - type: section
+        label: EG
       - entity: sensor.el_leistung_backofen_round
         name: Backofen
       - entity: sensor.el_leistung_kochfeld
@@ -30,17 +48,8 @@ cards:
         name: Spülmaschine
       - entity: sensor.el_leistung_tv_round
         name: TV
-  - type: entities
-    title: Leistung Keller
-    show_header_toggle: false
-    entities:
-      - entity: sensor.el_leistung_stromzaehler_netzbezug
-        name: Gesamtleistung Netz
-      - type: divider
-        style: 
-          height: 1px
-          background-color: "#ff9c27"
-          opacity: 0.25
+      - type: section
+        label: Keller
       - entity: sensor.el_leistung_luftungsanlage_round
         name: Lüftungsanlage
       - entity: sensor.el_leistung_waschmaschine_round
@@ -51,18 +60,28 @@ cards:
         name: Gefrierschrank
       - entity: sensor.el_leistung_kuhlschrank_keller_round
         name: Kühlschrank Keller
+      - type: section
+        label: Heizung
       - entity: sensor.el_leistung_wp_heizstab
         name: WP Heizstab
       - entity: sensor.el_leistung_wp_innenteil
         name: WP Innenteil
       - entity: sensor.el_leistung_wp_aussenteil
         name: WP Aussenteil
+      - type: section
+        label: Licht
       - entity: sensor.el_leistung_licht_gesamt
         name: Licht gesamt
   - type: entities
-    title: Stromzähler EG
+    title: Stromzähler
     show_header_toggle: false
     entities:
+      - type: section
+        label: Netz
+      - entity: sensor.stromzaehler_netzbezug
+        name: Stromzähler Netzbezug
+      - type: section
+        label: EG
       - entity: sensor.stromzahler_backofen
         name: Backofen
       - entity: sensor.stromzahler_kochfeld
@@ -75,12 +94,8 @@ cards:
         name: Spülmaschine
       - entity: sensor.stromzahler_tv
         name: TV
-  - type: entities
-    title: Stromzähler Keller
-    show_header_toggle: false
-    entities:
-      - entity: sensor.stromzaehler_netzbezug
-        name: Stromzähler Netzbezug
+      - type: section
+        label: Keller
       - entity: sensor.stromzahler_luftungsanlage
         name: Lüftungsanlage
       - entity: sensor.stromzahler_waschmaschine
@@ -91,6 +106,8 @@ cards:
         name: Gefrierschrank
       - entity: sensor.stromzahler_kuhlschrank_keller
         name: Kühlschrank
+      - type: section
+        label: Heizung
       - entity: sensor.stromzahler_wp_heizstab
         name: WP Heizstab
       - entity: sensor.stromzahler_wp_innenteil
