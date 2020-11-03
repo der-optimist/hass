@@ -216,11 +216,11 @@
           {% if states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float == 0 %}
             0.0
           {% elif states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float < 35 %}
-            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * 0.003962 + 0.053906}}
+            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * (states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * 0.003962 + 0.053906)}}
           {% elif states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float < 100 %}
-            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * 0.003834 + 0.180579}}
+            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * (states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * 0.003834 + 0.180579)}}
           {% elif states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float < 300 %}
-            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * 0.001312 + 0.406724}}
+            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * (states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * 0.001312 + 0.406724)}}
           {% else %}
             {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * 0.8}}
           {% endif %}
