@@ -35,11 +35,11 @@ class humidity_manager(hass.Hass):
     def update_notification(self, entity, attributes, old, new, kwargs):
         try:
             humidity_inside = float(self.get_state(self.sensor_humidity_inside))
-            self.log("Luftfeuchtigkeit innen: {} C".format(round(humidity_inside,1)))
+            self.log("Luftfeuchtigkeit innen: {} %".format(round(humidity_inside,1)))
             temp_inside = float(self.get_state(self.sensor_temp_inside))
             self.log("Temperatur innen: {} C".format(round(temp_inside,1)))
             humidity_outside = float(self.get_state(self.sensor_humidity_outside))
-            self.log("Luftfeuchtigkeit aussen: {} C".format(round(humidity_outside,1)))
+            self.log("Luftfeuchtigkeit aussen: {} %".format(round(humidity_outside,1)))
             temp_outside = float(self.get_state(self.sensor_temp_outside))
             self.log("Temperatur aussen: {} C".format(round(temp_outside,1)))
         except:
