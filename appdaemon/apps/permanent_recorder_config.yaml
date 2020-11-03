@@ -338,6 +338,10 @@ permanent_recorder:
     - sensor.sonoff_pow_r2_1_leistungsfaktor
     - sensor.sonoff_pow_r2_1_scheinleistung
     - sensor.sonoff_pow_r2_1_wirkleistung
+    - sensor.sonoff_pow_r2_2_energie
+    - sensor.sonoff_pow_r2_2_leistungsfaktor
+    - sensor.sonoff_pow_r2_2_scheinleistung
+    - sensor.sonoff_pow_r2_2_wirkleistung
     - sensor.stellwert_heizung_aktueller_maxwert
     - sensor.stellwert_heizung_bad_eg
     - sensor.stellwert_heizung_bad_og
@@ -373,6 +377,14 @@ permanent_recorder:
     - sensor.stromzahler_wp_heizstab_rohdaten
     - sensor.stromzahler_wp_innenteil
     - sensor.stromzahler_wp_innenteil_rohdaten
+    - sensor.tasmota_sd_2_energie
+    - sensor.tasmota_sd_2_leistungsfaktor
+    - sensor.tasmota_sd_2_scheinleistung
+    - sensor.tasmota_sd_2_wirkleistung
+    - sensor.tasmota_sd_3_energie
+    - sensor.tasmota_sd_3_leistungsfaktor
+    - sensor.tasmota_sd_3_scheinleistung
+    - sensor.tasmota_sd_3_wirkleistung
     - sensor.temp_bad_eg_pm
     - sensor.temp_bad_eg_taster
     - sensor.temp_bad_og_pm
