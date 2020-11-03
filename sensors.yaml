@@ -278,6 +278,7 @@
         device_class: temperature
 
 # MQTT without mqtt-discovery
+# Sonoff POW R2 1
   - platform: mqtt
     name: "Sonoff POW R2 1 Scheinleistung"
     state_topic: "tele/tasmota_pow_r2_1/SENSOR"
@@ -298,6 +299,7 @@
     state_topic: "tele/tasmota_pow_r2_1/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Total"] }}'
     unit_of_measurement: "kWh"
+# Sonoff POW R2 2
   - platform: mqtt
     name: "Sonoff POW R2 2 Scheinleistung"
     state_topic: "tele/tasmota_pow_r2_2/SENSOR"
@@ -316,6 +318,48 @@
   - platform: mqtt
     name: "Sonoff POW R2 2 Energie"
     state_topic: "tele/tasmota_pow_r2_2/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Total"] }}'
+    unit_of_measurement: "kWh"
+# Tasmota SD 2
+  - platform: mqtt
+    name: "Tasmota SD 2 Scheinleistung"
+    state_topic: "tele/tasmota_sd_2/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["ApparentPower"] }}'
+    unit_of_measurement: "VA"
+  - platform: mqtt
+    name: "Tasmota SD 2 Wirkleistung"
+    state_topic: "tele/tasmota_sd_2/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Tasmota SD 2 Leistungsfaktor"
+    state_topic: "tele/tasmota_sd_2/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Factor"] }}'
+    unit_of_measurement: "None"
+  - platform: mqtt
+    name: "Tasmota SD 2 Energie"
+    state_topic: "tele/tasmota_sd_2/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Total"] }}'
+    unit_of_measurement: "kWh"
+# Tasmota SD 3
+  - platform: mqtt
+    name: "Tasmota SD 3 Scheinleistung"
+    state_topic: "tele/tasmota_sd_3/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["ApparentPower"] }}'
+    unit_of_measurement: "VA"
+  - platform: mqtt
+    name: "Tasmota SD 3 Wirkleistung"
+    state_topic: "tele/tasmota_sd_3/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Tasmota SD 3 Leistungsfaktor"
+    state_topic: "tele/tasmota_sd_3/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Factor"] }}'
+    unit_of_measurement: "None"
+  - platform: mqtt
+    name: "Tasmota SD 3 Energie"
+    state_topic: "tele/tasmota_sd_3/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Total"] }}'
     unit_of_measurement: "kWh"
     
