@@ -68,12 +68,12 @@ class humidity_manager(hass.Hass):
         self.log("Luftfeuchtigkeit nach Lueften waere {} %".format(round(r_in,1)))
         
         if humidity_inside > self.max_humidity_inside:
-            if (r_in < (humidity_inside - 3)) and (r_in < self.max_humidity_inside):
+            if (r_in < (humidity_inside - 10)) and (r_in < self.max_humidity_inside):
                 status = "Bitte lüften! {} => {}%".format(int(round(humidity_inside,0)), int(round(r_in,0)))
             else:
                 status = "Luftentfeuchter! Ist {}%".format(int(round(humidity_inside,0)))
         else:
-            if r_in < (humidity_inside - 3):
+            if r_in < (humidity_inside - 10):
                 status = "Lüften möglich ({} => {}%)".format(int(round(humidity_inside,0)), int(round(r_in,0)))
             else:
                 status = "Nicht lüften (sonst {} => {}%)".format(int(round(humidity_inside,0)), int(round(r_in,0)))
