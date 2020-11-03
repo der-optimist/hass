@@ -199,7 +199,7 @@
       waschmaschine_ist_an:
         friendly_name: "Waschmaschine läuft"
         delay_on:
-          minutes: 2
+          minutes: 3
         value_template: "{{ states('sensor.el_leistung_waschmaschine')|float > 15 }}"
       trockner_ist_an:
         friendly_name: "Trockner läuft"
