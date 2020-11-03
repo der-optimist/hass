@@ -22,7 +22,7 @@ auto_light_o_ba_panels:
   switching_off_entities:
     - switch.bad_og_nachtmodus
   special_brightness_entities:
-    binary_sensor.aufwachphase_kinder: 15
+    binary_sensor.aufwachphase_kinder_bad: 15
 auto_light_o_ba_spiegel_oben:
   module: auto_light
   class: auto_light
