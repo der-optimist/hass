@@ -219,6 +219,9 @@ permanent_recorder:
     - cover.jalousie_wz_bodentiefes
     - cover.jalousie_wz_couch
   state_float:
+    - sensor.dht21_werkelraum_luftfeuchtigkeit
+    - sensor.dht21_werkelraum_taupunkt
+    - sensor.dht21_werkelraum_temperatur
     - sensor.dht22_waschkueche_humidity
     - sensor.dht22_waschkueche_temperature
     - sensor.diesel_amtzell
