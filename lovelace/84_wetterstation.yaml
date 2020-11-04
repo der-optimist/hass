@@ -21,6 +21,14 @@ cards:
       - entity: binary_sensor.tag_nacht_wetterstation
       - entity: binary_sensor.temperaturalarm_wetterstation
   - type: entities
+    title: Internet
+    show_header_toggle: false
+    entities:
+      - entity: sensor.temp_outside_internet
+        name: Temperatur
+      - entity: sensor.humidity_outside_internet
+        name: Luftfeuchtigkeit
+  - type: entities
     title: Wind
     show_header_toggle: false
     entities:
