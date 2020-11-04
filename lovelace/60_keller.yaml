@@ -83,10 +83,10 @@ cards:
       full_row: true
     - type: section
       label: Luft
-    - entity: sensor.lumi_lumi_weather_temperature
-      name: Temperatur Funk
-    - entity: sensor.lumi_lumi_weather_humidity
-      name: Luftfeuchtigkeit Funk
+    - entity: sensor.dht21_werkelraum_temperatur
+      name: Temperatur DHT
+    - entity: sensor.dht21_werkelraum_luftfeuchtigkeit
+      name: Luftfeuchtigkeit DHT
   - type: entities
     title: "Partyraum"
     show_header_toggle: false
@@ -95,3 +95,9 @@ cards:
       label: Licht
     - entity: light.lagerraum
       name: Deckenlicht
+    - type: section
+      label: Luft
+    - entity: sensor.lumi_lumi_weather_temperature
+      name: Temperatur Funk
+    - entity: sensor.lumi_lumi_weather_humidity
+      name: Luftfeuchtigkeit Funk
