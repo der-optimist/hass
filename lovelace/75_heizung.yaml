@@ -20,12 +20,20 @@ cards:
         name: Mittelwert max. Stellung 30min
       - entity: sensor.heating_room_target_temp
         name: Regeltemperatur Raum
+      - entity: sensor.bosch_outdoor_temperature
+        name: Außentemperatur
       - type: section
         label: Warmwasser
       - entity: sensor.water_heater_target_temp
         name: Zieltemperatur
       - entity: sensor.water_heater_current_temp
         name: Temperatur aktuell
+      - type: section
+        label: Gerät
+      - entity: sensor.bosch_health_status
+        name: Status
+      - entity: sensor.bosch_notifications
+        name: Benachrichtigungen
       - type: section
         label: Leistung
       - entity: sensor.el_leistung_wp_innenteil
