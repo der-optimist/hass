@@ -188,7 +188,7 @@
       tv_ist_an:
         friendly_name: "TV an"
         delay_off:
-          seconds: 3
+          seconds: 4
         value_template: "{{ states('sensor.el_leistung_tv')|float > 32 }}"
       mixi_ist_an:
         friendly_name: "Mixi an"
