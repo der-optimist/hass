@@ -1,3 +1,7 @@
 water_alarm_washing_machine:
   module: water_alarm_washing_machine
   class: water_alarm_washing_machine
+  fritz_pw: !secret fritz_pw
+  fritz_address: "192.168.178.1"
+  phone_ma_handy: !secret phone_ma_handy
+  phone_jo_handy: !secret phone_jo_handy
