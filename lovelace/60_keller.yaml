@@ -97,7 +97,11 @@ cards:
       name: Deckenlicht
     - type: section
       label: Luft
+    - entity: sensor.dht21_partyraum_temperatur
+      name: Temperatur DHT
     - entity: sensor.lumi_lumi_weather_temperature
       name: Temperatur Funk
+    - entity: sensor.dht21_partyraum_luftfeuchtigkeit
+      name: Luftfeuchtigkeit DHT
     - entity: sensor.lumi_lumi_weather_humidity
       name: Luftfeuchtigkeit Funk
