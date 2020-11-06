@@ -1,0 +1,3 @@
+test_fritzbox:
+  module: test_fritzbox
+  class: test_fritzbox
