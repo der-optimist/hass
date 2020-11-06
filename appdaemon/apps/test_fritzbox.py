@@ -1,6 +1,5 @@
 import appdaemon.plugins.hass.hassapi as hass
-from time import sleep
-from fritzconnection import FritzConnection
+from fritzconnection.lib.fritzcall import FritzCall
 
 #
 # test
@@ -11,17 +10,11 @@ from fritzconnection import FritzConnection
 class test_fritzbox(hass.Hass):
 
     def initialize(self):
-        fc = FritzConnection(
-                     address='192.168.178.1',
-                     user=self.args["fritz_user"],
-                     password=self.args["fritz_pw"])
-        fc.call_action("X_VoIP1",
-                       "X_AVM-DE_DialNumber",
-                       arguments={
-            "NewX_AVM-DE_PhoneNumber": self.args["phone_jo_handy"]})
-        sleep(7)
-        fc.call_action("X_VoIP1",
-                       "X_AVM-DE_DialHangup")
+        fc = FritzCall(address='192.168.178.1', password=self.args["fritz_pw"])
+        self.log(self.args["phone_jo_handy_local"])
+        self.log(type(self.args["phone_jo_handy_local"]))
+        fc.dial(self.args["phone_jo_handy_local"])
+
     
     def initialize_delayed(self, kwargs):
        pass
