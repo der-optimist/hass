@@ -1,9 +1,0 @@
-test_fritzbox:
-  module: test_fritzbox
-  class: test_fritzbox
-  fritz_user: !secret fritz_user
-  fritz_pw: !secret fritz_pw
-  fritz_phone: !secret fritz_phone
-  phone_ma_handy: !secret phone_ma_handy
-  phone_jo_handy: !secret phone_jo_handy
-  phone_jo_handy_local: !secret phone_jo_handy_local
