@@ -1,4 +1,5 @@
 import appdaemon.plugins.hass.hassapi as hass
+from fritzconnection.lib.fritzcall import FritzCall
 
 #
 # App to turn the washing machine off in critical cases
@@ -24,6 +25,8 @@ class water_alarm_washing_machine(hass.Hass):
             message = "Eimer Hebeanlage voll - habe die Waschmaschinen-Steckdose ausgeschalten!"
             self.fire_event("custom_notify", message=message, target="telegram_jo")
             self.fire_event("custom_notify", message=message, target="telegram_ma")
+            fc = FritzCall(address=self.args["fritz_address"], password=self.args["fritz_pw"])
+            fc.dial(self.args["phone_jo_handy"])
                             
     def wasser_boden(self, entity, attribute, old, new, kwargs):
         if new != old:
@@ -31,6 +34,8 @@ class water_alarm_washing_machine(hass.Hass):
             message = "Wasser auf dem Boden bei der Hebeanlage - habe die Waschmaschinen-Steckdose ausgeschalten!"
             self.fire_event("custom_notify", message=message, target="telegram_jo")
             self.fire_event("custom_notify", message=message, target="telegram_ma")
+            fc = FritzCall(address=self.args["fritz_address"], password=self.args["fritz_pw"])
+            fc.dial(self.args["phone_jo_handy"])
 
     def sicherung_hebeanlage_raus(self, entity, attribute, old, new, kwargs):
         if new != old:
@@ -38,6 +43,8 @@ class water_alarm_washing_machine(hass.Hass):
             message = "Sicherung Keller-Steckdosen (Hebeanlage!) rausgeflogen - habe die Waschmaschinen-Steckdose ausgeschalten!"
             self.fire_event("custom_notify", message=message, target="telegram_jo")
             self.fire_event("custom_notify", message=message, target="telegram_ma")
+            fc = FritzCall(address=self.args["fritz_address"], password=self.args["fritz_pw"])
+            fc.dial(self.args["phone_jo_handy"])
             
     def button_wm_strom_an(self,event_name,data,kwargs):
         self.turn_on("switch.waschmaschine")
