@@ -277,6 +277,7 @@ permanent_recorder:
     - sensor.el_leistung_licht_gesamt
     - sensor.el_leistung_licht_sicherung_3_2
     - sensor.el_leistung_licht_sicherung_3_3
+    - sensor.el_leistung_licht_sicherung_3_3_scheinleistung
     - sensor.el_leistung_luftungsanlage
     - sensor.el_leistung_mixi
     - sensor.el_leistung_spulmaschine
