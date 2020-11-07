@@ -12,7 +12,7 @@ import requests
 class water_alarm_washing_machine(hass.Hass):
 
     def initialize(self):
-    	self.url = "http://192.168.178.42:2971/api/command"
+        self.url = "http://192.168.178.42:2971/api/command"
         self.run_in(self.initialize_delayed, 16)
         
     def initialize_delayed(self, kwargs):
