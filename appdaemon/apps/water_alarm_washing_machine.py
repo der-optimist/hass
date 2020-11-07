@@ -1,5 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 from fritzconnection.lib.fritzcall import FritzCall
+import requests
 
 #
 # App to turn the washing machine off in critical cases
@@ -11,6 +12,7 @@ from fritzconnection.lib.fritzcall import FritzCall
 class water_alarm_washing_machine(hass.Hass):
 
     def initialize(self):
+    	self.url = "http://192.168.178.42:2971/api/command"
         self.run_in(self.initialize_delayed, 16)
         
     def initialize_delayed(self, kwargs):
@@ -25,6 +27,10 @@ class water_alarm_washing_machine(hass.Hass):
             message = "Eimer Hebeanlage voll - habe die Waschmaschinen-Steckdose ausgeschalten!"
             self.fire_event("custom_notify", message=message, target="telegram_jo")
             self.fire_event("custom_notify", message=message, target="telegram_ma")
+            try:
+                requests.post(self.url, json={"speak":"Alarm! Eimer Hebeanlage ist voll"}, timeout=5)
+            except:
+            	pass
             fc = FritzCall(address=self.args["fritz_address"], password=self.args["fritz_pw"])
             fc.dial(self.args["phone_jo_handy"])
                             
@@ -34,6 +40,10 @@ class water_alarm_washing_machine(hass.Hass):
             message = "Wasser auf dem Boden bei der Hebeanlage - habe die Waschmaschinen-Steckdose ausgeschalten!"
             self.fire_event("custom_notify", message=message, target="telegram_jo")
             self.fire_event("custom_notify", message=message, target="telegram_ma")
+            try:
+                requests.post(self.url, json={"speak":"Alarm! Wasser auf dem Boden bei der Hebeanlage"}, timeout=5)
+            except:
+            	pass
             fc = FritzCall(address=self.args["fritz_address"], password=self.args["fritz_pw"])
             fc.dial(self.args["phone_jo_handy"])
 
@@ -43,6 +53,10 @@ class water_alarm_washing_machine(hass.Hass):
             message = "Sicherung Keller-Steckdosen (Hebeanlage!) rausgeflogen - habe die Waschmaschinen-Steckdose ausgeschalten!"
             self.fire_event("custom_notify", message=message, target="telegram_jo")
             self.fire_event("custom_notify", message=message, target="telegram_ma")
+            try:
+                requests.post(self.url, json={"speak":"Achtung! Hebeanlage hat keinen Strom"}, timeout=5)
+            except:
+            	pass
             fc = FritzCall(address=self.args["fritz_address"], password=self.args["fritz_pw"])
             fc.dial(self.args["phone_jo_handy"])
             
