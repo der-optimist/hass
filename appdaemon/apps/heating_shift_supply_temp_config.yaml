@@ -3,7 +3,7 @@ heating_shift_supply_temp:
   class: heating_shift_supply_temp
   interval_hours: 2
   temp_limit_min: 21
-  temp_limit_max: 23.5
+  temp_limit_max: 23
   valve_target_min: 70
   valve_target_max: 85
   step_size_up: 0.5
