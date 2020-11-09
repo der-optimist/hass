@@ -4,7 +4,6 @@
       date_template:
         friendly_name: 'Datum'
         value_template: '{{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}'
-        entity_id: sensor.date
       luftfeuchtigkeit_kuche_aqara:
         friendly_name: 'Luftfeuchtigkeit Küche'
         unit_of_measurement: '%'
