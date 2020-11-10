@@ -36,10 +36,10 @@
     move_short_address: '9/0/61'
     position_address: '9/0/62'
     position_state_address: '9/0/63'
-#    angle_address: '9/0/64'
-#    angle_state_address: '9/0/65'
-    invert_position: true
-    invert_angle: true
+    angle_address: '9/0/64'
+    angle_state_address: '9/0/65'
+#    invert_position: true
+#    invert_angle: true
     travelling_time_down: 35
     travelling_time_up: 35
   - name: "Jalousie Schlafzimmer"
