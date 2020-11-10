@@ -59,12 +59,12 @@ heating_controller_foresight_sz:
   on_off_switch: input_boolean.korrektur_heizung_sz
   log_measurement: shift_heating_setpoint_sz
 heating_controller_foresight_bad_eg:
-  module: heating_controller_foresight_beta
+  module: heating_controller_foresight
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_bad_eg_pm
   db_field: state_float
-#  number_of_derivatives_for_average: 3
+  number_of_derivatives_for_average: 3
   minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 6
   limit_max: 1
