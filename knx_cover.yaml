@@ -5,8 +5,8 @@
     position_state_address: '9/0/3'
     angle_address: '9/0/4'
     angle_state_address: '9/0/5'
-    invert_position: true
-    invert_angle: true
+#    invert_position: true
+#    invert_angle: true
     travelling_time_down: 21
     travelling_time_up: 21
   - name: "Jalousie HST"
