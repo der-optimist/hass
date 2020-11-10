@@ -267,7 +267,7 @@
     type: power
 
   # Licht
-  - name: 'El. Leistung Licht Sicherung 3-2'
+  - name: 'El. Leistung Licht Sicherung 3-2 Scheinleistung'
     state_address: '0/2/203'
     type: power
   - name: 'El. Leistung Licht Sicherung 3-3 Scheinleistung'
