@@ -8,8 +8,8 @@ jal_schlafzimmer_abends_helligkeit:
   illuminance_sensor: sensor.helligkeit_wetterstation
   illuminance: 700
   up_or_down: down
-  position: 100
-  tilt: 100
+  position: 0
+  tilt: 0
 #jal_schlafzimmer_morgens_helligkeit:
 #  module: cover_illuminance
 #  class: cover_illuminance
@@ -32,5 +32,5 @@ jal_bad_kinder_abends_helligkeit:
   illuminance_sensor: sensor.helligkeit_wetterstation
   illuminance: 700
   up_or_down: down
-  position: 100
-  tilt: 17
+  position: 0
+  tilt: 83
