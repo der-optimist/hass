@@ -4,21 +4,21 @@ jal_bad_kinder_abends_zeit:
   constrain_input_boolean: input_boolean.app_switch_jalousie_bad_og
   cover_entity: cover.jalousie_bad_og
   time: "18:30"
-  position: 100
-  tilt: 17
+  position: 00
+  tilt: 83
 jal_bad_kinder_morgen_zeit:
   module: cover_timer
   class: cover_timer
   constrain_input_boolean: input_boolean.app_switch_jalousie_bad_og
   cover_entity: cover.jalousie_bad_og
   time: "09:30"
-  position: 0
-  tilt: 0
+  position: 100
+  tilt: 100
 jal_schlafzimmer_abends_zeit:
   module: cover_timer
   class: cover_timer
   constrain_input_boolean: input_boolean.app_switch_jalousie_schlafzimmer
   cover_entity: cover.jalousie_schlafzimmer
   time: "21:30"
-  position: 100
-  tilt: 100
+  position: 0
+  tilt: 0
