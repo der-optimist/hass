@@ -28,6 +28,10 @@ cards:
       label: Jalousie
     - entity: cover.jalousie_kuche
       name: Küche
+      style: |
+        ha-icon-button {
+          transform: rotate(-90deg);
+        }
     - type: custom:slider-entity-row
       entity: cover.jalousie_kuche
       name: Auf/Ab
