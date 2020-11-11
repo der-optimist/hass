@@ -92,7 +92,7 @@ class heating_controller_foresight(hass.Hass):
                 current_time = datetime.datetime.utcnow()
                 #self.log(current_time.strftime("%Y-%m-%d %H:%M:%S"))
             else:
-                delta_value = point[self.db_field] - newest_value
+                delta_value = newest_value - point[self.db_field]
                 delta_time = current_time - datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f')
                 #self.log(datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f').strftime("%Y-%m-%d %H:%M:%S"))
                 delta_time_seconds = delta_time.total_seconds()
