@@ -403,7 +403,7 @@
     name: "Tasmota SD 3 Leistungsfaktor"
     state_topic: "tele/tasmota_sd_3/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Factor"] }}'
-    unit_of_measurement: ""
+    unit_of_measurement: " "
   - platform: mqtt
     name: "Tasmota SD 3 Energie"
     state_topic: "tele/tasmota_sd_3/SENSOR"
