@@ -81,11 +81,11 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       # Trockner
-      el_leistung_trockner_round:
-        value_template: "{{ '%.1f'%(states('sensor.el_leistung_trockner') | float) | float }}"
-        friendly_name: 'El. Leistung Trockner (gerundet)'
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+#      el_leistung_trockner_round:
+#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_trockner') | float) | float }}"
+#        friendly_name: 'El. Leistung Trockner (gerundet)'
+#        unit_of_measurement: 'W'
+#        icon_template: mdi:speedometer
       # Kühlschrank Keller
       el_leistung_kuhlschrank_keller_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float) | float }}"
@@ -277,6 +277,20 @@
            + states('sensor.el_leistung_licht_sicherung_3_3') | float
            + states('sensor.shellydimmer_d472fe_power') | float) | float }}
         friendly_name: 'El. Leistung Licht gesamt'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      el_leistung_trockner:
+        value_template: >-
+          {% if states('sensor.el_leistung_trockner_scheinleistung') | float < 6 %}
+            0.0
+          {% elif states('sensor.el_leistung_trockner_scheinleistung') | float < 9 %}
+            {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float * (states('sensor.el_leistung_trockner_scheinleistung') | float * (-0.008991) + 0.072442)) }}
+          {% elif states('sensor.el_leistung_trockner_scheinleistung') | float < 10 %}
+            {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float * 0.15) }}
+          {% else %}
+            {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float * 1) }}
+          {% endif %}
+        friendly_name: 'El. Leistung Licht Sicherung 3.3'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_bildschirm_theke:
