@@ -80,6 +80,7 @@ class heating_controller_foresight(hass.Hass):
         query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC'.format(self.db_field, self.db_measurement)
         result_points = self.client.query(query).get_points()
         for minute_value in self.minutes_for_evaltuation:
+            self.log(minute_value)
             newest_value = None
             current_time = None
             for point in result_points:
