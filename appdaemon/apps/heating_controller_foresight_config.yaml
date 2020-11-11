@@ -59,7 +59,7 @@ heating_controller_foresight_sz:
   on_off_switch: input_boolean.korrektur_heizung_sz
   log_measurement: shift_heating_setpoint_sz
 heating_controller_foresight_bad_eg:
-  module: heating_controller_foresight_beta
+  module: heating_controller_foresight
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_bad_eg_pm
