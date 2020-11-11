@@ -207,7 +207,7 @@
           minutes: 1
         delay_off:
           minutes: 4
-        value_template: "{{ states('sensor.el_leistung_trockner')|float > 10 }}"
+        value_template: "{{ states('sensor.el_leistung_trockner_scheinleistung')|float > 10 }}"
       trockner_ist_geleert:
         friendly_name: "Trockner geleert"
-        value_template: "{{ states('sensor.el_leistung_trockner')|float < 5 }}"
+        value_template: "{{ states('sensor.el_leistung_trockner_scheinleistung')|float < 5 }}"
