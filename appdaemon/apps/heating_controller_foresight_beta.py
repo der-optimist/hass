@@ -98,6 +98,7 @@ class heating_controller_foresight(hass.Hass):
                     if delta_time_seconds >= (minute_value*60):
                         #self.log("Minute Value reached with delta seconds: {}".format(delta_time_seconds))
                         derivative = delta_value / (delta_time_seconds / 3600)
+                        self.log("Minute: {} - Delta_K: {} - Derivative: {}".format(minute_value, delta_value, derivative))
                         #self.log("Derivative: {}".format(derivative))
                         der_list.append(derivative)
                         break
