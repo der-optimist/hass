@@ -86,7 +86,7 @@ class heating_controller_foresight(hass.Hass):
         newest_value = None
         current_time = None
         for point in result_points:
-            #self.log(point)
+            self.log(point)
             if newest_value == None:
                 newest_value = point[self.db_field]
                 current_time = datetime.datetime.utcnow()
