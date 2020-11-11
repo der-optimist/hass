@@ -286,6 +286,7 @@ permanent_recorder:
     - sensor.el_leistung_mixi
     - sensor.el_leistung_spulmaschine
     - sensor.el_leistung_trockner
+    - sensor.el_leistung_trockner_scheinleistung
     - sensor.el_leistung_tv
     - sensor.el_leistung_waschmaschine
     - sensor.el_leistung_wp_aussenteil
