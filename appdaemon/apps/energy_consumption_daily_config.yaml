@@ -9,6 +9,7 @@ energy_consumption_daily:
   db_measurement_total_kWh: sensor.stromzaehler_netzbezug
   db_measurements_Watt: 
     sensor.el_leistung_backofen: Backofen
+    sensor.el_leistung_bildschirm_theke: Bildschirm
     sensor.el_leistung_gefrierschrank: Gefrierschrank
     sensor.el_leistung_kuhlschrank_keller: Kühlschr. Keller
     sensor.el_leistung_kuhlschrank_kuche: Kühlschr. Küche
@@ -32,7 +33,6 @@ energy_consumption_daily:
     telefon: 1
     onewirepi: 4
     switch_netzwerkschrank: 15
-    bildschirm: 10
     lg_anlage: 1
     ha_server: 6
     knx: 15
