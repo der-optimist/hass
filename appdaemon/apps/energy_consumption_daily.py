@@ -397,7 +397,7 @@ class energy_consumption_daily(hass.Hass):
             cos_phi_compare = consumption_compare_eff_from_W / consumption_compare_app_from_W
         else:
             cos_phi_compare = 0.0
-        text_cos_phi = "Licht 3.2:\nVerbrauch aus kWh: {} kWh\nVerbrauch aus W: {} kWh\nScheinenergie: {} kWh\nmittlerer cos phi: {}\nVergleich:\nEnergie:{}\nScheinenergie:{}\ncos_phi:{}".format(round(consumption_kWh_from_kwh,2),round(consumption_power_from_W,2),round(consumption_apparentpower_from_W,2),round(cos_phi_day,3),round(consumption_compare_eff_from_W,2),round(consumption_compare_app_from_W,2),round(cos_phi_compare,3))
+        text_cos_phi = text_cos_phi + "\n\n" + "Licht 3.2:\nVerbrauch aus kWh: {} kWh\nVerbrauch aus W: {} kWh\nScheinenergie: {} kWh\nmittlerer cos phi: {}\nVergleich:\nEnergie:{}\nScheinenergie:{}\ncos_phi:{}".format(round(consumption_kWh_from_kwh,2),round(consumption_power_from_W,2),round(consumption_apparentpower_from_W,2),round(cos_phi_day,3),round(consumption_compare_eff_from_W,2),round(consumption_compare_app_from_W,2),round(cos_phi_compare,3))
         
         # temporary section for power facor - trockner
         # energy meter
