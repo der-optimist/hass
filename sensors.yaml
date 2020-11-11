@@ -290,7 +290,7 @@
           {% else %}
             {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float * 1) }}
           {% endif %}
-        friendly_name: 'El. Leistung Licht Sicherung 3.3'
+        friendly_name: 'El. Leistung Trockner'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_bildschirm_theke:
