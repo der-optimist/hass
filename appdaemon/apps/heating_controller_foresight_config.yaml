@@ -75,7 +75,7 @@ heating_controller_foresight_bad_eg:
   on_off_switch: input_boolean.korrektur_heizung_bad_eg
   log_measurement: shift_heating_setpoint_bad_eg
 heating_controller_foresight_wf_wc:
-  module: heating_controller_foresight
+  module: heating_controller_foresight_beta
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.onewire_15_estrich_wc_1
