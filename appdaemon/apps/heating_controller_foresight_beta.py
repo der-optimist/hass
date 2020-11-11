@@ -77,31 +77,39 @@ class heating_controller_foresight(hass.Hass):
 
     def get_list_of_derivatives(self):
         der_list = []
+        historic_values = []
+        historic_time_deltas_sec = []
         query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC'.format(self.db_field, self.db_measurement)
         result_points = self.client.query(query).get_points()
-        for minute_value in self.minutes_for_evaltuation:
-            #self.log(minute_value)
-            newest_value = None
-            current_time = None
-            for point in result_points:
-                #self.log(point)
-                if newest_value == None:
-                    newest_value = point[self.db_field]
-                    current_time = datetime.datetime.utcnow()
-                    #self.log(current_time.strftime("%Y-%m-%d %H:%M:%S"))
-                else:
-                    delta_value = point[self.db_field] - newest_value
-                    delta_time = current_time - datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f')
-                    #self.log(datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f').strftime("%Y-%m-%d %H:%M:%S"))
-                    delta_time_seconds = delta_time.total_seconds()
-                    #self.log("Delta seconds: {} minutes: {}".format(delta_time_seconds, round(delta_time_seconds/60,1)))
+
+        #self.log(minute_value)
+        newest_value = None
+        current_time = None
+        for point in result_points:
+            #self.log(point)
+            if newest_value == None:
+                newest_value = point[self.db_field]
+                current_time = datetime.datetime.utcnow()
+                #self.log(current_time.strftime("%Y-%m-%d %H:%M:%S"))
+            else:
+                delta_value = point[self.db_field] - newest_value
+                delta_time = current_time - datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f')
+                #self.log(datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f').strftime("%Y-%m-%d %H:%M:%S"))
+                delta_time_seconds = delta_time.total_seconds()
+                #self.log("Delta seconds: {} minutes: {}".format(delta_time_seconds, round(delta_time_seconds/60,1)))
+                for minute_value in range(len(historic_values),len(self.minutes_for_evaltuation)+1):
                     if delta_time_seconds >= (minute_value*60):
                         #self.log("Minute Value reached with delta seconds: {}".format(delta_time_seconds))
+                        historic_values.append(point[self.db_field])
+                        historic_time_deltas_sec.append(delta_time_seconds)
                         derivative = delta_value / (delta_time_seconds / 3600)
                         self.log("Minute: {} - Delta_K: {} (histoy: {} - now {}) - Derivative: {}".format(minute_value, delta_value, point[self.db_field], newest_value, derivative))
                         #self.log("Derivative: {}".format(derivative))
                         der_list.append(derivative)
-                        break
+                        self.log("der_list: {}".format(der_list))
+                if len(der_list) == len(self.minutes_for_evaltuation):
+                    self.log("Ende erreich. der_list: {}".format(der_list))
+                    break
         self.log(der_list)
         return der_list
     
