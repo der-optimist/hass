@@ -247,7 +247,7 @@
     type: power
 
   # Trockner
-  - name: 'El. Leistung Trockner'
+  - name: 'El. Leistung Trockner Scheinleistung'
     state_address: '0/1/163'
     type: power
 
