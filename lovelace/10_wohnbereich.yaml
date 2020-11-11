@@ -29,7 +29,7 @@ cards:
     - entity: cover.jalousie_kuche
       name: Küche
       style: |
-        ha-icon-button {
+        svg {
           transform: rotate(-90deg);
         }
     - type: custom:slider-entity-row
