@@ -78,11 +78,7 @@ class heating_controller_foresight(hass.Hass):
     def get_list_of_derivatives(self):
         der_list = []
         query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC'.format(self.db_field, self.db_measurement)
-        self.log(query)
         result_points = self.client.query(query).get_points()
-        self.log(result_points)
-        self.log(self.minutes_for_evaltuation)
-        self.log(type(self.minutes_for_evaltuation))
         for minute_value in self.minutes_for_evaltuation:
             self.log(minute_value)
             newest_value = None
@@ -98,8 +94,11 @@ class heating_controller_foresight(hass.Hass):
                     delta_time = datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f') - current_time
                     self.log(datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f').strftime("%Y-%m-%d %H:%M:%S"))
                     delta_time_seconds = delta_time.total_seconds()
+                    self.log("Delta seconds: {} minutes: {}".format(delta_time_seconds, round(delta_time_seconds/60,1)))
                     if delta_time_seconds >= (minute_value*60):
+                        self.log("Minute Value reached with delta seconds: {}".format(delta_time_seconds))
                         derivative = delta_value / (delta_time_seconds / 3600)
+                        self.log("Derivative: {}".format(derivative))
                         der_list.append(derivative)
                         break
         self.log(der_list)
