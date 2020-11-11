@@ -74,7 +74,7 @@ cards:
         name: Lüftungsanlage
       - entity: sensor.el_leistung_waschmaschine_round
         name: Waschmaschine
-      - entity: sensor.el_leistung_trockner_round
+      - entity: sensor.el_leistung_trockner
         name: Trockner
       - entity: sensor.el_leistung_gefrierschrank_round
         name: Gefrierschrank
