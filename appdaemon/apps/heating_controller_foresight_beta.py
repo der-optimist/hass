@@ -73,32 +73,32 @@ class heating_controller_foresight(hass.Hass):
             
         # log the shift values to db
         self.client.write_points([{"measurement":self.args.get("log_measurement", "shift_heating_setpoint_no_name"),"fields":{"shift_kelvin_calculated":float(shift_kelvin), "shift_kelvin_limited":float(shift_kelvin_limited)}}])
-        #self.log("Shift Kelvin - calculated: {} / limited: {}".format(round(shift_kelvin,1), round(shift_kelvin_limited,1)))
+        self.log("Shift Kelvin - calculated: {} / limited: {}".format(round(shift_kelvin,1), round(shift_kelvin_limited,1)))
 
     def get_list_of_derivatives(self):
         der_list = []
         query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC'.format(self.db_field, self.db_measurement)
         result_points = self.client.query(query).get_points()
         for minute_value in self.minutes_for_evaltuation:
-            self.log(minute_value)
+            #self.log(minute_value)
             newest_value = None
             current_time = None
             for point in result_points:
-                self.log(point)
+                #self.log(point)
                 if newest_value == None:
                     newest_value = point[self.db_field]
                     current_time = datetime.datetime.utcnow()
-                    self.log(current_time.strftime("%Y-%m-%d %H:%M:%S"))
+                    #self.log(current_time.strftime("%Y-%m-%d %H:%M:%S"))
                 else:
                     delta_value = point[self.db_field] - newest_value
                     delta_time = current_time - datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f')
                     #self.log(datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f').strftime("%Y-%m-%d %H:%M:%S"))
                     delta_time_seconds = delta_time.total_seconds()
-                    self.log("Delta seconds: {} minutes: {}".format(delta_time_seconds, round(delta_time_seconds/60,1)))
+                    #self.log("Delta seconds: {} minutes: {}".format(delta_time_seconds, round(delta_time_seconds/60,1)))
                     if delta_time_seconds >= (minute_value*60):
-                        self.log("Minute Value reached with delta seconds: {}".format(delta_time_seconds))
+                        #self.log("Minute Value reached with delta seconds: {}".format(delta_time_seconds))
                         derivative = delta_value / (delta_time_seconds / 3600)
-                        self.log("Derivative: {}".format(derivative))
+                        #self.log("Derivative: {}".format(derivative))
                         der_list.append(derivative)
                         break
         self.log(der_list)
