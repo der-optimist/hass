@@ -37,7 +37,7 @@ cards:
       - entity: sensor.tasmota_sd_2_energie
         name: Tasmota SD 2 - Energie
       - type: section
-        label: Tasmota SD 3 (Waschmaschine)
+        label: Tasmota SD 3 (TV)
       - entity: sensor.tasmota_sd_3_wirkleistung
         name: Tasmota SD 3 - Wirkleistung
       - entity: sensor.tasmota_sd_3_scheinleistung
