@@ -86,7 +86,7 @@ class heating_controller_foresight(hass.Hass):
         newest_value = None
         current_time = None
         for point in result_points:
-            self.log(point)
+            #self.log(point)
             if newest_value == None:
                 newest_value = point[self.db_field]
                 current_time = datetime.datetime.utcnow()
@@ -104,14 +104,14 @@ class heating_controller_foresight(hass.Hass):
                         historic_values.append(point[self.db_field])
                         historic_time_deltas_sec.append(delta_time_seconds)
                         derivative = delta_value / (delta_time_seconds / 3600)
-                        self.log("Minute: {} time_delta_min: {} - Delta_K: {} (histoy: {} - now {}) - Derivative: {}".format(minute_value, (delta_time_seconds / 3600), delta_value, point[self.db_field], newest_value, derivative))
+                        self.log("Minute: {} time_delta_min: {} - Delta_K: {} (histoy: {} - now {}) - Derivative: {}".format(minute_value, (delta_time_seconds / 60), delta_value, point[self.db_field], newest_value, derivative))
                         #self.log("Derivative: {}".format(derivative))
                         der_list.append(derivative)
-                        self.log("der_list: {}".format(der_list))
+                        #self.log("der_list: {}".format(der_list))
                 if len(der_list) == len(self.minutes_for_evaltuation):
                     self.log("Ende erreich. der_list: {}".format(der_list))
                     break
-        self.log(der_list)
+        #self.log(der_list)
         return der_list
     
     def shift_kelvin_to_byte_value(self, shift_kelvin):
