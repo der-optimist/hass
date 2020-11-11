@@ -78,7 +78,11 @@ class heating_controller_foresight(hass.Hass):
     def get_list_of_derivatives(self):
         der_list = []
         query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time > now() - 24h ORDER BY time DESC'.format(self.db_field, self.db_measurement)
+        self.log(query)
         result_points = self.client.query(query).get_points()
+        self.log(result_points)
+        self.log(self.minutes_for_evaltuation)
+        self.log(type(self.minutes_for_evaltuation))
         for minute_value in self.minutes_for_evaltuation:
             self.log(minute_value)
             newest_value = None
