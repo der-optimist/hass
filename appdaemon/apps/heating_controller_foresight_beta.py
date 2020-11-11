@@ -97,13 +97,14 @@ class heating_controller_foresight(hass.Hass):
                 #self.log(datetime.datetime.strptime(point["time"][:-4], '%Y-%m-%dT%H:%M:%S.%f').strftime("%Y-%m-%d %H:%M:%S"))
                 delta_time_seconds = delta_time.total_seconds()
                 #self.log("Delta seconds: {} minutes: {}".format(delta_time_seconds, round(delta_time_seconds/60,1)))
-                for minute_value in range(len(historic_values),len(self.minutes_for_evaltuation)+1):
+                for i in range(len(historic_values),len(self.minutes_for_evaltuation)):
+                    minute_value = self.minutes_for_evaltuation[i]
                     if delta_time_seconds >= (minute_value*60):
                         #self.log("Minute Value reached with delta seconds: {}".format(delta_time_seconds))
                         historic_values.append(point[self.db_field])
                         historic_time_deltas_sec.append(delta_time_seconds)
                         derivative = delta_value / (delta_time_seconds / 3600)
-                        self.log("Minute: {} - Delta_K: {} (histoy: {} - now {}) - Derivative: {}".format(minute_value, delta_value, point[self.db_field], newest_value, derivative))
+                        self.log("Minute: {} time_delta_min: {} - Delta_K: {} (histoy: {} - now {}) - Derivative: {}".format(minute_value, (delta_time_seconds / 3600), delta_value, point[self.db_field], newest_value, derivative))
                         #self.log("Derivative: {}".format(derivative))
                         der_list.append(derivative)
                         self.log("der_list: {}".format(der_list))
