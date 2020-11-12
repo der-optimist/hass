@@ -457,7 +457,16 @@
     state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
     value_template: '{{ value_json["AM2301"]["DewPoint"] }}'
     unit_of_measurement: "°C"
-    
+
+# Riemann sum - Integration (Energy Consumption)
+  - platform: integration
+    source: sensor.el_leistung_licht_gesamt
+    name: Stromzähler Licht gesamt
+    method: left
+    unit: kWh
+    round: 2
+
+
 # --- Sonstiges ---
 # History
   - platform: history_stats
