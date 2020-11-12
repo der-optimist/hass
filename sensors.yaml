@@ -293,6 +293,20 @@
         friendly_name: 'El. Leistung Trockner'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      el_leistung_tv:
+        value_template: >-
+          {% if states('sensor.el_leistung_tv_scheinleistung') | float < 6 %}
+            0.0
+#          {% elif states('sensor.el_leistung_tv_scheinleistung') | float < 9 %}
+#            {{ '%.1f'%(states('sensor.el_leistung_tv_scheinleistung') | float * (states('sensor.el_leistung_tv_scheinleistung') | float * (-0.008991) + 0.072442)) }}
+#          {% elif states('sensor.el_leistung_tv_scheinleistung') | float < 10 %}
+#            {{ '%.1f'%(states('sensor.el_leistung_tv_scheinleistung') | float * 0.15) }}
+          {% else %}
+            {{ '%.1f'%(states('sensor.el_leistung_tv_scheinleistung') | float * 1) }}
+          {% endif %}
+        friendly_name: 'El. Leistung Trockner'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
       el_leistung_bildschirm_theke:
         friendly_name: "El. Leistung Bildschirm Theke"
         value_template: >-
