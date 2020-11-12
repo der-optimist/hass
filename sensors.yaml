@@ -317,6 +317,12 @@
           {% else %}
             6
           {% endif %}
+      stromzahler_licht_gesamt_genullt:
+        value_template: >-
+          {{ states("sensor.stromzahler_licht_gesamt") | float - 237.14 }}
+        friendly_name: 'Stromzähler Licht gesamt (genullt)'
+        unit_of_measurement: 'kWh'
+        icon_template: mdi:counter
       # max Stellwert Heizkreise Zeitverlauf
       stellwert_heizung_zeitverlauf_max:
         friendly_name: "Stellwert Heizung Zeitverlauf Max"
