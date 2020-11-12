@@ -463,7 +463,7 @@
     source: sensor.el_leistung_licht_gesamt
     name: Stromzähler Licht gesamt
     method: left
-    unit: kWh
+    unit_prefix: k
     round: 2
 
 
