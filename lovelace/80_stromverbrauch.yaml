@@ -70,7 +70,7 @@ cards:
         name: TV
       - type: section
         label: Keller
-      - entity: sensor.el_leistung_luftungsanlage
+      - entity: sensor.el_leistung_luftungsanlage_round
         name: Lüftungsanlage
       - entity: sensor.el_leistung_waschmaschine_round
         name: Waschmaschine
