@@ -463,7 +463,7 @@ class energy_consumption_daily(hass.Hass):
             cos_phi_day = consumption_power_from_W / consumption_apparentpower_from_W
         else:
             cos_phi_day = 0.0
-        # compare
+        # compare effective
         measurement = "sensor.el_leistung_trockner"
         query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, measurement, int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
         #self.log(query)
@@ -486,8 +486,36 @@ class energy_consumption_daily(hass.Hass):
             past_timestep = timestamp_local
             if start_time_reached:
                 break
-        consumption_compare_from_W = consumption_Ws / 3600000
-        text_cos_phi = text_cos_phi + "\n\n" + "Trockner:\nVerbrauch aus kWh: {} kWh\nVerbrauch aus W: {} kWh\nScheinenergie: {} kWh\nmittlerer cos phi: {}\nVergleich:{}".format(round(consumption_kWh_from_kwh,2),round(consumption_power_from_W,2),round(consumption_apparentpower_from_W,2),round(cos_phi_day,3),round(consumption_compare_from_W,2))
+        consumption_compare_eff_from_W = consumption_Ws / 3600000
+        # compare apparent
+        measurement = "sensor.el_leistung_trockner_scheinleistung"
+        query = 'SELECT "{}" FROM "homeassistant_permanent"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, measurement, int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
+        #self.log(query)
+        result_points = self.client.query(query).get_points()
+        consumption_Ws = 0.0
+        past_timestep = ts_end_local
+        start_time_reached = False
+        for point in result_points:
+            #self.log(point)
+            timestamp_local = datetime.datetime.strptime(point["time"], '%Y-%m-%dT%H:%M:%S.%fZ').timestamp() + utc_offset_timestamp
+            #self.log("timestamp local: {}".format(timestamp_local))
+            if timestamp_local < ts_start_local:
+                timestamp_local = ts_start_local
+                start_time_reached = True
+            time_delta_s = past_timestep - timestamp_local
+            #self.log("timedelta: {} s".format(time_delta_s))
+            energy_Ws = point[self.db_field] * time_delta_s
+            #self.log("energy: {} Ws".format(energy_Ws))
+            consumption_Ws = consumption_Ws + energy_Ws
+            past_timestep = timestamp_local
+            if start_time_reached:
+                break
+        consumption_compare_app_from_W = consumption_Ws / 3600000
+        if consumption_compare_app_from_W > 0.0:
+            cos_phi_compare = consumption_compare_eff_from_W / consumption_compare_app_from_W
+        else:
+            cos_phi_compare = 0.0
+        text_cos_phi = text_cos_phi + "\n\n" + "Trockner:\nVerbrauch aus kWh: {} kWh\nVerbrauch aus W: {} kWh\nScheinenergie: {} kWh\nmittlerer cos phi: {}\nVergleich:\nEnergie:{}\nScheinenergie:{}\ncos_phi:{}".format(round(consumption_kWh_from_kwh,2),round(consumption_power_from_W,2),round(consumption_apparentpower_from_W,2),round(cos_phi_day,3),round(consumption_compare_eff_from_W,2),round(consumption_compare_app_from_W,2),round(cos_phi_compare,3))
         
         known_consumption_costs = known_consumption_kWh_total  * self.price_per_kWh
         self.log("Stromverbrauch von bekannten Dingen, {}: {} kWh, also {} EUR ".format(date_str, round(known_consumption_kWh_total,1),round(known_consumption_costs,2)))
