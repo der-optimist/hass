@@ -237,7 +237,7 @@
     type: power
 
   # TV
-  - name: 'El. Leistung TV'
+  - name: 'El. Leistung TV Scheinleistung'
     state_address: '0/0/103'
     type: power
 
