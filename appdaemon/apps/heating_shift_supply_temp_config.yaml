@@ -1,7 +1,7 @@
 heating_shift_supply_temp:
   module: heating_shift_supply_temp
   class: heating_shift_supply_temp
-  interval_hours: 2
+  interval_hours: 1
   temp_limit_min: 21
   temp_limit_max: 23
   valve_target_min: 70
