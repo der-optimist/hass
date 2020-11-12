@@ -66,7 +66,7 @@ cards:
         name: Mixi
       - entity: sensor.el_leistung_spulmaschine_round
         name: Spülmaschine
-      - entity: sensor.el_leistung_tv_round
+      - entity: sensor.el_leistung_tv
         name: TV
       - type: section
         label: Keller
