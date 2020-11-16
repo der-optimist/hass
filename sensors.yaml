@@ -19,6 +19,16 @@
         unit_of_measurement: 'hPa'
         value_template: "{{ (states('sensor.lumi_lumi_weather_57dc3d03_pressure') | float) | round }}"
         device_class: pressure
+      luftfeuchtigkeit_waschuche:
+        friendly_name: 'Luftfeuchtigkeit Waschküche'
+        unit_of_measurement: '%'
+        value_template: "{{ states('sensor.dht21_wemosd1_3_luftfeuchtigkeit') }}"
+        device_class: humidity
+      temp_waschkuche:
+        friendly_name: 'Temp. Waschküche'
+        unit_of_measurement: '°C'
+        value_template: "{{ states('sensor.dht21_wemosd1_3_temperatur') }}"
+        device_class: temperature
       temp_outside_internet:
         friendly_name: "Temperatur außen Internet"
         value_template: "{{ state_attr('weather.lieblingshaus', 'temperature') }}"
@@ -431,35 +441,51 @@
     state_topic: "tele/tasmota_sd_3/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Total"] }}'
     unit_of_measurement: "kWh"
-# Wemos D1 1 - DHT21 Partyraum
+# Wemos D1 1 - DHT21
   - platform: mqtt
-    name: "DHT21 Partyraum Luftfeuchtigkeit"
+    name: "DHT21 WemosD1 1 Luftfeuchtigkeit"
     state_topic: "tele/tasmota_wemos_d1_1/SENSOR"
     value_template: '{{ value_json["AM2301"]["Humidity"] }}'
     unit_of_measurement: "%"
   - platform: mqtt
-    name: "DHT21 Partyraum Temperatur"
+    name: "DHT21 WemosD1 1 Temperatur"
     state_topic: "tele/tasmota_wemos_d1_1/SENSOR"
     value_template: '{{ value_json["AM2301"]["Temperature"] }}'
     unit_of_measurement: "°C"
   - platform: mqtt
-    name: "DHT21 Partyraum Taupunkt"
+    name: "DHT21 WemosD1 1 Taupunkt"
     state_topic: "tele/tasmota_wemos_d1_1/SENSOR"
     value_template: '{{ value_json["AM2301"]["DewPoint"] }}'
     unit_of_measurement: "°C"
-# Wemos D1 2 - DHT21 Werkelraum
+# Wemos D1 2 - DHT21
   - platform: mqtt
-    name: "DHT21 Werkelraum Luftfeuchtigkeit"
+    name: "DHT21 WemosD1 2 Luftfeuchtigkeit"
     state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
     value_template: '{{ value_json["AM2301"]["Humidity"] }}'
     unit_of_measurement: "%"
   - platform: mqtt
-    name: "DHT21 Werkelraum Temperatur"
+    name: "DHT21 WemosD1 2 Temperatur"
     state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
     value_template: '{{ value_json["AM2301"]["Temperature"] }}'
     unit_of_measurement: "°C"
   - platform: mqtt
-    name: "DHT21 Werkelraum Taupunkt"
+    name: "DHT21 WemosD1 2 Taupunkt"
+    state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
+    value_template: '{{ value_json["AM2301"]["DewPoint"] }}'
+    unit_of_measurement: "°C"
+# Wemos D1 3 - DHT21
+  - platform: mqtt
+    name: "DHT21 WemosD1 3 Luftfeuchtigkeit"
+    state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
+    value_template: '{{ value_json["AM2301"]["Humidity"] | float + 2.5 | round(1) }}'
+    unit_of_measurement: "%"
+  - platform: mqtt
+    name: "DHT21 WemosD1 3 Temperatur"
+    state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
+    value_template: '{{ value_json["AM2301"]["Temperature"] }}'
+    unit_of_measurement: "°C"
+  - platform: mqtt
+    name: "DHT21 WemosD1 3 Taupunkt"
     state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
     value_template: '{{ value_json["AM2301"]["DewPoint"] }}'
     unit_of_measurement: "°C"
