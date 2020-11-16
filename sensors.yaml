@@ -19,7 +19,7 @@
         unit_of_measurement: 'hPa'
         value_template: "{{ (states('sensor.lumi_lumi_weather_57dc3d03_pressure') | float) | round }}"
         device_class: pressure
-      luftfeuchtigkeit_waschuche:
+      luftfeuchtigkeit_waschkuche:
         friendly_name: 'Luftfeuchtigkeit Waschküche'
         unit_of_measurement: '%'
         value_template: "{{ states('sensor.dht21_wemosd1_2_luftfeuchtigkeit') }}"
