@@ -22,12 +22,32 @@
       luftfeuchtigkeit_waschuche:
         friendly_name: 'Luftfeuchtigkeit Waschküche'
         unit_of_measurement: '%'
-        value_template: "{{ states('sensor.dht21_wemosd1_3_luftfeuchtigkeit') }}"
+        value_template: "{{ states('sensor.dht21_wemosd1_2_luftfeuchtigkeit') }}"
         device_class: humidity
       temp_waschkuche:
         friendly_name: 'Temp. Waschküche'
         unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.dht21_wemosd1_3_temperatur') }}"
+        value_template: "{{ states('sensor.dht21_wemosd1_2_temperatur') }}"
+        device_class: temperature
+      luftfeuchtigkeit_werkelraum:
+        friendly_name: 'Luftfeuchtigkeit Werkelraum'
+        unit_of_measurement: '%'
+        value_template: "{{ states('sensor.dht21_wemosd1_2_luftfeuchtigkeit') }}"
+        device_class: humidity
+      temp_werkelraum:
+        friendly_name: 'Temp. Werkelraum'
+        unit_of_measurement: '°C'
+        value_template: "{{ states('sensor.dht21_wemosd1_2_temperatur') }}"
+        device_class: temperature
+      luftfeuchtigkeit_partyraum:
+        friendly_name: 'Luftfeuchtigkeit Partyraum'
+        unit_of_measurement: '%'
+        value_template: "{{ states('sensor.dht21_wemosd1_1_luftfeuchtigkeit') }}"
+        device_class: humidity
+      temp_partyraum:
+        friendly_name: 'Temp. Partyraum'
+        unit_of_measurement: '°C'
+        value_template: "{{ states('sensor.dht21_wemosd1_1_temperatur') }}"
         device_class: temperature
       temp_outside_internet:
         friendly_name: "Temperatur außen Internet"
@@ -477,7 +497,7 @@
   - platform: mqtt
     name: "DHT21 WemosD1 3 Luftfeuchtigkeit"
     state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
-    value_template: '{{ value_json["AM2301"]["Humidity"] | float + 2.5 | round(1) }}'
+    value_template: '{{ value_json["AM2301"]["Humidity"] | float + 7.0 | round(1) }}'
     unit_of_measurement: "%"
   - platform: mqtt
     name: "DHT21 WemosD1 3 Temperatur"
