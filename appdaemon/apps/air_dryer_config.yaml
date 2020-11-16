@@ -3,7 +3,7 @@ luftentfeuchter_waschkueche:
   class: air_dryer
   air_dryer_switch: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
   energy_measurement_sensor: sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
-  humidity_sensor: sensor.dht21_werkelraum_luftfeuchtigkeit
+  humidity_sensor: sensor.luftfeuchtigkeit_waschkuche
 #  humidity_sensor: sensor.dht22_waschkueche_humidity
   humidity_standard_max: 59
   humidity_standard_min: 54
@@ -18,12 +18,12 @@ luftentfeuchter_waschkueche:
   input_number_timer_special_humidity: input_number.timer_spezial_luftf_waschk
   name_reminder_switch_tank_full: switch.reminder_luftentfeuchter_waschkueche_tank
   text_reminder_switch_tank_full: "Tank Luftentfeucher Waschküche leeren"
-luftentfeuchter_werkelraum:
+luftentfeuchter_partyraum:
   module: air_dryer
   class: air_dryer
   air_dryer_switch: switch.innr_sp_120_test_on_off
   energy_measurement_sensor: sensor.innr_sp_120_test_electrical_measurement
-  humidity_sensor: sensor.dht21_partyraum_luftfeuchtigkeit
+  humidity_sensor: sensor.luftfeuchtigkeit_partyraum
   humidity_standard_max: 60
   humidity_standard_min: 58
   humidity_special_max: 55
