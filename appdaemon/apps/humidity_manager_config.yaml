@@ -1,8 +1,8 @@
 humidity_manager_partyraum:
   module: humidity_manager
   class: humidity_manager
-  sensor_humidity_inside: sensor.lumi_lumi_weather_humidity
-  sensor_temp_inside: sensor.lumi_lumi_weather_temperature
+  sensor_humidity_inside: sensor.luftfeuchtigkeit_partyraum
+  sensor_temp_inside: sensor.temp_partyraum
   sensor_humidity_outside: sensor.humidity_outside_internet
   sensor_temp_outside: sensor.temp_outside_internet
   max_humidity_inside: 65
@@ -11,8 +11,8 @@ humidity_manager_partyraum:
 humidity_manager_werkelraum:
   module: humidity_manager
   class: humidity_manager
-  sensor_humidity_inside: sensor.dht21_werkelraum_luftfeuchtigkeit
-  sensor_temp_inside: sensor.dht21_werkelraum_temperatur
+  sensor_humidity_inside: sensor.luftfeuchtigkeit_werkelraum
+  sensor_temp_inside: sensor.temp_werkelraum
   sensor_humidity_outside: sensor.humidity_outside_internet
   sensor_temp_outside: sensor.temp_outside_internet
   max_humidity_inside: 65
