@@ -76,9 +76,9 @@ cards:
       secondary_info: "[[ sensor.el_leistung_luftungsanlage ]] W"
     - type: section
       label: Luft
-    - entity: sensor.luftfeuchtigkeit_werkelraum
-      name: Temperatur DHT
     - entity: sensor.temp_werkelraum
+      name: Temperatur DHT
+    - entity: sensor.luftfeuchtigkeit_werkelraum
       name: Luftfeuchtigkeit DHT
   - type: entities
     title: "Partyraum"
