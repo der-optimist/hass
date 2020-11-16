@@ -496,17 +496,17 @@
 # Wemos D1 3 - DHT21
   - platform: mqtt
     name: "DHT21 WemosD1 3 Luftfeuchtigkeit"
-    state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
+    state_topic: "tele/tasmota_wemos_d1_3/SENSOR"
     value_template: '{{ value_json["AM2301"]["Humidity"] | float + 7.0 | round(1) }}'
     unit_of_measurement: "%"
   - platform: mqtt
     name: "DHT21 WemosD1 3 Temperatur"
-    state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
+    state_topic: "tele/tasmota_wemos_d1_3/SENSOR"
     value_template: '{{ value_json["AM2301"]["Temperature"] }}'
     unit_of_measurement: "°C"
   - platform: mqtt
     name: "DHT21 WemosD1 3 Taupunkt"
-    state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
+    state_topic: "tele/tasmota_wemos_d1_3/SENSOR"
     value_template: '{{ value_json["AM2301"]["DewPoint"] }}'
     unit_of_measurement: "°C"
 
