@@ -527,6 +527,102 @@
     method: left
     unit_prefix: k
     round: 2
+  - platform: integration
+    source: sensor.el_leistung_licht_sicherung_3_2
+    name: Stromzähler Licht Sicherung 3.2
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_licht_sicherung_3_3
+    name: Stromzähler Licht Sicherung 3.3
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_berechnete_lichter
+    name: Stromzähler Licht berechnete
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_backofen
+    name: Stromzähler Backofen
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_bildschirm_theke
+    name: Stromzähler Bildschirm Theke
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_gefrierschrank
+    name: Stromzähler Gefrierschrank
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_kuhlschrank_keller
+    name: Stromzähler Kühlschrank Keller
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_kuhlschrank_kuche
+    name: Stromzähler Kühlschrank Küche
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_luftungsanlage
+    name: Stromzähler Lüftungsanlage
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_mixi
+    name: Stromzähler Mixi
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_spulmaschine
+    name: Stromzähler Spülmaschine
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_trockner
+    name: Stromzähler Trockner
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_tv
+    name: Stromzähler TV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_waschmaschine
+    name: Stromzähler Waschmaschine
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
+    name: Stromzähler Luftentf. Waschk.
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.innr_sp_120_test_electrical_measurement
+    name: Stromzähler Luftentf. Werkelraum
+    method: left
+    unit_prefix: k
+    round: 2
 
 
 # --- Sonstiges ---
