@@ -275,43 +275,43 @@
     type: power
 
 # --- Stromzähler ---
-# Schaltaktor direkt
-  - name: 'Stromzähler Backofen'
-    state_address: '0/0/4'
-    type: 4byte_signed
-  - name: 'Stromzähler Kühlschrank Küche'
-    state_address: '0/0/24'
-    type: 4byte_signed
-  - name: 'Stromzähler Spülmaschine'
-    state_address: '0/0/44'
-    type: 4byte_signed
-  - name: 'Stromzähler Mixi'
-    state_address: '0/0/64'
-    type: 4byte_signed
-  - name: 'Stromzähler TV'
-    state_address: '0/0/104'
-    type: 4byte_signed
-  - name: 'Stromzähler Waschmaschine'
-    state_address: '0/1/144'
-    type: 4byte_signed
-  - name: 'Stromzähler Trockner'
-    state_address: '0/1/164'
-    type: 4byte_signed
-  - name: 'Stromzähler Kühlschrank Keller'
-    state_address: '0/1/204'
-    type: 4byte_signed
-  - name: 'Stromzähler Gefrierschrank'
-    state_address: '0/1/224'
-    type: 4byte_signed
-  - name: 'Stromzähler Lüftungsanlage'
-    state_address: '0/2/144'
-    type: 4byte_signed
-  - name: 'Stromzähler Licht Sicherung 3-2'
-    state_address: '0/2/204'
-    type: 4byte_signed
-  - name: 'Stromzähler Licht Sicherung 3-3'
-    state_address: '0/2/224'
-    type: 4byte_signed
+# Schaltaktor direkt => entfernt. Integral in HA aus teilweise mit cos phi verrechneten leistungen
+#  - name: 'Stromzähler Backofen'
+#    state_address: '0/0/4'
+#    type: 4byte_signed
+#  - name: 'Stromzähler Kühlschrank Küche'
+#    state_address: '0/0/24'
+#    type: 4byte_signed
+#  - name: 'Stromzähler Spülmaschine'
+#    state_address: '0/0/44'
+#    type: 4byte_signed
+#  - name: 'Stromzähler Mixi'
+#    state_address: '0/0/64'
+#    type: 4byte_signed
+#  - name: 'Stromzähler TV'
+#    state_address: '0/0/104'
+#    type: 4byte_signed
+#  - name: 'Stromzähler Waschmaschine'
+#    state_address: '0/1/144'
+#    type: 4byte_signed
+#  - name: 'Stromzähler Trockner'
+#    state_address: '0/1/164'
+#    type: 4byte_signed
+#  - name: 'Stromzähler Kühlschrank Keller'
+#    state_address: '0/1/204'
+#    type: 4byte_signed
+#  - name: 'Stromzähler Gefrierschrank'
+#    state_address: '0/1/224'
+#    type: 4byte_signed
+#  - name: 'Stromzähler Lüftungsanlage'
+#    state_address: '0/2/144'
+#    type: 4byte_signed
+#  - name: 'Stromzähler Licht Sicherung 3-2'
+#    state_address: '0/2/204'
+#    type: 4byte_signed
+#  - name: 'Stromzähler Licht Sicherung 3-3'
+#    state_address: '0/2/224'
+#    type: 4byte_signed
 
 # Binäreingang Rohdaten
   - name: 'Stromzähler Kochfeld Rohdaten'
