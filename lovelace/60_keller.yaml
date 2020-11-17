@@ -61,6 +61,12 @@ cards:
       name: Gefrierschrank
     - entity: switch.kuhlschrank_keller
       name: Kühlschrank
+    - type: section
+      label: Luft
+    - entity: sensor.temp_vorratsraum
+      name: Temperatur
+    - entity: sensor.luftfeuchtigkeit_vorratsraum
+      name: Luftfeuchtigkeit
   - type: entities
     title: "Lager-/Werkelraum"
     show_header_toggle: false
