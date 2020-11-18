@@ -48,7 +48,7 @@ cards:
       name: Kellertreppe
       toggle: true
   - type: entities
-    title: "Vorratsraum"
+    title: "Speis"
     show_header_toggle: false
     entities:
     - type: section
