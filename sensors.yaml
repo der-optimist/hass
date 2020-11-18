@@ -644,6 +644,12 @@
     method: left
     unit_prefix: k
     round: 2
+  - platform: integration
+    source: sensor.el_leistung_dauerverbraucher
+    name: Stromzähler Dauerverbraucher
+    method: left
+    unit_prefix: k
+    round: 2
 
 
 # --- Sonstiges ---
