@@ -193,18 +193,6 @@ knx:
     address: '0/3/41'
 
 light:
-
-#yeelight:
-#  devices:
-#    192.168.178.53:
-#      name: Wuerfel gross Ecke
-#      model: color2
-#    192.168.178.55:
-#      name: Wuerfel klein
-#      model: color2
-#    192.168.178.53:
-#      name: Wuerfel gross Feuerstelle
-
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
 
@@ -213,6 +201,8 @@ switch:
 cover:
 
 climate:
+
+utility_meter: !include utility_meter.yaml
 
 stream:
 camera:
