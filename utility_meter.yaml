@@ -1,0 +1,135 @@
+  # Daily
+  stromverbrauch_netzbezug_tag:
+    source: sensor.stromzaehler_netzbezug
+    cycle: daily
+  stromverbrauch_backofen_tag:
+    source: sensor.stromzahler_backofen
+    cycle: daily
+  stromverbrauch_bildschirm_theke_tag:
+    source: sensor.stromzahler_bildschirm_theke
+    cycle: daily
+  stromverbrauch_gefrierschrank_tag:
+    source: sensor.stromzahler_gefrierschrank
+    cycle: daily
+  stromverbrauch_kochfeld_tag:
+    source: sensor.stromzahler_kochfeld
+    cycle: daily
+  stromverbrauch_kuhlschrank_keller_tag:
+    source: sensor.stromzahler_kuhlschrank_keller
+    cycle: daily
+  stromverbrauch_kuhlschrank_kuche_tag:
+    source: sensor.stromzahler_kuhlschrank_kuche
+    cycle: daily
+  stromverbrauch_licht_berechnete_tag:
+    source: sensor.stromzahler_licht_berechnete
+    cycle: daily
+  stromverbrauch_licht_gesamt_tag:
+    source: sensor.stromzahler_licht_gesamt
+    cycle: daily
+  stromverbrauch_licht_sicherung_3_2_tag:
+    source: sensor.stromzahler_licht_sicherung_3_2
+    cycle: daily
+  stromverbrauch_licht_sicherung_3_3_tag:
+    source: sensor.stromzahler_licht_sicherung_3_3
+    cycle: daily
+  stromverbrauch_luftentf_waschk_tag:
+    source: sensor.stromzahler_luftentf_waschk
+    cycle: daily
+  stromverbrauch_luftentf_werkelraum_tag:
+    source: sensor.stromzahler_luftentf_werkelraum
+    cycle: daily
+  stromverbrauch_luftungsanlage_tag:
+    source: sensor.stromzahler_luftungsanlage
+    cycle: daily
+  stromverbrauch_mixi_tag:
+    source: sensor.stromzahler_mixi
+    cycle: daily
+  stromverbrauch_spulmaschine_tag:
+    source: sensor.stromzahler_spulmaschine
+    cycle: daily
+  stromverbrauch_trockner_tag:
+    source: sensor.stromzahler_trockner
+    cycle: daily
+  stromverbrauch_tv_tag:
+    source: sensor.stromzahler_tv
+    cycle: daily
+  stromverbrauch_waschmaschine_tag:
+    source: sensor.stromzahler_waschmaschine
+    cycle: daily
+  stromverbrauch_wp_aussenteil_tag:
+    source: sensor.stromzahler_wp_aussenteil
+    cycle: daily
+  stromverbrauch_wp_heizstab_tag:
+    source: sensor.stromzahler_wp_heizstab
+    cycle: daily
+  stromverbrauch_wp_innenteil_tag:
+    source: sensor.stromzahler_wp_innenteil
+    cycle: daily
+
+  # Monthly
+  stromverbrauch_netzbezug_monat:
+    source: sensor.stromzaehler_netzbezug
+    cycle: monthly
+  stromverbrauch_backofen_monat:
+    source: sensor.stromzahler_backofen
+    cycle: monthly
+  stromverbrauch_bildschirm_theke_monat:
+    source: sensor.stromzahler_bildschirm_theke
+    cycle: monthly
+  stromverbrauch_gefrierschrank_monat:
+    source: sensor.stromzahler_gefrierschrank
+    cycle: monthly
+  stromverbrauch_kochfeld_monat:
+    source: sensor.stromzahler_kochfeld
+    cycle: monthly
+  stromverbrauch_kuhlschrank_keller_monat:
+    source: sensor.stromzahler_kuhlschrank_keller
+    cycle: monthly
+  stromverbrauch_kuhlschrank_kuche_monat:
+    source: sensor.stromzahler_kuhlschrank_kuche
+    cycle: monthly
+  stromverbrauch_licht_berechnete_monat:
+    source: sensor.stromzahler_licht_berechnete
+    cycle: monthly
+  stromverbrauch_licht_gesamt_monat:
+    source: sensor.stromzahler_licht_gesamt
+    cycle: monthly
+  stromverbrauch_licht_sicherung_3_2_monat:
+    source: sensor.stromzahler_licht_sicherung_3_2
+    cycle: monthly
+  stromverbrauch_licht_sicherung_3_3_monat:
+    source: sensor.stromzahler_licht_sicherung_3_3
+    cycle: monthly
+  stromverbrauch_luftentf_waschk_monat:
+    source: sensor.stromzahler_luftentf_waschk
+    cycle: monthly
+  stromverbrauch_luftentf_werkelraum_monat:
+    source: sensor.stromzahler_luftentf_werkelraum
+    cycle: monthly
+  stromverbrauch_luftungsanlage_monat:
+    source: sensor.stromzahler_luftungsanlage
+    cycle: monthly
+  stromverbrauch_mixi_monat:
+    source: sensor.stromzahler_mixi
+    cycle: monthly
+  stromverbrauch_spulmaschine_monat:
+    source: sensor.stromzahler_spulmaschine
+    cycle: monthly
+  stromverbrauch_trockner_monat:
+    source: sensor.stromzahler_trockner
+    cycle: monthly
+  stromverbrauch_tv_monat:
+    source: sensor.stromzahler_tv
+    cycle: monthly
+  stromverbrauch_waschmaschine_monat:
+    source: sensor.stromzahler_waschmaschine
+    cycle: monthly
+  stromverbrauch_wp_aussenteil_monat:
+    source: sensor.stromzahler_wp_aussenteil
+    cycle: monthly
+  stromverbrauch_wp_heizstab_monat:
+    source: sensor.stromzahler_wp_heizstab
+    cycle: monthly
+  stromverbrauch_wp_innenteil_monat:
+    source: sensor.stromzahler_wp_innenteil
+    cycle: monthly
