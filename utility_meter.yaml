@@ -65,6 +65,9 @@
   stromverbrauch_wp_innenteil_tag:
     source: sensor.stromzahler_wp_innenteil
     cycle: daily
+  stromverbrauch_dauerverbraucher_tag:
+    source: sensor.stromzahler_dauerverbraucher
+    cycle: daily
 
   # Monthly
   stromverbrauch_netzbezug_monat:
@@ -132,4 +135,7 @@
     cycle: monthly
   stromverbrauch_wp_innenteil_monat:
     source: sensor.stromzahler_wp_innenteil
+    cycle: monthly
+  stromverbrauch_dauerverbraucher_monat:
+    source: sensor.stromzahler_dauerverbraucher
     cycle: monthly
