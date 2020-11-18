@@ -105,9 +105,5 @@ cards:
       full_row: true
     - entity: sensor.temp_partyraum
       name: Temperatur DHT
-    - entity: sensor.lumi_lumi_weather_temperature
-      name: Temperatur Funk
     - entity: sensor.luftfeuchtigkeit_partyraum
       name: Luftfeuchtigkeit DHT
-    - entity: sensor.lumi_lumi_weather_humidity
-      name: Luftfeuchtigkeit Funk
