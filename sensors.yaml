@@ -32,12 +32,12 @@
       luftfeuchtigkeit_werkelraum:
         friendly_name: 'Luftfeuchtigkeit Werkelraum'
         unit_of_measurement: '%'
-        value_template: "{{ states('sensor.dht21_wemosd1_2_luftfeuchtigkeit') }}"
+        value_template: "{{ states('sensor.dht21_wemosd1_3_luftfeuchtigkeit') }}"
         device_class: humidity
       temp_werkelraum:
         friendly_name: 'Temp. Werkelraum'
         unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.dht21_wemosd1_2_temperatur') }}"
+        value_template: "{{ states('sensor.dht21_wemosd1_3_temperatur') }}"
         device_class: temperature
       luftfeuchtigkeit_partyraum:
         friendly_name: 'Luftfeuchtigkeit Partyraum'
