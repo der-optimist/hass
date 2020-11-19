@@ -336,7 +336,7 @@
             # Babyphone                      6   (geschätzt)
             # Kodi                           1   (geschätzt)
             # Relais Sicherung Keller        1   (geschätzt)
-        value_template: "{{ 80.5 }}"
+        value_template: "{{ now() | float + 22.5 + 11 + 0.5 + 5 + 2 + 4.5 + 5 + 4 + 2 + 1 + 10 + 5 + 6 + 1 + 1 }}"
         friendly_name: 'El. Leistung Dauerverbraucher'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
