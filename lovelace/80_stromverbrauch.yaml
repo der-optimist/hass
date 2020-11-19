@@ -27,7 +27,7 @@ cards:
       - entity: sensor.sonoff_pow_r2_2_energie
         name: POW R2 2 - Energie
       - type: section
-        label: Tasmota SD 2 (Trockner)
+        label: Tasmota SD 2 (Waschmaschine)
       - entity: sensor.tasmota_sd_2_wirkleistung
         name: Tasmota SD 2 - Wirkleistung
       - entity: sensor.tasmota_sd_2_scheinleistung
@@ -37,7 +37,7 @@ cards:
       - entity: sensor.tasmota_sd_2_energie
         name: Tasmota SD 2 - Energie
       - type: section
-        label: Tasmota SD 3 (TV)
+        label: Tasmota SD 3 (LG Anlage)
       - entity: sensor.tasmota_sd_3_wirkleistung
         name: Tasmota SD 3 - Wirkleistung
       - entity: sensor.tasmota_sd_3_scheinleistung
@@ -46,6 +46,12 @@ cards:
         name: Tasmota SD 3 - Cos Phi
       - entity: sensor.tasmota_sd_3_energie
         name: Tasmota SD 3 - Energie
+      - type: section
+        label: Shelly Plug S (USV)
+      - entity: sensor.shellyplug_s_169d16_power
+        name: Shelly Plug S - Wirkleistung
+      - entity: sensor.shellyplug_s_169d16_energy
+        name: Shelly Plug S - Energie
   - type: entities
     title: Leistung
     show_header_toggle: false
