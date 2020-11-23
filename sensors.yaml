@@ -115,11 +115,11 @@
 #        unit_of_measurement: 'W'
 #        icon_template: mdi:speedometer
       # Waschmaschine
-      el_leistung_waschmaschine_round:
-        value_template: "{{ '%.1f'%(states('sensor.el_leistung_waschmaschine') | float) | float }}"
-        friendly_name: 'El. Leistung Waschmaschine (gerundet)'
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+#      el_leistung_waschmaschine_round:
+#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_waschmaschine') | float) | float }}"
+#        friendly_name: 'El. Leistung Waschmaschine (gerundet)'
+#        unit_of_measurement: 'W'
+#        icon_template: mdi:speedometer
       # Trockner
 #      el_leistung_trockner_round:
 #        value_template: "{{ '%.1f'%(states('sensor.el_leistung_trockner') | float) | float }}"
