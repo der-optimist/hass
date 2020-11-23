@@ -342,6 +342,20 @@
         friendly_name: 'El. Leistung Dauerverbraucher'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      el_leistung_waschmaschine:
+        value_template: >-
+          {% if states('sensor.el_leistung_waschmaschine_scheinleistung') | float < 15 %}
+            0.4
+          {% elif states('sensor.el_leistung_waschmaschine_scheinleistung') | float < 360 %}
+            {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float * (states('sensor.el_leistung_waschmaschine_scheinleistung') | float * 0.000688 + 0.561576)) }}
+          {% elif states('sensor.el_leistung_waschmaschine_scheinleistung') | float < 1000 %}
+            {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float * 0.81) }}
+          {% else %}
+            {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float * 1) }}
+          {% endif %}
+        friendly_name: 'El. Leistung Waschmaschine'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
       el_leistung_trockner:
         value_template: >-
           {% if states('sensor.el_leistung_trockner_scheinleistung') | float < 6 %}
