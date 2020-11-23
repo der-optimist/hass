@@ -380,6 +380,14 @@
           {% else %}
             6
           {% endif %}
+      el_leistung_lg_anlage:
+        friendly_name: "El. Leistung LG Anlage"
+        value_template: >-
+          {% if is_state('binary_sensor.tv_ist_an', 'on') %}
+            13.5
+          {% else %}
+            0.5
+          {% endif %}
       stromzahler_licht_gesamt_genullt:
         value_template: >-
           {{ '%.2f'%(states("sensor.stromzahler_licht_gesamt") | float - 237.14) }}
@@ -595,6 +603,12 @@
   - platform: integration
     source: sensor.el_leistung_kuhlschrank_kuche
     name: Stromzähler Kühlschrank Küche
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.el_leistung_lg_anlage
+    name: Stromzähler LG Anlage
     method: left
     unit_prefix: k
     round: 2
