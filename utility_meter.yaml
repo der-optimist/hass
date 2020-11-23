@@ -38,6 +38,9 @@
   stromverbrauch_luftentf_werkelraum_tag:
     source: sensor.stromzahler_luftentf_werkelraum
     cycle: daily
+  stromverbrauch_lg_anlage_tag:
+    source: sensor.stromzahler_lg_anlage
+    cycle: daily
   stromverbrauch_luftungsanlage_tag:
     source: sensor.stromzahler_luftungsanlage
     cycle: daily
@@ -108,6 +111,9 @@
     cycle: monthly
   stromverbrauch_luftentf_werkelraum_monat:
     source: sensor.stromzahler_luftentf_werkelraum
+    cycle: monthly
+  stromverbrauch_lg_anlage_monat:
+    source: sensor.stromzahler_lg_anlage
     cycle: monthly
   stromverbrauch_luftungsanlage_monat:
     source: sensor.stromzahler_luftungsanlage
