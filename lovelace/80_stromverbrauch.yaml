@@ -78,7 +78,7 @@ cards:
         label: Keller
       - entity: sensor.el_leistung_luftungsanlage_round
         name: Lüftungsanlage
-      - entity: sensor.el_leistung_waschmaschine_round
+      - entity: sensor.el_leistung_waschmaschine
         name: Waschmaschine
       - entity: sensor.el_leistung_trockner
         name: Trockner
