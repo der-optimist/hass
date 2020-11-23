@@ -242,7 +242,7 @@
     type: power
 
   # Waschmaschine
-  - name: 'El. Leistung Waschmaschine'
+  - name: 'El. Leistung Waschmaschine Scheinleistung'
     state_address: '0/1/143'
     type: power
 
