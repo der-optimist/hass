@@ -58,9 +58,6 @@
       aufwachphase_kinder:
         friendly_name: "Aufwachphase Kinder"
         value_template: "{{ states('sensor.anteil_kinder_wach_letzte_stunde')|float < 17 and is_state('binary_sensor.la_oder_le_schlafen','off') }}"
-      aufwachphase_kinder_bad:
-        friendly_name: "Aufwachphase Kinder Bad"
-        value_template: "{{ states('sensor.anteil_kinder_wach_letzte_stunde')|float < 17 and is_state('binary_sensor.la_oder_le_schlafen','off') and is_state('switch.bad_og_nachtmodus','off') }}"
       schlafen_oder_aufwachphase_majo:
         friendly_name: "Schlafen oder Aufwachphase MaJo"
         value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 10 }}"
