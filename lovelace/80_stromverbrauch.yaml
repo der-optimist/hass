@@ -12,40 +12,52 @@ cards:
         name: Gesamtleistung Netz
       - type: section
         label: EG
-      - entity: sensor.el_leistung_backofen_round
-        name: Backofen
       - type: custom:template-entity-row
-        name: Backofen neu
+        name: Backofen
         entity: sensor.el_leistung_backofen
-        state: "{{ '%.1f'%(states('sensor.el_leistung_backofen')) | float }}"
+        state: "{{ '%.1f'%(states('sensor.el_leistung_backofen')) | float }} W"
       - entity: sensor.el_leistung_bildschirm_theke
         name: Bildschirm Theke
-      - entity: sensor.el_leistung_dauerverbraucher_round
+      - type: custom:template-entity-row
         name: Dauerverbraucher
+        entity: sensor.el_leistung_dauerverbraucher
+        state: "{{ '%.1f'%(states('sensor.el_leistung_dauerverbraucher')) | float }} W"
       - entity: sensor.el_leistung_kochfeld
-        name: Herd
-      - entity: sensor.el_leistung_kuhlschrank_kuche_round
+        name: Kochfeld
+      - type: custom:template-entity-row
         name: Kühlschrank Küche
+        entity: sensor.el_leistung_kuhlschrank_kuche
+        state: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche')) | float }} W"
       - entity: sensor.el_leistung_lg_anlage
         name: LG Anlage
-      - entity: sensor.el_leistung_mixi_round
+      - type: custom:template-entity-row
         name: Mixi
-      - entity: sensor.el_leistung_spulmaschine_round
+        entity: sensor.el_leistung_mixi
+        state: "{{ '%.1f'%(states('sensor.el_leistung_mixi')) | float }} W"
+      - type: custom:template-entity-row
         name: Spülmaschine
+        entity: sensor.el_leistung_spulmaschine
+        state: "{{ '%.1f'%(states('sensor.el_leistung_spulmaschine')) | float }} W"
       - entity: sensor.el_leistung_tv
         name: TV
       - type: section
         label: Keller
-      - entity: sensor.el_leistung_luftungsanlage_round
+      - type: custom:template-entity-row
         name: Lüftungsanlage
+        entity: sensor.el_leistung_luftungsanlage
+        state: "{{ '%.1f'%(states('sensor.el_leistung_luftungsanlage')) | float }} W"
       - entity: sensor.el_leistung_waschmaschine
         name: Waschmaschine
       - entity: sensor.el_leistung_trockner
         name: Trockner
-      - entity: sensor.el_leistung_gefrierschrank_round
+      - type: custom:template-entity-row
         name: Gefrierschrank
-      - entity: sensor.el_leistung_kuhlschrank_keller_round
+        entity: sensor.sensor.el_leistung_gefrierschrank
+        state: "{{ '%.1f'%(states('sensor.el_leistung_gefrierschrank')) | float }} W"
+      - type: custom:template-entity-row
         name: Kühlschrank Keller
+        entity: sensor.sensor.el_leistung_kuhlschrank_keller
+        state: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller')) | float }} W"
       - type: section
         label: Heizung
       - entity: sensor.el_leistung_wp_heizstab
