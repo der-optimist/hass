@@ -70,6 +70,18 @@ cards:
         label: Licht
       - entity: sensor.el_leistung_licht_gesamt
         name: Licht gesamt
+      - type: custom:template-entity-row
+        name: Licht Sicherung 3.2
+        entity: sensor.el_leistung_licht_sicherung_3_2
+        state: "{{ '%.1f'%(states('sensor.el_leistung_licht_sicherung_3_2')) | float }} W"
+      - type: custom:template-entity-row
+        name: Licht Sicherung 3.3
+        entity: sensor.el_leistung_licht_sicherung_3_3
+        state: "{{ '%.1f'%(states('sensor.el_leistung_licht_sicherung_3_2')) | float }} W"
+      - type: custom:template-entity-row
+        name: berechnete Lichter
+        entity: sensor.el_leistung_berechnete_lichter
+        state: "{{ '%.1f'%(states('sensor.el_leistung_berechnete_lichter')) | float }} W"
   - type: entities
     title: Stromzähler
     show_header_toggle: false
