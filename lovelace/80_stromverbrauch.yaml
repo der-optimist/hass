@@ -16,6 +16,7 @@ cards:
         name: Backofen
       - type: custom:template-entity-row
         name: Backofen neu
+        entity: sensor.el_leistung_backofen
         state: "{{ '%.1f'%(states('sensor.el_leistung_backofen')) | float }}"
       - entity: sensor.el_leistung_bildschirm_theke
         name: Bildschirm Theke
