@@ -52,11 +52,11 @@ cards:
         name: Trockner
       - type: custom:template-entity-row
         name: Gefrierschrank
-        entity: sensor.sensor.el_leistung_gefrierschrank
+        entity: sensor.el_leistung_gefrierschrank
         state: "{{ '%.1f'%(states('sensor.el_leistung_gefrierschrank')) | float }} W"
       - type: custom:template-entity-row
         name: Kühlschrank Keller
-        entity: sensor.sensor.el_leistung_kuhlschrank_keller
+        entity: sensor.el_leistung_kuhlschrank_keller
         state: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller')) | float }} W"
       - type: section
         label: Heizung
