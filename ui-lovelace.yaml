@@ -25,6 +25,10 @@ resources:
     type: module
   - url: /hacsfiles/rgb-light-card/card.js
     type: module
+  - url: /hacsfiles/numberbox-card/numberbox-card.js
+    type: module
+  - url: /hacsfiles/lovelace-template-entity-row/template-entity-row.js
+    type: module
 
 title: Lieblingshaus
 views:
