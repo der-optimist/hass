@@ -284,6 +284,12 @@
         friendly_name: 'El. Leistung Backofen (gerundet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      # Dauerverbraucher
+      el_leistung_dauerverbraucher_round:
+        value_template: "{{ '%.1f'%(states('sensor.el_leistung_dauerverbraucher') | float) | float }}"
+        friendly_name: 'El. Leistung Dauerverbraucher (gerundet)'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
       # Kühlschrank Küche
       el_leistung_kuhlschrank_kuche_round:
         value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche') | float) | float }}"
