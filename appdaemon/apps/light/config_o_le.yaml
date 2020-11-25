@@ -35,7 +35,7 @@ auto_light_o_le_panels:
   switching_off_entities:
     - switch.le_schlaft
   special_brightness_entities:
-    binary_sensor.schlafen_oder_aufwachphase_le: 10
+    binary_sensor.schlafen_oder_aufwachphase_le: 5
     binary_sensor.la_schon_im_bett: 20
 auto_light_o_le_wuerfel:
   module: auto_light
@@ -70,6 +70,8 @@ auto_light_o_le_wuerfel:
     - switch.bleib_so_le_licht
   keeping_on_entities:
     - switch.bleib_so_le_licht
+  special_brightness_entities:
+    binary_sensor.schlafen_oder_aufwachphase_le: 30
 auto_light_o_le_stehlampe:
   module: auto_light
   class: auto_light
