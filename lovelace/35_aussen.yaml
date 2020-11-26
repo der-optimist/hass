@@ -30,6 +30,8 @@ cards:
       name: Wandwürfel Süd
     - entity: light.wandwurfel_westen
       name: Wandwürfel West
+    - entity: light.licht_blumenbeet
+      name: Stern Blumenbeet
     - type: divider
       style: 
         height: 1px
