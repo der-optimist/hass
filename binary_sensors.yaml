@@ -19,6 +19,10 @@
     name: Bettgehzeit Kinder
     after: '18:00'
     before: '23:00'
+  - platform: tod
+    name: Zeit Stern
+    after: '06:00'
+    before: '22:00'
 
 # --- Template ---
   - platform: template
