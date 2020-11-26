@@ -43,12 +43,14 @@ class cube_terrasse(hass.Hass):
 #            self.turn_on("light.wandwurfel_westen")
 #            self.log("Beide Wandwürfel waren aus, habe sie an gemacht")
 
-        if self.get_state("input_boolean.app_switch_licht_wc") == "on":
+        if self.get_state("light.panels_wc") == "on":
             self.turn_off("light.panels_wc")
             self.turn_off("light.spiegel_wc")
-            self.turn_off("input_boolean.app_switch_licht_wc")
+            #self.turn_off("input_boolean.app_switch_licht_wc")
         else:
-            self.turn_on("input_boolean.app_switch_licht_wc")
+            #self.turn_on("input_boolean.app_switch_licht_wc")
+            self.turn_on("light.panels_wc",brightness=178)
+            self.turn_on("light.spiegel_wc")
 
 
     def cube_knock(self,event_name,data,kwargs):
