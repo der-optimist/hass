@@ -94,7 +94,7 @@ cards:
         name: Gesamtverbrauch Netz
         entity: sensor.stromverbrauch_netzbezug_tag
         state: "{{ '%.2f'%(states('sensor.stromverbrauch_netzbezug_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_netzbezug_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_netzbezug_vortag') | float)= }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_netzbezug_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_netzbezug_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_netzbezug_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
       - type: section
         label: EG
       - type: custom:template-entity-row
