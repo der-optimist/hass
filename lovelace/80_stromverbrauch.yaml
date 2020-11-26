@@ -388,7 +388,7 @@ cards:
         name: Licht Sicherung 3.2
       - entity: sensor.stromzahler_licht_sicherung_3_3
         name: Licht Sicherung 3.3
-      - entity: sensor.stromzahler_berechnete_lichter
+      - entity: sensor.stromzahler_licht_berechnete
         name: berechnete Lichter
   - type: entities
     title: mobil
