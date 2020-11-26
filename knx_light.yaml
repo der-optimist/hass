@@ -148,9 +148,9 @@
     state_address: '1/3/161'
     brightness_address: '1/3/163'
     brightness_state_address: '1/3/164'
-  - name: 'Stehlampe La'
-    address: '0/0/160'
-    state_address: '0/0/161'
+#  - name: 'Stehlampe La'
+#    address: '0/0/160'
+#    state_address: '0/0/161'
 
 # Nähzimmer
   - name: 'Nähtisch Decke'
@@ -171,9 +171,9 @@
     state_address: '1/4/1'
     brightness_address: '1/4/3'
     brightness_state_address: '1/4/4'
-  - name: 'Stehlampe Le'
-    address: '0/1/0'
-    state_address: '0/1/1'
+#  - name: 'Stehlampe Le'
+#    address: '0/1/0'
+#    state_address: '0/1/1'
 
 # Gästezimmer
   - name: 'Gästezimmer'
@@ -256,3 +256,6 @@
   - name: 'Wandwürfel Westen'
     address: '0/2/120'
     state_address: '0/2/121'
+  - name: 'Licht Blumenbeet'
+    address: '0/1/0'
+    state_address: '0/1/1'
