@@ -512,10 +512,10 @@
         icon_template: mdi:speedometer
       el_leistung_licht_gesamt:
         value_template: >-
-          {{ '%.1f'%(states('sensor.el_leistung_berechnete_lichter') | float 
+          {{ states('sensor.el_leistung_berechnete_lichter') | float 
            + states('sensor.el_leistung_licht_sicherung_3_2') | float
            + states('sensor.el_leistung_licht_sicherung_3_3') | float
-           + states('sensor.shellydimmer_d472fe_power') | float) | float }}
+           + states('sensor.shellydimmer_d472fe_power') | float }}
         friendly_name: 'El. Leistung Licht gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
@@ -808,7 +808,7 @@
     round: 2
   - platform: integration
     source: sensor.el_leistung_berechnete_lichter
-    name: Stromzähler Licht berechnete
+    name: Stromzähler berechnete Lichter
     method: left
     unit_prefix: k
     round: 2
