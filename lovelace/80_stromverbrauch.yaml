@@ -68,8 +68,10 @@ cards:
         name: WP Aussenteil
       - type: section
         label: Licht
-      - entity: sensor.el_leistung_licht_gesamt
+      - type: custom:template-entity-row
         name: Licht gesamt
+        entity: sensor.el_leistung_licht_gesamt
+        state: "{{ '%.1f'%(states('sensor.el_leistung_licht_gesamt')) | float }} W"
       - type: custom:template-entity-row
         name: Licht Sicherung 3.2
         entity: sensor.el_leistung_licht_sicherung_3_2
@@ -197,12 +199,12 @@ cards:
         state: "{{ states('sensor.stromverbrauch_licht_sicherung_3_2_tag') }} kWh"
         secondary: "gestern: {{ states('sensor.stromverbrauch_licht_sicherung_3_2_vortag') }} kWh"
       - type: custom:template-entity-row
-        name: berechnete Lichter
+        name: Licht Sicherung 3.3
         entity: sensor.stromverbrauch_licht_sicherung_3_3_tag
         state: "{{ states('sensor.stromverbrauch_licht_sicherung_3_3_tag') }} kWh"
         secondary: "gestern: {{ states('sensor.stromverbrauch_licht_sicherung_3_3_vortag') }} kWh"
       - type: custom:template-entity-row
-        name: Licht gesamt
+        name: berechnete Lichter
         entity: sensor.stromverbrauch_berechnete_lichter_tag
         state: "{{ states('sensor.stromverbrauch_berechnete_lichter_tag') }} kWh"
         secondary: "gestern: {{ states('sensor.stromverbrauch_berechnete_lichter_vortag') }} kWh"
@@ -321,12 +323,12 @@ cards:
         state: "{{ states('sensor.stromverbrauch_licht_sicherung_3_2_monat') }} kWh"
         secondary: "letzten Monat: {{ states('sensor.stromverbrauch_licht_sicherung_3_2_vormonat') }} kWh"
       - type: custom:template-entity-row
-        name: berechnete Lichter
+        name: Licht Sicherung 3.3
         entity: sensor.stromverbrauch_licht_sicherung_3_3_monat
         state: "{{ states('sensor.stromverbrauch_licht_sicherung_3_3_monat') }} kWh"
         secondary: "letzten Monat: {{ states('sensor.stromverbrauch_licht_sicherung_3_3_vormonat') }} kWh"
       - type: custom:template-entity-row
-        name: Licht gesamt
+        name: berechnete Lichter
         entity: sensor.stromverbrauch_berechnete_lichter_monat
         state: "{{ states('sensor.stromverbrauch_berechnete_lichter_monat') }} kWh"
         secondary: "letzten Monat: {{ states('sensor.stromverbrauch_berechnete_lichter_vormonat') }} kWh"
