@@ -288,7 +288,9 @@ permanent_recorder:
     - sensor.el_leistung_trockner
     - sensor.el_leistung_trockner_scheinleistung
     - sensor.el_leistung_tv
+    - sensor.el_leistung_tv_scheinleistung
     - sensor.el_leistung_waschmaschine
+    - sensor.el_leistung_waschmaschine_scheinleistung
     - sensor.el_leistung_wp_aussenteil
     - sensor.el_leistung_wp_heizstab
     - sensor.el_leistung_wp_innenteil
@@ -370,11 +372,20 @@ permanent_recorder:
     - sensor.stellwert_heizung_zeitverlauf_mean
     - sensor.stromzaehler_netzbezug
     - sensor.stromzahler_backofen
+    - sensor.stromzahler_bildschirm_theke
+    - sensor.stromzahler_dauerverbraucher
     - sensor.stromzahler_gefrierschrank
     - sensor.stromzahler_kochfeld
     - sensor.stromzahler_kochfeld_rohdaten
     - sensor.stromzahler_kuhlschrank_keller
     - sensor.stromzahler_kuhlschrank_kuche
+    - sensor.stromzahler_licht_berechnete
+    - sensor.stromzahler_licht_gesamt
+    - sensor.stromzahler_licht_sicherung_3_2
+    - sensor.stromzahler_licht_sicherung_3_3
+    - sensor.stromzahler_luftentf_waschk
+    - sensor.stromzahler_luftentf_werkelraum
+    - sensor.stromzahler_lg_anlage
     - sensor.stromzahler_luftungsanlage
     - sensor.stromzahler_mixi
     - sensor.stromzahler_spulmaschine
@@ -388,6 +399,54 @@ permanent_recorder:
     - sensor.stromzahler_wp_heizstab_rohdaten
     - sensor.stromzahler_wp_innenteil
     - sensor.stromzahler_wp_innenteil_rohdaten
+    - sensor.stromverbrauch_netzbezug_vortag
+    - sensor.stromverbrauch_backofen_vortag
+    - sensor.stromverbrauch_bildschirm_theke_vortag
+    - sensor.stromverbrauch_gefrierschrank_vortag
+    - sensor.stromverbrauch_kochfeld_vortag
+    - sensor.stromverbrauch_kuhlschrank_keller_vortag
+    - sensor.stromverbrauch_kuhlschrank_kuche_vortag
+    - sensor.stromverbrauch_licht_berechnete_vortag
+    - sensor.stromverbrauch_licht_gesamt_vortag
+    - sensor.stromverbrauch_licht_sicherung_3_2_vortag
+    - sensor.stromverbrauch_licht_sicherung_3_3_vortag
+    - sensor.stromverbrauch_luftentf_waschk_vortag
+    - sensor.stromverbrauch_luftentf_werkelraum_vortag
+    - sensor.stromverbrauch_lg_anlage_vortag
+    - sensor.stromverbrauch_luftungsanlage_vortag
+    - sensor.stromverbrauch_mixi_vortag
+    - sensor.stromverbrauch_spulmaschine_vortag
+    - sensor.stromverbrauch_trockner_vortag
+    - sensor.stromverbrauch_tv_vortag
+    - sensor.stromverbrauch_waschmaschine_vortag
+    - sensor.stromverbrauch_wp_aussenteil_vortag
+    - sensor.stromverbrauch_wp_heizstab_vortag
+    - sensor.stromverbrauch_wp_innenteil_vortag
+    - sensor.stromverbrauch_dauerverbraucher_vortag
+    - sensor.stromverbrauch_netzbezug_vormonat
+    - sensor.stromverbrauch_backofen_vormonat
+    - sensor.stromverbrauch_bildschirm_theke_vormonat
+    - sensor.stromverbrauch_gefrierschrank_vormonat
+    - sensor.stromverbrauch_kochfeld_vormonat
+    - sensor.stromverbrauch_kuhlschrank_keller_vormonat
+    - sensor.stromverbrauch_kuhlschrank_kuche_vormonat
+    - sensor.stromverbrauch_licht_berechnete_vormonat
+    - sensor.stromverbrauch_licht_gesamt_vormonat
+    - sensor.stromverbrauch_licht_sicherung_3_2_vormonat
+    - sensor.stromverbrauch_licht_sicherung_3_3_vormonat
+    - sensor.stromverbrauch_luftentf_waschk_vormonat
+    - sensor.stromverbrauch_luftentf_werkelraum_vormonat
+    - sensor.stromverbrauch_lg_anlage_vormonat
+    - sensor.stromverbrauch_luftungsanlage_vormonat
+    - sensor.stromverbrauch_mixi_vormonat
+    - sensor.stromverbrauch_spulmaschine_vormonat
+    - sensor.stromverbrauch_trockner_vormonat
+    - sensor.stromverbrauch_tv_vormonat
+    - sensor.stromverbrauch_waschmaschine_vormonat
+    - sensor.stromverbrauch_wp_aussenteil_vormonat
+    - sensor.stromverbrauch_wp_heizstab_vormonat
+    - sensor.stromverbrauch_wp_innenteil_vormonat
+    - sensor.stromverbrauch_dauerverbraucher_vormonat
     - sensor.tasmota_sd_2_energie
     - sensor.tasmota_sd_2_leistungsfaktor
     - sensor.tasmota_sd_2_scheinleistung
