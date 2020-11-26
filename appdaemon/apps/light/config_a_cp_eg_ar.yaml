@@ -111,3 +111,18 @@ auto_light_a_tr_wurfel_feuerstelle:
   brightness_values:
     "00:00": 85
   illuminance_sensor: sensor.helligkeit_wetterstation
+# - Stern Blumenbeet
+auto_light_a_tr_blumenbeet:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  app_switch: input_boolean.app_switch_licht_aussen_carport
+  light: light.licht_blumenbeet
+  type: switch
+  triggers: 
+    - input_boolean.app_switch_licht_aussen_carport
+  min_illuminance_values:
+    "00:00": 0
+    "06:00": 1000
+    "22:00": 0
+  illuminance_sensor: sensor.helligkeit_wetterstation
