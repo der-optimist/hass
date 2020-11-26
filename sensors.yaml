@@ -808,7 +808,7 @@
     round: 2
   - platform: integration
     source: sensor.el_leistung_berechnete_lichter
-    name: Stromzähler berechnete Lichter
+    name: Stromzähler Licht berechnete
     method: left
     unit_prefix: k
     round: 2
