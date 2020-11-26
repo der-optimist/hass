@@ -1001,3 +1001,9 @@
     command: "cat /sys/class/thermal/thermal_zone0/temp"
     unit_of_measurement: "°C"
     value_template: '{{ value | multiply(0.001) | round(1) }}'
+
+# Scraping
+  - platform: scrape
+    resource: https://hotspotornot.de/s/Ravensburg
+    select: "'h2[class*="result__IncidenceValue"]'"
+    scan_interval: 3600
