@@ -1006,4 +1006,5 @@
   - platform: scrape
     resource: https://hotspotornot.de/s/Ravensburg
     select: "'h2[class*="result__IncidenceValue"]'"
+    name: Inzidenz RV
     scan_interval: 3600
