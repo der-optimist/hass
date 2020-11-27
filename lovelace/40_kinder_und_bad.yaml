@@ -20,8 +20,6 @@ cards:
       entity: light.innr_e14_ww_stehlampe_lara_level_on_off
       name: Stehlampe
       toggle: true
-    - entity: light.stehlampe_la
-      name: Strom Stehlampe
     - entity: switch.bleib_so_la_licht
       name: Bleib so, Licht!
     - type: section
@@ -88,8 +86,6 @@ cards:
       entity: light.innr_e14_tw_stehlampe_lea_level_light_color_on_off
       name: Stehlampe
       toggle: true
-    - entity: light.stehlampe_le
-      name: Strom Stehlampe
     - entity: switch.bleib_so_le_licht
       name: Bleib so, Licht!
     - type: section
