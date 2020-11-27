@@ -42,6 +42,10 @@ cards:
         name: TV
       - type: section
         label: Keller
+      - entity: sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
+        name: Luftentf. Waschküche
+      - entity: sensor.innr_sp_120_test_electrical_measurement
+        name: Luftentf. Partyraum
       - type: custom:template-entity-row
         name: Lüftungsanlage
         entity: sensor.el_leistung_luftungsanlage
@@ -144,6 +148,16 @@ cards:
         secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_tv_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_tv_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
       - type: section
         label: Keller
+      - type: custom:template-entity-row
+        name: Luftentf. Waschküche
+        entity: sensor.stromverbrauch_luftentf_waschk_tag
+        state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftentf_waschk_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_waschk_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftentf_waschk_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_waschk_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+      - type: custom:template-entity-row
+        name: Luftentf. Partyraum
+        entity: sensor.stromverbrauch_luftentf_werkelraum_tag
+        state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftentf_werkelraum_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_werkelraum_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftentf_werkelraum_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_werkelraum_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
       - type: custom:template-entity-row
         name: Lüftungsanlage
         entity: sensor.stromverbrauch_luftungsanlage_tag
@@ -269,6 +283,16 @@ cards:
       - type: section
         label: Keller
       - type: custom:template-entity-row
+        name: Luftentf. Waschküche
+        entity: sensor.stromverbrauch_luftentf_waschk_monat
+        state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftentf_waschk_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_waschk_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftentf_waschk_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_waschk_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+      - type: custom:template-entity-row
+        name: Luftentf. Partyraum
+        entity: sensor.stromverbrauch_luftentf_werkelraum_monat
+        state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftentf_werkelraum_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_werkelraum_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftentf_werkelraum_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_werkelraum_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+      - type: custom:template-entity-row
         name: Lüftungsanlage
         entity: sensor.stromverbrauch_luftungsanlage_monat
         state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftungsanlage_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftungsanlage_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
@@ -362,6 +386,10 @@ cards:
         name: TV
       - type: section
         label: Keller
+      - entity: sensor.stromzahler_luftentf_waschk
+        name: Luftentf. Waschküche
+      - entity: sensor.stromzahler_luftentf_werkelraum
+        name: Luftentf. Partyraum
       - entity: sensor.stromzahler_luftungsanlage
         name: Lüftungsanlage
       - entity: sensor.stromzahler_waschmaschine
