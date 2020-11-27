@@ -145,3 +145,9 @@
   stromverbrauch_dauerverbraucher_monat:
     source: sensor.stromzahler_dauerverbraucher
     cycle: monthly
+
+# Covid
+  covid_faelle_tag_d:
+    source: sensor.fallzahlen_gesamt_d
+    cycle: daily
+    offset: '04:00'
