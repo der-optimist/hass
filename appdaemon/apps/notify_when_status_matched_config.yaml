@@ -100,7 +100,7 @@ info_ma_sicherung_keller_sd_rein:
   message: "Info: Keller-Steckdosen haben wieder Strom"
   init_delay: 64
 
-# Störung Heizungsaktor
+# Störung Heizung
 info_jo_stoerung_heizaktor_eg:
   module: notify_when_status_matched
   class: notify_when_status_matched
@@ -133,6 +133,30 @@ info_jo_stoerung_heizaktor_og_vorbei:
   notify_target: telegram_jo
   message: "Störung Heizungsaktor OG vorbei"
   init_delay: 94
+info_jo_stoerung_heizung:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: sensor.bosch_health_status
+  status_to_match: "error"
+  notify_target: telegram_jo
+  message: "Störung Heizung"
+  init_delay: 73
+info_jo_stoerung_heizung_vorbei:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: sensor.bosch_health_status
+  status_to_match: "ok"
+  notify_target: telegram_jo
+  message: "Heizung wieder OK"
+  init_delay: 74
+info_jo_wartung_heizung:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: sensor.bosch_health_status
+  status_to_match: "maintenance"
+  notify_target: telegram_jo
+  message: "Heizung im Wartungsmodus"
+  init_delay: 75
 
 # LED-Treiber - Übertemperatur
 info_jo_stoerung_led_temp_1:
