@@ -73,7 +73,7 @@ class heating_controller_foresight(hass.Hass):
             
         # log the shift values to db
         self.client.write_points([{"measurement":self.args.get("log_measurement", "shift_heating_setpoint_no_name"),"fields":{"shift_kelvin_calculated":float(shift_kelvin), "shift_kelvin_limited":float(shift_kelvin_limited)}}])
-        self.log("Shift Kelvin - calculated: {} / limited: {}".format(round(shift_kelvin,1), round(shift_kelvin_limited,1)))
+        #self.log("Shift Kelvin - calculated: {} / limited: {}".format(round(shift_kelvin,1), round(shift_kelvin_limited,1)))
 
     def get_list_of_derivatives(self):
         der_list = []
@@ -104,12 +104,11 @@ class heating_controller_foresight(hass.Hass):
                         historic_values.append(point[self.db_field])
                         historic_time_deltas_sec.append(delta_time_seconds)
                         derivative = delta_value / (delta_time_seconds / 3600)
-                        self.log("Minute: {} time_delta_min: {} - Delta_K: {} (histoy: {} - now {}) - Derivative: {}".format(minute_value, (delta_time_seconds / 60), delta_value, point[self.db_field], newest_value, derivative))
-                        #self.log("Derivative: {}".format(derivative))
+                        #self.log("Minute: {} time_delta_min: {} - Delta_K: {} (histoy: {} - now {}) - Derivative: {}".format(minute_value, (delta_time_seconds / 60), delta_value, point[self.db_field], newest_value, derivative))
                         der_list.append(derivative)
                         #self.log("der_list: {}".format(der_list))
                 if len(der_list) == len(self.minutes_for_evaltuation):
-                    self.log("Ende erreich. der_list: {}".format(der_list))
+                    #self.log("Ende erreich. der_list: {}".format(der_list))
                     break
         #self.log(der_list)
         return der_list
