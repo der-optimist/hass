@@ -66,11 +66,11 @@ class air_dryer(hass.Hass):
                 self.turn_on(self.air_dryer_switch)
                 self.run_in(self.check_if_dryer_running,60)
                 self.dryer_needed = True
-                self.log("Special Mode, Dryer needed")
+#                self.log("Special Mode, Dryer needed")
             elif self.current_humidity < self.humidity_special_min:
                 self.turn_off(self.air_dryer_switch)
                 self.dryer_needed = False
-                self.log("Special Mode, Dryer not needed")
+#                self.log("Special Mode, Dryer not needed")
 #            else:
 #                self.log("Special Mode, Humidity in target range, will do nothing")
         else:
@@ -78,11 +78,11 @@ class air_dryer(hass.Hass):
                 self.turn_on(self.air_dryer_switch)
                 self.run_in(self.check_if_dryer_running,60)
                 self.dryer_needed = True
-                self.log("Standard Mode, Dryer needed")
+#                self.log("Standard Mode, Dryer needed")
             elif self.current_humidity < self.humidity_standard_min:
                 self.turn_off(self.air_dryer_switch)
                 self.dryer_needed = False
-                self.log("Standard Mode, Dryer not needed") 
+#                self.log("Standard Mode, Dryer not needed") 
 #            else:
 #                self.log("Standard Mode, Humidity in target range, will do nothing")
     
@@ -127,7 +127,7 @@ class air_dryer(hass.Hass):
             #self.log("measurement changed, above 1, set reminder to off")
         else:
             self.dryer_is_running = False
-            self.log("measurement changed, below 1, will check if dryer full")
+#            self.log("measurement changed, below 1, will check if dryer full")
             self.check_if_dryer_full()
         
     def check_if_dryer_running(self, kwargs):
@@ -143,7 +143,7 @@ class air_dryer(hass.Hass):
             self.set_state(self.name_reminder_switch_tank_full, state = "on", attributes = self.attributes_reminder_tank_full)
         else:
             self.set_state(self.name_reminder_switch_tank_full, state = "off", attributes = self.attributes_reminder_tank_full)
-            self.log("Tank ist wohl nicht voll. dryer_needed ist {}, dryer_is_running ist {}".format(self.dryer_needed, self.dryer_is_running))
+#            self.log("Tank ist wohl nicht voll. dryer_needed ist {}, dryer_is_running ist {}".format(self.dryer_needed, self.dryer_is_running))
         
     def button_time_1(self,event_name,data,kwargs):
         self.time_internal_state = self.time_1_hours
