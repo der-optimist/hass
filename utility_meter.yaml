@@ -150,4 +150,4 @@
   covid_faelle_tag_d:
     source: sensor.fallzahlen_gesamt_d
     cycle: daily
-    offset: '04:00'
+    offset: '23:55'
