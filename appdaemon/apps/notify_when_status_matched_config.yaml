@@ -109,6 +109,14 @@ info_jo_stoerung_heizaktor_eg:
   notify_target: telegram_jo
   message: "Störung Heizungsaktor EG"
   init_delay: 91
+info_jo_stoerung_heizaktor_eg_vorbei:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.storung_heizaktor_eg
+  status_to_match: "off"
+  notify_target: telegram_jo
+  message: "Störung Heizungsaktor EG vorbei"
+  init_delay: 93
 info_jo_stoerung_heizaktor_og:
   module: notify_when_status_matched
   class: notify_when_status_matched
@@ -117,6 +125,14 @@ info_jo_stoerung_heizaktor_og:
   notify_target: telegram_jo
   message: "Störung Heizungsaktor OG"
   init_delay: 92
+info_jo_stoerung_heizaktor_og_vorbei:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.storung_heizaktor_og
+  status_to_match: "off"
+  notify_target: telegram_jo
+  message: "Störung Heizungsaktor OG vorbei"
+  init_delay: 94
 
 # LED-Treiber - Übertemperatur
 info_jo_stoerung_led_temp_1:
