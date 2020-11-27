@@ -1,10 +1,11 @@
 heating_controller_foresight_ez:
-  module: heating_controller_foresight
+  module: heating_controller_foresight_beta
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_esszimmer_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
+  minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 8
   limit_max: 1.7
   limit_min: -1.7
@@ -14,12 +15,13 @@ heating_controller_foresight_ez:
   on_off_switch: input_boolean.korrektur_heizung_ez
   log_measurement: shift_heating_setpoint_ez
 heating_controller_foresight_ku:
-  module: heating_controller_foresight
+  module: heating_controller_foresight_beta
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_esszimmer_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
+  minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 8
   limit_max: 1.7
   limit_min: -1.7
@@ -29,12 +31,13 @@ heating_controller_foresight_ku:
   on_off_switch: input_boolean.korrektur_heizung_ez
   log_measurement: shift_heating_setpoint_ku
 heating_controller_foresight_wz:
-  module: heating_controller_foresight
+  module: heating_controller_foresight_beta
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_esszimmer_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
+  minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 8
   limit_max: 1.7
   limit_min: -1.7
@@ -44,12 +47,13 @@ heating_controller_foresight_wz:
   on_off_switch: input_boolean.korrektur_heizung_ez
   log_measurement: shift_heating_setpoint_wz
 heating_controller_foresight_sz:
-  module: heating_controller_foresight
+  module: heating_controller_foresight_beta
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_schlafzimmer_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
+  minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 7
   limit_max: 1.5
   limit_min: -1.5
@@ -75,12 +79,13 @@ heating_controller_foresight_bad_eg:
   on_off_switch: input_boolean.korrektur_heizung_bad_eg
   log_measurement: shift_heating_setpoint_bad_eg
 heating_controller_foresight_wf_wc:
-  module: heating_controller_foresight
+  module: heating_controller_foresight_beta
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.onewire_15_estrich_wc_1
   db_field: state_float
   number_of_derivatives_for_average: 2
+  minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 2
   limit_max: 1
   limit_min: -1
@@ -90,12 +95,13 @@ heating_controller_foresight_wf_wc:
   on_off_switch: input_boolean.korrektur_heizung_wf_wc
   log_measurement: shift_heating_setpoint_wf_wc
 heating_controller_foresight_le:
-  module: heating_controller_foresight
+  module: heating_controller_foresight_beta
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_le_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
+  minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 7
   limit_max: 1.5
   limit_min: -1.5
@@ -105,12 +111,13 @@ heating_controller_foresight_le:
   on_off_switch: input_boolean.korrektur_heizung_le
   log_measurement: shift_heating_setpoint_le
 heating_controller_foresight_la:
-  module: heating_controller_foresight
+  module: heating_controller_foresight_beta
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_la_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
+  minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 7
   limit_max: 1.5
   limit_min: -1.5
@@ -120,12 +127,13 @@ heating_controller_foresight_la:
   on_off_switch: input_boolean.korrektur_heizung_la
   log_measurement: shift_heating_setpoint_la
 heating_controller_foresight_nz:
-  module: heating_controller_foresight
+  module: heating_controller_foresight_beta
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_nahzimmer_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
+  minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 7
   limit_max: 1.5
   limit_min: -1.5
@@ -135,12 +143,13 @@ heating_controller_foresight_nz:
   on_off_switch: input_boolean.korrektur_heizung_nz
   log_measurement: shift_heating_setpoint_nz
 heating_controller_foresight_gz:
-  module: heating_controller_foresight
+  module: heating_controller_foresight_beta
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_gastezimmer_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
+  minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 7
   limit_max: 1.5
   limit_min: -1.5
@@ -150,12 +159,13 @@ heating_controller_foresight_gz:
   on_off_switch: input_boolean.korrektur_heizung_gz
   log_measurement: shift_heating_setpoint_gz
 heating_controller_foresight_flur_og:
-  module: heating_controller_foresight
+  module: heating_controller_foresight_beta
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_flur_og_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
+  minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 7
   limit_max: 1.5
   limit_min: -1.5
@@ -165,12 +175,13 @@ heating_controller_foresight_flur_og:
   on_off_switch: input_boolean.korrektur_heizung_flur_og
   log_measurement: shift_heating_setpoint_flur_og
 heating_controller_foresight_bad_og:
-  module: heating_controller_foresight
+  module: heating_controller_foresight_beta
   class: heating_controller_foresight
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_bad_og_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
+  minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 7
   limit_max: 1.5
   limit_min: -1.5
