@@ -84,7 +84,8 @@ auto_light_e_ez_wandleuchten_warm:
     - binary_sensor.pm_e_ku_kuche
     - binary_sensor.pm_e_wz_durchgang
   brightness_values:
-    "00:00": 0
+    "00:00": 60
+    "04:00":0
     "18:55": 60
   min_illuminance_values:
     "00:00": 60

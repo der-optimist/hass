@@ -14,7 +14,7 @@
   - platform: tod
     name: TV Zeit Abend
     after: '19:00'
-    before: '03:00'
+    before: '04:00'
   - platform: tod
     name: Bettgehzeit Kinder
     after: '18:00'
