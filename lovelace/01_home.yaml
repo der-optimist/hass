@@ -145,14 +145,24 @@ cards:
                 opacity: 0.25
             - type: custom:template-entity-row
               name: Neuinfektionen D
+              icon: mdi:medical-bag
               entity: sensor.covid_faelle_tag_d
               state: "{{ '%.0f'%(states('sensor.covid_faelle_tag_d')) | float }}"
-            - entity: sensor.7_tage_inzidenz_rv
-              name: 7-T. Inzidenz RV
-            - entity: sensor.7_tage_inzidenz_bawu
-              name: 7-T. Inzidenz BaWü
-            - entity: sensor.7_tage_inzidenz_jessen
-              name: 7-T. Inzidenz Jessen
+            - type: custom:template-entity-row
+              name: 7-Tage Inzidenz RV
+              icon: mdi:medical-bag
+              entity: sensor.7_tage_inzidenz_rv
+              state: "{{ '%.0f'%(states('sensor.7_tage_inzidenz_rv')) | float | round(0) }}"
+            - type: custom:template-entity-row
+              name: 7-Tage Inzidenz BaWü
+              icon: mdi:medical-bag
+              entity: sensor.7_tage_inzidenz_bawu
+              state: "{{ '%.0f'%(states('sensor.7_tage_inzidenz_bawu')) | float | round(0) }}"
+            - type: custom:template-entity-row
+              name: 7-Tage Inzidenz Jessen
+              icon: mdi:medical-bag
+              entity: sensor.7_tage_inzidenz_jessen
+              state: "{{ '%.0f'%(states('sensor.7_tage_inzidenz_jessen')) | float | round(0) }}"
           - break
           - type: custom:auto-entities
             show_empty: false
