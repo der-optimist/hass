@@ -138,10 +138,21 @@ cards:
             entities:
             - entity: sensor.humidity_manager_werkelraum
               name: Luft Werkelraum
-            - entity: input_boolean.gaeste_abends
-              name: Gäste
-            - entity: input_boolean.arbeit_theke
-              name: Arbeit Theke
+            - type: divider
+              style: 
+                height: 1px
+                background-color: "#ff9c27"
+                opacity: 0.25
+            - type: custom:template-entity-row
+              name: Neuinfektionen D
+              entity: sensor.covid_faelle_tag_d
+              state: "{{ '%.0f'%(states('sensor.covid_faelle_tag_d')) | float }}"
+            - entity: sensor.7_tage_inzidenz_rv
+              name: 7-T. Inzidenz RV
+            - entity: sensor.7_tage_inzidenz_bawu
+              name: 7-T. Inzidenz BaWü
+            - entity: sensor.7_tage_inzidenz_jessen
+              name: 7-T. Inzidenz Jessen
           - break
           - type: custom:auto-entities
             show_empty: false
@@ -185,3 +196,10 @@ cards:
                     - entity_id: "sensor.birthday*"
                   exclude:
                     - state: "off"
+              - type: entities
+                show_header_toggle: false
+                entities:
+                - entity: input_boolean.gaeste_abends
+                  name: Gäste
+                - entity: input_boolean.arbeit_theke
+                  name: Arbeit Theke
