@@ -1,470 +1,475 @@
 title: Stromverbrauch
 path: stromverbrauch
 icon: mdi:counter
+panel: true
 cards:
-  - type: entities
-    title: Leistung
-    show_header_toggle: false
-    entities:
-      - type: section
-        label: Netz
-      - entity: sensor.el_leistung_stromzaehler_netzbezug
-        name: Gesamtleistung Netz
-      - type: section
-        label: EG
-      - type: custom:template-entity-row
-        name: Backofen
-        entity: sensor.el_leistung_backofen
-        state: "{{ '%.1f'%(states('sensor.el_leistung_backofen')) | float }} W"
-      - entity: sensor.el_leistung_bildschirm_theke
-        name: Bildschirm Theke
-      - type: custom:template-entity-row
-        name: Dauerverbraucher
-        entity: sensor.el_leistung_dauerverbraucher
-        state: "{{ '%.1f'%(states('sensor.el_leistung_dauerverbraucher')) | float }} W"
-      - entity: sensor.el_leistung_kochfeld
-        name: Kochfeld
-      - type: custom:template-entity-row
-        name: Kühlschrank Küche
-        entity: sensor.el_leistung_kuhlschrank_kuche
-        state: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche')) | float }} W"
-      - entity: sensor.el_leistung_lg_anlage
-        name: LG Anlage
-      - type: custom:template-entity-row
-        name: Mixi
-        entity: sensor.el_leistung_mixi
-        state: "{{ '%.1f'%(states('sensor.el_leistung_mixi')) | float }} W"
-      - type: custom:template-entity-row
-        name: Spülmaschine
-        entity: sensor.el_leistung_spulmaschine
-        state: "{{ '%.1f'%(states('sensor.el_leistung_spulmaschine')) | float }} W"
-      - entity: sensor.el_leistung_tv
-        name: TV
-      - type: section
-        label: Keller
-      - entity: sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
-        name: Luftentf. Waschküche
-      - entity: sensor.innr_sp_120_test_electrical_measurement
-        name: Luftentf. Partyraum
-      - type: custom:template-entity-row
-        name: Lüftungsanlage
-        entity: sensor.el_leistung_luftungsanlage
-        state: "{{ '%.1f'%(states('sensor.el_leistung_luftungsanlage')) | float }} W"
-      - entity: sensor.el_leistung_waschmaschine
-        name: Waschmaschine
-      - entity: sensor.el_leistung_trockner
-        name: Trockner
-      - type: custom:template-entity-row
-        name: Gefrierschrank
-        entity: sensor.el_leistung_gefrierschrank
-        state: "{{ '%.1f'%(states('sensor.el_leistung_gefrierschrank')) | float }} W"
-      - type: custom:template-entity-row
-        name: Kühlschrank Keller
-        entity: sensor.el_leistung_kuhlschrank_keller
-        state: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller')) | float }} W"
-      - type: section
-        label: Heizung
-      - entity: sensor.el_leistung_wp_heizstab
-        name: WP Heizstab
-      - entity: sensor.el_leistung_wp_innenteil
-        name: WP Innenteil
-      - entity: sensor.el_leistung_wp_aussenteil
-        name: WP Aussenteil
-      - type: section
-        label: Licht
-      - type: custom:template-entity-row
-        name: Licht gesamt
-        entity: sensor.el_leistung_licht_gesamt
-        state: "{{ '%.1f'%(states('sensor.el_leistung_licht_gesamt')) | float }} W"
-      - type: custom:template-entity-row
-        name: Licht Sicherung 3.2
-        entity: sensor.el_leistung_licht_sicherung_3_2
-        state: "{{ '%.1f'%(states('sensor.el_leistung_licht_sicherung_3_2')) | float }} W"
-      - type: custom:template-entity-row
-        name: Licht Sicherung 3.3
-        entity: sensor.el_leistung_licht_sicherung_3_3
-        state: "{{ '%.1f'%(states('sensor.el_leistung_licht_sicherung_3_2')) | float }} W"
-      - type: custom:template-entity-row
-        name: berechnete Lichter
-        entity: sensor.el_leistung_berechnete_lichter
-        state: "{{ '%.1f'%(states('sensor.el_leistung_berechnete_lichter')) | float }} W"
-  - type: entities
-    title: Verbrauch heute
-    show_header_toggle: false
-    entities:
-      - type: section
-        label: Netz
-      - type: custom:template-entity-row
-        name: Gesamtverbrauch Netz
-        entity: sensor.stromverbrauch_netzbezug_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_netzbezug_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_netzbezug_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_netzbezug_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_netzbezug_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: section
-        label: EG
-      - type: custom:template-entity-row
-        name: Backofen
-        entity: sensor.stromverbrauch_backofen_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_backofen_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_backofen_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_backofen_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_backofen_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Bildschirm Theke
-        entity: sensor.stromverbrauch_bildschirm_theke_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_bildschirm_theke_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_bildschirm_theke_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_bildschirm_theke_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_bildschirm_theke_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Dauerverbraucher
-        entity: sensor.stromverbrauch_dauerverbraucher_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_dauerverbraucher_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_dauerverbraucher_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_dauerverbraucher_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_dauerverbraucher_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Kochfeld
-        entity: sensor.stromverbrauch_kochfeld_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_kochfeld_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kochfeld_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_kochfeld_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kochfeld_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Kühlschrank Küche
-        entity: sensor.stromverbrauch_kuhlschrank_kuche_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_kuche_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_kuche_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_kuche_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_kuche_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: LG Anlage
-        entity: sensor.stromverbrauch_lg_anlage_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_lg_anlage_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_lg_anlage_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_lg_anlage_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_lg_anlage_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Mixi
-        entity: sensor.stromverbrauch_mixi_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_mixi_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_mixi_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_mixi_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_mixi_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Spülmaschine
-        entity: sensor.stromverbrauch_spulmaschine_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_spulmaschine_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_spulmaschine_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_spulmaschine_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_spulmaschine_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: TV
-        entity: sensor.stromverbrauch_tv_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_tv_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_tv_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_tv_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_tv_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: section
-        label: Keller
-      - type: custom:template-entity-row
-        name: Luftentf. Waschküche
-        entity: sensor.stromverbrauch_luftentf_waschk_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftentf_waschk_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_waschk_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftentf_waschk_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_waschk_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Luftentf. Partyraum
-        entity: sensor.stromverbrauch_luftentf_werkelraum_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftentf_werkelraum_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_werkelraum_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftentf_werkelraum_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_werkelraum_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Lüftungsanlage
-        entity: sensor.stromverbrauch_luftungsanlage_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftungsanlage_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftungsanlage_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftungsanlage_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftungsanlage_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Waschmaschine
-        entity: sensor.stromverbrauch_waschmaschine_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_waschmaschine_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_waschmaschine_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_waschmaschine_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_waschmaschine_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Trockner
-        entity: sensor.stromverbrauch_trockner_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_trockner_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_trockner_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_trockner_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_trockner_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Gefrierschrank
-        entity: sensor.stromverbrauch_gefrierschrank_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_gefrierschrank_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_gefrierschrank_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_gefrierschrank_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_gefrierschrank_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Kühlschrank Keller
-        entity: sensor.stromverbrauch_kuhlschrank_keller_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_keller_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_keller_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_keller_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_keller_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: section
-        label: Heizung
-      - type: custom:template-entity-row
-        name: WP Heizstab
-        entity: sensor.stromverbrauch_wp_heizstab_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_wp_heizstab_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_heizstab_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_wp_heizstab_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_heizstab_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: WP Innenteil
-        entity: sensor.stromverbrauch_wp_innenteil_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_wp_innenteil_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_innenteil_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_wp_innenteil_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_innenteil_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: WP Aussenteil
-        entity: sensor.stromverbrauch_wp_aussenteil_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_wp_aussenteil_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_aussenteil_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_wp_aussenteil_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_aussenteil_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: section
-        label: Licht
-      - type: custom:template-entity-row
-        name: Licht gesamt
-        entity: sensor.stromverbrauch_licht_gesamt_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_gesamt_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_gesamt_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_licht_gesamt_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_gesamt_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Licht Sicherung 3.2
-        entity: sensor.stromverbrauch_licht_sicherung_3_2_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_2_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_2_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_2_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_2_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Licht Sicherung 3.3
-        entity: sensor.stromverbrauch_licht_sicherung_3_3_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_3_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_3_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_3_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_3_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: berechnete Lichter
-        entity: sensor.stromverbrauch_licht_berechnete_tag
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_berechnete_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_berechnete_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_licht_berechnete_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_berechnete_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
-  - type: entities
-    title: Verbrauch diesen Monat
-    show_header_toggle: false
-    entities:
-      - type: section
-        label: Netz
-      - type: custom:template-entity-row
-        name: Gesamtverbrauch Netz
-        entity: sensor.stromverbrauch_netzbezug_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_netzbezug_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_netzbezug_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_netzbezug_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_netzbezug_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: section
-        label: EG
-      - type: custom:template-entity-row
-        name: Backofen
-        entity: sensor.stromverbrauch_backofen_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_backofen_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_backofen_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_backofen_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_backofen_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Bildschirm Theke
-        entity: sensor.stromverbrauch_bildschirm_theke_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_bildschirm_theke_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_bildschirm_theke_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_bildschirm_theke_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_bildschirm_theke_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Dauerverbraucher
-        entity: sensor.stromverbrauch_dauerverbraucher_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_dauerverbraucher_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_dauerverbraucher_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_dauerverbraucher_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_dauerverbraucher_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Kochfeld
-        entity: sensor.stromverbrauch_kochfeld_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_kochfeld_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kochfeld_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_kochfeld_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kochfeld_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Kühlschrank Küche
-        entity: sensor.stromverbrauch_kuhlschrank_kuche_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_kuche_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_kuche_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_kuche_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_kuche_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: LG Anlage
-        entity: sensor.stromverbrauch_lg_anlage_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_lg_anlage_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_lg_anlage_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_lg_anlage_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_lg_anlage_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Mixi
-        entity: sensor.stromverbrauch_mixi_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_mixi_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_mixi_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_mixi_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_mixi_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Spülmaschine
-        entity: sensor.stromverbrauch_spulmaschine_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_spulmaschine_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_spulmaschine_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_spulmaschine_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_spulmaschine_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: TV
-        entity: sensor.stromverbrauch_tv_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_tv_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_tv_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_tv_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_tv_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: section
-        label: Keller
-      - type: custom:template-entity-row
-        name: Luftentf. Waschküche
-        entity: sensor.stromverbrauch_luftentf_waschk_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftentf_waschk_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_waschk_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftentf_waschk_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_waschk_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Luftentf. Partyraum
-        entity: sensor.stromverbrauch_luftentf_werkelraum_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftentf_werkelraum_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_werkelraum_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftentf_werkelraum_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_werkelraum_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Lüftungsanlage
-        entity: sensor.stromverbrauch_luftungsanlage_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftungsanlage_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftungsanlage_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_luftungsanlage_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftungsanlage_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Waschmaschine
-        entity: sensor.stromverbrauch_waschmaschine_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_waschmaschine_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_waschmaschine_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_waschmaschine_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_waschmaschine_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Trockner
-        entity: sensor.stromverbrauch_trockner_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_trockner_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_trockner_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_trockner_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_trockner_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Gefrierschrank
-        entity: sensor.stromverbrauch_gefrierschrank_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_gefrierschrank_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_gefrierschrank_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_gefrierschrank_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_gefrierschrank_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Kühlschrank Keller
-        entity: sensor.stromverbrauch_kuhlschrank_keller_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_keller_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_keller_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_keller_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_keller_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: section
-        label: Heizung
-      - type: custom:template-entity-row
-        name: WP Heizstab
-        entity: sensor.stromverbrauch_wp_heizstab_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_wp_heizstab_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_heizstab_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_wp_heizstab_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_heizstab_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: WP Innenteil
-        entity: sensor.stromverbrauch_wp_innenteil_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_wp_innenteil_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_innenteil_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_wp_innenteil_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_innenteil_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: WP Aussenteil
-        entity: sensor.stromverbrauch_wp_aussenteil_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_wp_aussenteil_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_aussenteil_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_wp_aussenteil_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_aussenteil_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: section
-        label: Licht
-      - type: custom:template-entity-row
-        name: Licht gesamt
-        entity: sensor.stromverbrauch_licht_gesamt_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_gesamt_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_gesamt_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_licht_gesamt_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_gesamt_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Licht Sicherung 3.2
-        entity: sensor.stromverbrauch_licht_sicherung_3_2_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_2_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_2_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_2_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_2_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: Licht Sicherung 3.3
-        entity: sensor.stromverbrauch_licht_sicherung_3_3_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_3_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_3_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_3_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_3_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-      - type: custom:template-entity-row
-        name: berechnete Lichter
-        entity: sensor.stromverbrauch_licht_berechnete_monat
-        state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_berechnete_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_berechnete_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
-        secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_licht_berechnete_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_berechnete_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
-  - type: entities
-    title: Stromzähler
-    show_header_toggle: false
-    entities:
-      - type: section
-        label: Netz
-      - entity: sensor.stromzaehler_netzbezug
-        name: Stromzähler Netzbezug
-      - type: section
-        label: EG
-      - entity: sensor.stromzahler_backofen
-        name: Backofen
-      - entity: sensor.stromzahler_bildschirm_theke
-        name: Bildschirm Theke
-      - entity: sensor.stromzahler_dauerverbraucher
-        name: Dauerverbraucher
-      - entity: sensor.stromzahler_kochfeld
-        name: Kochfeld
-      - entity: sensor.stromzahler_kuhlschrank_kuche
-        name: Kühlschrank Küche
-      - entity: sensor.stromzahler_lg_anlage
-        name: LG Anlage
-      - entity: sensor.stromzahler_mixi
-        name: Mixi
-      - entity: sensor.stromzahler_spulmaschine
-        name: Spülmaschine
-      - entity: sensor.stromzahler_tv
-        name: TV
-      - type: section
-        label: Keller
-      - entity: sensor.stromzahler_luftentf_waschk
-        name: Luftentf. Waschküche
-      - entity: sensor.stromzahler_luftentf_werkelraum
-        name: Luftentf. Partyraum
-      - entity: sensor.stromzahler_luftungsanlage
-        name: Lüftungsanlage
-      - entity: sensor.stromzahler_waschmaschine
-        name: Waschmaschine
-      - entity: sensor.stromzahler_trockner
-        name: Trockner
-      - entity: sensor.stromzahler_gefrierschrank
-        name: Gefrierschrank
-      - entity: sensor.stromzahler_kuhlschrank_keller
-        name: Kühlschrank Keller
-      - type: section
-        label: Heizung
-      - entity: sensor.stromzahler_wp_heizstab
-        name: WP Heizstab
-      - entity: sensor.stromzahler_wp_innenteil
-        name: WP Innenteil
-      - entity: sensor.stromzahler_wp_aussenteil
-        name: WP Aussenteil
-      - type: section
-        label: Licht
-      - entity: sensor.stromzahler_licht_gesamt
-        name: Licht gesamt
-      - entity: sensor.stromzahler_licht_sicherung_3_2
-        name: Licht Sicherung 3.2
-      - entity: sensor.stromzahler_licht_sicherung_3_3
-        name: Licht Sicherung 3.3
-      - entity: sensor.stromzahler_licht_berechnete
-        name: berechnete Lichter
-  - type: entities
-    title: mobil
-    show_header_toggle: false
-    entities:
-      - type: section
-        label: Sonoff POW R2 1 (Licht 3.3)
-      - entity: sensor.sonoff_pow_r2_1_wirkleistung
-        name: POW R2 1 - Wirkleistung
-      - entity: sensor.sonoff_pow_r2_1_scheinleistung
-        name: POW R2 1 - Scheinleistung
-      - entity: sensor.sonoff_pow_r2_1_leistungsfaktor
-        name: POW R2 1 - Cos Phi
-      - entity: sensor.sonoff_pow_r2_1_energie
-        name: POW R2 1 - Energie
-      - type: section
-        label: Sonoff POW R2 2 (Licht 3.2)
-      - entity: sensor.sonoff_pow_r2_2_wirkleistung
-        name: POW R2 2 - Wirkleistung
-      - entity: sensor.sonoff_pow_r2_2_scheinleistung
-        name: POW R2 2 - Scheinleistung
-      - entity: sensor.sonoff_pow_r2_2_leistungsfaktor
-        name: POW R2 2 - Cos Phi
-      - entity: sensor.sonoff_pow_r2_2_energie
-        name: POW R2 2 - Energie
-      - type: section
-        label: Tasmota SD 2 (Waschmaschine)
-      - entity: sensor.tasmota_sd_2_wirkleistung
-        name: Tasmota SD 2 - Wirkleistung
-      - entity: sensor.tasmota_sd_2_scheinleistung
-        name: Tasmota SD 2 - Scheinleistung
-      - entity: sensor.tasmota_sd_2_leistungsfaktor
-        name: Tasmota SD 2 - Cos Phi
-      - entity: sensor.tasmota_sd_2_energie
-        name: Tasmota SD 2 - Energie
-      - type: section
-        label: Tasmota SD 3 (Kodi)
-      - entity: sensor.tasmota_sd_3_wirkleistung
-        name: Tasmota SD 3 - Wirkleistung
-      - entity: sensor.tasmota_sd_3_scheinleistung
-        name: Tasmota SD 3 - Scheinleistung
-      - entity: sensor.tasmota_sd_3_leistungsfaktor
-        name: Tasmota SD 3 - Cos Phi
-      - entity: sensor.tasmota_sd_3_energie
-        name: Tasmota SD 3 - Energie
-      - type: section
-        label: Shelly Plug S (USV)
-      - entity: sensor.shellyplug_s_169d16_power
-        name: Shelly Plug S - Wirkleistung
-      - entity: sensor.shellyplug_s_169d16_energy
-        name: Shelly Plug S - Energie
+  - type: custom:layout-card
+    min_columns: 1
+    max_columns: 3
+    cards:
+      - type: entities
+        title: Leistung
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Netz
+          - entity: sensor.el_leistung_stromzaehler_netzbezug
+            name: Gesamtleistung Netz
+          - type: section
+            label: EG
+          - type: custom:template-entity-row
+            name: Backofen
+            entity: sensor.el_leistung_backofen
+            state: "{{ '%.1f'%(states('sensor.el_leistung_backofen')) | float }} W"
+          - entity: sensor.el_leistung_bildschirm_theke
+            name: Bildschirm Theke
+          - type: custom:template-entity-row
+            name: Dauerverbraucher
+            entity: sensor.el_leistung_dauerverbraucher
+            state: "{{ '%.1f'%(states('sensor.el_leistung_dauerverbraucher')) | float }} W"
+          - entity: sensor.el_leistung_kochfeld
+            name: Kochfeld
+          - type: custom:template-entity-row
+            name: Kühlschrank Küche
+            entity: sensor.el_leistung_kuhlschrank_kuche
+            state: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche')) | float }} W"
+          - entity: sensor.el_leistung_lg_anlage
+            name: LG Anlage
+          - type: custom:template-entity-row
+            name: Mixi
+            entity: sensor.el_leistung_mixi
+            state: "{{ '%.1f'%(states('sensor.el_leistung_mixi')) | float }} W"
+          - type: custom:template-entity-row
+            name: Spülmaschine
+            entity: sensor.el_leistung_spulmaschine
+            state: "{{ '%.1f'%(states('sensor.el_leistung_spulmaschine')) | float }} W"
+          - entity: sensor.el_leistung_tv
+            name: TV
+          - type: section
+            label: Keller
+          - entity: sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
+            name: Luftentf. Waschküche
+          - entity: sensor.innr_sp_120_test_electrical_measurement
+            name: Luftentf. Partyraum
+          - type: custom:template-entity-row
+            name: Lüftungsanlage
+            entity: sensor.el_leistung_luftungsanlage
+            state: "{{ '%.1f'%(states('sensor.el_leistung_luftungsanlage')) | float }} W"
+          - entity: sensor.el_leistung_waschmaschine
+            name: Waschmaschine
+          - entity: sensor.el_leistung_trockner
+            name: Trockner
+          - type: custom:template-entity-row
+            name: Gefrierschrank
+            entity: sensor.el_leistung_gefrierschrank
+            state: "{{ '%.1f'%(states('sensor.el_leistung_gefrierschrank')) | float }} W"
+          - type: custom:template-entity-row
+            name: Kühlschrank Keller
+            entity: sensor.el_leistung_kuhlschrank_keller
+            state: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller')) | float }} W"
+          - type: section
+            label: Heizung
+          - entity: sensor.el_leistung_wp_heizstab
+            name: WP Heizstab
+          - entity: sensor.el_leistung_wp_innenteil
+            name: WP Innenteil
+          - entity: sensor.el_leistung_wp_aussenteil
+            name: WP Aussenteil
+          - type: section
+            label: Licht
+          - type: custom:template-entity-row
+            name: Licht gesamt
+            entity: sensor.el_leistung_licht_gesamt
+            state: "{{ '%.1f'%(states('sensor.el_leistung_licht_gesamt')) | float }} W"
+          - type: custom:template-entity-row
+            name: Licht Sicherung 3.2
+            entity: sensor.el_leistung_licht_sicherung_3_2
+            state: "{{ '%.1f'%(states('sensor.el_leistung_licht_sicherung_3_2')) | float }} W"
+          - type: custom:template-entity-row
+            name: Licht Sicherung 3.3
+            entity: sensor.el_leistung_licht_sicherung_3_3
+            state: "{{ '%.1f'%(states('sensor.el_leistung_licht_sicherung_3_2')) | float }} W"
+          - type: custom:template-entity-row
+            name: berechnete Lichter
+            entity: sensor.el_leistung_berechnete_lichter
+            state: "{{ '%.1f'%(states('sensor.el_leistung_berechnete_lichter')) | float }} W"
+      - type: entities
+        title: Verbrauch heute
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Netz
+          - type: custom:template-entity-row
+            name: Gesamtverbrauch Netz
+            entity: sensor.stromverbrauch_netzbezug_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_netzbezug_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_netzbezug_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_netzbezug_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_netzbezug_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: section
+            label: EG
+          - type: custom:template-entity-row
+            name: Backofen
+            entity: sensor.stromverbrauch_backofen_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_backofen_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_backofen_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_backofen_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_backofen_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Bildschirm Theke
+            entity: sensor.stromverbrauch_bildschirm_theke_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_bildschirm_theke_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_bildschirm_theke_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_bildschirm_theke_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_bildschirm_theke_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Dauerverbraucher
+            entity: sensor.stromverbrauch_dauerverbraucher_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_dauerverbraucher_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_dauerverbraucher_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_dauerverbraucher_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_dauerverbraucher_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Kochfeld
+            entity: sensor.stromverbrauch_kochfeld_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_kochfeld_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kochfeld_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_kochfeld_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kochfeld_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Kühlschrank Küche
+            entity: sensor.stromverbrauch_kuhlschrank_kuche_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_kuche_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_kuche_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_kuche_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_kuche_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: LG Anlage
+            entity: sensor.stromverbrauch_lg_anlage_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_lg_anlage_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_lg_anlage_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_lg_anlage_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_lg_anlage_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Mixi
+            entity: sensor.stromverbrauch_mixi_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_mixi_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_mixi_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_mixi_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_mixi_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Spülmaschine
+            entity: sensor.stromverbrauch_spulmaschine_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_spulmaschine_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_spulmaschine_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_spulmaschine_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_spulmaschine_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: TV
+            entity: sensor.stromverbrauch_tv_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_tv_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_tv_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_tv_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_tv_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: section
+            label: Keller
+          - type: custom:template-entity-row
+            name: Luftentf. Waschküche
+            entity: sensor.stromverbrauch_luftentf_waschk_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftentf_waschk_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_waschk_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftentf_waschk_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_waschk_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Luftentf. Partyraum
+            entity: sensor.stromverbrauch_luftentf_werkelraum_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftentf_werkelraum_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_werkelraum_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftentf_werkelraum_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_werkelraum_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Lüftungsanlage
+            entity: sensor.stromverbrauch_luftungsanlage_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftungsanlage_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftungsanlage_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftungsanlage_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftungsanlage_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Waschmaschine
+            entity: sensor.stromverbrauch_waschmaschine_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_waschmaschine_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_waschmaschine_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_waschmaschine_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_waschmaschine_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Trockner
+            entity: sensor.stromverbrauch_trockner_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_trockner_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_trockner_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_trockner_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_trockner_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Gefrierschrank
+            entity: sensor.stromverbrauch_gefrierschrank_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_gefrierschrank_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_gefrierschrank_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_gefrierschrank_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_gefrierschrank_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Kühlschrank Keller
+            entity: sensor.stromverbrauch_kuhlschrank_keller_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_keller_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_keller_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_keller_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_keller_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: section
+            label: Heizung
+          - type: custom:template-entity-row
+            name: WP Heizstab
+            entity: sensor.stromverbrauch_wp_heizstab_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_wp_heizstab_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_heizstab_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_wp_heizstab_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_heizstab_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: WP Innenteil
+            entity: sensor.stromverbrauch_wp_innenteil_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_wp_innenteil_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_innenteil_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_wp_innenteil_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_innenteil_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: WP Aussenteil
+            entity: sensor.stromverbrauch_wp_aussenteil_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_wp_aussenteil_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_aussenteil_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_wp_aussenteil_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_aussenteil_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: section
+            label: Licht
+          - type: custom:template-entity-row
+            name: Licht gesamt
+            entity: sensor.stromverbrauch_licht_gesamt_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_gesamt_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_gesamt_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_licht_gesamt_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_gesamt_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Licht Sicherung 3.2
+            entity: sensor.stromverbrauch_licht_sicherung_3_2_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_2_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_2_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_2_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_2_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Licht Sicherung 3.3
+            entity: sensor.stromverbrauch_licht_sicherung_3_3_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_3_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_3_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_3_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_3_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: berechnete Lichter
+            entity: sensor.stromverbrauch_licht_berechnete_tag
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_berechnete_tag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_berechnete_tag') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_licht_berechnete_vortag') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_berechnete_vortag') | float ) * (states('input_number.strompreis') | float )) }} €"
+      - type: entities
+        title: Verbrauch diesen Monat
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Netz
+          - type: custom:template-entity-row
+            name: Gesamtverbrauch Netz
+            entity: sensor.stromverbrauch_netzbezug_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_netzbezug_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_netzbezug_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_netzbezug_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_netzbezug_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: section
+            label: EG
+          - type: custom:template-entity-row
+            name: Backofen
+            entity: sensor.stromverbrauch_backofen_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_backofen_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_backofen_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_backofen_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_backofen_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Bildschirm Theke
+            entity: sensor.stromverbrauch_bildschirm_theke_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_bildschirm_theke_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_bildschirm_theke_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_bildschirm_theke_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_bildschirm_theke_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Dauerverbraucher
+            entity: sensor.stromverbrauch_dauerverbraucher_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_dauerverbraucher_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_dauerverbraucher_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_dauerverbraucher_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_dauerverbraucher_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Kochfeld
+            entity: sensor.stromverbrauch_kochfeld_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_kochfeld_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kochfeld_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_kochfeld_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kochfeld_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Kühlschrank Küche
+            entity: sensor.stromverbrauch_kuhlschrank_kuche_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_kuche_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_kuche_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_kuche_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_kuche_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: LG Anlage
+            entity: sensor.stromverbrauch_lg_anlage_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_lg_anlage_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_lg_anlage_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_lg_anlage_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_lg_anlage_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Mixi
+            entity: sensor.stromverbrauch_mixi_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_mixi_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_mixi_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_mixi_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_mixi_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Spülmaschine
+            entity: sensor.stromverbrauch_spulmaschine_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_spulmaschine_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_spulmaschine_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_spulmaschine_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_spulmaschine_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: TV
+            entity: sensor.stromverbrauch_tv_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_tv_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_tv_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_tv_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_tv_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: section
+            label: Keller
+          - type: custom:template-entity-row
+            name: Luftentf. Waschküche
+            entity: sensor.stromverbrauch_luftentf_waschk_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftentf_waschk_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_waschk_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftentf_waschk_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_waschk_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Luftentf. Partyraum
+            entity: sensor.stromverbrauch_luftentf_werkelraum_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftentf_werkelraum_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_werkelraum_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "gestern: {{ '%.2f'%(states('sensor.stromverbrauch_luftentf_werkelraum_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftentf_werkelraum_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Lüftungsanlage
+            entity: sensor.stromverbrauch_luftungsanlage_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_luftungsanlage_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftungsanlage_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_luftungsanlage_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_luftungsanlage_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Waschmaschine
+            entity: sensor.stromverbrauch_waschmaschine_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_waschmaschine_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_waschmaschine_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_waschmaschine_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_waschmaschine_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Trockner
+            entity: sensor.stromverbrauch_trockner_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_trockner_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_trockner_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_trockner_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_trockner_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Gefrierschrank
+            entity: sensor.stromverbrauch_gefrierschrank_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_gefrierschrank_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_gefrierschrank_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_gefrierschrank_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_gefrierschrank_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Kühlschrank Keller
+            entity: sensor.stromverbrauch_kuhlschrank_keller_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_keller_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_keller_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_kuhlschrank_keller_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_kuhlschrank_keller_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: section
+            label: Heizung
+          - type: custom:template-entity-row
+            name: WP Heizstab
+            entity: sensor.stromverbrauch_wp_heizstab_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_wp_heizstab_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_heizstab_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_wp_heizstab_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_heizstab_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: WP Innenteil
+            entity: sensor.stromverbrauch_wp_innenteil_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_wp_innenteil_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_innenteil_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_wp_innenteil_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_innenteil_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: WP Aussenteil
+            entity: sensor.stromverbrauch_wp_aussenteil_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_wp_aussenteil_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_aussenteil_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_wp_aussenteil_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_wp_aussenteil_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: section
+            label: Licht
+          - type: custom:template-entity-row
+            name: Licht gesamt
+            entity: sensor.stromverbrauch_licht_gesamt_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_gesamt_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_gesamt_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_licht_gesamt_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_gesamt_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Licht Sicherung 3.2
+            entity: sensor.stromverbrauch_licht_sicherung_3_2_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_2_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_2_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_2_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_2_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: Licht Sicherung 3.3
+            entity: sensor.stromverbrauch_licht_sicherung_3_3_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_3_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_3_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_licht_sicherung_3_3_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_sicherung_3_3_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+          - type: custom:template-entity-row
+            name: berechnete Lichter
+            entity: sensor.stromverbrauch_licht_berechnete_monat
+            state: "{{ '%.2f'%(states('sensor.stromverbrauch_licht_berechnete_monat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_berechnete_monat') | float ) * (states('input_number.strompreis') | float )) }} €"
+            secondary: "Vormonat: {{ '%.2f'%(states('sensor.stromverbrauch_licht_berechnete_vormonat') | float) }} kWh => {{ '%.2f'%((states('sensor.stromverbrauch_licht_berechnete_vormonat') | float ) * (states('input_number.strompreis') | float )) }} €"
+      - type: entities
+        title: Stromzähler
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Netz
+          - entity: sensor.stromzaehler_netzbezug
+            name: Stromzähler Netzbezug
+          - type: section
+            label: EG
+          - entity: sensor.stromzahler_backofen
+            name: Backofen
+          - entity: sensor.stromzahler_bildschirm_theke
+            name: Bildschirm Theke
+          - entity: sensor.stromzahler_dauerverbraucher
+            name: Dauerverbraucher
+          - entity: sensor.stromzahler_kochfeld
+            name: Kochfeld
+          - entity: sensor.stromzahler_kuhlschrank_kuche
+            name: Kühlschrank Küche
+          - entity: sensor.stromzahler_lg_anlage
+            name: LG Anlage
+          - entity: sensor.stromzahler_mixi
+            name: Mixi
+          - entity: sensor.stromzahler_spulmaschine
+            name: Spülmaschine
+          - entity: sensor.stromzahler_tv
+            name: TV
+          - type: section
+            label: Keller
+          - entity: sensor.stromzahler_luftentf_waschk
+            name: Luftentf. Waschküche
+          - entity: sensor.stromzahler_luftentf_werkelraum
+            name: Luftentf. Partyraum
+          - entity: sensor.stromzahler_luftungsanlage
+            name: Lüftungsanlage
+          - entity: sensor.stromzahler_waschmaschine
+            name: Waschmaschine
+          - entity: sensor.stromzahler_trockner
+            name: Trockner
+          - entity: sensor.stromzahler_gefrierschrank
+            name: Gefrierschrank
+          - entity: sensor.stromzahler_kuhlschrank_keller
+            name: Kühlschrank Keller
+          - type: section
+            label: Heizung
+          - entity: sensor.stromzahler_wp_heizstab
+            name: WP Heizstab
+          - entity: sensor.stromzahler_wp_innenteil
+            name: WP Innenteil
+          - entity: sensor.stromzahler_wp_aussenteil
+            name: WP Aussenteil
+          - type: section
+            label: Licht
+          - entity: sensor.stromzahler_licht_gesamt
+            name: Licht gesamt
+          - entity: sensor.stromzahler_licht_sicherung_3_2
+            name: Licht Sicherung 3.2
+          - entity: sensor.stromzahler_licht_sicherung_3_3
+            name: Licht Sicherung 3.3
+          - entity: sensor.stromzahler_licht_berechnete
+            name: berechnete Lichter
+      - type: entities
+        title: mobil
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Sonoff POW R2 1 (Licht 3.3)
+          - entity: sensor.sonoff_pow_r2_1_wirkleistung
+            name: POW R2 1 - Wirkleistung
+          - entity: sensor.sonoff_pow_r2_1_scheinleistung
+            name: POW R2 1 - Scheinleistung
+          - entity: sensor.sonoff_pow_r2_1_leistungsfaktor
+            name: POW R2 1 - Cos Phi
+          - entity: sensor.sonoff_pow_r2_1_energie
+            name: POW R2 1 - Energie
+          - type: section
+            label: Sonoff POW R2 2 (Licht 3.2)
+          - entity: sensor.sonoff_pow_r2_2_wirkleistung
+            name: POW R2 2 - Wirkleistung
+          - entity: sensor.sonoff_pow_r2_2_scheinleistung
+            name: POW R2 2 - Scheinleistung
+          - entity: sensor.sonoff_pow_r2_2_leistungsfaktor
+            name: POW R2 2 - Cos Phi
+          - entity: sensor.sonoff_pow_r2_2_energie
+            name: POW R2 2 - Energie
+          - type: section
+            label: Tasmota SD 2 (Waschmaschine)
+          - entity: sensor.tasmota_sd_2_wirkleistung
+            name: Tasmota SD 2 - Wirkleistung
+          - entity: sensor.tasmota_sd_2_scheinleistung
+            name: Tasmota SD 2 - Scheinleistung
+          - entity: sensor.tasmota_sd_2_leistungsfaktor
+            name: Tasmota SD 2 - Cos Phi
+          - entity: sensor.tasmota_sd_2_energie
+            name: Tasmota SD 2 - Energie
+          - type: section
+            label: Tasmota SD 3 (Kodi)
+          - entity: sensor.tasmota_sd_3_wirkleistung
+            name: Tasmota SD 3 - Wirkleistung
+          - entity: sensor.tasmota_sd_3_scheinleistung
+            name: Tasmota SD 3 - Scheinleistung
+          - entity: sensor.tasmota_sd_3_leistungsfaktor
+            name: Tasmota SD 3 - Cos Phi
+          - entity: sensor.tasmota_sd_3_energie
+            name: Tasmota SD 3 - Energie
+          - type: section
+            label: Shelly Plug S (USV)
+          - entity: sensor.shellyplug_s_169d16_power
+            name: Shelly Plug S - Wirkleistung
+          - entity: sensor.shellyplug_s_169d16_energy
+            name: Shelly Plug S - Energie
