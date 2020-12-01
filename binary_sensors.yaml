@@ -21,7 +21,7 @@
     before: '23:00'
   - platform: tod
     name: Zeit Stern
-    after: '08:30'
+    after: '15:00'
     before: '22:00'
 
 # --- Template ---
