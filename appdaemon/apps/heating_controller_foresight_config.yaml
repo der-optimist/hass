@@ -5,7 +5,7 @@ heating_controller_foresight_ez:
   db_measurement: sensor.temp_esszimmer_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
-  minutes_for_evaltuation: [60, 90, 120, 150, 180]
+  minutes_for_evaltuation: [30, 60, 90, 120, 150]
   multiplicator: 7
   limit_max: 1.0
   limit_min: -1.0
@@ -21,7 +21,7 @@ heating_controller_foresight_ku:
   db_measurement: sensor.temp_esszimmer_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
-  minutes_for_evaltuation: [60, 90, 120, 150, 180]
+  minutes_for_evaltuation: [30, 60, 90, 120, 150]
   multiplicator: 7
   limit_max: 1.0
   limit_min: -1.0
@@ -37,7 +37,7 @@ heating_controller_foresight_wz:
   db_measurement: sensor.temp_esszimmer_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
-  minutes_for_evaltuation: [60, 90, 120, 150, 180]
+  minutes_for_evaltuation: [30, 60, 90, 120, 150]
   multiplicator: 7
   limit_max: 1.0
   limit_min: -1.0
@@ -53,7 +53,7 @@ heating_controller_foresight_sz:
   db_measurement: sensor.temp_schlafzimmer_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
-  minutes_for_evaltuation: [60, 90, 120, 150, 180]
+  minutes_for_evaltuation: [30, 60, 90, 120, 150]
   multiplicator: 7
   limit_max: 1.0
   limit_min: -1.0
@@ -69,7 +69,7 @@ heating_controller_foresight_bad_eg:
   db_measurement: sensor.temp_bad_eg_pm
   db_field: state_float
   number_of_derivatives_for_average: 3
-  minutes_for_evaltuation: [60, 90, 120, 150, 180]
+  minutes_for_evaltuation: [30, 60, 90, 120, 150]
   multiplicator: 6
   limit_max: 1
   limit_min: -1
@@ -85,7 +85,7 @@ heating_controller_foresight_wf_wc:
   db_measurement: sensor.onewire_15_estrich_wc_1
   db_field: state_float
   number_of_derivatives_for_average: 2
-  minutes_for_evaltuation: [60, 90, 120, 150, 180]
+  minutes_for_evaltuation: [10, 20, 30, 40, 50]
   multiplicator: 2
   limit_max: 1
   limit_min: -1
@@ -101,7 +101,7 @@ heating_controller_foresight_le:
   db_measurement: sensor.temp_le_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
-  minutes_for_evaltuation: [60, 90, 120, 150, 180]
+  minutes_for_evaltuation: [30, 60, 90, 120, 150]
   multiplicator: 7
   limit_max: 1.2
   limit_min: -1.2
@@ -117,7 +117,7 @@ heating_controller_foresight_la:
   db_measurement: sensor.temp_la_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
-  minutes_for_evaltuation: [60, 90, 120, 150, 180]
+  minutes_for_evaltuation: [30, 60, 90, 120, 150]
   multiplicator: 7
   limit_max: 1.2
   limit_min: -1.2
@@ -133,7 +133,7 @@ heating_controller_foresight_nz:
   db_measurement: sensor.temp_nahzimmer_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
-  minutes_for_evaltuation: [60, 90, 120, 150, 180]
+  minutes_for_evaltuation: [30, 60, 90, 120, 150]
   multiplicator: 7
   limit_max: 1.0
   limit_min: -1.0
@@ -149,7 +149,7 @@ heating_controller_foresight_gz:
   db_measurement: sensor.temp_gastezimmer_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
-  minutes_for_evaltuation: [60, 90, 120, 150, 180]
+  minutes_for_evaltuation: [30, 60, 90, 120, 150]
   multiplicator: 7
   limit_max: 1.0
   limit_min: -1.0
@@ -165,7 +165,7 @@ heating_controller_foresight_flur_og:
   db_measurement: sensor.temp_flur_og_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
-  minutes_for_evaltuation: [60, 90, 120, 150, 180]
+  minutes_for_evaltuation: [30, 60, 90, 120, 150]
   multiplicator: 7
   limit_max: 1.5
   limit_min: -1.5
@@ -181,7 +181,7 @@ heating_controller_foresight_bad_og:
   db_measurement: sensor.temp_bad_og_pm
   db_field: state_float
   number_of_derivatives_for_average: 5
-  minutes_for_evaltuation: [60, 90, 120, 150, 180]
+  minutes_for_evaltuation: [30, 60, 90, 120, 150]
   multiplicator: 6
   limit_max: 1.0
   limit_min: -1.0
