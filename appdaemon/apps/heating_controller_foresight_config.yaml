@@ -6,9 +6,9 @@ heating_controller_foresight_ez:
   db_field: state_float
   number_of_derivatives_for_average: 5
   minutes_for_evaltuation: [60, 90, 120, 150, 180]
-  multiplicator: 6
-  limit_max: 1.2
-  limit_min: -1.2
+  multiplicator: 7
+  limit_max: 1.0
+  limit_min: -1.0
   ga_setpoint_shift: "10/0/21"
   shift_value: 0.1
   mode: active
@@ -22,9 +22,9 @@ heating_controller_foresight_ku:
   db_field: state_float
   number_of_derivatives_for_average: 5
   minutes_for_evaltuation: [60, 90, 120, 150, 180]
-  multiplicator: 6
-  limit_max: 1.2
-  limit_min: -1.2
+  multiplicator: 7
+  limit_max: 1.0
+  limit_min: -1.0
   ga_setpoint_shift: "10/0/1"
   shift_value: 0.1
   mode: active
@@ -38,9 +38,9 @@ heating_controller_foresight_wz:
   db_field: state_float
   number_of_derivatives_for_average: 5
   minutes_for_evaltuation: [60, 90, 120, 150, 180]
-  multiplicator: 6
-  limit_max: 1.2
-  limit_min: -1.2
+  multiplicator: 7
+  limit_max: 1.0
+  limit_min: -1.0
   ga_setpoint_shift: "10/0/41"
   shift_value: 0.1
   mode: active
@@ -55,8 +55,8 @@ heating_controller_foresight_sz:
   number_of_derivatives_for_average: 5
   minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 7
-  limit_max: 1.5
-  limit_min: -1.5
+  limit_max: 1.0
+  limit_min: -1.0
   ga_setpoint_shift: "10/0/61"
   shift_value: 0.1
   mode: active
@@ -103,8 +103,8 @@ heating_controller_foresight_le:
   number_of_derivatives_for_average: 5
   minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 7
-  limit_max: 1.5
-  limit_min: -1.5
+  limit_max: 1.2
+  limit_min: -1.2
   ga_setpoint_shift: "10/0/161"
   shift_value: 0.1
   mode: active
@@ -119,8 +119,8 @@ heating_controller_foresight_la:
   number_of_derivatives_for_average: 5
   minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 7
-  limit_max: 1.5
-  limit_min: -1.5
+  limit_max: 1.2
+  limit_min: -1.2
   ga_setpoint_shift: "10/0/121"
   shift_value: 0.1
   mode: active
@@ -135,8 +135,8 @@ heating_controller_foresight_nz:
   number_of_derivatives_for_average: 5
   minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 7
-  limit_max: 1.5
-  limit_min: -1.5
+  limit_max: 1.0
+  limit_min: -1.0
   ga_setpoint_shift: "10/0/141"
   shift_value: 0.1
   mode: active
@@ -151,8 +151,8 @@ heating_controller_foresight_gz:
   number_of_derivatives_for_average: 5
   minutes_for_evaltuation: [60, 90, 120, 150, 180]
   multiplicator: 7
-  limit_max: 1.5
-  limit_min: -1.5
+  limit_max: 1.0
+  limit_min: -1.0
   ga_setpoint_shift: "10/0/181"
   shift_value: 0.1
   mode: active
@@ -182,9 +182,9 @@ heating_controller_foresight_bad_og:
   db_field: state_float
   number_of_derivatives_for_average: 5
   minutes_for_evaltuation: [60, 90, 120, 150, 180]
-  multiplicator: 7
-  limit_max: 1.5
-  limit_min: -1.5
+  multiplicator: 6
+  limit_max: 1.0
+  limit_min: -1.0
   ga_setpoint_shift: "10/0/221"
   shift_value: 0.1
   mode: active
