@@ -113,7 +113,7 @@ auto_light_a_tr_wurfel_feuerstelle:
   illuminance_sensor: sensor.helligkeit_wetterstation
 # - Stern Blumenbeet
 auto_light_a_tr_blumenbeet:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_aussen_carport
