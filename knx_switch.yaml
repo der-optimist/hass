@@ -52,6 +52,9 @@
   - name: 'LED-Netzteil 8'
     address: '0/2/180'
     state_address: '0/2/181'
+  - name: 'Wasserabsperrventil'
+    address: '0/0/160'
+    state_address: '0/0/161'
 
 # Schlafen und Nachtmodus
   - name: 'MaJo schlafen'
