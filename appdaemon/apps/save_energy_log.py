@@ -38,26 +38,26 @@ class save_energy_log(hass.Hass):
 #        with open("/config/appdaemon/logs/energy_log_licht_3_2_v2.tab", "a") as myfile:
 #            myfile.write(line)
 
-        # Tasmota SD 2- WM
+        # Tasmota SD 2- Gefrierschrank
         power = float(self.get_state("sensor.tasmota_sd_2_wirkleistung"))
         apparentpower = float(self.get_state("sensor.tasmota_sd_2_scheinleistung"))
         cos_phi = float(self.get_state("sensor.tasmota_sd_2_leistungsfaktor"))
         energy = float(self.get_state("sensor.tasmota_sd_2_energie"))
         ts_local = datetime.datetime.now().timestamp()
-        power_compare = float(self.get_state("sensor.el_leistung_waschmaschine"))
+        power_compare = float(self.get_state("sensor.el_leistung_gefrierschrank"))
         line = "\n{}\t{}\t{}\t{}\t{}\t{}".format(ts_local,power,apparentpower,cos_phi,energy,power_compare)
         #self.log(line)
-        with open("/config/appdaemon/logs/energy_log_waschmaschine.tab", "a") as myfile:
+        with open("/config/appdaemon/logs/energy_log_gefrierschrank.tab", "a") as myfile:
             myfile.write(line)
 
-        # Tasmota SD 3- LG-Anlage
-        power = float(self.get_state("sensor.tasmota_sd_3_wirkleistung"))
-        apparentpower = float(self.get_state("sensor.tasmota_sd_3_scheinleistung"))
-        cos_phi = float(self.get_state("sensor.tasmota_sd_3_leistungsfaktor"))
-        energy = float(self.get_state("sensor.tasmota_sd_3_energie"))
-        ts_local = datetime.datetime.now().timestamp()
-        power_compare = 0.0 #float(self.get_state("sensor.el_leistung_lg_anlage"))
-        line = "\n{}\t{}\t{}\t{}\t{}\t{}".format(ts_local,power,apparentpower,cos_phi,energy,power_compare)
-        #self.log(line)
-        with open("/config/appdaemon/logs/energy_log_lg_anlage.tab", "a") as myfile:
-            myfile.write(line)
+        # Tasmota SD 3- Kodi
+#        power = float(self.get_state("sensor.tasmota_sd_3_wirkleistung"))
+#        apparentpower = float(self.get_state("sensor.tasmota_sd_3_scheinleistung"))
+#        cos_phi = float(self.get_state("sensor.tasmota_sd_3_leistungsfaktor"))
+#        energy = float(self.get_state("sensor.tasmota_sd_3_energie"))
+#        ts_local = datetime.datetime.now().timestamp()
+#        power_compare = 0.0 #float(self.get_state("sensor.el_leistung_lg_anlage"))
+#        line = "\n{}\t{}\t{}\t{}\t{}\t{}".format(ts_local,power,apparentpower,cos_phi,energy,power_compare)
+#        #self.log(line)
+#        with open("/config/appdaemon/logs/energy_log_lg_anlage.tab", "a") as myfile:
+#            myfile.write(line)
