@@ -67,7 +67,7 @@ auto_light_a_abstellraum:
   illuminance_sensor: sensor.helligkeit_wetterstation
 # - Leuchtwürfel Terrasse
 auto_light_a_tr_wurfel_ecke_gross:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_aussen_carport
@@ -82,7 +82,7 @@ auto_light_a_tr_wurfel_ecke_gross:
     "00:00": 85
   illuminance_sensor: sensor.helligkeit_wetterstation
 auto_light_a_tr_wurfel_ecke_klein:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_aussen_carport
@@ -97,7 +97,7 @@ auto_light_a_tr_wurfel_ecke_klein:
     "00:00": 80
   illuminance_sensor: sensor.helligkeit_wetterstation
 auto_light_a_tr_wurfel_feuerstelle:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_aussen_carport
