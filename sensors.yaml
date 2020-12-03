@@ -574,9 +574,9 @@
       el_leistung_gefrierschrank:
         value_template: >-
           {% if states('sensor.el_leistung_gefrierschrank_scheinleistung') | float < 22 %}
-            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float * 0.064 }}
+            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float * 0.064) }}
           {% elif states('sensor.el_leistung_gefrierschrank_scheinleistung') | float < 80 %}
-            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float * 0.73 }}
+            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float * 0.73) }}
           {% else %}
             {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float * 0.82) }}
           {% endif %}
