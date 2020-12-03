@@ -272,42 +272,42 @@
         icon_template: mdi:counter
 
       # --- Elektrische Leistung ---
-      # Backofen
+      # Netzbezug
       el_leistung_stromzaehler_netzbezug:
         value_template: "{{ states('sensor.stromzahler_sum_active_instantaneous_power') }}"
         friendly_name: 'El. Leistung Stromzähler Netzbezug'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       # Backofen
-      el_leistung_backofen_round:
-        value_template: "{{ '%.1f'%(states('sensor.el_leistung_backofen') | float) | float }}"
-        friendly_name: 'El. Leistung Backofen (gerundet)'
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+#      el_leistung_backofen_round:
+#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_backofen') | float) | float }}"
+#        friendly_name: 'El. Leistung Backofen (gerundet)'
+#        unit_of_measurement: 'W'
+#        icon_template: mdi:speedometer
       # Dauerverbraucher
-      el_leistung_dauerverbraucher_round:
-        value_template: "{{ '%.1f'%(states('sensor.el_leistung_dauerverbraucher') | float) | float }}"
-        friendly_name: 'El. Leistung Dauerverbraucher (gerundet)'
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+#      el_leistung_dauerverbraucher_round:
+#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_dauerverbraucher') | float) | float }}"
+#        friendly_name: 'El. Leistung Dauerverbraucher (gerundet)'
+#        unit_of_measurement: 'W'
+#        icon_template: mdi:speedometer
       # Kühlschrank Küche
-      el_leistung_kuhlschrank_kuche_round:
-        value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche') | float) | float }}"
-        friendly_name: 'El. Leistung Kühlschrank Küche (gerundet)'
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+#      el_leistung_kuhlschrank_kuche_round:
+#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche') | float) | float }}"
+#        friendly_name: 'El. Leistung Kühlschrank Küche (gerundet)'
+#        unit_of_measurement: 'W'
+#        icon_template: mdi:speedometer
       # Spülmaschine
-      el_leistung_spulmaschine_round:
-        value_template: "{{ '%.1f'%(states('sensor.el_leistung_spulmaschine') | float) | float }}"
-        friendly_name: 'El. Leistung Spülmaschine (gerundet)'
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+#      el_leistung_spulmaschine_round:
+#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_spulmaschine') | float) | float }}"
+#        friendly_name: 'El. Leistung Spülmaschine (gerundet)'
+#        unit_of_measurement: 'W'
+#        icon_template: mdi:speedometer
       # Mixi
-      el_leistung_mixi_round:
-        value_template: "{{ '%.1f'%(states('sensor.el_leistung_mixi') | float) | float }}"
-        friendly_name: 'El. Leistung Mixi (gerundet)'
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+#      el_leistung_mixi_round:
+#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_mixi') | float) | float }}"
+#        friendly_name: 'El. Leistung Mixi (gerundet)'
+#        unit_of_measurement: 'W'
+#        icon_template: mdi:speedometer
       # TV
 #      el_leistung_tv_round:
 #        value_template: "{{ '%.1f'%(states('sensor.el_leistung_tv') | float) | float }}"
@@ -327,23 +327,23 @@
 #        unit_of_measurement: 'W'
 #        icon_template: mdi:speedometer
       # Kühlschrank Keller
-      el_leistung_kuhlschrank_keller_round:
-        value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float) | float }}"
-        friendly_name: 'El. Leistung Kühlschrank Keller (gerundet)'
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+#      el_leistung_kuhlschrank_keller_round:
+#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float) | float }}"
+#        friendly_name: 'El. Leistung Kühlschrank Keller (gerundet)'
+#        unit_of_measurement: 'W'
+#        icon_template: mdi:speedometer
       # Gefrierschrank
-      el_leistung_gefrierschrank_round:
-        value_template: "{{ '%.1f'%(states('sensor.el_leistung_gefrierschrank') | float) | float }}"
-        friendly_name: 'El. Leistung Gefrierschrank (gerundet)'
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+#      el_leistung_gefrierschrank_round:
+#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_gefrierschrank') | float) | float }}"
+#        friendly_name: 'El. Leistung Gefrierschrank (gerundet)'
+#        unit_of_measurement: 'W'
+#        icon_template: mdi:speedometer
       # Lüftungsanlage
-      el_leistung_luftungsanlage_round:
-        value_template: "{{ '%.1f'%(states('sensor.el_leistung_luftungsanlage') | float) | float }}"
-        friendly_name: 'El. Leistung Lüftungsanlage (gerundet)'
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+#      el_leistung_luftungsanlage_round:
+#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_luftungsanlage') | float) | float }}"
+#        friendly_name: 'El. Leistung Lüftungsanlage (gerundet)'
+#        unit_of_measurement: 'W'
+#        icon_template: mdi:speedometer
       # Licht
       el_leistung_berechnet_zigbee_licht_gaestezimmer:
         value_template: "{{ '%.1f'%(state_attr('light.innr_e14_ww_decke_gastezimmer_level_on_off', 'brightness') | float / 255 * 5.3)| float }}"
@@ -569,6 +569,18 @@
             {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float * 1) }}
           {% endif %}
         friendly_name: 'El. Leistung Trockner'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      el_leistung_gefrierschrank:
+        value_template: >-
+          {% if states('sensor.el_leistung_gefrierschrank_scheinleistung') | float < 22 %}
+            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float * 0.064 }}
+          {% elif states('sensor.el_leistung_gefrierschrank_scheinleistung') | float < 80 %}
+            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float * 0.73 }}
+          {% else %}
+            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float * 0.82) }}
+          {% endif %}
+        friendly_name: 'El. Leistung Gefrierschrank'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_tv:
