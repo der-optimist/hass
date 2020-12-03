@@ -257,7 +257,7 @@
     type: power
 
   # Gefrierschrank
-  - name: 'El. Leistung Gefrierschrank'
+  - name: 'El. Leistung Gefrierschrank Scheinleistung'
     state_address: '0/1/223'
     type: power
 
