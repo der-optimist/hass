@@ -428,7 +428,7 @@ cards:
         show_header_toggle: false
         entities:
           - type: section
-            label: Sonoff POW R2 1 (Licht 3.3)
+            label: Sonoff POW R2 1 (offline)
           - entity: sensor.sonoff_pow_r2_1_wirkleistung
             name: POW R2 1 - Wirkleistung
           - entity: sensor.sonoff_pow_r2_1_scheinleistung
@@ -438,7 +438,7 @@ cards:
           - entity: sensor.sonoff_pow_r2_1_energie
             name: POW R2 1 - Energie
           - type: section
-            label: Sonoff POW R2 2 (Licht 3.2)
+            label: Sonoff POW R2 2 (Kühlschrank Küche)
           - entity: sensor.sonoff_pow_r2_2_wirkleistung
             name: POW R2 2 - Wirkleistung
           - entity: sensor.sonoff_pow_r2_2_scheinleistung
@@ -448,7 +448,7 @@ cards:
           - entity: sensor.sonoff_pow_r2_2_energie
             name: POW R2 2 - Energie
           - type: section
-            label: Tasmota SD 2 (offline)
+            label: Tasmota SD 2 (Spülmaschine)
           - entity: sensor.tasmota_sd_2_wirkleistung
             name: Tasmota SD 2 - Wirkleistung
           - entity: sensor.tasmota_sd_2_scheinleistung
