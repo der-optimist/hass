@@ -146,7 +146,81 @@
     source: sensor.stromzahler_dauerverbraucher
     cycle: monthly
 
-# Covid
+  # Kalenderjahr
+  stromverbrauch_netzbezug_kalenderjahr:
+    source: sensor.stromzaehler_netzbezug
+    cycle: yearly
+  stromverbrauch_backofen_kalenderjahr:
+    source: sensor.stromzahler_backofen
+    cycle: yearly
+  stromverbrauch_bildschirm_theke_kalenderjahr:
+    source: sensor.stromzahler_bildschirm_theke
+    cycle: yearly
+  stromverbrauch_gefrierschrank_kalenderjahr:
+    source: sensor.stromzahler_gefrierschrank
+    cycle: yearly
+  stromverbrauch_kochfeld_kalenderjahr:
+    source: sensor.stromzahler_kochfeld
+    cycle: yearly
+  stromverbrauch_kuhlschrank_keller_kalenderjahr:
+    source: sensor.stromzahler_kuhlschrank_keller
+    cycle: yearly
+  stromverbrauch_kuhlschrank_kuche_kalenderjahr:
+    source: sensor.stromzahler_kuhlschrank_kuche
+    cycle: yearly
+  stromverbrauch_licht_berechnete_kalenderjahr:
+    source: sensor.stromzahler_licht_berechnete
+    cycle: yearly
+  stromverbrauch_licht_gesamt_kalenderjahr:
+    source: sensor.stromzahler_licht_gesamt
+    cycle: yearly
+  stromverbrauch_licht_sicherung_3_2_kalenderjahr:
+    source: sensor.stromzahler_licht_sicherung_3_2
+    cycle: yearly
+  stromverbrauch_licht_sicherung_3_3_kalenderjahr:
+    source: sensor.stromzahler_licht_sicherung_3_3
+    cycle: yearly
+  stromverbrauch_luftentf_waschk_kalenderjahr:
+    source: sensor.stromzahler_luftentf_waschk
+    cycle: yearly
+  stromverbrauch_luftentf_werkelraum_kalenderjahr:
+    source: sensor.stromzahler_luftentf_werkelraum
+    cycle: yearly
+  stromverbrauch_lg_anlage_kalenderjahr:
+    source: sensor.stromzahler_lg_anlage
+    cycle: yearly
+  stromverbrauch_luftungsanlage_kalenderjahr:
+    source: sensor.stromzahler_luftungsanlage
+    cycle: yearly
+  stromverbrauch_mixi_kalenderjahr:
+    source: sensor.stromzahler_mixi
+    cycle: yearly
+  stromverbrauch_spulmaschine_kalenderjahr:
+    source: sensor.stromzahler_spulmaschine
+    cycle: yearly
+  stromverbrauch_trockner_kalenderjahr:
+    source: sensor.stromzahler_trockner
+    cycle: yearly
+  stromverbrauch_tv_kalenderjahr:
+    source: sensor.stromzahler_tv
+    cycle: yearly
+  stromverbrauch_waschmaschine_kalenderjahr:
+    source: sensor.stromzahler_waschmaschine
+    cycle: yearly
+  stromverbrauch_wp_aussenteil_kalenderjahr:
+    source: sensor.stromzahler_wp_aussenteil
+    cycle: yearly
+  stromverbrauch_wp_heizstab_kalenderjahr:
+    source: sensor.stromzahler_wp_heizstab
+    cycle: yearly
+  stromverbrauch_wp_innenteil_kalenderjahr:
+    source: sensor.stromzahler_wp_innenteil
+    cycle: yearly
+  stromverbrauch_dauerverbraucher_kalenderjahr:
+    source: sensor.stromzahler_dauerverbraucher
+    cycle: yearly
+
+  # Covid
   covid_faelle_tag_d:
     source: sensor.fallzahlen_gesamt_d
     cycle: daily
