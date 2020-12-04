@@ -219,6 +219,10 @@ permanent_recorder:
     - cover.jalousie_wz_bodentiefes
     - cover.jalousie_wz_couch
   state_float:
+    - sensor.bme280_wemosd1_4_luftfeuchtigkeit
+    - sensor.bme280_wemosd1_5_luftfeuchtigkeit
+    - sensor.bme280_wemosd1_6_luftfeuchtigkeit
+    - sensor.bme280_wemosd1_7_luftfeuchtigkeit
     - sensor.bosch_outdoor_temperature
     - sensor.dht21_partyraum_luftfeuchtigkeit
     - sensor.dht21_partyraum_taupunkt
