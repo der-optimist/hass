@@ -44,7 +44,7 @@ class cube_terrasse(hass.Hass):
 #            self.log("Beide Wandwürfel waren aus, habe sie an gemacht")
 
         if self.get_state("light.panels_wc") == "on":
-            self.turn_off("light.panels_wc")
+            self.turn_on("light.panels_wc",brightness=20)
             self.turn_off("light.spiegel_wc")
             #self.turn_off("input_boolean.app_switch_licht_wc")
         else:
