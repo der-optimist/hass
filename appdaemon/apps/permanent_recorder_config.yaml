@@ -224,14 +224,6 @@ permanent_recorder:
     - sensor.bme280_wemosd1_6_luftfeuchtigkeit
     - sensor.bme280_wemosd1_7_luftfeuchtigkeit
     - sensor.bosch_outdoor_temperature
-    - sensor.dht21_partyraum_luftfeuchtigkeit
-    - sensor.dht21_partyraum_taupunkt
-    - sensor.dht21_partyraum_temperatur
-    - sensor.dht21_werkelraum_luftfeuchtigkeit
-    - sensor.dht21_werkelraum_taupunkt
-    - sensor.dht21_werkelraum_temperatur
-    - sensor.dht22_waschkueche_humidity
-    - sensor.dht22_waschkueche_temperature
     - sensor.diesel_amtzell
     - sensor.diesel_aral_mecka
     - sensor.diesel_hannober
@@ -318,6 +310,10 @@ permanent_recorder:
     - sensor.innr_sp_120_test_electrical_measurement
     - sensor.luftdruck_kuche_aqara
     - sensor.luftfeuchtigkeit_kuche_aqara
+    - sensor.luftfeuchtigkeit_partyraum
+    - sensor.luftfeuchtigkeit_vorratsraum
+    - sensor.luftfeuchtigkeit_waschkuche
+    - sensor.luftfeuchtigkeit_werkelraum
     - sensor.lumi_lumi_remote_b286acn01_power
     - sensor.lumi_lumi_sensor_magnet_aq2_83155c04_power
     - sensor.lumi_lumi_sensor_magnet_aq2_power
@@ -477,9 +473,13 @@ permanent_recorder:
     - sensor.temp_le_taster
     - sensor.temp_nahzimmer_pm
     - sensor.temp_outside_internet
+    - sensor.temp_partyraum
     - sensor.temp_schlafzimmer_pm
     - sensor.temp_schlafzimmer_taster
+    - sensor.temp_vorratsraum
+    - sensor.temp_waschkuche
     - sensor.temp_wc_pm
+    - sensor.temp_werkelraum
     - sensor.temp_wetterstation
     - sensor.temp_windfang_pm
     - sensor.temp_wohnzimmer_pm
