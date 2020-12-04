@@ -54,7 +54,7 @@ class energy_consumption_daily(hass.Hass):
     def generate_data_for_yesterday(self, kwargs):
         yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
         self.log("running consumption calclulation for " + yesterday_str)
-        consumption_kWh_total, total_consumption_cost, known_consumption_kWh_total, known_consumption_costs, unknown_consumption_kWh, unknown_consumers_cost, details_dict, text_cos_phi = self.calculate_energy_consumption(yesterday_str)
+        consumption_kWh_total, total_consumption_cost, known_consumption_kWh_total, known_consumption_costs, unknown_consumption_kWh, unknown_consumers_cost, details_dict = self.calculate_energy_consumption(yesterday_str)
         message_text = "Verbrauch gestern: {} kWh => {} €\n\nVerbrauch im Detail:\n".format(round(consumption_kWh_total,1),round(total_consumption_cost,2))
         details_sorted = sorted(details_dict.items(), key=lambda x: x[1], reverse=True)
         for i in details_sorted:
@@ -67,7 +67,7 @@ class energy_consumption_daily(hass.Hass):
             message_text = message_text + "\n\n{} % vom Stromverbrauch sind zugeordnet".format(int(round(100*known_consumption_kWh_total/consumption_kWh_total,0)))
         self.fire_event("custom_notify", message=message_text, target="telegram_jo")
         # temporary section for power factor:
-        self.fire_event("custom_notify", message=text_cos_phi, target="telegram_jo")
+#        self.fire_event("custom_notify", message=text_cos_phi, target="telegram_jo")
         
         
 
@@ -163,7 +163,7 @@ class energy_consumption_daily(hass.Hass):
         self.log("unbekannte Verbraucher: {} kWh, also {} EUR (berechnet aus Zaehlerstand)".format(round(unknown_consumption_kWh,1),round(unknown_consumers_cost,2)))
         self.client.write_points([{"measurement":self.save_measurement_name,"fields":{"unknown_consumers":unknown_consumption_kWh},"time":int(ts_save_local_ns)}])
         
-        # temporary section for power facor - light 3.3
+"""       # temporary section for power facor - light 3.3
         # energy meter
         measurement = "sensor.sonoff_pow_r2_1_energie"
         query_start = 'SELECT last("{}") FROM "homeassistant_permanent"."autogen"."{}" WHERE time <= {}'.format(self.db_field, measurement, int(ts_start_local_ns))
@@ -634,10 +634,10 @@ class energy_consumption_daily(hass.Hass):
         else:
             cos_phi_compare = 0.0
         text_cos_phi = text_cos_phi + "\n\n" + "TV:\nVerbrauch aus kWh: {} kWh\nVerbrauch aus W: {} kWh\nScheinenergie: {} kWh\nmittlerer cos phi: {}\nVergleich:\nEnergie:{}\nScheinenergie:{}\ncos_phi:{}".format(round(consumption_kWh_from_kwh,2),round(consumption_power_from_W,2),round(consumption_apparentpower_from_W,2),round(cos_phi_day,3),round(consumption_compare_eff_from_W,2),round(consumption_compare_app_from_W,2),round(cos_phi_compare,3))
-        
+"""        
         known_consumption_costs = known_consumption_kWh_total  * self.price_per_kWh
         self.log("Stromverbrauch von bekannten Dingen, {}: {} kWh, also {} EUR ".format(date_str, round(known_consumption_kWh_total,1),round(known_consumption_costs,2)))
-        return consumption_kWh_total, total_consumption_cost, known_consumption_kWh_total, known_consumption_costs, unknown_consumption_kWh, unknown_consumers_cost, details_dict, text_cos_phi
+        return consumption_kWh_total, total_consumption_cost, known_consumption_kWh_total, known_consumption_costs, unknown_consumption_kWh, unknown_consumers_cost, details_dict
             
 
 
