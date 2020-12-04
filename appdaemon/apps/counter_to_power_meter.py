@@ -28,31 +28,35 @@ class counter_to_power_meter(hass.Hass):
         self.run_in(self.initialize_delayed,30)
         
     def initialize_delayed(self, kwargs):
-        self.max_plausible_watt_per_phase = 7360 # would be 32A @ 230V
-        # initialize internal variables
-        self.time_of_last_event = None
-        self.value_of_last_event = None
-        self.handle_ramp_down_timer = None
-        self.offset_kwh = self.args["offset_kwh"]
-        # persistent stuff
-        self.raw_value_persistent = round(float(self.get_state(self.args["input_number_raw_value_persistent"])))
-        self.log("current persistent raw value is {}".format(self.raw_value_persistent))
-        self.raw_value_knx = round(float(self.get_state(self.args["knx_counter"])))
-        self.log("current knx value is {}".format(self.raw_value_knx))
-        self.raw_value_offset_persistent_to_knx = self.raw_value_persistent - self.raw_value_knx
-        self.log("self.raw_value_offset_persistent_to_knx is {}".format(self.raw_value_offset_persistent_to_knx))
-        if self.raw_value_offset_persistent_to_knx < 0:
-            self.log("last saved persistent value below knx value. will update persistent value")
-            self.raw_value_persistent = self.raw_value_knx
-            self.raw_value_offset_persistent_to_knx = 0
-            self.set_value(self.args["input_number_raw_value_persistent"], self.raw_value_persistent)
-            self.log("updated self.raw_value_persistent so {}".format(self.raw_value_persistent))
+        try:
+            self.max_plausible_watt_per_phase = 7360 # would be 32A @ 230V
+            # initialize internal variables
+            self.time_of_last_event = None
+            self.value_of_last_event = None
+            self.handle_ramp_down_timer = None
+            self.offset_kwh = self.args["offset_kwh"]
+            # persistent stuff
+            self.raw_value_persistent = round(float(self.get_state(self.args["input_number_raw_value_persistent"])))
+            self.log("current persistent raw value is {}".format(self.raw_value_persistent))
+            self.raw_value_knx = round(float(self.get_state(self.args["knx_counter"])))
+            self.log("current knx value is {}".format(self.raw_value_knx))
+            self.raw_value_offset_persistent_to_knx = self.raw_value_persistent - self.raw_value_knx
             self.log("self.raw_value_offset_persistent_to_knx is {}".format(self.raw_value_offset_persistent_to_knx))
-        # set states
-        self.set_state(self.args["ha_electricity_sensor_name"], state = round(((self.raw_value_persistent * self.args["energy_per_pulse"]) + self.offset_kwh),3), attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
-        self.set_state(self.args["ha_power_sensor_name"], state = 0.0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W", "device_class": "power"})
-        # listen for new values
-        self.listen_state(self.counter_changed, self.args["knx_counter"])
+            if self.raw_value_offset_persistent_to_knx < 0:
+                self.log("last saved persistent value below knx value. will update persistent value")
+                self.raw_value_persistent = self.raw_value_knx
+                self.raw_value_offset_persistent_to_knx = 0
+                self.set_value(self.args["input_number_raw_value_persistent"], self.raw_value_persistent)
+                self.log("updated self.raw_value_persistent so {}".format(self.raw_value_persistent))
+                self.log("self.raw_value_offset_persistent_to_knx is {}".format(self.raw_value_offset_persistent_to_knx))
+            # set states
+            self.set_state(self.args["ha_electricity_sensor_name"], state = round(((self.raw_value_persistent * self.args["energy_per_pulse"]) + self.offset_kwh),3), attributes={"icon":"mdi:counter", "friendly_name": self.args["ha_electricity_sensor_friendly_name"], "unit_of_measurement": "kWh"})
+            self.set_state(self.args["ha_power_sensor_name"], state = 0.0, attributes={"icon":"mdi:speedometer", "friendly_name": self.args["ha_power_sensor_friendly_name"], "unit_of_measurement": "W", "device_class": "power"})
+            # listen for new values
+            self.listen_state(self.counter_changed, self.args["knx_counter"])
+        except Exception as e:
+            self.log("Error during initializing. Will try again in 5 Minutes. Error was {}".format(e))
+            self.run_in(self.initialize_delayed,300)
 
     def counter_changed(self, entity, attribute, old, new, kwargs):
         if new == "unavailable" or new == "Nicht verfügbar" or new == old:
