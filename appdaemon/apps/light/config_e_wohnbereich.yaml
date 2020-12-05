@@ -38,7 +38,7 @@ auto_light_e_ez_panels:
 auto_light_e_ez_wandleuchten_hell:
   module: auto_light_beta
   class: auto_light
-  debug: quiet
+  debug: few
   app_switch: input_boolean.app_switch_licht_esszimmer
   light: light.wandleuchten_esszimmer_hell
   type: dim
@@ -292,7 +292,7 @@ auto_light_e_bar_panels:
 auto_light_e_wz_panels:
   module: auto_light_beta
   class: auto_light
-  debug: quiet
+  debug: few
   app_switch: input_boolean.app_switch_licht_wohnzimmer
   light: light.panels_wohnzimmer
   type: dim
@@ -330,7 +330,7 @@ auto_light_e_wz_panels:
 auto_light_e_wz_schrankbeleuchtung:
   module: auto_light_beta
   class: auto_light
-  debug: quiet
+  debug: few
   app_switch: input_boolean.app_switch_licht_wohnzimmer
   light: light.schrankbeleuchtung_wohnzimmer
   type: dim
@@ -353,7 +353,7 @@ auto_light_e_wz_schrankbeleuchtung:
 auto_light_e_wz_stehlampe:
   module: auto_light_beta
   class: auto_light
-  debug: quiet
+  debug: few
   app_switch: input_boolean.app_switch_licht_wohnzimmer
   light: light.innr_e27_color_stehlampe_wz_level_light_color_on_off
   type: color
