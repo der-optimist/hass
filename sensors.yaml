@@ -781,7 +781,7 @@
   - platform: mqtt
     name: "BME280 WemosD1 4 Luftfeuchtigkeit"
     state_topic: "tele/tasmota_wemos_d1_4/SENSOR"
-    value_template: '{{ value_json["BME280"]["Humidity"] }}'
+    value_template: '{{ (value_json["BME280"]["Humidity"] | float + 1.0) | round(1) }}'
     unit_of_measurement: "%"
   - platform: mqtt
     name: "BME280 WemosD1 4 Temperatur"
@@ -802,7 +802,7 @@
   - platform: mqtt
     name: "BME280 WemosD1 5 Luftfeuchtigkeit"
     state_topic: "tele/tasmota_wemos_d1_5/SENSOR"
-    value_template: '{{ (value_json["BME280"]["Humidity"] | float + 1.9) | round(1)  }}'
+    value_template: '{{ (value_json["BME280"]["Humidity"] | float + 2.7) | round(1) }}'
     unit_of_measurement: "%"
   - platform: mqtt
     name: "BME280 WemosD1 5 Temperatur"
@@ -823,7 +823,7 @@
   - platform: mqtt
     name: "BME280 WemosD1 6 Luftfeuchtigkeit"
     state_topic: "tele/tasmota_wemos_d1_6/SENSOR"
-    value_template: '{{ (value_json["BME280"]["Humidity"] | float - 1.9) | round(1)  }}'
+    value_template: '{{ (value_json["BME280"]["Humidity"] | float - 1.6) | round(1)  }}'
     unit_of_measurement: "%"
   - platform: mqtt
     name: "BME280 WemosD1 6 Temperatur"
@@ -844,7 +844,7 @@
   - platform: mqtt
     name: "BME280 WemosD1 7 Luftfeuchtigkeit"
     state_topic: "tele/tasmota_wemos_d1_7/SENSOR"
-    value_template: '{{ value_json["BME280"]["Humidity"] }}'
+    value_template: '{{ (value_json["BME280"]["Humidity"] | float - 0.1) | round(1) }}'
     unit_of_measurement: "%"
   - platform: mqtt
     name: "BME280 WemosD1 7 Temperatur"
