@@ -781,7 +781,7 @@
   - platform: mqtt
     name: "BME280 WemosD1 4 Luftfeuchtigkeit"
     state_topic: "tele/tasmota_wemos_d1_4/SENSOR"
-    value_template: '{{ (value_json["BME280"]["Humidity"] | float + 1.0) | round(1) }}'
+    value_template: '{{ (value_json["BME280"]["Humidity"] | float - 1.0) | round(1) }}'
     unit_of_measurement: "%"
   - platform: mqtt
     name: "BME280 WemosD1 4 Temperatur"
