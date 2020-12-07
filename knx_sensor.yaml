@@ -227,7 +227,7 @@
     type: power
 
   # Spülmaschine
-  - name: 'El. Leistung Spülmaschine'
+  - name: 'El. Leistung Spülmaschine Scheinleistung'
     state_address: '0/0/43'
     type: power
 
