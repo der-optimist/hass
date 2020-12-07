@@ -596,6 +596,24 @@
         friendly_name: 'El. Leistung Kühlschrank Küche'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      el_leistung_spulmaschine:
+        value_template: >-
+          {% if states('sensor.el_leistung_spulmaschine_scheinleistung') | float < 6 %}
+            0.0
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float < 8 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float * 0.2) }}
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float < 20 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float * 1.0) }}
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float < 60 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float * 0.55) }}
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float < 200 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float * 0.81) }}
+          {% else %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float * 1.0) }}
+          {% endif %}
+        friendly_name: 'El. Leistung Spülmaschine'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
       el_leistung_tv:
         value_template: >-
           {% if states('sensor.el_leistung_tv_scheinleistung') | float == 0 %}
