@@ -222,7 +222,7 @@
     type: power
 
   # Kühlschrank Küche
-  - name: 'El. Leistung Kühlschrank Küche'
+  - name: 'El. Leistung Kühlschrank Küche Scheinleistung'
     state_address: '0/0/23'
     type: power
 
