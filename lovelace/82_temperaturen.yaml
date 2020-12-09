@@ -58,8 +58,8 @@ cards:
     entities:
       - entity: sensor.onewire_07_estrich_kueche
         name: Estrich Küche
-      - entity: sensor.onewire_16_estrich_esszimmer
-        name: Estrich Esszimmer
+#      - entity: sensor.onewire_16_estrich_esszimmer
+#        name: Estrich Esszimmer
       - entity: sensor.onewire_14_estrich_wohnzimmer
         name: Estrich Wohnzimmer
       - entity: sensor.onewire_25_estrich_schlafzimmer
