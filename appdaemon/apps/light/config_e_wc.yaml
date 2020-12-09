@@ -25,8 +25,7 @@ auto_light_e_wc_panels:
   illuminance_sensor: sensor.helligkeit_wc_pm
   switching_off_offset: 120
   special_brightness_entities:
-    switch.majo_schlafen: 5
-    binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo: 5
+    binary_sensor.nachtmodus_wc: 5
 # - WC Spiegel
 auto_light_e_wc_spiegel:
   module: auto_light
@@ -48,5 +47,4 @@ auto_light_e_wc_spiegel:
   illuminance_sensor: sensor.helligkeit_wc_pm
   switching_off_offset: 120
   keeping_off_entities:
-    - switch.majo_schlafen
-    - binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo
+    - binary_sensor.nachtmodus_wc
