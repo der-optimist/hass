@@ -538,7 +538,7 @@
             # Kodi                           3   (gemessen)
             # Kodi-Platte                    2   (gemessen. Standby 1-2W, Betrieb 9W)
             # Relais Sicherung Keller        1   (geschätzt)
-            # Telefon
+            # Telefon                        0   (<1 gemessen bzw nicht messbar)
             # Drucker                        1.5 (an, gemessen)
         value_template: "{{ (now().minute | float / 1000000) + 58 + 0.5 + 2 + 4.5 + 5 + 4 + 2 + 5 + 6 + 3 + 2 + 1 + 1.5}}"
         friendly_name: 'El. Leistung Dauerverbraucher'
