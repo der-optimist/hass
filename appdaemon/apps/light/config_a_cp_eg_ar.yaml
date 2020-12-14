@@ -115,7 +115,7 @@ auto_light_a_tr_wurfel_feuerstelle:
 auto_light_a_tr_blumenbeet:
   module: auto_light_beta
   class: auto_light
-  debug: quiet
+  debug: few
   app_switch: input_boolean.app_switch_licht_aussen_carport
   light: light.licht_blumenbeet
   type: switch
