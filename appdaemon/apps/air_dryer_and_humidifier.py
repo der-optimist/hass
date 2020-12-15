@@ -187,3 +187,4 @@ class air_dryer_and_humidifier(hass.Hass):
         self.time_internal_state = self.time_internal_state - 1
         old_state = round(float(self.get_state(self.input_number_timer_special_humidity)))
         self.set_value(self.input_number_timer_special_humidity, old_state - 1)
+
