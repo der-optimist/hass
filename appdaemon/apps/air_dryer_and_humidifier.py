@@ -152,7 +152,7 @@ class air_dryer_and_humidifier(hass.Hass):
     def electrical_measurement_state_changed(self, entity, attributes, old, new, kwargs):
         if float(new) > 1.0:
             self.dryer_or_humidifier_is_running = True
-            self.set_state(self.name_reminder_switch_tank_full, state = "off", attributes = self.attributes_reminder_tank)
+            self.set_state(self.name_reminder_switch_tank, state = "off", attributes = self.attributes_reminder_tank)
             #self.log("measurement changed, above 1, set reminder to off")
         else:
             self.dryer_or_humidifier_is_running = False
