@@ -330,7 +330,7 @@ auto_light_e_wz_panels:
 auto_light_e_wz_schrankbeleuchtung:
   module: auto_light_beta
   class: auto_light
-  debug: few
+  debug: quiet
   app_switch: input_boolean.app_switch_licht_wohnzimmer
   light: light.schrankbeleuchtung_wohnzimmer
   type: dim
