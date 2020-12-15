@@ -253,6 +253,12 @@ input_number:
     min: 0
     max: 12
     step: 1
+  timer_spezial_luftf_wz:
+    name: Timer erhöhte Luftfeuchtigkeit WZ
+    initial: 0
+    min: 0
+    max: 24
+    step: 1
   speicher_stromzaehler_rohdaten_wp_innen:
     name: Speicher Stromz. Rohdat. WP innen
     min: 0
