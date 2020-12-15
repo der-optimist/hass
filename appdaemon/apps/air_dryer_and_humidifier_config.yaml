@@ -1,6 +1,7 @@
 luftentfeuchter_waschkueche:
-  module: air_dryer
-  class: air_dryer
+  module: air_dryer_and_humidifier
+  class: air_dryer_and_humidifier
+  type: dryer
   air_dryer_switch: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
   energy_measurement_sensor: sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
   humidity_sensor: sensor.luftfeuchtigkeit_waschkuche
@@ -19,8 +20,9 @@ luftentfeuchter_waschkueche:
   name_reminder_switch_tank_full: switch.reminder_luftentfeuchter_waschkueche_tank
   text_reminder_switch_tank_full: "Tank Luftentfeucher Waschküche leeren"
 luftentfeuchter_partyraum:
-  module: air_dryer
-  class: air_dryer
+  module: air_dryer_and_humidifier
+  class: air_dryer_and_humidifier
+  type: dryer
   air_dryer_switch: switch.innr_sp_120_test_on_off
   energy_measurement_sensor: sensor.innr_sp_120_test_electrical_measurement
   humidity_sensor: sensor.luftfeuchtigkeit_partyraum
