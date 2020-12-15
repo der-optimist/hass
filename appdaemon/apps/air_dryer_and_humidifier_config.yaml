@@ -41,11 +41,11 @@ luftbefeuchter_wz:
   air_dryer_or_humidifier_switch: switch.tasmota_sd_2
   energy_measurement_sensor: sensor.tasmota_sd_2_wirkleistung
   humidity_sensor: sensor.luftfeuchtigkeit_kuche_aqara
-  humidity_standard_max: 45
-  humidity_standard_min: 42
-  humidity_special_max: 50
-  humidity_special_min: 48
+  humidity_standard_max: 50
+  humidity_standard_min: 46
+  humidity_special_max: 55
+  humidity_special_min: 51
   zigbee: False
   input_number_timer_special_humidity: input_number.timer_spezial_luftf_wz
   name_reminder_switch_tank: switch.reminder_luftbefeuchter_wz_tank
-  text_reminder_switch_tank: "Tank Luftbefeuchter WZ füllen"
+  text_reminder_switch_tank: "Luftbefeuchter WZ füllen"
