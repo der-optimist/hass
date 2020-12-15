@@ -6,7 +6,7 @@ import appdaemon.plugins.hass.hassapi as hass
 # Args: see initialize()
 # 
 
-class air_dryer(hass.Hass):
+class air_dryer_and_humidifier(hass.Hass):
 
     def initialize(self):
         # Args
