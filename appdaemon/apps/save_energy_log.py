@@ -11,7 +11,7 @@ class save_energy_log(hass.Hass):
         #self.temp_limit_max = self.args["temp_limit_max"]
         # run regularly
         time_first_run = datetime.datetime.strptime("00:04:08","%H:%M:%S")
-        self.run_every(self.save_log, time_first_run, 30)                      #!!! disabled
+#        self.run_every(self.save_log, time_first_run, 30)                      #!!! disabled
 
     def save_log(self, kwargs):
         # POW R2 1 - Licht 3.3
