@@ -2,7 +2,7 @@ luftentfeuchter_waschkueche:
   module: air_dryer_and_humidifier
   class: air_dryer_and_humidifier
   machine_type: dryer
-  air_dryer_switch: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
+  air_dryer_or_humidifier_switch: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
   energy_measurement_sensor: sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
   humidity_sensor: sensor.luftfeuchtigkeit_waschkuche
 #  humidity_sensor: sensor.dht22_waschkueche_humidity
@@ -17,13 +17,13 @@ luftentfeuchter_waschkueche:
   zha_device_command_time_2: left_double
   time_2_hours: 8
   input_number_timer_special_humidity: input_number.timer_spezial_luftf_waschk
-  name_reminder_switch_tank_full: switch.reminder_luftentfeuchter_waschkueche_tank
-  text_reminder_switch_tank_full: "Tank Luftentfeucher Waschküche leeren"
+  name_reminder_switch_tank: switch.reminder_luftentfeuchter_waschkueche_tank
+  text_reminder_switch_tank: "Tank Luftentfeucher Waschküche leeren"
 luftentfeuchter_partyraum:
   module: air_dryer_and_humidifier
   class: air_dryer_and_humidifier
   machine_type: dryer
-  air_dryer_switch: switch.innr_sp_120_test_on_off
+  air_dryer_or_humidifier_switch: switch.innr_sp_120_test_on_off
   energy_measurement_sensor: sensor.innr_sp_120_test_electrical_measurement
   humidity_sensor: sensor.luftfeuchtigkeit_partyraum
   humidity_standard_max: 60
@@ -32,5 +32,20 @@ luftentfeuchter_partyraum:
   humidity_special_min: 53
   zigbee: False
   input_number_timer_special_humidity: input_number.timer_spezial_luftf_werkelraum
-  name_reminder_switch_tank_full: switch.reminder_luftentfeuchter_werkelraum_tank
-  text_reminder_switch_tank_full: "Tank Luftentfeucher Werkelraum leeren"
+  name_reminder_switch_tank: switch.reminder_luftentfeuchter_werkelraum_tank
+  text_reminder_switch_tank: "Tank Luftentfeucher Werkelraum leeren"
+luftbefeuchter_wz:
+  module: air_dryer_and_humidifier
+  class: air_dryer_and_humidifier
+  machine_type: humidifier
+  air_dryer_or_humidifier_switch: switch.tasmota_sd_2
+  energy_measurement_sensor: sensor.tasmota_sd_2_wirkleistung
+  humidity_sensor: sensor.luftfeuchtigkeit_kuche_aqara
+  humidity_standard_max: 45
+  humidity_standard_min: 42
+  humidity_special_max: 50
+  humidity_special_min: 48
+  zigbee: False
+  input_number_timer_special_humidity: input_number.timer_spezial_luftf_wz
+  name_reminder_switch_tank: switch.reminder_luftbefeuchter_wz_tank
+  text_reminder_switch_tank: "Tank Luftbefeuchter WZ füllen"
