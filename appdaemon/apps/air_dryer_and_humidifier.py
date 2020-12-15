@@ -1,7 +1,7 @@
 import appdaemon.plugins.hass.hassapi as hass
 
 #
-# App to switch an air dryer on and off depending on air humidity
+# App to switch an air dryer or humidifier on and off depending on air humidity
 #
 # Args: see initialize()
 # 
@@ -10,8 +10,9 @@ class air_dryer_and_humidifier(hass.Hass):
 
     def initialize(self):
         # Args
+        self.machine_type = self.args["machine_type"] # dryer or humidifier
         self.zigbee = self.args["zigbee"]
-        self.air_dryer_switch = self.args["air_dryer_switch"]
+        self.air_dryer_or_humidifier_switch = self.args["air_dryer_or_humidifier_switch"]
         self.energy_measurement_sensor = self.args["energy_measurement_sensor"]
         self.humidity_sensor = self.args["humidity_sensor"]
         self.humidity_standard_max = float(self.args["humidity_standard_max"])
@@ -19,8 +20,8 @@ class air_dryer_and_humidifier(hass.Hass):
         self.humidity_special_max = float(self.args["humidity_special_max"])
         self.humidity_special_min = float(self.args["humidity_special_min"])
         self.input_number_timer_special_humidity = self.args["input_number_timer_special_humidity"]
-        self.name_reminder_switch_tank_full = self.args["name_reminder_switch_tank_full"]
-        self.text_reminder_switch_tank_full = self.args["text_reminder_switch_tank_full"]
+        self.name_reminder_switch_tank = self.args["name_reminder_switch_tank"]
+        self.text_reminder_switch_tank = self.args["text_reminder_switch_tank"]
         if self.zigbee:
             self.zha_device_ieee = self.args["zha_device_ieee"]
             self.zha_device_command_time_1 = self.args["zha_device_command_time_1"]
@@ -37,8 +38,8 @@ class air_dryer_and_humidifier(hass.Hass):
         
         # define tank full reminder switch
         icon_reminder_tank = "/local/icons/reminders/drop_blue_blink.svg"
-        self.attributes_reminder_tank_full = {"entity_picture": icon_reminder_tank, "friendly_name": self.text_reminder_switch_tank_full}
-        self.set_state(self.name_reminder_switch_tank_full, state = "off", attributes = self.attributes_reminder_tank_full)
+        self.attributes_reminder_tank = {"entity_picture": icon_reminder_tank, "friendly_name": self.text_reminder_switch_tank}
+        self.set_state(self.name_reminder_switch_tank, state = "off", attributes = self.attributes_reminder_tank)
         
         self.timer_handle = None
         self.time_internal_state = 0
@@ -51,40 +52,68 @@ class air_dryer_and_humidifier(hass.Hass):
             self.log("Timer ist Null als ich gestartet wurde, alles ruhig hier...")
             self.special_mode = False
         
-        #dryer already running?
-        self.check_if_dryer_running(None)
+        #dryer_or_humidifier already running?
+        self.check_if_dryer_or_humidifier_running(None)
         
-        # dryer needed?
+        # dryer_or_humidifier needed?
         self.current_humidity = float(self.get_state(self.humidity_sensor))
-        self.check_if_dryer_needed()
+        self.check_if_dryer_or_humidifier_needed()
         
-        self.check_if_dryer_full()
+        self.check_if_dryer_or_humidifier_full_or_empty()
 
-    def check_if_dryer_needed(self):
-        if self.special_mode:
-            if self.current_humidity >= self.humidity_special_max:
-                self.turn_on(self.air_dryer_switch)
-                self.run_in(self.check_if_dryer_running,60)
-                self.dryer_needed = True
-#                self.log("Special Mode, Dryer needed")
-            elif self.current_humidity < self.humidity_special_min:
-                self.turn_off(self.air_dryer_switch)
-                self.dryer_needed = False
-#                self.log("Special Mode, Dryer not needed")
-#            else:
-#                self.log("Special Mode, Humidity in target range, will do nothing")
+    def check_if_dryer_or_humidifier_needed(self):
+        if self.machine_type == "dryer":
+            if self.special_mode:
+                if self.current_humidity >= self.humidity_special_max:
+                    self.turn_on(self.air_dryer_or_humidifier_switch)
+                    self.run_in(self.check_if_dryer_or_humidifier_running,60)
+                    self.dryer_or_humidifier_needed = True
+    #                self.log("Special Mode, dryer_or_humidifier needed")
+                elif self.current_humidity < self.humidity_special_min:
+                    self.turn_off(self.air_dryer_or_humidifier_switch)
+                    self.dryer_or_humidifier_needed = False
+    #                self.log("Special Mode, dryer_or_humidifier not needed")
+    #            else:
+    #                self.log("Special Mode, Humidity in target range, will do nothing")
+            else:
+                if self.current_humidity >= self.humidity_standard_max:
+                    self.turn_on(self.air_dryer_or_humidifier_switch)
+                    self.run_in(self.check_if_dryer_or_humidifier_running,60)
+                    self.dryer_or_humidifier_needed = True
+    #                self.log("Standard Mode, dryer_or_humidifier needed")
+                elif self.current_humidity < self.humidity_standard_min:
+                    self.turn_off(self.air_dryer_or_humidifier_switch)
+                    self.dryer_or_humidifier_needed = False
+    #                self.log("Standard Mode, dryer_or_humidifier not needed") 
+    #            else:
+    #                self.log("Standard Mode, Humidity in target range, will do nothing")
+        elif self.machine_type == "humidifier":
+            if self.special_mode:
+                if self.current_humidity <= self.humidity_special_min:
+                    self.turn_on(self.air_dryer_or_humidifier_switch)
+                    self.run_in(self.check_if_dryer_or_humidifier_running,60)
+                    self.dryer_or_humidifier_needed = True
+    #                self.log("Special Mode, dryer_or_humidifier needed")
+                elif self.current_humidity > self.humidity_special_max:
+                    self.turn_off(self.air_dryer_or_humidifier_switch)
+                    self.dryer_or_humidifier_needed = False
+    #                self.log("Special Mode, dryer_or_humidifier not needed")
+    #            else:
+    #                self.log("Special Mode, Humidity in target range, will do nothing")
+            else:
+                if self.current_humidity <= self.humidity_standard_min:
+                    self.turn_on(self.air_dryer_or_humidifier_switch)
+                    self.run_in(self.check_if_dryer_or_humidifier_running,60)
+                    self.dryer_or_humidifier_needed = True
+    #                self.log("Standard Mode, dryer_or_humidifier needed")
+                elif self.current_humidity > self.humidity_standard_max:
+                    self.turn_off(self.air_dryer_or_humidifier_switch)
+                    self.dryer_or_humidifier_needed = False
+    #                self.log("Standard Mode, dryer_or_humidifier not needed") 
+    #            else:
+    #                self.log("Standard Mode, Humidity in target range, will do nothing")
         else:
-            if self.current_humidity >= self.humidity_standard_max:
-                self.turn_on(self.air_dryer_switch)
-                self.run_in(self.check_if_dryer_running,60)
-                self.dryer_needed = True
-#                self.log("Standard Mode, Dryer needed")
-            elif self.current_humidity < self.humidity_standard_min:
-                self.turn_off(self.air_dryer_switch)
-                self.dryer_needed = False
-#                self.log("Standard Mode, Dryer not needed") 
-#            else:
-#                self.log("Standard Mode, Humidity in target range, will do nothing")
+            self.log("machine_type must be dryer or humidifier. Please check app config.")
     
     def timer_state_changed(self, entity, attributes, old, new, kwargs):
         self.log("State Change in Humidity Timer erkannt: {}".format(new))
@@ -114,36 +143,36 @@ class air_dryer_and_humidifier(hass.Hass):
                 self.time_internal_state = round(float(new))
                 self.timer_handle = self.run_in(self.stunde_abgelaufen,3600)
                 self.special_mode = True
-        self.check_if_dryer_needed()
+        self.check_if_dryer_or_humidifier_needed()
 
     def humidity_state_changed(self, entity, attributes, old, new, kwargs):
         self.current_humidity = float(self.get_state(self.humidity_sensor))
-        self.check_if_dryer_needed()
+        self.check_if_dryer_or_humidifier_needed()
             
     def electrical_measurement_state_changed(self, entity, attributes, old, new, kwargs):
         if float(new) > 1.0:
-            self.dryer_is_running = True
-            self.set_state(self.name_reminder_switch_tank_full, state = "off", attributes = self.attributes_reminder_tank_full)
+            self.dryer_or_humidifier_is_running = True
+            self.set_state(self.name_reminder_switch_tank_full, state = "off", attributes = self.attributes_reminder_tank)
             #self.log("measurement changed, above 1, set reminder to off")
         else:
-            self.dryer_is_running = False
-#            self.log("measurement changed, below 1, will check if dryer full")
-            self.check_if_dryer_full()
+            self.dryer_or_humidifier_is_running = False
+#            self.log("measurement changed, below 1, will check if dryer_or_humidifier full")
+            self.check_if_dryer_or_humidifier_full_or_empty()
         
-    def check_if_dryer_running(self, kwargs):
+    def check_if_dryer_or_humidifier_running(self, kwargs):
         if float(self.get_state(self.energy_measurement_sensor)) > 1.0:
-            self.dryer_is_running = True
+            self.dryer_or_humidifier_is_running = True
         else:
-            self.dryer_is_running = False
-            self.check_if_dryer_full()
+            self.dryer_or_humidifier_is_running = False
+            self.check_if_dryer_or_humidifier_full_or_empty()
     
-    def check_if_dryer_full(self):
-        if self.dryer_needed and not self.dryer_is_running:
+    def check_if_dryer_or_humidifier_full_or_empty(self):
+        if self.dryer_or_humidifier_needed and not self.dryer_or_humidifier_is_running:
             self.log("Tank Luftdrockner ist wohl voll")
-            self.set_state(self.name_reminder_switch_tank_full, state = "on", attributes = self.attributes_reminder_tank_full)
+            self.set_state(self.name_reminder_switch_tank, state = "on", attributes = self.attributes_reminder_tank)
         else:
-            self.set_state(self.name_reminder_switch_tank_full, state = "off", attributes = self.attributes_reminder_tank_full)
-#            self.log("Tank ist wohl nicht voll. dryer_needed ist {}, dryer_is_running ist {}".format(self.dryer_needed, self.dryer_is_running))
+            self.set_state(self.name_reminder_switch_tank, state = "off", attributes = self.attributes_reminder_tank)
+#            self.log("Tank ist wohl nicht voll. dryer_or_humidifier_needed ist {}, dryer_or_humidifier_is_running ist {}".format(self.dryer_or_humidifier_needed, self.dryer_or_humidifier_is_running))
         
     def button_time_1(self,event_name,data,kwargs):
         self.time_internal_state = self.time_1_hours
