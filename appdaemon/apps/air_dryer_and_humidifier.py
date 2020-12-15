@@ -52,11 +52,11 @@ class air_dryer_and_humidifier(hass.Hass):
             self.log("Timer ist Null als ich gestartet wurde, alles ruhig hier...")
             self.special_mode = False
         
-        # dryer or humidifier needed?
+        # dryer_or_humidifier needed?
         self.current_humidity = float(self.get_state(self.humidity_sensor))
         self.check_if_dryer_or_humidifier_needed()
         
-        #dryer or humidifier already running?
+        #dryer_or_humidifier already running?
         self.check_if_dryer_or_humidifier_running(None)
         
         self.check_if_dryer_or_humidifier_full_or_empty()
@@ -73,7 +73,8 @@ class air_dryer_and_humidifier(hass.Hass):
                     self.turn_off(self.air_dryer_or_humidifier_switch)
                     self.dryer_or_humidifier_needed = False
     #                self.log("Special Mode, dryer_or_humidifier not needed")
-    #            else:
+                else:
+                    self.dryer_or_humidifier_needed = False
     #                self.log("Special Mode, Humidity in target range, will do nothing")
             else:
                 if self.current_humidity >= self.humidity_standard_max:
@@ -85,7 +86,8 @@ class air_dryer_and_humidifier(hass.Hass):
                     self.turn_off(self.air_dryer_or_humidifier_switch)
                     self.dryer_or_humidifier_needed = False
     #                self.log("Standard Mode, dryer_or_humidifier not needed") 
-    #            else:
+                else:
+                    self.dryer_or_humidifier_needed = False
     #                self.log("Standard Mode, Humidity in target range, will do nothing")
         elif self.machine_type == "humidifier":
             if self.special_mode:
@@ -98,7 +100,8 @@ class air_dryer_and_humidifier(hass.Hass):
                     self.turn_off(self.air_dryer_or_humidifier_switch)
                     self.dryer_or_humidifier_needed = False
     #                self.log("Special Mode, dryer_or_humidifier not needed")
-    #            else:
+                else:
+                    self.dryer_or_humidifier_needed = False
     #                self.log("Special Mode, Humidity in target range, will do nothing")
             else:
                 if self.current_humidity <= self.humidity_standard_min:
@@ -110,7 +113,8 @@ class air_dryer_and_humidifier(hass.Hass):
                     self.turn_off(self.air_dryer_or_humidifier_switch)
                     self.dryer_or_humidifier_needed = False
     #                self.log("Standard Mode, dryer_or_humidifier not needed") 
-    #            else:
+                else:
+                    self.dryer_or_humidifier_needed = False
     #                self.log("Standard Mode, Humidity in target range, will do nothing")
         else:
             self.log("machine_type must be dryer or humidifier. Please check app config.")
@@ -187,4 +191,3 @@ class air_dryer_and_humidifier(hass.Hass):
         self.time_internal_state = self.time_internal_state - 1
         old_state = round(float(self.get_state(self.input_number_timer_special_humidity)))
         self.set_value(self.input_number_timer_special_humidity, old_state - 1)
-
