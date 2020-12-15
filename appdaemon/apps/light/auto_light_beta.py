@@ -175,6 +175,7 @@ class auto_light(hass.Hass):
                 self.debug_filter("No other trigger is active, noboby seems to be here. Will decide if I should switch the light off","few")
                 self.debug_filter("But first, I will activate automatic mode","all")
                 self.manually_switched_off = False
+                self.manually_switched_on = False
                 self.filter_turn_off_command(None)
 
     def filter_turn_on_command(self, kwargs):
