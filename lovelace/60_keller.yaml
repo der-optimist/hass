@@ -25,9 +25,9 @@ cards:
     - type: section
       label: Luft
     - entity: sensor.temp_waschkuche
-      name: Temperatur DHT
+      name: Temperatur
     - entity: sensor.luftfeuchtigkeit_waschkuche
-      name: Luftfeuchtigkeit DHT
+      name: Luftfeuchtigkeit
     - entity: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
       name: Steckdose Luftentfeuchter
     - entity: sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
@@ -83,9 +83,9 @@ cards:
     - type: section
       label: Luft
     - entity: sensor.temp_werkelraum
-      name: Temperatur DHT
+      name: Temperatur
     - entity: sensor.luftfeuchtigkeit_werkelraum
-      name: Luftfeuchtigkeit DHT
+      name: Luftfeuchtigkeit
   - type: entities
     title: "Partyraum"
     show_header_toggle: false
@@ -97,9 +97,9 @@ cards:
     - type: section
       label: Luft
     - entity: sensor.temp_partyraum
-      name: Temperatur DHT
+      name: Temperatur
     - entity: sensor.luftfeuchtigkeit_partyraum
-      name: Luftfeuchtigkeit DHT
+      name: Luftfeuchtigkeit
     - entity: switch.innr_sp_120_test_on_off
       name: Steckdose Luftentfeuchter
     - entity: sensor.innr_sp_120_test_electrical_measurement
