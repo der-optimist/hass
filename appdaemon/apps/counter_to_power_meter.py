@@ -88,10 +88,10 @@ class counter_to_power_meter(hass.Hass):
                 electricity_delta_Ws = (self.raw_value_persistent - self.value_of_last_event) * self.args["energy_per_pulse"] * 3600 * 1000
                 current_power = electricity_delta_Ws / time_delta_seconds
                 if (current_power > (float(self.args["phases"]) * self.max_plausible_watt_per_phase)) or current_power < 0:
-                    self.log("Unplausibler Wert für Leistung: {} Watt - werde ihn ignorieren".format(round(current_power, 1)))
+                    self.log("Unplausibler Wert fuer Leistung: {} Watt - werde ihn ignorieren".format(round(current_power, 1)))
                 else:
                     if self.args["debug"] == True:
-                        self.log("Gueltiger Wert für Leistung: {} Watt".format(round(current_power, 1)))
+                        self.log("Gueltiger Wert fuer Leistung: {} Watt".format(round(current_power, 1)))
                     attributes = self.get_state(self.args["ha_power_sensor_name"], attribute="all")["attributes"]
                     self.set_state(self.args["ha_power_sensor_name"], state = round(current_power, 1), attributes=attributes)
                     #self.log("Value {} received from counter {}. Calculated new power value: {}".format(new,self.args["knx_counter"],round(current_power, 1)))
@@ -111,6 +111,8 @@ class counter_to_power_meter(hass.Hass):
             self.set_state(self.args["ha_power_sensor_name"], state = 0.0, attributes=attributes)
             self.log("Rampdown limit of counter {} reached. Will set new power to 0".format(self.args["knx_counter"]))
         else:
+            if self.args["debug"] == True:
+                self.log("Ramp-Down Wert fuer Leistung: {} Watt".format(round(current_power, 1)))
             attributes = self.get_state(self.args["ha_power_sensor_name"], attribute="all")["attributes"]
             self.set_state(self.args["ha_power_sensor_name"], state = round(current_power, 1), attributes=attributes)
             #self.log("Rampdown set counter {} to new power value: {}".format(self.args["knx_counter"],round(current_power, 1)))
