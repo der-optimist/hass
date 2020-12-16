@@ -22,32 +22,32 @@
       luftfeuchtigkeit_waschkuche:
         friendly_name: 'Luftfeuchtigkeit Waschküche'
         unit_of_measurement: '%'
-        value_template: "{{ states('sensor.dht21_wemosd1_2_luftfeuchtigkeit') }}"
+        value_template: "{{ states('sensor.bme280_wemosd1_4_luftfeuchtigkeit') }}"
         device_class: humidity
       temp_waschkuche:
         friendly_name: 'Temp. Waschküche'
         unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.dht21_wemosd1_2_temperatur') }}"
+        value_template: "{{ states('sensor.bme280_wemosd1_4_temperatur') }}"
         device_class: temperature
       luftfeuchtigkeit_werkelraum:
         friendly_name: 'Luftfeuchtigkeit Werkelraum'
         unit_of_measurement: '%'
-        value_template: "{{ states('sensor.dht21_wemosd1_3_luftfeuchtigkeit') }}"
+        value_template: "{{ states('sensor.bme280_wemosd1_7_luftfeuchtigkeit') }}"
         device_class: humidity
       temp_werkelraum:
         friendly_name: 'Temp. Werkelraum'
         unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.dht21_wemosd1_3_temperatur') }}"
+        value_template: "{{ states('sensor.bme280_wemosd1_7_temperatur') }}"
         device_class: temperature
       luftfeuchtigkeit_partyraum:
         friendly_name: 'Luftfeuchtigkeit Partyraum'
         unit_of_measurement: '%'
-        value_template: "{{ states('sensor.dht21_wemosd1_1_luftfeuchtigkeit') }}"
+        value_template: "{{ states('sensor.bme280_wemosd1_6_luftfeuchtigkeit') }}"
         device_class: humidity
       temp_partyraum:
         friendly_name: 'Temp. Partyraum'
         unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.dht21_wemosd1_1_temperatur') }}"
+        value_template: "{{ states('sensor.bme280_wemosd1_6_temperatur') }}"
         device_class: temperature
       luftfeuchtigkeit_vorratsraum:
         friendly_name: 'Luftfeuchtigkeit Speis'
@@ -833,7 +833,7 @@
   - platform: mqtt
     name: "BME280 WemosD1 5 Luftfeuchtigkeit"
     state_topic: "tele/tasmota_wemos_d1_5/SENSOR"
-    value_template: '{{ (value_json["BME280"]["Humidity"] | float + 2.7) | round(1) }}'
+    value_template: '{{ (value_json["BME280"]["Humidity"] | float + 2) | round(1) }}'
     unit_of_measurement: "%"
   - platform: mqtt
     name: "BME280 WemosD1 5 Temperatur"
