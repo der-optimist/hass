@@ -129,9 +129,16 @@
         value_template: "{{ is_state('input_text.location_jo_roh', 'Arbeit') }}"
       pm_k_timer_magnetsensor_vorratsraum:
         friendly_name: "PM Timer Magnetsensor Vorratsraum"
+        device_class: motion
         delay_off:
-          minutes: 3
+          minutes: 5
         value_template: "{{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off','on') }}"
+      pm_k_timer_magnetsensor_werkelraum:
+        friendly_name: "PM Timer Magnetsensor Werkelraum"
+        device_class: motion
+        delay_off:
+          minutes: 10
+        value_template: "{{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off','on') }}"        
       anwesenheit_bildschirm:
         friendly_name: "Anwesenheit Bildschirm"
         value_template: >-
