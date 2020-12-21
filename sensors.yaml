@@ -52,7 +52,7 @@
       luftfeuchtigkeit_vorratsraum:
         friendly_name: 'Luftfeuchtigkeit Speis'
         unit_of_measurement: '%'
-        value_template: "{{ states('sensor.lumi_lumi_weather_humidity') }}"
+        value_template: "{{ (states('sensor.lumi_lumi_weather_humidity') | float -4.5) | round(1) }}"
         device_class: humidity
       temp_vorratsraum:
         friendly_name: 'Temp. Speis'
@@ -78,196 +78,196 @@
         icon_template: mdi:counter
       # Daily
       stromverbrauch_netzbezug_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_netzbezug_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_netzbezug_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_backofen_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_backofen_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_backofen_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_bildschirm_theke_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_bildschirm_theke_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_bildschirm_theke_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_gefrierschrank_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_gefrierschrank_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_gefrierschrank_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_kochfeld_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_kochfeld_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_kochfeld_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_kuhlschrank_keller_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_kuhlschrank_keller_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_kuhlschrank_keller_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_kuhlschrank_kuche_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_kuhlschrank_kuche_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_kuhlschrank_kuche_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_licht_berechnete_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_licht_berechnete_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_licht_berechnete_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_licht_gesamt_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_licht_gesamt_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_licht_gesamt_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_licht_sicherung_3_2_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_licht_sicherung_3_2_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_licht_sicherung_3_2_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_licht_sicherung_3_3_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_licht_sicherung_3_3_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_licht_sicherung_3_3_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_luftentf_waschk_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_luftentf_waschk_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_luftentf_waschk_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_luftentf_werkelraum_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_luftentf_werkelraum_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_luftentf_werkelraum_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_lg_anlage_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_lg_anlage_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_lg_anlage_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_luftungsanlage_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_luftungsanlage_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_luftungsanlage_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_mixi_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_mixi_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_mixi_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_spulmaschine_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_spulmaschine_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_spulmaschine_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_trockner_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_trockner_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_trockner_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_tv_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_tv_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_tv_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_waschmaschine_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_waschmaschine_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_waschmaschine_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_wp_aussenteil_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_wp_aussenteil_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_wp_aussenteil_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_wp_heizstab_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_wp_heizstab_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_wp_heizstab_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_wp_innenteil_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_wp_innenteil_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_wp_innenteil_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_dauerverbraucher_vortag:
-        value_template: "{{ state_attr('sensor.stromverbrauch_dauerverbraucher_tag', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_dauerverbraucher_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       # Monthly
       stromverbrauch_netzbezug_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_netzbezug_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_netzbezug_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_backofen_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_backofen_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_backofen_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_bildschirm_theke_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_bildschirm_theke_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_bildschirm_theke_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_gefrierschrank_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_gefrierschrank_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_gefrierschrank_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_kochfeld_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_kochfeld_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_kochfeld_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_kuhlschrank_keller_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_kuhlschrank_keller_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_kuhlschrank_keller_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_kuhlschrank_kuche_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_kuhlschrank_kuche_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_kuhlschrank_kuche_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_licht_berechnete_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_licht_berechnete_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_licht_berechnete_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_licht_gesamt_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_licht_gesamt_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_licht_gesamt_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_licht_sicherung_3_2_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_licht_sicherung_3_2_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_licht_sicherung_3_2_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_licht_sicherung_3_3_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_licht_sicherung_3_3_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_licht_sicherung_3_3_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_luftentf_waschk_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_luftentf_waschk_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_luftentf_waschk_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_luftentf_werkelraum_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_luftentf_werkelraum_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_luftentf_werkelraum_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_lg_anlage_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_lg_anlage_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_lg_anlage_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_luftungsanlage_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_luftungsanlage_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_luftungsanlage_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_mixi_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_mixi_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_mixi_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_spulmaschine_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_spulmaschine_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_spulmaschine_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_trockner_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_trockner_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_trockner_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_tv_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_tv_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_tv_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_waschmaschine_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_waschmaschine_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_waschmaschine_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_wp_aussenteil_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_wp_aussenteil_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_wp_aussenteil_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_wp_heizstab_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_wp_heizstab_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_wp_heizstab_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_wp_innenteil_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_wp_innenteil_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_wp_innenteil_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromverbrauch_dauerverbraucher_vormonat:
-        value_template: "{{ state_attr('sensor.stromverbrauch_dauerverbraucher_monat', 'last_period') }}"
+        value_template: "{{ state_attr('sensor.stromverbrauch_dauerverbraucher_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
 
