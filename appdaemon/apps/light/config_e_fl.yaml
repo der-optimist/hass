@@ -40,7 +40,7 @@ auto_light_e_fl_stehlampe_oben:
   app_switch: input_boolean.app_switch_licht_flur_eg
   light: light.innr_e27_rgb_flur_eg_oben_level_light_color_on_off
   type: color
-  rgb_color: [255, 0, 191]
+  rgb_color: [255, 0, 255]
   triggers: 
     - binary_sensor.pm_e_fl_treppe_og
     - binary_sensor.pm_e_fl_windfang
@@ -73,7 +73,7 @@ auto_light_e_fl_stehlampe_unten:
   app_switch: input_boolean.app_switch_licht_flur_eg
   light: light.innr_e27_rgb_flur_eg_unten_level_light_color_on_off
   type: color
-  rgb_color: [255, 0, 191]
+  rgb_color: [255, 0, 255]
   triggers: 
     - binary_sensor.pm_e_fl_treppe_og
     - binary_sensor.pm_e_fl_windfang
