@@ -76,7 +76,7 @@ class humidity_manager(hass.Hass):
             if r_in < (humidity_inside - 10):
                 status = "Lüften möglich ({} => {}%)".format(int(round(humidity_inside,0)), int(round(r_in,0)))
             elif r_in >= (humidity_inside - 10) and r_in <= humidity_inside:
-                status = "Lüften bringt nicht viel ({} => {}%)".format(int(round(humidity_inside,0)), int(round(r_in,0)))
+                status = "Lüften bringt wenig ({} => {}%)".format(int(round(humidity_inside,0)), int(round(r_in,0)))
             else:
                 status = "Nicht lüften (sonst {} => {}%)".format(int(round(humidity_inside,0)), int(round(r_in,0)))
                 
