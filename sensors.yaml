@@ -1121,8 +1121,8 @@
     unit_of_measurement: 'Menschen'
   - platform: rest
     resource: "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=county%20%3D%20%27LK%20WITTENBERG%27&outFields=cases,deaths,cases_per_100k,cases_per_population,BL,BL_ID,county,last_update,cases7_per_100k,recovered,cases7_bl_per_100k,EWZ_BL&returnGeometry=false&outSR=4326&f=json"
-    name: "7-Tage-Inzidenz Jessen"
-    value_template: "{{ '%.1f'%(value_json.features.0.attributes.cases7_bl_per_100k | float) }}"
+    name: "7-Tage-Inzidenz Wittenberg"
+    value_template: "{{ '%.1f'%(value_json.features.0.attributes.cases7_per_100k | float) }}"
     unit_of_measurement: 'Menschen'
   - platform: rest
     resource: "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Coronaf%C3%A4lle_in_den_Bundesl%C3%A4ndern/FeatureServer/0/query?where=1%3D1&outFields=Fallzahl,LAN_ew_GEN&returnGeometry=false&outSR=4326&f=json"
