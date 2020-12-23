@@ -137,10 +137,10 @@ cards:
       entity: sensor.7_tage_inzidenz_bawu
       state: "{{ '%.0f'%(states('sensor.7_tage_inzidenz_bawu')) | float | round(0) }}"
     - type: custom:template-entity-row
-      name: 7-Tage Inzidenz Jessen
+      name: 7-Tage Inzidenz Wittenberg
       icon: mdi:medical-bag
-      entity: sensor.7_tage_inzidenz_jessen
-      state: "{{ '%.0f'%(states('sensor.7_tage_inzidenz_jessen')) | float | round(0) }}"
+      entity: sensor.7_tage_inzidenz_wittenberg
+      state: "{{ '%.0f'%(states('sensor.7_tage_inzidenz_wittenberg')) | float | round(0) }}"
   - type: custom:auto-entities
     show_empty: false
     card:
