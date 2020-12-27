@@ -57,12 +57,7 @@ auto_light_e_fl_stehlampe_oben:
     "06:30": 40
     "19:00": 20
   min_illuminance_values:
-    "00:00": 5
-    "06:30": 20
-    "09:00": 25
-    "17:00": 10
-    "19:00": 10
-    "23:00": 5
+    "00:00": 50
   illuminance_sensor: sensor.helligkeit_flur_eg_pm
   keeping_off_entities:
     - switch.majo_schlafen
@@ -95,12 +90,7 @@ auto_light_e_fl_stehlampe_unten:
     "06:30": 40
     "19:00": 20
   min_illuminance_values:
-    "00:00": 5
-    "06:30": 20
-    "09:00": 25
-    "17:00": 10
-    "19:00": 10
-    "23:00": 5
+    "00:00": 50
   illuminance_sensor: sensor.helligkeit_flur_eg_pm
   keeping_off_entities:
     - switch.majo_schlafen
