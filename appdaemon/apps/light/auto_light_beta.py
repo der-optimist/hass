@@ -145,6 +145,7 @@ class auto_light(hass.Hass):
             self.manually_switched_on = False
             self.i_switched_off = False
             self.i_switched_on = False
+            self.check_if_any_trigger_active(None)
         if new == "on" and old != "on":
             if old == "off":
                 if self.is_triggered and not self.i_switched_on:
@@ -153,6 +154,7 @@ class auto_light(hass.Hass):
             self.manually_switched_off = False
             self.i_switched_off = False
             self.i_switched_on = False
+            self.is_triggered = True
 
     def trigger_state_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Light Trigger: {} changed from {} to {}".format(entity, old, new),"few")
