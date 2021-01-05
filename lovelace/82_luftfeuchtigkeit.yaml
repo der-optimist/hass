@@ -1,0 +1,28 @@
+title: Luftfeuchtigkeit
+path: luftfeuchtigkeit
+icon: mdi:water-percent
+cards:
+  - type: entities
+    title: Keller
+    show_header_toggle: false
+    entities:
+      - entity: sensor.luftfeuchtigkeit_waschkuche
+        name: Waschküche
+      - entity: sensor.luftfeuchtigkeit_werkelraum
+        name: Werkelraum
+      - entity: sensor.luftfeuchtigkeit_partyraum
+        name: Partyraum
+      - entity: sensor.luftfeuchtigkeit_vorratsraum
+        name: Speis
+  - type: entities
+    title: EG und OG
+    show_header_toggle: false
+    entities:
+      - entity: sensor.luftfeuchtigkeit_kuche_aqara
+        name: Küche (aqara)
+  - type: entities
+    title: Draußen
+    show_header_toggle: false
+    entities:
+      - entity: sensor.humidity_outside_internet
+        name: Draußen (Internet)
