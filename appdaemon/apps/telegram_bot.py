@@ -1,6 +1,4 @@
 import appdaemon.plugins.hass.hassapi as hass
-import datetime
-import time
 import random
 
 #
@@ -375,27 +373,27 @@ class telegram_bot(hass.Hass):
                           message=message)
 
     def toggle_flur_alarm_ma(self, chat_id):
+        prev_state = self.get_state("input_boolean.flur_alarm_ma")
         self.toggle("input_boolean.flur_alarm_ma")
-        time.sleep(0.2)
-        if self.get_state("input_boolean.flur_alarm_ma") == "on":
+        if prev_state == "off":
             message = "OK. Flur-Alarm für {} ist jetzt aktiv".format(self.args["secrets"]["name_ma"])
-        elif self.get_state("input_boolean.flur_alarm_ma") == "off":
+        elif prev_state == "on":
             message = "OK. Flur-Alarm für {} ist jetzt aus".format(self.args["secrets"]["name_ma"])
         else:
-            message = "Irgendwas stimmt glaub nicht. Flur-Alarm für {} ist jetzt auf {}".format(self.args["secrets"]["name_ma"],self.get_state("input_boolean.flur_alarm_ma"))
+            message = "Status Flur-Alarm weder an noch aus, sondern {}? Irgendwas stimmt glaub nicht.".format(prev_state)
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=message)
 
     def toggle_flur_alarm_jo(self, chat_id):
+        prev_state = self.get_state("input_boolean.flur_alarm_jo")
         self.toggle("input_boolean.flur_alarm_jo")
-        time.sleep(0.2)
-        if self.get_state("input_boolean.flur_alarm_jo") == "on":
+        if prev_state == "off":
             message = "OK. Flur-Alarm für {} ist jetzt aktiv".format(self.args["secrets"]["name_jo"])
-        elif self.get_state("input_boolean.flur_alarm_jo") == "off":
+        elif prev_state == "on":
             message = "OK. Flur-Alarm für {} ist jetzt aus".format(self.args["secrets"]["name_jo"])
         else:
-            message = "Irgendwas stimmt glaub nicht. Flur-Alarm für {} ist jetzt auf {}".format(self.args["secrets"]["name_jo"],self.get_state("input_boolean.flur_alarm_jo"))
+            message = "Status Flur-Alarm weder an noch aus, sondern {}? Irgendwas stimmt glaub nicht.".format(prev_state)
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=message)
@@ -425,14 +423,14 @@ class telegram_bot(hass.Hass):
                   disable_notification=True)
     
     def toggle_gaeste_wohnbereich(self, chat_id):
+        prev_state = self.get_state("input_boolean.gaeste_abends")
         self.toggle("input_boolean.gaeste_abends")
-        time.sleep(0.2)
-        if self.get_state("input_boolean.gaeste_abends") == "on":
+        if prev_state == "off":
             message = "OK, liebe Grüße an die Gäste 😊"
-        elif self.get_state("input_boolean.gaeste_abends") == "off":
+        elif prev_state == "on":
             message = "OK, Gäste sind weg, dann wahrscheinlich gute Nacht jetzt..."
         else:
-            message = "Irgendwas stimmt glaub nicht mit Gaeste-Modus per Bot umschalten, sorry"
+            message = "Irgendwas stimmt glaub nicht mit Gaeste-Modus per Chat umschalten, sorry. Status Gäste-Knopf war weder on noch off, sondern {}?".format(prev_state)
         self.call_service('telegram_bot/send_message',
                           target=chat_id,
                           message=message,
