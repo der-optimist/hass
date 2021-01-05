@@ -44,12 +44,12 @@ class energy_consumption_daily(hass.Hass):
         unknown_consumption_kWh = consumption_kWh_total - known_consumption_kWh
         unknown_consumers_cost = unknown_consumption_kWh * self.price_per_kWh
 
-        message_text = "Verbrauch gestern: {} kWh => {} €\n\nVerbrauch im Detail:\n".format(round(consumption_kWh_total,1),round(total_consumption_cost,2))
+        message_text = "Verbrauch gestern: {:.1f} kWh => {:.2f} €\n\nVerbrauch im Detail:\n".format(round(consumption_kWh_total,1),round(total_consumption_cost,2))
         details_sorted = sorted(details_dict.items(), key=lambda x: x[1], reverse=True)
         for i in details_sorted:
-            message_text = message_text + "\n{}: {} kWh => {} €".format(i[0],round(i[1],1),round(i[1]*self.price_per_kWh,2))
+            message_text = message_text + "\n{}: {:.1f} kWh => {:.2f} €".format(i[0],round(i[1],1),round(i[1]*self.price_per_kWh,2))
         if unknown_consumption_kWh >= 0:
-            message_text = message_text + "\n\nunbekannte Verbraucher: {} kWh => {} €".format(round(unknown_consumption_kWh,1),round(unknown_consumers_cost,2))
+            message_text = message_text + "\n\nunbekannte Verbraucher: {:.1f} kWh => {:.2f} €".format(round(unknown_consumption_kWh,1),round(unknown_consumers_cost,2))
         else:
             message_text = message_text + "\n\nZugeordneter Stromverbrauch größer als tatsächlicher. Leistungsfaktoren anpassen!"
         if consumption_kWh_total > 0:
