@@ -31,7 +31,7 @@ counter_to_power_meter_wp_innenteil:
 counter_to_power_meter_wp_aussenteil:
   module: counter_to_power_meter
   class: counter_to_power_meter
-  debug: True
+  debug: False
   offset_kwh: 1085.8
   knx_counter: sensor.stromzahler_wp_aussenteil_rohdaten
   input_number_raw_value_persistent: input_number.speicher_stromzaehler_rohdaten_wp_aussen
