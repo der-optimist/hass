@@ -41,13 +41,14 @@ views:
   - !include lovelace/40_kinder_und_bad.yaml
   - !include lovelace/50_nz_gz.yaml
   - !include lovelace/60_keller.yaml
+  - !include lovelace/69_anwesenheiten.yaml
   - !include lovelace/70_automatisierungen.yaml
   - !include lovelace/75_heizung.yaml
   - !include lovelace/80_stromverbrauch.yaml
-  - !include lovelace/82_temperaturen.yaml
+  - !include lovelace/81_temperaturen.yaml
+  - !include lovelace/82_luftfeuchtigkeit.yaml
   - !include lovelace/83_helligkeiten.yaml
   - !include lovelace/84_wetterstation.yaml
-  - !include lovelace/86_anwesenheiten.yaml
   - !include lovelace/90_technik.yaml
   - !include lovelace/94_alarme.yaml
   - !include lovelace/95_hochzeitsvideo.yaml
