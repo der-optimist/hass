@@ -13,7 +13,7 @@ import datetime
 class energy_consumption_daily(hass.Hass):
 
     def initialize(self):
-        # define daily time to run the calculation:
+        # define daily time to run the notification:
         daily_time =  datetime.time(4, 35, 43)
         #daily_time =  datetime.time(10, 3, 0)
 
@@ -21,9 +21,9 @@ class energy_consumption_daily(hass.Hass):
         self.sensors_consumption_detail = self.args["sensors_consumption_detail"]
         self.price_per_kWh = self.args.get("price_per_kWh", 0.0)
 
-        # run daily
+        # run
         self.run_daily(self.calculate_yesterday, daily_time)
-        self.calculate_yesterday(None) # for testing, run now
+        #self.calculate_yesterday(None) # for testing, run now
 
         
         
