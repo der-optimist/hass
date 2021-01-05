@@ -44,12 +44,3 @@ cards:
     entities:
       - entity: sensor.helligkeit_wetterstation
         name: Draußen (Wetterst.)
-  - type: entities
-    title: Wind
-    show_header_toggle: false
-    entities:
-      - entity: sensor.windgeschwindigkeit_wetterstation
-      - entity: sensor.windgeschwindigkeit_wetterstation_kmh
-      - entity: binary_sensor.windalarm_1
-      - entity: binary_sensor.windalarm_2
-      - entity: binary_sensor.windalarm_3
