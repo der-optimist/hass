@@ -15,8 +15,11 @@ class locations(hass.Hass):
         self.sensor_location_jo = "sensor.location_jo" # where to show the information
         self.input_location_jo_roh = "input_text.location_jo_roh" # where tasker sends the value to
         self.sensor_time_at_work = "sensor.jo_at_work"
+        self.wifi_sensor_jo = "sensor.pixel_3a_jochen_wlan_verbindung"
+        self.wifi_name = "geilomatnetz"
         self.name_jo = self.args["name_jo"]
         # listen state
+        self.listen_state(self.wifi_changed_jo, self.wifi_sensor_jo)
         self.listen_state(self.location_changed, self.input_location_jo_roh)
         # show the current location immediately after restart
         current_value = self.get_state(self.input_location_jo_roh)
@@ -24,6 +27,10 @@ class locations(hass.Hass):
         
     def location_changed(self, entity, attribute, old, new, kwargs):
         self.process_location(new, old)
+        
+    def wifi_changed_jo(self, entity, attribute, old, new, kwargs):
+        if new == self.wifi_name:
+            self.set_state(self.input_location_jo_roh, "home")
         
     def process_location(self, location, old_location):
         # really process the location now
