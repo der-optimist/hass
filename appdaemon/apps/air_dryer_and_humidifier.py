@@ -60,10 +60,18 @@ class air_dryer_and_humidifier(hass.Hass):
         try:
             self.current_humidity = float(self.get_state(self.humidity_sensor))
         except:
-            self.run_in(self.initialize_when_ready,30)
+            self.run_in(self.initialize_when_ready,61)
             self.log("Humidity Sensor not ready. Will try again later.")
             return
         self.log("Humidity Sensor ready. Value is {}".format(self.current_humidity))
+        
+        try:
+            el_power = float(self.get_state(self.energy_measurement_sensor))
+        except:
+            self.run_in(self.initialize_when_ready,61)
+            self.log("El. power Sensor not ready. Will try again later.")
+            return
+        self.log("El. Power Sensor ready. Value is {}".format(el_power))
         
         self.check_if_dryer_or_humidifier_needed()
         
