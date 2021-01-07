@@ -52,8 +52,19 @@ class air_dryer_and_humidifier(hass.Hass):
             self.log("Timer ist Null als ich gestartet wurde, alles ruhig hier...")
             self.special_mode = False
         
+        self.initialize_when_ready(None)
+
+        
+    def initialize_when_ready(self, kwargs):
         # dryer_or_humidifier needed?
-        self.current_humidity = float(self.get_state(self.humidity_sensor))
+        try:
+            self.current_humidity = float(self.get_state(self.humidity_sensor))
+        except:
+            self.run_in(self.initialize_when_ready,30)
+            self.log("Humidity Sensor not ready. Will try again later.")
+            return
+        self.log("Humidity Sensor ready. Value is {}".format(self.current_humidity))
+        
         self.check_if_dryer_or_humidifier_needed()
         
         #dryer_or_humidifier already running?
