@@ -90,9 +90,6 @@ telegram_bot:
       - !secret telegram_id_1
       - !secret telegram_id_2
       - !secret telegram_id_alarm_gruppe
-twilio:
-  account_sid: !secret twilio_account_sid
-  auth_token: !secret twilio_access_token
 
 notify:
   - name: telegram_jo
@@ -107,9 +104,6 @@ notify:
   - platform: kodi
     name: kodi_wz
     host: 192.168.178.38
-  - name: twilio_phone
-    platform: twilio_call
-    from_number: !secret twilio_phone_number
 
 google:
   client_id: !secret google_calendar_client_id
@@ -136,7 +130,7 @@ recorder:
 
 history:
 
-owntracks:
+#owntracks:
 
 # Enables a map showing the location of tracked devices
 #map:
@@ -173,6 +167,9 @@ knx:
   - type: 'wind_speed_kmh'
     entity_id: 'sensor.windgeschwindigkeit_wetterstation_kmh'
     address: '13/0/50'
+  - type: 'binary'
+    entity_id: 'input_boolean.eisschutz_jalousien'
+    address: '13/0/32'
   - type: 'string'
     entity_id: 'sensor.windfang_wc_temp_ist_text'
     address: '10/7/8'
