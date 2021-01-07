@@ -5,6 +5,9 @@
   gewitter:
     name: Gewitter
     icon: mdi:flash-alert
+  eisschutz_jalousien:
+    name: Eisschutz Jalousien
+    icon: mdi:snowflake-alert
   anwesenheit_simulieren:
     name: Anwesenheit simulieren
     icon: mdi:bag-checked
