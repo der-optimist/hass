@@ -4,6 +4,16 @@
       date_template:
         friendly_name: 'Datum'
         value_template: '{{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}'
+      temp_aussen:
+        friendly_name: 'Temp. Außen'
+        unit_of_measurement: '°C'
+        value_template: "{{ states('sensor.temp_wetterstation') }}"
+        device_class: temperature
+      luftfeuchtigkeit_aussen:
+        friendly_name: 'Luftfeuchtigkeit Außen'
+        unit_of_measurement: '%'
+        value_template: "{{ states('sensor.humidity_outside_internet') }}"
+        device_class: humidity
       luftfeuchtigkeit_kuche_aqara:
         friendly_name: 'Luftfeuchtigkeit Küche'
         unit_of_measurement: '%'
