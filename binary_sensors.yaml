@@ -138,7 +138,14 @@
         device_class: motion
         delay_off:
           minutes: 10
-        value_template: "{{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off','on') }}"        
+        value_template: "{{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off','on') }}"
+      pm_k_timer_bewegung_partyraum:
+        friendly_name: "PM Timer Bewegung Partyraum"
+        device_class: motion
+        delay_off:
+          minutes: 10
+        value_template: "{{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_36694e04_on_off','on') or 
+                            is_state('binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy','on')  }}"
       anwesenheit_bildschirm:
         friendly_name: "Anwesenheit Bildschirm"
         value_template: >-
