@@ -18,8 +18,6 @@ auto_light_k_werkelraum:
   light: light.werkelraum
   type: switch
   triggers: 
-    - binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
-    - binary_sensor.lumi_lumi_sensor_motion_aq2_ias_zone
-    - binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off
+    - binary_sensor.pm_k_timer_magnetsensor_werkelraum
   min_illuminance_values:
     "00:00": 1
