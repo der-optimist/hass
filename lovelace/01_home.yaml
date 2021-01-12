@@ -136,6 +136,8 @@ cards:
           - type: entities
             show_header_toggle: false
             entities:
+            - entity: input_boolean.eisschutz_jalousien
+              name: Eisschutz Jalousien
             - entity: sensor.humidity_manager_werkelraum
               name: Luft Werkelraum
             - type: divider
