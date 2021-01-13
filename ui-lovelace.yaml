@@ -43,6 +43,7 @@ views:
   - !include lovelace/60_keller.yaml
   - !include lovelace/69_anwesenheiten.yaml
   - !include lovelace/70_automatisierungen.yaml
+  - !include lovelace/72_jalousien.yaml
   - !include lovelace/75_heizung.yaml
   - !include lovelace/80_stromverbrauch.yaml
   - !include lovelace/81_temperaturen.yaml
