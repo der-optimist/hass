@@ -6,6 +6,12 @@ cards:
     title: Sperren
     show_header_toggle: true
     entities:
+      - type: section
+        label: generell
+      - entity: input_boolean.eisschutz_jalousien
+        name: Eisschutz Jalousien
+      - type: section
+        label: einzeln
       - entity: input_boolean.sperre_jal_ku
       - entity: input_boolean.sperre_jal_hst
       - entity: input_boolean.sperre_jal_wz_bodentiefes
