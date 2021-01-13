@@ -1,6 +1,6 @@
 title: Jalousien
 path: jalousien
-icon: mdi:auto-fix
+icon: mdi:window-shutter
 cards:
   - type: entities
     title: Sperren
