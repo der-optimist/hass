@@ -37,6 +37,7 @@
     icon: mdi:lock-alert
   sperre_jal_le_lichtband:
     name: Sperre Jal. Le Lichtband
+    icon: mdi:lock-alert
   sperre_jal_le_bodentiefes:
     name: Sperre Jal. Le Bodentiefes
     icon: mdi:lock-alert
