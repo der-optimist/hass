@@ -4,7 +4,7 @@ icon: mdi:window-shutter
 cards:
   - type: entities
     title: Sperren
-    show_header_toggle: true
+    show_header_toggle: false
     entities:
       - type: section
         label: generell
