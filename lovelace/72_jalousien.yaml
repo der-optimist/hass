@@ -1,0 +1,20 @@
+title: Jalousien
+path: jalousien
+icon: mdi:auto-fix
+cards:
+  - type: entities
+    title: Sperren
+    show_header_toggle: true
+    entities:
+      - entity: input_boolean.sperre_jal_ku
+      - entity: input_boolean.sperre_jal_hst
+      - entity: input_boolean.sperre_jal_wz_bodentiefes
+      - entity: input_boolean.sperre_jal_wz_couch
+      - entity: input_boolean.sperre_jal_sz
+      - entity: input_boolean.sperre_jal_ba_og
+      - entity: input_boolean.sperre_jal_la_bodentiefes
+      - entity: input_boolean.sperre_jal_la_lichtband
+      - entity: input_boolean.sperre_jal_nz
+      - entity: input_boolean.sperre_jal_le_lichtband
+      - entity: input_boolean.sperre_jal_le_bodentiefes
+      - entity: input_boolean.sperre_jal_gz
