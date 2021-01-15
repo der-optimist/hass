@@ -30,7 +30,7 @@ class locations(hass.Hass):
         
     def wifi_changed_jo(self, entity, attribute, old, new, kwargs):
         if new == self.wifi_name:
-            self.set_state(self.input_location_jo_roh, "home")
+            self.set_state(self.input_location_jo_roh, state="home")
         
     def process_location(self, location, old_location):
         # really process the location now
