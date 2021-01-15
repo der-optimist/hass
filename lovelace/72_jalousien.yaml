@@ -8,6 +8,8 @@ cards:
     entities:
       - type: section
         label: generell
+      - entity: input_boolean.automatik_eisschutz_jalousien
+        name: Automatik Eisschutz
       - entity: input_boolean.eisschutz_jalousien
         name: Eisschutz Jalousien
       - type: section
