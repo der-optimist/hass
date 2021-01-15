@@ -56,10 +56,10 @@ class cover_blocking(hass.Hass):
             self.log("Rain Status Error: {}".format(self.get_state(self.rain_entity)))
             return
         if (humidity > self.humidity_blocking and temp < self.temp_blocking_humidity) or (rain_status == "on" and temp < self.temp_blocking_rain):
-            self.set_state(self.ice_blocking_switch,"on")
+            self.set_state(self.ice_blocking_switch,state="on")
             self.log("ice blocking switch on")
         elif temp > 5:
-            self.set_state(self.ice_blocking_switch,"off")
+            self.set_state(self.ice_blocking_switch,state="off")
             self.log("ice blocking switch off")
         else:
             self.log("do not change ice blocking switch")
@@ -72,11 +72,11 @@ class cover_blocking(hass.Hass):
             return
         if self.get_state(self.ice_blocking_switch) == "on":
             if position > 0:
-                self.set_state(blocking_entity, "on")
+                self.set_state(blocking_entity, state="on")
             else:
-                self.set_state(blocking_entity, "off")
+                self.set_state(blocking_entity, state="off")
         elif self.get_state(self.ice_blocking_switch) == "off":
-            self.set_state(blocking_entity, "off")
+            self.set_state(blocking_entity, state="off")
 
     def ice_blocking_switch_changed(self, entity, attributes, old, new, kwargs):
         self.check_if_cover_should_be_blocked("cover.jalousie_bad_og", "input_boolean.sperre_jal_ba_og")
@@ -127,15 +127,3 @@ class cover_blocking(hass.Hass):
         
     def position_jal_wz_couch_changed(self, entity, attributes, old, new, kwargs):
         self.check_if_cover_should_be_blocked("cover.jalousie_wz_couch", "input_boolean.sperre_jal_wz_couch")
-        
-
-        
-        
-#    def check_if_dryer_or_humidifier_running(self, kwargs):
-
-
-    def stunde_abgelaufen(self, kwargs):
-        self.log("Eine Stunde ist wohl um")
-        self.time_internal_state = self.time_internal_state - 1
-        old_state = round(float(self.get_state(self.input_number_timer_special_humidity)))
-        self.set_value(self.input_number_timer_special_humidity, old_state - 1)
