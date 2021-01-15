@@ -65,6 +65,7 @@ class cover_blocking(hass.Hass):
             self.log("do not change ice blocking switch")
 
     def check_if_cover_should_be_blocked(self, entity, blocking_entity):
+        self.log("blocking entity: {}".format(blocking_entity))
         try:
             position = float(self.get_state(entity, attribute = "current_position"))
         except:
