@@ -5,6 +5,9 @@
   gewitter:
     name: Gewitter
     icon: mdi:flash-alert
+  automatik_eisschutz_jalousien:
+    name: Automatik Eisschutz Jalousien
+    icon: mdi:auto-fix
   eisschutz_jalousien:
     name: Eisschutz Jalousien
     icon: mdi:snowflake-alert
