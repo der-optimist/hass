@@ -1,0 +1,12 @@
+reminder_tuer_partyraum:
+  module: reminder_door_open
+  class: reminder_door_open
+  binary_sensor_reminder: binary_sensor.reminder_tuer_partyraum
+  reminder_switch_name: switch.reminder_tuer_partyraum
+  text_reminder_switch: Tür Partyraum schließen
+reminder_tuer_werkelraum:
+  module: reminder_door_open
+  class: reminder_door_open
+  binary_sensor_reminder: binary_sensor.reminder_tuer_werkelraum
+  reminder_switch_name: switch.reminder_tuer_werkelraum
+  text_reminder_switch: Tür Werkelraum schließen
