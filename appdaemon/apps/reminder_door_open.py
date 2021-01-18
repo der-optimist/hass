@@ -25,3 +25,5 @@ class reminder_door_open(hass.Hass):
     def remind(self, entity, attributes, old, new, kwargs):
         if new == "on":
             self.set_state(self.reminder_switch_name, state = "on", attributes = self.attributes_reminder_switch)
+        elif new == "off":
+            self.set_state(self.reminder_switch_name, state = "off", attributes = self.attributes_reminder_switch)
