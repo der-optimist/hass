@@ -150,7 +150,7 @@
         friendly_name: "Reminder Tür Partyraum"
         device_class: motion
         delay_on:
-          hours: 1
+          minutes: 5
         value_template: "{{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_36694e04_on_off','on') }}"
       reminder_tuer_werkelraum:
         friendly_name: "Reminder Tür Werkelraum"
