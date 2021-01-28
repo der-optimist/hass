@@ -53,6 +53,18 @@ cards:
       - entity: sensor.temp_bad_og_pm
         name: Bad OG PM
   - type: entities
+    title: Keller
+    show_header_toggle: false
+    entities:
+      - entity: sensor.temp_waschkuche
+        name: Waschküche
+      - entity: sensor.temp_werkelraum
+        name: Werkelraum
+      - entity: sensor.temp_partyraum
+        name: Partyraum
+      - entity: sensor.temp_vorratsraum
+        name: Speis
+  - type: entities
     title: Fußboden-Sensoren
     show_header_toggle: false
     entities:
