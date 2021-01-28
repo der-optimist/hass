@@ -10,8 +10,8 @@ auto_light_o_la_panels:
     - binary_sensor.pm_o_ko_la_raum
     - binary_sensor.pm_o_ko_la_tuer
   brightness_values:
-    "00:00": 30
-    "05:30": 50
+    "00:00": 25
+    "07:30": 50
     "08:00": 70
     "09:00": 90
     "17:00": 80
