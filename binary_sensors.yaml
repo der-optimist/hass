@@ -9,6 +9,11 @@
     name: ping_odroidxu4
     count: 2
     scan_interval: 2
+  - platform: ping
+    host: 192.168.178.42
+    name: ping_bildschirm_theke
+    count: 2
+    scan_interval: 59
 
 # Time of Day
   - platform: tod
