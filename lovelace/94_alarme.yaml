@@ -28,7 +28,7 @@ cards:
       - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off
         name: Speis
   - type: entities
-    title:Ping
+    title: Ping
     show_header_toggle: false
     entities:
       - entity: binary_sensor.ping_fritzbox
