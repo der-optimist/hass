@@ -11,6 +11,10 @@ cards:
     - entity: light.technikraum
       name: Deckenlicht
     - type: section
+      label: Wasser
+    - entity: switch.wasserabsperrventil
+      name: Wasserfluss
+    - type: section
       label: Geräte
     - entity: switch.waschmaschine
       name: Waschmaschine
