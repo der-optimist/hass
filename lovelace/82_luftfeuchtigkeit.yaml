@@ -20,6 +20,10 @@ cards:
     entities:
       - entity: sensor.luftfeuchtigkeit_kuche_aqara
         name: Küche (aqara)
+      - entity: sensor.lumi_lumi_weather_0f9c4805_humidity
+        name: Schlafzimmer
+      - entity: sensor.lumi_lumi_weather_16237905_humidity
+        name: Le
   - type: entities
     title: Draußen
     show_header_toggle: false
