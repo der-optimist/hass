@@ -46,7 +46,8 @@ cards:
     entities:
       - entity: media_player.kodi_wz
   - type: entities
-    title: "AppDaemon"
+    title: "Wasser"
     show_header_toggle: false
     entities:
-      - entity: input_boolean.appdaemon_production_mode
+      - entity: switch.wasserabsperrventil
+        name: Wasserfluss
