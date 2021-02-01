@@ -13,21 +13,32 @@ class wall_panel(hass.Hass):
         # URL for REST api commands
         self.url = "http://192.168.178.42:2971/api/command"
         # presence
+        self.timer_handle_wake = None
+        self.timer_handle_sleep = None
         self.listen_state(self.presence_on, "binary_sensor.anwesenheit_bildschirm", new = "on")
         self.listen_state(self.presence_off, "binary_sensor.anwesenheit_bildschirm", new = "off")
         if self.get_state("binary_sensor.anwesenheit_bildschirm") == "on":
             self.send_wake_command(None)
+        else:
+            self.send_sleep_command(None)
         # reload page
         #self.listen_state(self.wp_online, "binary_sensor.ping_bildschirm", new = "on")
         self.run_in(self.send_reload_command, 60) # auskommentiert wegen restart problem
-        self.timer_handle = None
+
 
     def send_wake_command(self, kwargs):
         try:
             requests.post(self.url, json={"wake":"true","wakeTime":610}, timeout=5)
         except Exception as e:
             self.log("Error sending wake command to wallpanel via REST api. Error was {}".format(e))
-        self.timer_handle = self.run_in(self.send_wake_command,60)
+        self.timer_handle_wake = self.run_in(self.send_wake_command,60)
+        
+    def send_sleep_command(self, kwargs):
+        try:
+            requests.post(self.url, json={"wake":"false"}, timeout=5)
+        except Exception as e:
+            self.log("Error sending sleep command to wallpanel via REST api. Error was {}".format(e))
+        self.timer_handle_sleep = self.run_in(self.send_sleep_command,60)
     
     def send_reload_command(self, kwargs):
         self.log("Sending reload command to wall panel")
@@ -38,13 +49,15 @@ class wall_panel(hass.Hass):
 
     def presence_on(self, entity, attributes, old, new, kwargs):
         #self.log("Wall panel presence on. Will send periodic wake commands")
+        if self.timer_handle_sleep != None:
+            self.cancel_timer(self.timer_handle_sleep)
         self.send_wake_command(None)
     
     def presence_off(self, entity, attributes, old, new, kwargs):
         #self.log("Wall panel presence off. Will cancel periodic wake commands")
-        if self.timer_handle != None:
-            self.cancel_timer(self.timer_handle)
-            #self.log("Canceled periodic wake commands")
+        if self.timer_handle_wake != None:
+            self.cancel_timer(self.timer_handle_wake)
+        self.send_sleep_command(None)
         
     def wp_online(self, entity, attributes, old, new, kwargs):
         if old != "on":
