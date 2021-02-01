@@ -369,6 +369,7 @@ class auto_light(hass.Hass):
         self.debug_filter("Will check if a keeping-fix entity is active. First, I assume - no.","few")
         self.keeping_fix = False
         fix_brightness = 0
+        fix_color = None
         for keeping_fix_entity in self.keeping_fix_entities:
             if self.get_state(keeping_fix_entity) == "on":
                 self.keeping_fix = True
