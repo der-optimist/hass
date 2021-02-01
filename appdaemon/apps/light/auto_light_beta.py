@@ -31,6 +31,21 @@ class auto_light(hass.Hass):
         self.run_in(self.initialize_delayed,random_delay)
     
     def initialize_delayed(self, kwargs):
+        self.dict_colors = {"rot": [255,0,0],
+                            "grün": [0,255,0],
+                            "blau": [0,0,255],
+                            "orange": [255,127,0],
+                            "pink": [255,0,127],
+                            "lila": [255,0,255],
+                            "violett": [127,0,255],
+                            "gelb": [255,255,0],
+                            "gold": [255,215,0],
+                            "hellblau": [0,127,255],
+                            "türkis": [0,255,255],
+                            "gelbgrün": [127,255,0],
+                            "weiß": [255,255,255]
+                            }
+        
         random_second = random.randint(0,30)
         self.light: str = self.args.get("light")
         self.type: str = self.args.get("type")
@@ -57,7 +72,6 @@ class auto_light(hass.Hass):
         self.special_brightness_entities: Set[str] = self.args.get("special_brightness_entities", set())
         self.switching_off_offset = float(self.args.get("switching_off_offset", 100))
         self.debug_filter("switching_off_offset: {}".format(self.switching_off_offset),"few")
-        self.debug_filter(self.keeping_fix_entities,"all")
         # brightness depending on time
         if self.type == "dim" or self.type == "color":
             self.times_brightness_strings = self.args["brightness_values"].keys()
@@ -113,8 +127,11 @@ class auto_light(hass.Hass):
         now = datetime.datetime.now()
         for each in sorted(self.times_brightness_strings):
             if now >= now.replace(hour=int(each.split(":")[0]), minute=int(each.split(":")[1])):
-                current_brightness = self.args["brightness_values"][each]
-        self.basic_brightness = current_brightness
+                if self.type == "color":
+                    self.basic_brightness = self.args["brightness_values"][each][0]
+                    self.basic_color = self.args["brightness_values"][each][1]
+                else:
+                    self.basic_brightness = self.args["brightness_values"][each]
         self.debug_filter("Basic brightness set to {}".format(self.basic_brightness),"few")
 
     def update_min_illuminance_value(self, kwargs):
@@ -201,7 +218,7 @@ class auto_light(hass.Hass):
                 self.turn_on(self.light,brightness=self.pct_to_byte(self.special_brightness))
             elif self.type == "color":
                 self.debug_filter("Will turn on the color light now with special brightness {}".format(self.special_brightness),"few")
-                self.turn_on(self.light,brightness=self.pct_to_byte(self.special_brightness),rgb_color=self.args.get("rgb_color"),transition=3)
+                self.turn_on(self.light,brightness=self.pct_to_byte(self.special_brightness),rgb_color=self.create_rgb_value(self.special_color),transition=3)
             else: # switch
                 self.debug_filter("Special Brightniess active for a switch type light? Please remove special brigthness entries. Will switch on the light now anyway","few")
                 self.turn_on(self.light)
@@ -211,7 +228,7 @@ class auto_light(hass.Hass):
                 self.turn_on(self.light,brightness=self.pct_to_byte(self.basic_brightness))
             elif self.type == "color":
                 self.debug_filter("Will turn on the color light now with basic brightness {}".format(self.basic_brightness),"few")
-                self.turn_on(self.light,brightness=self.pct_to_byte(self.basic_brightness),rgb_color=self.args.get("rgb_color"),transition=3)
+                self.turn_on(self.light,brightness=self.pct_to_byte(self.basic_brightness),rgb_color=self.create_rgb_value(self.basic_color),transition=3)
             else: # switch
                 self.debug_filter("Will switch on the light now","few")
                 self.turn_on(self.light)
@@ -306,25 +323,33 @@ class auto_light(hass.Hass):
         self.debug_filter("Keeping fix: {} changed from {} to {}".format(entity, old, new),"few")
         if new == "on":
             self.keeping_fix = True
-            fix_brightness = self.keeping_fix_entities[entity]
+            if self.type == "color":
+                fix_brightness = self.keeping_fix_entities[entity][0]
+                fix_color = self.keeping_fix_entities[entity][1]
+            else:
+                fix_brightness = self.keeping_fix_entities[entity]
             if self.get_state(self.app_switch) != "on":
                 self.debug_filter("keeping_fix_entity_changed to on, but the app-switch is not on! Will not do anything...","few")
                 return
             self.debug_filter("Will set fixed brightness to {}".format(fix_brightness),"few")
-            if self.type == "dim" or self.type == "color":
+            if self.type == "dim":
                 self.turn_on(self.light,brightness=self.pct_to_byte(fix_brightness))
+            elif self.type == "color":
+                self.turn_on(self.light,brightness=self.pct_to_byte(fix_brightness),rgb_color=self.create_rgb_value(fix_color),transition=3)
             else:
                 self.log("Keeping fix doesn't make much sense with a switch light. But I will switch it on now.")
                 self.turn_on(self.light)
         else: # this one is not on, but maybe another one
-            fix_brightness = self.check_if_keeping_fix_active(None)
+            fix_brightness, fix_color = self.check_if_keeping_fix_active(None)
             if self.get_state(self.app_switch) != "on":
                 self.debug_filter("keeping_fix_entity_changed to off, but the app-switch is not on! Will not do anything...","few")
                 return
             if self.keeping_fix:
                 self.debug_filter("Will set fixed brightness to {}".format(fix_brightness),"few")
-                if self.type == "dim" or self.type == "color":
+                if self.type == "dim":
                     self.turn_on(self.light,brightness=self.pct_to_byte(fix_brightness))
+                elif self.type == "color":
+                    self.turn_on(self.light,brightness=self.pct_to_byte(fix_brightness),rgb_color=self.create_rgb_value(fix_color),transition=3)
                 else:
                     self.log("Keeping fix doesn't make much sense with a switch light. But I will switch it on now.")
                     self.turn_on(self.light)
@@ -347,16 +372,27 @@ class auto_light(hass.Hass):
         for keeping_fix_entity in self.keeping_fix_entities:
             if self.get_state(keeping_fix_entity) == "on":
                 self.keeping_fix = True
-                fix_brightness = self.keeping_fix_entities[keeping_fix_entity]
+                if self.type == "color":
+                    fix_brightness = self.keeping_fix_entities[keeping_fix_entity][0]
+                    fix_color = self.keeping_fix_entities[keeping_fix_entity][1]
+                else:
+                    fix_brightness = self.keeping_fix_entities[keeping_fix_entity]
+                    fix_color = None
                 self.debug_filter("Ah, wait! Yes, this one is active: {}. Will stay in fixed mode".format(keeping_fix_entity),"few")
-        return fix_brightness
+        return fix_brightness, fix_color
 
     def special_brightness_entity_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Special Brightness Entity: {} changed from {} to {}".format(entity, old, new),"few")
         if new == "on":
             self.special_brightness_active = True
-            self.special_brightness = self.special_brightness_entities[entity]
-            self.debug_filter("Will set special brightness to {}".format(self.special_brightness),"few")
+            if self.type == "color":
+                self.special_brightness = self.special_brightness_entities[entity][0]
+                self.debug_filter("Will set special brightness to {}".format(self.special_brightness),"few")
+                self.special_color = self.special_brightness_entities[entity][1]
+                self.debug_filter("Will set special color to {}".format(self.special_color),"few")
+            else:
+                self.special_brightness = self.special_brightness_entities[entity]
+                self.debug_filter("Will set special brightness to {}".format(self.special_brightness),"few")
             if self.get_state(self.light) == "on":
                 self.filter_turn_on_command(None)
         else: # this one is not on, but maybe another one
@@ -371,7 +407,11 @@ class auto_light(hass.Hass):
         for special_brightness_entity in self.special_brightness_entities:
             if self.get_state(special_brightness_entity) == "on":
                 self.special_brightness_active = True
-                self.special_brightness = self.special_brightness_entities[special_brightness_entity]
+                if self.type == "color":
+                    self.special_brightness = self.special_brightness_entities[special_brightness_entity][0]
+                    self.special_color = self.special_brightness_entities[special_brightness_entity][1]
+                else:
+                    self.special_brightness = self.special_brightness_entities[special_brightness_entity]
                 self.debug_filter("Ah, wait! Yes, this one is active: {}. Will set special brightness: {}".format(special_brightness_entity,self.special_brightness),"few")
 
     def decide_if_light_is_needed(self, kwargs):
@@ -411,3 +451,8 @@ class auto_light(hass.Hass):
             self.log(log_text)
         elif self.args["debug"] == "all":
             self.log(log_text)
+
+    def create_rgb_value(self, color):
+        # translate with dict_colors
+        color_rgb = self.dict_colors.get(color,color)
+        return color_rgb
