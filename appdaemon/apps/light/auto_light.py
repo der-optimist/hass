@@ -42,9 +42,10 @@ class auto_light(hass.Hass):
         self.triggers: Set[str] = self.args.get("triggers", set())
         # is triggered at the moment of startup?
         self.check_if_any_trigger_active(None)
-        # manual mode not implemented yet, so set to false:
         self.manually_switched_off = False
         self.i_switched_off = False
+        self.manually_switched_on = False
+        self.i_switched_on = False
         self.illuminance_sensor: str = self.args.get("illuminance_sensor", None)
         self.switching_off_entities: Set[str] = self.args.get("switching_off_entities", set())
         self.keeping_off_entities: Set[str] = self.args.get("keeping_off_entities", set())
@@ -141,11 +142,19 @@ class auto_light(hass.Hass):
         if old == "on" and new == "off":
             if self.is_triggered and not self.i_switched_off:
                 self.manually_switched_off = True
+            self.manually_switched_on = False
             self.i_switched_off = False
+            self.i_switched_on = False
+            self.check_if_any_trigger_active(None)
         if new == "on" and old != "on":
+            if old == "off":
+                if self.is_triggered and not self.i_switched_on:
+                    self.manually_switched_on = True
             self.debug_filter("Light switched on, will set manually_switched_off to False","few")
             self.manually_switched_off = False
             self.i_switched_off = False
+            self.i_switched_on = False
+            self.is_triggered = True
 
     def trigger_state_changed(self, entity, attributes, old, new, kwargs):
         self.debug_filter("Light Trigger: {} changed from {} to {}".format(entity, old, new),"few")
@@ -168,6 +177,7 @@ class auto_light(hass.Hass):
                 self.debug_filter("No other trigger is active, noboby seems to be here. Will decide if I should switch the light off","few")
                 self.debug_filter("But first, I will activate automatic mode","all")
                 self.manually_switched_off = False
+                self.manually_switched_on = False
                 self.filter_turn_off_command(None)
 
     def filter_turn_on_command(self, kwargs):
@@ -184,6 +194,7 @@ class auto_light(hass.Hass):
         if self.get_state(self.app_switch) != "on":
             self.debug_filter("filter_turn_on_command, but the app-switch is not on! Will not do anything...","few")
             return
+        self.i_switched_on = True
         if self.special_brightness_active:
             if self.type == "dim":
                 self.debug_filter("Will turn on the light now with special brightness {}".format(self.special_brightness),"few")
@@ -207,6 +218,9 @@ class auto_light(hass.Hass):
 
     def filter_turn_off_command(self, kwargs):
         self.debug_filter("Will decide now if light should be turned off","all")
+        if self.manually_switched_on:
+            self.debug_filter("I am in manual mode, wont do anything","few")
+            return
         if self.keeping_on:
             self.debug_filter("A keeping-on entity is active, wont do anything","few")
             return
