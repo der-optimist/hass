@@ -33,15 +33,12 @@ auto_light_e_fl_panels:
   special_brightness_entities:
     switch.majo_schlafen: 5
 auto_light_e_fl_stehlampe_oben:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_flur_eg
   light: light.innr_e27_rgb_flur_eg_oben_level_light_color_on_off
   type: color
-  #rgb_color: [255, 0, 255]
-  #rgb_color: [255, 127, 0] orange
-  rgb_color: [255, 0, 127]# pink
   triggers: 
     - binary_sensor.pm_e_fl_treppe_og
     - binary_sensor.pm_e_fl_windfang
@@ -54,9 +51,10 @@ auto_light_e_fl_stehlampe_oben:
     - binary_sensor.pm_k_fl
   min_illuminance_values:
   brightness_values:
-    "00:00": 20
-    "06:30": 40
-    "19:00": 20
+    "00:00": [20, "orange"]
+    "06:30": [40, "orange"]
+    "09:00": [40, "pink"]
+    "19:00": [20, "orange"]
   min_illuminance_values:
     "00:00": 50
   illuminance_sensor: sensor.helligkeit_flur_eg_pm
@@ -68,14 +66,12 @@ auto_light_e_fl_stehlampe_oben:
     - switch.majo_schlafen
     - switch.knutschen
 auto_light_e_fl_stehlampe_unten:
-  module: auto_light
+  module: auto_light_beta
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_flur_eg
   light: light.innr_e27_rgb_flur_eg_unten_level_light_color_on_off
   type: color
-  #rgb_color: [255, 0, 0] rot
-  rgb_color: [255, 0, 255]# lila
   triggers: 
     - binary_sensor.pm_e_fl_treppe_og
     - binary_sensor.pm_e_fl_windfang
@@ -88,9 +84,10 @@ auto_light_e_fl_stehlampe_unten:
     - binary_sensor.pm_k_fl
   min_illuminance_values:
   brightness_values:
-    "00:00": 20
-    "06:30": 40
-    "19:00": 20
+    "00:00": [20, "rot"]
+    "06:30": [40, "rot"]
+    "09:00": [40, "lila"]
+    "19:00": [20, "rot"]
   min_illuminance_values:
     "00:00": 50
   illuminance_sensor: sensor.helligkeit_flur_eg_pm
