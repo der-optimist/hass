@@ -19,7 +19,7 @@ class dimmer_steps(hass.Hass):
         self.steps = self.args["steps"]
         self.timer_handle = None
         # listen for knx events
-        self.listen_event(self.received_command, event = "knx_event", address = self.args["command_ga"])
+        self.listen_event(self.received_command, event = "knx_event", destination = self.args["command_ga"])
         
     def received_command(self,event_name,data,kwargs):
         self.log("KNX command for step-dimming detected. Light is: {}. Data is:".format(self.light))
