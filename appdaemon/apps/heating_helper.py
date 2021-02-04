@@ -17,8 +17,8 @@ class heating_helper(hass.Hass):
 
     def initialize(self):
         # listen for knx events => button pressed
-        self.listen_event(self.shift_target_temp_up, event = "knx_event", address = self.args["ga_binary"], data = 1)
-        self.listen_event(self.shift_target_temp_down, event = "knx_event", address = self.args["ga_binary"], data = 0)
+        self.listen_event(self.shift_target_temp_up, event = "knx_event", destination = self.args["ga_binary"], data = 1)
+        self.listen_event(self.shift_target_temp_down, event = "knx_event", destination = self.args["ga_binary"], data = 0)
         # initialize current temp text
         new = self.get_state(self.args["climate_entity"], attribute="current_temperature")
         try:
