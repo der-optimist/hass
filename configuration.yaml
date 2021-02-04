@@ -153,8 +153,7 @@ weather:
 #    api_key: !secret owm_api_key
 
 knx:
-  fire_event: true
-  fire_event_filter: ["15/0/50","0/3/20","0/3/40","15/0/51","15/0/52","10/7/6","12/0/6","15/0/29","15/0/48","15/0/28","15/0/47","15/0/58"]
+  event_filter: ["15/0/50","0/3/20","0/3/40","15/0/51","15/0/52","10/7/6","12/0/6","15/0/29","15/0/48","15/0/28","15/0/47","15/0/58"]
   state_updater: true
   binary_sensor: !include knx_binary_sensor.yaml
   switch: !include knx_switch.yaml
