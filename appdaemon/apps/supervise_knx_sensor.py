@@ -12,7 +12,7 @@ class supervise_knx_sensor(hass.Hass):
 
     def initialize(self):
         self.timer_handle = self.run_in(self.notify_me,60*self.args["minutes"])
-        self.listen_event(self.received_sensor_value, event = "knx_event", address = self.args["ga"])
+        self.listen_event(self.received_sensor_value, event = "knx_event", destination = self.args["ga"])
     
     def received_sensor_value(self,event_name,data,kwargs):
         if self.timer_handle != None:
