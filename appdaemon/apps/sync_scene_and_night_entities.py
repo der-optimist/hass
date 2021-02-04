@@ -13,10 +13,10 @@ class sync_scene_and_night_entities(hass.Hass):
 
     def initialize(self):
         # listen for knx scene events
-        self.listen_event(self.scene, event = "knx_event", address = "15/0/50")
+        self.listen_event(self.scene, event = "knx_event", destination = "15/0/50")
         # toggle HA switches via KNX button
-        self.listen_event(self.toggle_poweroutlet_phone_ma, event = "knx_event", address = "0/3/20")
-        self.listen_event(self.toggle_poweroutlet_phone_jo, event = "knx_event", address = "0/3/40")
+        self.listen_event(self.toggle_poweroutlet_phone_ma, event = "knx_event", destination = "0/3/20")
+        self.listen_event(self.toggle_poweroutlet_phone_jo, event = "knx_event", destination = "0/3/40")
         self.run_daily(self.reset_sleep_switches, datetime.time(9, 0, 0))
         # set "Bad OG Nachtmodus" if one of the children sleeps...
         self.listen_state(self.children_sleeping_changed, "binary_sensor.la_oder_le_schlafen")
