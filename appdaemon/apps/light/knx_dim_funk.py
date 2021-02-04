@@ -17,8 +17,8 @@ class knx_dim_funk(hass.Hass):
         self.light = self.args["light_entity"]
         self.steps = self.args["steps"]
         # listen for knx events
-        self.listen_event(self.received_dim_command, event = "knx_event", address = self.args["command_ga_dim"])
-        self.listen_event(self.received_switch_command, event = "knx_event", address = self.args["command_ga_switch"])
+        self.listen_event(self.received_dim_command, event = "knx_event", destination = self.args["command_ga_dim"])
+        self.listen_event(self.received_switch_command, event = "knx_event", destination = self.args["command_ga_switch"])
         
     def received_dim_command(self,event_name,data,kwargs):
         self.log("KNX command for step-dimming detected. Light is: {}. Data is:".format(self.light))
