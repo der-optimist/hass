@@ -48,6 +48,7 @@ logger:
 lovelace:
   mode: yaml
 
+automation:
 config:
 
 system_health:
