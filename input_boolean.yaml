@@ -199,6 +199,9 @@
   app_switch_log_events:
     name: Logging HA events in AD
     icon: mdi:note-text
+  app_switch_bildschirm:
+    name: Automatik Bildschirm
+    icon: mdi:auto-fix
   kodi_just_started_playing:
     name: Kodi just started playing
     icon: mdi:play-circle-outline
