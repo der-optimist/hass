@@ -80,6 +80,7 @@ class wall_panel(hass.Hass):
             self.log("5 request errors. Will reboot wallpanel (reset switch)")
             self.turn_off(self.reset_switch_entity)
             self.run_in(self.turn_on_wallpanel, self.reboot_delay_seconds)
+            self.fire_event("custom_notify", message="Habe den Bildschirm neu gestartet", target="telegram_jo")
 
     def turn_on_wallpanel(self, kwargs):
         self.log("Booting Wallpanel")
