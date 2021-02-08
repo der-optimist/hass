@@ -80,5 +80,6 @@ class water_alarm(hass.Hass):
 
     def button_wm_strom_an(self,event_name,data,kwargs):
         self.turn_on("switch.waschmaschine")
-        message = "Waschmaschine hat (wieder) Strom"
+        self.turn_on("switch.wasserabsperrventil")
+        message = "Waschmaschine hat (wieder) Strom, Wasser ist wieder an"
         self.fire_event("custom_notify", message=message, target="telegram_jo")
