@@ -209,3 +209,6 @@
   appdaemon_production_mode:
     name: AppDaemon Production Mode
     icon: mdi:lock
+  beleuchtung_hochzeitsbild:
+    name: Beleuchtung Hochzeitsbild
+    icon: mdi:lightbulb-on-outline
