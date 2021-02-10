@@ -32,4 +32,5 @@ cards:
     show_header_toggle: false
     entities:
       - entity: input_boolean.beleuchtung_hochzeitsbild
+      - entity: input_boolean.bewegung_hochzeitsbild
       - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off
