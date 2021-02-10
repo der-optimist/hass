@@ -21,19 +21,6 @@ auto_light_k_werkelraum:
     - binary_sensor.pm_k_timer_magnetsensor_werkelraum
   min_illuminance_values:
     "00:00": 1
-auto_light_hochzeitsbild:
-  module: auto_light
-  class: auto_light
-  debug: few
-  app_switch: input_boolean.beleuchtung_hochzeitsbild
-  light: light.esp_wemos_d1_2_test_led
-  type: dim
-  triggers: 
-    - binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off
-  min_illuminance_values:
-    "00:00": 1
-  brightness_values:
-    "00:00": 100
 auto_light_k_partyraum:
   module: auto_light
   class: auto_light
