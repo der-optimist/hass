@@ -14,8 +14,8 @@ auto_light_e_ez_panels:
     - binary_sensor.pm_e_wz_durchgang
   brightness_values:
     "00:00": 50
-    "06:00": 80
-    "06:30": 85
+    "05:00": 80
+    "06:00": 85
     "09:00": 90
     "19:00": 78
     "21:30": 50
@@ -50,8 +50,8 @@ auto_light_e_ez_wandleuchten_hell:
     - binary_sensor.pm_e_wz_durchgang
   brightness_values:
     "00:00": 50
-    "06:00": 60
-    "06:30": 70
+    "05:00": 60
+    "06:00": 70
     "19:30": 55
     "21:30": 50
   min_illuminance_values:
@@ -114,7 +114,7 @@ auto_light_e_ez_theke_warm:
     - binary_sensor.pm_e_wz_durchgang
   brightness_values:
     "00:00": 40
-    "06:00": 50
+    "05:00": 50
   min_illuminance_values:
     "00:00": 60
   switching_off_offset: 60
@@ -164,8 +164,8 @@ auto_light_e_ku_panels:
   brightness_values:
     "00:00": 40
     "04:30": 50
-    "06:00": 60
-    "06:30": 78
+    "05:00": 60
+    "06:00": 78
     "18:30": 70
     "21:30": 40
   min_illuminance_values:
@@ -198,8 +198,8 @@ auto_light_e_ku_arbeitsplatte:
     - binary_sensor.pm_e_ku_kuche
   brightness_values:
     "00:00": 40
-    "06:00": 60
-    "06:30": 65
+    "05:00": 60
+    "06:00": 65
     "09:00": 80
     "17:30": 70
     "19:30": 60
@@ -234,7 +234,7 @@ auto_light_e_ku_sockel:
   brightness_values:
     "00:00": 45
     "09:00": 0
-    "19:00": 45
+    "18:00": 45
   min_illuminance_values:
     "00:00": 100
     "09:00": 0
@@ -267,8 +267,8 @@ auto_light_e_bar_panels:
   brightness_values:
     "00:00": 40
     "04:30": 50
-    "06:00": 60
-    "06:30": 78
+    "05:00": 60
+    "06:00": 78
     "18:30": 70
     "21:30": 40
   min_illuminance_values:
@@ -304,8 +304,8 @@ auto_light_e_wz_panels:
     - binary_sensor.pm_e_wz_couch_rechts
   brightness_values:
     "00:00": 50
-    "06:00": 60
-    "06:30": 70
+    "05:00": 60
+    "06:00": 70
     "07:00": 80
     "19:00": 50
     "20:00": 40
