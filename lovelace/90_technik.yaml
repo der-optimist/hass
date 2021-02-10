@@ -2,30 +2,6 @@ title: Technik
 path: technik
 icon: mdi:router-wireless
 cards:
-  - type: custom:mini-graph-card
-    entities: 
-      - entity: sensor.speedtest_download
-        name: Download
-        show_points: true
-        show_state: true
-      - entity: sensor.speedtest_upload
-        name: Upload
-        show_points: true
-        show_state: true
-      - entity: sensor.speedtest_ping
-        name: Ping
-        y_axis: secondary
-        show_points: true
-        show_state: true
-    name: Internet
-    hour24: true
-    points_per_hour: 1
-    decimals: 1
-    lower_bound: 0
-    lower_bound_secondary: 0
-    show:
-      labels: true
-      labels_secondary: true
   - type: entities
     title: "HA-Server"
     show_header_toggle: false
@@ -51,3 +27,9 @@ cards:
     entities:
       - entity: switch.wasserabsperrventil
         name: Wasserfluss
+  - type: entities
+    title: "Testbereich"
+    show_header_toggle: false
+    entities:
+      - entity: input_boolean.beleuchtung_hochzeitsbild
+      - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off
