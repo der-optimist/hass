@@ -66,8 +66,6 @@ cards:
           height: 1px
           background-color: "#ff9c27"
           opacity: 0.25
-      - entity: sensor.stellwert_heizung_kuche
-        name: Küche
       - entity: sensor.stellwert_heizung_esszimmer
         name: Esszimmer
       - entity: sensor.stellwert_heizung_wohnzimmer
@@ -95,20 +93,9 @@ cards:
     show_header_toggle: false
     entities:
       - type: 'custom:simple-thermostat'
-        entity: climate.kuche
-        step_layout: row
-        name: Küche
-        sensors:
-          - entity: sensor.stellwert_heizung_kuche
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_kuche
-            name: Regler
-        icon: false
-        control: false
-      - type: 'custom:simple-thermostat'
         entity: climate.esszimmer
         step_layout: row
-        name: Esszimmer
+        name: Esszimmer und Küche
         sensors:
           - entity: sensor.stellwert_heizung_esszimmer
             name: Ventil offen
