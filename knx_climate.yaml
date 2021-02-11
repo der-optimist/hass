@@ -1,14 +1,14 @@
 # Heizung  
-  - name: 'Küche'
-    temperature_address: '6/0/193'
-    #setpoint_shift_address: '10/0/21'
-    #setpoint_shift_state_address: '10/0/21'
-    target_temperature_address: '10/0/0'
-    target_temperature_state_address: '10/0/0'
-    operation_mode_address: '10/0/3'
-    controller_status_state_address: '10/0/5'
-    min_temp: 17.0
-    max_temp: 28.0
+#  - name: 'Küche'
+#    temperature_address: '6/0/193'
+#    #setpoint_shift_address: '10/0/21'
+#    #setpoint_shift_state_address: '10/0/21'
+#    target_temperature_address: '10/0/0'
+#    target_temperature_state_address: '10/0/0'
+#    operation_mode_address: '10/0/3'
+#    controller_status_state_address: '10/0/5'
+#    min_temp: 17.0
+#    max_temp: 28.0
   - name: 'Esszimmer'
     temperature_address: '6/0/193'
     #setpoint_shift_address: '10/0/21'
