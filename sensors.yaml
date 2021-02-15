@@ -1076,13 +1076,6 @@
     name: Stromzähler
     serial_port: /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AR0JH225-if00-port0
 
-# Bank
-#  - platform: fints
-#    bank_identification_number: !secret bank_blz
-#    username: !secret bank_username
-#    pin: !secret bank_pin
-#    url: !secret bank_url
-
 # System 
   - platform: systemmonitor
     resources:
@@ -1096,41 +1089,3 @@
     command: "cat /sys/class/thermal/thermal_zone0/temp"
     unit_of_measurement: "°C"
     value_template: '{{ value | multiply(0.001) | round(1) }}'
-
-# Covid
-  - platform: rest
-    resource: "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=county%20%3D%20%27LK%20RAVENSBURG%27&outFields=cases,deaths,cases_per_100k,cases_per_population,BL,BL_ID,county,last_update,cases7_per_100k,recovered,cases7_bl_per_100k,EWZ_BL&returnGeometry=false&outSR=4326&f=json"
-    name: "7-Tage-Inzidenz RV"
-    value_template: "{{ '%.1f'%(value_json.features.0.attributes.cases7_per_100k | float) }}"
-    unit_of_measurement: 'Menschen'
-  - platform: rest
-    resource: "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=county%20%3D%20%27LK%20RAVENSBURG%27&outFields=cases,deaths,cases_per_100k,cases_per_population,BL,BL_ID,county,last_update,cases7_per_100k,recovered,cases7_bl_per_100k,EWZ_BL&returnGeometry=false&outSR=4326&f=json"
-    name: "7-Tage-Inzidenz BaWü"
-    value_template: "{{ '%.1f'%(value_json.features.0.attributes.cases7_bl_per_100k | float) }}"
-    unit_of_measurement: 'Menschen'
-  - platform: rest
-    resource: "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=county%20%3D%20%27LK%20WITTENBERG%27&outFields=cases,deaths,cases_per_100k,cases_per_population,BL,BL_ID,county,last_update,cases7_per_100k,recovered,cases7_bl_per_100k,EWZ_BL&returnGeometry=false&outSR=4326&f=json"
-    name: "7-Tage-Inzidenz Wittenberg"
-    value_template: "{{ '%.1f'%(value_json.features.0.attributes.cases7_per_100k | float) }}"
-    unit_of_measurement: 'Menschen'
-  - platform: rest
-    resource: "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Coronaf%C3%A4lle_in_den_Bundesl%C3%A4ndern/FeatureServer/0/query?where=1%3D1&outFields=Fallzahl,LAN_ew_GEN&returnGeometry=false&outSR=4326&f=json"
-    name: Fallzahlen gesamt D
-#    scan_interval: 3600
-    value_template: "{{ (value_json.features.0.attributes.Fallzahl | float) 
-                      + (value_json.features.1.attributes.Fallzahl | float) 
-                      + (value_json.features.2.attributes.Fallzahl | float) 
-                      + (value_json.features.3.attributes.Fallzahl | float) 
-                      + (value_json.features.4.attributes.Fallzahl | float) 
-                      + (value_json.features.5.attributes.Fallzahl | float) 
-                      + (value_json.features.6.attributes.Fallzahl | float) 
-                      + (value_json.features.7.attributes.Fallzahl | float) 
-                      + (value_json.features.8.attributes.Fallzahl | float) 
-                      + (value_json.features.9.attributes.Fallzahl | float) 
-                      + (value_json.features.10.attributes.Fallzahl | float) 
-                      + (value_json.features.11.attributes.Fallzahl | float) 
-                      + (value_json.features.12.attributes.Fallzahl | float) 
-                      + (value_json.features.13.attributes.Fallzahl | float) 
-                      + (value_json.features.14.attributes.Fallzahl | float) 
-                      + (value_json.features.15.attributes.Fallzahl | float) }}"
-    unit_of_measurement: 'Menschen'
