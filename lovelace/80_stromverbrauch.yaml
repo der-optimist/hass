@@ -458,15 +458,15 @@ cards:
           - entity: sensor.tasmota_sd_2_energie
             name: Tasmota SD 2 - Energie
           - type: section
-            label: Tasmota SD 3 (offline)
-          - entity: sensor.tasmota_sd_3_wirkleistung
-            name: Tasmota SD 3 - Wirkleistung
-          - entity: sensor.tasmota_sd_3_scheinleistung
-            name: Tasmota SD 3 - Scheinleistung
-          - entity: sensor.tasmota_sd_3_leistungsfaktor
-            name: Tasmota SD 3 - Cos Phi
-          - entity: sensor.tasmota_sd_3_energie
-            name: Tasmota SD 3 - Energie
+            label: ESP SD 3 (Bildschirm Theke)
+          - entity: sensor.esp_sd_3_wirkleistung
+            name: ESP SD 3 - Wirkleistung
+          - entity: sensor.esp_sd_3_scheinleistung
+            name: ESP SD 3 - Scheinleistung
+          - entity: sensor.esp_sd_3_leistungsfaktor
+            name: ESP SD 3 - Cos Phi
+          - entity: sensor.esp_sd_3_stromverbrauch_heute
+            name: ESP SD 3 - Energie
           - type: section
             label: Shelly Plug S (Hebeanlage)
           - entity: sensor.shellyplug_s_169d16_power
