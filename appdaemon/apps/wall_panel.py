@@ -14,7 +14,7 @@ class wall_panel(hass.Hass):
     def initialize(self):
         # URL for REST api commands
         self.url = "http://192.168.178.42:2971/api/command"
-        self.reset_switch_entity = "switch.tasmota_sd_3"
+        self.reset_switch_entity = "switch.esp_sd_3_relais"
         self.reboot_delay_seconds = 5
         # presence
         self.timer_handle_wake = None
