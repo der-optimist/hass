@@ -647,7 +647,7 @@
       el_leistung_bildschirm_theke:
         friendly_name: "El. Leistung Bildschirm Theke"
         value_template: >-
-          {{ states("sensor.tasmota_sd_3_wirkleistung") }}
+          {{ states("sensor.esp_sd_3_wirkleistung") }}
       el_leistung_lg_anlage:
         friendly_name: "El. Leistung LG Anlage"
         value_template: >-
@@ -747,27 +747,6 @@
   - platform: mqtt
     name: "Tasmota SD 2 Energie"
     state_topic: "tele/tasmota_sd_2/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Total"] }}'
-    unit_of_measurement: "kWh"
-# Tasmota SD 3
-  - platform: mqtt
-    name: "Tasmota SD 3 Scheinleistung"
-    state_topic: "tele/tasmota_sd_3/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["ApparentPower"] }}'
-    unit_of_measurement: "VA"
-  - platform: mqtt
-    name: "Tasmota SD 3 Wirkleistung"
-    state_topic: "tele/tasmota_sd_3/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Power"] }}'
-    unit_of_measurement: "W"
-  - platform: mqtt
-    name: "Tasmota SD 3 Leistungsfaktor"
-    state_topic: "tele/tasmota_sd_3/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Factor"] }}'
-    unit_of_measurement: " "
-  - platform: mqtt
-    name: "Tasmota SD 3 Energie"
-    state_topic: "tele/tasmota_sd_3/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Total"] }}'
     unit_of_measurement: "kWh"
 # Wemos D1 1 - DHT21
