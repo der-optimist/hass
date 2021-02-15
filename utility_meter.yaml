@@ -219,9 +219,3 @@
   stromverbrauch_dauerverbraucher_kalenderjahr:
     source: sensor.stromzahler_dauerverbraucher
     cycle: yearly
-
-  # Covid
-  covid_faelle_tag_d:
-    source: sensor.fallzahlen_gesamt_d
-    cycle: daily
-    offset: '23:55'
