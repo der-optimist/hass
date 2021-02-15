@@ -38,8 +38,8 @@ luftbefeuchter_wz:
   module: air_dryer_and_humidifier
   class: air_dryer_and_humidifier
   machine_type: humidifier
-  air_dryer_or_humidifier_switch: switch.tasmota_sd_2
-  energy_measurement_sensor: sensor.tasmota_sd_2_wirkleistung
+  air_dryer_or_humidifier_switch: switch.esp_sd_2_relais
+  energy_measurement_sensor: sensor.esp_sd_2_wirkleistung
   humidity_sensor: sensor.luftfeuchtigkeit_kuche_aqara
   humidity_standard_max: 50
   humidity_standard_min: 46
