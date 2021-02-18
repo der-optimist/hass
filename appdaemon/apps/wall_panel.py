@@ -50,6 +50,7 @@ class wall_panel(hass.Hass):
         except Exception as e:
             self.log("Error sending sleep command to wallpanel via REST api. Error was {}".format(e))
             error = True
+            self.requests_error()
         if not error:
             self.error_counter = 0
         self.timer_handle_sleep = self.run_in(self.send_sleep_command,60)
