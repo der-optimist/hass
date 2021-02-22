@@ -63,4 +63,4 @@ auto_light_e_wf_brettlicht:
     "23:00": 30
   illuminance_sensor: sensor.helligkeit_windfang_pm
   special_brightness_entities:
-    switch.majo_schlafen: 60
+    switch.majo_schlafen: 40
