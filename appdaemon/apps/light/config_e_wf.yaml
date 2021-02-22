@@ -42,8 +42,11 @@ auto_light_e_wf_brettlicht:
   triggers: 
     - binary_sensor.pm_e_wf_haustur
     - binary_sensor.pm_e_wf_garderobe
+    - binary_sensor.pm_e_wf_flur
     - binary_sensor.pm_e_fl_windfang
+    - binary_sensor.pm_e_fl_treppe_og
     - binary_sensor.pm_e_wc
+    - binary_sensor.pm_ktr_flur
   brightness_values:
     "00:00": 70
     "08:00": 75
