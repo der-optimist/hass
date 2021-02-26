@@ -34,6 +34,9 @@ auto_light_e_fl_panels:
 #    switch.majo_schlafen: 5
   keeping_off_entities:
     - switch.majo_schlafen
+  switching_off_entities:
+    - switch.majo_schlafen
+    - switch.knutschen
 auto_light_e_fl_stehlampe_oben:
   module: auto_light_beta
   class: auto_light
