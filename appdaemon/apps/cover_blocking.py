@@ -57,12 +57,13 @@ class cover_blocking(hass.Hass):
             return
         if (humidity > self.humidity_blocking and temp < self.temp_blocking_humidity) or (rain_status == "on" and temp < self.temp_blocking_rain):
             self.set_state(self.ice_blocking_switch,state="on")
-            self.log("ice blocking switch on")
+            #self.log("ice blocking switch on")
         elif temp > 5:
             self.set_state(self.ice_blocking_switch,state="off")
-            self.log("ice blocking switch off")
+            #self.log("ice blocking switch off")
         else:
-            self.log("do not change ice blocking switch")
+            pass
+            #self.log("do not change ice blocking switch")
 
     def check_if_cover_should_be_blocked(self, entity, blocking_entity):
         try:
