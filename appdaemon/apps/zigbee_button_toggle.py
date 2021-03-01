@@ -4,7 +4,7 @@ import appdaemon.plugins.hass.hassapi as hass
 #  - Listen for single press of zigbee button and toggle an entity
 
 
-class gz_zigbee_button(hass.Hass):
+class zigbee_button_toggle(hass.Hass):
 
     def initialize(self):
         self.zha_device_ieee = self.args["zha_device_ieee"]
