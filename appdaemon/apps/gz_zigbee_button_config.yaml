@@ -1,6 +1,0 @@
-gz_zigbee_button:
-  module: gz_zigbee_button
-  class: gz_zigbee_button
-  zha_device_ieee: '00:15:8d:00:02:5f:22:62'
-  sleep_mode_switch_entity: switch.gaste_schlafen
-  light_entity: light.innr_rb_245_97884103_level_on_off
