@@ -3,22 +3,16 @@ resources:
     type: module
   - url: /hacsfiles/lovelace-layout-card/layout-card.js
     type: module
-#  - url: /hacsfiles/custom-header/custom-header.js
-#    type: module
   - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
     type: module 
   - url: /hacsfiles/simple-thermostat/simple-thermostat.js
     type: module
-#  - url: /hacsfiles/button-card/button-card.js
-#    type: module
   - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
     type: module
   - url: /hacsfiles/bar-card/bar-card.js
     type: module
   - url: /hacsfiles/lovelace-card-mod/card-mod.js
     type: module
-#  - url: /hacsfiles/secondaryinfo-entity-row/secondaryinfo-entity-row.js
-#    type: module
   - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
     type: module
   - url: /hacsfiles/lovelace-hui-element/hui-element.js
@@ -28,6 +22,8 @@ resources:
   - url: /hacsfiles/numberbox-card/numberbox-card.js
     type: module
   - url: /hacsfiles/lovelace-template-entity-row/template-entity-row.js
+    type: module
+  - url: /hacsfiles/apexcharts-card/apexcharts-card.js
     type: module
 
 title: Lieblingshaus
