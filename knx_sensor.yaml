@@ -115,9 +115,9 @@
     type: illuminance
 
 # --- Stellwerte Heizung ---
-  - name: 'Stellwert Heizung Küche'
-    state_address: '10/0/4'
-    type: percent
+#  - name: 'Stellwert Heizung Küche'
+#    state_address: '10/0/4'
+#    type: percent
   - name: 'Stellwert Heizung Esszimmer'
     state_address: '10/0/24'
     type: percent
