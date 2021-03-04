@@ -391,27 +391,27 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_flur_keller:
-        value_template: "{{ is_state('light.flur_keller','on') | float * 75 }}"
+        value_template: "{{ is_state('light.flur_keller','on') | float * 20 }}"
         friendly_name: 'El. Leistung Licht Flur Keller (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_technikraum:
-        value_template: "{{ is_state('light.technikraum','on') | float * 116 }}"
+        value_template: "{{ is_state('light.technikraum','on') | float * 20 }}"
         friendly_name: 'El. Leistung Licht Technikraum (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_vorratsraum:
-        value_template: "{{ is_state('light.vorratsraum','on') | float * 75 }}"
+        value_template: "{{ is_state('light.vorratsraum','on') | float * 20 }}"
         friendly_name: 'El. Leistung Licht Vorratsraum (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_werkelraum:
-        value_template: "{{ is_state('light.werkelraum','on') | float * 85 }}"
+        value_template: "{{ is_state('light.werkelraum','on') | float * 60 }}"
         friendly_name: 'El. Leistung Licht Werkelraum (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_partyraum:
-        value_template: "{{ is_state('light.lagerraum','on') | float * 65 }}"
+        value_template: "{{ is_state('light.lagerraum','on') | float * 22 }}"
         friendly_name: 'El. Leistung Licht Partyraum (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
