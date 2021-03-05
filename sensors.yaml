@@ -749,54 +749,6 @@
     state_topic: "tele/tasmota_sd_2/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Total"] }}'
     unit_of_measurement: "kWh"
-# Wemos D1 1 - DHT21
-  - platform: mqtt
-    name: "DHT21 WemosD1 1 Luftfeuchtigkeit"
-    state_topic: "tele/tasmota_wemos_d1_1/SENSOR"
-    value_template: '{{ value_json["AM2301"]["Humidity"] }}'
-    unit_of_measurement: "%"
-  - platform: mqtt
-    name: "DHT21 WemosD1 1 Temperatur"
-    state_topic: "tele/tasmota_wemos_d1_1/SENSOR"
-    value_template: '{{ value_json["AM2301"]["Temperature"] }}'
-    unit_of_measurement: "°C"
-  - platform: mqtt
-    name: "DHT21 WemosD1 1 Taupunkt"
-    state_topic: "tele/tasmota_wemos_d1_1/SENSOR"
-    value_template: '{{ value_json["AM2301"]["DewPoint"] }}'
-    unit_of_measurement: "°C"
-# Wemos D1 2 - DHT21
-  - platform: mqtt
-    name: "DHT21 WemosD1 2 Luftfeuchtigkeit"
-    state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
-    value_template: '{{ value_json["AM2301"]["Humidity"] }}'
-    unit_of_measurement: "%"
-  - platform: mqtt
-    name: "DHT21 WemosD1 2 Temperatur"
-    state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
-    value_template: '{{ value_json["AM2301"]["Temperature"] }}'
-    unit_of_measurement: "°C"
-  - platform: mqtt
-    name: "DHT21 WemosD1 2 Taupunkt"
-    state_topic: "tele/tasmota_wemos_d1_2/SENSOR"
-    value_template: '{{ value_json["AM2301"]["DewPoint"] }}'
-    unit_of_measurement: "°C"
-# Wemos D1 3 - DHT21
-  - platform: mqtt
-    name: "DHT21 WemosD1 3 Luftfeuchtigkeit"
-    state_topic: "tele/tasmota_wemos_d1_3/SENSOR"
-    value_template: '{{ (value_json["AM2301"]["Humidity"] | float - 3.5) | round(1) }}'
-    unit_of_measurement: "%"
-  - platform: mqtt
-    name: "DHT21 WemosD1 3 Temperatur"
-    state_topic: "tele/tasmota_wemos_d1_3/SENSOR"
-    value_template: '{{ value_json["AM2301"]["Temperature"] }}'
-    unit_of_measurement: "°C"
-  - platform: mqtt
-    name: "DHT21 WemosD1 3 Taupunkt"
-    state_topic: "tele/tasmota_wemos_d1_3/SENSOR"
-    value_template: '{{ value_json["AM2301"]["DewPoint"] }}'
-    unit_of_measurement: "°C"
 # Wemos D1 4 - BME280
   - platform: mqtt
     name: "BME280 WemosD1 4 Luftfeuchtigkeit"
@@ -816,27 +768,6 @@
   - platform: mqtt
     name: "BME280 WemosD1 4 Luftdruck"
     state_topic: "tele/tasmota_wemos_d1_4/SENSOR"
-    value_template: '{{ value_json["BME280"]["Pressure"] }}'
-    unit_of_measurement: "hPa"
-# Wemos D1 5 - BME280
-  - platform: mqtt
-    name: "BME280 WemosD1 5 Luftfeuchtigkeit"
-    state_topic: "tele/tasmota_wemos_d1_5/SENSOR"
-    value_template: '{{ (value_json["BME280"]["Humidity"] | float + 2) | round(1) }}'
-    unit_of_measurement: "%"
-  - platform: mqtt
-    name: "BME280 WemosD1 5 Temperatur"
-    state_topic: "tele/tasmota_wemos_d1_5/SENSOR"
-    value_template: '{{ value_json["BME280"]["Temperature"] }}'
-    unit_of_measurement: "°C"
-  - platform: mqtt
-    name: "BME280 WemosD1 5 Taupunkt"
-    state_topic: "tele/tasmota_wemos_d1_5/SENSOR"
-    value_template: '{{ value_json["BME280"]["DewPoint"] }}'
-    unit_of_measurement: "°C"
-  - platform: mqtt
-    name: "BME280 WemosD1 5 Luftdruck"
-    state_topic: "tele/tasmota_wemos_d1_5/SENSOR"
     value_template: '{{ value_json["BME280"]["Pressure"] }}'
     unit_of_measurement: "hPa"
 # Wemos D1 6 - BME280
