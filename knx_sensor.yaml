@@ -153,9 +153,6 @@
     type: percent
 
 # --- Sollwert Heizung, Basis + Shift ---
-  - name: 'Sollwert Heizung Küche'
-    state_address: '10/0/2'
-    type: temperature
   - name: 'Sollwert Heizung Esszimmer'
     state_address: '10/0/22'
     type: temperature
