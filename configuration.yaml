@@ -240,6 +240,46 @@ knx:
   - type: 'binary'
     entity_id: 'switch.shellyswitch25_10521c45de0b_relay_1'
     address: '0/3/41'
+  # Stehlampe WZ - Anzeige auf Taster
+  - type: "binary"
+    entity_id: "light.innr_e27_color_stehlampe_wz_level_light_color_on_off"
+    address: "1/6/81"
+    default: false
+  - type: "percentU8"
+    entity_id: "light.innr_e27_color_stehlampe_wz_level_light_color_on_off"
+    attribute: "brightness"
+    default: 0
+    address: "1/6/84"
+  # Stehlampe Le - Anzeige auf Taster
+  - type: "binary"
+    entity_id: "light.innr_e14_tw_stehlampe_lea_level_light_color_on_off"
+    address: "1/6/1"
+    default: false
+  - type: "percentU8"
+    entity_id: "light.innr_e14_tw_stehlampe_lea_level_light_color_on_off"
+    attribute: "brightness"
+    default: 0
+    address: "1/6/4"
+  # Stehlampe La - Anzeige auf Taster
+  - type: "binary"
+    entity_id: "light.innr_e14_ww_stehlampe_lara_level_on_off"
+    address: "1/5/201"
+    default: false
+  - type: "percentU8"
+    entity_id: "light.innr_e14_ww_stehlampe_lara_level_on_off"
+    attribute: "brightness"
+    default: 0
+    address: "1/5/204"
+  # Deckenlicht GZ - Anzeige auf Taster
+  - type: "binary"
+    entity_id: "light.innr_e14_ww_decke_gastezimmer_level_on_off"
+    address: "1/6/41"
+    default: false
+  - type: "percentU8"
+    entity_id: "light.innr_e14_ww_decke_gastezimmer_level_on_off"
+    attribute: "brightness"
+    default: 0
+    address: "1/6/44"
 
 light:
 sensor: !include sensors.yaml
