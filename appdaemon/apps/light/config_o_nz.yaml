@@ -11,3 +11,22 @@ auto_light_o_nz_jo:
     "00:00": 0
   illuminance_sensor: sensor.helligkeit_nahzimmer_pm
   switching_off_offset: 400
+auto_light_o_nz_ma:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  app_switch: input_boolean.app_switch_licht_naehzimmer
+  light: light.ikea_panel_arbeitszimmer_level_light_color_on_off
+  type: dim
+  triggers: 
+    - binary_sensor.pm_o_nz
+  brightness_values:
+    "00:00": 30
+    "07:30": 40
+    "09:00": 70
+    "18:00": 40
+    "19:00": 30
+  min_illuminance_values:
+    "00:00": 100
+  illuminance_sensor: sensor.helligkeit_nahzimmer_pm
+  switching_off_offset: 200
