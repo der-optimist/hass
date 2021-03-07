@@ -8,10 +8,12 @@ cards:
     entities:
     - type: section
       label: Licht
-    - entity: light.nahtisch_decke
-      name: Nähtisch
+    - type: custom:slider-entity-row
+      entity: light.ikea_panel_arbeitszimmer_level_light_color_on_off
+      toggle: true
+      name: !secret name_ma
     - entity: light.schreibtisch_decke
-      name: Schreibtisch
+      name: !secret name_jo
     - type: section
       label: Jalousie
     - entity: cover.jalousie_nahzimmer
