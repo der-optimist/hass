@@ -355,7 +355,7 @@
       el_leistung_anteil_pv_nicht_einspeisbar:
         value_template: >-
           {% if (states('sensor.el_leistung_pv_ac') | float) > (states('sensor.el_leistung_einspeiselimit') | float) %}
-            {{ ((states('sensor.el_leistung_pv_ac') | float) - (states('sensor.el_leistung_einspeiselimit')) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
+            {{ ((states('sensor.el_leistung_pv_ac') | float) - (states('sensor.el_leistung_einspeiselimit') | float)) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
           {% else %}
             0.0
           {% endif %}
