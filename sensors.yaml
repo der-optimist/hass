@@ -322,7 +322,7 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_netzbezug_vorzeichenbehaftet:
-        value_template: "{{ -states('sensor.el_leistung_stromzaehler_netzbezug') }}"
+        value_template: "{{ (states('sensor.el_leistung_stromzaehler_netzbezug') | float ) * (-1) }}"
         friendly_name: 'El. Leistung Stromzähler Netzbezug Vorzeichen'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
