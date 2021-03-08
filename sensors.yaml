@@ -1,9 +1,25 @@
-# --- Template ---
+#
+# --------------------------------
+# --                            --
+# --          Template          --
+# --                            --
+# --------------------------------
+#
   - platform: template
     sensors:
+#
+#     --------------------------------
+#     --          Date              --
+#     --------------------------------
+#
       date_template:
         friendly_name: 'Datum'
         value_template: '{{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}'
+#
+#     --------------------------------
+#     --    Temp. und Luftf.        --
+#     --------------------------------
+#
       temp_aussen:
         friendly_name: 'Temp. Außen'
         unit_of_measurement: '°C'
@@ -79,14 +95,21 @@
         value_template: "{{ state_attr('weather.lieblingshaus', 'humidity') }}"
         unit_of_measurement: '%'
         device_class: humidity
-
-      # --- Stromverbrauch ---
+#
+#     --------------------------------
+#     --     Stromverbrauch         --
+#     --------------------------------
+#
       stromzaehler_netzbezug:
         value_template: "{{ '%.1f'%(states('sensor.stromzahler_positive_active_energy_in_tariff_t1') | float /1000) | float }}"
         friendly_name: 'Stromzähler Netzbezug'
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
-      # Daily
+#
+#       --------------------------------
+#       --          Daily             --
+#       --------------------------------
+#
       stromverbrauch_netzbezug_vortag:
         value_template: "{{ state_attr('sensor.stromverbrauch_netzbezug_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
@@ -183,7 +206,11 @@
         value_template: "{{ state_attr('sensor.stromverbrauch_dauerverbraucher_tag', 'last_period') | float + (now().day | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
-      # Monthly
+#
+#       --------------------------------
+#       --         Monthly            --
+#       --------------------------------
+#
       stromverbrauch_netzbezug_vormonat:
         value_template: "{{ state_attr('sensor.stromverbrauch_netzbezug_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
@@ -280,81 +307,25 @@
         value_template: "{{ state_attr('sensor.stromverbrauch_dauerverbraucher_monat', 'last_period') | float + (now().month | float / 1000000) }}"
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
-
-      # --- Elektrische Leistung ---
-      # Netzbezug
+#
+#     --------------------------------
+#     --   Elektrische Leistung     --
+#     --------------------------------
+#
+#       --------------------------------
+#       --       Netz und PV          --
+#       --------------------------------
+#
       el_leistung_stromzaehler_netzbezug:
         value_template: "{{ states('sensor.stromzahler_sum_active_instantaneous_power') }}"
         friendly_name: 'El. Leistung Stromzähler Netzbezug'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      # Backofen
-#      el_leistung_backofen_round:
-#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_backofen') | float) | float }}"
-#        friendly_name: 'El. Leistung Backofen (gerundet)'
-#        unit_of_measurement: 'W'
-#        icon_template: mdi:speedometer
-      # Dauerverbraucher
-#      el_leistung_dauerverbraucher_round:
-#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_dauerverbraucher') | float) | float }}"
-#        friendly_name: 'El. Leistung Dauerverbraucher (gerundet)'
-#        unit_of_measurement: 'W'
-#        icon_template: mdi:speedometer
-      # Kühlschrank Küche
-#      el_leistung_kuhlschrank_kuche_round:
-#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche') | float) | float }}"
-#        friendly_name: 'El. Leistung Kühlschrank Küche (gerundet)'
-#        unit_of_measurement: 'W'
-#        icon_template: mdi:speedometer
-      # Spülmaschine
-#      el_leistung_spulmaschine_round:
-#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_spulmaschine') | float) | float }}"
-#        friendly_name: 'El. Leistung Spülmaschine (gerundet)'
-#        unit_of_measurement: 'W'
-#        icon_template: mdi:speedometer
-      # Mixi
-#      el_leistung_mixi_round:
-#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_mixi') | float) | float }}"
-#        friendly_name: 'El. Leistung Mixi (gerundet)'
-#        unit_of_measurement: 'W'
-#        icon_template: mdi:speedometer
-      # TV
-#      el_leistung_tv_round:
-#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_tv') | float) | float }}"
-#        friendly_name: 'El. Leistung TV (gerundet)'
-#        unit_of_measurement: 'W'
-#        icon_template: mdi:speedometer
-      # Waschmaschine
-#      el_leistung_waschmaschine_round:
-#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_waschmaschine') | float) | float }}"
-#        friendly_name: 'El. Leistung Waschmaschine (gerundet)'
-#        unit_of_measurement: 'W'
-#        icon_template: mdi:speedometer
-      # Trockner
-#      el_leistung_trockner_round:
-#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_trockner') | float) | float }}"
-#        friendly_name: 'El. Leistung Trockner (gerundet)'
-#        unit_of_measurement: 'W'
-#        icon_template: mdi:speedometer
-      # Kühlschrank Keller
-#      el_leistung_kuhlschrank_keller_round:
-#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float) | float }}"
-#        friendly_name: 'El. Leistung Kühlschrank Keller (gerundet)'
-#        unit_of_measurement: 'W'
-#        icon_template: mdi:speedometer
-      # Gefrierschrank
-#      el_leistung_gefrierschrank_round:
-#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_gefrierschrank') | float) | float }}"
-#        friendly_name: 'El. Leistung Gefrierschrank (gerundet)'
-#        unit_of_measurement: 'W'
-#        icon_template: mdi:speedometer
-      # Lüftungsanlage
-#      el_leistung_luftungsanlage_round:
-#        value_template: "{{ '%.1f'%(states('sensor.el_leistung_luftungsanlage') | float) | float }}"
-#        friendly_name: 'El. Leistung Lüftungsanlage (gerundet)'
-#        unit_of_measurement: 'W'
-#        icon_template: mdi:speedometer
-      # Licht
+#
+#       --------------------------------
+#       --           Licht            --
+#       --------------------------------
+#
       el_leistung_berechnet_zigbee_licht_gaestezimmer:
         value_template: "{{ '%.1f'%(state_attr('light.innr_e14_ww_decke_gastezimmer_level_on_off', 'brightness') | float / 255 * 5.3)| float }}"
         friendly_name: 'El. Leistung Licht Gästezimmer (berechnet)'
@@ -436,13 +407,13 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_naehtisch_nz:
-        value_template: "{{ is_state('light.nahtisch_decke','on') | float * 24 }}"
-        friendly_name: 'El. Leistung Licht Nähtisch Decke(berechnet)'
+        value_template: "{{ '%.1f'%(state_attr('light.ikea_panel_arbeitszimmer_level_light_color_on_off', 'brightness') | float / 255 * 29)| float }}"
+        friendly_name: 'El. Leistung Licht Decke Ma (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_schreibtisch_nz:
         value_template: "{{ is_state('light.schreibtisch_decke','on') | float * 24 }}"
-        friendly_name: 'El. Leistung Licht Schreibtisch Decke (berechnet)'
+        friendly_name: 'El. Leistung Licht Decke Jo (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_spiegel_bad_eg:
@@ -529,6 +500,11 @@
         friendly_name: 'El. Leistung Licht gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+#
+#       --------------------------------
+#       --          Geräte            --
+#       --------------------------------
+#
       el_leistung_dauerverbraucher:
         # Werte:
             # USV:                          58 (gemessen)
@@ -554,6 +530,8 @@
             # Radio Bad
             # Radio Theke
             # Enthärtungsanlage
+            # Robbi
+            # Digibit
         value_template: "{{ (now().minute | float / 1000000) + 58 + 0.5 + 2 + 4.5 + 5 + 4 + 2 + 5 + 6 + 3 + 2 + 1 + 1.5}}"
         friendly_name: 'El. Leistung Dauerverbraucher'
         unit_of_measurement: 'W'
@@ -656,12 +634,22 @@
           {% else %}
             0.5
           {% endif %}
+#
+#       --------------------------------
+#       --     Nullung Zähler         --
+#       --------------------------------
+#
       stromzahler_licht_gesamt_genullt:
         value_template: >-
           {{ '%.2f'%(states("sensor.stromzahler_licht_gesamt") | float - 237.14) }}
         friendly_name: 'Stromzähler Licht gesamt (genullt)'
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
+#
+#       --------------------------------
+#       --         Heizung            --
+#       --------------------------------
+#
       # max Stellwert Heizkreise Zeitverlauf
       stellwert_heizung_zeitverlauf_max:
         friendly_name: "Stellwert Heizung Zeitverlauf Max"
@@ -685,8 +673,19 @@
         unit_of_measurement: '°C'
         device_class: temperature
 
+        #
+# --------------------------------
+# --                            --
+# --            MQTT            --
+# --                            --
+# --------------------------------
+#
 # MQTT without mqtt-discovery
-# Sonoff POW R2 1
+#
+#   --------------------------------
+#   --     Sonoff POW R2 1        --
+#   --------------------------------
+#
   - platform: mqtt
     name: "Sonoff POW R2 1 Scheinleistung"
     state_topic: "tele/tasmota_pow_r2_1/SENSOR"
@@ -707,7 +706,11 @@
     state_topic: "tele/tasmota_pow_r2_1/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Total"] }}'
     unit_of_measurement: "kWh"
-# Sonoff POW R2 2
+#
+#   --------------------------------
+#   --     Sonoff POW R2 2        --
+#   --------------------------------
+#
   - platform: mqtt
     name: "Sonoff POW R2 2 Scheinleistung"
     state_topic: "tele/tasmota_pow_r2_2/SENSOR"
@@ -728,28 +731,11 @@
     state_topic: "tele/tasmota_pow_r2_2/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Total"] }}'
     unit_of_measurement: "kWh"
-# Tasmota SD 2
-  - platform: mqtt
-    name: "Tasmota SD 2 Scheinleistung"
-    state_topic: "tele/tasmota_sd_2/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["ApparentPower"] }}'
-    unit_of_measurement: "VA"
-  - platform: mqtt
-    name: "Tasmota SD 2 Wirkleistung"
-    state_topic: "tele/tasmota_sd_2/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Power"] }}'
-    unit_of_measurement: "W"
-  - platform: mqtt
-    name: "Tasmota SD 2 Leistungsfaktor"
-    state_topic: "tele/tasmota_sd_2/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Factor"] }}'
-    unit_of_measurement: "None"
-  - platform: mqtt
-    name: "Tasmota SD 2 Energie"
-    state_topic: "tele/tasmota_sd_2/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Total"] }}'
-    unit_of_measurement: "kWh"
-# Wemos D1 4 - BME280
+#
+#   --------------------------------
+#   --    Wemos D1 4 - BME280     --
+#   --------------------------------
+#
   - platform: mqtt
     name: "BME280 WemosD1 4 Luftfeuchtigkeit"
     state_topic: "tele/tasmota_wemos_d1_4/SENSOR"
@@ -770,7 +756,11 @@
     state_topic: "tele/tasmota_wemos_d1_4/SENSOR"
     value_template: '{{ value_json["BME280"]["Pressure"] }}'
     unit_of_measurement: "hPa"
-# Wemos D1 6 - BME280
+#
+#   --------------------------------
+#   --    Wemos D1 6 - BME280     --
+#   --------------------------------
+#
   - platform: mqtt
     name: "BME280 WemosD1 6 Luftfeuchtigkeit"
     state_topic: "tele/tasmota_wemos_d1_6/SENSOR"
@@ -791,7 +781,11 @@
     state_topic: "tele/tasmota_wemos_d1_6/SENSOR"
     value_template: '{{ value_json["BME280"]["Pressure"] }}'
     unit_of_measurement: "hPa"
-# Wemos D1 7 - BME280
+#
+#   --------------------------------
+#   --    Wemos D1 7 - BME280     --
+#   --------------------------------
+#
   - platform: mqtt
     name: "BME280 WemosD1 7 Luftfeuchtigkeit"
     state_topic: "tele/tasmota_wemos_d1_7/SENSOR"
@@ -812,7 +806,14 @@
     state_topic: "tele/tasmota_wemos_d1_7/SENSOR"
     value_template: '{{ value_json["BME280"]["Pressure"] }}'
     unit_of_measurement: "hPa"
-
+#
+#
+# --------------------------------
+# --                            --
+# --        Integration         --
+# --                            --
+# --------------------------------
+#
 # Riemann sum - Integration (Energy Consumption)
   - platform: integration
     source: sensor.el_leistung_licht_gesamt
@@ -928,10 +929,13 @@
     method: left
     unit_prefix: k
     round: 2
-
-
-# --- Sonstiges ---
-# History
+#
+# --------------------------------
+# --                            --
+# --           History          --
+# --                            --
+# --------------------------------
+#
   - platform: history_stats
     name: Jo at work
     entity_id: binary_sensor.jo_at_work
@@ -972,7 +976,13 @@
     duration:
       hours: 1
 
-# Max. Stellung Heizkreisventile
+#
+# --------------------------------
+# --                            --
+# --         Min / Max          --
+# --                            --
+# --------------------------------
+#
   - platform: min_max
     type: max
     name: Stellwert Heizung aktueller MaxWert
@@ -989,6 +999,13 @@
       - sensor.stellwert_heizung_schlafzimmer
       - sensor.stellwert_heizung_windfang_wc
       - sensor.stellwert_heizung_wohnzimmer
+#
+# --------------------------------
+# --                            --
+# --         Statistics         --
+# --                            --
+# --------------------------------
+#
   - platform: statistics
     name: Stellwert Heizung Zeitverlauf Mean
     entity_id: sensor.stellwert_heizung_aktueller_maxwert
@@ -996,18 +1013,36 @@
     max_age:
       minutes: 30
 
-# Zeit und Datum
+#
+# --------------------------------
+# --                            --
+# --       Time / Date          --
+# --                            --
+# --------------------------------
+#
   - platform: time_date
     display_options:
       - 'time'
       - 'date'
 
-# Stromzaehler
+#
+# --------------------------------
+# --                            --
+# --        Stromzähler         --
+# --                            --
+# --------------------------------
+#
   - platform: edl21
     name: Stromzähler
     serial_port: /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AR0JH225-if00-port0
 
-# System 
+#
+# --------------------------------
+# --                            --
+# --           Server           --
+# --                            --
+# --------------------------------
+#
   - platform: systemmonitor
     resources:
       - type: processor_use
