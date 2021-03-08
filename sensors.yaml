@@ -327,7 +327,7 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_netz_bilanz:
-        value_template: "{{ (states('sensor.el_leistung_stromzaehler_netzbezug') | float ) - (states('input_number.temp_leistung_pv_test') | float ) }}"
+        value_template: "{{ -1*(states('sensor.el_leistung_stromzaehler_netzbezug') | float ) - (states('input_number.temp_leistung_pv_test') | float ) }}"
         friendly_name: 'El. Leistung Netz Bilanz'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
@@ -345,7 +345,7 @@
       el_leistung_anteil_netzbezug:
         value_template: >-
           {% if (states('sensor.el_leistung_netz_bilanz') | float) < 0 %}
-            {{ (states('sensor.el_leistung_netz_bilanz') | float) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
+            {{ -1*(states('sensor.el_leistung_netz_bilanz') | float) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
           {% else %}
             0.0
           {% endif %}
