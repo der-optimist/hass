@@ -1012,7 +1012,12 @@
     sampling_size: 2000
     max_age:
       minutes: 30
-
+  - platform: statistics
+    name: El. Leistung Verbrauch gesamt letzte Minuten
+    entity_id: sensor.stellwert_heizung_aktueller_maxwert
+    sampling_size: 1000
+    max_age:
+      minutes: 5
 #
 # --------------------------------
 # --                            --
