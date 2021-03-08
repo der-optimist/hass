@@ -13,6 +13,7 @@ views:
   - !include lovelace/70_automatisierungen.yaml
   - !include lovelace/72_jalousien.yaml
   - !include lovelace/75_heizung.yaml
+  - !include lovelace/79_pv.yaml
   - !include lovelace/80_stromverbrauch.yaml
   - !include lovelace/81_temperaturen.yaml
   - !include lovelace/82_luftfeuchtigkeit.yaml
