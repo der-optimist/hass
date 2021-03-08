@@ -321,13 +321,18 @@
         friendly_name: 'El. Leistung Stromzähler Netzbezug'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      el_leistung_netzbezug_vorzeichenbehaftet:
+        value_template: "{{ -states('sensor.el_leistung_stromzaehler_netzbezug') }}"
+        friendly_name: 'El. Leistung Stromzähler Netzbezug Vorzeichen'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
       el_leistung_pv_ac:
         value_template: "{{ states('input_number.temp_leistung_pv_test') }}"
         friendly_name: 'El. Leistung PV AC'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_netz_bilanz:
-        value_template: "{{ -1*(states('sensor.el_leistung_stromzaehler_netzbezug') | float ) - (states('input_number.temp_leistung_pv_test') | float ) }}"
+        value_template: "{{ (states('sensor.el_leistung_netzbezug_vorzeichenbehaftet') | float ) + (states('input_number.temp_leistung_pv_test') | float ) }}"
         friendly_name: 'El. Leistung Netz Bilanz'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
@@ -338,7 +343,7 @@
         icon_template: mdi:speedometer
 # effektiver Strompreis
       el_leistung_einspeiselimit:
-        value_template: "{{ 0.7 * 9360 }}"
+        value_template: "{{ (states('input_number.pv_einspeisebegrenzung_prozent') | float ) * (states('input_number.pv_installierte_peakleistung') | float ) }}"
         friendly_name: 'El. Leistung Einspeiselimit'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
