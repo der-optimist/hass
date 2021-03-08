@@ -331,6 +331,52 @@
         friendly_name: 'El. Leistung Netz Bilanz'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      el_leistung_verbrauch_gesamt:
+        value_template: "{{ (states('sensor.el_leistung_stromzaehler_netzbezug') | float ) }}"
+        friendly_name: 'El. Leistung Netz Bilanz'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+# effektiver Strompreis
+      el_leistung_einspeiselimit:
+        value_template: "{{ 0.7 * 9360 }}"
+        friendly_name: 'El. Leistung Einspeiselimit'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      el_leistung_anteil_netzbezug:
+        value_template: >-
+          {% if (states('sensor.el_leistung_netz_bilanz') | float) < 0 %}
+            {{ (states('sensor.el_leistung_netz_bilanz') | float) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
+          {% else %}
+            0.0
+          {% endif %}
+        friendly_name: 'El. Leistung Anteil Netzbezug'
+        unit_of_measurement: 'Anteil'
+        icon_template: mdi:chart-donut
+      el_leistung_anteil_pv_nicht_einspeisbar:
+        value_template: >-
+          {% if (states('sensor.el_leistung_pv_ac') | float) > (states('sensor.el_leistung_einspeiselimit') | float) %}
+            {{ ((states('sensor.el_leistung_pv_ac') | float) - (states('sensor.el_leistung_einspeiselimit')) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
+          {% else %}
+            0.0
+          {% endif %}
+        friendly_name: 'El. Leistung Anteil PV nicht einspeisbar'
+        unit_of_measurement: 'Anteil'
+        icon_template: mdi:chart-donut
+      el_leistung_anteil_pv_einspeisbar:
+        value_template: "{{ 1 - (states('sensor.el_leistung_anteil_netzbezug') | float ) - (states('sensor.el_leistung_anteil_pv_nicht_einspeisbar') | float ) }}"
+        friendly_name: 'El. Leistung Anteil PV einspeisbar'
+        unit_of_measurement: 'Anteil'
+        icon_template: mdi:chart-donut
+      strompreis_aktuell_effektiv_euro:
+        value_template: "{{ (states('input_number.strompreis') | float ) * (states('sensor.el_leistung_anteil_netzbezug') | float ) + (states('input_number.pv_einspeiseverguetung') | float ) * (states('sensor.el_leistung_anteil_pv_einspeisbar') | float ) }}"
+        friendly_name: 'Strompreis aktuell effektiv Euro'
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+      strompreis_aktuell_effektiv_cent:
+        value_template: "{{ ((states('sensor.strompreis_aktuell_effektiv_euro') | float) * 100) | round(0) }}"
+        friendly_name: 'Strompreis aktuell effektiv Cent'
+        unit_of_measurement: 'ct'
+        icon_template: mdi:currency-eur
 #
 #       --------------------------------
 #       --           Licht            --
