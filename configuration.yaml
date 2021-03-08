@@ -32,8 +32,6 @@ panel_iframe:
 
 api:
 mobile_app:
-#hacs: # HA custom store	
-#  token: !secret github_api_key
 
 system_log:
   max_entries: 100
@@ -53,16 +51,7 @@ config:
 
 system_health:
 
-#sentry:
-#  dsn: !secret sentry_dsn
-
-# Discover some devices automatically
 discovery:
-#  ignore:
-#    - igd
-
-# Allows you to issue voice commands from the frontend in enabled browsers
-#conversation:
 
 mqtt:
   broker: core-mosquitto
@@ -80,9 +69,6 @@ mqtt:
 webhook:
 
 media_player:
-# kodi now configured via UI - integrations
-#  - platform: kodi
-#    host: 192.168.178.38
 
 telegram_bot:
   - platform: polling
@@ -131,27 +117,9 @@ recorder:
 
 history:
 
-#owntracks:
-
-# Enables a map showing the location of tracked devices
-#map:
-
-#speedtestdotnet:
-
-#ourgroceries:
-#  username: !secret our_groceries_username
-#  password: !secret our_groceries_password
-
-# Track the sun
 sun:
 
 weather:
-#  - platform: darksky
-#    api_key: !secret darksky_api_key
-#    name: Dark Sky
-#    mode: hourly
-#  - platform: openweathermap
-#    api_key: !secret owm_api_key
 
 knx:
   event_filter: 
@@ -317,16 +285,16 @@ camera:
 folder_watcher:
   - folder: /share/abstellraum/
 
-# Text to speech
-#tts:
-#  - platform: google
-
-# Cloud
 cloud:
 
 # Inputs
 input_boolean: !include input_boolean.yaml
 input_number:
+  temp_leistung_pv_test:
+    name: Leistung PV Test
+    min: 0
+    max: 10000
+    step: 50
   pizza_timer_2:
     name: Pizza Timer
     initial: 0
