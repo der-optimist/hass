@@ -1,0 +1,19 @@
+title: PV
+path: pv
+icon: mdi:solar-power
+cards:
+  - type: entities
+    title: "Test"
+    show_header_toggle: false
+    entities:
+      - input_number.temp_leistung_pv_test
+      - sensor.el_leistung_stromzaehler_netzbezug
+      - sensor.el_leistung_netzbezug_vorzeichenbehaftet
+      - sensor.el_leistung_pv_ac
+      - sensor.el_leistung_netz_bilanz
+      - sensor.el_leistung_verbrauch_gesamt
+      - sensor.el_leistung_anteil_netzbezug
+      - sensor.el_leistung_anteil_pv_nicht_einspeisbar
+      - sensor.el_leistung_anteil_pv_einspeisbar
+      - sensor.strompreis_aktuell_effektiv_euro
+      - sensor.strompreis_aktuell_effektiv_cent
