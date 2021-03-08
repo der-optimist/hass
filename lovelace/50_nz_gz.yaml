@@ -1,6 +1,6 @@
 title: Nähzimmer und Gäste
 path: nz_und_gz
-icon: mdi:cash-register
+icon: mdi:monitor-dashboard
 cards:
   - type: entities
     title: Nähzimmer
