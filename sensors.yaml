@@ -361,7 +361,7 @@
         value_template: >-
           {% if (states('sensor.el_leistung_pv_ac') | float) > ((states('sensor.el_leistung_einspeiselimit') | float) + (states('sensor.el_leistung_verbrauch_gesamt') | float)) %}
             1.0
-          {% elif states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float < 8 %}
+          {% elif (states('sensor.el_leistung_pv_ac') | float) > (states('sensor.el_leistung_einspeiselimit') | float) %}
             {{ ((states('sensor.el_leistung_pv_ac') | float) - (states('sensor.el_leistung_einspeiselimit') | float)) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
           {% else %}
             0.0
