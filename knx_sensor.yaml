@@ -326,9 +326,9 @@
 
 # --- Diagnosemeldungen
   # Heizung
-  - name: 'Diagnose Heizkreis Küche'
-    state_address: '10/0/6'
-    type: string
+#  - name: 'Diagnose Heizkreis Küche'
+#    state_address: '10/0/6'
+#    type: string
   - name: 'Diagnose Heizkreis Esszimmer'
     state_address: '10/0/26'
     type: string
