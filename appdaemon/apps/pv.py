@@ -32,12 +32,11 @@ class pv(hass.Hass):
 #        self.log(kwargs)
         timestamps = []
         forecast_values = []
-        utc_offset = self.utc_offset(None)
+#        utc_offset = self.utc_offset(None)
         for forecast in new:
-            end_time_string = forecast["period_end"][:26]
-            timestamp = int((datetime.datetime.strptime(end_time_string, "%Y-%m-%dT%H:%M:%S.%f") - utc_offset).timestamp())
+            end_time_string = forecast["period_end"]
             value_watt = int(round(float(forecast["pv_estimate"]) * 1000,0))
-            timestamps.append(timestamp)
+            timestamps.append(end_time_string)
             forecast_values.append(value_watt)
         self.set_state(self.sensor_forecast_data_chart, state = str(datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")), attributes = {"timestamps": timestamps, "forecast_values": forecast_values})
 #        start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
