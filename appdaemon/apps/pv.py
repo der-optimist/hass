@@ -35,7 +35,7 @@ class pv(hass.Hass):
         utc_offset = self.utc_offset(None)
         for forecast in new:
             end_time_string = forecast["period_end"][:26]
-            timestamp = (datetime.datetime.strptime(end_time_string, "%Y-%m-%dT%H:%M:%S.%f") - utc_offset).timestamp
+            timestamp = int((datetime.datetime.strptime(end_time_string, "%Y-%m-%dT%H:%M:%S.%f") - utc_offset).timestamp())
             value_watt = float(forecast["pv_estimate"]) * 1000
             timestamps.append(timestamp)
             forecast_values.append(value_watt)
