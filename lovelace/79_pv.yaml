@@ -29,5 +29,5 @@ cards:
       - entity: sensor.solcast_forecast_chart
         data_generator: | # This is what builds the data
           return entity.attributes.timestamps.map((ts, index) => {
-            return [ts, entity.attributes.forecast_values[index]];
+            return [new Date(ts).getTime(), entity.attributes.forecast_values[index]];
           });
