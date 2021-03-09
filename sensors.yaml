@@ -1116,7 +1116,7 @@
     json_attributes:
       - "forecasts"
     name: 'solcast forecast REST'
-    unit_of_measurement: "W"
+    unit_of_measurement: "kW"
     scan_interval: 10800
 #
 # --------------------------------
