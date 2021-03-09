@@ -154,7 +154,6 @@ solcast:
   api_limit: 10
   disable_ssl_check: False
   disable_automatic_forecast_fetching: False
-  disable_automatic_history_fetching: True
 
 knx:
   event_filter: 
