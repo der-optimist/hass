@@ -36,7 +36,7 @@ class pv(hass.Hass):
         for forecast in new:
             end_time_string = forecast["period_end"][:26]
             timestamp = int((datetime.datetime.strptime(end_time_string, "%Y-%m-%dT%H:%M:%S.%f") - utc_offset).timestamp())
-            value_watt = float(forecast["pv_estimate"]) * 1000
+            value_watt = int(round(float(forecast["pv_estimate"]) * 1000,0))
             timestamps.append(timestamp)
             forecast_values.append(value_watt)
         self.set_state(self.sensor_forecast_data_chart, state = str(datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")), attributes = {"timestamps": timestamps, "forecast_values": forecast_values})
