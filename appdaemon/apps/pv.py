@@ -18,8 +18,8 @@ class pv(hass.Hass):
         try:
             current_forecasts = self.get_state(self.sensor_rest_forecast, attribute = "forecasts")
             self.sensor_rest_forecast_changed(self.sensor_rest_forecast, "forecasts", None, current_forecasts, None)
-        except:
-            pass
+        except Exception as e:
+            self.log("Error running forecast at startup. Error was {}".format(e))
  
     def sensor_rest_forecast_changed(self, entity, attribute, old, new, kwargs):
 #        self.log("--- entity ---")
