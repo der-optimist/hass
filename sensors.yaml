@@ -1113,7 +1113,8 @@
   - platform: rest
     resource: !secret solcast_url
     value_template: '{{ value_json.forecasts.0.pv_estimate }}'
-    json_attributes_path: '$.forecasts'
+    json_attributes:
+      - "forecasts"
     name: 'solcast forecast REST'
     scan_interval: 10800
 #
