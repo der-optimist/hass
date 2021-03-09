@@ -12,21 +12,34 @@ class pv(hass.Hass):
 
     def initialize(self):
         # --- forecast ---
-        sensor_rest_forecast = "sensor.solcast_forecast_rest"
-        self.listen_state(self.sensor_rest_forecast_changed, sensor_rest_forecast, attribute = "forecasts")
-
+        self.sensor_rest_forecast = "sensor.solcast_forecast_rest"
+        self.sensor_forecast_data_chart = "sensor.solcast_forecast_chart"
+        self.listen_state(self.sensor_rest_forecast_changed, self.sensor_rest_forecast, attribute = "forecasts")
+        try:
+            current_forecasts = self.get_state(self.sensor_rest_forecast, attribute = "forecasts")
+            self.sensor_rest_forecast_changed(self.sensor_rest_forecast, "forecasts", None, current_forecasts, None)
+        except:
+            pass
  
     def sensor_rest_forecast_changed(self, entity, attribute, old, new, kwargs):
-        self.log("--- entity ---")
-        self.log(entity)
-        self.log("--- attribute ---")
-        self.log(attribute)
-        self.log("--- new ---")
-        self.log(new)
-        self.log("--- kwargs ---")
-        self.log(kwargs)
+#        self.log("--- entity ---")
+#        self.log(entity)
+#        self.log("--- attribute ---")
+#        self.log(attribute)
+#        self.log("--- new ---")
+#        self.log(new)
+#        self.log("--- kwargs ---")
+#        self.log(kwargs)
+        timestamps = []
+        forecast_values = []
         utc_offset = self.utc_offset(None)
-        self.log(utc_offset)
+        for forecast in new:
+            end_time_string = forecast["period_end"][:26]
+            timestamp = (datetime.datetime.strptime(end_time_string, "%Y-%m-%dT%H:%M:%SZ") - utc_offset).timestamp
+            value_watt = float(forecast["pv_estimate"]) * 1000
+            timestamps.append(timestamp)
+            forecast_values.append(value_watt)
+        self.set_state(self.sensor_forecast_data_chart, state = str(datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")), attributes = {"timestamps": timestamps, "forecast_values": forecast_values})
 #        start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
 #        end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
 
