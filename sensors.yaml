@@ -1103,7 +1103,18 @@
   - platform: edl21
     name: Stromzähler
     serial_port: /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AR0JH225-if00-port0
-
+#
+# --------------------------------
+# --                            --
+# --          solcast           --
+# --                            --
+# --------------------------------
+#
+  - platform: rest
+    resource: !secret solcast_url
+    value_template: '{{ value_json.forecasts }}'
+    name: 'solcast forecast REST'
+    scan_interval: 10800
 #
 # --------------------------------
 # --                            --
