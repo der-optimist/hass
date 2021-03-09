@@ -18,16 +18,16 @@ cards:
       - sensor.strompreis_aktuell_effektiv_euro
       - sensor.strompreis_aktuell_effektiv_cent
   - type: custom:apexcharts-card
-    graph_span: 24h
+#    graph_span: 24h
     update_interval: 5min
     now:
       show: True
       label: "jetzt"
     span:
-      start: minute
+      start: hour
     series:
       - entity: sensor.solcast_forecast_chart
         data_generator: | # This is what builds the data
           return entity.attributes.timestamps.map((ts, index) => {
-            return [new Date(ts).getTime(), entity.attributes.forecast_values[index]];
+            return [ts, entity.attributes.forecast_values[index]];
           });
