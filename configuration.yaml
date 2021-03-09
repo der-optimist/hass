@@ -148,13 +148,13 @@ sun:
 
 weather:
 
-#solcast:
-#  api_key: !secret solcast_api_key
-#  resource_id: !secret solcast_resource_id
-#  api_limit: 10
-#  disable_ssl_check: False
-#  disable_automatic_forecast_fetching: False
-#  disable_automatic_history_fetching: True
+solcast:
+  api_key: !secret solcast_api_key
+  resource_id: !secret solcast_resource_id
+  api_limit: 10
+  disable_ssl_check: False
+  disable_automatic_forecast_fetching: False
+  disable_automatic_history_fetching: True
 
 knx:
   event_filter: 
