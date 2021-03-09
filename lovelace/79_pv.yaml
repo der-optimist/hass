@@ -20,6 +20,10 @@ cards:
   - type: custom:apexcharts-card
     graph_span: 48h
     update_interval: 5min
+    apex_config:
+      yaxis:
+        min: 0
+        max: 10000
     now:
       show: True
       label: "jetzt"
