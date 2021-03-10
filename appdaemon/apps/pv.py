@@ -61,12 +61,12 @@ class pv(hass.Hass):
                 energy_day_4 += (value_watt * 0.5) / 1000
             elif mid_time_local_day == day_5:
                 energy_day_5 += (value_watt * 0.5) / 1000
-        timestamps_daily.append(datetime.datetime.combine(day_0, datetime.time(12,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
-        timestamps_daily.append(datetime.datetime.combine(day_1, datetime.time(12,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
-        timestamps_daily.append(datetime.datetime.combine(day_2, datetime.time(12,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
-        timestamps_daily.append(datetime.datetime.combine(day_3, datetime.time(12,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
-        timestamps_daily.append(datetime.datetime.combine(day_4, datetime.time(12,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
-        timestamps_daily.append(datetime.datetime.combine(day_5, datetime.time(12,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
+        timestamps_daily.append(datetime.datetime.combine(day_0, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
+        timestamps_daily.append(datetime.datetime.combine(day_1, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
+        timestamps_daily.append(datetime.datetime.combine(day_2, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
+        timestamps_daily.append(datetime.datetime.combine(day_3, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
+        timestamps_daily.append(datetime.datetime.combine(day_4, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
+        timestamps_daily.append(datetime.datetime.combine(day_5, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
         forecast_values_daily.append(round(energy_day_0,1))
         forecast_values_daily.append(round(energy_day_1,1))
         forecast_values_daily.append(round(energy_day_2,1))
