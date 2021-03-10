@@ -35,6 +35,13 @@ cards:
           return entity.attributes.timestamps.map((ts, index) => {
             return [new Date(ts).getTime(), entity.attributes.forecast_values[index]];
           });
+    color_threshold:
+      - value: 0
+        color: grey
+      - value: 1
+        color: var(--primary-color)
+      - value: 4000
+        color: green
   - type: custom:apexcharts-card
     graph_span: 6d
     update_interval: 15min
