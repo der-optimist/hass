@@ -41,9 +41,9 @@ cards:
           - value: 0
             color: grey
           - value: 1
-            color: var(--primary-color)
-#          - value: 3999
-#            color: var(--primary-color)
+            color: "#ff9800"
+          - value: 3999
+            color: "#ff9800"
           - value: 4000
             color: green
   - type: custom:apexcharts-card
