@@ -67,12 +67,12 @@ class pv(hass.Hass):
         timestamps_daily.append(datetime.datetime.combine(day_3, datetime.time(12,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
         timestamps_daily.append(datetime.datetime.combine(day_4, datetime.time(12,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
         timestamps_daily.append(datetime.datetime.combine(day_5, datetime.time(12,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
-        forecast_values_daily.append(int(round(energy_day_0,1)))
-        forecast_values_daily.append(int(round(energy_day_1,1)))
-        forecast_values_daily.append(int(round(energy_day_2,1)))
-        forecast_values_daily.append(int(round(energy_day_3,1)))
-        forecast_values_daily.append(int(round(energy_day_4,1)))
-        forecast_values_daily.append(int(round(energy_day_5,1)))
+        forecast_values_daily.append(round(energy_day_0,1))
+        forecast_values_daily.append(round(energy_day_1,1))
+        forecast_values_daily.append(round(energy_day_2,1))
+        forecast_values_daily.append(round(energy_day_3,1))
+        forecast_values_daily.append(round(energy_day_4,1))
+        forecast_values_daily.append(round(energy_day_5,1))
         self.set_state(self.sensor_forecast_data_chart, state = str(datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")), attributes = {"timestamps": timestamps, "forecast_values": forecast_values, "timestamps_daily": timestamps_daily, "forecast_values_daily": forecast_values_daily})
 #        start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
 #        end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
