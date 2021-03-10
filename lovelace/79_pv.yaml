@@ -40,12 +40,12 @@ cards:
         color_threshold:
           - value: 0
             color: gray
-          - value: 300
-            color: gray
+#          - value: 300
+#            color: gray
           - value: 301
-            color: yellow
-          - value: 3999
-            color: yellow
+            color: darkorange
+#          - value: 3999
+#            color: darkorange
           - value: 4000
             color: lime
   - type: custom:apexcharts-card
