@@ -38,7 +38,7 @@ cards:
             return [new Date(ts).getTime(), entity.attributes.forecast_values[index]];
           });
         color_threshold:
-          - value: -1
+          - value: 0
             color: gray
           - value: 300
             color: gray
