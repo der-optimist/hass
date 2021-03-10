@@ -39,10 +39,10 @@ cards:
     graph_span: 6d
     update_interval: 15min
     chart_type: scatter
-    apex_config:
-      yaxis:
-        min: 0
-        max: 10000
+#    apex_config:
+#      yaxis:
+#        min: 0
+#        max: 10000
     span:
       start: day
     series:
