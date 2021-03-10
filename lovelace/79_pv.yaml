@@ -40,9 +40,7 @@ cards:
         color_threshold:
           - value: -1
             color: grey
-          - value: 1
-            color: grey
-          - value: 2
+          - value: 300
             color: "#ff9800"
           - value: 3999
             color: "#ff9800"
