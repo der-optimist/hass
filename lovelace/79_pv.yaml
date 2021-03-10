@@ -43,9 +43,9 @@ cards:
           - value: 300
             color: gray
           - value: 301
-            color: darkorange
+            color: yellow
           - value: 3999
-            color: darkorange
+            color: yellow
           - value: 4000
             color: lime
   - type: custom:apexcharts-card
