@@ -41,11 +41,13 @@ cards:
           - value: -1
             color: grey
           - value: 300
-            color: "#ff9800"
+            color: grey
+          - value: 301
+            color: darkorange
           - value: 3999
-            color: "#ff9800"
+            color: darkorange
           - value: 4000
-            color: green
+            color: lime
   - type: custom:apexcharts-card
     graph_span: 5d
     update_interval: 15min
