@@ -35,3 +35,19 @@ cards:
           return entity.attributes.timestamps.map((ts, index) => {
             return [new Date(ts).getTime(), entity.attributes.forecast_values[index]];
           });
+  - type: custom:apexcharts-card
+    graph_span: 6d
+    update_interval: 15min
+    chart_type: scatter
+    apex_config:
+      yaxis:
+        min: 0
+        max: 10000
+    span:
+      start: day
+    series:
+      - entity: sensor.solcast_forecast_chart
+        data_generator: | # This is what builds the data
+          return entity.attributes.timestamps_daily.map((ts_d, index) => {
+            return [new Date(ts_d).getTime(), entity.attributes.forecast_values_daily[index]];
+          });
