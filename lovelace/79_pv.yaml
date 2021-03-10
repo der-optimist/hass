@@ -41,12 +41,10 @@ cards:
           - value: 0
             color: gray
           - value: 300
-            color: gray
-          - value: 301
             color: darkorange
           - value: 6552
             color: darkorange
-          - value: 6553
+          - value: 6852
             color: lime
   - type: custom:apexcharts-card
     graph_span: 5d
