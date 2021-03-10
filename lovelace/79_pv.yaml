@@ -47,7 +47,7 @@ cards:
           - value: 4000
             color: green
   - type: custom:apexcharts-card
-    graph_span: 6d
+    graph_span: 5d
     update_interval: 15min
 #    chart_type: scatter
 #    apex_config:
