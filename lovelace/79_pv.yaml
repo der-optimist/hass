@@ -38,6 +38,7 @@ cards:
   - type: custom:apexcharts-card
     graph_span: 6d
     update_interval: 15min
+    type: column
 #    chart_type: scatter
 #    apex_config:
 #      yaxis:
