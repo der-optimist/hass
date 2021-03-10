@@ -18,6 +18,8 @@ cards:
       - sensor.strompreis_aktuell_effektiv_euro
       - sensor.strompreis_aktuell_effektiv_cent
   - type: custom:apexcharts-card
+    experimental:
+      color_threshold: true
     graph_span: 48h
     update_interval: 5min
     apex_config:
