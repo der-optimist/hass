@@ -40,7 +40,7 @@ cards:
         color_threshold:
           - value: 0
             color: gray
-          - value: 300
+          - value: 500
             color: darkorange
           - value: 6552
             color: darkorange
