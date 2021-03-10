@@ -39,9 +39,9 @@ cards:
           });
         color_threshold:
           - value: -1
-            color: grey
+            color: gray
           - value: 300
-            color: grey
+            color: gray
           - value: 301
             color: darkorange
           - value: 3999
