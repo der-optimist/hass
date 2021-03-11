@@ -61,6 +61,8 @@ cards:
     series:
       - entity: sensor.solcast_forecast_chart
         type: column
+        show:
+          datalabels: True
         data_generator: | # This is what builds the data
           return entity.attributes.timestamps_daily.map((ts_d, index) => {
             return [new Date(ts_d).getTime(), entity.attributes.forecast_values_daily[index]];
