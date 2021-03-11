@@ -11,6 +11,12 @@ cards:
       - entity: sensor.memory_use_percent
       - entity: sensor.disk_use_percent
   - type: entities
+    title: "Bildschirm Theke"
+    show_header_toggle: false
+    entities:
+      - entity: light.bildschirm_theke_helligkeit
+      - entity: sensor.kiosk_browser_bildschirm_theke
+  - type: entities
     title: "Kodi"
     show_header_toggle: false
     entities:
