@@ -27,6 +27,7 @@ class pv(hass.Hass):
         self.update_forecast(self.sensor_rest_forecast, "forecasts", None, current_forecasts, None)
  
     def update_forecast(self, entity, attribute, old, new, kwargs):
+        self.log("updating solar forecast - start")
         timestamps = []
         forecast_values = []
         timestamps_daily = []
@@ -79,8 +80,7 @@ class pv(hass.Hass):
         forecast_values_daily.append(round(energy_day_4,1))
         forecast_values_daily.append(round(energy_day_5,1))
         self.set_state(self.sensor_forecast_data_chart, state = str(datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")), attributes = {"timestamps": timestamps, "forecast_values": forecast_values, "timestamps_daily": timestamps_daily, "forecast_values_daily": forecast_values_daily})
-#        start_dt = (datetime.datetime.now() - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
-#        end_dt = (datetime.datetime.now() + datetime.timedelta(days=self.days_birthdays) - utc_offset).strftime("%Y-%m-%dT%H:%M:%S") # results in UTC time => "Z" in url
+        self.log("updating solar forecast - done")
 
 
     def check_reminder(self, kwargs):
