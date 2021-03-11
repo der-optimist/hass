@@ -13,7 +13,7 @@ class wall_panel(hass.Hass):
 
     def initialize(self):
         # URL for REST api commands
-        self.url = "http://192.168.178.42:2971/api/command"
+#        self.url = "http://192.168.178.42:2971/api/command"
         self.reset_switch_entity = "switch.esp_sd_3_relais"
         self.reboot_delay_seconds = 5
         # presence
@@ -28,13 +28,13 @@ class wall_panel(hass.Hass):
         else:
             self.send_sleep_command(None)
         # reload page
-        self.run_in(self.send_reload_command, 60)
+#        self.run_in(self.send_reload_command, 60)
 
 
     def send_wake_command(self, kwargs):
         error = False
         try:
-            requests.post(self.url, json={"wake":"true","wakeTime":610}, timeout=5)
+            requests.get("http://192.168.178.42:2323/?cmd=screenOn&password=nopw", timeout=5)
         except Exception as e:
             self.log("Error sending wake command to wallpanel via REST api. Error was {}".format(e))
             error = True
@@ -46,7 +46,7 @@ class wall_panel(hass.Hass):
     def send_sleep_command(self, kwargs):
         error = False
         try:
-            requests.post(self.url, json={"wake":"false"}, timeout=5)
+            requests.get("http://192.168.178.42:2323/?cmd=screenOff&password=nopw", timeout=5)
         except Exception as e:
             self.log("Error sending sleep command to wallpanel via REST api. Error was {}".format(e))
             error = True
@@ -58,7 +58,7 @@ class wall_panel(hass.Hass):
     def send_reload_command(self, kwargs):
         self.log("Sending reload command to wall panel")
         try:
-            requests.post(self.url, json={"reload":"true"}, timeout=5)
+            requests.get("", timeout=5)
         except Exception as e:
             self.log("Error sending reload command to wallpanel via REST api. Error was {}".format(e))
 
