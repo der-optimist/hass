@@ -148,13 +148,6 @@ sun:
 
 weather:
 
-#solcast:
-#  api_key: !secret solcast_api_key
-#  resource_id: !secret solcast_resource_id
-#  api_limit: 10
-#  disable_ssl_check: False
-#  disable_automatic_forecast_fetching: False
-
 knx:
   event_filter: 
     - "0/3/20"
@@ -292,6 +285,27 @@ knx:
     address: "1/6/44"
 
 light:
+  - platform: template
+    lights:
+      tablet_backlight:
+        friendly_name: "Bildschirm Theke Helligkeit"
+        value_template: "{{ state_attr('sensor.kiosk_browser_bildschirm_theke', 'isScreenOn') }}"
+        level_template: "{{ state_attr('sensor.kiosk_browser_bildschirm_theke', 'screenBrightness')|int }}"
+        turn_on:
+          service: rest_command.bildschirm_theke_command
+          data:
+            cmd: screenOn
+        turn_off:
+          service: rest_command.bildschirm_theke_command
+          data:
+            cmd: screenOff
+        set_level:
+          service: rest_command.bildschirm_theke_command
+          data_template:
+            cmd: setStringSetting
+            key: screenBrightness
+            value: '{{ brightness }}'
+
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
 
