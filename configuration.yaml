@@ -287,9 +287,9 @@ knx:
 light:
   - platform: template
     lights:
-      tablet_backlight:
+      bildschirm_theke_helligkeit:
         friendly_name: "Bildschirm Theke Helligkeit"
-        value_template: "{{ state_attr('sensor.kiosk_browser_bildschirm_theke', 'isScreenOn') }}"
+        value_template: "{{ state_attr('sensor.kiosk_browser_bildschirm_theke', 'screenOn') }}"
         level_template: "{{ state_attr('sensor.kiosk_browser_bildschirm_theke', 'screenBrightness')|int }}"
         turn_on:
           service: rest_command.bildschirm_theke_command
