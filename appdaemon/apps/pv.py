@@ -14,14 +14,19 @@ class pv(hass.Hass):
         # --- forecast ---
         self.sensor_rest_forecast = "sensor.solcast_forecast_rest"
         self.sensor_forecast_data_chart = "sensor.solcast_forecast_chart"
-        self.listen_state(self.sensor_rest_forecast_changed, self.sensor_rest_forecast, attribute = "forecasts")
-        try:
-            current_forecasts = self.get_state(self.sensor_rest_forecast, attribute = "forecasts")
-            self.sensor_rest_forecast_changed(self.sensor_rest_forecast, "forecasts", None, current_forecasts, None)
-        except Exception as e:
-            self.log("Error running forecast at startup. Error was {}".format(e))
+        self.listen_state(self.update_forecast, self.sensor_rest_forecast, attribute = "forecasts")
+#        try:
+#            current_forecasts = self.get_state(self.sensor_rest_forecast, attribute = "forecasts")
+#            self.update_forecast(self.sensor_rest_forecast, "forecasts", None, current_forecasts, None)
+#        except Exception as e:
+#            self.log("Error running forecast at startup. Error was {}".format(e))
+        self.run_every(self.update_forecast_regularly, "now", 15 * 60)
+    
+    def update_forecast_regularly(self, kwargs):
+        current_forecasts = self.get_state(self.sensor_rest_forecast, attribute = "forecasts")
+        self.update_forecast(self.sensor_rest_forecast, "forecasts", None, current_forecasts, None)
  
-    def sensor_rest_forecast_changed(self, entity, attribute, old, new, kwargs):
+    def update_forecast(self, entity, attribute, old, new, kwargs):
         timestamps = []
         forecast_values = []
         timestamps_daily = []
