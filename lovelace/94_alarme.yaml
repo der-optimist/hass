@@ -43,7 +43,6 @@ cards:
     entities:
       - entity: binary_sensor.storung_heizaktor_eg
       - entity: binary_sensor.storung_heizaktor_og
-      - entity: sensor.diagnose_heizkreis_kuche
       - entity: sensor.diagnose_heizkreis_esszimmer
       - entity: sensor.diagnose_heizkreis_wohnzimmer
       - entity: sensor.diagnose_heizkreis_schlafzimmer
