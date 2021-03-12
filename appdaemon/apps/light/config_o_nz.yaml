@@ -22,6 +22,8 @@ auto_light_o_nz_ma:
     - binary_sensor.pm_o_nz
   brightness_values:
     "00:00": 30
+    "04:00": 10
+    "06:30": 30
     "07:30": 40
     "09:00": 70
     "18:00": 40
