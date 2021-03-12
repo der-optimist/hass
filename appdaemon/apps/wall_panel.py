@@ -116,11 +116,11 @@ class wall_panel(hass.Hass):
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=128&password=nopw", timeout=3)
         elif brightness_float <= 25:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=153&password=nopw", timeout=3)
-        elif brightness_float <= 30:
+        elif brightness_float <= 40:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=178&password=nopw", timeout=3)
-        elif brightness_float <= 50:
-            requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=204&password=nopw", timeout=3)
         elif brightness_float <= 80:
+            requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=204&password=nopw", timeout=3)
+        elif brightness_float <= 200:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=230&password=nopw", timeout=3)
         else:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=245&password=nopw", timeout=3)
