@@ -18,8 +18,8 @@ cards:
       - entity: sensor.kiosk_browser_bildschirm_theke
       - type: attribute
         entity: sensor.kiosk_browser_bildschirm_theke
-        attribute: ScreenBrightness
-        name: Helligkeit (0-255)
+        attribute: "ScreenBrightness"
+        name: Helligkeit
   - type: entities
     title: "Kodi"
     show_header_toggle: false
