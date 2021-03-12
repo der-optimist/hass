@@ -30,7 +30,7 @@ class water_alarm(hass.Hass):
             self.fire_event("custom_notify", message=message, target="telegram_ma")
             # alarm message via separate notify_when_status_matched app
             try:
-                requests.post(self.url, json={"speak":"Alarm! Eimer Hebeanlage ist voll"}, timeout=5)
+                requests.get("http://192.168.178.42:2323/?cmd=textToSpeech&text=Alarm%20Eimer%20Hebeanlage%20ist%20voll&password=nopw", timeout=5)
             except:
             	pass
             fc = FritzCall(address=self.args["fritz_address"], password=self.args["fritz_pw"])
@@ -44,7 +44,7 @@ class water_alarm(hass.Hass):
             self.fire_event("custom_notify", message=message, target="telegram_ma")
             # alarm message via separate notify_when_status_matched app
             try:
-                requests.post(self.url, json={"speak":"Alarm! Wasser auf dem Boden bei der Hebeanlage"}, timeout=5)
+                requests.get("http://192.168.178.42:2323/?cmd=textToSpeech&text=Alarm%20Wasser%20auf%20dem%20Boden%20bei%20der%20Hebeanlage&password=nopw", timeout=5)
             except:
             	pass
             fc = FritzCall(address=self.args["fritz_address"], password=self.args["fritz_pw"])
@@ -58,7 +58,7 @@ class water_alarm(hass.Hass):
             self.fire_event("custom_notify", message=message, target="telegram_ma")
             # alarm message via separate notify_when_status_matched app
             try:
-                requests.post(self.url, json={"speak":"Achtung! Hebeanlage hat keinen Strom"}, timeout=5)
+                requests.get("http://192.168.178.42:2323/?cmd=textToSpeech&text=Achtung%20Hebeanlage%20hat%20keinen%20Strom&password=nopw", timeout=5)
             except:
             	pass
             fc = FritzCall(address=self.args["fritz_address"], password=self.args["fritz_pw"])
@@ -72,7 +72,7 @@ class water_alarm(hass.Hass):
             self.fire_event("custom_notify", message=message, target="telegram_ma")
             # alarm message via separate notify_when_status_matched app
             try:
-                requests.post(self.url, json={"speak":"Alarm! Wasser auf dem Boden unter der Spüle oder Spülmaschine"}, timeout=5)
+                requests.get("http://192.168.178.42:2323/?cmd=textToSpeech&text=Alarm%20Wasser%20auf%20dem%20Boden%20bei%20der%20Sp%C3%BCle%20oder%20Sp%C3%BClmaschine&password=nopw", timeout=5)
             except:
             	pass
             fc = FritzCall(address=self.args["fritz_address"], password=self.args["fritz_pw"])
