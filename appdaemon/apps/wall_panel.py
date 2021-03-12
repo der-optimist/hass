@@ -106,21 +106,21 @@ class wall_panel(hass.Hass):
         except:
             self.log("Brightness not float, but: ".format(new))
             return
-        if brightness_float <= 10:
+        if brightness_float <= 5:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=51&password=nopw", timeout=3)
-        elif brightness_float <= 15:
+        elif brightness_float <= 10:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=77&password=nopw", timeout=3)
-        elif brightness_float <= 20:
+        elif brightness_float <= 15:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=102&password=nopw", timeout=3)
-        elif brightness_float <= 25:
+        elif brightness_float <= 20:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=128&password=nopw", timeout=3)
-        elif brightness_float <= 30:
+        elif brightness_float <= 25:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=153&password=nopw", timeout=3)
-        elif brightness_float <= 50:
+        elif brightness_float <= 30:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=178&password=nopw", timeout=3)
-        elif brightness_float <= 80:
+        elif brightness_float <= 50:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=204&password=nopw", timeout=3)
-        elif brightness_float <= 120:
+        elif brightness_float <= 80:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=230&password=nopw", timeout=3)
         else:
             requests.get("http://192.168.178.42:2323/?cmd=setStringSetting&key=screenBrightness&value=255&password=nopw", timeout=3)
