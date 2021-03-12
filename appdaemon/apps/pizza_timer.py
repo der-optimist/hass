@@ -12,7 +12,7 @@ class pizza_timer(hass.Hass):
 
     def initialize(self):
         self.listen_state(self.state_change, "input_number.pizza_timer_2")
-        self.url = "http://192.168.178.42:2971/api/command"
+#        self.url = "http://192.168.178.42:2971/api/command"
         self.timer_handle = None
         self.time_internal_state = 0
         if not float(self.get_state("input_number.pizza_timer_2")) == float(0):
@@ -67,7 +67,7 @@ class pizza_timer(hass.Hass):
         #self.call_service("mqtt/publish", topic = "wallpanel/mywallpanel/command", payload = "{\"speak\":\"Pizza ist fertig!\"}", qos = "2")
         # via REST api
         try:
-            r = requests.post(self.url, json={"speak":"Pizza ist fertig!"}, timeout=5)
+            r = requests.get("http://192.168.178.42:2323/?cmd=textToSpeech&text=Pizz%20ist%20fertig%2E%20Lasst%20es%20euch%20schmecken&password=nopw", timeout=5)
             #self.log(r)
             #self.log(r.text)
         except Exception as e:
