@@ -2,6 +2,9 @@
   test_trigger:
     name: Testtrigger
     icon: mdi:ray-start-arrow
+  test_alarm:
+    name: Probealarm
+    icon: mdi:alarm-light-outline
   gewitter:
     name: Gewitter
     icon: mdi:flash-alert
