@@ -38,8 +38,6 @@ cards:
     entities:
       - entity: binary_sensor.ping_fritzbox
         name: Fritzbox
-      - entity: binary_sensor.ping_bildschirm_theke
-        name: Bildschirm Theke
       - entity: binary_sensor.ping_odroidxu4
         name: OdroidXU4
   - type: entities
