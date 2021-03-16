@@ -3,6 +3,11 @@ path: alarme
 icon: mdi:message-alert-outline
 cards:
   - type: entities
+    title: Probealarm
+    show_header_toggle: false
+    entities:
+      - entity: input_boolean.test_alarm
+  - type: entities
     title: Wasser
     show_header_toggle: false
     entities:
