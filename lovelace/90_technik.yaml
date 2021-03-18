@@ -39,3 +39,4 @@ cards:
       - entity: binary_sensor.bewegung_hochzeitsbild
       - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off
       - entity: switch.bilderrahmen_1
+      - entity: switch.lumi_lumi_plug_mmeu01_on_off
