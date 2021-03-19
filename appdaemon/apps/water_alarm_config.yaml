@@ -6,3 +6,4 @@ water_alarm:
   fritz_address: "192.168.178.1"
   phone_ma_handy: !secret phone_ma_handy
   phone_jo_handy: !secret phone_jo_handy
+# 
