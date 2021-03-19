@@ -6,6 +6,7 @@ cards:
     title: Probealarm
     show_header_toggle: false
     entities:
+      - entity: input_boolean.alarm_activated
       - entity: input_boolean.test_alarm
   - type: entities
     title: Wasser
