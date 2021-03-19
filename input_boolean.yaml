@@ -5,6 +5,9 @@
   test_alarm:
     name: Probealarm
     icon: mdi:alarm-light-outline
+  alarm_activated:
+    name: Wasseralarmsystem
+    icon: mdi:alarm-light-outline
   gewitter:
     name: Gewitter
     icon: mdi:flash-alert
