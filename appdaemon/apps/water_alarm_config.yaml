@@ -1,6 +1,7 @@
 water_alarm:
   module: water_alarm
   class: water_alarm
+  constrain_input_boolean: input_boolean.alarm_activated
   fritz_pw: !secret fritz_pw
   fritz_address: "192.168.178.1"
   phone_ma_handy: !secret phone_ma_handy
