@@ -1186,7 +1186,10 @@
 # --                            --
 # --------------------------------
 #
-# Riemann sum - Integration (Energy Consumption)
+#   --------------------------------
+#   --     Stromverbrauch         --
+#   --------------------------------
+#
   - platform: integration
     source: sensor.el_leistung_licht_gesamt
     name: Stromzähler Licht gesamt
@@ -1298,6 +1301,363 @@
   - platform: integration
     source: sensor.el_leistung_dauerverbraucher
     name: Stromzähler Dauerverbraucher
+    method: left
+    unit_prefix: k
+    round: 2
+#
+#   --------------------------------
+#   --  Stromkosten ohne PV       --
+#   --------------------------------
+#
+  - platform: integration
+    source: sensor.stromverbrauchskosten_licht_gesamt_ohne_pv
+    name: Stromkosten Licht gesamt ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_licht_sicherung_3_2_ohne_pv
+    name: Stromkosten Licht Sicherung 3.2 ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_licht_sicherung_3_3_ohne_pv
+    name: Stromkosten Licht Sicherung 3.3 ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_berechnete_lichter_ohne_pv
+    name: Stromkosten Licht berechnete ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_backofen_ohne_pv
+    name: Stromkosten Backofen ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_bildschirm_theke_ohne_pv
+    name: Stromkosten Bildschirm Theke ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_gefrierschrank_ohne_pv
+    name: Stromkosten Gefrierschrank ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_kuhlschrank_keller_ohne_pv
+    name: Stromkosten Kühlschrank Keller ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_kuhlschrank_kuche_ohne_pv
+    name: Stromkosten Kühlschrank Küche ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_lg_anlage_ohne_pv
+    name: Stromkosten LG Anlage ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_luftungsanlage_ohne_pv
+    name: Stromkosten Lüftungsanlage ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_mixi_ohne_pv
+    name: Stromkosten Mixi ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_spulmaschine_ohne_pv
+    name: Stromkosten Spülmaschine ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_trockner_ohne_pv
+    name: Stromkosten Trockner ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_tv_ohne_pv
+    name: Stromkosten TV ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_waschmaschine_ohne_pv
+    name: Stromkosten Waschmaschine ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_luftentf_waschk_ohne_pv
+    name: Stromkosten Luftentf. Waschk. ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_luftentf_werkelraum_ohne_pv
+    name: Stromkosten Luftentf. Werkelraum ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_dauerverbraucher_ohne_pv
+    name: Stromkosten Dauerverbraucher ohne PV
+    method: left
+    unit_prefix: k
+    round: 2
+#
+#   ------------------------------------
+#   --  Stromkosten mit PV, effektiv  --
+#   ------------------------------------
+#
+  - platform: integration
+    source: sensor.stromverbrauchskosten_licht_gesamt_pv_effektiv
+    name: Stromkosten Licht gesamt PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_licht_sicherung_3_2_pv_effektiv
+    name: Stromkosten Licht Sicherung 3.2 PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_licht_sicherung_3_3_pv_effektiv
+    name: Stromkosten Licht Sicherung 3.3 PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_berechnete_lichter_pv_effektiv
+    name: Stromkosten Licht berechnete PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_backofen_pv_effektiv
+    name: Stromkosten Backofen PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_bildschirm_theke_pv_effektiv
+    name: Stromkosten Bildschirm Theke PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_gefrierschrank_pv_effektiv
+    name: Stromkosten Gefrierschrank PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_kuhlschrank_keller_pv_effektiv
+    name: Stromkosten Kühlschrank Keller PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_kuhlschrank_kuche_pv_effektiv
+    name: Stromkosten Kühlschrank Küche PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_lg_anlage_pv_effektiv
+    name: Stromkosten LG Anlage PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_luftungsanlage_pv_effektiv
+    name: Stromkosten Lüftungsanlage PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_mixi_pv_effektiv
+    name: Stromkosten Mixi PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_spulmaschine_pv_effektiv
+    name: Stromkosten Spülmaschine PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_trockner_pv_effektiv
+    name: Stromkosten Trockner PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_tv_pv_effektiv
+    name: Stromkosten TV PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_waschmaschine_pv_effektiv
+    name: Stromkosten Waschmaschine PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_luftentf_waschk_pv_effektiv
+    name: Stromkosten Luftentf. Waschk. PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_luftentf_werkelraum_pv_effektiv
+    name: Stromkosten Luftentf. Werkelraum PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_dauerverbraucher_pv_effektiv
+    name: Stromkosten Dauerverbraucher PV effektiv
+    method: left
+    unit_prefix: k
+    round: 2
+#
+#   --------------------------------------
+#   --  Stromkosten mit PV, Abrechnung  --
+#   --------------------------------------
+#
+  - platform: integration
+    source: sensor.stromverbrauchskosten_licht_gesamt_pv_abrechnung
+    name: Stromkosten Licht gesamt PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_licht_sicherung_3_2_pv_abrechnung
+    name: Stromkosten Licht Sicherung 3.2 PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_licht_sicherung_3_3_pv_abrechnung
+    name: Stromkosten Licht Sicherung 3.3 PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_berechnete_lichter_pv_abrechnung
+    name: Stromkosten Licht berechnete PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_backofen_pv_abrechnung
+    name: Stromkosten Backofen PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_bildschirm_theke_pv_abrechnung
+    name: Stromkosten Bildschirm Theke PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_gefrierschrank_pv_abrechnung
+    name: Stromkosten Gefrierschrank PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_kuhlschrank_keller_pv_abrechnung
+    name: Stromkosten Kühlschrank Keller PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_kuhlschrank_kuche_pv_abrechnung
+    name: Stromkosten Kühlschrank Küche PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_lg_anlage_pv_abrechnung
+    name: Stromkosten LG Anlage PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_luftungsanlage_pv_abrechnung
+    name: Stromkosten Lüftungsanlage PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_mixi_pv_abrechnung
+    name: Stromkosten Mixi PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_spulmaschine_pv_abrechnung
+    name: Stromkosten Spülmaschine PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_trockner_pv_abrechnung
+    name: Stromkosten Trockner PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_tv_pv_abrechnung
+    name: Stromkosten TV PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_waschmaschine_pv_abrechnung
+    name: Stromkosten Waschmaschine PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_luftentf_waschk_pv_abrechnung
+    name: Stromkosten Luftentf. Waschk. PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_luftentf_werkelraum_pv_abrechnung
+    name: Stromkosten Luftentf. Werkelraum PV Abrechnung
+    method: left
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.stromverbrauchskosten_dauerverbraucher_pv_abrechnung
+    name: Stromkosten Dauerverbraucher PV Abrechnung
     method: left
     unit_prefix: k
     round: 2
