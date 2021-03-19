@@ -3,7 +3,7 @@ path: alarme
 icon: mdi:message-alert-outline
 cards:
   - type: entities
-    title: Probealarm
+    title: Steuerung
     show_header_toggle: false
     entities:
       - entity: input_boolean.alarm_activated
