@@ -9,6 +9,12 @@ counter_to_power_meter_wp_heizstab:
   ha_electricity_sensor_friendly_name: Stromzähler WP Heizstab
   ha_power_sensor_name: sensor.el_leistung_wp_heizstab
   ha_power_sensor_friendly_name: El. Leistung WP Heizstab
+  ha_cost_without_pv_sensor_name: sensor.stromkosten_wp_heizstab_ohne_pv
+  ha_cost_without_pv_sensor_friendly_name: Stromkosten WP Heizstab ohne PV
+  ha_cost_pv_effective_sensor_name: sensor.stromkosten_wp_heizstab_pv_effektiv
+  ha_cost_pv_effective_sensor_friendly_name: Stromkosten WP Heizstab PV effektiv
+  ha_cost_pv_effective_sensor_name: sensor.stromkosten_wp_heizstab_pv_abrechnung
+  ha_cost_pv_effective_sensor_friendly_name: Stromkosten WP Heizstab PV Abrechnung
   phases: 3
   energy_per_pulse: 0.0005
   knx_sending_every: 50
@@ -24,6 +30,12 @@ counter_to_power_meter_wp_innenteil:
   ha_electricity_sensor_friendly_name: Stromzähler WP Innenteil
   ha_power_sensor_name: sensor.el_leistung_wp_innenteil
   ha_power_sensor_friendly_name: El. Leistung WP Innenteil
+  ha_cost_without_pv_sensor_name: sensor.stromkosten_wp_innenteil_ohne_pv
+  ha_cost_without_pv_sensor_friendly_name: Stromkosten WP Innenteil ohne PV
+  ha_cost_pv_effective_sensor_name: sensor.stromkosten_wp_innenteil_pv_effektiv
+  ha_cost_pv_effective_sensor_friendly_name: Stromkosten WP Innenteil PV effektiv
+  ha_cost_pv_effective_sensor_name: sensor.stromkosten_wp_innenteil_pv_abrechnung
+  ha_cost_pv_effective_sensor_friendly_name: Stromkosten WP Innenteil PV Abrechnung
   phases: 1
   energy_per_pulse: 0.0005
   knx_sending_every: 2
@@ -39,6 +51,12 @@ counter_to_power_meter_wp_aussenteil:
   ha_electricity_sensor_friendly_name: Stromzähler WP Aussenteil
   ha_power_sensor_name: sensor.el_leistung_wp_aussenteil
   ha_power_sensor_friendly_name: El. Leistung WP Aussenteil
+  ha_cost_without_pv_sensor_name: sensor.stromkosten_wp_aussenteil_ohne_pv
+  ha_cost_without_pv_sensor_friendly_name: Stromkosten WP Aussenteil ohne PV
+  ha_cost_pv_effective_sensor_name: sensor.stromkosten_wp_aussenteil_pv_effektiv
+  ha_cost_pv_effective_sensor_friendly_name: Stromkosten WP Aussenteil PV effektiv
+  ha_cost_pv_effective_sensor_name: sensor.stromkosten_wp_aussenteil_pv_abrechnung
+  ha_cost_pv_effective_sensor_friendly_name: Stromkosten WP Aussenteil PV Abrechnung
   phases: 1
   energy_per_pulse: 0.001
   knx_sending_every: 10
@@ -54,6 +72,12 @@ counter_to_power_meter_kochfeld:
   ha_electricity_sensor_friendly_name: Stromzähler Kochfeld
   ha_power_sensor_name: sensor.el_leistung_kochfeld
   ha_power_sensor_friendly_name: El. Leistung Kochfeld
+  ha_cost_without_pv_sensor_name: sensor.stromkosten_wp_kochfeld_ohne_pv
+  ha_cost_without_pv_sensor_friendly_name: Stromkosten Kochfeld ohne PV
+  ha_cost_pv_effective_sensor_name: sensor.stromkosten_wp_kochfeld_pv_effektiv
+  ha_cost_pv_effective_sensor_friendly_name: Stromkosten Kochfeld PV effektiv
+  ha_cost_pv_effective_sensor_name: sensor.stromkosten_wp_kochfeld_pv_abrechnung
+  ha_cost_pv_effective_sensor_friendly_name: Stromkosten Kochfeld PV Abrechnung
   phases: 3
   energy_per_pulse: 0.0005
   knx_sending_every: 10
