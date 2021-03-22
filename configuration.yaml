@@ -433,3 +433,11 @@ input_text:
     max: 255
   saved_reminder_09:
     max: 255
+  saved_costs_wp_heizstab:
+    max: 255
+  saved_costs_wp_innenteil:
+    max: 255
+  saved_costs_wp_aussenteil:
+    max: 255
+  saved_costs_kochfeld:
+    max: 255
