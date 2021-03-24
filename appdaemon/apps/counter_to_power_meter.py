@@ -15,6 +15,15 @@ import datetime
 # ha_electricity_sensor_friendly_name = "Stromzähler XYZ"
 # ha_power_sensor_name = "sensor.el_leistung_xyz"
 # ha_power_sensor_friendly_name = "El. Leistung XYZ"
+# ha_power_sensor_name: sensor.el_leistung_wp_heizstab
+# ha_power_sensor_friendly_name: El. Leistung WP Heizstab
+# ha_cost_without_pv_sensor_name: sensor.stromkosten_wp_heizstab_ohne_pv
+# ha_cost_without_pv_sensor_friendly_name: Stromkosten WP Heizstab ohne PV
+# ha_cost_pv_effective_sensor_name: sensor.stromkosten_wp_heizstab_pv_effektiv
+# ha_cost_pv_effective_sensor_friendly_name: Stromkosten WP Heizstab PV effektiv
+# ha_cost_pv_invoice_sensor_name: sensor.stromkosten_wp_heizstab_pv_abrechnung
+# ha_cost_pv_invoice_sensor_friendly_name: Stromkosten WP Heizstab PV Abrechnung
+# input_text_for_saving_costs: input_text.saved_costs_wp_heizstab => must exist already with state "0 / 0 / 0"
 # phases: 1 or 3 (for checking plausibility)
 # energy_per_pulse = 0.0005 (in kWh => 2000 pulses per kWh => 0.0005 kWh/pulse)
 # knx_sending_every = 5 (expect to receive a new value after 10 pulses. Used only for calulating ramp-down values)
@@ -115,6 +124,9 @@ class counter_to_power_meter(hass.Hass):
         new_costs_pv_invoice = old_costs_pv_invoice + (self.args["energy_per_pulse"] * current_price_pv_invoice)
         new_costs = "{} / {} / {}".format(new_costs_without_pv, new_costs_pv_effective, new_costs_pv_invoice)
         self.set_state(self.args["input_text_for_saving_costs"], state = new_costs)
+        self.set_state(self.args["ha_cost_without_pv_sensor_name"], state = round(new_costs_without_pv,2), attributes = {"icon":"mdi:currency-eur", "friendly_name": self.args["ha_cost_without_pv_sensor_friendly_name"], "unit_of_measurement": "€"})
+        self.set_state(self.args["ha_cost_pv_effective_sensor_name"], state = round(new_costs_pv_effective,2), attributes = {"icon":"mdi:currency-eur", "friendly_name": self.args["ha_cost_pv_effective_sensor_friendly_name"], "unit_of_measurement": "€"})
+        self.set_state(self.args["ha_cost_pv_invoice_sensor_name"], state = round(new_costs_pv_invoice,2), attributes = {"icon":"mdi:currency-eur", "friendly_name": self.args["ha_cost_pv_invoice_sensor_friendly_name"], "unit_of_measurement": "€"})
 
     def ramp_down(self, kwargs):
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
