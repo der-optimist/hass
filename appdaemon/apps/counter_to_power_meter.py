@@ -24,6 +24,9 @@ import datetime
 class counter_to_power_meter(hass.Hass):
 
     def initialize(self):
+        self.energy_price_without_pv_entity = "input_number.strompreis"
+        self.energy_price_pv_effective_entity = "sensor.strompreis_aktuell_effektiv_euro"
+        self.energy_price_pv_invoice_entity = "sensor.strompreis_aktuell_abrechnung_euro"
         # wait for KNX entities 
         self.run_in(self.initialize_delayed,30)
         
@@ -99,6 +102,19 @@ class counter_to_power_meter(hass.Hass):
         # save current values in variables for next calculation
         self.time_of_last_event = current_time
         self.value_of_last_event = self.raw_value_persistent
+        # calculate energy costs
+        current_price_without_pv = float(self.get_state(self.energy_price_without_pv_entity))
+        current_price_pv_effective = float(self.get_state(self.energy_price_pv_effective_entity))
+        current_price_pv_invoice = float(self.get_state(self.energy_price_pv_invoice_entity))
+        old_costs = self.get_state(self.args["input_text_for_saving_costs"])
+        old_costs_without_pv = float(old_costs.split(" / ")[0])
+        old_costs_pv_effective = float(old_costs.split(" / ")[1])
+        old_costs_pv_invoice = float(old_costs.split(" / ")[2])
+        new_costs_without_pv = old_costs_without_pv + (self.args["energy_per_pulse"] * current_price_without_pv)
+        new_costs_pv_effective = old_costs_pv_effective + (self.args["energy_per_pulse"] * current_price_pv_effective)
+        new_costs_pv_invoice = old_costs_pv_invoice + (self.args["energy_per_pulse"] * current_price_pv_invoice)
+        new_costs = "{} / {} / {}".format(new_costs_without_pv, new_costs_pv_effective, new_costs_pv_invoice)
+        self.set_state(self.args["input_text_for_saving_costs"], state = new_costs)
 
     def ramp_down(self, kwargs):
         current_time = datetime.datetime.now() # for most accurate value, capture current time first
