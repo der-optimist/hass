@@ -51,11 +51,9 @@ cards:
   - type: custom:apexcharts-card
     graph_span: 5d
     update_interval: 15min
-#    chart_type: scatter
-#    apex_config:
-#      yaxis:
-#        min: 0
-#        max: 10000
+    apex_config:
+      yaxis:
+        min: 0
     span:
       start: day
     series:
