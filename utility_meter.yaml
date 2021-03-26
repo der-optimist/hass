@@ -461,6 +461,131 @@
     source: sensor.stromkosten_dauerverbraucher_ohne_pv
     cycle: yearly
 #
+#     ---------------------------------------
+#     --  Stromkosten ohne PV - Winterjahr --
+#     ---------------------------------------
+#
+  stromkosten_netzbezug_winterjahr:
+    source: sensor.stromkosten_netzbezug
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_backofen_ohne_pv_winterjahr:
+    source: sensor.stromkosten_backofen_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_bildschirm_theke_ohne_pv_winterjahr:
+    source: sensor.stromkosten_bildschirm_theke_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_gefrierschrank_ohne_pv_winterjahr:
+    source: sensor.stromkosten_gefrierschrank_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_kochfeld_ohne_pv_winterjahr:
+    source: sensor.stromkosten_kochfeld_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_kuhlschrank_keller_ohne_pv_winterjahr:
+    source: sensor.stromkosten_kuhlschrank_keller_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_kuhlschrank_kuche_ohne_pv_winterjahr:
+    source: sensor.stromkosten_kuhlschrank_kuche_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_licht_berechnete_ohne_pv_winterjahr:
+    source: sensor.stromkosten_licht_berechnete_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_licht_gesamt_ohne_pv_winterjahr:
+    source: sensor.stromkosten_licht_gesamt_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_licht_sicherung_3_2_ohne_pv_winterjahr:
+    source: sensor.stromkosten_licht_sicherung_3_2_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_licht_sicherung_3_3_ohne_pv_winterjahr:
+    source: sensor.stromkosten_licht_sicherung_3_3_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_luftentf_waschk_ohne_pv_winterjahr:
+    source: sensor.stromkosten_luftentf_waschk_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_luftentf_werkelraum_ohne_pv_winterjahr:
+    source: sensor.stromkosten_luftentf_werkelraum_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_lg_anlage_ohne_pv_winterjahr:
+    source: sensor.stromkosten_lg_anlage_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_luftungsanlage_ohne_pv_winterjahr:
+    source: sensor.stromkosten_luftungsanlage_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_mixi_ohne_pv_winterjahr:
+    source: sensor.stromkosten_mixi_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_spulmaschine_ohne_pv_winterjahr:
+    source: sensor.stromkosten_spulmaschine_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_trockner_ohne_pv_winterjahr:
+    source: sensor.stromkosten_trockner_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_tv_ohne_pv_winterjahr:
+    source: sensor.stromkosten_tv_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_waschmaschine_ohne_pv_winterjahr:
+    source: sensor.stromkosten_waschmaschine_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_wp_aussenteil_ohne_pv_winterjahr:
+    source: sensor.stromkosten_wp_aussenteil_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_wp_heizstab_ohne_pv_winterjahr:
+    source: sensor.stromkosten_wp_heizstab_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_wp_innenteil_ohne_pv_winterjahr:
+    source: sensor.stromkosten_wp_innenteil_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_dauerverbraucher_ohne_pv_winterjahr:
+    source: sensor.stromkosten_dauerverbraucher_ohne_pv
+    cycle: yearly
+    offset:
+      days: 183
+#
 #     ------------------------------------------
 #     --  Stromkosten mit PV, effektiv - Tag  --
 #     ------------------------------------------
@@ -683,8 +808,128 @@
     source: sensor.stromkosten_dauerverbraucher_pv_effektiv
     cycle: yearly
 #
+#     --------------------------------------------------
+#     --  Stromkosten mit PV, effektiv - Winterjahr --
+#     --------------------------------------------------
+#
+  stromkosten_backofen_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_backofen_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_bildschirm_theke_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_bildschirm_theke_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_gefrierschrank_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_gefrierschrank_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_kochfeld_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_kochfeld_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_kuhlschrank_keller_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_kuhlschrank_keller_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_kuhlschrank_kuche_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_kuhlschrank_kuche_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_licht_berechnete_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_licht_berechnete_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_licht_gesamt_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_licht_gesamt_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_licht_sicherung_3_2_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_licht_sicherung_3_2_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_licht_sicherung_3_3_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_licht_sicherung_3_3_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_luftentf_waschk_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_luftentf_waschk_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_luftentf_werkelraum_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_luftentf_werkelraum_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_lg_anlage_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_lg_anlage_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_luftungsanlage_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_luftungsanlage_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_mixi_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_mixi_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_spulmaschine_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_spulmaschine_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_trockner_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_trockner_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_tv_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_tv_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_waschmaschine_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_waschmaschine_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_wp_aussenteil_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_wp_aussenteil_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_wp_heizstab_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_wp_heizstab_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_wp_innenteil_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_wp_innenteil_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_dauerverbraucher_pv_effektiv_winterjahr:
+    source: sensor.stromkosten_dauerverbraucher_pv_effektiv
+    cycle: yearly
+    offset:
+      days: 183
+#
 #     ------------------------------------------
-#     --  Stromkosten mit PV, effektiv - Tag  --
+#     --  Stromkosten mit PV, Abrechnung - Tag  --
 #     ------------------------------------------
 #
   stromkosten_backofen_pv_abrechnung_tag:
@@ -758,7 +1003,7 @@
     cycle: daily
 #
 #     ---------------------------------------------
-#     --  Stromkosten mit PV, effektiv - Monat   --
+#     --  Stromkosten mit PV, Abrechnung - Monat   --
 #     ---------------------------------------------
 #
   stromkosten_backofen_pv_abrechnung_monat:
@@ -832,7 +1077,7 @@
     cycle: monthly
 #
 #     --------------------------------------------------
-#     --  Stromkosten mit PV, effektiv - Kalenderjahr --
+#     --  Stromkosten mit PV, Abrechnung - Kalenderjahr --
 #     --------------------------------------------------
 #
   stromkosten_backofen_pv_abrechnung_kalenderjahr:
@@ -904,3 +1149,123 @@
   stromkosten_dauerverbraucher_pv_abrechnung_kalenderjahr:
     source: sensor.stromkosten_dauerverbraucher_pv_abrechnung
     cycle: yearly
+#
+#     --------------------------------------------------
+#     --  Stromkosten mit PV, Abrechnung - Winterjahr --
+#     --------------------------------------------------
+#
+  stromkosten_backofen_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_backofen_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_bildschirm_theke_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_bildschirm_theke_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_gefrierschrank_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_gefrierschrank_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_kochfeld_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_kochfeld_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_kuhlschrank_keller_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_kuhlschrank_keller_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_kuhlschrank_kuche_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_kuhlschrank_kuche_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_licht_berechnete_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_licht_berechnete_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_licht_gesamt_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_licht_gesamt_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_licht_sicherung_3_2_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_licht_sicherung_3_2_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_licht_sicherung_3_3_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_licht_sicherung_3_3_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_luftentf_waschk_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_luftentf_waschk_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_luftentf_werkelraum_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_luftentf_werkelraum_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_lg_anlage_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_lg_anlage_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_luftungsanlage_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_luftungsanlage_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_mixi_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_mixi_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_spulmaschine_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_spulmaschine_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_trockner_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_trockner_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_tv_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_tv_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_waschmaschine_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_waschmaschine_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_wp_aussenteil_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_wp_aussenteil_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_wp_heizstab_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_wp_heizstab_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_wp_innenteil_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_wp_innenteil_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
+  stromkosten_dauerverbraucher_pv_abrechnung_winterjahr:
+    source: sensor.stromkosten_dauerverbraucher_pv_abrechnung
+    cycle: yearly
+    offset:
+      days: 183
