@@ -105,6 +105,11 @@
         friendly_name: 'Stromzähler Netzbezug'
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
+      stromkosten_netzbezug:
+        value_template: "{{ '%.2f'%((states('sensor.stromzaehler_netzbezug') | float ) * (states('input_number.strompreis') | float)) }}"
+        friendly_name: 'Stromkosten Netzbezug'
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
 #
 #       --------------------------------
 #       --          Daily             --
@@ -708,302 +713,302 @@
           {% endif %}
 #
 #       ------------------------------------------
-#       --    Stromverbrauchskosten ohne PV €/h --
+#       --    Stromkosten pro h ohne PV €/h --
 #       ------------------------------------------
 #
-      stromverbrauchskosten_licht_gesamt_ohne_pv:
+      stromkosten_pro_h_licht_gesamt_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_licht_gesamt') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Licht Gesamt ohne PV'
+        friendly_name: 'Stromkosten pro h Licht Gesamt ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_licht_sicherung_3_2_ohne_pv:
+      stromkosten_pro_h_licht_sicherung_3_2_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_licht_sicherung_3_2') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Licht Sicherung 3.2 ohne PV'
+        friendly_name: 'Stromkosten pro h Licht Sicherung 3.2 ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_licht_sicherung_3_3_ohne_pv:
+      stromkosten_pro_h_licht_sicherung_3_3_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_licht_sicherung_3_3') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Licht Sicherung 3.3 ohne PV'
+        friendly_name: 'Stromkosten pro h Licht Sicherung 3.3 ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_berechnete_lichter_ohne_pv:
+      stromkosten_pro_h_berechnete_lichter_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_berechnete_lichter') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Licht berechnete ohne PV'
+        friendly_name: 'Stromkosten pro h Licht berechnete ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_backofen_ohne_pv:
+      stromkosten_pro_h_backofen_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_backofen') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Backofen ohne PV'
+        friendly_name: 'Stromkosten pro h Backofen ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_bildschirm_theke_ohne_pv:
+      stromkosten_pro_h_bildschirm_theke_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_bildschirm_theke') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Bildschirm Theke ohne PV'
+        friendly_name: 'Stromkosten pro h Bildschirm Theke ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_gefrierschrank_ohne_pv:
+      stromkosten_pro_h_gefrierschrank_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_gefrierschrank') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Gefrierschrank ohne PV'
+        friendly_name: 'Stromkosten pro h Gefrierschrank ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_kuhlschrank_keller_ohne_pv:
+      stromkosten_pro_h_kuhlschrank_keller_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_kuhlschrank_keller') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Kühlschrank Keller ohne PV'
+        friendly_name: 'Stromkosten pro h Kühlschrank Keller ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_kuhlschrank_kuche_ohne_pv:
+      stromkosten_pro_h_kuhlschrank_kuche_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_kuhlschrank_kuche') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Kühlschrank Küche ohne PV'
+        friendly_name: 'Stromkosten pro h Kühlschrank Küche ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_lg_anlage_ohne_pv:
+      stromkosten_pro_h_lg_anlage_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_lg_anlage') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten LG Anlage ohne PV'
+        friendly_name: 'Stromkosten pro h LG Anlage ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_luftungsanlage_ohne_pv:
+      stromkosten_pro_h_luftungsanlage_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_luftungsanlage') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Lüftungsanlage ohne PV'
+        friendly_name: 'Stromkosten pro h Lüftungsanlage ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_mixi_ohne_pv:
+      stromkosten_pro_h_mixi_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_mixi') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Mixi ohne PV'
+        friendly_name: 'Stromkosten pro h Mixi ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_spulmaschine_ohne_pv:
+      stromkosten_pro_h_spulmaschine_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_spulmaschine') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Spülmaschine ohne PV'
+        friendly_name: 'Stromkosten pro h Spülmaschine ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_trockner_ohne_pv:
+      stromkosten_pro_h_trockner_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_trockner') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Trockner ohne PV'
+        friendly_name: 'Stromkosten pro h Trockner ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_tv_ohne_pv:
+      stromkosten_pro_h_tv_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_tv') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten TV ohne PV'
+        friendly_name: 'Stromkosten pro h TV ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_waschmaschine_ohne_pv:
+      stromkosten_pro_h_waschmaschine_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_waschmaschine') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Waschmaschine ohne PV'
+        friendly_name: 'Stromkosten pro h Waschmaschine ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_luftentf_waschk_ohne_pv:
+      stromkosten_pro_h_luftentf_waschk_ohne_pv:
         value_template: "{{ (states('sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Luftentf. Waschk. ohne PV'
+        friendly_name: 'Stromkosten pro h Luftentf. Waschk. ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_luftentf_werkelraum_ohne_pv:
+      stromkosten_pro_h_luftentf_werkelraum_ohne_pv:
         value_template: "{{ (states('sensor.innr_sp_120_test_electrical_measurement') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Luftentf. Werkelraum ohne PV'
+        friendly_name: 'Stromkosten pro h Luftentf. Werkelraum ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_dauerverbraucher_ohne_pv:
+      stromkosten_pro_h_dauerverbraucher_ohne_pv:
         value_template: "{{ (states('sensor.el_leistung_dauerverbraucher') | float) * (states('input_number.strompreis') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Dauerverbraucher ohne PV'
+        friendly_name: 'Stromkosten pro h Dauerverbraucher ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
 #
 #       ---------------------------------------------------
-#       --    Stromverbrauchskosten mit PV, effektiv €/h --
+#       --    Stromkosten pro h mit PV, effektiv €/h --
 #       ---------------------------------------------------
 #
-      stromverbrauchskosten_licht_gesamt_pv_effektiv:
+      stromkosten_pro_h_licht_gesamt_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_licht_gesamt') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Licht Gesamt PV effektiv'
+        friendly_name: 'Stromkosten pro h Licht Gesamt PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_licht_sicherung_3_2_pv_effektiv:
+      stromkosten_pro_h_licht_sicherung_3_2_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_licht_sicherung_3_2') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Licht Sicherung 3.2 PV effektiv'
+        friendly_name: 'Stromkosten pro h Licht Sicherung 3.2 PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_licht_sicherung_3_3_pv_effektiv:
+      stromkosten_pro_h_licht_sicherung_3_3_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_licht_sicherung_3_3') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Licht Sicherung 3.3 PV effektiv'
+        friendly_name: 'Stromkosten pro h Licht Sicherung 3.3 PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_berechnete_lichter_pv_effektiv:
+      stromkosten_pro_h_berechnete_lichter_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_berechnete_lichter') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Licht berechnete PV effektiv'
+        friendly_name: 'Stromkosten pro h Licht berechnete PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_backofen_pv_effektiv:
+      stromkosten_pro_h_backofen_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_backofen') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Backofen PV effektiv'
+        friendly_name: 'Stromkosten pro h Backofen PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_bildschirm_theke_pv_effektiv:
+      stromkosten_pro_h_bildschirm_theke_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_bildschirm_theke') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Bildschirm Theke PV effektiv'
+        friendly_name: 'Stromkosten pro h Bildschirm Theke PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_gefrierschrank_pv_effektiv:
+      stromkosten_pro_h_gefrierschrank_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_gefrierschrank') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Gefrierschrank PV effektiv'
+        friendly_name: 'Stromkosten pro h Gefrierschrank PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_kuhlschrank_keller_pv_effektiv:
+      stromkosten_pro_h_kuhlschrank_keller_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_kuhlschrank_keller') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Kühlschrank Keller PV effektiv'
+        friendly_name: 'Stromkosten pro h Kühlschrank Keller PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_kuhlschrank_kuche_pv_effektiv:
+      stromkosten_pro_h_kuhlschrank_kuche_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_kuhlschrank_kuche') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Kühlschrank Küche PV effektiv'
+        friendly_name: 'Stromkosten pro h Kühlschrank Küche PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_lg_anlage_pv_effektiv:
+      stromkosten_pro_h_lg_anlage_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_lg_anlage') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten LG Anlage PV effektiv'
+        friendly_name: 'Stromkosten pro h LG Anlage PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_luftungsanlage_pv_effektiv:
+      stromkosten_pro_h_luftungsanlage_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_luftungsanlage') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Lüftungsanlage PV effektiv'
+        friendly_name: 'Stromkosten pro h Lüftungsanlage PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_mixi_pv_effektiv:
+      stromkosten_pro_h_mixi_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_mixi') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Mixi PV effektiv'
+        friendly_name: 'Stromkosten pro h Mixi PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_spulmaschine_pv_effektiv:
+      stromkosten_pro_h_spulmaschine_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_spulmaschine') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Spülmaschine PV effektiv'
+        friendly_name: 'Stromkosten pro h Spülmaschine PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_trockner_pv_effektiv:
+      stromkosten_pro_h_trockner_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_trockner') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Trockner PV effektiv'
+        friendly_name: 'Stromkosten pro h Trockner PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_tv_pv_effektiv:
+      stromkosten_pro_h_tv_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_tv') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten TV PV effektiv'
+        friendly_name: 'Stromkosten pro h TV PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_waschmaschine_pv_effektiv:
+      stromkosten_pro_h_waschmaschine_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_waschmaschine') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Waschmaschine PV effektiv'
+        friendly_name: 'Stromkosten pro h Waschmaschine PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_luftentf_waschk_pv_effektiv:
+      stromkosten_pro_h_luftentf_waschk_pv_effektiv:
         value_template: "{{ (states('sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Luftentf. Waschk. PV effektiv'
+        friendly_name: 'Stromkosten pro h Luftentf. Waschk. PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_luftentf_werkelraum_pv_effektiv:
+      stromkosten_pro_h_luftentf_werkelraum_pv_effektiv:
         value_template: "{{ (states('sensor.innr_sp_120_test_electrical_measurement') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Luftentf. Werkelraum PV effektiv'
+        friendly_name: 'Stromkosten pro h Luftentf. Werkelraum PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_dauerverbraucher_pv_effektiv:
+      stromkosten_pro_h_dauerverbraucher_pv_effektiv:
         value_template: "{{ (states('sensor.el_leistung_dauerverbraucher') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Dauerverbraucher PV effektiv'
+        friendly_name: 'Stromkosten pro h Dauerverbraucher PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
 #
 #       -----------------------------------------------------
-#       --    Stromverbrauchskosten mit PV, Abrechnung €/h --
+#       --    Stromkosten pro h mit PV, Abrechnung €/h --
 #       -----------------------------------------------------
 #
-      stromverbrauchskosten_licht_gesamt_pv_abrechnung:
+      stromkosten_pro_h_licht_gesamt_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_licht_gesamt') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Licht Gesamt PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Licht Gesamt PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_licht_sicherung_3_2_pv_abrechnung:
+      stromkosten_pro_h_licht_sicherung_3_2_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_licht_sicherung_3_2') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Licht Sicherung 3.2 PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Licht Sicherung 3.2 PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_licht_sicherung_3_3_pv_abrechnung:
+      stromkosten_pro_h_licht_sicherung_3_3_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_licht_sicherung_3_3') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Licht Sicherung 3.3 PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Licht Sicherung 3.3 PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_berechnete_lichter_pv_abrechnung:
+      stromkosten_pro_h_berechnete_lichter_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_berechnete_lichter') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Licht berechnete PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Licht berechnete PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_backofen_pv_abrechnung:
+      stromkosten_pro_h_backofen_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_backofen') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Backofen PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Backofen PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_bildschirm_theke_pv_abrechnung:
+      stromkosten_pro_h_bildschirm_theke_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_bildschirm_theke') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Bildschirm Theke PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Bildschirm Theke PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_gefrierschrank_pv_abrechnung:
+      stromkosten_pro_h_gefrierschrank_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_gefrierschrank') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Gefrierschrank PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Gefrierschrank PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_kuhlschrank_keller_pv_abrechnung:
+      stromkosten_pro_h_kuhlschrank_keller_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_kuhlschrank_keller') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Kühlschrank Keller PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Kühlschrank Keller PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_kuhlschrank_kuche_pv_abrechnung:
+      stromkosten_pro_h_kuhlschrank_kuche_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_kuhlschrank_kuche') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Kühlschrank Küche PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Kühlschrank Küche PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_lg_anlage_pv_abrechnung:
+      stromkosten_pro_h_lg_anlage_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_lg_anlage') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten LG Anlage PV Abrechnung'
+        friendly_name: 'Stromkosten pro h LG Anlage PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_luftungsanlage_pv_abrechnung:
+      stromkosten_pro_h_luftungsanlage_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_luftungsanlage') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Lüftungsanlage PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Lüftungsanlage PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_mixi_pv_abrechnung:
+      stromkosten_pro_h_mixi_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_mixi') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Mixi PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Mixi PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_spulmaschine_pv_abrechnung:
+      stromkosten_pro_h_spulmaschine_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_spulmaschine') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Spülmaschine PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Spülmaschine PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_trockner_pv_abrechnung:
+      stromkosten_pro_h_trockner_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_trockner') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Trockner PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Trockner PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_tv_pv_abrechnung:
+      stromkosten_pro_h_tv_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_tv') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten TV PV Abrechnung'
+        friendly_name: 'Stromkosten pro h TV PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_waschmaschine_pv_abrechnung:
+      stromkosten_pro_h_waschmaschine_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_waschmaschine') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Waschmaschine PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Waschmaschine PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_luftentf_waschk_pv_abrechnung:
+      stromkosten_pro_h_luftentf_waschk_pv_abrechnung:
         value_template: "{{ (states('sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Luftentf. Waschk. PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Luftentf. Waschk. PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_luftentf_werkelraum_pv_abrechnung:
+      stromkosten_pro_h_luftentf_werkelraum_pv_abrechnung:
         value_template: "{{ (states('sensor.innr_sp_120_test_electrical_measurement') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Luftentf. Werkelraum PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Luftentf. Werkelraum PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
-      stromverbrauchskosten_dauerverbraucher_pv_abrechnung:
+      stromkosten_pro_h_dauerverbraucher_pv_abrechnung:
         value_template: "{{ (states('sensor.el_leistung_dauerverbraucher') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
-        friendly_name: 'Stromverbrauchskosten Dauerverbraucher PV Abrechnung'
+        friendly_name: 'Stromkosten pro h Dauerverbraucher PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
 #
@@ -1310,357 +1315,357 @@
 #   --------------------------------
 #
   - platform: integration
-    source: sensor.stromkosten_licht_gesamt_ohne_pv
+    source: sensor.stromkosten_pro_h_licht_gesamt_ohne_pv
     name: Stromkosten Licht gesamt ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_licht_sicherung_3_2_ohne_pv
+    source: sensor.stromkosten_pro_h_licht_sicherung_3_2_ohne_pv
     name: Stromkosten Licht Sicherung 3.2 ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_licht_sicherung_3_3_ohne_pv
+    source: sensor.stromkosten_pro_h_licht_sicherung_3_3_ohne_pv
     name: Stromkosten Licht Sicherung 3.3 ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_berechnete_lichter_ohne_pv
+    source: sensor.stromkosten_pro_h_berechnete_lichter_ohne_pv
     name: Stromkosten Licht berechnete ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_backofen_ohne_pv
+    source: sensor.stromkosten_pro_h_backofen_ohne_pv
     name: Stromkosten Backofen ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_bildschirm_theke_ohne_pv
+    source: sensor.stromkosten_pro_h_bildschirm_theke_ohne_pv
     name: Stromkosten Bildschirm Theke ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_gefrierschrank_ohne_pv
+    source: sensor.stromkosten_pro_h_gefrierschrank_ohne_pv
     name: Stromkosten Gefrierschrank ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_kuhlschrank_keller_ohne_pv
+    source: sensor.stromkosten_pro_h_kuhlschrank_keller_ohne_pv
     name: Stromkosten Kühlschrank Keller ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_kuhlschrank_kuche_ohne_pv
+    source: sensor.stromkosten_pro_h_kuhlschrank_kuche_ohne_pv
     name: Stromkosten Kühlschrank Küche ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_lg_anlage_ohne_pv
+    source: sensor.stromkosten_pro_h_lg_anlage_ohne_pv
     name: Stromkosten LG Anlage ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_luftungsanlage_ohne_pv
+    source: sensor.stromkosten_pro_h_luftungsanlage_ohne_pv
     name: Stromkosten Lüftungsanlage ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_mixi_ohne_pv
+    source: sensor.stromkosten_pro_h_mixi_ohne_pv
     name: Stromkosten Mixi ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_spulmaschine_ohne_pv
+    source: sensor.stromkosten_pro_h_spulmaschine_ohne_pv
     name: Stromkosten Spülmaschine ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_trockner_ohne_pv
+    source: sensor.stromkosten_pro_h_trockner_ohne_pv
     name: Stromkosten Trockner ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_tv_ohne_pv
+    source: sensor.stromkosten_pro_h_tv_ohne_pv
     name: Stromkosten TV ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_waschmaschine_ohne_pv
+    source: sensor.stromkosten_pro_h_waschmaschine_ohne_pv
     name: Stromkosten Waschmaschine ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_luftentf_waschk_ohne_pv
+    source: sensor.stromkosten_pro_h_luftentf_waschk_ohne_pv
     name: Stromkosten Luftentf. Waschk. ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_luftentf_werkelraum_ohne_pv
+    source: sensor.stromkosten_pro_h_luftentf_werkelraum_ohne_pv
     name: Stromkosten Luftentf. Werkelraum ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_dauerverbraucher_ohne_pv
+    source: sensor.stromkosten_pro_h_dauerverbraucher_ohne_pv
     name: Stromkosten Dauerverbraucher ohne PV
     method: left
     unit: €
-    round: 6
+    round: 9
 #
 #   ------------------------------------
 #   --  Stromkosten mit PV, effektiv  --
 #   ------------------------------------
 #
   - platform: integration
-    source: sensor.stromkosten_licht_gesamt_pv_effektiv
+    source: sensor.stromkosten_pro_h_licht_gesamt_pv_effektiv
     name: Stromkosten Licht gesamt PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_licht_sicherung_3_2_pv_effektiv
+    source: sensor.stromkosten_pro_h_licht_sicherung_3_2_pv_effektiv
     name: Stromkosten Licht Sicherung 3.2 PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_licht_sicherung_3_3_pv_effektiv
+    source: sensor.stromkosten_pro_h_licht_sicherung_3_3_pv_effektiv
     name: Stromkosten Licht Sicherung 3.3 PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_berechnete_lichter_pv_effektiv
+    source: sensor.stromkosten_pro_h_berechnete_lichter_pv_effektiv
     name: Stromkosten Licht berechnete PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_backofen_pv_effektiv
+    source: sensor.stromkosten_pro_h_backofen_pv_effektiv
     name: Stromkosten Backofen PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_bildschirm_theke_pv_effektiv
+    source: sensor.stromkosten_pro_h_bildschirm_theke_pv_effektiv
     name: Stromkosten Bildschirm Theke PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_gefrierschrank_pv_effektiv
+    source: sensor.stromkosten_pro_h_gefrierschrank_pv_effektiv
     name: Stromkosten Gefrierschrank PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_kuhlschrank_keller_pv_effektiv
+    source: sensor.stromkosten_pro_h_kuhlschrank_keller_pv_effektiv
     name: Stromkosten Kühlschrank Keller PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_kuhlschrank_kuche_pv_effektiv
+    source: sensor.stromkosten_pro_h_kuhlschrank_kuche_pv_effektiv
     name: Stromkosten Kühlschrank Küche PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_lg_anlage_pv_effektiv
+    source: sensor.stromkosten_pro_h_lg_anlage_pv_effektiv
     name: Stromkosten LG Anlage PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_luftungsanlage_pv_effektiv
+    source: sensor.stromkosten_pro_h_luftungsanlage_pv_effektiv
     name: Stromkosten Lüftungsanlage PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_mixi_pv_effektiv
+    source: sensor.stromkosten_pro_h_mixi_pv_effektiv
     name: Stromkosten Mixi PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_spulmaschine_pv_effektiv
+    source: sensor.stromkosten_pro_h_spulmaschine_pv_effektiv
     name: Stromkosten Spülmaschine PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_trockner_pv_effektiv
+    source: sensor.stromkosten_pro_h_trockner_pv_effektiv
     name: Stromkosten Trockner PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_tv_pv_effektiv
+    source: sensor.stromkosten_pro_h_tv_pv_effektiv
     name: Stromkosten TV PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_waschmaschine_pv_effektiv
+    source: sensor.stromkosten_pro_h_waschmaschine_pv_effektiv
     name: Stromkosten Waschmaschine PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_luftentf_waschk_pv_effektiv
+    source: sensor.stromkosten_pro_h_luftentf_waschk_pv_effektiv
     name: Stromkosten Luftentf. Waschk. PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_luftentf_werkelraum_pv_effektiv
+    source: sensor.stromkosten_pro_h_luftentf_werkelraum_pv_effektiv
     name: Stromkosten Luftentf. Werkelraum PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_dauerverbraucher_pv_effektiv
+    source: sensor.stromkosten_pro_h_dauerverbraucher_pv_effektiv
     name: Stromkosten Dauerverbraucher PV effektiv
     method: left
     unit: €
-    round: 6
+    round: 9
 #
 #   --------------------------------------
 #   --  Stromkosten mit PV, Abrechnung  --
 #   --------------------------------------
 #
   - platform: integration
-    source: sensor.stromkosten_licht_gesamt_pv_abrechnung
+    source: sensor.stromkosten_pro_h_licht_gesamt_pv_abrechnung
     name: Stromkosten Licht gesamt PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_licht_sicherung_3_2_pv_abrechnung
+    source: sensor.stromkosten_pro_h_licht_sicherung_3_2_pv_abrechnung
     name: Stromkosten Licht Sicherung 3.2 PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_licht_sicherung_3_3_pv_abrechnung
+    source: sensor.stromkosten_pro_h_licht_sicherung_3_3_pv_abrechnung
     name: Stromkosten Licht Sicherung 3.3 PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_berechnete_lichter_pv_abrechnung
+    source: sensor.stromkosten_pro_h_berechnete_lichter_pv_abrechnung
     name: Stromkosten Licht berechnete PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_backofen_pv_abrechnung
+    source: sensor.stromkosten_pro_h_backofen_pv_abrechnung
     name: Stromkosten Backofen PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_bildschirm_theke_pv_abrechnung
+    source: sensor.stromkosten_pro_h_bildschirm_theke_pv_abrechnung
     name: Stromkosten Bildschirm Theke PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_gefrierschrank_pv_abrechnung
+    source: sensor.stromkosten_pro_h_gefrierschrank_pv_abrechnung
     name: Stromkosten Gefrierschrank PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_kuhlschrank_keller_pv_abrechnung
+    source: sensor.stromkosten_pro_h_kuhlschrank_keller_pv_abrechnung
     name: Stromkosten Kühlschrank Keller PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_kuhlschrank_kuche_pv_abrechnung
+    source: sensor.stromkosten_pro_h_kuhlschrank_kuche_pv_abrechnung
     name: Stromkosten Kühlschrank Küche PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_lg_anlage_pv_abrechnung
+    source: sensor.stromkosten_pro_h_lg_anlage_pv_abrechnung
     name: Stromkosten LG Anlage PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_luftungsanlage_pv_abrechnung
+    source: sensor.stromkosten_pro_h_luftungsanlage_pv_abrechnung
     name: Stromkosten Lüftungsanlage PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_mixi_pv_abrechnung
+    source: sensor.stromkosten_pro_h_mixi_pv_abrechnung
     name: Stromkosten Mixi PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_spulmaschine_pv_abrechnung
+    source: sensor.stromkosten_pro_h_spulmaschine_pv_abrechnung
     name: Stromkosten Spülmaschine PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_trockner_pv_abrechnung
+    source: sensor.stromkosten_pro_h_trockner_pv_abrechnung
     name: Stromkosten Trockner PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_tv_pv_abrechnung
+    source: sensor.stromkosten_pro_h_tv_pv_abrechnung
     name: Stromkosten TV PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_waschmaschine_pv_abrechnung
+    source: sensor.stromkosten_pro_h_waschmaschine_pv_abrechnung
     name: Stromkosten Waschmaschine PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_luftentf_waschk_pv_abrechnung
+    source: sensor.stromkosten_pro_h_luftentf_waschk_pv_abrechnung
     name: Stromkosten Luftentf. Waschk. PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_luftentf_werkelraum_pv_abrechnung
+    source: sensor.stromkosten_pro_h_luftentf_werkelraum_pv_abrechnung
     name: Stromkosten Luftentf. Werkelraum PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
   - platform: integration
-    source: sensor.stromkosten_dauerverbraucher_pv_abrechnung
+    source: sensor.stromkosten_pro_h_dauerverbraucher_pv_abrechnung
     name: Stromkosten Dauerverbraucher PV Abrechnung
     method: left
     unit: €
-    round: 6
+    round: 9
 #
 # --------------------------------
 # --                            --
