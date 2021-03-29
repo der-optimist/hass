@@ -13,6 +13,7 @@ appdaemon:
   time_zone: Europe/Berlin
   utility_delay: 10
   utility_skew: 9
+  log_thread_actions: 1
   plugins:
     HASS:
       type: hass
