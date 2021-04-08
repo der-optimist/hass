@@ -16,6 +16,7 @@ counter_to_power_meter_wp_heizstab:
   ha_cost_pv_invoice_sensor_name: sensor.stromkosten_wp_heizstab_pv_abrechnung
   ha_cost_pv_invoice_sensor_friendly_name: Stromkosten WP Heizstab PV Abrechnung
   input_text_for_saving_costs: input_text.saved_costs_wp_heizstab
+  ha_sensor_time_between_events: sensor.counter_to_power_meter_time_wp_heizstab
   phases: 3
   energy_per_pulse: 0.0005
   knx_sending_every: 50
@@ -38,6 +39,7 @@ counter_to_power_meter_wp_innenteil:
   ha_cost_pv_invoice_sensor_name: sensor.stromkosten_wp_innenteil_pv_abrechnung
   ha_cost_pv_invoice_sensor_friendly_name: Stromkosten WP Innenteil PV Abrechnung
   input_text_for_saving_costs: input_text.saved_costs_wp_innenteil
+  ha_sensor_time_between_events: sensor.counter_to_power_meter_time_wp_innenteil
   phases: 1
   energy_per_pulse: 0.0005
   knx_sending_every: 2
@@ -60,6 +62,7 @@ counter_to_power_meter_wp_aussenteil:
   ha_cost_pv_invoice_sensor_name: sensor.stromkosten_wp_aussenteil_pv_abrechnung
   ha_cost_pv_invoice_sensor_friendly_name: Stromkosten WP Aussenteil PV Abrechnung
   input_text_for_saving_costs: input_text.saved_costs_wp_aussenteil
+  ha_sensor_time_between_events: sensor.counter_to_power_meter_time_wp_aussenteil
   phases: 1
   energy_per_pulse: 0.001
   knx_sending_every: 10
@@ -82,6 +85,7 @@ counter_to_power_meter_kochfeld:
   ha_cost_pv_invoice_sensor_name: sensor.stromkosten_wp_kochfeld_pv_abrechnung
   ha_cost_pv_invoice_sensor_friendly_name: Stromkosten Kochfeld PV Abrechnung
   input_text_for_saving_costs: input_text.saved_costs_kochfeld
+  ha_sensor_time_between_events: sensor.counter_to_power_meter_time_kochfeld
   phases: 3
   energy_per_pulse: 0.0005
   knx_sending_every: 10
