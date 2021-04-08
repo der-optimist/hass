@@ -97,6 +97,7 @@ class counter_to_power_meter(hass.Hass):
                 self.log("I have a time of the last event, but no value... no idea how that can happen. Look for a bug!")
             else:
                 time_delta_seconds = (current_time - self.time_of_last_event).total_seconds()
+                self.set_state(self.args["ha_sensor_time_between_events"], state = time_delta_seconds, attributes = {"unit_of_measurement": "s"})
                 electricity_delta_Ws = (self.raw_value_persistent - self.value_of_last_event) * self.args["energy_per_pulse"] * 3600 * 1000
                 current_power = electricity_delta_Ws / time_delta_seconds
                 if (current_power > (float(self.args["phases"]) * self.max_plausible_watt_per_phase)) or current_power < 0:
