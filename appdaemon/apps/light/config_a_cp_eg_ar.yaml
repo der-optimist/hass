@@ -66,14 +66,14 @@ auto_light_a_abstellraum:
     "00:00": 4000000
   illuminance_sensor: sensor.helligkeit_wetterstation
 # - Leuchtwürfel Terrasse
-auto_light_a_tr_wurfel_ecke_gross:
+auto_light_a_tr_wurfel_feuerplatz:
   module: auto_light
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_aussen_carport
-  light: light.innr_e27_color_terrasse_ecke_gross_level_light_color_on_off
+  light: light.innr_e27_color_terrasse_feuerplatz_level_light_color_on_off
   type: color
-  rgb_color: [255, 0, 127]
+  rgb_color: [255, 0, 0]
   triggers: 
     - binary_sensor.hst_offen
   min_illuminance_values:
@@ -96,14 +96,14 @@ auto_light_a_tr_wurfel_ecke_klein:
   brightness_values:
     "00:00": 80
   illuminance_sensor: sensor.helligkeit_wetterstation
-auto_light_a_tr_wurfel_feuerstelle:
+auto_light_a_tr_wurfel_ecke_gross:
   module: auto_light
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_aussen_carport
   light: light.innr_rb_285_c_7cc30105_level_light_color_on_off
   type: color
-  rgb_color: [255, 0, 0]
+  rgb_color: [255, 0, 127]
   triggers: 
     - binary_sensor.hst_offen
   min_illuminance_values:
