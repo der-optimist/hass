@@ -72,7 +72,7 @@ class cover_blocking(hass.Hass):
             self.log("position of cover {} not float, but {}".format(entity,self.get_state(entity, attribute = "current_position")))
             return
         if self.get_state(self.ice_blocking_switch) == "on":
-            if position > 0:
+            if position > 91:
                 self.set_state(blocking_entity, state="on")
             else:
                 self.set_state(blocking_entity, state="off")
