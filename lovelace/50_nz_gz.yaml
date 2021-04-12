@@ -14,6 +14,8 @@ cards:
       name: !secret name_ma
     - entity: light.schreibtisch_decke
       name: !secret name_jo
+    - entity: light.nahtisch_decke
+      name: Strom IKEA-Panel
     - type: section
       label: Jalousie
     - entity: cover.jalousie_nahzimmer
