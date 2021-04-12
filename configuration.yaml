@@ -40,7 +40,7 @@ system_log:
 logger:
   default: info
   logs:
-    homeassistant.core: debug
+#    homeassistant.core: debug
     homeassistant.components.zha: debug
     bellows.zigbee.application: debug
     bellows.ezsp: debug
