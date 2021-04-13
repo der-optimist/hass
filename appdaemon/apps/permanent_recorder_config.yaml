@@ -370,6 +370,9 @@ permanent_recorder:
     - sensor.stellwert_heizung_wohnzimmer
     - sensor.stellwert_heizung_zeitverlauf_max
     - sensor.stellwert_heizung_zeitverlauf_mean
+    - input_number.strompreis
+    - sensor.strompreis_aktuell_effektiv_euro
+    - sensor.strompreis_aktuell_abrechnung_euro
     - sensor.stromzaehler_netzbezug
     - sensor.stromzahler_backofen
     - sensor.stromzahler_bildschirm_theke
