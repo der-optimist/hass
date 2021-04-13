@@ -1,0 +1,3 @@
+test_ad:
+  module: test_ad
+  class: test_ad
