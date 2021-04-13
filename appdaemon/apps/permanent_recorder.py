@@ -24,14 +24,17 @@ class permanent_recorder(hass.Hass):
         
         self.client =InfluxDBClient(self.host, self.port, self.user, self.password, self.dbname)
         
-        self.light_brightness: Set[str] = self.args.get("light_brightness", set())
+#        self.light_brightness: Set[str] = self.args.get("light_brightness", set())
         self.state_string: Set[str] = self.args.get("state_string", set())
         self.state_boolean: Set[str] = self.args.get("state_boolean", set())
         self.heating_target_temperature: Set[str] = self.args.get("heating_target_temperature", set())
         self.state_float: Set[str] = self.args.get("state_float", set())
         self.cover: Set[str] = self.args.get("cover", set())
+        
+        all_ha_lights = self.get_state("light")
+        all_ha_sensors = self.get_state("sensor")
 
-        for entity in self.light_brightness:
+        for entity in all_ha_lights.keys():
             self.listen_state(self.light_brightness_changed, entity)
         for entity in self.state_string:
             self.listen_state(self.state_string_changed, entity)    
@@ -40,7 +43,12 @@ class permanent_recorder(hass.Hass):
         for entity in self.heating_target_temperature:
             self.listen_state(self.heating_target_temperature_changed, entity, attribute = "temperature")    
         for entity in self.state_float:
-            self.listen_state(self.state_float_changed, entity)
+            if "*" in entity:
+                for sensor in all_ha_sensors.keys():
+                    if entity.replace("*", "") in sensor:
+                        self.listen_state(self.state_float_changed, sensor)
+            else:
+                self.listen_state(self.state_float_changed, entity)
         for entity in self.cover:
             self.listen_state(self.cover_changed, entity, attribute = "current_position")
             self.listen_state(self.cover_changed, entity, attribute = "current_tilt_position")
