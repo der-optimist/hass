@@ -47,9 +47,9 @@ cards:
             name: TV
           - type: section
             label: Keller
-          - entity: sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
+          - entity: sensor.el_leistung_innr_sp_120_luftentfeuchter_waschkuche
             name: Luftentf. Waschküche
-          - entity: sensor.innr_sp_120_test_electrical_measurement
+          - entity: sensor.el_leistung_innr_sp_120_luftentfeuchter_partyraum
             name: Luftentf. Partyraum
           - type: custom:template-entity-row
             name: Lüftungsanlage
