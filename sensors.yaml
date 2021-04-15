@@ -579,9 +579,9 @@
         icon_template: mdi:speedometer
       el_leistung_wp_gesamt:
         value_template: >-
-          {{ states('sensor.el_leistung_wp_aussenteil') | float 
-           + states('sensor.el_leistung_wp_innenteil') | float
-           + states('sensor.el_leistung_wp_heizstab') | float }}
+          {{ states('sensor.el_leistung_wp_aussenteil_esp') | float 
+           + states('sensor.el_leistung_wp_heizstab_esp') | float
+           + states('sensor.el_leistung_wp_innenteil_esp') | float }}
         friendly_name: 'El. Leistung WP gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
