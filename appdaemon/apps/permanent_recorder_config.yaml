@@ -162,10 +162,8 @@ permanent_recorder:
     - cover.jalousie_wz_bodentiefes
     - cover.jalousie_wz_couch
   state_float:
-    - sensor.bme280_wemosd1_4_luftfeuchtigkeit
-    - sensor.bme280_wemosd1_5_luftfeuchtigkeit
-    - sensor.bme280_wemosd1_6_luftfeuchtigkeit
-    - sensor.bme280_wemosd1_7_luftfeuchtigkeit
+    - sensor.anteil_el_leistung_*
+    - sensor.bme280*
     - sensor.bosch_outdoor_temperature
     - sensor.diesel_*
     - sensor.e10_*
@@ -173,8 +171,6 @@ permanent_recorder:
     - sensor.el_leistung_*
     - sensor.helligkeit_*
     - sensor.humidity_outside_internet
-    - sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
-    - sensor.innr_sp_120_test_electrical_measurement
     - sensor.luftdruck_kuche_aqara
     - sensor.luftfeuchtigkeit_*
     - sensor.lumi_lumi_remote_b286acn01_power
