@@ -403,37 +403,37 @@
 #       --           Licht            --
 #       --------------------------------
 #
-      el_leistung_berechnet_zigbee_licht_gaestezimmer:
+      el_leistung_berechnet_licht_zigbee_licht_gaestezimmer:
         value_template: "{{ '%.1f'%(state_attr('light.innr_e14_ww_decke_gastezimmer_level_on_off', 'brightness') | float / 255 * 5.3)| float }}"
         friendly_name: 'El. Leistung Licht Gästezimmer (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_zigbee_stehlampe_le:
+      el_leistung_berechnet_licht_zigbee_stehlampe_le:
         value_template: "{{ '%.1f'%(state_attr('light.innr_e14_tw_stehlampe_lea_level_light_color_on_off', 'brightness') | float / 255 * 5.8)| float }}"
         friendly_name: 'El. Leistung Stehlampe Le (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_zigbee_stehlampe_la:
+      el_leistung_berechnet_licht_zigbee_stehlampe_la:
         value_template: "{{ '%.1f'%(state_attr('light.innr_e14_ww_stehlampe_lara_level_on_off', 'brightness') | float / 255 * 5.3)| float }}"
         friendly_name: 'El. Leistung Stehlampe La (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_zigbee_kugellampe_sz:
+      el_leistung_berechnet_licht_zigbee_kugellampe_sz:
         value_template: "{{ '%.1f'%(state_attr('light.innr_e14_tw_kugellampe_schlafzimmer_level_light_color_on_off', 'brightness') | float / 255 * 5.8)| float }}"
         friendly_name: 'El. Leistung Kugellampe SZ (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_zigbee_terrasse_ecke_gr:
+      el_leistung_berechnet_licht_zigbee_terrasse_ecke_gr:
         value_template: "{{ '%.1f'%(state_attr('light.innr_e27_color_terrasse_ecke_gross_level_light_color_on_off', 'brightness') | float / 255 * 9.5)| float }}"
         friendly_name: 'El. Leistung Würfel Terrasse Ecke groß (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_zigbee_terrasse_ecke_kl:
+      el_leistung_berechnet_licht_zigbee_terrasse_ecke_kl:
         value_template: "{{ '%.1f'%(state_attr('light.innr_rb_285_c_55f50405_level_light_color_on_off', 'brightness') | float / 255 * 9.5)| float }}"
         friendly_name: 'El. Leistung Würfel Terrasse Ecke klein (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_zigbee_terrasse_feuerstelle:
+      el_leistung_berechnet_licht_zigbee_terrasse_feuerstelle:
         value_template: "{{ '%.1f'%(state_attr('light.innr_rb_285_c_7cc30105_level_light_color_on_off', 'brightness') | float / 255 * 9.5)| float }}"
         friendly_name: 'El. Leistung Würfel Terrasse Feuerstelle (berechnet)'
         unit_of_measurement: 'W'
@@ -463,47 +463,47 @@
         friendly_name: 'El. Leistung Licht Partyraum (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_spots_carport:
+      el_leistung_berechnet_licht_spots_carport:
         value_template: "{{ is_state('light.spots_carport','on') | float * 25 }}"
         friendly_name: 'El. Leistung Spots Carport (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_wandwuerfel_sued:
+      el_leistung_berechnet_licht_wandwuerfel_sued:
         value_template: "{{ is_state('light.wandwurfel_suden','on') | float * 21 }}"
         friendly_name: 'El. Leistung Wandwürfel Süd (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_wandwuerfel_west:
+      el_leistung_berechnet_licht_wandwuerfel_west:
         value_template: "{{ is_state('light.wandwurfel_westen','on') | float * 21 }}"
         friendly_name: 'El. Leistung Wandwürfel West (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_abstellraum:
+      el_leistung_berechnet_licht_abstellraum:
         value_template: "{{ is_state('light.abstellraum_carport','on') | float * 24 }}"
         friendly_name: 'El. Leistung Licht Abstellraum CP (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_naehtisch_nz:
+      el_leistung_berechnet_licht_naehtisch_nz:
         value_template: "{{ '%.1f'%(state_attr('light.ikea_panel_arbeitszimmer_level_light_color_on_off', 'brightness') | float / 255 * 29)| float }}"
         friendly_name: 'El. Leistung Licht Decke Ma (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_schreibtisch_nz:
+      el_leistung_berechnet_licht_schreibtisch_nz:
         value_template: "{{ is_state('light.schreibtisch_decke','on') | float * 24 }}"
         friendly_name: 'El. Leistung Licht Decke Jo (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_spiegel_bad_eg:
+      el_leistung_berechnet_licht_spiegel_bad_eg:
         value_template: "{{ is_state('light.spiegel_bad_eg','on') | float * 11.5 }}"
         friendly_name: 'El. Leistung Spiegel Bad EG (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_spiegel_bad_og:
+      el_leistung_berechnet_licht_spiegel_bad_og:
         value_template: "{{ is_state('light.spiegel_bad_og','on') | float * 11.5 }}"
         friendly_name: 'El. Leistung Spiegel Bad OG (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_berechnet_spiegel_wc:
+      el_leistung_berechnet_licht_spiegel_wc:
         value_template: "{{ is_state('light.spiegel_wc','on') | float * 20 }}"
         friendly_name: 'El. Leistung Spiegel WC (berechnet)'
         unit_of_measurement: 'W'
@@ -544,27 +544,27 @@
         icon_template: mdi:speedometer
       el_leistung_berechnete_lichter:
         value_template: >-
-          {{ states('sensor.el_leistung_berechnet_zigbee_licht_gaestezimmer') | float
-           + states('sensor.el_leistung_berechnet_zigbee_stehlampe_le') | float
-           + states('sensor.el_leistung_berechnet_zigbee_stehlampe_la') | float
-           + states('sensor.el_leistung_berechnet_zigbee_kugellampe_sz') | float
-           + states('sensor.el_leistung_berechnet_zigbee_terrasse_ecke_gr') | float
-           + states('sensor.el_leistung_berechnet_zigbee_terrasse_ecke_kl') | float
-           + states('sensor.el_leistung_berechnet_zigbee_terrasse_feuerstelle') | float
+          {{ states('sensor.el_leistung_berechnet_licht_zigbee_licht_gaestezimmer') | float
+           + states('sensor.el_leistung_berechnet_licht_zigbee_stehlampe_le') | float
+           + states('sensor.el_leistung_berechnet_licht_zigbee_stehlampe_la') | float
+           + states('sensor.el_leistung_berechnet_licht_zigbee_kugellampe_sz') | float
+           + states('sensor.el_leistung_berechnet_licht_zigbee_terrasse_ecke_gr') | float
+           + states('sensor.el_leistung_berechnet_licht_zigbee_terrasse_ecke_kl') | float
+           + states('sensor.el_leistung_berechnet_licht_zigbee_terrasse_feuerstelle') | float
            + states('sensor.el_leistung_berechnet_licht_flur_keller') | float
            + states('sensor.el_leistung_berechnet_licht_technikraum') | float
            + states('sensor.el_leistung_berechnet_licht_vorratsraum') | float
            + states('sensor.el_leistung_berechnet_licht_werkelraum') | float
            + states('sensor.el_leistung_berechnet_licht_partyraum') | float
-           + states('sensor.el_leistung_berechnet_spots_carport') | float
-           + states('sensor.el_leistung_berechnet_wandwuerfel_sued') | float
-           + states('sensor.el_leistung_berechnet_wandwuerfel_west') | float
-           + states('sensor.el_leistung_berechnet_abstellraum') | float
-           + states('sensor.el_leistung_berechnet_naehtisch_nz') | float
-           + states('sensor.el_leistung_berechnet_schreibtisch_nz') | float
-           + states('sensor.el_leistung_berechnet_spiegel_bad_eg') | float
-           + states('sensor.el_leistung_berechnet_spiegel_bad_og') | float
-           + states('sensor.el_leistung_berechnet_spiegel_wc') | float }}
+           + states('sensor.el_leistung_berechnet_licht_spots_carport') | float
+           + states('sensor.el_leistung_berechnet_licht_wandwuerfel_sued') | float
+           + states('sensor.el_leistung_berechnet_licht_wandwuerfel_west') | float
+           + states('sensor.el_leistung_berechnet_licht_abstellraum') | float
+           + states('sensor.el_leistung_berechnet_licht_naehtisch_nz') | float
+           + states('sensor.el_leistung_berechnet_licht_schreibtisch_nz') | float
+           + states('sensor.el_leistung_berechnet_licht_spiegel_bad_eg') | float
+           + states('sensor.el_leistung_berechnet_licht_spiegel_bad_og') | float
+           + states('sensor.el_leistung_berechnet_licht_spiegel_wc') | float }}
         friendly_name: 'El. Leistung berechnete Lichter'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
@@ -573,7 +573,7 @@
           {{ states('sensor.el_leistung_berechnete_lichter') | float 
            + states('sensor.el_leistung_licht_sicherung_3_2') | float
            + states('sensor.el_leistung_licht_sicherung_3_3') | float
-           + states('sensor.shellydimmer_d472fe_power') | float }}
+           + states('sensor.el_leistung_shellydimmer_d472fe_power') | float }}
         friendly_name: 'El. Leistung Licht gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
