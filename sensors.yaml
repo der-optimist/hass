@@ -356,7 +356,7 @@
         friendly_name: 'El. Leistung Einspeiselimit'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_anteil_netzbezug:
+      anteil_el_leistung_netzbezug:
         value_template: >-
           {% if (states('sensor.el_leistung_netz_bilanz') | float) < 0 %}
             {{ -1*(states('sensor.el_leistung_netz_bilanz') | float) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
@@ -366,7 +366,7 @@
         friendly_name: 'El. Leistung Anteil Netzbezug'
         unit_of_measurement: 'Anteil'
         icon_template: mdi:chart-donut
-      el_leistung_anteil_pv_nicht_einspeisbar:
+      anteil_el_leistung_pv_nicht_einspeisbar:
         value_template: >-
           {% if (states('sensor.el_leistung_pv_ac') | float) > ((states('sensor.el_leistung_einspeiselimit') | float) + (states('sensor.el_leistung_verbrauch_gesamt') | float)) %}
             1.0
@@ -378,18 +378,18 @@
         friendly_name: 'El. Leistung Anteil PV nicht einspeisbar'
         unit_of_measurement: 'Anteil'
         icon_template: mdi:chart-donut
-      el_leistung_anteil_pv_einspeisbar:
-        value_template: "{{ 1 - (states('sensor.el_leistung_anteil_netzbezug') | float ) - (states('sensor.el_leistung_anteil_pv_nicht_einspeisbar') | float ) }}"
+      anteil_el_leistung_pv_einspeisbar:
+        value_template: "{{ 1 - (states('sensor.anteil_el_leistung_netzbezug') | float ) - (states('sensor.anteil_el_leistung_pv_nicht_einspeisbar') | float ) }}"
         friendly_name: 'El. Leistung Anteil PV einspeisbar'
         unit_of_measurement: 'Anteil'
         icon_template: mdi:chart-donut
       strompreis_aktuell_effektiv_euro:
-        value_template: "{{ (states('input_number.strompreis') | float ) * (states('sensor.el_leistung_anteil_netzbezug') | float ) + (states('input_number.pv_einspeiseverguetung') | float ) * (states('sensor.el_leistung_anteil_pv_einspeisbar') | float ) }}"
+        value_template: "{{ (states('input_number.strompreis') | float ) * (states('sensor.anteil_el_leistung_netzbezug') | float ) + (states('input_number.pv_einspeiseverguetung') | float ) * (states('sensor.anteil_el_leistung_pv_einspeisbar') | float ) }}"
         friendly_name: 'Strompreis aktuell effektiv Euro'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
       strompreis_aktuell_abrechnung_euro:
-        value_template: "{{ (states('input_number.strompreis') | float ) * (states('sensor.el_leistung_anteil_netzbezug') | float ) }}"
+        value_template: "{{ (states('input_number.strompreis') | float ) * (states('sensor.anteil_el_leistung_netzbezug') | float ) }}"
         friendly_name: 'Strompreis aktuell effektiv Euro'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
@@ -797,12 +797,12 @@
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
       stromkosten_pro_h_luftentf_waschk_ohne_pv:
-        value_template: "{{ (states('sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement') | float) * (states('input_number.strompreis') | float) / 1000 }}"
+        value_template: "{{ (states('sensor.el_leistung_innr_sp_120_luftentfeuchter_waschkuche') | float) * (states('input_number.strompreis') | float) / 1000 }}"
         friendly_name: 'Stromkosten pro h Luftentf. Waschk. ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
       stromkosten_pro_h_luftentf_werkelraum_ohne_pv:
-        value_template: "{{ (states('sensor.innr_sp_120_test_electrical_measurement') | float) * (states('input_number.strompreis') | float) / 1000 }}"
+        value_template: "{{ (states('sensor.el_leistung_innr_sp_120_luftentfeuchter_partyraum') | float) * (states('input_number.strompreis') | float) / 1000 }}"
         friendly_name: 'Stromkosten pro h Luftentf. Werkelraum ohne PV'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
@@ -897,12 +897,12 @@
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
       stromkosten_pro_h_luftentf_waschk_pv_effektiv:
-        value_template: "{{ (states('sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
+        value_template: "{{ (states('sensor.el_leistung_innr_sp_120_luftentfeuchter_waschkuche') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
         friendly_name: 'Stromkosten pro h Luftentf. Waschk. PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
       stromkosten_pro_h_luftentf_werkelraum_pv_effektiv:
-        value_template: "{{ (states('sensor.innr_sp_120_test_electrical_measurement') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
+        value_template: "{{ (states('sensor.el_leistung_innr_sp_120_luftentfeuchter_partyraum') | float) * (states('sensor.strompreis_aktuell_effektiv_euro') | float) / 1000 }}"
         friendly_name: 'Stromkosten pro h Luftentf. Werkelraum PV effektiv'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
@@ -997,12 +997,12 @@
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
       stromkosten_pro_h_luftentf_waschk_pv_abrechnung:
-        value_template: "{{ (states('sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
+        value_template: "{{ (states('sensor.el_leistung_innr_sp_120_luftentfeuchter_waschkuche') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
         friendly_name: 'Stromkosten pro h Luftentf. Waschk. PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
       stromkosten_pro_h_luftentf_werkelraum_pv_abrechnung:
-        value_template: "{{ (states('sensor.innr_sp_120_test_electrical_measurement') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
+        value_template: "{{ (states('sensor.el_leistung_innr_sp_120_luftentfeuchter_partyraum') | float) * (states('sensor.strompreis_aktuell_abrechnung_euro') | float) / 1000 }}"
         friendly_name: 'Stromkosten pro h Luftentf. Werkelraum PV Abrechnung'
         unit_of_measurement: '€/h'
         icon_template: mdi:currency-eur
@@ -1292,13 +1292,13 @@
     unit_prefix: k
     round: 2
   - platform: integration
-    source: sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
+    source: sensor.el_leistung_innr_sp_120_luftentfeuchter_waschkuche
     name: Stromzähler Luftentf. Waschk.
     method: left
     unit_prefix: k
     round: 2
   - platform: integration
-    source: sensor.innr_sp_120_test_electrical_measurement
+    source: sensor.el_leistung_innr_sp_120_luftentfeuchter_partyraum
     name: Stromzähler Luftentf. Werkelraum
     method: left
     unit_prefix: k
