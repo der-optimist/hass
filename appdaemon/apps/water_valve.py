@@ -1,7 +1,7 @@
 import appdaemon.plugins.hass.hassapi as hass
 import datetime
 
-# CMove water valve once a week
+# Move water valve once a week
 
 
 class water_valve(hass.Hass):
@@ -13,7 +13,7 @@ class water_valve(hass.Hass):
         #self.run_daily(self.move_valve, run_time)
         
         
-    def generate_data_for_yesterday(self, kwargs):
+    def move_valve(self, kwargs):
         self.log(self.date().isoweekday())
         if self.date().isoweekday() == self.run_day:
             self.log("jo")
