@@ -34,7 +34,7 @@ cards:
       name: Luftfeuchtigkeit
     - entity: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
       name: Steckdose Luftentfeuchter
-    - entity: sensor.innr_sp_120_luftentfeuchter_waschkuche_electrical_measurement
+    - entity: sensor.el_leistung_innr_sp_120_luftentfeuchter_waschkuche
       name: Strom Luftentfeuchter
     - type: custom:slider-entity-row
       entity: input_number.timer_spezial_luftf_waschk
@@ -104,9 +104,9 @@ cards:
       name: Temperatur
     - entity: sensor.luftfeuchtigkeit_partyraum
       name: Luftfeuchtigkeit
-    - entity: switch.innr_sp_120_test_on_off
+    - entity: switch.innr_sp_120_luftentfeuchter_partyraum
       name: Steckdose Luftentfeuchter
-    - entity: sensor.innr_sp_120_test_electrical_measurement
+    - entity: sensor.el_leistung_innr_sp_120_luftentfeuchter_partyraum
       name: Strom Luftentfeuchter
     - type: custom:slider-entity-row
       entity: input_number.timer_spezial_luftf_werkelraum
