@@ -448,25 +448,25 @@ cards:
           - entity: sensor.sonoff_pow_r2_2_energie
             name: POW R2 2 - Energie
           - type: section
-            label: Tasmota SD 2 (Luftbef. WZ)
-          - entity: sensor.tasmota_sd_2_wirkleistung
-            name: Tasmota SD 2 - Wirkleistung
-          - entity: sensor.tasmota_sd_2_scheinleistung
-            name: Tasmota SD 2 - Scheinleistung
-          - entity: sensor.tasmota_sd_2_leistungsfaktor
-            name: Tasmota SD 2 - Cos Phi
-          - entity: sensor.tasmota_sd_2_energie
-            name: Tasmota SD 2 - Energie
+            label: ESP SD 2 (Luftbef. WZ)
+          - entity: sensor.el_leistung_esp_sd_2
+            name: ESP SD 2 - Wirkleistung
+          - entity: sensor.esp_sd_2_scheinleistung
+            name: ESP SD 2 - Scheinleistung
+          - entity: sensor.esp_sd_2_leistungsfaktor
+            name: ESP SD 2 - Cos Phi
+          - entity: sensor.esp_sd_2_stromverbrauch_heute
+            name: ESP SD 2 - Energie heute
           - type: section
             label: ESP SD 3 (Bildschirm Theke)
-          - entity: sensor.esp_sd_3_wirkleistung
+          - entity: sensor.el_leistung_esp_sd_3
             name: ESP SD 3 - Wirkleistung
           - entity: sensor.esp_sd_3_scheinleistung
             name: ESP SD 3 - Scheinleistung
           - entity: sensor.esp_sd_3_leistungsfaktor
             name: ESP SD 3 - Cos Phi
           - entity: sensor.esp_sd_3_stromverbrauch_heute
-            name: ESP SD 3 - Energie
+            name: ESP SD 3 - Energie heute
           - type: section
             label: Shelly Plug S (Hebeanlage)
           - entity: sensor.el_leistung_shellyplug_s_169d16_power
