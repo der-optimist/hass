@@ -27,7 +27,7 @@ class water_valve(hass.Hass):
             if self.get_state("binary_sensor.waschmaschine_ist_an") == "on":
                 self.log("Wasserventil nicht bewegt, Waschmaschine ist an")
                 return
-            if self.get_state("sensor.el_leistung_spulmaschine") > 0.1:
+            if float(self.get_state("sensor.el_leistung_spulmaschine")) > 0.1:
                 self.log("Wasserventil nicht bewegt, Spülmaschine ist an")
                 return
             self.turn_off("switch.wasserabsperrventil")
