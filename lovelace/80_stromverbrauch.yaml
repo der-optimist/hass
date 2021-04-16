@@ -469,7 +469,7 @@ cards:
             name: ESP SD 3 - Energie
           - type: section
             label: Shelly Plug S (Hebeanlage)
-          - entity: sensor.shellyplug_s_169d16_power
+          - entity: sensor.el_leistung_shellyplug_s_169d16_power
             name: Shelly Plug S - Wirkleistung
           - entity: sensor.shellyplug_s_169d16_energy
             name: Shelly Plug S - Energie
