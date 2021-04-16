@@ -3,7 +3,6 @@ import datetime
 
 # Move water valve once a week
 
-
 class water_valve(hass.Hass):
 
     def initialize(self):
@@ -28,10 +27,10 @@ class water_valve(hass.Hass):
                 self.log("Wasserventil nicht bewegt, Waschmaschine ist an")
                 return
             if float(self.get_state("sensor.el_leistung_spulmaschine")) > 0.1:
-                self.log("Wasserventil nicht bewegt, Spülmaschine ist an")
+                self.log("Wasserventil nicht bewegt, Spuelmaschine ist an")
                 return
             self.turn_off("switch.wasserabsperrventil")
-            self.log("Habe Wasser ausgeschalten")
+            self.log("Habe Wasser ausgeschalten, woechentlich")
             self.run_in(self.turn_on_valve,40)
 
     def turn_on_valve(self, kwargs):
