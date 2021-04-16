@@ -39,7 +39,7 @@ luftbefeuchter_wz:
   class: air_dryer_and_humidifier
   machine_type: humidifier
   air_dryer_or_humidifier_switch: switch.esp_sd_2_relais
-  energy_measurement_sensor: sensor.esp_sd_2_wirkleistung
+  energy_measurement_sensor: sensor.el_leistung_esp_sd_2
   humidity_sensor: sensor.luftfeuchtigkeit_kuche_aqara
   humidity_standard_max: 50
   humidity_standard_min: 46
