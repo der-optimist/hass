@@ -735,7 +735,7 @@
       el_leistung_bildschirm_theke:
         friendly_name: "El. Leistung Bildschirm Theke"
         value_template: >-
-          {{ states("sensor.esp_sd_3_wirkleistung") }}
+          {{ states("sensor.el_leistung_esp_sd_3") }}
       el_leistung_lg_anlage:
         friendly_name: "El. Leistung LG Anlage"
         value_template: >-
