@@ -7,9 +7,9 @@ class water_valve(hass.Hass):
 
     def initialize(self):
         run_time =  datetime.time(3, 35, 3)
-        self.run_day = 5 # Dienstag
-        self.move_valve(None)
-        #self.run_daily(self.move_valve, run_time)
+        self.run_day = 2 # Dienstag
+        #self.move_valve(None)
+        self.run_daily(self.move_valve, run_time)
         
         
     def move_valve(self, kwargs):
@@ -19,6 +19,9 @@ class water_valve(hass.Hass):
                 return
             if self.get_state("binary_sensor.pm_e_wc") == "on":
                 self.log("Wasserventil nicht bewegt, jemand ist im WC")
+                return
+            if self.get_state("binary_sensor.pm_e_ku_kuche") == "on":
+                self.log("Wasserventil nicht bewegt, jemand ist in der Kueche")
                 return
             if self.get_state("binary_sensor.pm_o_ba") == "on":
                 self.log("Wasserventil nicht bewegt, jemand ist im Bad OG")
@@ -32,7 +35,9 @@ class water_valve(hass.Hass):
             self.turn_off("switch.wasserabsperrventil")
             self.log("Habe Wasser ausgeschalten, woechentlich")
             self.run_in(self.turn_on_valve,40)
+            self.fire_event("custom_notify", message="Wasserventil aus, wöchentlich", target="telegram_jo")
 
     def turn_on_valve(self, kwargs):
         self.turn_on("switch.wasserabsperrventil")
         self.log("Habe Wasser wieder eingeschalten")
+        self.fire_event("custom_notify", message="Wasserventil ist wieder an", target="telegram_jo")
