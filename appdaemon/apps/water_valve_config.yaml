@@ -1,0 +1,3 @@
+water_valve:
+  class: water_valve
+  module: water_valve
