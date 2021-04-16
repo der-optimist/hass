@@ -8,14 +8,12 @@ class water_valve(hass.Hass):
 
     def initialize(self):
         run_time =  datetime.time(3, 35, 3)
-        self.run_day = 2 # Dienstag
+        self.run_day = 5 # Dienstag
         self.move_valve(None)
         #self.run_daily(self.move_valve, run_time)
         
         
     def move_valve(self, kwargs):
-        self.log(self.get_state("binary_sensor.pm_e_ba"))
-        self.log(self.date().isoweekday())
         if self.date().isoweekday() == self.run_day:
             if self.get_state("binary_sensor.pm_e_ba") == "on":
                 self.log("Wasserventil nicht bewegt, jemand ist im Bad EG")
