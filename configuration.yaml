@@ -333,7 +333,7 @@ cover:
 
 climate:
 
-utility_meter: !include utility_meter.yaml
+#utility_meter: !include utility_meter.yaml
 
 stream:
 camera:
