@@ -1,0 +1,44 @@
+title: WoWa
+path: wowa
+icon: mdi:truck-trailer
+cards:
+  - type: entities
+    title: LED Bett
+    show_header_toggle: false
+    entities:
+      - type: custom:slider-entity-row
+        entity: light.wowa_fenster_bett_links_2
+        name: Fenster Bett links
+        toggle: true
+      - type: custom:slider-entity-row
+        entity: light.wowa_fenster_bett_rechts_2
+        name: Fenster Bett rechts
+        toggle: true
+      - type: section
+        label: Taster (nur Info)
+      - binary_sensor.wowa_button_licht_bett_links_power_2
+      - binary_sensor.wowa_button_licht_bett_links_ab_2
+      - binary_sensor.wowa_button_licht_bett_links_auf_2
+      - binary_sensor.wowa_button_licht_bett_rechts_power_2
+      - binary_sensor.wowa_button_licht_bett_rechts_ab_2
+      - binary_sensor.wowa_button_licht_bett_rechts_auf_2
+  - type: entities
+    title: LED Sitzecke
+    show_header_toggle: false
+    entities:
+      - type: custom:slider-entity-row
+        entity: light.wowa_fenster_sitzecke_links_2
+        name: Fenster Sitzecke links
+        toggle: true
+      - type: custom:slider-entity-row
+        entity: light.wowa_fenster_sitzecke_rechts_2
+        name: Fenster Sitzecke rechts
+        toggle: true
+      - type: section
+        label: Taster (nur Info)
+      - binary_sensor.wowa_button_licht_sitzecke_links_power_2
+      - binary_sensor.wowa_button_licht_sitzeckebett_links_ab_2
+      - binary_sensor.wowa_button_licht_sitzecke_links_auf_2
+      - binary_sensor.wowa_button_licht_sitzecke_rechts_power_2
+      - binary_sensor.wowa_button_licht_sitzecke_rechts_ab_2
+      - binary_sensor.wowa_button_licht_sitzecke_rechts_auf_2
