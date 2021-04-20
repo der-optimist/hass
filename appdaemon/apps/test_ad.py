@@ -5,5 +5,5 @@ class test_ad(hass.Hass):
     def initialize(self):
         #self.log(str(self.date())[8:10])
         #self.log(str(self.date())[5:10])
-        self.log(self.list_namespaces())
+        self.set_state("sensor.test_entity", state = 0.01, attributes = {"cost_test": "1.23"}, namespace = "ad_namespace")
         return
