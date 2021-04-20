@@ -20,6 +20,9 @@ appdaemon:
       type: hass
       appdaemon_startup_conditions:
         delay: 90
+  namespaces:
+    ad_namespace:
+      writeback: hybrid
 http:
   url: http://127.0.0.1:5050
 admin:
