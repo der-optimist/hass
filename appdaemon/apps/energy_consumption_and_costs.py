@@ -34,6 +34,7 @@ class energy_consumption_and_costs(hass.Hass):
         self.ad_namespace = "ad_namespace"
         special_date = self.args.get("special_date", None)
         # restore sensors in HA
+        self.reset_all_sensors_in_ad_namespace()
         self.restore_sensors_in_ha()
         # calculate for a given single date
         if special_date is not None:
@@ -50,7 +51,6 @@ class energy_consumption_and_costs(hass.Hass):
         #    self.find_value_by_timestamp(debug_list_ts, debug_list_values, ts)
         # drop some measurements from testing
         #self.drop("sensor.test_measurement")
-        #self.reset_all_sensors_in_ad_namespace()
         
         
     def generate_data_for_yesterday(self, kwargs):
@@ -176,10 +176,10 @@ class energy_consumption_and_costs(hass.Hass):
             if cost_saved_by_pv_invoice_percent < 0.0:
                 cost_saved_by_pv_invoice_percent = 0.0
             sensor_power_readable_name = self.args["sensor_names_readable"].get(sensor_power, sensor_power.replace("sensor.el_leistung_",""))
-            self.log("kWh: {}".format(consumption_kWh))
-            self.log("Cost without PV: {}".format(cost_without_pv))
-            self.log("Cost with PV, effective: {} saved {}%".format(cost_effective, round(cost_saved_by_pv_effective_percent,2)))
-            self.log("Cost with PV, invoice: {} saved {}%".format(cost_invoice, round(cost_saved_by_pv_invoice_percent,2)))
+            #self.log("kWh: {}".format(consumption_kWh))
+            #self.log("Cost without PV: {}".format(cost_without_pv))
+            #self.log("Cost with PV, effective: {} saved {}%".format(cost_effective, round(cost_saved_by_pv_effective_percent,2)))
+            #self.log("Cost with PV, invoice: {} saved {}%".format(cost_invoice, round(cost_saved_by_pv_invoice_percent,2)))
             self.log("Time for calculating consumption and costs for {}: {}".format(sensor_power_readable_name,datetime.datetime.now().timestamp() - ts_start_calculation))
             
             # Consumption and Costs are now calculated for that power sensor
@@ -289,7 +289,7 @@ class energy_consumption_and_costs(hass.Hass):
             if self.args["do_consumption_calculation"]:
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated, namespace = self.ad_namespace)
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated)
-                self.client.write_points([{"measurement":consumption_sensor_name,"fields":attributes,"time":int(ts_save_local_ns)}])
+                self.client.write_points([{"measurement":consumption_sensor_name,"fields":attributes_updated,"time":int(ts_save_local_ns)}])
                 
         self.log("Time for calculating consumption and costs total: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation_total))
     
