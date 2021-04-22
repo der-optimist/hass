@@ -1,0 +1,58 @@
+energy_consumption_and_costs:
+  module: energy_consumption_and_costs
+  class: energy_consumption_and_costs
+  do_consumption_calculation: True
+  db_host: "a0d7b954-influxdb"
+  db_user: "appdaemon"
+  db_name: "homeassistant_permanent"
+  db_passwd: !secret permanent_db_passwd
+  db_field: state_float
+  input_number_entity_price_per_kwh: input_number.strompreis
+  #save_measurement_name: energy_consumption_daily
+  #special_date: "2020-09-30"
+  db_measurement_price_pv_effective: sensor.strompreis_aktuell_effektiv_euro
+  db_measurement_price_pv_invoice: sensor.strompreis_aktuell_abrechnung_euro
+  db_measurement_total_kWh: sensor.stromzaehler_netzbezug
+  db_measurements_to_skip_for_consumption_calculation: 
+    - sensor.el_leistung_stromzaehler_netzbezug
+    - sensor.el_leistung_netzbezug_vorzeichenbehaftet
+    - sensor.el_leistung_pv_ac
+    - sensor.el_leistung_netz_bilanz
+    - sensor.el_leistung_einspeiselimit
+    - sensor.el_leistung_wp_aussenteil_esp # is mapped to sensor.el_leistung_wp_aussenteil which is calculated
+    - sensor.el_leistung_wp_heizstab_esp # is mapped to sensor.el_leistung_wp_heizstab which is calculated
+    - sensor.el_leistung_wp_innenteil_esp # is mapped to sensor.el_leistung_wp_innenteil which is calculated
+    - sensor.el_leistung_kochfeld_esp # is mapped to sensor.el_leistung_kochfeld which is calculated
+    - sensor.el_leistung_esp_sd_3 # is mapped to sensor.el_leistung_bildschirm_theke which is calculated
+  db_measurements_to_skip_for_calculating_sum: # some entities are included in other ones. They should not be summed up twice
+    - sensor.el_leistung_licht_sicherung_3_2
+    - sensor.el_leistung_licht_sicherung_3_3
+    - sensor.el_leistung_berechnete_lichter
+    - sensor.el_leistung_shellydimmer_d472fe_power
+    - sensor.el_leistung_wp_heizstab # is icluded in el_leistung_wp_gesamt
+    - sensor.el_leistung_wp_innenteil # is icluded in el_leistung_wp_gesamt
+    - sensor.el_leistung_wp_aussenteil # is icluded in el_leistung_wp_gesamt
+    - sensor.el_leistung_verbrauch_gesamt # is icluded in el_leistung_wp_gesamt
+  sensor_names_readable:
+    sensor.el_leistung_licht_gesamt: Licht gesamt
+    sensor.el_leistung_dauerverbraucher: Dauerverbraucher
+    sensor.el_leistung_waschmaschine: Waschmaschine
+    sensor.el_leistung_trockner: Trockner
+    sensor.el_leistung_gefrierschrank: Gefrierschrank
+    sensor.el_leistung_kuhlschrank_kuche: Kühlschrank Küche
+    sensor.el_leistung_spulmaschine: Spülmaschine
+    sensor.el_leistung_tv: TV
+    sensor.el_leistung_bildschirm_theke: Bildschirm Theke
+    sensor.el_leistung_lg_anlage: LG Anlage
+    sensor.el_leistung_backofen: Backofen
+    sensor.el_leistung_mixi: Mixi
+    sensor.el_leistung_kuhlschrank_keller: Handtaubi Keller
+    sensor.el_leistung_luftungsanlage: Lüftungsanlage
+    sensor.el_leistung_shellyplug_s_169d16_power: Hebeanlage
+    sensor.el_leistung_shellyswitch25_10521c45de0b_0_power: Ladesteckdose Ma
+    sensor.el_leistung_shellyswitch25_10521c45de0b_1_power: Ladesteckdose Jo
+    sensor.el_leistung_innr_sp_120_luftentfeuchter_waschkuche: Luftentf. Waschk.
+    sensor.el_leistung_innr_sp_120_luftentfeuchter_partyraum: Luftentf. Partyraum
+    sensor.el_leistung_kochfeld: Kochfeld
+    sensor.el_leistung_wp_gesamt: Heizung
+    sensor.el_leistung_esp_sd_2: Luftbefeuchter WZ
