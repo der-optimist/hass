@@ -34,7 +34,7 @@ class energy_consumption_and_costs(hass.Hass):
         self.ad_namespace = "ad_namespace"
         special_date = self.args.get("special_date", None)
         # restore sensors in HA
-        self.reset_all_sensors_in_ad_namespace()
+        #self.reset_all_sensors_in_ad_namespace()
         self.restore_sensors_in_ha()
         # calculate for a given single date
         if special_date is not None:
@@ -43,12 +43,8 @@ class energy_consumption_and_costs(hass.Hass):
 
         # run daily
         self.run_daily(self.generate_data_for_yesterday, time_daily_calculation)
-        self.generate_data_for_yesterday(None)
-        #debug_list_ts = [1618411255.935394, 1618409272.638272, 1618409211.7410421, 1618409151.0034902, 1618409090.2156692, 1618408162.2702992, 1618408148.1790292, 1618388640.258553, 1618388627.4278662, 1618384672.922352, 1618384656.0497832, 1618384622.114653, 1618343700.0000029]
-        #debug_list_values = [0.283, 0.077, 0.09646456692913384, 0.09763223787167448, 0.12018213058419243, 0.077, 0.17248497854077252, 0.283, 0.1778212983223924, 0.283, 0.13372463768115941, 0.077, 0.283]
-        #debug_ts = [1618408981.549, 1618409220.1422112, 1618409280.5235052]
-        #for ts in debug_ts:
-        #    self.find_value_by_timestamp(debug_list_ts, debug_list_values, ts)
+        #self.generate_data_for_yesterday(None) # Caution! Will lead to double values, if used additionally to daily calculation!
+
         # drop some measurements from testing
         #self.drop("sensor.test_measurement")
         
