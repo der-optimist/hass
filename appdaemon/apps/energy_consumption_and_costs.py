@@ -32,6 +32,7 @@ class energy_consumption_and_costs(hass.Hass):
         self.client = InfluxDBClient(self.host, self.port, self.user, self.password, self.db_name)
         self.save_measurement_name = self.args.get("save_measurement_name", "energy_consumption_test")
         self.ad_namespace = "ad_namespace"
+        self.sensor_name_consumption_total = self.args.get("sensor_name_consumption_total", "sensor.el_leistung_verbrauch_gesamt")
         special_date = self.args.get("special_date", None)
         # restore sensors in HA
         #self.reset_all_sensors_in_ad_namespace()
