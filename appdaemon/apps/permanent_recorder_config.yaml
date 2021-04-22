@@ -184,7 +184,14 @@ permanent_recorder:
     - sensor.lumi_lumi_weather_humidity
     - sensor.lumi_lumi_weather_power
     - sensor.lumi_lumi_weather_temperature
-    - sensor.onewire_*
+    - sensor.onewire_07_estrich_kueche
+    - sensor.onewire_14_estrich_wohnzimmer
+    - sensor.onewire_15_estrich_wc_1
+    - sensor.onewire_16_estrich_esszimmer
+    - sensor.onewire_20_estrich_bad_eg
+    - sensor.onewire_21_estrich_wc_2
+    - sensor.onewire_25_estrich_schlafzimmer
+    - sensor.onewire_serverschrank
     - sensor.shellydimmer_d472fe_power
     - sensor.shellyplug_s_169d16_power
     - sensor.sollwert_heizung_*
