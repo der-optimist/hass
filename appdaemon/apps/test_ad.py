@@ -1,14 +1,14 @@
 import appdaemon.plugins.hass.hassapi as hass
-from influxdb import InfluxDBClient
+#from influxdb import InfluxDBClient
 
-# Calculate Energy consumption and costs from power data and write it to influxdb
-#
+# Test
 # Args:
 
 
 class test_ad(hass.Hass):
     
     def initialize(self):
+        return
         # initialize database stuff
         self.host = self.args.get("db_host", "a0d7b954-influxdb")
         self.port=8086
@@ -17,14 +17,7 @@ class test_ad(hass.Hass):
         self.db_name = self.args.get("db_name", "homeassistant_permanent")
         self.client = InfluxDBClient(self.host, self.port, self.user, self.password, self.db_name)
         #self.remove_old_sensors_from_db()
-        self.drop("sensor.stromverbrauch_netzbezug_vortag")
-        self.drop("sensor.stromverbrauch_netzbezug_vormonat")
-        self.drop("sensor.stromverbrauch_luftentf_werkelraum_vortag")
-        self.drop("sensor.stromverbrauch_luftentf_werkelraum_vormonat")
-        self.drop("sensor.stromverbrauch_luftentf_waschk_vortag")
-        self.drop("sensor.stromverbrauch_luftentf_waschk_vormonat")
-        self.drop("sensor.stromverbrauch_licht_berechnete_vortag")
-        self.drop("sensor.stromverbrauch_licht_berechnete_vormonat")
+
 
     def get_ha_power_sensors_for_consumption_calculation(self):
         all_ha_sensors = self.get_state("sensor").keys()
