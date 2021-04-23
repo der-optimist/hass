@@ -95,13 +95,13 @@ class energy_consumption_and_costs(hass.Hass):
             cost_saved_by_pv_invoice_percent = 0.0
         consumption_unknown = {"consumption_kWh":attributes["Verbrauch gestern"], "cost_without_pv":attributes["Kosten ohne PV gestern"], "cost_invoice":attributes["Kosten mit PV Abrechnung gestern"], "cost_saved_by_pv_invoice_percent": cost_saved_by_pv_invoice_percent}
 
-        message_text = "Verbrauch gestern: {} kWh => {} € (-{}% bzw -{}€)\n\nVerbrauch im Detail:\n".format(round(consumption_total["consumption_kWh"],1),round(consumption_total["cost_invoice"],2),round(consumption_total["cost_saved_by_pv_invoice_percent"],0),round(consumption_total["cost_without_pv"] - consumption_total["cost_saved_by_pv_invoice_percent"],2))
+        message_text = "Verbrauch gestern: {} kWh => {} € (-{}% bzw -{}€)\n\nVerbrauch im Detail:\n".format(round(consumption_total["consumption_kWh"],1),round(consumption_total["cost_invoice"],2),round(consumption_total["cost_saved_by_pv_invoice_percent"],0),round(consumption_total["cost_without_pv"] - consumption_total["cost_invoice"],2))
         for sorting_name in sorted(consumption_known_entities, reverse=True):
             if consumption_known_entities[sorting_name]["consumption_kWh"] > 0.1:
                 sensor_power_readable_name = self.args["sensor_names_readable"].get(consumption_known_entities[sorting_name]["name"], consumption_known_entities[sorting_name]["name"].replace("sensor.el_leistung_",""))
                 message_text = message_text + "\n{}:\n{} kWh => {} € (-{}% bzw -{}€)".format(sensor_power_readable_name, round(consumption_known_entities[sorting_name]["consumption_kWh"],1),round(consumption_known_entities[sorting_name]["cost_invoice"],2),round(consumption_known_entities[sorting_name]["cost_saved_by_pv_invoice_percent"],0),round((consumption_known_entities[sorting_name]["cost_without_pv"] - consumption_known_entities[sorting_name]["cost_invoice"]),2))
         if consumption_unknown["consumption_kWh"] >= 0:
-            message_text = message_text + "\n\nunbekannte Verbraucher:\n{} kWh => {} € (-{}% bzw -{}€)".format(round(consumption_unknown["consumption_kWh"],1),round(consumption_unknown["cost_invoice"],2),round(consumption_unknown["cost_saved_by_pv_invoice_percent"],0),round(consumption_unknown["cost_without_pv"] - consumption_unknown["cost_saved_by_pv_invoice_percent"],2))
+            message_text = message_text + "\n\nunbekannte Verbraucher:\n{} kWh => {} € (-{}% bzw -{}€)".format(round(consumption_unknown["consumption_kWh"],1),round(consumption_unknown["cost_invoice"],2),round(consumption_unknown["cost_saved_by_pv_invoice_percent"],0),round(consumption_unknown["cost_without_pv"] - consumption_unknown["cost_invoice"],2))
         else:
             message_text = message_text + "\n\nZugeordneter Stromverbrauch größer als tatsächlicher. Leistungsfaktoren anpassen!"
         if consumption_total["consumption_kWh"] > 0:
