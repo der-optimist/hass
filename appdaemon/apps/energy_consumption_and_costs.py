@@ -26,7 +26,8 @@ class energy_consumption_and_costs(hass.Hass):
         self.client = InfluxDBClient(self.host, self.port, self.user, self.password, self.db_name)
         self.save_measurement_name = self.args.get("save_measurement_name", "energy_consumption_test")
         self.ad_namespace = "ad_namespace"
-        self.sensor_name_consumption_total = self.args.get("sensor_name_consumption_total", "sensor.el_leistung_verbrauch_gesamt")
+        self.sensor_name_used_power_total = self.args.get("sensor_name_used_power_total", "sensor.el_leistung_verbrauch_gesamt")
+        self.sensor_name_consumption_unknown = self.args.get("sensor_name_consumption_unknown", "sensor.stromverbrauch_unbekannte_verbraucher")
         special_date = self.args.get("special_date", None)
         # restore sensors in HA
         #self.reset_all_sensors_in_ad_namespace()# Caution! all consumption data in HA will be reset
@@ -40,6 +41,7 @@ class energy_consumption_and_costs(hass.Hass):
         # run daily
         self.run_daily(self.generate_data_for_yesterday, time_daily_calculation)
         self.run_daily(self.send_message_for_yesterday, time_daily_message)
+        self.send_message_for_yesterday(None)
         #self.generate_data_for_yesterday(None) # Caution! Will lead to double values, if used additionally to daily calculation!
 
         # drop some measurements from testing
@@ -53,28 +55,39 @@ class energy_consumption_and_costs(hass.Hass):
         self.calculate_energy_consumption_and_costs(yesterday_str)
         
     def send_message_for_yesterday(self, kwargs):
-        return
-#            if cost_without_pv > 0:
-#                cost_saved_by_pv_effective_percent = (1 - (cost_effective / cost_without_pv)) * 100
-#                cost_saved_by_pv_invoice_percent = (1 - (cost_invoice / cost_without_pv)) * 100
-#            else:
-#                cost_saved_by_pv_effective_percent = 0.0
-#                cost_saved_by_pv_invoice_percent = 0.0
-#            if cost_saved_by_pv_effective_percent < 0.0:
-#                cost_saved_by_pv_effective_percent = 0.0
-#            if cost_saved_by_pv_invoice_percent < 0.0:
-#                cost_saved_by_pv_invoice_percent = 0.0
-        #message_text = "Verbrauch gestern: {} kWh => {} €\n\nVerbrauch im Detail:\n".format(round(consumption_kWh_total,1),round(total_consumption_cost,2))
-        #details_sorted = sorted(details_dict.items(), key=lambda x: x[1], reverse=True)
-        #for i in details_sorted:
-        #    message_text = message_text + "\n{}: {} kWh => {} €".format(i[0],round(i[1],1),round(i[1]*self.price_per_kWh,2))
-        #if unknown_consumption_kWh >= 0:
-        #    message_text = message_text + "\n\nunbekannte Verbraucher: {} kWh => {} €".format(round(unknown_consumption_kWh,1),round(unknown_consumers_cost,2))
-        #else:
-        #    message_text = message_text + "\n\nZugeordneter Stromverbrauch größer als tatsächlicher. Leistungsfaktoren anpassen!"
-        #if consumption_kWh_total > 0:
-        #    message_text = message_text + "\n\n{} % vom Stromverbrauch sind zugeordnet".format(int(round(100*known_consumption_kWh_total/consumption_kWh_total,0)))
-        #self.fire_event("custom_notify", message=message_text, target="telegram_jo")
+        consumption_known_entities = dict()
+        sensors_for_power_calculation = self.get_ha_power_sensors_for_consumption_calculation()
+        sensors_for_power_calculation = self.get_ha_power_sensors_for_consumption_calculation()
+        for sensor_power in sensors_for_power_calculation:
+            consumption_sensor_name = sensor_power.replace("sensor.el_leistung_", "sensor.stromverbrauch_")
+            if self.entity_exists(consumption_sensor_name):
+                attributes = self.get_state(consumption_sensor_name, attribute="all")["attributes"]
+                if attributes["Verbrauch gestern"] > 0:
+                    cost_saved_by_pv_invoice_percent = (1 - (attributes["Kosten mit PV Abrechnung gestern"] / attributes["Kosten ohne PV gestern"])) * 100
+                else:
+                    cost_saved_by_pv_invoice_percent = 0.0
+                if cost_saved_by_pv_invoice_percent < 0.0:
+                    cost_saved_by_pv_invoice_percent = 0.0
+                if sensor_power == self.sensor_name_used_power_total:
+                    consumption_total = {"name":sensor_power, "consumption_kWh":attributes["Verbrauch gestern"], "cost_without_pv":attributes["Kosten ohne PV gestern"], "cost_invoice":attributes["Kosten mit PV Abrechnung gestern"], "cost_saved_by_pv_invoice_percent": cost_saved_by_pv_invoice_percent}
+                elif consumption_sensor_name == self.sensor_name_consumption_unknown:
+                    consumption_unknown = {"name":sensor_power, "consumption_kWh":attributes["Verbrauch gestern"], "cost_without_pv":attributes["Kosten ohne PV gestern"], "cost_invoice":attributes["Kosten mit PV Abrechnung gestern"], "cost_saved_by_pv_invoice_percent": cost_saved_by_pv_invoice_percent}
+                else:
+                    sorting_string = "{0:.6f}".format(attributes["Verbrauch gestern"]) + "___" + consumption_sensor_name
+                    consumption_known_entities[sorting_string] = {"name":sensor_power, "consumption_kWh":attributes["Verbrauch gestern"], "cost_without_pv":attributes["Kosten ohne PV gestern"], "cost_invoice":attributes["Kosten mit PV Abrechnung gestern"], "cost_saved_by_pv_invoice_percent": cost_saved_by_pv_invoice_percent}
+
+        message_text = "Verbrauch gestern: {} kWh => {} € (-{}% bzw -{}€)\n\nVerbrauch im Detail:\n".format(round(consumption_total["consumption_kWh"],1),round(consumption_total["cost_invoice"],2),round(consumption_total["cost_saved_by_pv_invoice_percent"],0),round(consumption_total["cost_without_pv"] - consumption_total["cost_saved_by_pv_invoice_percent"],2))
+        for entity in sorted(consumption_known_entities):
+            if entity["consumption_kWh"] > 0.1:
+                sensor_power_readable_name = self.args["sensor_names_readable"].get(entity["name"], entity["name"].replace("sensor.el_leistung_",""))
+                message_text = message_text + "\n{}: {} kWh => {} € (-{}% bzw -{}€)".format(sensor_power_readable_name, round(entity["consumption_kWh"],1),round(entity["cost_invoice"],2),round(entity["cost_saved_by_pv_invoice_percent"],0),round(entity["cost_without_pv"] - entity["cost_saved_by_pv_invoice_percent"],2))
+        if consumption_unknown["consumption_kWh"] >= 0:
+            message_text = message_text + "\n\nunbekannte Verbraucher: {} kWh => {} € (-{}% bzw -{}€)".format(round(consumption_unknown["consumption_kWh"],1),round(consumption_unknown["cost_invoice"],2),round(consumption_unknown["cost_saved_by_pv_invoice_percent"],0),round(consumption_unknown["cost_without_pv"] - consumption_unknown["cost_saved_by_pv_invoice_percent"],2))
+        else:
+            message_text = message_text + "\n\nZugeordneter Stromverbrauch größer als tatsächlicher. Leistungsfaktoren anpassen!"
+        if consumption_total["consumption_kWh"] > 0:
+            message_text = message_text + "\n\n{} % vom Stromverbrauch sind zugeordnet".format(int(round(100*(consumption_total["consumption_kWh"]-consumption_unknown["consumption_kWh"])/consumption_total["consumption_kWh"],0)))
+        self.fire_event("custom_notify", message=message_text, target="telegram_jo")
 
     def calculate_energy_consumption_and_costs(self, date_str):
         ts_start_calculation = datetime.datetime.now().timestamp()
@@ -171,7 +184,7 @@ class energy_consumption_and_costs(hass.Hass):
                     break
             consumption_kWh = consumption_Ws / 3600000
             cost_without_pv = consumption_kWh * self.price_per_kWh_without_pv
-            if sensor_power == self.sensor_name_consumption_total:
+            if sensor_power == self.sensor_name_used_power_total:
                 consumption_kWh_total = consumption_kWh
                 cost_without_pv_total = cost_without_pv
                 cost_effective_total = cost_effective
@@ -202,7 +215,7 @@ class energy_consumption_and_costs(hass.Hass):
         cost_without_pv_unknown = cost_without_pv_total - cost_without_pv_known
         cost_effective_unknown = cost_effective_total - cost_effective_known
         cost_invoice_unknown = cost_invoice_total - cost_invoice_known
-        consumption_sensor_name = "sensor.stromverbrauch_unbekannte_verbraucher"
+        consumption_sensor_name = self.sensor_name_consumption_unknown
         attributes_updated = self.update_consumption_attributes(consumption_sensor_name, consumption_kWh_unknown, cost_without_pv_unknown, cost_effective_unknown, cost_invoice_unknown, month_finished, calendar_year_finished, winter_year_finished)
         # save all that stuff
         if self.args["do_consumption_calculation"]:
@@ -338,7 +351,7 @@ class energy_consumption_and_costs(hass.Hass):
             if self.entity_exists(consumption_sensor_name, namespace = self.ad_namespace):
                 state_and_attributes = self.get_state(consumption_sensor_name, attribute="all", namespace = "ad_namespace")
                 self.set_state(consumption_sensor_name, state = state_and_attributes["state"], attributes = state_and_attributes["attributes"])
-        consumption_sensor_name = "sensor.stromverbrauch_unbekannte_verbraucher"
+        consumption_sensor_name = self.sensor_name_consumption_unknown
         if self.entity_exists(consumption_sensor_name, namespace = self.ad_namespace):
             state_and_attributes = self.get_state(consumption_sensor_name, attribute="all", namespace = "ad_namespace")
             self.set_state(consumption_sensor_name, state = state_and_attributes["state"], attributes = state_and_attributes["attributes"])
@@ -349,7 +362,7 @@ class energy_consumption_and_costs(hass.Hass):
             consumption_sensor_name = sensor_power.replace("sensor.el_leistung_", "sensor.stromverbrauch_")
             if self.entity_exists(consumption_sensor_name, namespace = self.ad_namespace):
                 self.remove_entity(consumption_sensor_name, namespace = self.ad_namespace)
-        consumption_sensor_name = "sensor.stromverbrauch_unbekannte_verbraucher"
+        consumption_sensor_name = self.sensor_name_consumption_unknown
         if self.entity_exists(consumption_sensor_name, namespace = self.ad_namespace):
             self.remove_entity(consumption_sensor_name, namespace = self.ad_namespace)
 
@@ -358,7 +371,7 @@ class energy_consumption_and_costs(hass.Hass):
         for sensor_power in sensors_for_power_calculation:
             consumption_sensor_name = sensor_power.replace("sensor.el_leistung_", "sensor.stromverbrauch_")
             self.drop(consumption_sensor_name)
-        consumption_sensor_name = "sensor.stromverbrauch_unbekannte_verbraucher"
+        consumption_sensor_name = self.sensor_name_consumption_unknown
         self.drop(consumption_sensor_name)
         
     def drop(self, measurement_name):
