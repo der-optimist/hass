@@ -1,3 +1,7 @@
 test_ad:
   module: test_ad
   class: test_ad
+  db_host: "a0d7b954-influxdb"
+  db_user: "appdaemon"
+  db_name: "homeassistant_permanent"
+  db_passwd: !secret permanent_db_passwd
