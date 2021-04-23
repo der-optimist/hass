@@ -359,6 +359,9 @@ class energy_consumption_and_costs(hass.Hass):
             consumption_sensor_name = sensor_power.replace("sensor.el_leistung_", "sensor.stromverbrauch_")
             if self.entity_exists(consumption_sensor_name, namespace = self.ad_namespace):
                 self.remove_entity(consumption_sensor_name, namespace = self.ad_namespace)
+        consumption_sensor_name = "sensor.stromverbrauch_unbekannte_verbraucher"
+        if self.entity_exists(consumption_sensor_name, namespace = self.ad_namespace):
+            self.remove_entity(consumption_sensor_name, namespace = self.ad_namespace)
         
     def drop(self, measurement_name):
         self.client.drop_measurement(measurement_name)
