@@ -172,12 +172,18 @@
              or is_state('binary_sensor.pm_e_ez_bar_kuche', 'on')
              or is_state('binary_sensor.pm_e_ez_esstisch', 'on')
              or is_state('binary_sensor.pm_e_fl_flur', 'on')
+             or is_state('binary_sensor.pm_e_fl_treppe_og', 'on')
+             or is_state('binary_sensor.pm_e_fl_windfang', 'on')
+             or is_state('binary_sensor.pm_e_wf_flur', 'on')
+             or is_state('binary_sensor.pm_e_wf_garderobe', 'on')
+             or is_state('binary_sensor.pm_o_fl_treppe', 'on')
              or is_state('binary_sensor.pm_e_ku_bar_ez', 'on')
              or is_state('binary_sensor.pm_e_ku_kuche', 'on')
              or is_state('binary_sensor.pm_e_wc', 'on')
              or is_state('binary_sensor.pm_e_wz_couch_links', 'on')
              or is_state('binary_sensor.pm_e_wz_couch_rechts', 'on')
              or is_state('binary_sensor.pm_e_wz_durchgang', 'on')
+             or is_state('binary_sensor.pm_ktr_treppe', 'on')
              or is_state('binary_sensor.pm_ktr_flur', 'on') }}
       anwesenheit_eg:
         friendly_name: "Anwesenheit EG"
