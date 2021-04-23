@@ -75,7 +75,7 @@ class energy_consumption_and_costs(hass.Hass):
                         sorting_string = "{0:.6f}".format(attributes["Verbrauch gestern"]) + "___" + consumption_sensor_name
                         consumption_known_entities[sorting_string] = {"name":sensor_power, "consumption_kWh":attributes["Verbrauch gestern"], "cost_without_pv":attributes["Kosten ohne PV gestern"], "cost_invoice":attributes["Kosten mit PV Abrechnung gestern"], "cost_saved_by_pv_invoice_percent": cost_saved_by_pv_invoice_percent}
         # total power
-        consumption_sensor_name = sensor_power == self.sensor_name_used_power_total.replace("sensor.el_leistung_", "sensor.stromverbrauch_")
+        consumption_sensor_name = self.sensor_name_used_power_total.replace("sensor.el_leistung_", "sensor.stromverbrauch_")
         attributes = self.get_state(consumption_sensor_name, attribute="all")["attributes"]
         if attributes["Verbrauch gestern"] > 0:
             cost_saved_by_pv_invoice_percent = (1 - (attributes["Kosten mit PV Abrechnung gestern"] / attributes["Kosten ohne PV gestern"])) * 100
