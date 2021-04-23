@@ -41,7 +41,7 @@ class energy_consumption_and_costs(hass.Hass):
         # run daily
         self.run_daily(self.generate_data_for_yesterday, time_daily_calculation)
         self.run_daily(self.send_message_for_yesterday, time_daily_message)
-        self.send_message_for_yesterday(None)
+        #self.send_message_for_yesterday(None)
         #self.generate_data_for_yesterday(None) # Caution! Will lead to double values, if used additionally to daily calculation!
 
         # drop some measurements from testing
