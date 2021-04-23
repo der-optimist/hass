@@ -77,10 +77,10 @@ class energy_consumption_and_costs(hass.Hass):
                     consumption_known_entities[sorting_string] = {"name":sensor_power, "consumption_kWh":attributes["Verbrauch gestern"], "cost_without_pv":attributes["Kosten ohne PV gestern"], "cost_invoice":attributes["Kosten mit PV Abrechnung gestern"], "cost_saved_by_pv_invoice_percent": cost_saved_by_pv_invoice_percent}
 
         message_text = "Verbrauch gestern: {} kWh => {} € (-{}% bzw -{}€)\n\nVerbrauch im Detail:\n".format(round(consumption_total["consumption_kWh"],1),round(consumption_total["cost_invoice"],2),round(consumption_total["cost_saved_by_pv_invoice_percent"],0),round(consumption_total["cost_without_pv"] - consumption_total["cost_saved_by_pv_invoice_percent"],2))
-        for entity in sorted(consumption_known_entities):
-            if entity["consumption_kWh"] > 0.1:
-                sensor_power_readable_name = self.args["sensor_names_readable"].get(entity["name"], entity["name"].replace("sensor.el_leistung_",""))
-                message_text = message_text + "\n{}: {} kWh => {} € (-{}% bzw -{}€)".format(sensor_power_readable_name, round(entity["consumption_kWh"],1),round(entity["cost_invoice"],2),round(entity["cost_saved_by_pv_invoice_percent"],0),round(entity["cost_without_pv"] - entity["cost_saved_by_pv_invoice_percent"],2))
+        for sorting_name in sorted(consumption_known_entities):
+            if consumption_known_entities[sorting_name]["consumption_kWh"] > 0.1:
+                sensor_power_readable_name = self.args["sensor_names_readable"].get(consumption_known_entities[sorting_name]["name"], consumption_known_entities[sorting_name]["name"].replace("sensor.el_leistung_",""))
+                message_text = message_text + "\n{}: {} kWh => {} € (-{}% bzw -{}€)".format(sensor_power_readable_name, round(consumption_known_entities[sorting_name]["consumption_kWh"],1),round(consumption_known_entities[sorting_name]["cost_invoice"],2),round(consumption_known_entities[sorting_name]["cost_saved_by_pv_invoice_percent"],0),round(consumption_known_entities[sorting_name]["cost_without_pv"] - consumption_known_entities[sorting_name]["cost_saved_by_pv_invoice_percent"],2))
         if consumption_unknown["consumption_kWh"] >= 0:
             message_text = message_text + "\n\nunbekannte Verbraucher: {} kWh => {} € (-{}% bzw -{}€)".format(round(consumption_unknown["consumption_kWh"],1),round(consumption_unknown["cost_invoice"],2),round(consumption_unknown["cost_saved_by_pv_invoice_percent"],0),round(consumption_unknown["cost_without_pv"] - consumption_unknown["cost_saved_by_pv_invoice_percent"],2))
         else:
