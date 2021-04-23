@@ -5,12 +5,6 @@ import datetime
 # Calculate Energy consumption and costs from power data and write it to influxdb
 #
 # Args:
-#  price_per_kWh: 0.2809
-#  db_passwd: !secret permanent_db_passwd
-#  db_field: state_float
-#  #save_measurement_name: energy_consumption_daily (if not provided, energy_consumption_test will be used)
-#  #special_date: "2020-09-30" (if provided, at app start this date will be calculated and saved to database. please remove after that one-time-calculation)
-#  db_measurement_total_kWh: sensor.stromzaehler_netzbezug (measured total consumption from power meter)
 
 
 class energy_consumption_and_costs(hass.Hass):
@@ -36,6 +30,7 @@ class energy_consumption_and_costs(hass.Hass):
         special_date = self.args.get("special_date", None)
         # restore sensors in HA
         self.reset_all_sensors_in_ad_namespace()
+        self.reset_all_sensors_in_db()
         self.restore_sensors_in_ha()
         # calculate for a given single date
         if special_date is not None:
@@ -189,10 +184,6 @@ class energy_consumption_and_costs(hass.Hass):
 #            if cost_saved_by_pv_invoice_percent < 0.0:
 #                cost_saved_by_pv_invoice_percent = 0.0
             sensor_power_readable_name = self.args["sensor_names_readable"].get(sensor_power, sensor_power.replace("sensor.el_leistung_",""))
-            #self.log("kWh: {}".format(consumption_kWh))
-            #self.log("Cost without PV: {}".format(cost_without_pv))
-            #self.log("Cost with PV, effective: {} saved {}%".format(cost_effective, round(cost_saved_by_pv_effective_percent,2)))
-            #self.log("Cost with PV, invoice: {} saved {}%".format(cost_invoice, round(cost_saved_by_pv_invoice_percent,2)))
             self.log("Time for calculating consumption and costs for {}: {}".format(sensor_power_readable_name,datetime.datetime.now().timestamp() - ts_start_calculation))
             
             # Consumption and Costs are now calculated for that power sensor
@@ -362,6 +353,14 @@ class energy_consumption_and_costs(hass.Hass):
         consumption_sensor_name = "sensor.stromverbrauch_unbekannte_verbraucher"
         if self.entity_exists(consumption_sensor_name, namespace = self.ad_namespace):
             self.remove_entity(consumption_sensor_name, namespace = self.ad_namespace)
+
+    def reset_all_sensors_in_db(self):
+        sensors_for_power_calculation = self.get_ha_power_sensors_for_consumption_calculation()
+        for sensor_power in sensors_for_power_calculation:
+            consumption_sensor_name = sensor_power.replace("sensor.el_leistung_", "sensor.stromverbrauch_")
+            self.drop(consumption_sensor_name)
+        consumption_sensor_name = "sensor.stromverbrauch_unbekannte_verbraucher"
+        self.drop(consumption_sensor_name)
         
     def drop(self, measurement_name):
         self.client.drop_measurement(measurement_name)
