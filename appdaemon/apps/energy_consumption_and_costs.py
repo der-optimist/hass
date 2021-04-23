@@ -35,7 +35,7 @@ class energy_consumption_and_costs(hass.Hass):
         self.sensor_name_consumption_total = self.args.get("sensor_name_consumption_total", "sensor.el_leistung_verbrauch_gesamt")
         special_date = self.args.get("special_date", None)
         # restore sensors in HA
-        #self.reset_all_sensors_in_ad_namespace()
+        self.reset_all_sensors_in_ad_namespace()
         self.restore_sensors_in_ha()
         # calculate for a given single date
         if special_date is not None:
@@ -44,7 +44,7 @@ class energy_consumption_and_costs(hass.Hass):
 
         # run daily
         self.run_daily(self.generate_data_for_yesterday, time_daily_calculation)
-        #self.generate_data_for_yesterday(None) # Caution! Will lead to double values, if used additionally to daily calculation!
+        self.generate_data_for_yesterday(None) # Caution! Will lead to double values, if used additionally to daily calculation!
 
         # drop some measurements from testing
         #self.drop("sensor.test_measurement")
@@ -76,8 +76,6 @@ class energy_consumption_and_costs(hass.Hass):
         ts_start_calculation = datetime.datetime.now().timestamp()
         ts_start_calculation_total = datetime.datetime.now().timestamp()
         self.price_per_kWh_without_pv = float(self.get_state(self.args.get("input_number_entity_price_per_kwh", "input_number.strompreis")))
-        known_consumption_kWh_total = 0
-        details_dict = dict()
         
         # time and date stuff
         ts_start_local = datetime.datetime.strptime(date_str + 'T00:00:00.0', '%Y-%m-%dT%H:%M:%S.%f').timestamp()
@@ -100,6 +98,7 @@ class energy_consumption_and_costs(hass.Hass):
             winter_year_finished = True
         else:
             winter_year_finished = False
+            
         # load prices PV effective from db
         query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, self.args["db_measurement_price_pv_effective"], int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
         price_pv_effective_points = self.client.query(query).get_points()
@@ -116,6 +115,7 @@ class energy_consumption_and_costs(hass.Hass):
         price_pv_effective_timestamps.append(ts_start_local - utc_offset_timestamp - 300)
         price_pv_effective_timestrings.append(datetime.datetime.fromtimestamp(ts_start_local - utc_offset_timestamp - 300).strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
         price_pv_effective_values.append(self.price_per_kWh_without_pv)
+        
         # load prices PV invoice from db
         query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, self.args["db_measurement_price_pv_invoice"], int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
         price_pv_invoice_points = self.client.query(query).get_points()
@@ -133,7 +133,12 @@ class energy_consumption_and_costs(hass.Hass):
         price_pv_invoice_timestrings.append(datetime.datetime.fromtimestamp(ts_start_local - utc_offset_timestamp - 300).strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
         price_pv_invoice_values.append(self.price_per_kWh_without_pv)
         self.log("Time for finding prices: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation))
+        
         # calculate for each power sensor
+        consumption_kWh_known = 0.0
+        cost_without_pv_known = 0.0
+        cost_effective_known = 0.0 
+        cost_invoice_known = 0.0
         sensors_for_power_calculation = self.get_ha_power_sensors_for_consumption_calculation()
         for sensor_power in sensors_for_power_calculation:
             ts_start_calculation = datetime.datetime.now().timestamp()
@@ -162,16 +167,26 @@ class energy_consumption_and_costs(hass.Hass):
                     break
             consumption_kWh = consumption_Ws / 3600000
             cost_without_pv = consumption_kWh * self.price_per_kWh_without_pv
-            if cost_without_pv > 0:
-                cost_saved_by_pv_effective_percent = (1 - (cost_effective / cost_without_pv)) * 100
-                cost_saved_by_pv_invoice_percent = (1 - (cost_invoice / cost_without_pv)) * 100
+            if sensor_power == self.sensor_name_consumption_total:
+                consumption_kWh_total = consumption_kWh
+                cost_without_pv_total = cost_without_pv
+                cost_effective_total = cost_effective
+                cost_invoice_total = cost_invoice
             else:
-                cost_saved_by_pv_effective_percent = 0.0
-                cost_saved_by_pv_invoice_percent = 0.0
-            if cost_saved_by_pv_effective_percent < 0.0:
-                cost_saved_by_pv_effective_percent = 0.0
-            if cost_saved_by_pv_invoice_percent < 0.0:
-                cost_saved_by_pv_invoice_percent = 0.0
+                consumption_kWh_known = consumption_kWh_known + consumption_kWh
+                cost_without_pv_known = cost_without_pv_known + cost_without_pv
+                cost_effective_known = cost_effective_known + cost_effective
+                cost_invoice_known = cost_invoice_known + cost_invoice
+#            if cost_without_pv > 0:
+#                cost_saved_by_pv_effective_percent = (1 - (cost_effective / cost_without_pv)) * 100
+#                cost_saved_by_pv_invoice_percent = (1 - (cost_invoice / cost_without_pv)) * 100
+#            else:
+#                cost_saved_by_pv_effective_percent = 0.0
+#                cost_saved_by_pv_invoice_percent = 0.0
+#            if cost_saved_by_pv_effective_percent < 0.0:
+#                cost_saved_by_pv_effective_percent = 0.0
+#            if cost_saved_by_pv_invoice_percent < 0.0:
+#                cost_saved_by_pv_invoice_percent = 0.0
             sensor_power_readable_name = self.args["sensor_names_readable"].get(sensor_power, sensor_power.replace("sensor.el_leistung_",""))
             #self.log("kWh: {}".format(consumption_kWh))
             #self.log("Cost without PV: {}".format(cost_without_pv))
@@ -183,114 +198,130 @@ class energy_consumption_and_costs(hass.Hass):
             # add it to a consumption sensor now
             
             consumption_sensor_name = sensor_power.replace("sensor.el_leistung_", "sensor.stromverbrauch_")
-            attributes_updated = dict()
-            if self.entity_exists(consumption_sensor_name, namespace = self.ad_namespace):
-                attributes = self.get_state(consumption_sensor_name, attribute="all", namespace = "ad_namespace")["attributes"]
-                Verbrauch_gesamt = attributes["Verbrauch gesamt"]
-                Verbrauch_dieser_Monat = attributes["Verbrauch dieser Monat"]
-                Verbrauch_dieses_Kalenderjahr = attributes["Verbrauch dieses Kalenderjahr"]
-                Verbrauch_dieses_Winterjahr = attributes["Verbrauch dieses Winterjahr"]
-                Kosten_ohne_PV_gesamt = attributes["Kosten ohne PV gesamt"]
-                Kosten_mit_PV_effektiv_gesamt = attributes["Kosten mit PV effektiv gesamt"]
-                Kosten_mit_PV_Abrechnung_gesamt = attributes["Kosten mit PV Abrechnung gesamt"]
-                Kosten_ohne_PV_dieser_Monat = attributes["Kosten ohne PV dieser Monat"]
-                Kosten_mit_PV_effektiv_dieser_Monat = attributes["Kosten mit PV effektiv dieser Monat"]
-                Kosten_mit_PV_Abrechnung_dieser_Monat = attributes["Kosten mit PV Abrechnung dieser Monat"]
-                Kosten_ohne_PV_dieses_Kalenderjahr = attributes["Kosten ohne PV dieses Kalenderjahr"]
-                Kosten_mit_PV_effektiv_dieses_Kalenderjahr = attributes["Kosten mit PV effektiv dieses Kalenderjahr"]
-                Kosten_mit_PV_Abrechnung_dieses_Kalenderjahr = attributes["Kosten mit PV Abrechnung dieses Kalenderjahr"]
-                Kosten_ohne_PV_dieses_Winterjahr = attributes["Kosten ohne PV dieses Winterjahr"]
-                Kosten_mit_PV_effektiv_dieses_Winterjahr = attributes["Kosten mit PV effektiv dieses Winterjahr"]
-                Kosten_mit_PV_Abrechnung_dieses_Winterjahr = attributes["Kosten mit PV Abrechnung dieses Winterjahr"]
-            else:
-                Verbrauch_gesamt = 0.0
-                Verbrauch_dieser_Monat = 0.0
-                Verbrauch_dieses_Kalenderjahr = 0.0
-                Verbrauch_dieses_Winterjahr = 0.0
-                Kosten_ohne_PV_gesamt = 0.0
-                Kosten_mit_PV_effektiv_gesamt = 0.0
-                Kosten_mit_PV_Abrechnung_gesamt = 0.0
-                Kosten_ohne_PV_dieser_Monat = 0.0
-                Kosten_mit_PV_effektiv_dieser_Monat = 0.0
-                Kosten_mit_PV_Abrechnung_dieser_Monat = 0.0
-                Kosten_ohne_PV_dieses_Kalenderjahr = 0.0
-                Kosten_mit_PV_effektiv_dieses_Kalenderjahr = 0.0
-                Kosten_mit_PV_Abrechnung_dieses_Kalenderjahr = 0.0
-                Kosten_ohne_PV_dieses_Winterjahr = 0.0
-                Kosten_mit_PV_effektiv_dieses_Winterjahr = 0.0
-                Kosten_mit_PV_Abrechnung_dieses_Winterjahr = 0.0
-            
-            # calculate new attributes
-            # consumption
-            attributes_updated["Verbrauch gesamt"] = Verbrauch_gesamt + consumption_kWh
-            if self.args.get("special_date", None) == None:
-                attributes_updated["Verbrauch gestern"] = consumption_kWh
-            if month_finished:
-                attributes_updated["Verbrauch dieser Monat"] = 0.0
-                attributes_updated["Verbrauch letzter Monat"] = Verbrauch_dieser_Monat + consumption_kWh
-            else:
-                attributes_updated["Verbrauch dieser Monat"] = Verbrauch_dieser_Monat + consumption_kWh
-            if calendar_year_finished:
-                attributes_updated["Verbrauch dieses Kalenderjahr"] = 0.0
-                attributes_updated["Verbrauch letztes Kalenderjahr"] = Verbrauch_dieses_Kalenderjahr + consumption_kWh
-            else:
-                attributes_updated["Verbrauch dieses Kalenderjahr"] = Verbrauch_dieses_Kalenderjahr + consumption_kWh
-            if winter_year_finished:
-                attributes_updated["Verbrauch dieses Winterjahr"] = 0.0
-                attributes_updated["Verbrauch letztes Winterjahr"] = Verbrauch_dieses_Winterjahr + consumption_kWh
-            else:
-                attributes_updated["Verbrauch dieses Winterjahr"] = Verbrauch_dieses_Winterjahr + consumption_kWh
-            # costs
-            attributes_updated["Kosten ohne PV gesamt"] = Kosten_ohne_PV_gesamt + cost_without_pv
-            attributes_updated["Kosten mit PV effektiv gesamt"] = Kosten_mit_PV_effektiv_gesamt + cost_effective
-            attributes_updated["Kosten mit PV Abrechnung gesamt"] = Kosten_mit_PV_Abrechnung_gesamt + cost_invoice
-            if self.args.get("special_date", None) == None:
-                attributes_updated["Kosten ohne PV gestern"] = cost_without_pv
-                attributes_updated["Kosten mit PV effektiv gestern"] = cost_effective
-                attributes_updated["Kosten mit PV Abrechnung gestern"] = cost_invoice
-            if month_finished:
-                attributes_updated["Kosten ohne PV dieser Monat"] = 0.0
-                attributes_updated["Kosten mit PV effektiv dieser Monat"] = 0.0
-                attributes_updated["Kosten mit PV Abrechnung dieser Monat"] = 0.0
-                attributes_updated["Kosten ohne PV letzter Monat"] = Kosten_ohne_PV_dieser_Monat + cost_without_pv
-                attributes_updated["Kosten mit PV effektiv letzter Monat"] = Kosten_mit_PV_effektiv_dieser_Monat + cost_effective
-                attributes_updated["Kosten mit PV Abrechnung letzter Monat"] = Kosten_mit_PV_Abrechnung_dieser_Monat + cost_invoice
-            else:
-                attributes_updated["Kosten ohne PV dieser Monat"] = Kosten_ohne_PV_dieser_Monat + cost_without_pv
-                attributes_updated["Kosten mit PV effektiv dieser Monat"] = Kosten_mit_PV_effektiv_dieser_Monat + cost_effective
-                attributes_updated["Kosten mit PV Abrechnung dieser Monat"] = Kosten_mit_PV_Abrechnung_dieser_Monat + cost_invoice
-            if calendar_year_finished:
-                attributes_updated["Kosten ohne PV dieses Kalenderjahr"] = 0.0
-                attributes_updated["Kosten mit PV effektiv dieses Kalenderjahr"] = 0.0
-                attributes_updated["Kosten mit PV Abrechnung dieses Kalenderjahr"] = 0.0
-                attributes_updated["Kosten ohne PV letztes Kalenderjahr"] = Kosten_ohne_PV_dieses_Kalenderjahr + cost_without_pv
-                attributes_updated["Kosten mit PV effektiv letztes Kalenderjahr"] = Kosten_mit_PV_effektiv_dieses_Kalenderjahr + cost_effective
-                attributes_updated["Kosten mit PV Abrechnung letztes Kalenderjahr"] = Kosten_mit_PV_Abrechnung_dieses_Kalenderjahr + cost_invoice
-            else:
-                attributes_updated["Kosten ohne PV dieses Kalenderjahr"] = Kosten_ohne_PV_dieses_Kalenderjahr + cost_without_pv
-                attributes_updated["Kosten mit PV effektiv dieses Kalenderjahr"] = Kosten_mit_PV_effektiv_dieses_Kalenderjahr + cost_effective
-                attributes_updated["Kosten mit PV Abrechnung dieses Kalenderjahr"] = Kosten_mit_PV_Abrechnung_dieses_Kalenderjahr + cost_invoice
-            if winter_year_finished:
-                attributes_updated["Kosten ohne PV dieses Winterjahr"] = 0.0
-                attributes_updated["Kosten mit PV effektiv dieses Winterjahr"] = 0.0
-                attributes_updated["Kosten mit PV Abrechnung dieses Winterjahr"] = 0.0
-                attributes_updated["Kosten ohne PV letztes Winterjahr"] = Kosten_ohne_PV_dieses_Winterjahr + cost_without_pv
-                attributes_updated["Kosten mit PV effektiv letztes Winterjahr"] = Kosten_mit_PV_effektiv_dieses_Winterjahr + cost_effective
-                attributes_updated["Kosten mit PV Abrechnung letztes Winterjahr"] = Kosten_mit_PV_Abrechnung_dieses_Winterjahr + cost_invoice
-            else:
-                attributes_updated["Kosten ohne PV dieses Winterjahr"] = Kosten_ohne_PV_dieses_Winterjahr + cost_without_pv
-                attributes_updated["Kosten mit PV effektiv dieses Winterjahr"] = Kosten_mit_PV_effektiv_dieses_Winterjahr + cost_effective
-                attributes_updated["Kosten mit PV Abrechnung dieses Winterjahr"] = Kosten_mit_PV_Abrechnung_dieses_Winterjahr + cost_invoice
+            attributes_updated = self.update_consumption_attributes(consumption_sensor_name, consumption_kWh, cost_without_pv, cost_effective, cost_invoice, month_finished, calendar_year_finished, winter_year_finished)
             
             # save all that stuff
             if self.args["do_consumption_calculation"]:
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated, namespace = self.ad_namespace)
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated)
                 self.client.write_points([{"measurement":consumption_sensor_name,"fields":attributes_updated,"time":int(ts_save_local_ns)}])
-                
+        
+        # calculate the unknown consumers
+        consumption_kWh_unknown = consumption_kWh_total - consumption_kWh_known
+        cost_without_pv_unknown = cost_without_pv_total - cost_without_pv_known
+        cost_effective_unknown = cost_effective_total - cost_effective_known
+        cost_invoice_unknown = cost_invoice_total - cost_invoice_known
+        consumption_sensor_name = "sensor.stromverbrauch_unbekannte_verbraucher"
+        attributes_updated = self.update_consumption_attributes(consumption_sensor_name, consumption_kWh_unknown, cost_without_pv_unknown, cost_effective_unknown, cost_invoice_unknown, month_finished, calendar_year_finished, winter_year_finished)
+        # save all that stuff
+        if self.args["do_consumption_calculation"]:
+            self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated, namespace = self.ad_namespace)
+            self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated)
+            self.client.write_points([{"measurement":consumption_sensor_name,"fields":attributes_updated,"time":int(ts_save_local_ns)}])
+        
+        # how long did all that take?
         self.log("Time for calculating consumption and costs total: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation_total))
     
-
+    def update_consumption_attributes(self, consumption_sensor_name, consumption_kWh, cost_without_pv, cost_effective, cost_invoice, month_finished, calendar_year_finished, winter_year_finished):
+        attributes_updated = dict()
+        if self.entity_exists(consumption_sensor_name, namespace = self.ad_namespace):
+            attributes = self.get_state(consumption_sensor_name, attribute="all", namespace = "ad_namespace")["attributes"]
+            Verbrauch_gesamt = attributes["Verbrauch gesamt"]
+            Verbrauch_dieser_Monat = attributes["Verbrauch dieser Monat"]
+            Verbrauch_dieses_Kalenderjahr = attributes["Verbrauch dieses Kalenderjahr"]
+            Verbrauch_dieses_Winterjahr = attributes["Verbrauch dieses Winterjahr"]
+            Kosten_ohne_PV_gesamt = attributes["Kosten ohne PV gesamt"]
+            Kosten_mit_PV_effektiv_gesamt = attributes["Kosten mit PV effektiv gesamt"]
+            Kosten_mit_PV_Abrechnung_gesamt = attributes["Kosten mit PV Abrechnung gesamt"]
+            Kosten_ohne_PV_dieser_Monat = attributes["Kosten ohne PV dieser Monat"]
+            Kosten_mit_PV_effektiv_dieser_Monat = attributes["Kosten mit PV effektiv dieser Monat"]
+            Kosten_mit_PV_Abrechnung_dieser_Monat = attributes["Kosten mit PV Abrechnung dieser Monat"]
+            Kosten_ohne_PV_dieses_Kalenderjahr = attributes["Kosten ohne PV dieses Kalenderjahr"]
+            Kosten_mit_PV_effektiv_dieses_Kalenderjahr = attributes["Kosten mit PV effektiv dieses Kalenderjahr"]
+            Kosten_mit_PV_Abrechnung_dieses_Kalenderjahr = attributes["Kosten mit PV Abrechnung dieses Kalenderjahr"]
+            Kosten_ohne_PV_dieses_Winterjahr = attributes["Kosten ohne PV dieses Winterjahr"]
+            Kosten_mit_PV_effektiv_dieses_Winterjahr = attributes["Kosten mit PV effektiv dieses Winterjahr"]
+            Kosten_mit_PV_Abrechnung_dieses_Winterjahr = attributes["Kosten mit PV Abrechnung dieses Winterjahr"]
+        else:
+            Verbrauch_gesamt = 0.0
+            Verbrauch_dieser_Monat = 0.0
+            Verbrauch_dieses_Kalenderjahr = 0.0
+            Verbrauch_dieses_Winterjahr = 0.0
+            Kosten_ohne_PV_gesamt = 0.0
+            Kosten_mit_PV_effektiv_gesamt = 0.0
+            Kosten_mit_PV_Abrechnung_gesamt = 0.0
+            Kosten_ohne_PV_dieser_Monat = 0.0
+            Kosten_mit_PV_effektiv_dieser_Monat = 0.0
+            Kosten_mit_PV_Abrechnung_dieser_Monat = 0.0
+            Kosten_ohne_PV_dieses_Kalenderjahr = 0.0
+            Kosten_mit_PV_effektiv_dieses_Kalenderjahr = 0.0
+            Kosten_mit_PV_Abrechnung_dieses_Kalenderjahr = 0.0
+            Kosten_ohne_PV_dieses_Winterjahr = 0.0
+            Kosten_mit_PV_effektiv_dieses_Winterjahr = 0.0
+            Kosten_mit_PV_Abrechnung_dieses_Winterjahr = 0.0
+        
+        # calculate new attributes
+        # consumption
+        attributes_updated["Verbrauch gesamt"] = Verbrauch_gesamt + consumption_kWh
+        if self.args.get("special_date", None) == None:
+            attributes_updated["Verbrauch gestern"] = consumption_kWh
+        if month_finished:
+            attributes_updated["Verbrauch dieser Monat"] = 0.0
+            attributes_updated["Verbrauch letzter Monat"] = Verbrauch_dieser_Monat + consumption_kWh
+        else:
+            attributes_updated["Verbrauch dieser Monat"] = Verbrauch_dieser_Monat + consumption_kWh
+        if calendar_year_finished:
+            attributes_updated["Verbrauch dieses Kalenderjahr"] = 0.0
+            attributes_updated["Verbrauch letztes Kalenderjahr"] = Verbrauch_dieses_Kalenderjahr + consumption_kWh
+        else:
+            attributes_updated["Verbrauch dieses Kalenderjahr"] = Verbrauch_dieses_Kalenderjahr + consumption_kWh
+        if winter_year_finished:
+            attributes_updated["Verbrauch dieses Winterjahr"] = 0.0
+            attributes_updated["Verbrauch letztes Winterjahr"] = Verbrauch_dieses_Winterjahr + consumption_kWh
+        else:
+            attributes_updated["Verbrauch dieses Winterjahr"] = Verbrauch_dieses_Winterjahr + consumption_kWh
+        # costs
+        attributes_updated["Kosten ohne PV gesamt"] = Kosten_ohne_PV_gesamt + cost_without_pv
+        attributes_updated["Kosten mit PV effektiv gesamt"] = Kosten_mit_PV_effektiv_gesamt + cost_effective
+        attributes_updated["Kosten mit PV Abrechnung gesamt"] = Kosten_mit_PV_Abrechnung_gesamt + cost_invoice
+        if self.args.get("special_date", None) == None:
+            attributes_updated["Kosten ohne PV gestern"] = cost_without_pv
+            attributes_updated["Kosten mit PV effektiv gestern"] = cost_effective
+            attributes_updated["Kosten mit PV Abrechnung gestern"] = cost_invoice
+        if month_finished:
+            attributes_updated["Kosten ohne PV dieser Monat"] = 0.0
+            attributes_updated["Kosten mit PV effektiv dieser Monat"] = 0.0
+            attributes_updated["Kosten mit PV Abrechnung dieser Monat"] = 0.0
+            attributes_updated["Kosten ohne PV letzter Monat"] = Kosten_ohne_PV_dieser_Monat + cost_without_pv
+            attributes_updated["Kosten mit PV effektiv letzter Monat"] = Kosten_mit_PV_effektiv_dieser_Monat + cost_effective
+            attributes_updated["Kosten mit PV Abrechnung letzter Monat"] = Kosten_mit_PV_Abrechnung_dieser_Monat + cost_invoice
+        else:
+            attributes_updated["Kosten ohne PV dieser Monat"] = Kosten_ohne_PV_dieser_Monat + cost_without_pv
+            attributes_updated["Kosten mit PV effektiv dieser Monat"] = Kosten_mit_PV_effektiv_dieser_Monat + cost_effective
+            attributes_updated["Kosten mit PV Abrechnung dieser Monat"] = Kosten_mit_PV_Abrechnung_dieser_Monat + cost_invoice
+        if calendar_year_finished:
+            attributes_updated["Kosten ohne PV dieses Kalenderjahr"] = 0.0
+            attributes_updated["Kosten mit PV effektiv dieses Kalenderjahr"] = 0.0
+            attributes_updated["Kosten mit PV Abrechnung dieses Kalenderjahr"] = 0.0
+            attributes_updated["Kosten ohne PV letztes Kalenderjahr"] = Kosten_ohne_PV_dieses_Kalenderjahr + cost_without_pv
+            attributes_updated["Kosten mit PV effektiv letztes Kalenderjahr"] = Kosten_mit_PV_effektiv_dieses_Kalenderjahr + cost_effective
+            attributes_updated["Kosten mit PV Abrechnung letztes Kalenderjahr"] = Kosten_mit_PV_Abrechnung_dieses_Kalenderjahr + cost_invoice
+        else:
+            attributes_updated["Kosten ohne PV dieses Kalenderjahr"] = Kosten_ohne_PV_dieses_Kalenderjahr + cost_without_pv
+            attributes_updated["Kosten mit PV effektiv dieses Kalenderjahr"] = Kosten_mit_PV_effektiv_dieses_Kalenderjahr + cost_effective
+            attributes_updated["Kosten mit PV Abrechnung dieses Kalenderjahr"] = Kosten_mit_PV_Abrechnung_dieses_Kalenderjahr + cost_invoice
+        if winter_year_finished:
+            attributes_updated["Kosten ohne PV dieses Winterjahr"] = 0.0
+            attributes_updated["Kosten mit PV effektiv dieses Winterjahr"] = 0.0
+            attributes_updated["Kosten mit PV Abrechnung dieses Winterjahr"] = 0.0
+            attributes_updated["Kosten ohne PV letztes Winterjahr"] = Kosten_ohne_PV_dieses_Winterjahr + cost_without_pv
+            attributes_updated["Kosten mit PV effektiv letztes Winterjahr"] = Kosten_mit_PV_effektiv_dieses_Winterjahr + cost_effective
+            attributes_updated["Kosten mit PV Abrechnung letztes Winterjahr"] = Kosten_mit_PV_Abrechnung_dieses_Winterjahr + cost_invoice
+        else:
+            attributes_updated["Kosten ohne PV dieses Winterjahr"] = Kosten_ohne_PV_dieses_Winterjahr + cost_without_pv
+            attributes_updated["Kosten mit PV effektiv dieses Winterjahr"] = Kosten_mit_PV_effektiv_dieses_Winterjahr + cost_effective
+            attributes_updated["Kosten mit PV Abrechnung dieses Winterjahr"] = Kosten_mit_PV_Abrechnung_dieses_Winterjahr + cost_invoice
+        return attributes_updated
 
     def find_value_by_timestamp(self, list_of_timestamps, list_of_values, timestamp):
         counter = 0
@@ -316,6 +347,10 @@ class energy_consumption_and_costs(hass.Hass):
             if self.entity_exists(consumption_sensor_name, namespace = self.ad_namespace):
                 state_and_attributes = self.get_state(consumption_sensor_name, attribute="all", namespace = "ad_namespace")
                 self.set_state(consumption_sensor_name, state = state_and_attributes["state"], attributes = state_and_attributes["attributes"])
+        consumption_sensor_name = "sensor.stromverbrauch_unbekannte_verbraucher"
+        if self.entity_exists(consumption_sensor_name, namespace = self.ad_namespace):
+            state_and_attributes = self.get_state(consumption_sensor_name, attribute="all", namespace = "ad_namespace")
+            self.set_state(consumption_sensor_name, state = state_and_attributes["state"], attributes = state_and_attributes["attributes"])
     
     def reset_all_sensors_in_ad_namespace(self):
         sensors_for_power_calculation = self.get_ha_power_sensors_for_consumption_calculation()
