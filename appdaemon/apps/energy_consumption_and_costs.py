@@ -10,7 +10,7 @@ import datetime
 class energy_consumption_and_costs(hass.Hass):
 
     def initialize(self):
-        self.run_in(self.initialize_delayed,12)
+        self.run_in(self.initialize_delayed,22)
     
     def initialize_delayed(self, kwargs):
         # define daily time to run the calculation:
@@ -29,8 +29,8 @@ class energy_consumption_and_costs(hass.Hass):
         self.sensor_name_consumption_total = self.args.get("sensor_name_consumption_total", "sensor.el_leistung_verbrauch_gesamt")
         special_date = self.args.get("special_date", None)
         # restore sensors in HA
-        self.reset_all_sensors_in_ad_namespace()
-        self.reset_all_sensors_in_db()
+        #self.reset_all_sensors_in_ad_namespace()# Caution! all consumption data in HA will be reset
+        #self.reset_all_sensors_in_db() # Caution! all consumption data in DB will be lost!
         self.restore_sensors_in_ha()
         # calculate for a given single date
         if special_date is not None:
@@ -39,7 +39,8 @@ class energy_consumption_and_costs(hass.Hass):
 
         # run daily
         self.run_daily(self.generate_data_for_yesterday, time_daily_calculation)
-        self.generate_data_for_yesterday(None) # Caution! Will lead to double values, if used additionally to daily calculation!
+        self.run_daily(self.send_message_for_yesterday, time_daily_message)
+        #self.generate_data_for_yesterday(None) # Caution! Will lead to double values, if used additionally to daily calculation!
 
         # drop some measurements from testing
         #self.drop("sensor.test_measurement")
@@ -50,7 +51,19 @@ class energy_consumption_and_costs(hass.Hass):
         #today_str = (datetime.datetime.now()).strftime('%Y-%m-%d')
         self.log("running consumption calclulation for " + yesterday_str)
         self.calculate_energy_consumption_and_costs(yesterday_str)
-        #consumption_kWh_total, total_consumption_cost, known_consumption_kWh_total, known_consumption_costs, unknown_consumption_kWh, unknown_consumers_cost, details_dict = self.calculate_energy_consumption(today_str)
+        
+    def send_message_for_yesterday(self, kwargs):
+        return
+#            if cost_without_pv > 0:
+#                cost_saved_by_pv_effective_percent = (1 - (cost_effective / cost_without_pv)) * 100
+#                cost_saved_by_pv_invoice_percent = (1 - (cost_invoice / cost_without_pv)) * 100
+#            else:
+#                cost_saved_by_pv_effective_percent = 0.0
+#                cost_saved_by_pv_invoice_percent = 0.0
+#            if cost_saved_by_pv_effective_percent < 0.0:
+#                cost_saved_by_pv_effective_percent = 0.0
+#            if cost_saved_by_pv_invoice_percent < 0.0:
+#                cost_saved_by_pv_invoice_percent = 0.0
         #message_text = "Verbrauch gestern: {} kWh => {} €\n\nVerbrauch im Detail:\n".format(round(consumption_kWh_total,1),round(total_consumption_cost,2))
         #details_sorted = sorted(details_dict.items(), key=lambda x: x[1], reverse=True)
         #for i in details_sorted:
@@ -62,10 +75,6 @@ class energy_consumption_and_costs(hass.Hass):
         #if consumption_kWh_total > 0:
         #    message_text = message_text + "\n\n{} % vom Stromverbrauch sind zugeordnet".format(int(round(100*known_consumption_kWh_total/consumption_kWh_total,0)))
         #self.fire_event("custom_notify", message=message_text, target="telegram_jo")
-        # temporary section for power factor:
-#        self.fire_event("custom_notify", message=text_cos_phi, target="telegram_jo")
-        
-        
 
     def calculate_energy_consumption_and_costs(self, date_str):
         ts_start_calculation = datetime.datetime.now().timestamp()
@@ -173,16 +182,6 @@ class energy_consumption_and_costs(hass.Hass):
                     cost_without_pv_known = cost_without_pv_known + cost_without_pv
                     cost_effective_known = cost_effective_known + cost_effective
                     cost_invoice_known = cost_invoice_known + cost_invoice
-#            if cost_without_pv > 0:
-#                cost_saved_by_pv_effective_percent = (1 - (cost_effective / cost_without_pv)) * 100
-#                cost_saved_by_pv_invoice_percent = (1 - (cost_invoice / cost_without_pv)) * 100
-#            else:
-#                cost_saved_by_pv_effective_percent = 0.0
-#                cost_saved_by_pv_invoice_percent = 0.0
-#            if cost_saved_by_pv_effective_percent < 0.0:
-#                cost_saved_by_pv_effective_percent = 0.0
-#            if cost_saved_by_pv_invoice_percent < 0.0:
-#                cost_saved_by_pv_invoice_percent = 0.0
             sensor_power_readable_name = self.args["sensor_names_readable"].get(sensor_power, sensor_power.replace("sensor.el_leistung_",""))
             self.log("Time for calculating consumption and costs for {}: {}".format(sensor_power_readable_name,datetime.datetime.now().timestamp() - ts_start_calculation))
             
