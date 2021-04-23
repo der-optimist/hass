@@ -22,7 +22,7 @@ class test_ad(hass.Hass):
         all_ha_sensors = self.get_state("sensor").keys()
         sensors_for_power_calculation = []
         for sensor_power in all_ha_sensors:
-            if sensor_power.startswith("sensor.el_leistung_") and not "scheinleistung" in sensor_power and not sensor_power.startswith("sensor.el_leistung_berechnet_licht_") and not sensor_power in self.args["db_measurements_to_skip_for_consumption_calculation"]:
+            if sensor_power.startswith("sensor.el_leistung_"):
                 sensors_for_power_calculation.append(sensor_power)
         return sensors_for_power_calculation
 
