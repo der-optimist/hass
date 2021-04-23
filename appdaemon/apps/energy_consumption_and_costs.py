@@ -173,10 +173,11 @@ class energy_consumption_and_costs(hass.Hass):
                 cost_effective_total = cost_effective
                 cost_invoice_total = cost_invoice
             else:
-                consumption_kWh_known = consumption_kWh_known + consumption_kWh
-                cost_without_pv_known = cost_without_pv_known + cost_without_pv
-                cost_effective_known = cost_effective_known + cost_effective
-                cost_invoice_known = cost_invoice_known + cost_invoice
+                if not sensor_power in self.args["db_measurements_to_skip_for_calculating_sum"]:
+                    consumption_kWh_known = consumption_kWh_known + consumption_kWh
+                    cost_without_pv_known = cost_without_pv_known + cost_without_pv
+                    cost_effective_known = cost_effective_known + cost_effective
+                    cost_invoice_known = cost_invoice_known + cost_invoice
 #            if cost_without_pv > 0:
 #                cost_saved_by_pv_effective_percent = (1 - (cost_effective / cost_without_pv)) * 100
 #                cost_saved_by_pv_invoice_percent = (1 - (cost_invoice / cost_without_pv)) * 100
