@@ -16,7 +16,15 @@ class test_ad(hass.Hass):
         self.password = self.args.get("db_passwd", None)
         self.db_name = self.args.get("db_name", "homeassistant_permanent")
         self.client = InfluxDBClient(self.host, self.port, self.user, self.password, self.db_name)
-        self.remove_old_sensors_from_db()
+        #self.remove_old_sensors_from_db()
+        self.drop("sensor.stromverbrauch_netzbezug_vortag")
+        self.drop("sensor.stromverbrauch_netzbezug_vormonat")
+        self.drop("sensor.stromverbrauch_luftentf_werkelraum_vortag")
+        self.drop("sensor.stromverbrauch_luftentf_werkelraum_vormonat")
+        self.drop("sensor.stromverbrauch_luftentf_waschk_vortag")
+        self.drop("sensor.stromverbrauch_luftentf_waschk_vormonat")
+        self.drop("sensor.stromverbrauch_licht_berechnete_vortag")
+        self.drop("sensor.stromverbrauch_licht_berechnete_vormonat")
 
     def get_ha_power_sensors_for_consumption_calculation(self):
         all_ha_sensors = self.get_state("sensor").keys()
