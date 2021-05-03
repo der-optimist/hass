@@ -130,7 +130,7 @@
       bewegung_hochzeitsbild:
         friendly_name: "Bewegung Hochzeitsbild"
         device_class: motion
-        value_template: "{{ is_state('binary_sensor.pm_e_wf_flur','on') or 
+        value_template: "{{ is_state('binary_sensor.pm_ktr_flur','on') or 
                             is_state('binary_sensor.pm_e_wf_garderobe','on') or 
                             is_state('binary_sensor.pm_e_wf_haustur','on')  }}"
       pm_k_timer_magnetsensor_vorratsraum:
