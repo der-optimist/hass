@@ -416,6 +416,16 @@
         friendly_name: 'El. Leistung Dauerverbraucher'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      el_leistung_tuya_sd_1:
+        friendly_name: 'El. Leistung Tuya SD 1'
+        value_template: "{{ state_attr('switch.tu_sd_1', 'current_consumption') }}"
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      el_leistung_tuya_sd_2:
+        friendly_name: 'El. Leistung Tuya SD 2'
+        value_template: "{{ state_attr('switch.tu_sd_2', 'current_consumption') }}"
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
       el_leistung_tuya_sd_3:
         friendly_name: 'El. Leistung Tuya SD 3'
         value_template: "{{ state_attr('switch.tu_sd_3', 'current_consumption') }}"
