@@ -45,13 +45,18 @@ class permanent_recorder(hass.Hass):
             self.listen_state(self.state_boolean_changed, entity)   
         for entity in self.heating_target_temperature:
             self.listen_state(self.heating_target_temperature_changed, entity, attribute = "temperature")    
+        # state float
+        self.state_float_sensors = []
         for entity in self.state_float:
             if "*" in entity:
                 for sensor in all_ha_sensors.keys():
                     if entity.replace("*", "") in sensor:
                         self.listen_state(self.state_float_changed, sensor)
+                        self.state_float_sensors.append(sensor)
             else:
                 self.listen_state(self.state_float_changed, entity)
+                self.state_float_sensors.append(entity)
+        # cover
         for entity in self.cover:
             self.listen_state(self.cover_changed, entity, attribute = "current_position")
             self.listen_state(self.cover_changed, entity, attribute = "current_tilt_position")
@@ -82,6 +87,27 @@ class permanent_recorder(hass.Hass):
         self.listen_state(self.heating_supply_temp_setpoint, "sensor.supply_temp_setpoint")
         self.listen_state(self.heating_return_temp, "sensor.return_temp")
         self.listen_state(self.heating_number_of_starts, "sensor.bosch_numberofstarts")
+        
+        # check for new entities regularly
+        self.run_every(self.check_for_new_entities, "now+300", 5 * 60)
+        
+    def check_for_new_entities(self, kwargs):
+        self.log("Will check for new entities")
+        all_ha_sensors = self.get_state("sensor")
+        # float sensors
+        for entity in self.state_float:
+            if "*" in entity:
+                for sensor in all_ha_sensors.keys():
+                    if entity.replace("*", "") in sensor:
+                        if not sensor in self.state_float_sensors:
+                            self.listen_state(self.state_float_changed, sensor)
+                            self.state_float_sensors.append(sensor)
+                            self.log("Found new sensor: {}".format(sensor))
+            else:
+                if not sensor in self.state_float_sensors:
+                    self.listen_state(self.state_float_changed, entity)
+                    self.state_float_sensors.append(entity)
+                    self.log("Found new sensor: {}".format(entity))
     
     def light_brightness_changed(self, entity, attributes, old, new, kwargs):
         if new == "off":
