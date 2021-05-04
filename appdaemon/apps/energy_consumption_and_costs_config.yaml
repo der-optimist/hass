@@ -58,3 +58,6 @@ energy_consumption_and_costs:
     sensor.el_leistung_kochfeld: Kochfeld
     sensor.el_leistung_wp_gesamt: Heizung
     sensor.el_leistung_esp_sd_2: Luftbefeuchter WZ
+    sensor.el_leistung_tuya_sd_1: Heizung Partyr. vorne
+    sensor.el_leistung_tuya_sd_2: Heizung Partyr. hinten
+    sensor.el_leistung_tuya_sd_3: Steckdose TU SD 3
