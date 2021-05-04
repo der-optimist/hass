@@ -15,6 +15,9 @@ from influxdb import InfluxDBClient
 class permanent_recorder(hass.Hass):
 
     def initialize(self):
+        self.run_in(self.initialize_delayed,13)
+    
+    def initialize_delayed(self, kwargs):
         self.log("Permanent Logger started")
         self.host = self.args.get("host", "a0d7b954-influxdb")
         self.port=8086
