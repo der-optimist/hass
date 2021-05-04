@@ -110,7 +110,7 @@ permanent_recorder:
     - switch.gaste_schlafen
     - switch.gefrierschrank
     - switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
-    - switch.innr_sp_120_test_on_off
+    - switch.innr_sp_120_luftentfeuchter_partyraum
     - switch.innr_sp_220_repeater_garderobenschrank_on_off
     - switch.innr_sp_220_repeater_waschkuche_on_off
     - switch.kinder_schon_wach
@@ -141,7 +141,6 @@ permanent_recorder:
     - climate.esszimmer
     - climate.flur_og
     - climate.gastezimmer
-    - climate.kuche
     - climate.la
     - climate.le
     - climate.nahzimmer
@@ -184,16 +183,7 @@ permanent_recorder:
     - sensor.lumi_lumi_weather_humidity
     - sensor.lumi_lumi_weather_power
     - sensor.lumi_lumi_weather_temperature
-    - sensor.onewire_07_estrich_kueche
-    - sensor.onewire_14_estrich_wohnzimmer
-    - sensor.onewire_15_estrich_wc_1
-    - sensor.onewire_16_estrich_esszimmer
-    - sensor.onewire_20_estrich_bad_eg
-    - sensor.onewire_21_estrich_wc_2
-    - sensor.onewire_25_estrich_schlafzimmer
-    - sensor.onewire_serverschrank
-    - sensor.shellydimmer_d472fe_power
-    - sensor.shellyplug_s_169d16_power
+    - sensor.onewire_*
     - sensor.sollwert_heizung_*
     - sensor.sonoff_pow_*
     - sensor.stellwert_heizung_*
@@ -210,7 +200,6 @@ permanent_recorder:
     - sensor.diagnose_heizkreis_esszimmer
     - sensor.diagnose_heizkreis_flur_og
     - sensor.diagnose_heizkreis_gastezimmer
-    - sensor.diagnose_heizkreis_kuche
     - sensor.diagnose_heizkreis_la
     - sensor.diagnose_heizkreis_le
     - sensor.diagnose_heizkreis_nahzimmer
