@@ -72,7 +72,7 @@ class energy_consumption_and_costs(hass.Hass):
                     if sensor_power == self.sensor_name_used_power_total:
                         consumption_total = {"consumption_kWh":attributes["Verbrauch gestern"], "cost_without_pv":attributes["Kosten ohne PV gestern"], "cost_invoice":attributes["Kosten mit PV Abrechnung gestern"], "cost_saved_by_pv_invoice_percent": cost_saved_by_pv_invoice_percent}
                     else:
-                        sorting_string = "{0:.6f}".format(attributes["Verbrauch gestern"]) + "___" + consumption_sensor_name
+                        sorting_string = "{0:010.6f}".format(attributes["Verbrauch gestern"]) + "___" + consumption_sensor_name
                         consumption_known_entities[sorting_string] = {"name":sensor_power, "consumption_kWh":attributes["Verbrauch gestern"], "cost_without_pv":attributes["Kosten ohne PV gestern"], "cost_invoice":attributes["Kosten mit PV Abrechnung gestern"], "cost_saved_by_pv_invoice_percent": cost_saved_by_pv_invoice_percent}
         # total power
         consumption_sensor_name = self.sensor_name_used_power_total.replace("sensor.el_leistung_", "sensor.stromverbrauch_")
