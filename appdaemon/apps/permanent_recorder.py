@@ -93,6 +93,7 @@ class permanent_recorder(hass.Hass):
         
     def check_for_new_entities(self, kwargs):
         self.log("Will check for new entities")
+        self.log("Sensors before: {}".format(self.state_float_sensors))
         all_ha_sensors = self.get_state("sensor")
         # float sensors
         for entity in self.state_float:
@@ -108,6 +109,7 @@ class permanent_recorder(hass.Hass):
                     self.listen_state(self.state_float_changed, entity)
                     self.state_float_sensors.append(entity)
                     self.log("Found new sensor: {}".format(entity))
+        self.log("Sensors after: {}".format(self.state_float_sensors))
     
     def light_brightness_changed(self, entity, attributes, old, new, kwargs):
         if new == "off":
