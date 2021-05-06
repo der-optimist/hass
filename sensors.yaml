@@ -844,6 +844,7 @@
 # --                            --
 # --------------------------------
 #
+# HA-built-in
   - platform: fronius
     resource: "http://192.168.178.87"
     monitored_conditions:
@@ -852,6 +853,16 @@
     - sensor_type: meter
       device: 1
     - sensor_type: power_flow
+# custom_component
+  - platform: fronius_inverter
+    ip_address: "192.168.178.87"
+    name: "Fronius PV Gen24"
+    device_id: 0
+    smartmeter_device_id: 1
+    powerflow: True
+    smartmeter: True
+    power_units: W
+    units: kWh
 #
 # --------------------------------
 # --                            --
