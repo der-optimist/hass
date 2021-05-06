@@ -848,9 +848,9 @@
     resource: "http://192.168.178.87"
     monitored_conditions:
     - sensor_type: inverter
-      device: 1
+      device: 0
     - sensor_type: meter
-      device: 3
+      device: 1
     - sensor_type: power_flow
 #
 # --------------------------------
