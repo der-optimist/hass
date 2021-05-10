@@ -91,8 +91,8 @@
                             and is_state('switch.kinder_schon_wach', 'off') }}"
       bodenstrahler_blumenbeet_ist_sichtbar:
         friendly_name: "Bodenstrahler Blumenbeet ist sichtbar"
-        value_template: "{{ (state_attr("cover.jalousie_hst","current_position")|float < 40)
-                            or ((state_attr("cover.jalousie_hst","current_tilt_position")|float > 25) and (state_attr("cover.jalousie_hst","current_tilt_position")|float < 85)) }}"
+        value_template: "{{ (state_attr('cover.jalousie_hst','current_position')|float < 40)
+                            or ((state_attr('cover.jalousie_hst','current_tilt_position')|float > 25) and (state_attr('cover.jalousie_hst','current_tilt_position')|float < 85)) }}"
       bodenstrahler_blumenbeet_soll_an_sein:
         friendly_name: "Bodenstrahler Blumenbeet soll an sein"
         value_template: "{{ (is_state('binary_sensor.bodenstrahler_blumenbeet_ist_sichtbar', 'on') and is_state('binary_sensor.standardzeit_bodenstrahler_blumenbeet', 'on'))
