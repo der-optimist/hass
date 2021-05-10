@@ -112,15 +112,15 @@ auto_light_a_tr_wurfel_ecke_gross:
     "00:00": 85
   illuminance_sensor: sensor.helligkeit_wetterstation
 # - Stern Blumenbeet
-auto_light_a_tr_blumenbeet:
-  module: auto_light
-  class: auto_light
-  debug: few
-  app_switch: input_boolean.app_switch_licht_aussen_carport
-  light: light.licht_blumenbeet
-  type: switch
-  triggers: 
-    - binary_sensor.zeit_stern
-  min_illuminance_values:
-    "00:00": 5000
-  illuminance_sensor: sensor.helligkeit_wetterstation
+#auto_light_a_tr_blumenbeet:
+#  module: auto_light
+#  class: auto_light
+#  debug: few
+#  app_switch: input_boolean.app_switch_licht_aussen_carport
+#  light: light.licht_blumenbeet
+#  type: switch
+#  triggers: 
+#    - binary_sensor.zeit_stern
+#  min_illuminance_values:
+#    "00:00": 5000
+#  illuminance_sensor: sensor.helligkeit_wetterstation
