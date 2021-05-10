@@ -256,6 +256,6 @@
   - name: 'Wandwürfel Westen'
     address: '0/2/120'
     state_address: '0/2/121'
-  - name: 'Licht Blumenbeet'
+  - name: 'Bodenstrahler Blumenbeet'
     address: '0/1/0'
     state_address: '0/1/1'
