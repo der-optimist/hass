@@ -22,15 +22,15 @@ ladesteckdose_ma_abends_an:
   switch_entity: switch.shellyswitch25_10521c45de0b_relay_0
   time: "18:03"
   on_off: "on"
-#beleuchtung_hochzeitsbild_an:
-#  module: turn_switches_on_off
-#  class: turn_switches_on_off
-#  switch_entity: input_boolean.beleuchtung_hochzeitsbild
-#  time: "16:55"
-#  on_off: "on"
-#beleuchtung_hochzeitsbild_aus:
-#  module: turn_switches_on_off
-#  class: turn_switches_on_off
-#  switch_entity: input_boolean.beleuchtung_hochzeitsbild
-#  time: "20:55"
-#  on_off: "off"
+beleuchtung_hochzeitsbild_an:
+  module: turn_switches_on_off
+  class: turn_switches_on_off
+  switch_entity: input_boolean.beleuchtung_hochzeitsbild
+  time: "16:55"
+  on_off: "on"
+beleuchtung_hochzeitsbild_aus:
+  module: turn_switches_on_off
+  class: turn_switches_on_off
+  switch_entity: input_boolean.beleuchtung_hochzeitsbild
+  time: "20:55"
+  on_off: "off"
