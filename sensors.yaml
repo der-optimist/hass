@@ -124,24 +124,44 @@
         friendly_name: 'El. Leistung Stromzähler Netzbezug'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_netzbezug_vorzeichenbehaftet:
-        value_template: "{{ (states('sensor.el_leistung_stromzaehler_netzbezug') | float ) * (-1) }}"
-        friendly_name: 'El. Leistung Stromzähler Netzbezug Vorzeichen'
+      el_leistung_netz:
+        value_template: "{{ states('sensor.fronius1_modbus_power_from_grid') }}"
+        friendly_name: 'El. Leistung Netz (positiv gleich Bezug)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_pv_ac:
-        value_template: "{{ states('input_number.temp_leistung_pv_test') }}"
+        value_template: "{{ states('sensor.fronius1_modbus_power_ac') }}"
         friendly_name: 'El. Leistung PV AC'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_netz_bilanz:
-        value_template: "{{ (states('sensor.el_leistung_netzbezug_vorzeichenbehaftet') | float ) + (states('input_number.temp_leistung_pv_test') | float ) }}"
-        friendly_name: 'El. Leistung Netz Bilanz'
+      el_leistung_pv_dc:
+        value_template: "{{ states('sensor.fronius1_modbus_power_dc') }}"
+        friendly_name: 'El. Leistung PV DC'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      wirkungsgrad_wechselrichter:
+        value_template: >-
+          {% if (states('sensor.el_leistung_pv_dc') | float) > 0 %}
+            {{ (states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float) }}
+          {% else %}
+            0.0
+          {% endif %}
+        friendly_name: 'Wirkungsgrad Wechselrichter'
+        unit_of_measurement: 'eta'
+        icon_template: mdi:chart-bell-curve-cumulative
+      el_leistung_pv_dc_string1:
+        value_template: "{{ states('sensor.fronius1_modbus_power_dc_string1') }}"
+        friendly_name: 'El. Leistung PV DC String 1'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+      el_leistung_pv_dc_string2:
+        value_template: "{{ states('sensor.fronius1_modbus_power_dc_string2') }}"
+        friendly_name: 'El. Leistung PV DC String 2'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_verbrauch_gesamt:
-        value_template: "{{ (states('sensor.el_leistung_stromzaehler_netzbezug') | float ) }}"
-        friendly_name: 'El. Leistung Netz Bilanz'
+        value_template: "{{ (states('sensor.el_leistung_netz') | float ) +  (states('sensor.el_leistung_pv_ac') | float )}}"
+        friendly_name: 'El. Leistung Verbrauch gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
 #
@@ -149,15 +169,15 @@
 #       --   effektiver Strompreis    --
 #       --------------------------------
 #
-      el_leistung_einspeiselimit:
+      einspeiselimit_watt:
         value_template: "{{ (states('input_number.pv_einspeisebegrenzung_prozent') | float ) * (states('input_number.pv_installierte_peakleistung') | float ) * 0.01 }}"
         friendly_name: 'El. Leistung Einspeiselimit'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       anteil_el_leistung_netzbezug:
         value_template: >-
-          {% if (states('sensor.el_leistung_netz_bilanz') | float) < 0 %}
-            {{ -1*(states('sensor.el_leistung_netz_bilanz') | float) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
+          {% if (states('sensor.el_leistung_netz') | float) > 0 %}
+            {{ (states('sensor.el_leistung_netz') | float) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
           {% else %}
             0.0
           {% endif %}
@@ -166,10 +186,10 @@
         icon_template: mdi:chart-donut
       anteil_el_leistung_pv_nicht_einspeisbar:
         value_template: >-
-          {% if (states('sensor.el_leistung_pv_ac') | float) > ((states('sensor.el_leistung_einspeiselimit') | float) + (states('sensor.el_leistung_verbrauch_gesamt') | float)) %}
+          {% if (states('sensor.el_leistung_pv_ac') | float) > ((states('sensor.einspeiselimit_watt') | float) + (states('sensor.el_leistung_verbrauch_gesamt') | float)) %}
             1.0
-          {% elif (states('sensor.el_leistung_pv_ac') | float) > (states('sensor.el_leistung_einspeiselimit') | float) %}
-            {{ ((states('sensor.el_leistung_pv_ac') | float) - (states('sensor.el_leistung_einspeiselimit') | float)) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
+          {% elif (states('sensor.el_leistung_pv_ac') | float) > (states('sensor.einspeiselimit_watt') | float) %}
+            {{ ((states('sensor.el_leistung_pv_ac') | float) - (states('sensor.einspeiselimit_watt') | float)) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
           {% else %}
             0.0
           {% endif %}
