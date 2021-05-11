@@ -209,7 +209,7 @@
         icon_template: mdi:currency-eur
       strompreis_aktuell_abrechnung_euro:
         value_template: "{{ (states('input_number.strompreis') | float ) * (states('sensor.anteil_el_leistung_netzbezug') | float ) }}"
-        friendly_name: 'Strompreis aktuell effektiv Euro'
+        friendly_name: 'Strompreis aktuell Abrechnung Euro'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
       strompreis_aktuell_effektiv_cent:
