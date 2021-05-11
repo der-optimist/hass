@@ -16,9 +16,9 @@ cards:
       - sensor.einspeiselimit_watt
       - sensor.el_leistung_pv_dc_string1
       - sensor.el_leistung_pv_dc_string2
-      - sensor.el_leistung_anteil_netzbezug
-      - sensor.el_leistung_anteil_pv_nicht_einspeisbar
-      - sensor.el_leistung_anteil_pv_einspeisbar
+      - sensor.anteil_el_leistung_netzbezug
+      - sensor.anteil_el_leistung_netzbezug
+      - sensor.anteil_el_leistung_pv_einspeisbar
       - sensor.strompreis_aktuell_effektiv_euro
       - sensor.strompreis_aktuell_effektiv_cent
       - sensor.strompreis_aktuell_abrechnung_euro
