@@ -8,39 +8,39 @@
         slave: 200
         count: 2
         data_type: float
-        register: 40097
+        address: 40097
         scan_interval: 10
       - name: fronius1_modbus_power_ac
         unit_of_measurement: W
         slave: 1
         count: 2
         data_type: float
-        register: 40091
+        address: 40091
         scan_interval: 10
       - name: fronius1_modbus_power_dc
         unit_of_measurement: W
         slave: 1
         count: 2
         data_type: float
-        register: 40107
+        address: 40107
         scan_interval: 10
       - name: fronius1_modbus_power_dc_string2
         unit_of_measurement: W
         slave: 1
         count: 1
         data_type: uint
-        register: 40304
+        address: 40304
         scan_interval: 10
       - name: fronius1_modbus_power_dc_string1
         unit_of_measurement: W
         slave: 1
         count: 1
         data_type: uint
-        register: 40284
+        address: 40284
         scan_interval: 10
       - name: reading_energy_inverter_dcw_scalingfactor
         slave: 1
         count: 1
         data_type: int
-        register: 40267
+        address: 40267
         scan_interval: 10
