@@ -32,5 +32,5 @@ beleuchtung_hochzeitsbild_aus:
   module: turn_switches_on_off
   class: turn_switches_on_off
   switch_entity: input_boolean.beleuchtung_hochzeitsbild
-  time: "20:55"
+  time: "22:55"
   on_off: "off"
