@@ -334,6 +334,7 @@ cover:
 climate:
 
 #utility_meter: !include utility_meter.yaml
+modbus: !include modbus.yaml
 
 stream:
 camera:
