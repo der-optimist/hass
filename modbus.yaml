@@ -50,6 +50,6 @@
         slave: 1
         count: 4
         data_type: uint
-        address: 40196
+        address: 40186
         scan_interval: 60
         scale: 0.001
