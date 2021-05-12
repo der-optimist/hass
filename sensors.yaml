@@ -105,6 +105,11 @@
         friendly_name: 'Stromzähler Netzbezug'
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
+      stromzaehler_netzeinspeisung:
+        value_template: "{{ '%.1f'%(states('sensor.stromzahler_negative_active_energy_in_tariff_t1') | float /1000) | float }}"
+        friendly_name: 'Stromzähler Netzeinspeisung'
+        unit_of_measurement: 'kWh'
+        icon_template: mdi:counter
       stromkosten_netzbezug:
         value_template: "{{ '%.2f'%((states('sensor.stromzaehler_netzbezug') | float ) * (states('input_number.strompreis') | float)) }}"
         friendly_name: 'Stromkosten Netzbezug'
@@ -159,6 +164,11 @@
         friendly_name: 'El. Leistung PV DC String 2'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      stromzaehler_pv_ac_gesamt:
+        value_template: "{{ (states('sensor.fronius1_modbus_energy_ac_lifetime') | float) | round(1) }}"
+        friendly_name: 'Gesamtproduktion PV'
+        unit_of_measurement: 'kWh'
+        icon_template: mdi:counter
       el_leistung_verbrauch_gesamt:
         value_template: "{{ (states('sensor.el_leistung_netz') | float ) +  (states('sensor.el_leistung_pv_ac') | float )}}"
         friendly_name: 'El. Leistung Verbrauch gesamt'
@@ -865,25 +875,7 @@
 # --                            --
 # --------------------------------
 #
-# HA-built-in
-  - platform: fronius
-    resource: "http://192.168.178.87"
-    monitored_conditions:
-    - sensor_type: inverter
-      device: 0
-    - sensor_type: meter
-      device: 1
-    - sensor_type: power_flow
-# custom_component
-  - platform: fronius_inverter
-    ip_address: "192.168.178.87"
-    name: "Fronius PV Gen24"
-    device_id: 0
-    smartmeter_device_id: 1
-    powerflow: True
-    smartmeter: True
-    power_units: W
-    units: kWh
+# done via modbus
 #
 # --------------------------------
 # --                            --
