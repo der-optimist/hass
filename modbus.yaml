@@ -39,12 +39,14 @@
         address: 40284
         scan_interval: 10
       - name: fronius1_modbus_power_dc_scaling_factor
+        unit_of_measurement: factor
         slave: 1
         count: 1
         data_type: int
         address: 40267
         scan_interval: 10
       - name: fronius1_modbus_energy_ac_lifetime
+        unit_of_measurement: Wh
         slave: 1
         count: 4
         data_type: uint
