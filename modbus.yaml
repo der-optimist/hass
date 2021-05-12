@@ -48,8 +48,8 @@
       - name: fronius1_modbus_energy_ac_lifetime
         unit_of_measurement: kWh
         slave: 1
-        count: 4
-        data_type: uint
-        address: 40186
+        count: 2
+        data_type: float
+        address: 40101
         scan_interval: 60
         scale: 0.001
