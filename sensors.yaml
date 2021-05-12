@@ -611,17 +611,6 @@
         unit_of_measurement: '°C'
         device_class: temperature
 #
-#       --------------------------------
-#       --     Nullung Zähler         --
-#       --------------------------------
-#
-      stromzahler_licht_gesamt_genullt:
-        value_template: >-
-          {{ '%.2f'%(states("sensor.stromzahler_licht_gesamt") | float - 237.14) }}
-        friendly_name: 'Stromzähler Licht gesamt (genullt)'
-        unit_of_measurement: 'kWh'
-        icon_template: mdi:counter
-#
 # --------------------------------
 # --                            --
 # --            MQTT            --
