@@ -54,10 +54,9 @@
         scan_interval: 60
         scale: 0.001
       - name: fronius1_modbus_energy_ac_lifetime_2
-        unit_of_measurement: kWh
+        unit_of_measurement: Wh
         slave: 1
         count: 4
         data_type: int
         address: 40196
         scan_interval: 60
-        scale: 0.001
