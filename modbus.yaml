@@ -44,3 +44,9 @@
         data_type: int
         address: 40267
         scan_interval: 10
+      - name: fronius1_modbus_energy_ac_lifetime
+        slave: 1
+        count: 4
+        data_type: uint
+        address: 40196
+        scan_interval: 60
