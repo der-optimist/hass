@@ -17,24 +17,25 @@ energy_consumption_and_costs:
   sensor_name_consumption_unknown: sensor.stromverbrauch_unbekannte_verbraucher
   db_measurements_to_skip_for_consumption_calculation: 
     - sensor.el_leistung_stromzaehler_netzbezug
-    - sensor.el_leistung_netzbezug_vorzeichenbehaftet
+    - sensor.el_leistung_netz
     - sensor.el_leistung_pv_ac
-    - sensor.el_leistung_netz_bilanz
-    - sensor.el_leistung_einspeiselimit
+    - sensor.el_leistung_pv_dc
+    - sensor.el_leistung_pv_dc_string1
+    - sensor.el_leistung_pv_dc_string2
     - sensor.el_leistung_wp_aussenteil_esp # is mapped to sensor.el_leistung_wp_aussenteil which is calculated
     - sensor.el_leistung_wp_heizstab_esp # is mapped to sensor.el_leistung_wp_heizstab which is calculated
     - sensor.el_leistung_wp_innenteil_esp # is mapped to sensor.el_leistung_wp_innenteil which is calculated
     - sensor.el_leistung_kochfeld_esp # is mapped to sensor.el_leistung_kochfeld which is calculated
     - sensor.el_leistung_esp_sd_3 # is mapped to sensor.el_leistung_bildschirm_theke which is calculated
   db_measurements_to_skip_for_calculating_sum: # some entities are included in other ones. They should not be summed up twice
-    - sensor.el_leistung_licht_sicherung_3_2
-    - sensor.el_leistung_licht_sicherung_3_3
-    - sensor.el_leistung_berechnete_lichter
-    - sensor.el_leistung_shellydimmer_d472fe_power
+    - sensor.el_leistung_licht_sicherung_3_2 # is icluded in el_leistung_licht_gesamt
+    - sensor.el_leistung_licht_sicherung_3_3 # is icluded in el_leistung_licht_gesamt
+    - sensor.el_leistung_berechnete_lichter # is icluded in el_leistung_licht_gesamt
+    - sensor.el_leistung_shellydimmer_d472fe_power # is icluded in el_leistung_licht_gesamt
     - sensor.el_leistung_wp_heizstab # is icluded in el_leistung_wp_gesamt
     - sensor.el_leistung_wp_innenteil # is icluded in el_leistung_wp_gesamt
     - sensor.el_leistung_wp_aussenteil # is icluded in el_leistung_wp_gesamt
-    - sensor.el_leistung_verbrauch_gesamt # is icluded in el_leistung_wp_gesamt
+    - sensor.el_leistung_verbrauch_gesamt
   sensor_names_readable:
     sensor.el_leistung_licht_gesamt: Licht gesamt
     sensor.el_leistung_dauerverbraucher: Dauerverbraucher
