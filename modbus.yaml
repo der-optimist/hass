@@ -24,21 +24,21 @@
         data_type: float
         address: 40107
         scan_interval: 10
-      - name: fronius1_modbus_power_dc_string2
+      - name: fronius1_modbus_power_dc_string2_raw
         unit_of_measurement: W
         slave: 1
         count: 1
         data_type: uint
         address: 40304
         scan_interval: 10
-      - name: fronius1_modbus_power_dc_string1
+      - name: fronius1_modbus_power_dc_string1_raw
         unit_of_measurement: W
         slave: 1
         count: 1
         data_type: uint
         address: 40284
         scan_interval: 10
-      - name: reading_energy_inverter_dcw_scalingfactor
+      - name: fronius1_modbus_power_dc_scaling_factor
         slave: 1
         count: 1
         data_type: int
