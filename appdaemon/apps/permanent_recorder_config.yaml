@@ -167,6 +167,7 @@ permanent_recorder:
     - sensor.diesel_*
     - sensor.e10_*
     - sensor.e5_*
+    - sensor.einspeiselimit_watt
     - sensor.el_leistung_*
     - sensor.helligkeit_*
     - sensor.humidity_outside_internet
@@ -194,6 +195,7 @@ permanent_recorder:
     - sensor.temp_*
     - sensor.windgeschwindigkeit_wetterstation
     - sensor.windgeschwindigkeit_wetterstation_kmh
+    - sensor.wirkungsgrad_wechselrichter
   state_string:
     - sensor.diagnose_heizkreis_bad_eg
     - sensor.diagnose_heizkreis_bad_og
