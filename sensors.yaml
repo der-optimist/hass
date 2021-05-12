@@ -150,12 +150,12 @@
         unit_of_measurement: 'eta'
         icon_template: mdi:chart-bell-curve-cumulative
       el_leistung_pv_dc_string1:
-        value_template: "{{ states('sensor.fronius1_modbus_power_dc_string1') }}"
+        value_template: "{{ ((states('sensor.fronius1_modbus_power_dc_string1_raw') | int) * (10 ** ((states('sensor.fronius1_modbus_power_dc_scaling_factor')| int )) )) |round(0)}}"
         friendly_name: 'El. Leistung PV DC String 1'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_pv_dc_string2:
-        value_template: "{{ states('sensor.fronius1_modbus_power_dc_string2') }}"
+        value_template: "{{ ((states('sensor.fronius1_modbus_power_dc_string2_raw') | int) * (10 ** ((states('sensor.fronius1_modbus_power_dc_scaling_factor')| int )) )) |round(0)}}"
         friendly_name: 'El. Leistung PV DC String 2'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
