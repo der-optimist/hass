@@ -147,7 +147,13 @@
       wirkungsgrad_wechselrichter:
         value_template: >-
           {% if (states('sensor.el_leistung_pv_dc') | float) > 0 %}
-            {{ (states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float) }}
+            {% if ((states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float)) > 1 %}
+              100.0
+            {% elif ((states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float)) < 0 %}
+              0.0
+            {% else %}
+              {{ 100*((states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float)) }}
+            {% endif %}
           {% else %}
             0.0
           {% endif %}
