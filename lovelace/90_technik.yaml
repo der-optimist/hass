@@ -20,6 +20,8 @@ cards:
         entity: sensor.kiosk_browser_bildschirm_theke
         attribute: screenBrightness
         name: Helligkeit
+      - entity: switch.esp_sd_3_relais
+        name: Steckdose
   - type: entities
     title: "Kodi"
     show_header_toggle: false
