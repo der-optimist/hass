@@ -22,6 +22,12 @@ cards:
       - sensor.strompreis_aktuell_effektiv_euro
       - sensor.strompreis_aktuell_effektiv_cent
       - sensor.strompreis_aktuell_abrechnung_euro
+      - entity: sensor.pv_erzeugung_tag
+        name: PV Erzeugung Tag
+      - entity: sensor.pv_netzeinspeisung_tag
+        name: PV Einspeisung Tag
+      - entity: sensor.stromzaehler_netzeinspeisung
+        name: Zählerstand Einspeisung
   - type: custom:apexcharts-card
     experimental:
       color_threshold: true
