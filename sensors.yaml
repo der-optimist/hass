@@ -152,13 +152,13 @@
             {% elif ((states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float)) < 0 %}
               0.0
             {% else %}
-              {{ 100*((states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float)) }}
+              {{ 100*((states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float)) | round(1) }}
             {% endif %}
           {% else %}
             0.0
           {% endif %}
         friendly_name: 'Wirkungsgrad Wechselrichter'
-        unit_of_measurement: 'eta'
+        unit_of_measurement: '%'
         icon_template: mdi:chart-bell-curve-cumulative
       el_leistung_pv_dc_string1:
         value_template: "{{ ((states('sensor.fronius1_modbus_power_dc_string1_raw') | int) * (10 ** ((states('sensor.fronius1_modbus_power_dc_scaling_factor')| int )) )) |round(0)}}"
