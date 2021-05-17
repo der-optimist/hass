@@ -59,12 +59,19 @@
         data_type: int
         address: 40196
         scan_interval: 60
-      - name: fronius1_modbus_power_limit_percent
+      - name: fronius1_modbus_power_limit_percent_raw
         unit_of_measurement: '%'
         slave: 1
         count: 1
         data_type: uint
         address: 40242
+        scan_interval: 300
+      - name: fronius1_modbus_power_limit_percent_factor
+        unit_of_measurement: factor
+        slave: 1
+        count: 1
+        data_type: int
+        address: 40260
         scan_interval: 300
       - name: fronius1_modbus_ramp_time_power_limit_pct
         unit_of_measurement: s
