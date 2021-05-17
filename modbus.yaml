@@ -52,7 +52,6 @@
         data_type: float
         address: 40101
         scan_interval: 60
-#        scale: 0.001
       - name: fronius1_modbus_energy_ac_lifetime_2
         unit_of_measurement: Wh
         slave: 1
@@ -60,3 +59,17 @@
         data_type: int
         address: 40196
         scan_interval: 60
+      - name: fronius1_modbus_power_limit_percent
+        unit_of_measurement: %
+        slave: 1
+        count: 1
+        data_type: uint
+        address: 40242
+        scan_interval: 300
+      - name: fronius1_modbus_ramp_time_power_limit_pct
+        unit_of_measurement: s
+        slave: 1
+        count: 1
+        data_type: uint
+        address: 40245
+        scan_interval: 300
