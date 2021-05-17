@@ -60,7 +60,7 @@
         address: 40196
         scan_interval: 60
       - name: fronius1_modbus_power_limit_percent
-        unit_of_measurement: %
+        unit_of_measurement: '%'
         slave: 1
         count: 1
         data_type: uint
