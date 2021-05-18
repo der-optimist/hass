@@ -43,8 +43,8 @@ class pv(hass.Hass):
     def update_daily_counters(self, kwargs):
         pv_produced_day = float(self.get_state(self.counter_entity_pv_produced)) - float(self.get_state(self.sensor_name_counter_pv_produced_midnight, namespace = self.ad_namespace))
         pv_sold_day = float(self.get_state(self.counter_entity_pv_sold)) - float(self.get_state(self.sensor_name_counter_pv_sold_midnight, namespace = self.ad_namespace))
-        self.set_state(self.counter_entity_pv_produced_day, state = pv_produced_day, attributes = {"fiendly_name": "PV-Erzeugung heute", "icon":"mdi:counter",  "unit_of_measurement": "kWh"})
-        self.set_state(self.counter_entity_pv_sold_day, state = pv_sold_day, attributes = {"fiendly_name": "PV-Einspeisung heute", "icon":"mdi:counter",  "unit_of_measurement": "kWh"})
+        self.set_state(self.counter_entity_pv_produced_day, state = round(pv_produced_day,1), attributes = {"fiendly_name": "PV-Erzeugung heute", "icon":"mdi:counter",  "unit_of_measurement": "kWh"})
+        self.set_state(self.counter_entity_pv_sold_day, state = round(pv_sold_day,1), attributes = {"fiendly_name": "PV-Einspeisung heute", "icon":"mdi:counter",  "unit_of_measurement": "kWh"})
         
     def update_forecast_regularly(self, kwargs):
         current_forecasts = self.get_state(self.sensor_rest_forecast, attribute = "forecasts")
