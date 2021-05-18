@@ -32,9 +32,9 @@ class pv(hass.Hass):
     
     def save_counter_values_at_midnight(self, kwargs):
         value_counter_pv_produced_midnight = self.get_state(self.counter_entity_pv_produced)
-        self.set_state(self.sensor_name_counter_pv_midnight, state = value_counter_pv_produced_midnight, attributes = {"updated":datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')}, namespace = self.ad_namespace)
+        self.set_state(self.sensor_name_counter_pv_produced_midnight, state = value_counter_pv_produced_midnight, attributes = {"updated":datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')}, namespace = self.ad_namespace)
         value_counter_pv_sold_midnight = self.get_state(self.counter_entity_pv_sold)
-        self.set_state(self.sensor_name_counter_pv_midnight, state = value_counter_pv_sold_midnight, attributes = {"updated":datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')}, namespace = self.ad_namespace)
+        self.set_state(self.sensor_name_counter_pv_sold_midnight, state = value_counter_pv_sold_midnight, attributes = {"updated":datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')}, namespace = self.ad_namespace)
         
     def update_forecast_regularly(self, kwargs):
         current_forecasts = self.get_state(self.sensor_rest_forecast, attribute = "forecasts")
