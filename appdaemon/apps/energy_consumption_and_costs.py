@@ -37,7 +37,6 @@ class energy_consumption_and_costs(hass.Hass):
         if special_date is not None:
             self.calculate_energy_consumption_and_costs(special_date)
         # testing
-        self.combine_power_and_price_measurements()
 
         # run daily
         self.run_daily(self.generate_data_for_yesterday, time_daily_calculation)
@@ -47,21 +46,6 @@ class energy_consumption_and_costs(hass.Hass):
 
         # drop some measurements from testing
         #self.drop("sensor.test_measurement")
-        
-    def combine_power_and_price_measurements(self):
-        date_str = "2021-05-17"
-        ts_start_local = datetime.datetime.strptime(date_str + 'T00:00:00.0', '%Y-%m-%dT%H:%M:%S.%f').timestamp()
-        ts_start_local_ns = ts_start_local  * 1e9
-        ts_start_local_ns_plus_buffer = ts_start_local_ns - 12*3600*1e9 # +12 hours for query to know value before that day started
-        ts_end_local = datetime.datetime.strptime(date_str + 'T23:59:59.999999', '%Y-%m-%dT%H:%M:%S.%f').timestamp()
-        ts_end_local_ns = ts_end_local * 1e9 + 999
-
-        # load prices PV effective from db
-        query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, self.args["db_measurement_price_pv_effective"], int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
-        price_pv_effective_points = self.client.query(query).get_points()
-        for point in price_pv_effective_points:
-            self.log(point)
-            break
     
     def generate_data_for_yesterday(self, kwargs):
         yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
@@ -153,37 +137,37 @@ class energy_consumption_and_costs(hass.Hass):
         # load prices PV effective from db
         query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, self.args["db_measurement_price_pv_effective"], int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
         price_pv_effective_points = self.client.query(query).get_points()
-        price_pv_effective_timestrings = []
-        price_pv_effective_timestamps = []
-        price_pv_effective_values = []
-        for point in price_pv_effective_points:
-            timestamp_local = datetime.datetime.strptime(point["time"], '%Y-%m-%dT%H:%M:%S.%fZ').timestamp() + utc_offset_timestamp
-            if timestamp_local < ts_start_local:
-                break
-            price_pv_effective_timestamps.append(timestamp_local)
-            price_pv_effective_timestrings.append(point["time"])
-            price_pv_effective_values.append(point[self.db_field])
-        price_pv_effective_timestamps.append(ts_start_local - utc_offset_timestamp - 300)
-        price_pv_effective_timestrings.append(datetime.datetime.fromtimestamp(ts_start_local - utc_offset_timestamp - 300).strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
-        price_pv_effective_values.append(self.price_per_kWh_without_pv)
+#        price_pv_effective_timestrings = []
+#        price_pv_effective_timestamps = []
+#        price_pv_effective_values = []
+#        for point in price_pv_effective_points:
+#            timestamp_local = datetime.datetime.strptime(point["time"], '%Y-%m-%dT%H:%M:%S.%fZ').timestamp() + utc_offset_timestamp
+#            if timestamp_local < ts_start_local:
+#                break
+#            price_pv_effective_timestamps.append(timestamp_local)
+#            price_pv_effective_timestrings.append(point["time"])
+#            price_pv_effective_values.append(point[self.db_field])
+#        price_pv_effective_timestamps.append(ts_start_local - utc_offset_timestamp - 300)
+#        price_pv_effective_timestrings.append(datetime.datetime.fromtimestamp(ts_start_local - utc_offset_timestamp - 300).strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
+#        price_pv_effective_values.append(self.price_per_kWh_without_pv)
         
         # load prices PV invoice from db
         query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, self.args["db_measurement_price_pv_invoice"], int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
         price_pv_invoice_points = self.client.query(query).get_points()
-        price_pv_invoice_timestrings = []
-        price_pv_invoice_timestamps = []
-        price_pv_invoice_values = []
-        for point in price_pv_invoice_points:
-            timestamp_local = datetime.datetime.strptime(point["time"], '%Y-%m-%dT%H:%M:%S.%fZ').timestamp() + utc_offset_timestamp
-            if timestamp_local < ts_start_local:
-                break
-            price_pv_invoice_timestamps.append(timestamp_local)
-            price_pv_invoice_timestrings.append(point["time"])
-            price_pv_invoice_values.append(point[self.db_field])
-        price_pv_invoice_timestamps.append(ts_start_local - utc_offset_timestamp - 300)
-        price_pv_invoice_timestrings.append(datetime.datetime.fromtimestamp(ts_start_local - utc_offset_timestamp - 300).strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
-        price_pv_invoice_values.append(self.price_per_kWh_without_pv)
-        self.log("Time for finding prices: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation))
+#        price_pv_invoice_timestrings = []
+#        price_pv_invoice_timestamps = []
+#        price_pv_invoice_values = []
+#        for point in price_pv_invoice_points:
+#            timestamp_local = datetime.datetime.strptime(point["time"], '%Y-%m-%dT%H:%M:%S.%fZ').timestamp() + utc_offset_timestamp
+#            if timestamp_local < ts_start_local:
+#                break
+#            price_pv_invoice_timestamps.append(timestamp_local)
+#            price_pv_invoice_timestrings.append(point["time"])
+#            price_pv_invoice_values.append(point[self.db_field])
+#        price_pv_invoice_timestamps.append(ts_start_local - utc_offset_timestamp - 300)
+#        price_pv_invoice_timestrings.append(datetime.datetime.fromtimestamp(ts_start_local - utc_offset_timestamp - 300).strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
+#        price_pv_invoice_values.append(self.price_per_kWh_without_pv)
+#        self.log("Time for finding prices: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation))
         
         # calculate for each power sensor
         consumption_kWh_known = 0.0
@@ -196,20 +180,21 @@ class energy_consumption_and_costs(hass.Hass):
             # load power values from db
             query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, sensor_power, int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
             measurement_points = self.client.query(query).get_points()
+            steps_combined = self.combine_measurements(measurement_points, price_pv_effective_points, price_pv_invoice_points, 0, self.price_per_kWh_without_pv, self.db_field)
             consumption_Ws = 0.0
             cost_effective = 0.0
             cost_invoice = 0.0
             past_timestep = ts_end_local
             start_time_reached = False
-            for point in measurement_points:
+            for point in steps_combined:
                 timestamp_local = datetime.datetime.strptime(point["time"], '%Y-%m-%dT%H:%M:%S.%fZ').timestamp() + utc_offset_timestamp
                 if timestamp_local < ts_start_local:
                     timestamp_local = ts_start_local
                     start_time_reached = True
                 time_delta_s = past_timestep - timestamp_local
                 energy_Ws = point[self.db_field] * time_delta_s
-                price_pv_effective = self.find_value_by_timestamp(price_pv_effective_timestamps, price_pv_effective_values, timestamp_local)
-                price_pv_invoice = self.find_value_by_timestamp(price_pv_invoice_timestamps, price_pv_invoice_values, timestamp_local)
+                price_pv_effective = point["price_effective"]
+                price_pv_invoice = point["price_invoice"]
                 cost_effective = cost_effective + price_pv_effective * energy_Ws / 3600000
                 cost_invoice = cost_invoice + price_pv_invoice * energy_Ws / 3600000
                 consumption_Ws = consumption_Ws + energy_Ws
@@ -361,14 +346,40 @@ class energy_consumption_and_costs(hass.Hass):
             attributes_updated["Kosten mit PV Abrechnung dieses Winterjahr"] = Kosten_mit_PV_Abrechnung_dieses_Winterjahr + cost_invoice
         return attributes_updated
 
-    def find_value_by_timestamp(self, list_of_timestamps, list_of_values, timestamp):
-        counter = 0
-        for t in list_of_timestamps:
-            if t <= timestamp:
-                break
-            else:
-                counter += 1
-        return list_of_values[counter]
+#    def find_value_by_timestamp(self, list_of_timestamps, list_of_values, timestamp):
+#        counter = 0
+#        for t in list_of_timestamps:
+#            if t <= timestamp:
+#                break
+#            else:
+#                counter += 1
+#        return list_of_values[counter]
+    
+    def combine_measurements(self, points_power, points_price_effective, points_price_invoice, start_power, start_price, db_field):
+        all_timesteps = []
+        for price in points_price_effective:
+            all_timesteps.append(price["time"])
+        for price in points_price_invoice:
+            all_timesteps.append(price["time"])
+        for power in points_power:
+            all_timesteps.append(power["time"])
+        current_price_effective = start_price
+        current_price_invoice = start_price
+        current_power = start_power
+        total_list = []
+        for ts in sorted(all_timesteps):
+            for price in points_price_effective:
+                if ts == price["time"]:
+                    current_price_effective = price[db_field]
+            for price in points_price_invoice:
+                if ts == price["time"]:
+                    current_price_invoice = price[db_field]
+            for power in points_power:
+                if ts == power["time"]:
+                    current_power = power[db_field]
+            ts_dict = {"time":ts, "price_effective":current_price_effective, "price_invoice":current_price_invoice, "power":current_power}
+            total_list.append(ts_dict)
+        return total_list
     
     def get_ha_power_sensors_for_consumption_calculation(self):
         all_ha_sensors = self.get_state("sensor").keys()
