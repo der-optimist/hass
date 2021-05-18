@@ -28,6 +28,8 @@ cards:
         name: Zieltemperatur
       - entity: sensor.water_heater_current_temp
         name: Temperatur aktuell
+      - entity: water_heater.dhw1
+        name: Water-Heater
       - type: section
         label: Gerät
       - entity: sensor.bosch_health_status
