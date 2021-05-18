@@ -21,7 +21,21 @@ class pv(hass.Hass):
 #        except Exception as e:
 #            self.log("Error running forecast at startup. Error was {}".format(e))
         self.run_every(self.update_forecast_regularly, "now", 15 * 60)
+        # --- values of today ---
+        self.ad_namespace = "ad_namespace"
+        self.sensor_name_counter_pv_produced_midnight = "sensor.counter_pv_produced_midnight"
+        self.counter_entity_pv_produced = "sensor.stromzaehler_pv_ac_gesamt"
+        self.sensor_name_counter_pv_sold_midnight = "sensor.counter_pv_sold_midnight"
+        self.counter_entity_pv_sold = "sensor.stromzaehler_netzeinspeisung"
+        self.run_daily(self.save_counter_values_at_midnight, datetime.time(0, 0, 4))
+        
     
+    def save_counter_values_at_midnight(self, kwargs):
+        value_counter_pv_produced_midnight = self.get_state(self.counter_entity_pv_produced)
+        self.set_state(self.sensor_name_counter_pv_midnight, state = value_counter_pv_produced_midnight, attributes = {"updated":datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')}, namespace = self.ad_namespace)
+        value_counter_pv_sold_midnight = self.get_state(self.counter_entity_pv_sold)
+        self.set_state(self.sensor_name_counter_pv_midnight, state = value_counter_pv_sold_midnight, attributes = {"updated":datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')}, namespace = self.ad_namespace)
+        
     def update_forecast_regularly(self, kwargs):
         current_forecasts = self.get_state(self.sensor_rest_forecast, attribute = "forecasts")
         self.update_forecast(self.sensor_rest_forecast, "forecasts", None, current_forecasts, None)
