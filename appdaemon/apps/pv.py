@@ -30,7 +30,7 @@ class pv(hass.Hass):
         self.counter_entity_pv_sold = "sensor.stromzaehler_netzeinspeisung"
         self.counter_entity_pv_sold_day = "sensor.pv_netzeinspeisung_tag"
         self.run_daily(self.save_counter_values_at_midnight, datetime.time(0, 0, 4))
-        self.save_counter_values_at_midnight(None)
+        #self.save_counter_values_at_midnight(None)
         self.run_every(self.update_daily_counters, "now+10", 5 * 60)
         
     
@@ -41,8 +41,8 @@ class pv(hass.Hass):
         self.set_state(self.sensor_name_counter_pv_sold_midnight, state = value_counter_pv_sold_midnight, attributes = {"updated":datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')}, namespace = self.ad_namespace)
         
     def update_daily_counters(self, kwargs):
-        pv_produced_day = self.get_state(self.counter_entity_pv_produced) - self.get_state(self.sensor_name_counter_pv_produced_midnight, namespace = self.ad_namespace)
-        pv_sold_day = self.get_state(self.counter_entity_pv_sold) - self.get_state(self.sensor_name_counter_pv_sold_midnight, namespace = self.ad_namespace)
+        pv_produced_day = float(self.get_state(self.counter_entity_pv_produced)) - float(self.get_state(self.sensor_name_counter_pv_produced_midnight, namespace = self.ad_namespace))
+        pv_sold_day = float(self.get_state(self.counter_entity_pv_sold)) - float(self.get_state(self.sensor_name_counter_pv_sold_midnight, namespace = self.ad_namespace))
         self.set_state(self.counter_entity_pv_produced_day, state = pv_produced_day, attributes = {"fiendly_name": "PV-Erzeugung heute", "icon":"mdi:counter",  "unit_of_measurement": "kWh"})
         self.set_state(self.counter_entity_pv_sold_day, state = pv_sold_day, attributes = {"fiendly_name": "PV-Einspeisung heute", "icon":"mdi:counter",  "unit_of_measurement": "kWh"})
         
