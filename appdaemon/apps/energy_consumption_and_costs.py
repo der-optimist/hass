@@ -37,6 +37,7 @@ class energy_consumption_and_costs(hass.Hass):
         if special_date is not None:
             self.calculate_energy_consumption_and_costs(special_date)
         # testing
+        self.combine_power_and_price_measurements()
 
         # run daily
         self.run_daily(self.generate_data_for_yesterday, time_daily_calculation)
@@ -47,7 +48,19 @@ class energy_consumption_and_costs(hass.Hass):
         # drop some measurements from testing
         #self.drop("sensor.test_measurement")
         
-        
+    def combine_power_and_price_measurements(self):
+        date_str = "2021-05-17"
+        ts_start_local = datetime.datetime.strptime(date_str + 'T00:00:00.0', '%Y-%m-%dT%H:%M:%S.%f').timestamp()
+        ts_start_local_ns = ts_start_local  * 1e9
+        ts_start_local_ns_plus_buffer = ts_start_local_ns - 12*3600*1e9 # +12 hours for query to know value before that day started
+        ts_end_local = datetime.datetime.strptime(date_str + 'T23:59:59.999999', '%Y-%m-%dT%H:%M:%S.%f').timestamp()
+        ts_end_local_ns = ts_end_local * 1e9 + 999
+
+        # load prices PV effective from db
+        query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, self.args["db_measurement_price_pv_effective"], int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
+        price_pv_effective_points = self.client.query(query).get_points()
+        self.log(price_pv_effective_points)
+    
     def generate_data_for_yesterday(self, kwargs):
         yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
         #today_str = (datetime.datetime.now()).strftime('%Y-%m-%d')
