@@ -1,0 +1,9 @@
+global_vars:
+  module: global_vars
+  class: global_vars
+  # permanent recorder db
+  db_host: "a0d7b954-influxdb"
+  db_user: "appdaemon"
+  db_name: "homeassistant_permanent"
+  db_passwd: !secret permanent_db_passwd
+  db_field_float: state_float
