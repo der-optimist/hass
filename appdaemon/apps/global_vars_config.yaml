@@ -10,3 +10,6 @@ global_vars:
   db_field_float: state_float
   # namespace
   ad_namespace: "ad_namespace"
+  # energy prices and consumption
+  input_number_entity_price_per_kwh: input_number.strompreis
+  input_number_entitycompensation_per_kwh: input_number.pv_einspeiseverguetung
