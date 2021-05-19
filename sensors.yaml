@@ -127,6 +127,31 @@
         icon_template: mdi:currency-eur
 #
 #     --------------------------------
+#     --        Ertrag PV           --
+#     --------------------------------
+#
+      pv_geldertrag_durch_einspeisung_gesamt:
+        value_template: "{{ '%.2f'%((states('sensor.stromzaehler_netzeinspeisung') | float ) * (states('input_number.pv_einspeiseverguetung') | float)) }}"
+        friendly_name: 'PV Ertrag Einspeisung'
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+      pv_geldertrag_durch_eigenverbrauch_gesamt:
+        value_template: "{{ '%.2f'%(((states('sensor.stromzaehler_pv_ac_gesamt') | float ) - (states('sensor.stromzaehler_netzeinspeisung') | float ))* (states('input_number.strompreis') | float)) }}"
+        friendly_name: 'PV Ertrag Eigenverbrauch'
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+      pv_geldertrag_gesamt:
+        value_template: "{{ '%.2f'%((states('sensor.pv_geldertrag_durch_einspeisung_gesamt') | float ) + (states('sensor.pv_geldertrag_durch_einspeisung_gesamt') | float)) }}"
+        friendly_name: 'PV Ertrag gesamt'
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+      pv_geldbetrag_bis_amortisation:
+        value_template: "{{ '%.2f'%(13725 - (states('sensor.pv_geldertrag_gesamt') | float)) }}"
+        friendly_name: 'PV verbleibend bis Amortisation'
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+#
+#     --------------------------------
 #     --   Elektrische Leistung     --
 #     --------------------------------
 #
