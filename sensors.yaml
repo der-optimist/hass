@@ -141,7 +141,7 @@
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
       pv_geldertrag_gesamt:
-        value_template: "{{ '%.2f'%((states('sensor.pv_geldertrag_durch_einspeisung_gesamt') | float ) + (states('sensor.pv_geldertrag_durch_einspeisung_gesamt') | float)) }}"
+        value_template: "{{ '%.2f'%((states('sensor.pv_geldertrag_durch_einspeisung_gesamt') | float ) + (states('sensor.pv_geldertrag_durch_eigenverbrauch_gesamt') | float)) }}"
         friendly_name: 'PV Ertrag gesamt'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
