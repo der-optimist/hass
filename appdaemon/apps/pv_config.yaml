@@ -1,3 +1,19 @@
 pv:
   module: pv
   class: pv
+  dependencies: global_vars
+  # daily counter values => daily production
+  # produced
+  sensor_name_counter_pv_produced_midnight: "sensor.counter_pv_produced_midnight"
+  counter_entity_pv_produced: "sensor.stromzaehler_pv_ac_gesamt"
+  counter_entity_pv_produced_day: "sensor.pv_erzeugung_tag"
+  # sold
+  sensor_name_counter_pv_sold_midnight: "sensor.counter_pv_sold_midnight"
+  counter_entity_pv_sold: "sensor.stromzaehler_netzeinspeisung"
+  counter_entity_pv_sold_day: "sensor.pv_netzeinspeisung_tag"
+  # own consumption
+  counter_entity_pv_used_day: "sensor.pv_eigenverbrauch_tag"
+  # saved money
+  entity_pv_saved_money_by_selling_day: "sensor.pv_geldertrag_durch_einspeisung_tag"
+  entity_pv_saved_money_by_consuming_day: "sensor.pv_geldertrag_durch_eigenverbrauch_tag"
+  entity_pv_saved_money_total_day: "sensor.pv_geldertrag_gesamt_tag"
