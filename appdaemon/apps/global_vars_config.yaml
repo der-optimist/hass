@@ -7,3 +7,5 @@ global_vars:
   db_name: "homeassistant_permanent"
   db_passwd: !secret permanent_db_passwd
   db_field_float: state_float
+  # namespace
+  ad_namespace: "ad_namespace"
