@@ -10,6 +10,8 @@ cards:
         name: Gewitter!
       - entity: sensor.blitzortung_lightning_distance
         name: Blitz Distanz
+      - entity: sensor.blitz_distanz_min
+        name: nächster Blitz letzte 5 min
       - entity: sensor.blitzortung_lightning_counter
         name: Blitz Anzahl
   - type: entities
