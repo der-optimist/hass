@@ -96,6 +96,16 @@
         unit_of_measurement: '%'
         device_class: humidity
 #
+#     ------------------------------
+#     --       Gewitter           --
+#     ------------------------------
+#
+      blitz_distanz_min:
+        friendly_name: "Blitz Distanz letzte 5min"
+        value_template: "{{ state_attr('sensor.blitz_distanz_mean', 'min_value') }}"
+        unit_of_measurement: 'km'
+        icon_template: mdi:map-marker-distance
+#
 #     --------------------------------
 #     --     Stromverbrauch         --
 #     --------------------------------
@@ -841,6 +851,12 @@
     sampling_size: 2000
     max_age:
       minutes: 30
+  - platform: statistics
+    name: Blitz Distanz Mean
+    entity_id: sensor.blitzortung_lightning_distance
+    sampling_size: 1000
+    max_age:
+      minutes: 5
 #
 # --------------------------------
 # --                            --
