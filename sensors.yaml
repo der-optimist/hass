@@ -146,7 +146,7 @@
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
       pv_geldbetrag_bis_amortisation:
-        value_template: "{{ '%.2f'%(13725 - (states('sensor.pv_geldertrag_gesamt') | float)) }}"
+        value_template: "{{ '%.2f'%(13724.42 - (states('sensor.pv_geldertrag_gesamt') | float)) }}"
         friendly_name: 'PV verbleibend bis Amortisation'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
