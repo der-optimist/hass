@@ -204,7 +204,7 @@ class energy_consumption_and_costs(hass.Hass):
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated, namespace = self.ad_namespace)
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated)
                 self.client.write_points([{"measurement":consumption_sensor_name,"fields":attributes_db,"time":int(ts_save_local_ns)}])
-        
+        return
         # calculate the unknown consumers
         consumption_kWh_unknown = consumption_kWh_total - consumption_kWh_known
         cost_without_pv_unknown = cost_without_pv_total - cost_without_pv_known
