@@ -210,7 +210,7 @@ class energy_consumption_and_costs(hass.Hass):
         cost_effective_unknown = cost_effective_total - cost_effective_known
         cost_invoice_unknown = cost_invoice_total - cost_invoice_known
         consumption_sensor_name = self.sensor_name_consumption_unknown
-        attributes_updated = self.update_consumption_attributes(consumption_sensor_name, consumption_kWh_unknown, cost_without_pv_unknown, cost_effective_unknown, cost_invoice_unknown, month_finished, calendar_year_finished, winter_year_finished)
+        attributes_updated, attributes_db = self.update_consumption_attributes(consumption_sensor_name, consumption_kWh_unknown, cost_without_pv_unknown, cost_effective_unknown, cost_invoice_unknown, month_finished, calendar_year_finished, winter_year_finished)
         # save all that stuff
         if self.args["do_consumption_calculation"]:
             self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated, namespace = self.ad_namespace)
