@@ -192,7 +192,7 @@ class energy_consumption_and_costs(hass.Hass):
                     timestamp_local = ts_start_local
                     start_time_reached = True
                 time_delta_s = past_timestep - timestamp_local
-                energy_Ws = point[self.db_field] * time_delta_s
+                energy_Ws = point["power"] * time_delta_s
                 price_pv_effective = point["price_effective"]
                 price_pv_invoice = point["price_invoice"]
                 cost_effective = cost_effective + price_pv_effective * energy_Ws / 3600000
