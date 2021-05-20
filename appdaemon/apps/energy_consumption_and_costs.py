@@ -31,7 +31,7 @@ class energy_consumption_and_costs(hass.Hass):
         special_date = self.args.get("special_date", None)
         # restore sensors in HA
         #self.reset_all_sensors_in_ad_namespace()# Caution! all consumption data in HA will be reset
-        #self.reset_all_sensors_in_db() # Caution! all consumption data in DB will be lost!
+        self.reset_all_sensors_in_db() # Caution! all consumption data in DB will be lost!
         self.restore_sensors_in_ha()
         # calculate for a given single date
         if special_date is not None:
@@ -194,13 +194,13 @@ class energy_consumption_and_costs(hass.Hass):
             # add it to a consumption sensor now
             
             consumption_sensor_name = sensor_power.replace("sensor.el_leistung_", "sensor.stromverbrauch_")
-            attributes_updated = self.update_consumption_attributes(consumption_sensor_name, consumption_kWh, cost_without_pv, cost_effective, cost_invoice, month_finished, calendar_year_finished, winter_year_finished)
+            attributes_updated, attributes_db = self.update_consumption_attributes(consumption_sensor_name, consumption_kWh, cost_without_pv, cost_effective, cost_invoice, month_finished, calendar_year_finished, winter_year_finished)
             
             # save all that stuff
             if self.args["do_consumption_calculation"]:
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated, namespace = self.ad_namespace)
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated)
-                self.client.write_points([{"measurement":consumption_sensor_name,"fields":attributes_updated,"time":int(ts_save_local_ns)}])
+                self.client.write_points([{"measurement":consumption_sensor_name,"fields":attributes_db,"time":int(ts_save_local_ns)}])
         
         # calculate the unknown consumers
         consumption_kWh_unknown = consumption_kWh_total - consumption_kWh_known
@@ -353,7 +353,7 @@ class energy_consumption_and_costs(hass.Hass):
             attributes_updated["Kosten mit PV effektiv dieses Winterjahr"] = Kosten_mit_PV_effektiv_dieses_Winterjahr + cost_effective
             attributes_updated["Kosten mit PV Abrechnung dieses Winterjahr"] = Kosten_mit_PV_Abrechnung_dieses_Winterjahr + cost_invoice
             attributes_updated["Einsparung durch PV dieses Winterjahr"] = attributes_updated["Kosten ohne PV dieses Winterjahr"] - attributes_updated["Kosten mit PV Abrechnung dieses Winterjahr"]
-        return attributes_updated
+        return attributes_updated, attributes_db
 
 #    def find_value_by_timestamp(self, list_of_timestamps, list_of_values, timestamp):
 #        counter = 0
