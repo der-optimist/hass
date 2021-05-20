@@ -368,6 +368,7 @@ class energy_consumption_and_costs(hass.Hass):
 #        return list_of_values[counter]
     
     def combine_measurements(self, points_power, points_price_effective, points_price_invoice, start_power, start_price, db_field):
+        self.log("db_field: {}".format(db_field))
         all_timesteps = []
         for price in points_price_effective:
             all_timesteps.append(price["time"])
@@ -381,6 +382,7 @@ class energy_consumption_and_costs(hass.Hass):
         current_power = start_power
         total_list = []
         for ts in sorted(all_timesteps):
+            self.log("ts: {}".format(ts))
             for price in points_price_effective:
                 if ts == price["time"]:
                     current_price_effective = price[db_field]
