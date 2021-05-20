@@ -150,7 +150,7 @@ class energy_consumption_and_costs(hass.Hass):
         sensors_for_power_calculation = self.get_ha_power_sensors_for_consumption_calculation()
         for sensor_power in sensors_for_power_calculation:
             if not sensor_power == "sensor.el_leistung_kochfeld":
-                break
+                continue
             self.log(sensor_power)
             ts_start_calculation = datetime.datetime.now().timestamp()
             # load power values from db
