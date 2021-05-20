@@ -382,7 +382,7 @@ class energy_consumption_and_costs(hass.Hass):
         current_power = start_power
         total_list = []
         for ts in sorted(all_timesteps):
-            self.log("ts: {}".format(ts))
+            #self.log("ts: {}".format(ts))
             for price in points_price_effective:
                 if ts == price["time"]:
                     current_price_effective = price[db_field]
@@ -391,9 +391,11 @@ class energy_consumption_and_costs(hass.Hass):
                 if ts == price["time"]:
                     current_price_invoice = price[db_field]
             for power in points_power:
+                self.log("checked power point: {}".format(power))
                 if ts == power["time"]:
                     current_power = power[db_field]
-                    self.log(current_power)
+                    self.log("found: {}".format(current_power))
+            break
             ts_dict = {"time":ts, "price_effective":current_price_effective, "price_invoice":current_price_invoice, "power":current_power}
             total_list.append(ts_dict)
         return total_list
