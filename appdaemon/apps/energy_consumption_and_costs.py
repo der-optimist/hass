@@ -389,12 +389,13 @@ class energy_consumption_and_costs(hass.Hass):
                 if ts == price["time"]:
                     current_price_effective = price[db_field]
             for price in points_price_invoice:
+                var = price["time"]
                 if ts == price["time"]:
                     current_price_invoice = price[db_field]
             for power in points_power:
                 self.log("checked power point: {}".format(power))
-                self.log("type ts: {} - type power:  {}".format(type(ts),type(power)))
-                if ts == power["time"]:
+                self.log("type ts: {} - type power:  {} - var: {}".format(type(ts),type(power),type(var)))
+                if ts == str(power["time"]):
                     current_power = power[db_field]
                     self.log("found: {}".format(current_power))
             break
