@@ -119,7 +119,8 @@ class energy_consumption_and_costs(hass.Hass):
         ts_end_local_ns = ts_end_local * 1e9 + 999
         
         f = open("/config/www/stromverbrauch/data.py", "w")
-            
+        f.write("date_str = {}\n".format(date_str))
+        
         # load prices PV effective from db
         query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, self.args["db_measurement_price_pv_effective"], int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
         price_pv_effective_points = self.client.query(query).get_points()
