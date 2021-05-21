@@ -8,6 +8,12 @@
   alarm_activated:
     name: Wasseralarm aktiviert
     icon: mdi:alarm-light-outline
+  stromverbrauch_todo:
+    name: Berechnung Stromverbrauch steht an
+    icon: mdi:calculator
+  stromverbrauch_ist_berechnet:
+    name: Stromverbrauch ist berechnet
+    icon: mdi:progress-check
   gewitter:
     name: Gewitter
     icon: mdi:flash-alert
