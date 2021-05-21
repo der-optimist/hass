@@ -382,10 +382,10 @@ class energy_consumption_and_costs(hass.Hass):
         current_price_invoice = start_price
         current_power = start_power
         total_list = []
-        self.log(all_timesteps)
-        self.log(points_power)
-        self.log(points_price_effective)
-        self.log(points_price_invoice)
+        #self.log(all_timesteps)
+        #self.log(points_power)
+        #self.log(points_price_effective)
+        #self.log(points_price_invoice)
         return
         for ts in sorted(all_timesteps):
             #self.log("ts: {}".format(ts))
