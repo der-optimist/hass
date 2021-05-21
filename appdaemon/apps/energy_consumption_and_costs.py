@@ -383,6 +383,7 @@ class energy_consumption_and_costs(hass.Hass):
         total_list = []
         #self.log(all_timesteps)
         #self.log(points_power)
+        return
         for ts in sorted(all_timesteps):
             #self.log("ts: {}".format(ts))
             for price in points_price_effective:
