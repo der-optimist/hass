@@ -205,7 +205,7 @@ class energy_consumption_and_costs(hass.Hass):
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated, namespace = self.ad_namespace)
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated)
                 self.client.write_points([{"measurement":consumption_sensor_name,"fields":attributes_db,"time":int(ts_save_local_ns)}])
-        return
+                
         # calculate the unknown consumers
         consumption_kWh_unknown = consumption_kWh_total - consumption_kWh_known
         cost_without_pv_unknown = cost_without_pv_total - cost_without_pv_known
@@ -371,36 +371,45 @@ class energy_consumption_and_costs(hass.Hass):
     def combine_measurements(self, points_power, points_price_effective, points_price_invoice, start_power, start_price, db_field):
 #        self.log("db_field: {}".format(db_field))
         all_timesteps = []
+        price_effective_timesteps = []
+        price_effective_values = []
+        price_invoice_timesteps = []
+        price_invoice_values = []
+        power_timesteps = []
+        power_values = []
         for price in points_price_effective:
             all_timesteps.append(price["time"])
+            price_effective_timesteps.append(price["time"])
+            price_effective_values.append(price[db_field])
         for price in points_price_invoice:
             all_timesteps.append(price["time"])
+            price_invoice_timesteps.append(price["time"])
+            price_invoice_values.append(price[db_field])
         for power in points_power:
             all_timesteps.append(power["time"])
-#            self.log(power)
+            power_timesteps.append(power["time"])
+            power_values.append(power[db_field])
+        #            self.log(power)
         current_price_effective = start_price
         current_price_invoice = start_price
         current_power = start_power
         total_list = []
-        #self.log(all_timesteps)
-        #self.log(points_power)
-        #self.log(points_price_effective)
-        #self.log(points_price_invoice)
-        return
+        
         for ts in sorted(all_timesteps):
             #self.log("ts: {}".format(ts))
-            for price in points_price_effective:
-                if ts == price["time"]:
-                    current_price_effective = price[db_field]
-            for price in points_price_invoice:
-                if ts == price["time"]:
-                    current_price_invoice = price[db_field]
-            for power in points_power:
-#                self.log("checked power point: {}".format(power))
-                #self.log("type ts: {} - type power:  {} - var: {}".format(type(ts),type(power),type(var)))
-                if ts == str(power["time"]):
-                    current_power = power[db_field]
-#                    self.log("found: {}".format(current_power))
+            try:
+                current_price_effective = price_effective_values[price_effective_timesteps.index(ts)]
+            except ValueError:
+                pass
+            try:
+                current_price_invoice = price_invoice_values[price_invoice_timesteps.index(ts)]
+            except ValueError:
+                pass
+            try:
+                current_power = power_values[power_timesteps.index(ts)]
+            except ValueError:
+                pass
+        
             ts_dict = {"time":ts, "price_effective":current_price_effective, "price_invoice":current_price_invoice, "power":current_power}
             total_list.append(ts_dict)
         return total_list
