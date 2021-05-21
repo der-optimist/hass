@@ -119,7 +119,7 @@ class energy_consumption_and_costs(hass.Hass):
         ts_end_local_ns = ts_end_local * 1e9 + 999
         
         f = open("/config/www/stromverbrauch/data.py", "w")
-        f.write("date_str = {}\n".format(date_str))
+        f.write("date_str = '{}'\n".format(date_str))
         f.write("start_power = 0.0\n")
         f.write("start_price = {}\n".format(self.price_per_kWh_without_pv))
         f.write("db_field = {}\n".format(self.db_field))
