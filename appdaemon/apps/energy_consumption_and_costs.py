@@ -149,9 +149,9 @@ class energy_consumption_and_costs(hass.Hass):
         cost_invoice_known = 0.0
         sensors_for_power_calculation = self.get_ha_power_sensors_for_consumption_calculation()
         for sensor_power in sensors_for_power_calculation:
-            #if not sensor_power == "sensor.el_leistung_kochfeld":
-            #    continue
-            #self.log(sensor_power)
+            if not sensor_power == "sensor.el_leistung_kochfeld":
+                continue
+            self.log(sensor_power)
             ts_start_calculation = datetime.datetime.now().timestamp()
             # load power values from db
             query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, sensor_power, int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
@@ -397,7 +397,6 @@ class energy_consumption_and_costs(hass.Hass):
                 if ts == str(power["time"]):
                     current_power = power[db_field]
 #                    self.log("found: {}".format(current_power))
-            break
             ts_dict = {"time":ts, "price_effective":current_price_effective, "price_invoice":current_price_invoice, "power":current_power}
             total_list.append(ts_dict)
         return total_list
