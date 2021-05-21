@@ -157,6 +157,7 @@ class energy_consumption_and_costs(hass.Hass):
             query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, sensor_power, int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
             measurement_points = self.client.query(query).get_points()
             steps_combined = self.combine_measurements(list(measurement_points), list(price_pv_effective_points), list(price_pv_invoice_points), 0, self.price_per_kWh_without_pv, self.db_field)
+            break
             consumption_Ws = 0.0
             cost_effective = 0.0
             cost_invoice = 0.0
@@ -204,7 +205,7 @@ class energy_consumption_and_costs(hass.Hass):
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated, namespace = self.ad_namespace)
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated)
                 self.client.write_points([{"measurement":consumption_sensor_name,"fields":attributes_db,"time":int(ts_save_local_ns)}])
-#        return
+        return
         # calculate the unknown consumers
         consumption_kWh_unknown = consumption_kWh_total - consumption_kWh_known
         cost_without_pv_unknown = cost_without_pv_total - cost_without_pv_known
@@ -381,8 +382,10 @@ class energy_consumption_and_costs(hass.Hass):
         current_price_invoice = start_price
         current_power = start_power
         total_list = []
-        #self.log(all_timesteps)
-        #self.log(points_power)
+        self.log(all_timesteps)
+        self.log(points_power)
+        self.log(points_price_effective)
+        self.log(points_price_invoice)
         return
         for ts in sorted(all_timesteps):
             #self.log("ts: {}".format(ts))
