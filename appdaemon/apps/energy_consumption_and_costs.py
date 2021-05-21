@@ -156,7 +156,7 @@ class energy_consumption_and_costs(hass.Hass):
             # load power values from db
             query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, sensor_power, int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
             measurement_points = self.client.query(query).get_points()
-            steps_combined = self.combine_measurements(measurement_points, price_pv_effective_points, price_pv_invoice_points, 0, self.price_per_kWh_without_pv, self.db_field)
+            steps_combined = self.combine_measurements(list(measurement_points), list(price_pv_effective_points), list(price_pv_invoice_points), 0, self.price_per_kWh_without_pv, self.db_field)
             consumption_Ws = 0.0
             cost_effective = 0.0
             cost_invoice = 0.0
@@ -394,7 +394,7 @@ class energy_consumption_and_costs(hass.Hass):
                     current_price_invoice = price[db_field]
             for power in points_power:
                 self.log("checked power point: {}".format(power))
-                self.log("type ts: {} - type power:  {} - var: {}".format(type(ts),type(power),type(var)))
+                #self.log("type ts: {} - type power:  {} - var: {}".format(type(ts),type(power),type(var)))
                 if ts == str(power["time"]):
                     current_power = power[db_field]
                     self.log("found: {}".format(current_power))
