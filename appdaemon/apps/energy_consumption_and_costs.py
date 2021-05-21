@@ -108,8 +108,6 @@ class energy_consumption_and_costs(hass.Hass):
         self.fire_event("custom_notify", message=message_text, target="telegram_jo")
 
     def calculate_energy_consumption_and_costs(self, date_str):
-        return
-        ts_start_calculation = datetime.datetime.now().timestamp()
         ts_start_calculation_total = datetime.datetime.now().timestamp()
         self.price_per_kWh_without_pv = float(self.get_state(self.args.get("input_number_entity_price_per_kwh", "input_number.strompreis")))
         
@@ -119,106 +117,31 @@ class energy_consumption_and_costs(hass.Hass):
         ts_start_local_ns_plus_buffer = ts_start_local_ns - 12*3600*1e9 # +12 hours for query to know value before that day started
         ts_end_local = datetime.datetime.strptime(date_str + 'T23:59:59.999999', '%Y-%m-%dT%H:%M:%S.%f').timestamp()
         ts_end_local_ns = ts_end_local * 1e9 + 999
-        ts_save_local_ns = datetime.datetime.strptime(date_str + 'T23:59:59.0', '%Y-%m-%dT%H:%M:%S.%f').timestamp() * 1e9
-        utc_offset_timestamp = datetime.datetime.now().timestamp() - datetime.datetime.utcnow().timestamp()
-        date_next_day_str = (datetime.datetime.strptime(date_str + 'T12:00:00.0', '%Y-%m-%dT%H:%M:%S.%f') + datetime.timedelta(1)).strftime('%Y-%m-%d')
-        if date_next_day_str[8:10] == "01":
-            month_finished = True
-        else:
-            month_finished = False
-        if date_next_day_str[5:10] == "01-01":
-            calendar_year_finished = True
-        else:
-            calendar_year_finished = False
-        if date_next_day_str[5:10] == "07-01":
-            winter_year_finished = True
-        else:
-            winter_year_finished = False
+        
+        f = open("/config/www/stromverbrauch/data.py", "w")
             
         # load prices PV effective from db
         query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, self.args["db_measurement_price_pv_effective"], int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
         price_pv_effective_points = self.client.query(query).get_points()
+        f.write("price_pv_effective_points = {}\n".format(list(price_pv_effective_points)))
 
         # load prices PV invoice from db
         query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, self.args["db_measurement_price_pv_invoice"], int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
         price_pv_invoice_points = self.client.query(query).get_points()
+        f.write("price_pv_invoice_points = {}\n".format(list(price_pv_invoice_points)))
         
         # calculate for each power sensor
-        consumption_kWh_known = 0.0
-        cost_without_pv_known = 0.0
-        cost_effective_known = 0.0 
-        cost_invoice_known = 0.0
         sensors_for_power_calculation = self.get_ha_power_sensors_for_consumption_calculation()
+        power_sensors = dict()
         for sensor_power in sensors_for_power_calculation:
-            if not sensor_power == "sensor.el_leistung_kochfeld":
-                continue
             self.log(sensor_power)
-            ts_start_calculation = datetime.datetime.now().timestamp()
             # load power values from db
             query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, sensor_power, int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
             measurement_points = self.client.query(query).get_points()
-            steps_combined = self.combine_measurements(list(measurement_points), list(price_pv_effective_points), list(price_pv_invoice_points), 0, self.price_per_kWh_without_pv, self.db_field)
-            consumption_Ws = 0.0
-            cost_effective = 0.0
-            cost_invoice = 0.0
-            past_timestep = ts_end_local
-            start_time_reached = False
-            for point in steps_combined:
-                timestamp_local = datetime.datetime.strptime(point["time"], '%Y-%m-%dT%H:%M:%S.%fZ').timestamp() + utc_offset_timestamp
-                if timestamp_local < ts_start_local:
-                    timestamp_local = ts_start_local
-                    start_time_reached = True
-                time_delta_s = past_timestep - timestamp_local
-                energy_Ws = point["power"] * time_delta_s
-                price_pv_effective = point["price_effective"]
-                price_pv_invoice = point["price_invoice"]
-                cost_effective = cost_effective + price_pv_effective * energy_Ws / 3600000
-                cost_invoice = cost_invoice + price_pv_invoice * energy_Ws / 3600000
-                consumption_Ws = consumption_Ws + energy_Ws
-                past_timestep = timestamp_local
-                if start_time_reached:
-                    break
-            consumption_kWh = consumption_Ws / 3600000
-            cost_without_pv = consumption_kWh * self.price_per_kWh_without_pv
-            if sensor_power == self.sensor_name_used_power_total:
-                consumption_kWh_total = consumption_kWh
-                cost_without_pv_total = cost_without_pv
-                cost_effective_total = cost_effective
-                cost_invoice_total = cost_invoice
-            else:
-                if not sensor_power in self.args["db_measurements_to_skip_for_calculating_sum"]:
-                    consumption_kWh_known = consumption_kWh_known + consumption_kWh
-                    cost_without_pv_known = cost_without_pv_known + cost_without_pv
-                    cost_effective_known = cost_effective_known + cost_effective
-                    cost_invoice_known = cost_invoice_known + cost_invoice
-            sensor_power_readable_name = self.args["sensor_names_readable"].get(sensor_power, sensor_power.replace("sensor.el_leistung_",""))
-            self.log("Time for calculating consumption and costs for {}: {}".format(sensor_power_readable_name,datetime.datetime.now().timestamp() - ts_start_calculation))
-            
-            # Consumption and Costs are now calculated for that power sensor
-            # add it to a consumption sensor now
-            
-            consumption_sensor_name = sensor_power.replace("sensor.el_leistung_", "sensor.stromverbrauch_")
-            attributes_updated, attributes_db = self.update_consumption_attributes(consumption_sensor_name, consumption_kWh, cost_without_pv, cost_effective, cost_invoice, month_finished, calendar_year_finished, winter_year_finished)
-            
-            # save all that stuff
-            if self.args["do_consumption_calculation"]:
-                self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated, namespace = self.ad_namespace)
-                self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated)
-                self.client.write_points([{"measurement":consumption_sensor_name,"fields":attributes_db,"time":int(ts_save_local_ns)}])
-                
-        # calculate the unknown consumers
-        consumption_kWh_unknown = consumption_kWh_total - consumption_kWh_known
-        cost_without_pv_unknown = cost_without_pv_total - cost_without_pv_known
-        cost_effective_unknown = cost_effective_total - cost_effective_known
-        cost_invoice_unknown = cost_invoice_total - cost_invoice_known
-        consumption_sensor_name = self.sensor_name_consumption_unknown
-        attributes_updated, attributes_db = self.update_consumption_attributes(consumption_sensor_name, consumption_kWh_unknown, cost_without_pv_unknown, cost_effective_unknown, cost_invoice_unknown, month_finished, calendar_year_finished, winter_year_finished)
-        # save all that stuff
-        if self.args["do_consumption_calculation"]:
-            self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated, namespace = self.ad_namespace)
-            self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated)
-            self.client.write_points([{"measurement":consumption_sensor_name,"fields":attributes_db,"time":int(ts_save_local_ns)}])
+            power_sensors[sensor_power] = list(measurement_points)
+        f.write("power_sensors = {}\n".format(power_sensors))
         
+        f.close()
         # how long did all that take?
         self.log("Time for calculating consumption and costs total: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation_total))
     
