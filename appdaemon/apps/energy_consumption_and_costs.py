@@ -120,6 +120,9 @@ class energy_consumption_and_costs(hass.Hass):
         
         f = open("/config/www/stromverbrauch/data.py", "w")
         f.write("date_str = {}\n".format(date_str))
+        f.write("start_power = 0.0\n")
+        f.write("start_price = {}\n".format(self.price_per_kWh_without_pv))
+        f.write("db_field = {}\n".format(self.db_field))
         
         # load prices PV effective from db
         query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, self.args["db_measurement_price_pv_effective"], int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
