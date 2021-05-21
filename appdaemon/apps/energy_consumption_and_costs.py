@@ -108,6 +108,7 @@ class energy_consumption_and_costs(hass.Hass):
         self.fire_event("custom_notify", message=message_text, target="telegram_jo")
 
     def calculate_energy_consumption_and_costs(self, date_str):
+        return
         ts_start_calculation = datetime.datetime.now().timestamp()
         ts_start_calculation_total = datetime.datetime.now().timestamp()
         self.price_per_kWh_without_pv = float(self.get_state(self.args.get("input_number_entity_price_per_kwh", "input_number.strompreis")))
