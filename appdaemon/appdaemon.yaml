@@ -13,6 +13,7 @@ appdaemon:
   time_zone: Europe/Berlin
   utility_delay: 10
   utility_skew: 9
+  internal_function_timeout: 60
 #  log_thread_actions: 1
   threadpool_workers: 20
   plugins:
