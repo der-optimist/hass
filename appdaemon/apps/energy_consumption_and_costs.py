@@ -149,9 +149,9 @@ class energy_consumption_and_costs(hass.Hass):
         cost_invoice_known = 0.0
         sensors_for_power_calculation = self.get_ha_power_sensors_for_consumption_calculation()
         for sensor_power in sensors_for_power_calculation:
-            if not sensor_power == "sensor.el_leistung_kochfeld":
-                continue
-            self.log(sensor_power)
+            #if not sensor_power == "sensor.el_leistung_kochfeld":
+            #    continue
+            #self.log(sensor_power)
             ts_start_calculation = datetime.datetime.now().timestamp()
             # load power values from db
             query = 'SELECT "{}" FROM "{}"."autogen"."{}" WHERE time >= {} AND time <= {} ORDER BY time DESC'.format(self.db_field, self.db_name, sensor_power, int(ts_start_local_ns_plus_buffer), int(ts_end_local_ns))
@@ -204,7 +204,7 @@ class energy_consumption_and_costs(hass.Hass):
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated, namespace = self.ad_namespace)
                 self.set_state(consumption_sensor_name, state = attributes_updated["Verbrauch gesamt"], attributes = attributes_updated)
                 self.client.write_points([{"measurement":consumption_sensor_name,"fields":attributes_db,"time":int(ts_save_local_ns)}])
-        return
+#        return
         # calculate the unknown consumers
         consumption_kWh_unknown = consumption_kWh_total - consumption_kWh_known
         cost_without_pv_unknown = cost_without_pv_total - cost_without_pv_known
@@ -368,7 +368,7 @@ class energy_consumption_and_costs(hass.Hass):
 #        return list_of_values[counter]
     
     def combine_measurements(self, points_power, points_price_effective, points_price_invoice, start_power, start_price, db_field):
-        self.log("db_field: {}".format(db_field))
+#        self.log("db_field: {}".format(db_field))
         all_timesteps = []
         for price in points_price_effective:
             all_timesteps.append(price["time"])
@@ -376,7 +376,7 @@ class energy_consumption_and_costs(hass.Hass):
             all_timesteps.append(price["time"])
         for power in points_power:
             all_timesteps.append(power["time"])
-            self.log(power)
+#            self.log(power)
         current_price_effective = start_price
         current_price_invoice = start_price
         current_power = start_power
@@ -389,15 +389,14 @@ class energy_consumption_and_costs(hass.Hass):
                 if ts == price["time"]:
                     current_price_effective = price[db_field]
             for price in points_price_invoice:
-                var = price["time"]
                 if ts == price["time"]:
                     current_price_invoice = price[db_field]
             for power in points_power:
-                self.log("checked power point: {}".format(power))
+#                self.log("checked power point: {}".format(power))
                 #self.log("type ts: {} - type power:  {} - var: {}".format(type(ts),type(power),type(var)))
                 if ts == str(power["time"]):
                     current_power = power[db_field]
-                    self.log("found: {}".format(current_power))
+#                    self.log("found: {}".format(current_power))
             break
             ts_dict = {"time":ts, "price_effective":current_price_effective, "price_invoice":current_price_invoice, "power":current_power}
             total_list.append(ts_dict)
