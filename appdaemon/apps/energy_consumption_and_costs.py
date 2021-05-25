@@ -231,6 +231,10 @@ class energy_consumption_and_costs(hass.Hass):
         
         # how long did all that take?
         self.log("Time for calculating consumption and costs total: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation_total))
+        
+        # reset "external calculation finished" flag
+        self.turn_off("input_boolean.stromverbrauch_ist_berechnet")
+        
         yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
         if date_str == yesterday_str:
             self.send_message(None)
