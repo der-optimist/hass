@@ -231,8 +231,11 @@ class energy_consumption_and_costs(hass.Hass):
         
         # how long did all that take?
         self.log("Time for calculating consumption and costs total: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation_total))
-        self.turn_off("input_boolean.stromverbrauch_ist_berechnet")
-        self.send_message(None)
+        yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
+        if date_str == yesterday_str:
+            self.send_message(None)
+        else:
+            self.fire_event("custom_notify", message="Stromverbrauch berechnet für {}".format(date_str), target="telegram_jo")
 
     def update_consumption_attributes(self, consumption_sensor_name, consumption_kWh, cost_without_pv, cost_effective, cost_invoice, month_finished, calendar_year_finished, winter_year_finished):
         attributes_updated = dict()
