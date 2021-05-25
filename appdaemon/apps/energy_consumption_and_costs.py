@@ -231,6 +231,7 @@ class energy_consumption_and_costs(hass.Hass):
         
         # how long did all that take?
         self.log("Time for calculating consumption and costs total: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation_total))
+        self.turn_off("input_boolean.stromverbrauch_ist_berechnet")
         self.send_message(None)
 
     def update_consumption_attributes(self, consumption_sensor_name, consumption_kWh, cost_without_pv, cost_effective, cost_invoice, month_finished, calendar_year_finished, winter_year_finished):
