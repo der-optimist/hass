@@ -30,7 +30,7 @@ class energy_consumption_and_costs(hass.Hass):
         self.sensor_name_consumption_unknown = self.args.get("sensor_name_consumption_unknown", "sensor.stromverbrauch_unbekannte_verbraucher")
         special_date = self.args.get("special_date", None)
         # restore sensors in HA
-        #self.reset_all_sensors_in_ad_namespace()# Caution! all consumption data in HA will be reset
+        self.reset_all_sensors_in_ad_namespace()# Caution! all consumption data in HA will be reset
         self.reset_all_sensors_in_db() # Caution! all consumption data in DB will be lost!
         self.restore_sensors_in_ha()
         # calculate for a given single date
