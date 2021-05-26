@@ -9,7 +9,7 @@ energy_consumption_and_costs:
   db_field: state_float
   input_number_entity_price_per_kwh: input_number.strompreis
   #save_measurement_name: energy_consumption_daily
-  special_date: "2021-05-18"
+  special_date: "2021-05-19"
   db_measurement_price_pv_effective: sensor.strompreis_aktuell_effektiv_euro
   db_measurement_price_pv_invoice: sensor.strompreis_aktuell_abrechnung_euro
   db_measurement_total_kWh: sensor.stromzaehler_netzbezug
