@@ -7,8 +7,8 @@ url_todo = "http://homeassistant.fritz.box:8123/api/states/input_boolean.stromve
 url_done = "http://homeassistant.fritz.box:8123/api/states/input_boolean.stromverbrauch_ist_berechnet"
 url_result_data = "http://homeassistant.fritz.box:8123/api/states/sensor.stromverbrauch_tag_extern_berechnet"
 url_data = "http://homeassistant.fritz.box:8123/local/stromverbrauch/data.py"
-#path_data_local = "/home/pi/stromverbrauch/data.py"
-path_data_local = "C:\\Users\\F36121\\Desktop\\temp\\stromberechnung_pi\\data.py"
+path_data_local = "/home/pi/stromverbrauch/data.py"
+#path_data_local = "C:\\Users\\F36121\\Desktop\\temp\\stromberechnung_pi\\data.py"
 
 
 def combine_measurements(points_power, points_price_effective, points_price_invoice, start_power, start_price, db_field):
@@ -74,7 +74,7 @@ if state_todo == "on":
     # reset "todo" flag
     data = {"state": "off"}
     response = requests.post(url_todo, headers=headers, data=json.dumps(data))
-    print(response.text)
+#    print(response.text)
     
     # import input data
     from data import date_str, power_sensors, price_pv_effective_points, price_pv_invoice_points, start_power, start_price, db_field, ts_start_local, ts_end_local, utc_offset_timestamp
@@ -109,26 +109,21 @@ if state_todo == "on":
         consumption_kWh = consumption_Ws / 3600000
         cost_without_pv = consumption_kWh * start_price
         dict_results[sensor] = {"consumption_kWh":consumption_kWh, "cost_without_pv":cost_without_pv, "cost_effective":cost_effective, "cost_invoice":cost_invoice}
-        print("{}: {}".format(sensor,dict_results[sensor]))
+        #print("{}: {}".format(sensor,dict_results[sensor]))
     
     # send result to HA
     result_state = datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
     result_attributes = {"date_str":date_str, "dict_results":dict_results}
     data = {"state": result_state, "attributes": result_attributes}
     response = requests.post(url_result_data, headers=headers, data=json.dumps(data))
-    print("\nSending result to HA")
-    print(response.text)
+    #print("\nSending result to HA")
+    #print(response.text)
     
     # set result-finished-flag
     data = {"state": "on"}
     response = requests.post(url_done, headers=headers, data=json.dumps(data))
-    print("\nSetting the done flag in HA")
-    print(response.text)
+    #print("\nSetting the done flag in HA")
+    #print(response.text)
     
-    #f = open(path_result_local, "w")
-    #f.write("date_str = '{}'\n".format(date_str))
-    #f.write("dict_results = {}\n".format(dict_results))
-    #f.close()
-    
-    print("Time total: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation))
+    #print("Time total: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation))
 
