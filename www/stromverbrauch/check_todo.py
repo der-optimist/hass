@@ -7,8 +7,9 @@ url_todo = "http://homeassistant.fritz.box:8123/api/states/input_boolean.stromve
 url_done = "http://homeassistant.fritz.box:8123/api/states/input_boolean.stromverbrauch_ist_berechnet"
 url_result_data = "http://homeassistant.fritz.box:8123/api/states/sensor.stromverbrauch_tag_extern_berechnet"
 url_data = "http://homeassistant.fritz.box:8123/local/stromverbrauch/data.py"
-path_data_local = "/home/pi/stromverbrauch/data.py"
-#path_data_local = "C:\\Users\\F36121\\Desktop\\temp\\stromberechnung_pi\\data.py"
+#path_data_local = "/home/pi/stromverbrauch/data.py"
+path_data_local = "C:\\Users\\F36121\\Desktop\\temp\\stromberechnung_pi\\data.py"
+
 
 def combine_measurements(points_power, points_price_effective, points_price_invoice, start_power, start_price, db_field):
     all_timesteps = []
@@ -54,8 +55,6 @@ def combine_measurements(points_power, points_price_effective, points_price_invo
     return total_list
 
 
-
-
 ha_auth = "Bearer " + ha_token
 headers = {
     "Authorization": ha_auth,
@@ -90,7 +89,10 @@ if state_todo == "on":
         past_timestep = ts_end_local
         start_time_reached = False
         for point in steps_combined[::-1]:
-            timestamp_local = datetime.datetime.strptime(point["time"], '%Y-%m-%dT%H:%M:%S.%fZ').timestamp() + utc_offset_timestamp
+            try:
+                timestamp_local = datetime.datetime.strptime(point["time"], '%Y-%m-%dT%H:%M:%S.%fZ').timestamp() + utc_offset_timestamp
+            except ValueError:
+                timestamp_local = datetime.datetime.strptime(point["time"], '%Y-%m-%dT%H:%M:%SZ').timestamp() + utc_offset_timestamp
             if timestamp_local < ts_start_local:
                 timestamp_local = ts_start_local
                 start_time_reached = True
@@ -120,7 +122,7 @@ if state_todo == "on":
     # set result-finished-flag
     data = {"state": "on"}
     response = requests.post(url_done, headers=headers, data=json.dumps(data))
-    print("\nSeting the done flag in HA")
+    print("\nSetting the done flag in HA")
     print(response.text)
     
     #f = open(path_result_local, "w")
@@ -129,3 +131,4 @@ if state_todo == "on":
     #f.close()
     
     print("Time total: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation))
+
