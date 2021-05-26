@@ -236,7 +236,7 @@ class energy_consumption_and_costs(hass.Hass):
         self.turn_off("input_boolean.stromverbrauch_ist_berechnet")
         
         yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
-        if date_str == yesterday_str:
+        if self.args.get("special_date", None) == None:
             self.send_message(None)
         else:
             self.fire_event("custom_notify", message="Stromverbrauch berechnet für {}".format(date_str), target="telegram_jo")
