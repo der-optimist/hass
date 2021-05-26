@@ -159,6 +159,7 @@ class energy_consumption_and_costs(hass.Hass):
         
         # set todo flag for external calculation
         self.turn_on("input_boolean.stromverbrauch_todo")
+        self.fire_event("custom_notify", message="Berechnung vorbereitet für {}".format(date_str), target="telegram_jo")
 
     def postprocess_data_for_energy_consumption_and_costs_calculation(self):
         ts_start_calculation_total = datetime.datetime.now().timestamp()
