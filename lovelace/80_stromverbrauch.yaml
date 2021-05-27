@@ -55,9 +55,9 @@ cards:
             name: Luftentf. Waschküche
           - entity: sensor.el_leistung_innr_sp_120_luftentfeuchter_partyraum
             name: Luftentf. Partyraum
-          - entity: sensor.sensor.el_leistung_tuya_sd_2
+          - entity: sensor.el_leistung_tuya_sd_2
             name: Heizung Partyraum vorne
-          - entity: sensor.sensor.el_leistung_tuya_sd_1
+          - entity: sensor.el_leistung_tuya_sd_1
             name: Heizung Partyraum hinten
           - type: custom:template-entity-row
             name: Lüftungsanlage
