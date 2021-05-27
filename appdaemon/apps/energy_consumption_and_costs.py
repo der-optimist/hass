@@ -14,7 +14,7 @@ class energy_consumption_and_costs(hass.Hass):
     
     def initialize_delayed(self, kwargs):
         # define daily time to run the calculation:
-        time_daily_calculation =  datetime.time(3, 1, 2)
+        time_daily_calculation =  datetime.time(5, 5, 2)
 #        time_daily_message =  datetime.time(4, 35, 43)
         # initialize database stuff
         self.host = self.args.get("db_host", "a0d7b954-influxdb")
@@ -41,7 +41,7 @@ class energy_consumption_and_costs(hass.Hass):
         # testing
 
         # run daily
-        #self.run_daily(self.generate_data_for_yesterday, time_daily_calculation)
+        self.run_daily(self.generate_data_for_yesterday, time_daily_calculation)
         #self.run_daily(self.send_message, time_daily_message)
         #self.send_message_for_yesterday(None)
         #self.generate_data_for_yesterday(None) # Caution! Will lead to double values, if used additionally to daily calculation!
