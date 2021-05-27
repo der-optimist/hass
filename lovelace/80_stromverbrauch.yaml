@@ -12,9 +12,13 @@ cards:
         show_header_toggle: false
         entities:
           - type: section
-            label: Netz
-          - entity: sensor.el_leistung_stromzaehler_netzbezug
-            name: Gesamtleistung Netz
+            label: Netz und PV
+          - entity: sensor.el_leistung_verbrauch_gesamt
+            name: Verbrauch aktuell
+          - entity: sensor.el_leistung_netz
+            name: Leistung Netz
+          - entity: sensor.el_leistung_pv_ac
+            name: Leistung PV
           - type: section
             label: EG
           - type: custom:template-entity-row
@@ -51,6 +55,10 @@ cards:
             name: Luftentf. Waschküche
           - entity: sensor.el_leistung_innr_sp_120_luftentfeuchter_partyraum
             name: Luftentf. Partyraum
+          - entity: sensor.sensor.el_leistung_tuya_sd_2
+            name: Heizung Partyraum vorne
+          - entity: sensor.sensor.el_leistung_tuya_sd_1
+            name: Heizung Partyraum hinten
           - type: custom:template-entity-row
             name: Lüftungsanlage
             entity: sensor.el_leistung_luftungsanlage
@@ -93,6 +101,12 @@ cards:
             name: berechnete Lichter
             entity: sensor.el_leistung_berechnete_lichter
             state: "{{ '%.1f'%(states('sensor.el_leistung_berechnete_lichter')) | float }} W"
+          - type: section
+            label: Sonstiges
+          - type: custom:template-entity-row
+            name: Dauerverbraucher
+            entity: sensor.el_leistung_dauerverbraucher
+            state: "{{ '%.1f'%(states('sensor.el_leistung_dauerverbraucher')) | float }} W"
       - type: entities
         title: Verbrauch heute
         show_header_toggle: false
