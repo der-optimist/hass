@@ -187,7 +187,7 @@
             {% elif ((states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float)) < 0 %}
               0.0
             {% else %}
-              {{ 100*((states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float)) | round(1) }}
+              {{ (100*((states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float))) | round(1) }}
             {% endif %}
           {% else %}
             0.0
