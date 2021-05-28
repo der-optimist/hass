@@ -236,7 +236,6 @@ class energy_consumption_and_costs(hass.Hass):
         # reset "external calculation finished" flag
         self.turn_off("input_boolean.stromverbrauch_ist_berechnet")
         
-        yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
         if self.args.get("special_date", None) == None:
             self.send_message(None)
         else:
@@ -311,7 +310,7 @@ class energy_consumption_and_costs(hass.Hass):
         attributes_updated["Kosten mit PV Abrechnung gesamt"] = Kosten_mit_PV_Abrechnung_gesamt + cost_invoice
         attributes_updated["Einsparung durch PV gesamt"] = attributes_updated["Kosten ohne PV gesamt"] - attributes_updated["Kosten mit PV Abrechnung gesamt"]
         if attributes_updated["Kosten ohne PV gesamt"] > 0.0:
-            attributes_updated["Einsparung Prozent durch PV gesamt"] = attributes_updated["Einsparung durch PV gesamt"] / attributes_updated["Kosten ohne PV gesamt"]
+            attributes_updated["Einsparung Prozent durch PV gesamt"] = 100 * attributes_updated["Einsparung durch PV gesamt"] / attributes_updated["Kosten ohne PV gesamt"]
         else:
             attributes_updated["Einsparung Prozent durch PV gesamt"] = 0.0
         attributes_db["Kosten ohne PV gesamt"] = attributes_updated["Kosten ohne PV gesamt"]
@@ -325,7 +324,7 @@ class energy_consumption_and_costs(hass.Hass):
             attributes_updated["Kosten mit PV Abrechnung gestern"] = cost_invoice
             attributes_updated["Einsparung durch PV gestern"] = attributes_updated["Kosten ohne PV gestern"] - attributes_updated["Kosten mit PV Abrechnung gestern"]
             if attributes_updated["Kosten ohne PV gestern"] > 0.0:
-                attributes_updated["Einsparung Prozent durch PV gestern"] = attributes_updated["Einsparung durch PV gestern"] / attributes_updated["Kosten ohne PV gestern"]
+                attributes_updated["Einsparung Prozent durch PV gestern"] = 100 * attributes_updated["Einsparung durch PV gestern"] / attributes_updated["Kosten ohne PV gestern"]
             else:
                 attributes_updated["Einsparung Prozent durch PV gestern"] = 0.0
         attributes_db["Kosten ohne PV Tag"] = cost_without_pv
@@ -333,7 +332,7 @@ class energy_consumption_and_costs(hass.Hass):
         attributes_db["Kosten mit PV Abrechnung Tag"] = cost_invoice
         attributes_db["Einsparung durch PV Tag"] = attributes_db["Kosten ohne PV Tag"] - attributes_db["Kosten mit PV Abrechnung Tag"]
         if attributes_db["Kosten ohne PV Tag"] > 0.0:
-            attributes_db["Einsparung Prozent durch PV Tag"] = attributes_db["Einsparung durch PV Tag"] / attributes_db["Kosten ohne PV Tag"]
+            attributes_db["Einsparung Prozent durch PV Tag"] = 100 * attributes_db["Einsparung durch PV Tag"] / attributes_db["Kosten ohne PV Tag"]
         else:
             attributes_db["Einsparung Prozent durch PV Tag"] = 0.0
         if month_finished:
@@ -347,7 +346,7 @@ class energy_consumption_and_costs(hass.Hass):
             attributes_updated["Kosten mit PV Abrechnung letzter Monat"] = Kosten_mit_PV_Abrechnung_dieser_Monat + cost_invoice
             attributes_updated["Einsparung durch PV letzter Monat"] = attributes_updated["Kosten ohne PV letzter Monat"] - attributes_updated["Kosten mit PV Abrechnung letzter Monat"]
             if attributes_updated["Kosten ohne PV letzter Monat"] > 0.0:
-                attributes_updated["Einsparung Prozent durch PV letzter Monat"] = attributes_updated["Einsparung durch PV letzter Monat"] / attributes_updated["Kosten ohne PV letzter Monat"]
+                attributes_updated["Einsparung Prozent durch PV letzter Monat"] = 100 * attributes_updated["Einsparung durch PV letzter Monat"] / attributes_updated["Kosten ohne PV letzter Monat"]
             else:
                 attributes_updated["Einsparung Prozent durch PV letzter Monat"] = 0.0
             attributes_db["Kosten ohne PV Monat"] = attributes_updated["Kosten ohne PV letzter Monat"]
@@ -361,7 +360,7 @@ class energy_consumption_and_costs(hass.Hass):
             attributes_updated["Kosten mit PV Abrechnung dieser Monat"] = Kosten_mit_PV_Abrechnung_dieser_Monat + cost_invoice
             attributes_updated["Einsparung durch PV dieser Monat"] = attributes_updated["Kosten ohne PV dieser Monat"] - attributes_updated["Kosten mit PV Abrechnung dieser Monat"]
             if attributes_updated["Kosten ohne PV dieser Monat"] > 0.0:
-                attributes_updated["Einsparung Prozent durch PV dieser Monat"] = attributes_updated["Einsparung durch PV dieser Monat"] / attributes_updated["Kosten ohne PV dieser Monat"]
+                attributes_updated["Einsparung Prozent durch PV dieser Monat"] = 100 * attributes_updated["Einsparung durch PV dieser Monat"] / attributes_updated["Kosten ohne PV dieser Monat"]
             else:
                 attributes_updated["Einsparung Prozent durch PV dieser Monat"] = 0.0
         if calendar_year_finished:
@@ -375,7 +374,7 @@ class energy_consumption_and_costs(hass.Hass):
             attributes_updated["Kosten mit PV Abrechnung letztes Kalenderjahr"] = Kosten_mit_PV_Abrechnung_dieses_Kalenderjahr + cost_invoice
             attributes_updated["Einsparung durch PV letztes Kalenderjahr"] = attributes_updated["Kosten ohne PV letztes Kalenderjahr"] - attributes_updated["Kosten mit PV Abrechnung letztes Kalenderjahr"]
             if attributes_updated["Kosten ohne PV letztes Kalenderjahr"] > 0.0:
-                attributes_updated["Einsparung Prozent durch PV letztes Kalenderjahr"] = attributes_updated["Einsparung durch PV letztes Kalenderjahr"] / attributes_updated["Kosten ohne PV letztes Kalenderjahr"]
+                attributes_updated["Einsparung Prozent durch PV letztes Kalenderjahr"] = 100 * attributes_updated["Einsparung durch PV letztes Kalenderjahr"] / attributes_updated["Kosten ohne PV letztes Kalenderjahr"]
             else:
                 attributes_updated["Einsparung Prozent durch PV letztes Kalenderjahr"] = 0.0
             attributes_db["Kosten ohne PV Kalenderjahr"] = attributes_updated["Kosten ohne PV letztes Kalenderjahr"]
@@ -389,7 +388,7 @@ class energy_consumption_and_costs(hass.Hass):
             attributes_updated["Kosten mit PV Abrechnung dieses Kalenderjahr"] = Kosten_mit_PV_Abrechnung_dieses_Kalenderjahr + cost_invoice
             attributes_updated["Einsparung durch PV dieses Kalenderjahr"] = attributes_updated["Kosten ohne PV dieses Kalenderjahr"] - attributes_updated["Kosten mit PV Abrechnung dieses Kalenderjahr"]
             if attributes_updated["Kosten ohne PV dieses Kalenderjahr"] > 0.0:
-                attributes_updated["Einsparung Prozent durch PV dieses Kalenderjahr"] = attributes_updated["Einsparung durch PV dieses Kalenderjahr"] / attributes_updated["Kosten ohne PV dieses Kalenderjahr"]
+                attributes_updated["Einsparung Prozent durch PV dieses Kalenderjahr"] = 100 * attributes_updated["Einsparung durch PV dieses Kalenderjahr"] / attributes_updated["Kosten ohne PV dieses Kalenderjahr"]
             else: 
                 attributes_updated["Einsparung Prozent durch PV dieses Kalenderjahr"] = 0.0
         if winter_year_finished:
@@ -403,7 +402,7 @@ class energy_consumption_and_costs(hass.Hass):
             attributes_updated["Kosten mit PV Abrechnung letztes Winterjahr"] = Kosten_mit_PV_Abrechnung_dieses_Winterjahr + cost_invoice
             attributes_updated["Einsparung durch PV letztes Winterjahr"] = attributes_updated["Kosten ohne PV letztes Winterjahr"] - attributes_updated["Kosten mit PV Abrechnung letztes Winterjahr"]
             if attributes_updated["Kosten ohne PV letztes Winterjahr"] > 0.0:
-                attributes_updated["Einsparung Prozent durch PV letztes Winterjahr"] = attributes_updated["Einsparung durch PV letztes Winterjahr"] / attributes_updated["Kosten ohne PV letztes Winterjahr"]
+                attributes_updated["Einsparung Prozent durch PV letztes Winterjahr"] = 100 * attributes_updated["Einsparung durch PV letztes Winterjahr"] / attributes_updated["Kosten ohne PV letztes Winterjahr"]
             else:
                 attributes_updated["Einsparung Prozent durch PV letztes Winterjahr"] = 0.0
             attributes_db["Kosten ohne PV Winterjahr"] = attributes_updated["Kosten ohne PV letztes Winterjahr"]
@@ -417,7 +416,7 @@ class energy_consumption_and_costs(hass.Hass):
             attributes_updated["Kosten mit PV Abrechnung dieses Winterjahr"] = Kosten_mit_PV_Abrechnung_dieses_Winterjahr + cost_invoice
             attributes_updated["Einsparung durch PV dieses Winterjahr"] = attributes_updated["Kosten ohne PV dieses Winterjahr"] - attributes_updated["Kosten mit PV Abrechnung dieses Winterjahr"]
             if attributes_updated["Kosten ohne PV dieses Winterjahr"] > 0.0:
-                attributes_updated["Einsparung Prozent durch PV dieses Winterjahr"] = attributes_updated["Einsparung durch PV dieses Winterjahr"] / attributes_updated["Kosten ohne PV dieses Winterjahr"]
+                attributes_updated["Einsparung Prozent durch PV dieses Winterjahr"] = 100 * attributes_updated["Einsparung durch PV dieses Winterjahr"] / attributes_updated["Kosten ohne PV dieses Winterjahr"]
             else:
                 attributes_updated["Einsparung Prozent durch PV dieses Winterjahr"] = 0.0
         return attributes_updated, attributes_db
