@@ -33,6 +33,7 @@ cards:
     entities:
       - entity: input_boolean.stromverbrauch_todo
       - entity: input_boolean.stromverbrauch_ist_berechnet
+      - entity: sensor.stromverbrauch_tag_extern_berechnet
       - entity: sensor.stromverbrauch_verbrauch_gesamt
   - type: entities
     title: "Wasser"
