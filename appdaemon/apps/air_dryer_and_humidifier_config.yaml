@@ -34,18 +34,18 @@ luftentfeuchter_partyraum:
   input_number_timer_special_humidity: input_number.timer_spezial_luftf_werkelraum
   name_reminder_switch_tank: switch.reminder_luftentfeuchter_werkelraum_tank
   text_reminder_switch_tank: "Tank Luftentfeucher Partyraum leeren"
-luftbefeuchter_wz:
-  module: air_dryer_and_humidifier
-  class: air_dryer_and_humidifier
-  machine_type: humidifier
-  air_dryer_or_humidifier_switch: switch.esp_sd_2_relais
-  energy_measurement_sensor: sensor.el_leistung_esp_sd_2
-  humidity_sensor: sensor.luftfeuchtigkeit_kuche_aqara
-  humidity_standard_max: 50
-  humidity_standard_min: 46
-  humidity_special_max: 55
-  humidity_special_min: 51
-  zigbee: False
-  input_number_timer_special_humidity: input_number.timer_spezial_luftf_wz
-  name_reminder_switch_tank: switch.reminder_luftbefeuchter_wz_tank
-  text_reminder_switch_tank: "Luftbefeuchter WZ füllen"
+#luftbefeuchter_wz:
+#  module: air_dryer_and_humidifier
+#  class: air_dryer_and_humidifier
+#  machine_type: humidifier
+#  air_dryer_or_humidifier_switch: switch.esp_sd_2_relais
+#  energy_measurement_sensor: sensor.el_leistung_esp_sd_2
+#  humidity_sensor: sensor.luftfeuchtigkeit_kuche_aqara
+#  humidity_standard_max: 50
+#  humidity_standard_min: 46
+#  humidity_special_max: 55
+#  humidity_special_min: 51
+#  zigbee: False
+#  input_number_timer_special_humidity: input_number.timer_spezial_luftf_wz
+#  name_reminder_switch_tank: switch.reminder_luftbefeuchter_wz_tank
+#  text_reminder_switch_tank: "Luftbefeuchter WZ füllen"
