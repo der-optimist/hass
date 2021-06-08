@@ -85,6 +85,10 @@ lovelace:
       type: module
     - url: /hacsfiles/apexcharts-card/apexcharts-card.js
       type: module
+    - url: /hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js
+      type: module
+    - url: /hacsfiles/power-wheel-card/power-wheel-card.js
+      type: module
 
 automation: !include automations.yaml
 config:
