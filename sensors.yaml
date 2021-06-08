@@ -459,7 +459,7 @@
         icon_template: mdi:speedometer
       el_leistung_dauerverbraucher:
         # Werte:
-            # USV:                          58 (gemessen)
+            # USV:                          63 (gemessen)
             #     - Fritzbox
             #     - Kabel-Modem
             #     - Repeater Keller
@@ -484,7 +484,7 @@
             # Enthärtungsanlage              3   (geschätzt)
             # Robbi                          1   (geschätzt)
             # Digibit                        8   (zwischen 6 und 9 gemessen)
-        value_template: "{{ (now().hour | float / 1000000) + 58 + 0.5 + 2 + 4.5 + 5 + 4 + 2 + 5 + 6 + 6 + 3 + 2 + 1 + 1.5 + 1.5 + 1 + 2 + 3 + 1 + 8}}"
+        value_template: "{{ (now().hour | float / 1000000) + 63 + 0.5 + 2 + 4.5 + 5 + 4 + 2 + 5 + 6 + 6 + 3 + 2 + 1 + 1.5 + 1.5 + 1 + 2 + 3 + 1 + 8}}"
         friendly_name: 'El. Leistung Dauerverbraucher'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
