@@ -221,8 +221,8 @@
 #       --------------------------------
 #
       einspeiselimit_watt:
-#        value_template: "{{ (states('input_number.pv_einspeisebegrenzung_prozent') | float ) * (states('input_number.pv_installierte_peakleistung') | float ) * 0.01 }}"
-        value_template: "{{ 30 }}"
+        value_template: "{{ (states('input_number.pv_einspeisebegrenzung_prozent') | float ) * (states('input_number.pv_installierte_peakleistung') | float ) * 0.01 }}"
+#        value_template: "{{ 30 }}"
         friendly_name: 'El. Leistung Einspeiselimit'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
