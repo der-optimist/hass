@@ -32,6 +32,10 @@ cards:
       - sensor.pv_geldertrag_durch_eigenverbrauch_gesamt
       - sensor.pv_geldertrag_durch_einspeisung_gesamt
       - sensor.pv_geldbetrag_bis_amortisation
+      - type: custom:template-entity-row
+        name: Prozent abbezahlt
+        entity: sensor.pv_geldertrag_gesamt
+        state: "{{ '%.2f'%(100*(states('sensor.pv_geldertrag_gesamt') | float) / ((states('sensor.pv_geldertrag_gesamt') | float) + (states('sensor.pv_geldbetrag_bis_amortisation') | float))) }} %"
   - type: custom:apexcharts-card
     experimental:
       color_threshold: true
