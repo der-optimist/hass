@@ -8,12 +8,14 @@ cards:
     entities:
       - entity: input_boolean.gewitter
         name: Gewitter!
-      - entity: sensor.blitzortung_lightning_distance
+      - entity: sensor.blitz_distanz_wemos_d1_1
         name: Blitz Distanz
       - entity: sensor.blitz_distanz_min
         name: nächster Blitz letzte 5 min
-      - entity: sensor.blitzortung_lightning_counter
-        name: Blitz Anzahl
+      - entity: sensor.blitz_energie_wemos_d1_1
+        name: Blitz Energie
+      - entity: sensor.blitz_event_wemos_d1_1
+        name: Ereignis-Art Sensor
   - type: entities
     title: Temperatur, Helligkeit, Regen
     show_header_toggle: false
