@@ -246,6 +246,7 @@ class energy_consumption_and_costs(hass.Hass):
         attributes_db = dict()
         if self.entity_exists(consumption_sensor_name, namespace = self.ad_namespace):
             attributes = self.get_state(consumption_sensor_name, attribute="all", namespace = "ad_namespace")["attributes"]
+            attributes_updated = attributes
             Verbrauch_gesamt = attributes["Verbrauch gesamt"]
             Verbrauch_dieser_Monat = attributes["Verbrauch dieser Monat"]
             Verbrauch_dieses_Kalenderjahr = attributes["Verbrauch dieses Kalenderjahr"]
