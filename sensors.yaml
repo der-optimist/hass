@@ -661,6 +661,41 @@
 # MQTT without mqtt-discovery
 #
 #   --------------------------------
+#   --     Blitz und T/LF         --
+#   --------------------------------
+#
+  - platform: mqtt
+    name: "Blitz Distanz Wemos D1 1"
+    state_topic: "tele/esp-wemos-d1-1/SENSOR"
+    value_template: '{{ value_json["AS3935"]["Distance"] }}'
+    unit_of_measurement: "km"
+  - platform: mqtt
+    name: "Blitz Event Wemos D1 1"
+    state_topic: "tele/esp-wemos-d1-1/SENSOR"
+    value_template: '{{ value_json["AS3935"]["Event"] }}'
+    unit_of_measurement: "Art"
+  - platform: mqtt
+    name: "Blitz Energie Wemos D1 1"
+    state_topic: "tele/esp-wemos-d1-1/SENSOR"
+    value_template: '{{ value_json["AS3935"]["Energy"] }}'
+    unit_of_measurement: "J"
+  - platform: mqtt
+    name: "Temp Wemos D1 1"
+    state_topic: "tele/esp-wemos-d1-1/SENSOR"
+    value_template: '{{ value_json["BME280"]["Temperature"] }}'
+    unit_of_measurement: "°C"
+  - platform: mqtt
+    name: "Luftfeuchtigkeit Wemos D1 1"
+    state_topic: "tele/esp-wemos-d1-1/SENSOR"
+    value_template: '{{ value_json["BME280"]["Humidity"] }}'
+    unit_of_measurement: "%"
+  - platform: mqtt
+    name: "Luftdruck Wemos D1 1"
+    state_topic: "tele/esp-wemos-d1-1/SENSOR"
+    value_template: '{{ value_json["BME280"]["Pressure"] }}'
+    unit_of_measurement: "hPa"
+#
+#   --------------------------------
 #   --     Sonoff POW R2 1        --
 #   --------------------------------
 #
