@@ -1,6 +1,7 @@
 import requests
 import datetime
 import json
+import time
 from ha_token import ha_token # a file named ha_token.py must be placed next to this one, content: ha_token = ABCDEF
 
 url_todo = "http://homeassistant.fritz.box:8123/api/states/input_boolean.stromverbrauch_todo"
@@ -120,10 +121,10 @@ if state_todo == "on":
     #print(response.text)
     
     # set result-finished-flag
+    time.sleep(10)
     data = {"state": "on"}
     response = requests.post(url_done, headers=headers, data=json.dumps(data))
     #print("\nSetting the done flag in HA")
     #print(response.text)
     
     #print("Time total: {}".format(datetime.datetime.now().timestamp() - ts_start_calculation))
-
