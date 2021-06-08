@@ -28,6 +28,13 @@ cards:
     entities:
       - entity: media_player.kodi_wz
   - type: entities
+    title: "externe Stromberechnung"
+    show_header_toggle: false
+    entities:
+      - entity: input_boolean.stromverbrauch_todo
+      - entity: input_boolean.stromverbrauch_ist_berechnet
+      - entity: sensor.stromverbrauch_verbrauch_gesamt
+  - type: entities
     title: "Wasser"
     show_header_toggle: false
     entities:
