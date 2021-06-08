@@ -76,3 +76,7 @@ cards:
           return entity.attributes.timestamps_daily.map((ts_d, index) => {
             return [new Date(ts_d).getTime(), entity.attributes.forecast_values_daily[index]];
           });
+  - type: custom:power-wheel-card
+    solar_power_entity: sensor.el_leistung_pv_ac
+    grid_power_entity: sensor.el_leistung_netz
+    production_is_positive: false
