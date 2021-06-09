@@ -917,6 +917,12 @@
     sampling_size: 1000
     max_age:
       minutes: 5
+  - platform: statistics
+    name: Strompreis effektiv letzte 3 Minuten
+    entity_id: sensor.strompreis_aktuell_effektiv_euro
+    sampling_size: 100
+    max_age:
+      minutes: 3
 #
 # --------------------------------
 # --                            --
