@@ -88,6 +88,6 @@ cards:
     solar_power_entity: sensor.el_leistung_pv_ac
     grid_power_entity: sensor.el_leistung_netz
     production_is_positive: false
-    solar_icon: "mdi:weather-sunny"
+    solar_icon: "mdi:solar-power"
     grid_icon: "mdi:transmission-tower"
     home_icon: "mdi:home"
