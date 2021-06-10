@@ -45,9 +45,16 @@ class energy_consumption_and_costs(hass.Hass):
         #self.run_daily(self.send_message, time_daily_message)
         #self.send_message_for_yesterday(None)
         #self.generate_data_for_yesterday(None) # Caution! Will lead to double values, if used additionally to daily calculation!
+        
+        # create dummy sensor for external results to avoid "None" result on first usage
+        self.run_in(self.create_dummy_sensor,52)
 
         # drop some measurements from testing
         #self.drop("sensor.test_measurement")
+        
+    def create_dummy_sensor(self, kwargs):
+        if not self.entity_exists("sensor.stromverbrauch_tag_extern_berechnet"):
+            self.set_state("sensor.stromverbrauch_tag_extern_berechnet", state = "waiting for external result", attributes = {"info": "created dummy entity from AD"})
     
     def generate_data_for_yesterday(self, kwargs):
         yesterday_str = (datetime.datetime.now() - datetime.timedelta(1)).strftime('%Y-%m-%d')
