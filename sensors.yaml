@@ -901,7 +901,7 @@
 #
 # --------------------------------
 # --                            --
-# --         Statistics         --
+# --  Statistics  and filter    --
 # --                            --
 # --------------------------------
 #
@@ -917,12 +917,13 @@
     sampling_size: 1000
     max_age:
       minutes: 5
-  - platform: statistics
+  - platform: filter
     name: Strompreis effektiv letzte 3 Minuten
     entity_id: sensor.strompreis_aktuell_effektiv_euro
-    sampling_size: 100
-    max_age:
-      minutes: 3
+    filters:
+      - filter: time_simple_moving_average
+        window_size: "00:03"
+        precision: 3
 #
 # --------------------------------
 # --                            --
