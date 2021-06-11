@@ -924,6 +924,20 @@
       - filter: time_simple_moving_average
         window_size: "00:03"
         precision: 3
+  - platform: filter
+    name: Netzbezug letzte 3 Minuten
+    entity_id: sensor.el_leistung_netz
+    filters:
+      - filter: time_simple_moving_average
+        window_size: "00:03"
+        precision: 0
+  - platform: filter
+    name: Netzbezug letzte 10 Minuten
+    entity_id: sensor.el_leistung_netz
+    filters:
+      - filter: time_simple_moving_average
+        window_size: "00:10"
+        precision: 0
 #
 # --------------------------------
 # --                            --
