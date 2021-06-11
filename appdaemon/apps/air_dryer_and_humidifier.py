@@ -189,6 +189,7 @@ class air_dryer_and_humidifier(hass.Hass):
         except:
             self.log("error converting new value to float")
             pass
+        self.check_if_dryer_or_humidifier_needed()
         
     def electrical_measurement_state_changed(self, entity, attributes, old, new, kwargs):
         if float(new) > 1.0:
