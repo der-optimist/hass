@@ -11,9 +11,9 @@ luftentfeuchter_waschkueche:
   humidity_special_max: 47
   humidity_special_min: 42
   use_pv_power: True
-  pv_power_sensor: sensor.netzbezug_letzte_10_minuten
-  pv_power_for_step_1: 400
-  humidity_change_step_1: 10
+  pv_power_sensor: sensor.netzbezug_letzte_3_minuten
+  pv_power_for_step_1: 300
+  humidity_change_step_1: 5
   zigbee: True
   zha_device_ieee: '00:15:8d:00:04:0b:11:2f'
   zha_device_command_time_1: left_single
@@ -35,8 +35,8 @@ luftentfeuchter_partyraum:
   humidity_special_max: 53
   humidity_special_min: 51
   use_pv_power: True
-  pv_power_sensor: sensor.netzbezug_letzte_10_minuten
-  pv_power_for_step_1: 400
+  pv_power_sensor: sensor.netzbezug_letzte_3_minuten
+  pv_power_for_step_1: 500
   humidity_change_step_1: 10
   zigbee: False
   input_number_timer_special_humidity: input_number.timer_spezial_luftf_werkelraum
