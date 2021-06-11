@@ -10,6 +10,9 @@ luftentfeuchter_waschkueche:
   humidity_standard_min: 45
   humidity_special_max: 47
   humidity_special_min: 42
+  use_pv_power: True
+  pv_power_for_step_1: 400
+  humidity_change_step_1: 10
   zigbee: True
   zha_device_ieee: '00:15:8d:00:04:0b:11:2f'
   zha_device_command_time_1: left_single
@@ -30,6 +33,9 @@ luftentfeuchter_partyraum:
   humidity_standard_min: 56
   humidity_special_max: 53
   humidity_special_min: 51
+  use_pv_power: True
+  pv_power_for_step_1: 400
+  humidity_change_step_1: 10
   zigbee: False
   input_number_timer_special_humidity: input_number.timer_spezial_luftf_werkelraum
   name_reminder_switch_tank: switch.reminder_luftentfeuchter_werkelraum_tank
@@ -45,6 +51,7 @@ luftentfeuchter_partyraum:
 #  humidity_standard_min: 46
 #  humidity_special_max: 55
 #  humidity_special_min: 51
+#  use_pv_power: False
 #  zigbee: False
 #  input_number_timer_special_humidity: input_number.timer_spezial_luftf_wz
 #  name_reminder_switch_tank: switch.reminder_luftbefeuchter_wz_tank
