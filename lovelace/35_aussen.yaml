@@ -30,10 +30,10 @@ cards:
       name: Wandwürfel Süd
     - entity: light.wandwurfel_westen
       name: Wandwürfel West
-    - entity: light.licht_blumenbeet
-      name: Stern Blumenbeet
-    - entity: light.esp_wemos_d1_8_relais_1_bodenstrahler
+    - entity: light.bodenstrahler_blumenbeet
       name: Bodenstrahler Blumenbeet
+    - entity: light.esp_wemos_d1_8_relais_1_bodenstrahler
+      name: Funk Blumenbeet
     - type: divider
       style: 
         height: 1px
