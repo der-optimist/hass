@@ -77,7 +77,7 @@ auto_light_a_tr_wurfel_feuerplatz:
   triggers: 
     - binary_sensor.hst_offen
   min_illuminance_values:
-    "00:00": 600
+    "00:00": 2000
   brightness_values:
     "00:00": 85
   illuminance_sensor: sensor.helligkeit_wetterstation
@@ -92,7 +92,7 @@ auto_light_a_tr_wurfel_ecke_klein:
   triggers: 
     - binary_sensor.hst_offen
   min_illuminance_values:
-    "00:00": 600
+    "00:00": 2000
   brightness_values:
     "00:00": 80
   illuminance_sensor: sensor.helligkeit_wetterstation
@@ -107,7 +107,7 @@ auto_light_a_tr_wurfel_ecke_gross:
   triggers: 
     - binary_sensor.hst_offen
   min_illuminance_values:
-    "00:00": 600
+    "00:00": 2000
   brightness_values:
     "00:00": 85
   illuminance_sensor: sensor.helligkeit_wetterstation
@@ -134,5 +134,5 @@ auto_light_a_tr_bodenstrahler_blumenbeet:
   triggers: 
     - binary_sensor.bodenstrahler_blumenbeet_soll_an_sein
   min_illuminance_values:
-    "00:00": 600
+    "00:00": 200
   illuminance_sensor: sensor.helligkeit_wetterstation
