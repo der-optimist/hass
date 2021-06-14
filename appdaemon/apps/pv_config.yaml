@@ -23,4 +23,7 @@ pv:
   water_temp_heating_will_not_start_on_comfort: 49
   temp_loss_per_hour: 0.3
   entity_water_temp_current: "sensor.water_heater_current_temp"
-  minimum_pv_power_for_increasing_water_temp: 3500
+  minimum_pv_power_for_increasing_water_temp: 3000
+  entity_water_heater: "water_heater.dhw1"
+  program_eco: "on"
+  program_comfort: "high_demand"
