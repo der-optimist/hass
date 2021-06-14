@@ -121,7 +121,10 @@ class pv(hass.Hass):
         forecast_values_daily.append(round(energy_day_3,1))
         forecast_values_daily.append(round(energy_day_4,1))
         forecast_values_daily.append(round(energy_day_5,1))
-        self.set_state(self.sensor_forecast_data_chart, state = str(datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")), attributes = {"timestamps": timestamps, "forecast_values": forecast_values, "timestamps_daily": timestamps_daily, "forecast_values_daily": forecast_values_daily})
+        # pv production day
+        timestamp_today = [(datetime.datetime.combine(day_0, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")]
+        pv_production_today = [float(self.get_state("sensor.pv_erzeugung_tag"))]
+        self.set_state(self.sensor_forecast_data_chart, state = str(datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")), attributes = {"timestamps": timestamps, "forecast_values": forecast_values, "timestamps_daily": timestamps_daily, "forecast_values_daily": forecast_values_daily, "timestamp_today": timestamp_today, "pv_production_today": pv_production_today})
         self.log("updating solar forecast - done")
 
 
