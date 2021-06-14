@@ -75,6 +75,8 @@ cards:
     apex_config:
       yaxis:
         min: 0
+      legend:
+        show: false
     span:
       start: day
     series:
