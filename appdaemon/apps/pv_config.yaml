@@ -20,5 +20,6 @@ pv:
   # water heater
   water_temp_heating_will_start_on_eco: 40
   water_temp_heating_will_start_on_comfort: 46
+  water_temp_heating_will_not_start_on_comfort: 49
   temp_loss_per_hour: 0.3
   entity_water_temp_current: "sensor.water_heater_current_temp"
