@@ -70,6 +70,7 @@ class pv(hass.Hass):
  
     def update_forecast(self, entity, attribute, old, new, kwargs):
         self.log("updating solar forecast - start")
+        # forecast chart
         timestamps = []
         forecast_values = []
         timestamps_daily = []
@@ -87,6 +88,21 @@ class pv(hass.Hass):
         energy_day_3 = 0
         energy_day_4 = 0
         energy_day_5 = 0
+        
+        # prepare decision: increase water heater target temp?
+        current_water_temp = float(self.get_state(self.args["entity_water_temp_current"]))
+        temp_loss_per_hour = self.args["temp_loss_per_hour"]
+        water_temp_heating_will_start_on_eco = self.args["water_temp_heating_will_start_on_eco"]
+        hours_until_heater_will_start = (current_water_temp - water_temp_heating_will_start_on_eco) / temp_loss_per_hour
+        if hours_until_heater_will_start < 0:
+            hours_until_heater_will_start = 0
+        self.log("Hours until water heater will start: {}".format(hours_until_heater_will_start))
+        current_time_local = datetime.datetime.now()
+        time_heater_will_start_local = current_time_local + datetime.timedelta(hours=hours_until_heater_will_start)
+        current_time_plus_30_min_local = current_time_local + datetime.timedelta(minutes=30)
+        forecast_next_30_min = 0
+        pv_values_in_time_till_heater_will_start = [0,0]
+        
         for forecast in new:
             end_time_string = forecast["period_end"][:26]
             mid_time = datetime.datetime.strptime(end_time_string, "%Y-%m-%dT%H:%M:%S.%f") - datetime.timedelta(minutes=15)
@@ -94,10 +110,11 @@ class pv(hass.Hass):
             value_watt = int(round(float(forecast["pv_estimate"]) * 1000,0))
             timestamps.append(mid_time_string)
             forecast_values.append(value_watt)
+            # daily forecast
             mid_time_local = mid_time + utc_offset
             mid_time_local_day = mid_time_local.date()
             if mid_time_local_day == day_0:
-                if mid_time_local > datetime.datetime.now():
+                if mid_time_local > current_time_local:
                     energy_day_0 += (value_watt * 0.5) / 1000
             elif mid_time_local_day == day_1:
                 energy_day_1 += (value_watt * 0.5) / 1000
@@ -109,6 +126,24 @@ class pv(hass.Hass):
                 energy_day_4 += (value_watt * 0.5) / 1000
             elif mid_time_local_day == day_5:
                 energy_day_5 += (value_watt * 0.5) / 1000
+            # water heater time range?
+            if (mid_time_local > current_time_local) and (mid_time_local < time_heater_will_start_local):
+                pv_values_in_time_till_heater_will_start.append(value_watt)
+            # forecast next 30 min
+            if (mid_time_local > current_time_local) and (mid_time_local < current_time_plus_30_min_local):
+                forecast_next_30_min = value_watt
+        
+        # is current forecast one of the two top values in time range for water heater boost?
+        self.log("Forecast values in heater time range: {}".format(pv_values_in_time_till_heater_will_start))
+        if forecast_next_30_min >= sorted(pv_values_in_time_till_heater_will_start,reverse=True)[1]:
+            pv_peak = True
+            self.log("Now is PV peak. Forecast is {}".format(forecast_next_30_min))
+        else:
+            pv_peak = False
+            self.log("Not PV peak. Forecast is {}".format(forecast_next_30_min))
+        if pv_peak and forecast_next_30_min >= self.args["minimum_pv_power_for_increasing_water_temp"]:
+            self.log("Will increase water target temp now")
+            
         timestamps_daily.append(datetime.datetime.combine(day_0, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
         timestamps_daily.append(datetime.datetime.combine(day_1, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
         timestamps_daily.append(datetime.datetime.combine(day_2, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
@@ -126,6 +161,7 @@ class pv(hass.Hass):
         pv_production_today = [float(self.get_state("sensor.pv_erzeugung_tag"))]
         self.set_state(self.sensor_forecast_data_chart, state = str(datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")), attributes = {"timestamps": timestamps, "forecast_values": forecast_values, "timestamps_daily": timestamps_daily, "forecast_values_daily": forecast_values_daily, "timestamp_today": timestamp_today, "pv_production_today": pv_production_today})
         self.log("updating solar forecast - done")
+        
 
 
     def check_reminder(self, kwargs):
