@@ -242,6 +242,9 @@
         value_template: >-
           {{ is_state('binary_sensor.hst_offen', 'on')
              and states('sensor.helligkeit_wetterstation')|float < 500 }}
+      heizstab_ist_an:
+        friendly_name: "Heizstab an"
+        value_template: "{{ states('sensor.el_leistung_wp_heizstab')|float > 1 }}"
       tv_ist_an:
         friendly_name: "TV an"
         delay_off:
