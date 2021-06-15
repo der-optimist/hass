@@ -157,6 +157,22 @@ info_jo_wartung_heizung:
   notify_target: telegram_jo
   message: "Heizung im Wartungsmodus"
   init_delay: 75
+info_jo_heizstab_an:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.heizstab_ist_an
+  status_to_match: "on"
+  notify_target: telegram_jo
+  message: "Heizstab ist an"
+  init_delay: 76
+info_jo_heizstab_aus:
+  module: notify_when_status_matched
+  class: notify_when_status_matched
+  entity: binary_sensor.heizstab_ist_an
+  status_to_match: "off"
+  notify_target: telegram_jo
+  message: "Heizstab ist aus"
+  init_delay: 77
 
 # LED-Treiber - Übertemperatur
 info_jo_stoerung_led_temp_1:
@@ -274,23 +290,23 @@ info_jo_stoerung_led_strom_7:
   init_delay: 106
 
 # GPS Wetterstation
-info_jo_stoerung_gps_wetterstation:
-  module: notify_when_status_matched
-  class: notify_when_status_matched
-  entity: binary_sensor.wetterstation_status_gps_signal
-  status_to_match: "off"
-  notify_target: telegram_jo
-  message: "Wetterstation: kein GPS-Signal"
-  init_delay: 130
-info_jo_stoerung_gps_wetterstation_vorbei:
-  module: notify_when_status_matched
-  class: notify_when_status_matched
-  entity: binary_sensor.wetterstation_status_gps_signal
-  status_to_match: "on"
-  previous_status: "off"
-  notify_target: telegram_jo
-  message: "Wetterstation hat wieder GPS-Signal"
-  init_delay: 131
+#info_jo_stoerung_gps_wetterstation:
+#  module: notify_when_status_matched
+#  class: notify_when_status_matched
+#  entity: binary_sensor.wetterstation_status_gps_signal
+#  status_to_match: "off"
+#  notify_target: telegram_jo
+#  message: "Wetterstation: kein GPS-Signal"
+#  init_delay: 130
+#info_jo_stoerung_gps_wetterstation_vorbei:
+#  module: notify_when_status_matched
+#  class: notify_when_status_matched
+#  entity: binary_sensor.wetterstation_status_gps_signal
+#  status_to_match: "on"
+#  previous_status: "off"
+#  notify_target: telegram_jo
+#  message: "Wetterstation hat wieder GPS-Signal"
+#  init_delay: 131
 
 # Wind-Alarm
 info_jo_windalarm_2_beginn:
