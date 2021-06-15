@@ -52,7 +52,7 @@ class pv(hass.Hass):
         self.client.write_points([{"measurement":self.args["counter_entity_pv_produced_day"],"fields":{self.db_field_float:pv_produced_day},"time":int(ts_save_local_ns)}])
         self.client.write_points([{"measurement":self.args["counter_entity_pv_sold_day"],"fields":{self.db_field_float:pv_sold_day},"time":int(ts_save_local_ns)}])
         self.client.write_points([{"measurement":self.args["counter_entity_pv_used_day"],"fields":{self.db_field_float:(pv_produced_day - pv_sold_day)},"time":int(ts_save_local_ns)}])
-        saved_money_by_selling_day = pv_sold_day * self.get_state(self.app_config["global_vars"]["input_number_entity_compensation_per_kwh"])
+        saved_money_by_selling_day = pv_sold_day * self.app_config["global_vars"]["input_number_entity_compensation_per_kwh"]
         self.client.write_points([{"measurement":self.args["entity_pv_saved_money_by_selling_day"],"fields":{self.db_field_float:saved_money_by_selling_day},"time":int(ts_save_local_ns)}])
         saved_money_by_consuming_day = (pv_produced_day - pv_sold_day) * self.get_state(self.app_config["global_vars"]["input_number_entity_price_per_kwh"])
         self.client.write_points([{"measurement":self.args["entity_pv_saved_money_by_consuming_day"],"fields":{self.db_field_float:saved_money_by_consuming_day},"time":int(ts_save_local_ns)}])
@@ -96,6 +96,8 @@ class pv(hass.Hass):
         hours_until_heater_will_start = (current_water_temp - water_temp_heating_will_start_on_eco) / temp_loss_per_hour
         if hours_until_heater_will_start < 0:
             hours_until_heater_will_start = 0
+        elif hours_until_heater_will_start > 16:
+            hours_until_heater_will_start = 16
         self.log("Hours until water heater will start: {}".format(hours_until_heater_will_start))
         current_time_local = datetime.datetime.now()
         time_heater_will_start_local = current_time_local + datetime.timedelta(hours=hours_until_heater_will_start)
@@ -143,6 +145,10 @@ class pv(hass.Hass):
             self.log("Not PV peak. Forecast is {}".format(forecast_next_30_min))
         if pv_peak and forecast_next_30_min >= self.args["minimum_pv_power_for_increasing_water_temp"]:
             self.log("Will increase water target temp now")
+            self.call_service("water_heater/set_operation_mode", entity_id = self.args["entity_water_heater"], operation_mode = self.args["program_hot"])
+        else:
+            self.log("Will set water heater to eco")
+            self.call_service("water_heater/set_operation_mode", entity_id = self.args["entity_water_heater"], operation_mode = self.args["program_eco"])
             
         timestamps_daily.append(datetime.datetime.combine(day_0, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
         timestamps_daily.append(datetime.datetime.combine(day_1, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
