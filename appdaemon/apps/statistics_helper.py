@@ -45,4 +45,4 @@ class statistics_helper(hass.Hass):
             
             self.set_state(self.output_entity, state = output_value, attributes = sensor_state["attributes"])
         else:
-            self.log("current state of input sensor not numeric")
+            self.log("current state of input sensor not numeric, it is: {}".format(current_value_str))
