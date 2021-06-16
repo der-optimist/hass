@@ -143,7 +143,8 @@ class pv(hass.Hass):
         else:
             pv_peak = False
             self.log("Not PV peak. Forecast is {}".format(forecast_next_30_min))
-        if pv_peak and forecast_next_30_min >= self.args["minimum_pv_power_for_increasing_water_temp"]:
+        current_pv_power = float(self.get_state(self.args["entity_pv_power"]))
+        if pv_peak and current_pv_power >= self.args["minimum_pv_power_for_increasing_water_temp"]:
             self.log("Will increase water target temp now")
             self.call_service("water_heater/set_operation_mode", entity_id = self.args["entity_water_heater"], operation_mode = self.args["program_hot"])
         else:
