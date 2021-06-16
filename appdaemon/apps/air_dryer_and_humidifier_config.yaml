@@ -11,7 +11,7 @@ luftentfeuchter_waschkueche:
   humidity_special_max: 47
   humidity_special_min: 42
   use_pv_power: True
-  pv_power_sensor: sensor.netzbezug_letzte_3_minuten
+  pv_power_sensor: sensor.statistics_el_leistung_einspeisung_letzte_3_min
   pv_power_for_step_1: 300
   humidity_change_step_1: 5
   zigbee: True
@@ -35,7 +35,7 @@ luftentfeuchter_partyraum:
   humidity_special_max: 53
   humidity_special_min: 51
   use_pv_power: True
-  pv_power_sensor: sensor.netzbezug_letzte_3_minuten
+  pv_power_sensor: sensor.statistics_el_leistung_einspeisung_letzte_3_min
   pv_power_for_step_1: 500
   humidity_change_step_1: 10
   zigbee: False
