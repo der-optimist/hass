@@ -5,6 +5,7 @@ statistics_helper_pv_leistung_letzte_3_min:
   output_entity: sensor.statistics_el_leistung_pv_letzte_3_min
   number_of_values: 18
   time_interval_sec: 10
+  startup_delay: 10
   function_type: "mean"
   trigger_type: "fixed_timestep"
 statistics_helper_pv_einspeisung_letzte_3_min:
@@ -14,6 +15,7 @@ statistics_helper_pv_einspeisung_letzte_3_min:
   output_entity: sensor.statistics_el_leistung_einspeisung_letzte_3_min
   number_of_values: 18
   time_interval_sec: 10
+  startup_delay: 11
   function_type: "mean"
   trigger_type: "fixed_timestep"
 statistics_helper_pv_einspeisung_letzte_10_min:
@@ -23,6 +25,7 @@ statistics_helper_pv_einspeisung_letzte_10_min:
   output_entity: sensor.statistics_el_leistung_einspeisung_letzte_10_min
   number_of_values: 60
   time_interval_sec: 10
+  startup_delay: 12
   function_type: "mean"
   trigger_type: "fixed_timestep"
 statistics_helper_strompreis_effektiv_letzte_3_min:
@@ -32,6 +35,7 @@ statistics_helper_strompreis_effektiv_letzte_3_min:
   output_entity: sensor.strompreis_effektiv_letzte_3_minuten
   number_of_values: 18
   time_interval_sec: 10
+  startup_delay: 13
   function_type: "mean"
   trigger_type: "fixed_timestep"
 # 
