@@ -145,7 +145,7 @@ cards:
         background-color: "#ff9c27"
         opacity: 0.25
     - type: custom:template-entity-row
-      name: Strompreis effektiv letzte 3 Minuten
+      name: Strompreis aktuell
       entity: sensor.strompreis_effektiv_letzte_3_minuten
       state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float)) }} ct"
   - type: custom:auto-entities
