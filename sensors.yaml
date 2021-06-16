@@ -169,6 +169,16 @@
         friendly_name: 'El. Leistung Netz (positiv gleich Bezug)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      el_leistung_einspeisung:
+        value_template: >-
+          {% if (states('sensor.fronius1_modbus_power_from_grid') | float) < 0 %}
+            {{ -1*(states('sensor.fronius1_modbus_power_from_grid') | float) }}
+          {% else %}
+            0.0
+          {% endif %}
+        friendly_name: 'El. Leistung Einspeisung'
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
       el_leistung_pv_ac:
         value_template: "{{ states('sensor.fronius1_modbus_power_ac') }}"
         friendly_name: 'El. Leistung PV AC'
@@ -917,27 +927,7 @@
     sampling_size: 1000
     max_age:
       minutes: 5
-  - platform: filter
-    name: Strompreis effektiv letzte 3 Minuten
-    entity_id: sensor.strompreis_aktuell_effektiv_euro
-    filters:
-      - filter: time_simple_moving_average
-        window_size: "00:03"
-        precision: 3
-  - platform: filter
-    name: Netzbezug letzte 3 Minuten
-    entity_id: sensor.el_leistung_netz
-    filters:
-      - filter: time_simple_moving_average
-        window_size: "00:03"
-        precision: 0
-  - platform: filter
-    name: Netzbezug letzte 10 Minuten
-    entity_id: sensor.el_leistung_netz
-    filters:
-      - filter: time_simple_moving_average
-        window_size: "00:10"
-        precision: 0
+
 #
 # --------------------------------
 # --                            --
