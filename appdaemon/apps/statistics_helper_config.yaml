@@ -38,4 +38,13 @@ statistics_helper_strompreis_effektiv_letzte_3_min:
   startup_delay: 13
   function_type: "mean"
   trigger_type: "fixed_timestep"
-# 
+statistics_helper_leistung_netz_letzte_3_min:
+  module: statistics_helper
+  class: statistics_helper
+  input_entity: sensor.el_leistung_netz
+  output_entity: sensor.statistics_el_leistung_netz_letzte_3_min
+  number_of_values: 18
+  time_interval_sec: 10
+  startup_delay: 14
+  function_type: "mean"
+  trigger_type: "fixed_timestep"
