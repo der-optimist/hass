@@ -24,7 +24,7 @@ pv:
   temp_loss_per_hour: 0.3
   entity_water_temp_current: "sensor.water_heater_current_temp"
   minimum_pv_power_for_increasing_water_temp: 2000
-  entity_pv_power: sensor.statistics_el_leistung_einspeisung_letzte_3_min
+  entity_pv_power: sensor.statistics_el_leistung_netz_letzte_3_min
   entity_water_heater: "water_heater.dhw1"
   program_eco: "eco"
   program_hot: "on"
