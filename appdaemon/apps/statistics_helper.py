@@ -14,11 +14,13 @@ class statistics_helper(hass.Hass):
         self.output_entity = self.args["output_entity"]
         self.number_of_values = self.args["number_of_values"]
         self.time_interval_sec = self.args["time_interval_sec"]
+        self.startup_delay = self.args["startup_delay"]
         self.function_type = self.args["function_type"] # min, max or mean
         self.trigger_type = self.args["trigger_type"] # currently only "fixed_timestep" supported
         self.list_of_values = []
         if self.trigger_type == "fixed_timestep":
-            self.run_every(self.update_value_fixed_ts, "now+10", self.time_interval_sec)
+            self.run_every(self.update_value_fixed_ts, "now+{}".format(self.startup_delay), self.time_interval_sec)
+            self.log("regularly calculation started")
         
     
     def update_value_fixed_ts(self, kwargs):
