@@ -21,6 +21,7 @@ energy_consumption_and_costs:
     - sensor.el_leistung_pv_dc
     - sensor.el_leistung_pv_dc_string1
     - sensor.el_leistung_pv_dc_string2
+    - sensor.el_leistung_einspeisung
     - sensor.el_leistung_wp_aussenteil_esp # is mapped to sensor.el_leistung_wp_aussenteil which is calculated
     - sensor.el_leistung_wp_heizstab_esp # is mapped to sensor.el_leistung_wp_heizstab which is calculated
     - sensor.el_leistung_wp_innenteil_esp # is mapped to sensor.el_leistung_wp_innenteil which is calculated
