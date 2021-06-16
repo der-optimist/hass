@@ -24,6 +24,7 @@ class statistics_helper(hass.Hass):
         
     
     def update_value_fixed_ts(self, kwargs):
+        self.log("update triggered")
         sensor_state = self.get_state(self.input_entity, attribute="all")
         current_value_str = sensor_state["state"]
         if current_value_str.isnumeric():
@@ -40,5 +41,8 @@ class statistics_helper(hass.Hass):
                 output_value = min(self.list_of_values)
             else:
                 self.log("unknown function type")
+            self.log("output_value: {}".format(output_value))
             
             self.set_state(self.output_entity, state = output_value, attributes = sensor_state["attributes"])
+        else:
+            self.log("current state of input sensor not numeric")
