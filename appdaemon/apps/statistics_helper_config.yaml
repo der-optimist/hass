@@ -34,3 +34,4 @@ statistics_helper_strompreis_effektiv_letzte_3_min:
   time_interval_sec: 10
   function_type: "mean"
   trigger_type: "fixed_timestep"
+# 
