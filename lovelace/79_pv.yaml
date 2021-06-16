@@ -36,6 +36,10 @@ cards:
         name: Prozent abbezahlt
         entity: sensor.pv_geldertrag_gesamt
         state: "{{ '%.2f'%(100*(states('sensor.pv_geldertrag_gesamt') | float) / ((states('sensor.pv_geldertrag_gesamt') | float) + (states('sensor.pv_geldbetrag_bis_amortisation') | float))) }} %"
+      - type: custom:template-entity-row
+        name: Strompreis effektiv letzte 3 Minuten
+        entity: sensor.strompreis_effektiv_letzte_3_minuten
+        state: "{{ '%.1f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float)) }} ct"
       - sensor.strompreis_effektiv_letzte_3_minuten
   - type: custom:apexcharts-card
     experimental:
