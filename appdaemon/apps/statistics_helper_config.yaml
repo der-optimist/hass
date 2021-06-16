@@ -1,0 +1,9 @@
+statistics_helper_pv_leistung_letzte_3_min:
+  module: statistics_helper
+  class: statistics_helper
+  input_entity: sensor.el_leistung_pv_ac
+  output_entity: sensor.statistics_el_leistung_pv_letzte_3_min
+  number_of_values: 18
+  time_interval_sec: 10
+  function_type: "mean"
+  trigger_type: "fixed_timestep"
