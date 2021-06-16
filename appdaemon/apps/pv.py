@@ -144,7 +144,7 @@ class pv(hass.Hass):
             pv_peak = False
             self.log("Not PV peak. Forecast is {}".format(forecast_next_30_min))
         try:
-            current_pv_power_without_heating = float(self.get_state(self.args["entity_pv_power"])) + float(self.get_state("sensor.el_leistung_wp_aussenteil"))
+            current_pv_power_without_heating = -1*float(self.get_state(self.args["entity_pv_power"])) + float(self.get_state("sensor.el_leistung_wp_aussenteil"))
         except:
             current_pv_power_without_heating = forecast_next_30_min
         if pv_peak and current_pv_power_without_heating >= self.args["minimum_pv_power_for_increasing_water_temp"]:
