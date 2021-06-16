@@ -182,7 +182,7 @@ class air_dryer_and_humidifier(hass.Hass):
     def pv_power_changed(self, entity, attributes, old, new, kwargs):
         try: 
             value = float(new)
-            if (-1 * value) > self.pv_power_for_step_1:
+            if value > self.pv_power_for_step_1:
                 self.humidity_change_current = self.humidity_change_step_1
             else:
                 self.humidity_change_current = 0
