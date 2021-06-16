@@ -7,3 +7,30 @@ statistics_helper_pv_leistung_letzte_3_min:
   time_interval_sec: 10
   function_type: "mean"
   trigger_type: "fixed_timestep"
+statistics_helper_pv_einspeisung_letzte_3_min:
+  module: statistics_helper
+  class: statistics_helper
+  input_entity: sensor.el_leistung_einspeisung
+  output_entity: sensor.statistics_el_leistung_einspeisung_letzte_3_min
+  number_of_values: 18
+  time_interval_sec: 10
+  function_type: "mean"
+  trigger_type: "fixed_timestep"
+statistics_helper_pv_einspeisung_letzte_10_min:
+  module: statistics_helper
+  class: statistics_helper
+  input_entity: sensor.el_leistung_einspeisung
+  output_entity: sensor.statistics_el_leistung_einspeisung_letzte_10_min
+  number_of_values: 60
+  time_interval_sec: 10
+  function_type: "mean"
+  trigger_type: "fixed_timestep"
+statistics_helper_strompreis_effektiv_letzte_3_min:
+  module: statistics_helper
+  class: statistics_helper
+  input_entity: sensor.strompreis_aktuell_effektiv_euro
+  output_entity: sensor.strompreis_effektiv_letzte_3_minuten
+  number_of_values: 18
+  time_interval_sec: 10
+  function_type: "mean"
+  trigger_type: "fixed_timestep"
