@@ -131,8 +131,8 @@ class weather_and_astro(hass.Hass):
 
             # read warnings from xml
             for warning in root.findall('wfs:member', namespaces):
-                self.log(warning.text)
                 event = warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text
+                self.log(event)
                 if (event != "FROST") and (event != "HITZE_off"):
                     Events.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text)
                     Severities.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:SEVERITY', namespaces)[0].text)
@@ -182,6 +182,7 @@ class weather_and_astro(hass.Hass):
                 self.set_state(sensor_name, state = start_end_readable, attributes = attributes)
                 list_of_active_sensors.append(sensor_name)
             
+            self.log(list_of_active_sensors)
             # set outdated sensors to "off"
             all_ha_sensors = self.get_state("sensor")
             for sensor, value in all_ha_sensors.items():
