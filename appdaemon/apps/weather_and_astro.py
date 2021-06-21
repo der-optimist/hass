@@ -166,7 +166,7 @@ class weather_and_astro(hass.Hass):
                 start_end_readable = warning[3] + " bis " + warning[4]
                 icon = Icons_dict.get(warning[0],"/local/icons/reminders/exclamation_mark_blink.svg")
                 attributes = {"friendly_name": event, "entity_picture": icon, "Dauer": start_end_readable, "Beschreibung": warning[9], "Gefahr (0-4)": warning[0]}
-                sensor_name = "sensor.dwd_warn_" + str(abs(hash(event))) + "_" + warning[1].replace("-","").replace(":","") + "_" + warning[2].replace("-","").replace(":","")
+                sensor_name = "sensor.dwd_warn_" + str(abs(hash(event))) + "_" + warning[1].replace("-","").replace(":","").lower() + "_" + warning[2].replace("-","").replace(":","").lower()
                 if (self.get_state(sensor_name) != start_end_readable) or (self.get_state(sensor_name, attribute = "Gefahr (0-4)") != warning[0]):
                     self.log("Sensor {} scheint neu zu sein".format(sensor_name))
                     if warning[0] >= 1: # Severity
