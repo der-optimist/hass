@@ -131,6 +131,7 @@ class weather_and_astro(hass.Hass):
 
             # read warnings from xml
             for warning in root.findall('wfs:member', namespaces):
+                self.log(warning)
                 event = warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text
                 if (event != "FROST") and (event != "HITZE_off"):
                     Events.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:EVENT', namespaces)[0].text)
@@ -149,6 +150,7 @@ class weather_and_astro(hass.Hass):
                     Descriptions.append(warning.findall('dwd:Warnungen_Gemeinden', namespaces)[0].findall('dwd:DESCRIPTION', namespaces)[0].text)
             Severities_sortable = [Severities_dict.get(item,item) for item in Severities]
 
+            self.log("events: {}".format(len(Events)))
             # write into one list and sort by severity and start time
             data = []
             for i in range(len(Events)):
