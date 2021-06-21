@@ -103,7 +103,7 @@ class pv(hass.Hass):
         time_heater_will_start_local = current_time_local + datetime.timedelta(hours=hours_until_heater_will_start)
         current_time_plus_30_min_local = current_time_local + datetime.timedelta(minutes=30)
         forecast_next_30_min = 0
-        pv_values_in_time_till_heater_will_start = [0,0]
+        pv_values_in_time_till_heater_will_start = [0,0,0]
         
         for forecast in new:
             end_time_string = forecast["period_end"][:26]
@@ -135,9 +135,9 @@ class pv(hass.Hass):
             if (mid_time_local > current_time_local) and (mid_time_local < current_time_plus_30_min_local):
                 forecast_next_30_min = value_watt
         
-        # is current forecast one of the two top values in time range for water heater boost?
+        # is current forecast one of the (three) top values in time range for water heater boost? note: initial list should have at least this number of elements
         self.log("Forecast values in heater time range: {}".format(pv_values_in_time_till_heater_will_start))
-        if forecast_next_30_min >= sorted(pv_values_in_time_till_heater_will_start,reverse=True)[1]:
+        if forecast_next_30_min >= sorted(pv_values_in_time_till_heater_will_start,reverse=True)[2]:
             pv_peak = True
             self.log("Now is PV peak. Forecast is {}".format(forecast_next_30_min))
         else:
