@@ -34,3 +34,9 @@ beleuchtung_hochzeitsbild_aus:
   switch_entity: input_boolean.beleuchtung_hochzeitsbild
   time: "22:55"
   on_off: "off"
+arbeit_theke_aus:
+  module: turn_switches_on_off
+  class: turn_switches_on_off
+  switch_entity: input_boolean.arbeit_theke
+  time: "15:30"
+  on_off: "off"
