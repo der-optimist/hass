@@ -8,7 +8,7 @@ url_todo = "http://homeassistant.fritz.box:8123/api/states/input_boolean.stromve
 url_done = "http://homeassistant.fritz.box:8123/api/states/input_boolean.stromverbrauch_ist_berechnet"
 url_result_data = "http://homeassistant.fritz.box:8123/api/states/sensor.stromverbrauch_tag_extern_berechnet"
 url_data = "http://homeassistant.fritz.box:8123/local/stromverbrauch/data.py"
-path_data_local = "/home/pi/stromverbrauch/data.py"
+path_data_local = "/srv/dev-disk-by-label-ssddata/ssddata/omv_scripts/stromverbrauch/data.py"
 #path_data_local = "C:\\Users\\F36121\\Desktop\\temp\\stromberechnung_pi\\data.py"
 
 
