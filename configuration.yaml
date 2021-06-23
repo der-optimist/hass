@@ -384,7 +384,7 @@ input_number:
     name: PV Einspeisevergütung
     min: 0.07
     max: 0.08
-    step: 0.0001
+    step: 0.001
   pv_einspeisebegrenzung_prozent:
     name: PV Einspeisebegrenzung Prozent
     min: 0
