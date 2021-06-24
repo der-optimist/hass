@@ -3,7 +3,7 @@ path: home
 icon: mdi:home-outline
 type: custom:grid-layout
 layout:
-  grid-template-columns: 25% 75%
+  grid-template-columns: 25% 25% 25% 25%
   grid-template-rows: auto
   grid-template-areas: |
     "temp_time meteogram meteogram meteogram"
