@@ -3,7 +3,6 @@ import datetime
 import json
 import time
 import socket
-from ha_token import ha_token # a file named ha_token.py must be placed next to this one, content: ha_token = ABCDEF
 
 read_data_from_ha = True # can be set to false for debugging
 send_data_to_ha = True # can be set to false for debugging
@@ -27,6 +26,8 @@ else:
     print("unknown host, please ad path variables for this host")
     exit()
 
+if read_data_from_ha or send_data_to_ha:
+    from ha_token import ha_token # a file named ha_token.py must be placed next to this one, content: ha_token = ABCDEF
 
 def combine_measurements(points_power, points_price_effective, points_price_invoice, start_power, start_price, db_field):
     all_timesteps = []
