@@ -1,66 +1,38 @@
 title: Home
 path: home
 icon: mdi:home-outline
-type: custom:grid-layout
-layout:
-  grid-template-columns: 25% 75%
-  grid-template-rows: auto
-  grid-template-areas: |
-    "temp_time meteogram"
-    "main_left main_right"
-  mediaquery:
-    "(max-width: 800px)":
-      grid-template-columns: 100%
-      grid-template-areas: |
-        "temp_time"
-        "meteogram"
-        "main_left"
-        "main_right"
+visible:
+  - user: 351294738e7e4b52aa10c8db1eddee91 # Bildschirm
+  - user: f2058f3d61c94ec6b017839ee1cb4aa9 # Laptop-Admin
+panel: true
 cards:
   - type: custom:layout-card
-    layout_type: custom:grid-layout
-    view_layout:
-      grid-area: temp_time
-      grid-template-columns: 50% 50%
-      grid-template-rows: 30% auto
-      grid-template-areas: |
-        "temp time"
-        "out_temp out_temp"
-      mediaquery:
-        "(max-width: 800px)":
-          grid-template-columns: 100%
-          grid-template-areas: |
-            "temp"
-            "time"
-            "out_temp"
+    layout: vertical
+    max_width: [25%, 75%]
     cards:
-      - type: markdown
-        view_layout:
-          grid-area: temp
-        style: |
-          h1 {
-            font-weight: 300;
-            font-size: 2.4em;
-          }  
-        content: >
-          # {{ '%.1f'%(states('sensor.temp_esszimmer_pm') | float) | float }}°C
-          
-          Luftfeuchtigkeit: {{ states('sensor.luftfeuchtigkeit_kuche_aqara') }}%
-      - type: markdown
-        view_layout:
-          grid-area: time
-        style: |
-          h1 {
-            font-weight: 300;
-            font-size: 2.4em;
-          }
-        content: >
-          # {{ states('sensor.time') }}
-          
-          {{ states('sensor.date_template') }}
+      - type: horizontal-stack
+        cards:
+          - type: markdown
+            style: |
+              h1 {
+                font-weight: 300;
+                font-size: 2.4em;
+              }  
+            content: >
+              # {{ '%.1f'%(states('sensor.temp_esszimmer_pm') | float) | float }}°C
+              
+              Luftfeuchtigkeit: {{ states('sensor.luftfeuchtigkeit_kuche_aqara') }}%
+          - type: markdown
+            style: |
+              h1 {
+                font-weight: 300;
+                font-size: 2.4em;
+              }
+            content: >
+              # {{ states('sensor.time') }}
+              
+              {{ states('sensor.date_template') }}
       - type: custom:mini-graph-card
-        view_layout:
-          grid-area: out_temp
         style: |
           state__value {
             font-size: 2em;
@@ -72,41 +44,12 @@ cards:
         decimals: 1
         show:
           labels: true
-  - type: custom:hui-element
-    view_layout:
-      grid-area: meteogram
-    card_type: picture-elements
-    image: /local/meteograms/meteogram.png
-    elements:
-      - type: image
-        entity: camera.meteogram
-        camera_image: camera.meteogram
-        style:
-          left: 50%
-          top: 50%
-          width: 100%
-          height: 100%
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    view_layout:
-      grid-area: main_left
-      grid-template-columns: 100%
-      grid-template-rows: auto
-      grid-template-areas: |
-        "locations"
-        "pizza_timer"
-        "buttons"
-    cards:
       - type: entities
-        view_layout:
-          grid-area: locations
         title: "Wer ist wo..."
         show_header_toggle: false
         entities:
           - entity: sensor.location_jo
       - type: entities
-        view_layout:
-          grid-area: pizza_timer
         title: Pizza Timer
         show_header_toggle: false
         entities:
@@ -114,8 +57,6 @@ cards:
             entity: input_number.pizza_timer_2
             full_row: true
       - type: horizontal-stack
-        view_layout:
-          grid-area: buttons
         cards:
           - type: entity-button
             name: Pizza
@@ -145,26 +86,22 @@ cards:
               service_data:
                 entity_id: scene.jal_wohnbereich_hoch
             entity: scene.jal_wohnbereich_hoch
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    view_layout:
-      grid-area: main_right
-      grid-template-columns: 33% auto
-      grid-template-rows: auto
-      grid-template-areas: |
-        "main_right_left main_right_mid_and_right"
-      mediaquery:
-        "(max-width: 800px)":
-          grid-template-columns: 100%
-          grid-template-areas: |
-            "main_right_left"
-            "main_right_mid_and_right"
-    cards:
+      - break
+      - type: custom:hui-element
+        card_type: picture-elements
+        image: /local/meteograms/meteogram.png
+        elements:
+          - type: image
+            entity: camera.meteogram
+            camera_image: camera.meteogram
+            style:
+              left: 50%
+              top: 50%
+              width: 100%
+              height: 100%
       - type: custom:layout-card
-        view_layout:
-          grid-area: main_right_left
-          max_cols: 1
-        layout_type: custom:vertical-layout
+        layout: vertical
+        max_width: [34%, 66%]
         cards:
           - type: custom:auto-entities
             show_empty: false
@@ -185,35 +122,35 @@ cards:
               include:
                 - entity_id: "*battery"
                   state: '< 15'
-        #          - type: picture-elements
-        #            image: /local/camera_abstellraum/last_motion.jpg
-        #            elements:
-        #              - type: image
-        #                entity: camera.abstellraum_letze_bewegung
-        #                camera_image: camera.abstellraum_letze_bewegung
-        #                style:
-        #                  left: 50%
-        #                  top: 50%
-        #                  width: 100%
-        #                  height: 100%
+#          - type: picture-elements
+#            image: /local/camera_abstellraum/last_motion.jpg
+#            elements:
+#              - type: image
+#                entity: camera.abstellraum_letze_bewegung
+#                camera_image: camera.abstellraum_letze_bewegung
+#                style:
+#                  left: 50%
+#                  top: 50%
+#                  width: 100%
+#                  height: 100%
           - type: entities
             show_header_toggle: false
             entities:
-        #            - type: custom:template-entity-row
-        #              name: Neuinfektionen Deutschland
-        #              icon: mdi:medical-bag
-        #              entity: sensor.deutschland_newcases
-        #              state: "{{ '%.0f'%(states('sensor.deutschland_newcases')) | float }}"
-        #            - type: custom:template-entity-row
-        #              name: 7-Tage Inzidenz Deutschland
-        #              icon: mdi:medical-bag
-        #              entity: sensor.deutschland_weekincidence
-        #              state: "{{ '%.0f'%(states('sensor.deutschland_weekincidence')) | float | round(0) }}"
-        #            - type: custom:template-entity-row
-        #              name: 7-Tage Inzidenz BaWü
-        #              icon: mdi:medical-bag
-        #              entity: sensor.bl_baden_wurttemberg_weekincidence
-        #              state: "{{ '%.0f'%(states('sensor.bl_baden_wurttemberg_weekincidence')) | float | round(0) }}"
+#            - type: custom:template-entity-row
+#              name: Neuinfektionen Deutschland
+#              icon: mdi:medical-bag
+#              entity: sensor.deutschland_newcases
+#              state: "{{ '%.0f'%(states('sensor.deutschland_newcases')) | float }}"
+#            - type: custom:template-entity-row
+#              name: 7-Tage Inzidenz Deutschland
+#              icon: mdi:medical-bag
+#              entity: sensor.deutschland_weekincidence
+#              state: "{{ '%.0f'%(states('sensor.deutschland_weekincidence')) | float | round(0) }}"
+#            - type: custom:template-entity-row
+#              name: 7-Tage Inzidenz BaWü
+#              icon: mdi:medical-bag
+#              entity: sensor.bl_baden_wurttemberg_weekincidence
+#              state: "{{ '%.0f'%(states('sensor.bl_baden_wurttemberg_weekincidence')) | float | round(0) }}"
             - type: custom:template-entity-row
               name: 7-Tage Inzidenz RV
               icon: mdi:medical-bag
@@ -233,29 +170,8 @@ cards:
               name: Strompreis aktuell
               entity: sensor.strompreis_effektiv_letzte_3_minuten
               state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float)) }} ct"
-      - type: custom:layout-card
-        layout_type: custom:grid-layout
-        view_layout:
-          grid-area: main_right_mid_and_right
-          grid-template-columns: 50% 50%
-          grid-template-rows: auto
-          grid-template-areas: |
-            "warn warn"
-            "garbage birthdays"
-            "main_right_mid main_right_right"
-          mediaquery:
-            "(max-width: 800px)":
-              grid-template-columns: 100%
-              grid-template-areas: |
-                "warn"
-                "garbage"
-                "birthdays"
-                "main_right_mid"
-                "main_right_right"
-        cards:
+          - break
           - type: custom:auto-entities
-            view_layout:
-              grid-area: warn
             show_empty: false
             card:
               type: entities
@@ -264,49 +180,48 @@ cards:
                   border-style: solid;
                   border-color: var(--primary-color);
                 }    
+#              title: "Wetterwarnungen"
               show_header_toggle: false
             filter:
               include:
                 - entity_id: "sensor.dwd_warn*"
               exclude:
                 - state: "off"
-          - type: custom:auto-entities
-            view_layout:
-              grid-area: garbage
-            show_empty: false
-            card:
-              type: entities
-              title: "Abfall"
-              show_header_toggle: false
-            filter:
-              include:
-                - entity_id: "sensor.abfall_anzeige*"
-          - type: custom:auto-entities
-            view_layout:
-              grid-area: birthdays
-            show_empty: false
-            card:
-              type: entities
-              title: "Geburtstage"
-              show_header_toggle: false
-            filter:
-              include:
-                - entity_id: "sensor.birthday*"
-              exclude:
-                - state: "off"
-          - type: entities
-            view_layout:
-              grid-area: main_right_mid
-            show_header_toggle: false
-            entities:
-            - entity: input_boolean.eisschutz_jalousien
-              name: Eisschutz Jalousien
-          - type: entities
-            view_layout:
-              grid-area: main_right_right
-            show_header_toggle: false
-            entities:
-            - entity: input_boolean.gaeste_abends
-              name: Gäste
-            - entity: input_boolean.arbeit_theke
-              name: Arbeit Theke
+          - type: custom:layout-card
+            layout: vertical
+            column_width: 250
+            max_width: [50%, 50%]
+            cards:
+              - type: custom:auto-entities
+                show_empty: false
+                card:
+                  type: entities
+                  title: "Abfall"
+                  show_header_toggle: false
+                filter:
+                  include:
+                    - entity_id: "sensor.abfall_anzeige*"
+              - type: entities
+                show_header_toggle: false
+                entities:
+                - entity: input_boolean.eisschutz_jalousien
+                  name: Eisschutz Jalousien
+              - break
+              - type: custom:auto-entities
+                show_empty: false
+                card:
+                  type: entities
+                  title: "Geburtstage"
+                  show_header_toggle: false
+                filter:
+                  include:
+                    - entity_id: "sensor.birthday*"
+                  exclude:
+                    - state: "off"
+              - type: entities
+                show_header_toggle: false
+                entities:
+                - entity: input_boolean.gaeste_abends
+                  name: Gäste
+                - entity: input_boolean.arbeit_theke
+                  name: Arbeit Theke
