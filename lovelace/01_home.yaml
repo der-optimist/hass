@@ -7,19 +7,17 @@ layout:
   grid-template-rows: auto
   grid-template-areas: |
     "main_left meteogram meteogram meteogram"
-    "main_left todo . ."
-    "main_left . warn warn"
-    "main_left entities garbage birthdays"
-    "main_left entities main_mid_right main_right_right"
+    "main_left todo warn warn"
+    "main_left todo garbage birthdays"
+    "main_left todo main_mid_right main_right_right"
   mediaquery:
     "(max-width: 800px)":
       grid-template-columns: 100%
       grid-template-areas: |
         "meteogram"
-        "todo"
         "warn"
         "main_left"
-        "entities"
+        "todo"
         "garbage"
         "birthdays"
         "main_mid_right"
