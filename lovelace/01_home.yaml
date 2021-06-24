@@ -1,9 +1,6 @@
 title: Home
 path: home
 icon: mdi:home-outline
-visible:
-  - user: 351294738e7e4b52aa10c8db1eddee91 # Bildschirm
-  - user: f2058f3d61c94ec6b017839ee1cb4aa9 # Laptop-Admin
 type: custom:grid-layout
 layout:
   grid-template-columns: 25% 25% 25% 25%
