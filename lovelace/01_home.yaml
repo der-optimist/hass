@@ -4,124 +4,146 @@ icon: mdi:home-outline
 visible:
   - user: 351294738e7e4b52aa10c8db1eddee91 # Bildschirm
   - user: f2058f3d61c94ec6b017839ee1cb4aa9 # Laptop-Admin
-panel: true
+type: custom:grid-layout
+layout:
+  grid-template-columns: 25% 25% 25% 25%
+  grid-template-rows: auto
+  grid-template-areas: |
+    "temp_time meteogram meteogram meteogram"
+    "main_left_left main_mid_left main_right main_right"
+  mediaquery:
+    "(max-width: 600px)":
+      grid-template-columns: 100%
+      grid-template-areas: |
+        "temp_time"
+        "meteogram"
+        "main_left_left"
+        "main_mid_left"
+        "main_right"
 cards:
-  - type: custom:layout-card
-    layout: vertical
-    max_width: [25%, 75%]
+  - type: horizontal-stack
+    view_layout:
+      grid-area: temp_time
     cards:
-      - type: horizontal-stack
-        cards:
-          - type: markdown
-            style: |
-              h1 {
-                font-weight: 300;
-                font-size: 2.4em;
-              }  
-            content: >
-              # {{ '%.1f'%(states('sensor.temp_esszimmer_pm') | float) | float }}°C
-              
-              Luftfeuchtigkeit: {{ states('sensor.luftfeuchtigkeit_kuche_aqara') }}%
-          - type: markdown
-            style: |
-              h1 {
-                font-weight: 300;
-                font-size: 2.4em;
-              }
-            content: >
-              # {{ states('sensor.time') }}
-              
-              {{ states('sensor.date_template') }}
-      - type: custom:mini-graph-card
+      - type: markdown
         style: |
-          state__value {
-            font-size: 2em;
+          h1 {
+            font-weight: 300;
+            font-size: 2.4em;
+          }  
+        content: >
+          # {{ '%.1f'%(states('sensor.temp_esszimmer_pm') | float) | float }}°C
+          
+          Luftfeuchtigkeit: {{ states('sensor.luftfeuchtigkeit_kuche_aqara') }}%
+      - type: markdown
+        style: |
+          h1 {
+            font-weight: 300;
+            font-size: 2.4em;
           }
-        entities: 
-          - sensor.temp_wetterstation
-        name: Außentemperatur
-        hour24: true
-        decimals: 1
-        show:
-          labels: true
-      - type: entities
-        title: "Wer ist wo..."
-        show_header_toggle: false
-        entities:
-          - entity: sensor.location_jo
-      - type: entities
-        title: Pizza Timer
-        show_header_toggle: false
-        entities:
-          - type: custom:slider-entity-row
-            entity: input_number.pizza_timer_2
-            full_row: true
-      - type: horizontal-stack
-        cards:
-          - type: entity-button
-            name: Pizza
-            icon: mdi:pizza
-            tap_action:
-              action: call-service
-              service: input_number.set_value
-              service_data:
-                entity_id: input_number.pizza_timer_2
-                value: 11
-            entity: input_number.pizza_timer_2
-          - type: entity-button
-            name: runter
-            icon: mdi:arrow-down-bold-box-outline
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.jal_wohnbereich_runter
-            entity: scene.jal_wohnbereich_runter
-          - type: entity-button
-            name: hoch
-            icon: mdi:arrow-up-bold-box-outline
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.jal_wohnbereich_hoch
-            entity: scene.jal_wohnbereich_hoch
-      - break
-      - type: custom:hui-element
-        card_type: picture-elements
-        image: /local/meteograms/meteogram.png
-        elements:
-          - type: image
-            entity: camera.meteogram
-            camera_image: camera.meteogram
-            style:
-              left: 50%
-              top: 50%
-              width: 100%
-              height: 100%
-      - type: custom:layout-card
-        layout: vertical
-        max_width: [34%, 66%]
-        cards:
-          - type: custom:auto-entities
-            show_empty: false
-            card:
-              type: entities
-              title: "zu erledigen"
-              show_header_toggle: false
-            filter:
-              include:
-                - entity_id: "switch.reminder*"
-                  state: "on"
-          - type: custom:auto-entities
-            show_empty: false
-            card:
-              type: glance
-              title: Batterie wechseln
-            filter:
-              include:
-                - entity_id: "*battery"
-                  state: '< 15'
+        content: >
+          # {{ states('sensor.time') }}
+          
+          {{ states('sensor.date_template') }}
+  - type: custom:mini-graph-card
+    view_layout:
+      grid-area: temp_time
+    style: |
+      state__value {
+        font-size: 2em;
+      }
+    entities: 
+      - sensor.temp_wetterstation
+    name: Außentemperatur
+    hour24: true
+    decimals: 1
+    show:
+      labels: true
+  - type: custom:hui-element
+    view_layout:
+      grid-area: meteogram
+    card_type: picture-elements
+    image: /local/meteograms/meteogram.png
+    elements:
+      - type: image
+        entity: camera.meteogram
+        camera_image: camera.meteogram
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+          height: 100%
+  - type: entities
+    view_layout:
+      grid-area: main_left_left
+    title: "Wer ist wo..."
+    show_header_toggle: false
+    entities:
+      - entity: sensor.location_jo
+  - type: entities
+    view_layout:
+      grid-area: main_left_left
+    title: Pizza Timer
+    show_header_toggle: false
+    entities:
+      - type: custom:slider-entity-row
+        entity: input_number.pizza_timer_2
+        full_row: true
+  - type: horizontal-stack
+    view_layout:
+      grid-area: main_left_left
+    cards:
+      - type: entity-button
+        name: Pizza
+        icon: mdi:pizza
+        tap_action:
+          action: call-service
+          service: input_number.set_value
+          service_data:
+            entity_id: input_number.pizza_timer_2
+            value: 11
+        entity: input_number.pizza_timer_2
+      - type: entity-button
+        name: runter
+        icon: mdi:arrow-down-bold-box-outline
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.jal_wohnbereich_runter
+        entity: scene.jal_wohnbereich_runter
+      - type: entity-button
+        name: hoch
+        icon: mdi:arrow-up-bold-box-outline
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.jal_wohnbereich_hoch
+        entity: scene.jal_wohnbereich_hoch
+  - type: custom:auto-entities
+    view_layout:
+      grid-area: main_mid_left
+    show_empty: false
+    card:
+      type: entities
+      title: "zu erledigen"
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "switch.reminder*"
+          state: "on"
+  - type: custom:auto-entities
+    view_layout:
+      grid-area: main_mid_left
+    show_empty: false
+    card:
+      type: glance
+      title: Batterie wechseln
+    filter:
+      include:
+        - entity_id: "*battery"
+          state: '< 15'
 #          - type: picture-elements
 #            image: /local/camera_abstellraum/last_motion.jpg
 #            elements:
@@ -133,9 +155,11 @@ cards:
 #                  top: 50%
 #                  width: 100%
 #                  height: 100%
-          - type: entities
-            show_header_toggle: false
-            entities:
+  - type: entities
+    view_layout:
+      grid-area: main_mid_left
+    show_header_toggle: false
+    entities:
 #            - type: custom:template-entity-row
 #              name: Neuinfektionen Deutschland
 #              icon: mdi:medical-bag
@@ -151,77 +175,98 @@ cards:
 #              icon: mdi:medical-bag
 #              entity: sensor.bl_baden_wurttemberg_weekincidence
 #              state: "{{ '%.0f'%(states('sensor.bl_baden_wurttemberg_weekincidence')) | float | round(0) }}"
-            - type: custom:template-entity-row
-              name: 7-Tage Inzidenz RV
-              icon: mdi:medical-bag
-              entity: sensor.lk_ravensburg_weekincidence
-              state: "{{ '%.0f'%(states('sensor.lk_ravensburg_weekincidence')) | float | round(0) }}"
-            - type: custom:template-entity-row
-              name: 7-Tage Inzidenz Wittenberg
-              icon: mdi:medical-bag
-              entity: sensor.lk_wittenberg_weekincidence
-              state: "{{ '%.0f'%(states('sensor.lk_wittenberg_weekincidence')) | float | round(0) }}"
-            - type: divider
-              style: 
-                height: 1px
-                background-color: "#ff9c27"
-                opacity: 0.25
-            - type: custom:template-entity-row
-              name: Strompreis aktuell
-              entity: sensor.strompreis_effektiv_letzte_3_minuten
-              state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float)) }} ct"
-          - break
-          - type: custom:auto-entities
-            show_empty: false
-            card:
-              type: entities
-              style: |
-                ha-card {
-                  border-style: solid;
-                  border-color: var(--primary-color);
-                }    
-#              title: "Wetterwarnungen"
-              show_header_toggle: false
-            filter:
-              include:
-                - entity_id: "sensor.dwd_warn*"
-              exclude:
-                - state: "off"
-          - type: custom:layout-card
-            layout: vertical
-            column_width: 250
-            max_width: [50%, 50%]
-            cards:
-              - type: custom:auto-entities
-                show_empty: false
-                card:
-                  type: entities
-                  title: "Abfall"
-                  show_header_toggle: false
-                filter:
-                  include:
-                    - entity_id: "sensor.abfall_anzeige*"
-              - type: entities
-                show_header_toggle: false
-                entities:
-                - entity: input_boolean.eisschutz_jalousien
-                  name: Eisschutz Jalousien
-              - break
-              - type: custom:auto-entities
-                show_empty: false
-                card:
-                  type: entities
-                  title: "Geburtstage"
-                  show_header_toggle: false
-                filter:
-                  include:
-                    - entity_id: "sensor.birthday*"
-                  exclude:
-                    - state: "off"
-              - type: entities
-                show_header_toggle: false
-                entities:
-                - entity: input_boolean.gaeste_abends
-                  name: Gäste
-                - entity: input_boolean.arbeit_theke
-                  name: Arbeit Theke
+    - type: custom:template-entity-row
+      name: 7-Tage Inzidenz RV
+      icon: mdi:medical-bag
+      entity: sensor.lk_ravensburg_weekincidence
+      state: "{{ '%.0f'%(states('sensor.lk_ravensburg_weekincidence')) | float | round(0) }}"
+    - type: custom:template-entity-row
+      name: 7-Tage Inzidenz Wittenberg
+      icon: mdi:medical-bag
+      entity: sensor.lk_wittenberg_weekincidence
+      state: "{{ '%.0f'%(states('sensor.lk_wittenberg_weekincidence')) | float | round(0) }}"
+    - type: divider
+      style: 
+        height: 1px
+        background-color: "#ff9c27"
+        opacity: 0.25
+    - type: custom:template-entity-row
+      name: Strompreis aktuell
+      entity: sensor.strompreis_effektiv_letzte_3_minuten
+      state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float)) }} ct"
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 50% 50%
+      grid-template-rows: auto
+      grid-template-areas: |
+        "warn warn"
+        "garbage birthdays"
+        "mid_right right_right"
+      mediaquery:
+        "(max-width: 600px)":
+          grid-template-columns: 100%
+          grid-template-areas: |
+            "warn"
+            "garbage"
+            "birthdays"
+            "mid_right"
+            "right_right"
+    cards:
+      - type: custom:auto-entities
+        view_layout:
+          grid-area: warn
+        show_empty: false
+        card:
+          type: entities
+          style: |
+            ha-card {
+              border-style: solid;
+              border-color: var(--primary-color);
+            }    
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "sensor.dwd_warn*"
+          exclude:
+            - state: "off"
+      - type: custom:auto-entities
+        view_layout:
+          grid-area: garbage
+        show_empty: false
+        card:
+          type: entities
+          title: "Abfall"
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "sensor.abfall_anzeige*"
+      - type: custom:auto-entities
+        view_layout:
+          grid-area: birthdays
+        show_empty: false
+        card:
+          type: entities
+          title: "Geburtstage"
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "sensor.birthday*"
+          exclude:
+            - state: "off"
+      - type: entities
+        view_layout:
+          grid-area: mid_right
+        show_header_toggle: false
+        entities:
+        - entity: input_boolean.eisschutz_jalousien
+          name: Eisschutz Jalousien
+      - type: entities
+        view_layout:
+          grid-area: right_right
+        show_header_toggle: false
+        entities:
+        - entity: input_boolean.gaeste_abends
+          name: Gäste
+        - entity: input_boolean.arbeit_theke
+          name: Arbeit Theke
