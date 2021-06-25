@@ -12,6 +12,7 @@ cards:
       - sensor.el_leistung_pv_dc
       - sensor.el_leistung_verbrauch_gesamt
       - sensor.wirkungsgrad_wechselrichter
+      - sensor.wirkungsgrad_wechselrichter_gefiltert
       - input_number.pv_einspeisebegrenzung_prozent
       - sensor.einspeiselimit_watt
       - sensor.el_leistung_pv_dc_string1
