@@ -1,10 +1,7 @@
   - trigger:
       - platform: time_pattern
-        # This will update every night
-        hours: 0
-        minutes: 0
-    sensor:
-      # Keep track how many days have past since a date
-      - name: Not smoking
-        state: '{{ ( ( as_timestamp(now()) - as_timestamp(strptime("06.07.2018", "%d.%m.%Y")) ) / 86400 ) | round }}'
-        unit_of_measurement: "Days"
+        seconds: "/2"
+    binary_sensor:
+      - name: Wirkungsgrad Wechselrichter stabil
+        state: '{{ as_timestamp(now()) - as_timestamp(states.sensor.wirkungsgrad_wechselrichter.last_changed) > 5 }}'
+
