@@ -16,6 +16,7 @@ cards:
     tap_action:
       action: call-service
       service: homeassistant.restart
+    entity: zone.home
   - type: entities
     title: "Bildschirm Theke"
     show_header_toggle: false
