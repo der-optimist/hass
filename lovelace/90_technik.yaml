@@ -10,6 +10,12 @@ cards:
       - entity: sensor.cpu_temperatur
       - entity: sensor.memory_use_percent
       - entity: sensor.disk_use_percent
+  - type: entity-button
+    name: Restart HA
+    icon: mdi:restart
+    tap_action:
+      action: call-service
+      service: homeassistant.restart
   - type: entities
     title: "Bildschirm Theke"
     show_header_toggle: false
