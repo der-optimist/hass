@@ -191,10 +191,14 @@ cards:
         grid_icon: "mdi:transmission-tower"
         home_icon: "mdi:home"
       - type: entities
-        title: "Test"
+        title: "PV-Anlage"
         show_header_toggle: false
         entities:
           - sensor.el_leistung_netz
           - sensor.el_leistung_pv_ac
           - sensor.el_leistung_verbrauch_gesamt
           - sensor.pv_geldertrag_gesamt
+          - type: custom:template-entity-row
+            name: Prozent abbezahlt
+            entity: sensor.pv_geldertrag_gesamt
+            state: "{{ '%.2f'%(100*(states('sensor.pv_geldertrag_gesamt') | float) / ((states('sensor.pv_geldertrag_gesamt') | float) + (states('sensor.pv_geldbetrag_bis_amortisation') | float))) }} %"
