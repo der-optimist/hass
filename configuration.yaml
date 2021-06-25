@@ -89,6 +89,8 @@ lovelace:
       type: module
     - url: /hacsfiles/power-wheel-card/power-wheel-card.js
       type: module
+    - url: /hacsfiles/ha-knx-uf-iconset/ha-knx-uf-iconset.js
+      type: module
 
 automation: !include automations.yaml
 config:
