@@ -121,3 +121,80 @@ cards:
     solar_icon: "mdi:solar-power"
     grid_icon: "mdi:transmission-tower"
     home_icon: "mdi:home"
+  - type: custom:swipe-card
+    cards: 
+      - type: custom:apexcharts-card
+        experimental:
+          color_threshold: true
+        graph_span: 48h
+        update_interval: 5min
+        apex_config:
+          yaxis:
+            min: 0
+            max: 10000
+        now:
+          show: True
+          label: "jetzt"
+        span:
+          start: hour
+        series:
+          - entity: sensor.solcast_forecast_chart
+            data_generator: | # This is what builds the data
+              return entity.attributes.timestamps.map((ts, index) => {
+                return [new Date(ts).getTime(), entity.attributes.forecast_values[index]];
+              });
+            color_threshold:
+              - value: 0
+                color: gray
+              - value: 1500
+                color: gray
+              - value: 2000
+                color: darkorange
+              - value: 6552
+                color: darkorange
+              - value: 6852
+                color: lime
+      - type: custom:apexcharts-card
+        graph_span: 5d
+        update_interval: 15min
+        stacked: True
+        apex_config:
+          yaxis:
+            min: 0
+          legend:
+            show: false
+        span:
+          start: day
+        series:
+          - entity: sensor.solcast_forecast_chart
+            type: column
+            show:
+              datalabels: True
+            data_generator: | # This is what builds the data
+              return entity.attributes.timestamps_daily.map((ts_d, index) => {
+                return [new Date(ts_d).getTime(), entity.attributes.forecast_values_daily[index]];
+              });
+          - entity: sensor.solcast_forecast_chart
+            type: column
+            color: green
+            show:
+              datalabels: True
+            data_generator: | # This is what builds the data
+              return entity.attributes.timestamp_today.map((ts_d, index) => {
+                return [new Date(ts_d).getTime(), entity.attributes.pv_production_today[index]];
+              });
+      - type: custom:power-wheel-card
+        solar_power_entity: sensor.el_leistung_pv_ac
+        grid_power_entity: sensor.el_leistung_netz
+        production_is_positive: false
+        solar_icon: "mdi:solar-power"
+        grid_icon: "mdi:transmission-tower"
+        home_icon: "mdi:home"
+      - type: entities
+        title: "Test"
+        show_header_toggle: false
+        entities:
+          - sensor.el_leistung_netz
+          - sensor.el_leistung_pv_ac
+          - sensor.el_leistung_verbrauch_gesamt
+          - sensor.pv_geldertrag_gesamt
