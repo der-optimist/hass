@@ -327,6 +327,7 @@ light:
 
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
+template: !include template.yaml
 
 switch:
   - platform: command_line
