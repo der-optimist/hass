@@ -1,7 +1,8 @@
   - trigger:
-      - platform: time_pattern
-        seconds: "/2"
-    binary_sensor:
-      - name: Wirkungsgrad Wechselrichter stabil
-        state: '{{ as_timestamp(now()) - as_timestamp(states.sensor.wirkungsgrad_wechselrichter.last_changed) > 5 }}'
-
+      - platform: state
+        entity_id: sensor.wirkungsgrad_wechselrichter
+        for: "00:00:05"
+    sensor:
+      - name: Wirkungsgrad Wechselrichter gefiltert
+        state: '{{ states("sensor.wirkungsgrad_wechselrichter") }}'
+        unit_of_measurement: '%'
