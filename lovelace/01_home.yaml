@@ -9,7 +9,6 @@ layout:
     "main_left meteogram meteogram meteogram"
     "main_left todo warn warn"
     "main_left todo garbage birthdays"
-    "main_left todo main_mid_right main_right_right"
   mediaquery:
     "(max-width: 800px)":
       grid-template-columns: 100%
@@ -286,43 +285,45 @@ cards:
         - entity_id: "sensor.dwd_warn*"
       exclude:
         - state: "off"
-  - type: custom:auto-entities
+  - type: vertical-stack
     view_layout:
       grid-area: garbage
-    show_empty: false
-    card:
-      type: entities
-      title: "Abfall"
-      show_header_toggle: false
-    filter:
-      include:
-        - entity_id: "sensor.abfall_anzeige*"   
-  - type: custom:auto-entities
+    cards:
+      - type: custom:auto-entities
+        show_empty: false
+        card:
+          type: entities
+          title: "Abfall"
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "sensor.abfall_anzeige*"
+      - type: entities
+        show_header_toggle: false
+        entities:
+        - entity: input_boolean.eisschutz_jalousien
+          name: Eisschutz Jalousien
+  - type: vertical-stack
     view_layout:
       grid-area: birthdays
-    show_empty: false
-    card:
-      type: entities
-      title: "Geburtstage"
-      show_header_toggle: false
-    filter:
-      include:
-        - entity_id: "sensor.birthday*"
-      exclude:
-        - state: "off" 
-  - type: entities
-    view_layout:
-      grid-area: main_mid_right
-    show_header_toggle: false
-    entities:
-    - entity: input_boolean.eisschutz_jalousien
-      name: Eisschutz Jalousien
-  - type: entities
-    view_layout:
-      grid-area: main_right_right
-    show_header_toggle: false
-    entities:
-    - entity: input_boolean.gaeste_abends
-      name: Gäste
-    - entity: input_boolean.arbeit_theke
-      name: Arbeit Theke
+    cards:
+      - type: custom:auto-entities
+        view_layout:
+          grid-area: birthdays
+        show_empty: false
+        card:
+          type: entities
+          title: "Geburtstage"
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "sensor.birthday*"
+          exclude:
+            - state: "off" 
+      - type: entities
+        show_header_toggle: false
+        entities:
+        - entity: input_boolean.gaeste_abends
+          name: Gäste
+        - entity: input_boolean.arbeit_theke
+          name: Arbeit Theke
