@@ -139,6 +139,7 @@ cards:
   - type: vertical-stack
     view_layout:
       grid-area: todo
+      align-self: start
     cards:
       - type: custom:auto-entities
         show_empty: false
@@ -288,6 +289,7 @@ cards:
   - type: vertical-stack
     view_layout:
       grid-area: garbage
+      align-self: start
     cards:
       - type: custom:auto-entities
         show_empty: false
