@@ -57,5 +57,15 @@ cards:
       - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off
       - entity: switch.bilderrahmen_1
       - entity: switch.lumi_lumi_plug_mmeu01_on_off
-  - type: 'custom:multiline-entity-card'
-    entity: sensor.test_text
+  - type: markdown
+    content: |
+      {%- set mapper = {0:'"#eeeeee"',1:'"#F2DB06"',2:'"#FB8D00"',3:'"#E63632"',4:'"#F300FF"'} %}
+      {%- for sensor in states.sensor %}
+        {%- set danger = sensor.attributes["Gefahr (0-4)"] %}
+        {%- if 'sensor.dwd_warn' in sensor.entity_id and sensor.state != "off" %}
+      {{ sensor.state}}: 
+      <font color = {{- mapper[danger] if danger in mapper else 'grey'}}>{{ sensor.attributes.friendly_name }}</font>
+      Gefahr (0-4): {{ danger }}
+
+        {%- endif %}
+      {%- endfor %}
