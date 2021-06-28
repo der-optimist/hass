@@ -63,13 +63,24 @@ cards:
       {%- set first_warning = true %}
       {%- for sensor in states.sensor %}
         {%- set danger = sensor.attributes["Gefahr (0-4)"] %}
-        {%- if 'sensor.dwd_warn' in sensor.entity_id and sensor.state != "off" %}
           {% if first_warning == false %}
       ------------------------------------
           {% endif %}
+        {%- if 'sensor.dwd_warn' in sensor.entity_id and sensor.state != "off" %}
       {{ sensor.state}}: 
       <font color = {{- mapper[danger] if danger in mapper else 'grey'}}>**{{ sensor.attributes.friendly_name }}**</font>
-      Gefahr (0-4): {{ danger }}
-        {%- set first_warning = false %}
+      {%- if danger == 0 %}
+      Gefahrenstufe: Info
+      {%- elif danger == 1 %}
+      Gefahrenstufe: gering
+      {%- elif danger == 2 %}
+      Gefahrenstufe: mittel
+      {%- elif danger == 3 %}
+      Gefahrenstufe: hoch
+      {%- elif danger == 4 %}
+      Gefahrenstufe: extrem
+      {%- else %}
+      Gefahrenstufe: unbekannt
+      {%- endif %}
         {%- endif %}
       {%- endfor %}
