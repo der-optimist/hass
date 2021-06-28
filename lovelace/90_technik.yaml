@@ -60,13 +60,14 @@ cards:
   - type: markdown
     content: |
       {%- set mapper = {0:'"#eeeeee"',1:'"#F2DB06"',2:'"#FB8D00"',3:'"#E63632"',4:'"#F300FF"'} %}
-      {%- set first_warning = true %}
+      {% set ns = namespace(first=true) %}
       {%- for sensor in states.sensor %}
-        {%- set danger = sensor.attributes["Gefahr (0-4)"] %}
-          {% if first_warning == false %}
-      ------------------------------------
-          {% endif %}
         {%- if 'sensor.dwd_warn' in sensor.entity_id and sensor.state != "off" %}
+          {%- set danger = sensor.attributes["Gefahr (0-4)"] %}
+          {% if ns.first  == false %}
+      ----------------------------------------
+          {% endif %}
+          {%- set ns.first = false %}
       {{ sensor.state}}: 
       <font color = {{- mapper[danger] if danger in mapper else 'grey'}}>**{{ sensor.attributes.friendly_name }}**</font>
       {%- if danger == 0 %}
@@ -83,4 +84,5 @@ cards:
       Gefahrenstufe: unbekannt
       {%- endif %}
         {%- endif %}
+      
       {%- endfor %}
