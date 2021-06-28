@@ -19,9 +19,19 @@ class thunderstorm(hass.Hass):
         self.fire_event("custom_notify", message=message, target="telegram_jo")
         self.fire_event("custom_notify", message=message, target="telegram_ma")
         # TV
-        self.turn_off("switch.tv")
+        if self.get_state("binary_sensor.tv_ist_an") == "on":
+            message = "TV ist wohl grad an. Den lasse ich an"
+            self.fire_event("custom_notify", message=message, target="telegram_jo")
+            self.fire_event("custom_notify", message=message, target="telegram_ma")
+        else:
+            self.turn_off("switch.tv")
         # Mixi
-        self.turn_off("switch.mixi")
+        if float(self.get_state("sensor.el_leistung_mixi")) > 5:
+            message = "Mixi ist wohl grad an. Den lasse ich an"
+            self.fire_event("custom_notify", message=message, target="telegram_jo")
+            self.fire_event("custom_notify", message=message, target="telegram_ma")
+        else:
+            self.turn_off("switch.mixi")
         # Lüftungsanlage
         self.turn_off("switch.luftungsanlage")
         # Waschmaschine
