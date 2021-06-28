@@ -63,6 +63,7 @@ cards:
       yaxis:
         min: 0
         max: 10000
+        tickAmount: 6
     now:
       show: True
       label: "jetzt"
