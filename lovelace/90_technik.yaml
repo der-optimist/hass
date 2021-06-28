@@ -64,8 +64,8 @@ cards:
         {%- set danger = sensor.attributes["Gefahr (0-4)"] %}
         {%- if 'sensor.dwd_warn' in sensor.entity_id and sensor.state != "off" %}
       {{ sensor.state}}: 
-      <font color = {{- mapper[danger] if danger in mapper else 'grey'}}>{{ sensor.attributes.friendly_name }}</font>
+      <font color = {{- mapper[danger] if danger in mapper else 'grey'}}>**{{ sensor.attributes.friendly_name }}**</font>
       Gefahr (0-4): {{ danger }}
-
+      ------------------------------------
         {%- endif %}
       {%- endfor %}
