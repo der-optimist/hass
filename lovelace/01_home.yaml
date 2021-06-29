@@ -223,7 +223,7 @@ cards:
         card_mod:
           style: |
             ha-card {
-              --ha-card-background: rgb(68,81,89)
+              --ha-card-background: rgb(73,87,96)
             }
         card:
           type: custom:auto-entities
