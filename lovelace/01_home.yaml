@@ -235,11 +235,10 @@ cards:
         card:
           type: markdown
           style:
-            ha-markdown:
-              $: |
-                table, th, td {
-                  border: 1px solid black;
-                }
+            ha-card {
+              --ha-card-background: 'rgba(0, 0, 0, 0)';
+              --ha-card-box-shadow: 'none'
+            }
           content: |
             {%- set mapper = {0:'"#eeeeee"',1:'"#F2DB06"',2:'"#FB8D00"',3:'"#E63632"',4:'"#F300FF"'} %}
             {% set ns = namespace(first=true) %}
