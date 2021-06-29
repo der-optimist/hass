@@ -232,6 +232,11 @@ cards:
     cards:
       - type: custom:auto-entities
         show_empty: false
+        style: |
+          ha-card {
+            border-style: solid;
+            border-color: var(--primary-color);
+          }    
         card:
           type: markdown
           content: |
@@ -262,11 +267,6 @@ cards:
               {%- endif %}
 
             {%- endfor %}
-          style: |
-            ha-card {
-              border-style: solid;
-              border-color: var(--primary-color);
-            }    
         filter:
           include:
             - entity_id: "sensor.dwd_warn*"
