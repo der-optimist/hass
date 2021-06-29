@@ -234,7 +234,7 @@ cards:
         show_empty: false
         card:
           type: markdown
-          style:
+          style: |
             ha-card {
               --ha-card-background: 'rgba(0, 0, 0, 0)';
               --ha-card-box-shadow: 'none'
