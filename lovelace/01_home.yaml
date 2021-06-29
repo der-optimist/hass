@@ -234,7 +234,7 @@ cards:
         card_mod:
           style: |
             ha-card {
-              --ha-card-background: rgb(168,240,255)
+              --ha-card-background: rgb(37,37,37)
             }
         card:
           type: custom:auto-entities
