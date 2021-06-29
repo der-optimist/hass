@@ -233,7 +233,7 @@ cards:
       - type: custom:auto-entities
         show_empty: false
         style: |
-          ha-card {
+          ha-markdown {
             border-style: solid;
             border-color: var(--primary-color);
           }    
