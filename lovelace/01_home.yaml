@@ -201,7 +201,6 @@ cards:
             title: "PV-Anlage"
             show_header_toggle: false
             entities:
-              - sensor.el_leistung_netz
               - sensor.el_leistung_pv_ac
               - sensor.el_leistung_verbrauch_gesamt
               - sensor.pv_geldertrag_gesamt
