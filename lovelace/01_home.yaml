@@ -233,10 +233,9 @@ cards:
       - type: custom:auto-entities
         show_empty: false
         style: |
-          ha-markdown {
-            border-style: solid;
-            border-color: var(--primary-color);
-          }    
+          body, *{
+            color: rgba(255, 255, 255, 0.8);
+          }
         card:
           type: markdown
           content: |
