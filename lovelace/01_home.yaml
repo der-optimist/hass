@@ -232,12 +232,14 @@ cards:
     cards:
       - type: custom:auto-entities
         show_empty: false
-        style: |
-          body, *{
-            color: rgba(255, 255, 255, 0.8);
-          }
         card:
           type: markdown
+          style:
+            ha-markdown:
+              $: |
+                table, th, td {
+                  border: 1px solid black;
+                }
           content: |
             {%- set mapper = {0:'"#eeeeee"',1:'"#F2DB06"',2:'"#FB8D00"',3:'"#E63632"',4:'"#F300FF"'} %}
             {% set ns = namespace(first=true) %}
