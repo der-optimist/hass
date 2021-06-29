@@ -127,43 +127,6 @@ cards:
           include:
             - entity_id: "switch.reminder*"
               state: "on"
-      - type: entities
-        show_header_toggle: false
-        entities:
-      #            - type: custom:template-entity-row
-      #              name: Neuinfektionen Deutschland
-      #              icon: mdi:medical-bag
-      #              entity: sensor.deutschland_newcases
-      #              state: "{{ '%.0f'%(states('sensor.deutschland_newcases')) | float }}"
-      #            - type: custom:template-entity-row
-      #              name: 7-Tage Inzidenz Deutschland
-      #              icon: mdi:medical-bag
-      #              entity: sensor.deutschland_weekincidence
-      #              state: "{{ '%.0f'%(states('sensor.deutschland_weekincidence')) | float | round(0) }}"
-      #            - type: custom:template-entity-row
-      #              name: 7-Tage Inzidenz BaWü
-      #              icon: mdi:medical-bag
-      #              entity: sensor.bl_baden_wurttemberg_weekincidence
-      #              state: "{{ '%.0f'%(states('sensor.bl_baden_wurttemberg_weekincidence')) | float | round(0) }}"
-        - type: custom:template-entity-row
-          name: 7-Tage Inzidenz RV
-          icon: mdi:medical-bag
-          entity: sensor.lk_ravensburg_weekincidence
-          state: "{{ '%.0f'%(states('sensor.lk_ravensburg_weekincidence')) | float | round(0) }}"
-#        - type: custom:template-entity-row
-#          name: 7-Tage Inzidenz Wittenberg
-#          icon: mdi:medical-bag
-#          entity: sensor.lk_wittenberg_weekincidence
-#          state: "{{ '%.0f'%(states('sensor.lk_wittenberg_weekincidence')) | float | round(0) }}"
-        - type: divider
-          style: 
-            height: 1px
-            background-color: "#ff9c27"
-            opacity: 0.25
-        - type: custom:template-entity-row
-          name: Strompreis aktuell
-          entity: sensor.strompreis_effektiv_letzte_3_minuten
-          state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float)) }} ct"
       - type: custom:swipe-card
         cards: 
           - type: custom:apexcharts-card
@@ -246,6 +209,23 @@ cards:
                 name: Prozent abbezahlt
                 entity: sensor.pv_geldertrag_gesamt
                 state: "{{ '%.2f'%(100*(states('sensor.pv_geldertrag_gesamt') | float) / ((states('sensor.pv_geldertrag_gesamt') | float) + (states('sensor.pv_geldbetrag_bis_amortisation') | float))) }} %"
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - type: custom:template-entity-row
+            name: Strompreis aktuell
+            entity: sensor.strompreis_effektiv_letzte_3_minuten
+            state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float)) }} ct"
+          - type: divider
+            style: 
+              height: 1px
+              background-color: "#ff9c27"
+              opacity: 0.25
+          - type: custom:template-entity-row
+            name: 7-Tage Inzidenz RV
+            icon: mdi:medical-bag
+            entity: sensor.lk_ravensburg_weekincidence
+            state: "{{ '%.0f'%(states('sensor.lk_ravensburg_weekincidence')) | float | round(0) }}"
   - type: vertical-stack
     view_layout:
       grid-area: garbage
