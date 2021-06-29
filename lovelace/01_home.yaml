@@ -190,13 +190,6 @@ cards:
                   return entity.attributes.timestamp_today.map((ts_d, index) => {
                     return [new Date(ts_d).getTime(), entity.attributes.pv_production_today[index]];
                   });
-          - type: custom:power-wheel-card
-            solar_power_entity: sensor.el_leistung_pv_ac
-            grid_power_entity: sensor.el_leistung_netz
-            production_is_positive: false
-            solar_icon: "mdi:solar-power"
-            grid_icon: "mdi:transmission-tower"
-            home_icon: "mdi:home"
           - type: entities
             title: "PV-Anlage"
             show_header_toggle: false
@@ -204,10 +197,6 @@ cards:
               - sensor.el_leistung_pv_ac
               - sensor.el_leistung_verbrauch_gesamt
               - sensor.pv_geldertrag_gesamt
-              - type: custom:template-entity-row
-                name: Prozent abbezahlt
-                entity: sensor.pv_geldertrag_gesamt
-                state: "{{ '%.2f'%(100*(states('sensor.pv_geldertrag_gesamt') | float) / ((states('sensor.pv_geldertrag_gesamt') | float) + (states('sensor.pv_geldbetrag_bis_amortisation') | float))) }} %"
       - type: entities
         show_header_toggle: false
         entities:
