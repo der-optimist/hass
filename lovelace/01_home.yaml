@@ -7,20 +7,16 @@ layout:
   grid-template-rows: auto
   grid-template-areas: |
     "main_left meteogram meteogram meteogram"
-    "main_left todo warn warn"
     "main_left todo garbage birthdays"
   mediaquery:
     "(max-width: 800px)":
       grid-template-columns: 100%
       grid-template-areas: |
         "meteogram"
-        "warn"
         "main_left"
         "todo"
         "garbage"
         "birthdays"
-        "main_mid_right"
-        "main_right_right"
 cards:
   - type: vertical-stack
     view_layout:
@@ -102,26 +98,6 @@ cards:
               service_data:
                 entity_id: scene.jal_wohnbereich_hoch
             entity: scene.jal_wohnbereich_hoch
-      - type: custom:auto-entities
-        show_empty: false
-        card:
-          type: glance
-          title: Batterie wechseln
-        filter:
-          include:
-            - entity_id: "*battery"
-              state: '< 15'
-      #          - type: picture-elements
-      #            image: /local/camera_abstellraum/last_motion.jpg
-      #            elements:
-      #              - type: image
-      #                entity: camera.abstellraum_letze_bewegung
-      #                camera_image: camera.abstellraum_letze_bewegung
-      #                style:
-      #                  left: 50%
-      #                  top: 50%
-      #                  width: 100%
-      #                  height: 100%
   - type: custom:hui-element
     view_layout:
       grid-area: meteogram
@@ -199,6 +175,7 @@ cards:
               yaxis:
                 min: 0
                 max: 10000
+                tickAmount: 5
             now:
               show: True
               label: "jetzt"
@@ -269,28 +246,53 @@ cards:
                 name: Prozent abbezahlt
                 entity: sensor.pv_geldertrag_gesamt
                 state: "{{ '%.2f'%(100*(states('sensor.pv_geldertrag_gesamt') | float) / ((states('sensor.pv_geldertrag_gesamt') | float) + (states('sensor.pv_geldbetrag_bis_amortisation') | float))) }} %"
-  - type: custom:auto-entities
-    view_layout:
-      grid-area: warn
-    show_empty: false
-    card:
-      type: entities
-      style: |
-        ha-card {
-          border-style: solid;
-          border-color: var(--primary-color);
-        }    
-      show_header_toggle: false
-    filter:
-      include:
-        - entity_id: "sensor.dwd_warn*"
-      exclude:
-        - state: "off"
   - type: vertical-stack
     view_layout:
       grid-area: garbage
       align-self: start
     cards:
+      - type: custom:auto-entities
+        show_empty: false
+        card:
+          type: markdown
+          content: |
+            {%- set mapper = {0:'"#eeeeee"',1:'"#F2DB06"',2:'"#FB8D00"',3:'"#E63632"',4:'"#F300FF"'} %}
+            {% set ns = namespace(first=true) %}
+            {%- for sensor in states.sensor %}
+              {%- if 'sensor.dwd_warn' in sensor.entity_id and sensor.state != "off" %}
+                {%- set danger = sensor.attributes["Gefahr (0-4)"] %}
+                {% if ns.first  == false %}
+            ----------------------------------------
+                {% endif %}
+                {%- set ns.first = false %}
+            {{ sensor.state}}: 
+            <font color = {{- mapper[danger] if danger in mapper else 'grey'}}>**{{ sensor.attributes.friendly_name }}**</font>
+            {%- if danger == 0 %}
+            Gefahrenstufe: Info
+            {%- elif danger == 1 %}
+            Gefahrenstufe: gering
+            {%- elif danger == 2 %}
+            Gefahrenstufe: mittel
+            {%- elif danger == 3 %}
+            Gefahrenstufe: hoch
+            {%- elif danger == 4 %}
+            Gefahrenstufe: extrem
+            {%- else %}
+            Gefahrenstufe: unbekannt
+            {%- endif %}
+              {%- endif %}
+
+            {%- endfor %}
+          style: |
+            ha-card {
+              border-style: solid;
+              border-color: var(--primary-color);
+            }    
+        filter:
+          include:
+            - entity_id: "sensor.dwd_warn*"
+          exclude:
+            - state: "off"
       - type: custom:auto-entities
         show_empty: false
         card:
@@ -310,8 +312,26 @@ cards:
       grid-area: birthdays
     cards:
       - type: custom:auto-entities
-        view_layout:
-          grid-area: birthdays
+        show_empty: false
+        card:
+          type: glance
+          title: Batterie wechseln
+        filter:
+          include:
+            - entity_id: "*battery"
+              state: '< 15'
+      #          - type: picture-elements
+      #            image: /local/camera_abstellraum/last_motion.jpg
+      #            elements:
+      #              - type: image
+      #                entity: camera.abstellraum_letze_bewegung
+      #                camera_image: camera.abstellraum_letze_bewegung
+      #                style:
+      #                  left: 50%
+      #                  top: 50%
+      #                  width: 100%
+      #                  height: 100%
+      - type: custom:auto-entities
         show_empty: false
         card:
           type: entities
