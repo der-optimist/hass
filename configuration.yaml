@@ -415,6 +415,12 @@ input_number:
     min: 0
     max: 12
     step: 1
+  timer_spezial_luftf_vorratsraum:
+    name: Timer verringerte Luftfeuchtigkeit Speis
+    initial: 0
+    min: 0
+    max: 12
+    step: 1
   timer_spezial_luftf_wz:
     name: Timer erhöhte Luftfeuchtigkeit WZ
     initial: 0
