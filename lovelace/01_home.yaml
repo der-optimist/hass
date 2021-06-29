@@ -223,7 +223,7 @@ cards:
         card_mod:
           style: |
             ha-card {
-              --ha-card-background: rgb(98,113,123)
+              --ha-card-background: rgb(68,81,89)
             }
         card:
           type: custom:auto-entities
@@ -231,7 +231,7 @@ cards:
           card:
             type: markdown
             content: |
-              {%- set mapper = {0:'"#eeeeee"',1:'"#F2DB06"',2:'"#FB8D00"',3:'"#E63632"',4:'"#F300FF"'} %}
+              {%- set mapper = {0:'"#eeeeee"',1:'"#F2DB06"',2:'"#FB8D00"',3:'"#F9413D"',4:'"#F300FF"'} %}
               {% set ns = namespace(first=true) %}
               {%- for sensor in states.sensor %}
                 {%- if 'sensor.dwd_warn' in sensor.entity_id and sensor.state != "off" %}
