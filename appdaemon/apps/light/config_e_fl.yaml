@@ -39,7 +39,7 @@ auto_light_e_fl_panels:
     - switch.majo_schlafen
     - switch.knutschen
 auto_light_e_fl_stehlampe_oben:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_flur_eg
@@ -72,7 +72,7 @@ auto_light_e_fl_stehlampe_oben:
     - switch.majo_schlafen
     - switch.knutschen
 auto_light_e_fl_stehlampe_unten:
-  module: auto_light_beta
+  module: auto_light
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_flur_eg
