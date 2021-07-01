@@ -48,22 +48,22 @@
       luftfeuchtigkeit_waschkuche:
         friendly_name: 'Luftfeuchtigkeit Waschküche'
         unit_of_measurement: '%'
-        value_template: "{{ states('sensor.bme280_wemosd1_4_luftfeuchtigkeit') }}"
+        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_5_sht31') }}"
         device_class: humidity
       temp_waschkuche:
         friendly_name: 'Temp. Waschküche'
         unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.bme280_wemosd1_4_temperatur') }}"
+        value_template: "{{ states('sensor.temp_esp_wemos_d1_5_sht31') }}"
         device_class: temperature
       luftfeuchtigkeit_werkelraum:
         friendly_name: 'Luftfeuchtigkeit Werkelraum'
         unit_of_measurement: '%'
-        value_template: "{{ states('sensor.bme280_wemosd1_7_luftfeuchtigkeit') }}"
+        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_6_sht31') }}"
         device_class: humidity
       temp_werkelraum:
         friendly_name: 'Temp. Werkelraum'
         unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.bme280_wemosd1_7_temperatur') }}"
+        value_template: "{{ states('sensor.temp_esp_wemos_d1_6_sht31') }}"
         device_class: temperature
       luftfeuchtigkeit_partyraum:
         friendly_name: 'Luftfeuchtigkeit Partyraum'
