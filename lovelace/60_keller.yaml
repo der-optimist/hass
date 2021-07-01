@@ -71,6 +71,8 @@ cards:
       name: Temperatur
     - entity: sensor.luftfeuchtigkeit_vorratsraum
       name: Luftfeuchtigkeit
+    - entity: sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_sht31
+      name: Luftf. SHT31
   - type: entities
     title: "Lager-/Werkelraum"
     show_header_toggle: false
