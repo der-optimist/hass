@@ -89,7 +89,7 @@ class permanent_recorder(hass.Hass):
         self.listen_state(self.heating_number_of_starts, "sensor.bosch_numberofstarts")
         
         # check for new entities regularly
-        self.run_every(self.check_for_new_entities, "now+300", 5 * 60)
+        self.run_in(self.check_for_new_entities, 1860)
         
     def check_for_new_entities(self, kwargs):
         self.log("Will check for new entities")
