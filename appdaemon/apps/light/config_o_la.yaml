@@ -92,8 +92,10 @@ auto_light_o_la_stehlampe:
   illuminance_sensor: sensor.helligkeit_la_pm
   keeping_off_entities:
     - switch.la_schlaft
+    - switch.luften_eg
   switching_off_entities:
     - switch.la_schlaft
+    - switch.luften_eg
 # --- Dim-Steps ---
 dimmer_steps_panels_la:
   module: dimmer_steps
