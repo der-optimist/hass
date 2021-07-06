@@ -88,6 +88,14 @@
     address: '15/0/69'
     state_address: '15/0/70'
 
+# Fenster
+  - name: 'Lüften EG'
+    address: '15/0/71'
+    state_address: '15/0/72'
+  - name: 'Lüften OG'
+    address: '15/0/73'
+    state_address: '15/0/74'
+
 # --- Heizung ---
   # Switch um an GA zu senden. Richtet sich über AppDaemon App nach der Input Boolean, da 
   # diese bei Neustart wiederhergestellt wird. Diesen Schalter also nicht manuell betätigen
