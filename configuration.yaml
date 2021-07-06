@@ -93,8 +93,6 @@ lovelace:
       type: module
     - url: /hacsfiles/swipe-card/swipe-card.js
       type: module
-    - url: /hacsfiles/Multiline-Entity-Card/multiline-entity-card.js
-      type: module
 
 automation: !include automations.yaml
 config:
