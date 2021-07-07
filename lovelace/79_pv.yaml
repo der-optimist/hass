@@ -42,18 +42,6 @@ cards:
         entity: sensor.strompreis_effektiv_letzte_3_minuten
         state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float)) }} ct"
       - sensor.strompreis_effektiv_letzte_3_minuten
-  - type: entities
-    title: "SunSpec"
-    show_header_toggle: false
-    entities:
-      - entity: sensor.fronius1_wr_inverter_dc_power
-        name: DC Power
-      - entity: sensor.fronius1_wr_mppt_module_0_dc_power
-        name: DC Power String 0
-      - entity: sensor.fronius1_wr_mppt_module_1_dc_power
-        name: DC Power String 1
-      - entity: sensor.fronius1_wr_inverter_ac_power
-        name: AC Power
   - type: custom:apexcharts-card
     experimental:
       color_threshold: true
@@ -203,3 +191,7 @@ cards:
             name: Prozent abbezahlt
             entity: sensor.pv_geldertrag_gesamt
             state: "{{ '%.2f'%(100*(states('sensor.pv_geldertrag_gesamt') | float) / ((states('sensor.pv_geldertrag_gesamt') | float) + (states('sensor.pv_geldbetrag_bis_amortisation') | float))) }} %"
+  - type: custom:sun-card
+    showAzimuth: true
+    showElevation: true
+    title: Sonnenaufgang und Sonnenuntergang
