@@ -194,4 +194,3 @@ cards:
   - type: custom:sun-card
     showAzimuth: true
     showElevation: true
-    title: Sonnenaufgang und Sonnenuntergang
