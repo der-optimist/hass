@@ -28,6 +28,7 @@ energy_consumption_and_costs:
     - sensor.el_leistung_kochfeld_esp # is mapped to sensor.el_leistung_kochfeld which is calculated
     - sensor.el_leistung_esp_sd_3 # is mapped to sensor.el_leistung_bildschirm_theke which is calculated
     - sensor.el_leistung_tuya_sd_3 # is used for measuring devices
+    - sensor.el_leistung_kuhlschrank_keller # is mapped to sensor.el_leistung_luftentf_vorratsraum
   db_measurements_to_skip_for_calculating_sum: # some entities are included in other ones. They should not be summed up twice
     - sensor.el_leistung_licht_sicherung_3_2 # is icluded in el_leistung_licht_gesamt
     - sensor.el_leistung_licht_sicherung_3_3 # is icluded in el_leistung_licht_gesamt
@@ -50,7 +51,7 @@ energy_consumption_and_costs:
     sensor.el_leistung_lg_anlage: LG Anlage
     sensor.el_leistung_backofen: Backofen
     sensor.el_leistung_mixi: Mixi
-    sensor.el_leistung_kuhlschrank_keller: Handtaubi Keller
+    sensor.el_leistung_luftentf_vorratsraum: Luftentf. Speis
     sensor.el_leistung_luftungsanlage: Lüftungsanlage
     sensor.el_leistung_shellyplug_s_169d16_power: Hebeanlage
     sensor.el_leistung_shellyswitch25_10521c45de0b_0_power: Ladesteckdose Ma
