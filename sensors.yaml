@@ -498,29 +498,14 @@
         friendly_name: 'El. Leistung Dauerverbraucher'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      el_leistung_tuya_sd_1:
-        friendly_name: 'El. Leistung Tuya SD 1'
-        value_template: "{{ state_attr('switch.tu_sd_1', 'current_consumption') }}"
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
-      el_leistung_tuya_sd_2:
-        friendly_name: 'El. Leistung Tuya SD 2'
-        value_template: "{{ state_attr('switch.tu_sd_2', 'current_consumption') }}"
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
-      el_leistung_tuya_sd_3:
-        friendly_name: 'El. Leistung Tuya SD 3'
-        value_template: "{{ state_attr('switch.tu_sd_3', 'current_consumption') }}"
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
       el_leistung_luftentf_vorratsraum:
         value_template: >-
-          {% if states('sensor.el_leistung_luftentf_vorratsraum_scheinleistung') | float < 1 %}
+          {% if states('sensor.el_leistung_kuhlschrank_keller') | float < 1 %}
             0.0
-          {% elif states('sensor.el_leistung_luftentf_vorratsraum_scheinleistung') | float < 100 %}
-            {{ '%.1f'%(states('sensor.el_leistung_luftentf_vorratsraum_scheinleistung') | float * 0.53) }}
+          {% elif states('sensor.el_leistung_kuhlschrank_keller') | float < 100 %}
+            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float * 0.53) }}
           {% else %}
-            {{ '%.1f'%(states('sensor.el_leistung_luftentf_vorratsraum_scheinleistung') | float * 0.656) }}
+            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float * 0.656) }}
           {% endif %}
         friendly_name: 'El. Leistung Luftentf. Vorratsraum'
         unit_of_measurement: 'W'
