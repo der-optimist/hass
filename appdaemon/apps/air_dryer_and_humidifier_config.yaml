@@ -47,7 +47,7 @@ luftentfeuchter_speis:
   class: air_dryer_and_humidifier
   machine_type: dryer
   air_dryer_or_humidifier_switch: switch.kuhlschrank_keller
-  energy_measurement_sensor: sensor.el_leistung_kuhlschrank_keller
+  energy_measurement_sensor: sensor.el_leistung_luftentf_vorratsraum
   humidity_sensor: sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_sht31
   humidity_standard_max: 52
   humidity_standard_min: 48
