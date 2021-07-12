@@ -249,7 +249,7 @@
     type: power
 
   # Kühlschrank Keller
-  - name: 'El. Leistung Kühlschrank Keller'
+  - name: 'El. Leistung Luftentf. Vorratsraum Scheinleistung'
     state_address: '0/1/203'
     type: power
 
