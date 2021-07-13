@@ -315,4 +315,3 @@ class permanent_recorder(hass.Hass):
 #        self.client.drop_measurement("Test-Entity2")
 #        self.log("Drop Test 1 done")
         
-        
