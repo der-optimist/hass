@@ -2,7 +2,7 @@ permanent_recorder:
   module: permanent_recorder
   class: permanent_recorder
   db_passwd: !secret permanent_db_passwd
-  plugin: NONE
+#  plugin: NONE
   state_boolean:
     - binary_sensor.anwesenheit_bildschirm
     - binary_sensor.anwesenheit_haus
