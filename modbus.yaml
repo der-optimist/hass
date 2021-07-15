@@ -80,3 +80,15 @@
         data_type: uint
         address: 40245
         scan_interval: 300
+  - name: lueftungsanlage
+    type: tcp
+    host: modbuslueftung.fritz.box
+    port: 502
+    sensors:
+      - name: lueftungmodbus_rh_max
+        unit_of_measurement: %
+        slave: 1
+        count: 2
+        data_type: uint
+        address: 1001
+        scan_interval: 60
