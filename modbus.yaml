@@ -90,7 +90,7 @@
         slave: 1
         count: 1
         data_type: uint
-        address: 1012
+        address: 1011
         scan_interval: 60
       - name: lueftungmodbus_rpm_supply
         unit_of_measurement: 'rpm'
@@ -98,7 +98,7 @@
         count: 1
         data_type: uint
         input_type: input
-        address: 12401
+        address: 12400
         scan_interval: 60
       - name: lueftungmodbus_rpm_exhaust
         unit_of_measurement: 'rpm'
@@ -106,5 +106,5 @@
         count: 1
         data_type: uint
         input_type: input
-        address: 12402
+        address: 12401
         scan_interval: 60
