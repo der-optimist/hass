@@ -659,6 +659,15 @@
         unit_of_measurement: '°C'
         device_class: temperature
 #
+#   --------------------------------
+#   --         Sonstiges          --
+#   --------------------------------
+#
+      target_temp_kuehlbox:
+        friendly_name: 'Zieltemperatur Kühlbox'
+        unit_of_measurement: '°C'
+        value_template: "{{ states('input_number.target_temp_kuehlbox') | float }}"
+#
 # --------------------------------
 # --                            --
 # --            MQTT            --
