@@ -383,7 +383,7 @@ input_number:
   target_temp_kuehlbox:
     name: Zieltemperatur Kühlbox
     min: 1
-    max: 15
+    max: 60
     step: 1
   strompreis:
     name: Strompreis
