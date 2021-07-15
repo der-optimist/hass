@@ -86,7 +86,7 @@
     port: 502
     sensors:
       - name: lueftungmodbus_rh_max
-        unit_of_measurement: %
+        unit_of_measurement: '%'
         slave: 1
         count: 2
         data_type: uint
