@@ -27,10 +27,10 @@ auto_light_o_gz_deckenlicht:
   illuminance_sensor: sensor.helligkeit_gastezimmer_pm
   keeping_off_entities:
     - switch.gaste_schlafen
-    - switch.luften_eg
+    - switch.luften_le
   switching_off_entities:
     - switch.gaste_schlafen
-    - switch.luften_eg
+    - switch.luften_le
 knx_dim_funk_gz_deckenlicht:
   module: knx_dim_funk
   class: knx_dim_funk
