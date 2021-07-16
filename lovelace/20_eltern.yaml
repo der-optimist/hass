@@ -30,6 +30,8 @@ cards:
       name: Kinder schon wach
     - entity: switch.knutschen
       name: Knutschen
+    - entity: switch.luften_sz
+      name: Lüften SZ
     - type: section
       label: Steckdosen
     - entity: switch.shellyswitch25_10521c45de0b_relay_0
