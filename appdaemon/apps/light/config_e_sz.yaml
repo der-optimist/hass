@@ -27,11 +27,11 @@ auto_light_e_sz_panels:
     - binary_sensor.schlafen_oder_aufwachphase_majo
     - binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo
     - switch.knutschen
-    - switch.luften_eg
+    - switch.luften_sz
   switching_off_entities:
     - switch.majo_schlafen
     - switch.knutschen
-    - switch.luften_eg
+    - switch.luften_sz
 auto_light_e_sz_bett:
   module: auto_light
   class: auto_light
@@ -57,9 +57,9 @@ auto_light_e_sz_bett:
   special_brightness_entities:
     binary_sensor.schlafen_oder_aufwachphase_majo: 40
   switching_off_entities:
-    - switch.luften_eg
+    - switch.luften_sz
   keeping_off_entities:
-    - switch.luften_eg
+    - switch.luften_sz
 auto_light_e_sz_zigbee_lampe:
   module: auto_light
   class: auto_light
@@ -83,10 +83,10 @@ auto_light_e_sz_zigbee_lampe:
     - switch.majo_schlafen
     - binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo
     - switch.knutschen
-    - switch.luften_eg
+    - switch.luften_sz
   switching_off_entities:
     - switch.majo_schlafen
     - switch.knutschen
-    - switch.luften_eg
+    - switch.luften_sz
   special_brightness_entities:
     binary_sensor.schlafen_oder_aufwachphase_majo: 10
