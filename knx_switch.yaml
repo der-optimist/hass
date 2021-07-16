@@ -89,12 +89,21 @@
     state_address: '15/0/70'
 
 # Fenster
-  - name: 'Lüften EG'
-    address: '15/0/71'
-    state_address: '15/0/72'
-  - name: 'Lüften OG'
-    address: '15/0/73'
-    state_address: '15/0/74'
+  - name: 'Lüften alles'
+    address: '15/0/75'
+    state_address: '15/0/76'
+  - name: 'Lüften EZ'
+    address: '15/0/77'
+    state_address: '15/0/78'
+  - name: 'Lüften SZ'
+    address: '15/0/79'
+    state_address: '15/0/80'
+  - name: 'Lüften Le'
+    address: '15/0/81'
+    state_address: '15/0/82'
+  - name: 'Lüften La'
+    address: '15/0/83'
+    state_address: '15/0/84'
 
 # --- Heizung ---
   # Switch um an GA zu senden. Richtet sich über AppDaemon App nach der Input Boolean, da 
