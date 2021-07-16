@@ -73,15 +73,15 @@ class sync_scene_and_night_entities(hass.Hass):
     # Lüften
     def lueften_alles_start(self, entity, attribute, old, new, kwargs):
         self.run_in(self.lueften_ez_start, 1)
-        self.run_in(self.lueften_sz_start, 4)
-        self.run_in(self.lueften_le_start, 7)
-        self.run_in(self.lueften_la_start, 10)
+        self.run_in(self.lueften_sz_start, 6)
+        self.run_in(self.lueften_la_start, 11)
+        self.run_in(self.lueften_le_start, 16)
         
     def lueften_alles_ende(self, entity, attribute, old, new, kwargs):
         self.run_in(self.lueften_ez_ende, 1)
-        self.run_in(self.lueften_sz_ende, 4)
-        self.run_in(self.lueften_le_ende, 7)
-        self.run_in(self.lueften_la_ende, 10)
+        self.run_in(self.lueften_sz_ende, 6)
+        self.run_in(self.lueften_la_ende, 11)
+        self.run_in(self.lueften_le_ende, 16)
     
     def lueften_ez_start(self,kwargs):
         self.turn_on("switch.luften_ez")
