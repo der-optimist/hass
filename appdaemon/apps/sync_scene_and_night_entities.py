@@ -1,5 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 import datetime
+import time
 
 #
 # Helper app, "hearing" for KNX scene commands and set state of HA-switches accordingly
@@ -46,6 +47,16 @@ class sync_scene_and_night_entities(hass.Hass):
         elif data["data"] == [5]:
             self.log("Le steht auf")
             self.turn_off("switch.le_schlaft")
+        elif data["data"] == [21]:
+            self.log("Lueftung hochschalten")
+            # setze Laufzeit Stoßlüftung auf 30 Minuten
+            self.call_service("modbus/write_register", data = {address: 1103, unit: 1, value: 30, hub: "lueftungsanlage"})
+            time.sleep(1)
+            # starte Stoßlüftung
+            self.call_service("modbus/write_register", data = {address: 1161, unit: 1, value: 4, hub: "lueftungsanlage"})
+        elif data["data"] == [22]:
+            self.log("Lueftung Automatik")
+            self.call_service("modbus/write_register", data = {address: 1161, unit: 1, value: 1, hub: "lueftungsanlage"})
             
     def toggle_poweroutlet_phone_ma(self,event_name,data,kwargs):
         self.log("Toggle poweroutlet phone ma")
