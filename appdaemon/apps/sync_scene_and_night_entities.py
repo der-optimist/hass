@@ -22,8 +22,11 @@ class sync_scene_and_night_entities(hass.Hass):
         self.listen_state(self.children_sleeping_changed, "binary_sensor.la_oder_le_schlafen")
         # set "Kater-Knopf" to off when majo_sleep turned off
         self.listen_state(self.reset_kater_knopf, "switch.majo_schlafen", new = "off")
-        # Panels Treppe OG aus wenn Lüften
-        self.listen_state(self.lueften, "switch.luften_eg", new = "on", old = "off")
+        # Alles-Lüften handeln und Panels Treppe OG aus wenn Lüften Le oder La
+        self.listen_state(self.lueften_alles_start, "switch.luften_alles", new = "on", old = "off")
+        self.listen_state(self.lueften_alles_ende, "switch.luften_alles", new = "off", old = "on")
+        self.listen_state(self.panels_treppe_og_aus, "switch.luften_le", new = "on", old = "off")
+        self.listen_state(self.panels_treppe_og_aus, "switch.luften_la", new = "on", old = "off")
         
     def scene(self,event_name,data,kwargs):
         self.log("KNX scene detected. data is:")
@@ -67,5 +70,35 @@ class sync_scene_and_night_entities(hass.Hass):
         if old != "off":
             self.turn_off("switch.kinder_schon_wach")
 
-    def lueften(self, entity, attribute, old, new, kwargs):
+    # Lüften
+    def lueften_alles_start(self, entity, attribute, old, new, kwargs):
+        self.run_in(self.lueften_ez_start, 1)
+        self.run_in(self.lueften_sz_start, 4)
+        self.run_in(self.lueften_le_start, 7)
+        self.run_in(self.lueften_la_start, 10)
+        
+    def lueften_alles_ende(self, entity, attribute, old, new, kwargs):
+        self.run_in(self.lueften_ez_ende, 1)
+        self.run_in(self.lueften_sz_ende, 4)
+        self.run_in(self.lueften_le_ende, 7)
+        self.run_in(self.lueften_la_ende, 10)
+    
+    def lueften_ez_start(self,kwargs):
+        self.turn_on("switch.luften_ez")
+    def lueften_ez_ende(self,kwargs):
+        self.turn_off("switch.luften_ez")
+    def lueften_sz_start(self,kwargs):
+        self.turn_on("switch.luften_sz")
+    def lueften_sz_ende(self,kwargs):
+        self.turn_off("switch.luften_sz")
+    def lueften_le_start(self,kwargs):
+        self.turn_on("switch.luften_le")
+    def lueften_le_ende(self,kwargs):
+        self.turn_off("switch.luften_le")
+    def lueften_la_start(self,kwargs):
+        self.turn_on("switch.luften_la")
+    def lueften_la_ende(self,kwargs):
+        self.turn_off("switch.luften_la")
+        
+    def panels_treppe_og_aus(self, entity, attribute, old, new, kwargs):
         self.turn_off("light.panels_treppe_og")
