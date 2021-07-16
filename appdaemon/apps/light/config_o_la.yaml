@@ -29,12 +29,12 @@ auto_light_o_la_panels:
   keeping_off_entities:
     - switch.la_schlaft
     - switch.bleib_so_la_licht
-    - switch.luften_eg
+    - switch.luften_la
   keeping_on_entities:
     - switch.bleib_so_la_licht
   switching_off_entities:
     - switch.la_schlaft
-    - switch.luften_eg
+    - switch.luften_la
   special_brightness_entities:
     binary_sensor.schlafen_oder_aufwachphase_la: 5
 auto_light_o_la_wuerfel:
@@ -68,11 +68,11 @@ auto_light_o_la_wuerfel:
     switch.la_schlaft: 2
   keeping_off_entities:
     - switch.bleib_so_la_licht
-    - switch.luften_eg
+    - switch.luften_la
   keeping_on_entities:
     - switch.bleib_so_la_licht
   switching_off_entities:
-    - switch.luften_eg
+    - switch.luften_la
   special_brightness_entities:
     binary_sensor.schlafen_oder_aufwachphase_la: 30
 auto_light_o_la_stehlampe:
@@ -92,10 +92,10 @@ auto_light_o_la_stehlampe:
   illuminance_sensor: sensor.helligkeit_la_pm
   keeping_off_entities:
     - switch.la_schlaft
-    - switch.luften_eg
+    - switch.luften_la
   switching_off_entities:
     - switch.la_schlaft
-    - switch.luften_eg
+    - switch.luften_la
 # --- Dim-Steps ---
 dimmer_steps_panels_la:
   module: dimmer_steps
