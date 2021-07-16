@@ -35,11 +35,13 @@ auto_light_e_fl_panels:
   keeping_off_entities:
     - switch.majo_schlafen
     - binary_sensor.schlafen_oder_aufwachphase_majo
-    - switch.luften_eg
+    - switch.luften_ez
+    - switch.luften_sz
   switching_off_entities:
     - switch.majo_schlafen
     - switch.knutschen
-    - switch.luften_eg
+    - switch.luften_ez
+    - switch.luften_sz
 auto_light_e_fl_stehlampe_oben:
   module: auto_light
   class: auto_light
@@ -70,11 +72,13 @@ auto_light_e_fl_stehlampe_oben:
   keeping_off_entities:
     - switch.majo_schlafen
     - switch.knutschen
-    - switch.luften_eg
+    - switch.luften_ez
+    - switch.luften_sz
   switching_off_entities:
     - switch.majo_schlafen
     - switch.knutschen
-    - switch.luften_eg
+    - switch.luften_ez
+    - switch.luften_sz
 auto_light_e_fl_stehlampe_unten:
   module: auto_light
   class: auto_light
@@ -105,8 +109,10 @@ auto_light_e_fl_stehlampe_unten:
   keeping_off_entities:
     - switch.majo_schlafen
     - switch.knutschen
-    - switch.luften_eg
+    - switch.luften_ez
+    - switch.luften_sz
   switching_off_entities:
     - switch.majo_schlafen
     - switch.knutschen
-    - switch.luften_eg
+    - switch.luften_ez
+    - switch.luften_sz
