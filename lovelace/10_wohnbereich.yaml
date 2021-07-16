@@ -76,8 +76,10 @@ cards:
       toggle: true
     - entity: light.sd_fussraum_bar
       name: SD Weihnachtsbaum
-    - entity: switch.luften_eg
-      name: Lüften
+    - entity: switch.luften_alles
+      name: Lüften alles
+    - entity: switch.luften_ez
+      name: Lüften EZ
     - type: section
       label: Jalousie
     - entity: cover.jalousie_hst
