@@ -28,6 +28,11 @@ class sync_scene_and_night_entities(hass.Hass):
         self.listen_state(self.lueften_alles_ende, "switch.luften_alles", new = "off", old = "on")
         self.listen_state(self.panels_treppe_og_aus, "switch.luften_le", new = "on", old = "off")
         self.listen_state(self.panels_treppe_og_aus, "switch.luften_la", new = "on", old = "off")
+        # turn luften_alles off when all single ones are off
+        self.listen_state(self.turn_off_alles_luften, "switch.luften_ez", new = "off", old = "on")
+        self.listen_state(self.turn_off_alles_luften, "switch.luften_sz", new = "off", old = "on")
+        self.listen_state(self.turn_off_alles_luften, "switch.luften_le", new = "off", old = "on")
+        self.listen_state(self.turn_off_alles_luften, "switch.luften_la", new = "off", old = "on")
         
     def scene(self,event_name,data,kwargs):
         self.log("KNX scene detected. data is:")
@@ -110,6 +115,10 @@ class sync_scene_and_night_entities(hass.Hass):
         self.turn_on("switch.luften_la")
     def lueften_la_ende(self,kwargs):
         self.turn_off("switch.luften_la")
+
+    def turn_off_alles_luften(self, entity, attribute, old, new, kwargs):
+        if self.get_state("switch.luften_ez") == "off" and self.get_state("switch.luften_sz") == "off" and self.get_state("switch.luften_le") == "off" and self.get_state("switch.luften_la") == "off":
+            self.turn_off("switch.luften_alles")
         
     def panels_treppe_og_aus(self, entity, attribute, old, new, kwargs):
         self.turn_off("light.panels_treppe_og")
