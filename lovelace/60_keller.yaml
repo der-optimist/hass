@@ -70,9 +70,16 @@ cards:
     - entity: sensor.temp_vorratsraum
       name: Temperatur
     - entity: sensor.luftfeuchtigkeit_vorratsraum
-      name: Luftfeuchtigkeit
+      name: Luftf. Wand
     - entity: sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_sht31
-      name: Luftf. SHT31
+      name: Luftf. Raum
+    - entity: switch.kuhlschrank_keller
+      name: Steckdose Luftentfeuchter
+    - entity: sensor.el_leistung_luftentf_vorratsraum
+      name: Strom Luftentfeuchter
+    - type: custom:slider-entity-row
+      entity: input_number.timer_spezial_luftf_vorratsraum
+      full_row: true
   - type: entities
     title: "Lager-/Werkelraum"
     show_header_toggle: false
