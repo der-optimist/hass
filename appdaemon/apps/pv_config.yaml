@@ -15,8 +15,11 @@ pv:
   counter_entity_pv_used_day: "sensor.pv_eigenverbrauch_tag"
   # saved money
   entity_pv_saved_money_by_selling_day: "sensor.pv_geldertrag_durch_einspeisung_tag"
+  entity_pv_saved_money_by_selling_yesterday: "sensor.pv_geldertrag_durch_einspeisung_gestern"
   entity_pv_saved_money_by_consuming_day: "sensor.pv_geldertrag_durch_eigenverbrauch_tag"
+  entity_pv_saved_money_by_consuming_yesterday: "sensor.pv_geldertrag_durch_eigenverbrauch_gestern"
   entity_pv_saved_money_total_day: "sensor.pv_geldertrag_gesamt_tag"
+  entity_pv_saved_money_total_yesterday: "sensor.pv_geldertrag_gesamt_gestern"
   # water heater
   water_temp_heating_will_start_on_eco: 40
   water_temp_heating_will_start_on_hot: 46
