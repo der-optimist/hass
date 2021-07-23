@@ -52,11 +52,15 @@ class pv(hass.Hass):
         self.client.write_points([{"measurement":self.args["counter_entity_pv_produced_day"],"fields":{self.db_field_float:pv_produced_day},"time":int(ts_save_local_ns)}])
         self.client.write_points([{"measurement":self.args["counter_entity_pv_sold_day"],"fields":{self.db_field_float:pv_sold_day},"time":int(ts_save_local_ns)}])
         self.client.write_points([{"measurement":self.args["counter_entity_pv_used_day"],"fields":{self.db_field_float:(pv_produced_day - pv_sold_day)},"time":int(ts_save_local_ns)}])
-        saved_money_by_selling_day = pv_sold_day * self.app_config["global_vars"]["input_number_entity_compensation_per_kwh"]
+        saved_money_by_selling_day = pv_sold_day * self.get_state(self.app_config["global_vars"]["input_number_entity_compensation_per_kwh"])
+        self.set_state(self.args["entity_pv_saved_money_by_selling_yesterday"], state = round(saved_money_by_selling_day,2), attributes = {"fiendly_name": "PV-Ertrag Einspeisung gestern", "icon":"mdi:currency-eur",  "unit_of_measurement": "€"})
         self.client.write_points([{"measurement":self.args["entity_pv_saved_money_by_selling_day"],"fields":{self.db_field_float:saved_money_by_selling_day},"time":int(ts_save_local_ns)}])
         saved_money_by_consuming_day = (pv_produced_day - pv_sold_day) * self.get_state(self.app_config["global_vars"]["input_number_entity_price_per_kwh"])
+        self.set_state(self.args["entity_pv_saved_money_by_consuming_yesterday"], state = round(saved_money_by_consuming_day,2), attributes = {"fiendly_name": "PV-Ertrag Eigenverbrauch gestern", "icon":"mdi:currency-eur",  "unit_of_measurement": "€"})
         self.client.write_points([{"measurement":self.args["entity_pv_saved_money_by_consuming_day"],"fields":{self.db_field_float:saved_money_by_consuming_day},"time":int(ts_save_local_ns)}])
-        self.client.write_points([{"measurement":self.args["entity_pv_saved_money_total_day"],"fields":{self.db_field_float:(saved_money_by_selling_day + saved_money_by_consuming_day)},"time":int(ts_save_local_ns)}])
+        saved_money_total_day = saved_money_by_selling_day + saved_money_by_consuming_day
+        self.set_state(self.args["entity_pv_saved_money_total_yesterday"], state = round(saved_money_total_day,2), attributes = {"fiendly_name": "PV-Ertrag gesamt gestern", "icon":"mdi:currency-eur",  "unit_of_measurement": "€"})
+        self.client.write_points([{"measurement":self.args["entity_pv_saved_money_total_day"],"fields":{self.db_field_float:(saved_money_total_day)},"time":int(ts_save_local_ns)}])
         
     def update_daily_counters(self, kwargs):
         pv_produced_day = float(self.get_state(self.args["counter_entity_pv_produced"])) - float(self.get_state(self.args["sensor_name_counter_pv_produced_midnight"], namespace = self.ad_namespace))
