@@ -118,6 +118,17 @@ class energy_consumption_and_costs(hass.Hass):
         if consumption_total["consumption_kWh"] > 0:
             message_text = message_text + "\n\n{} % vom Stromverbrauch sind zugeordnet".format(int(round(100*(consumption_total["consumption_kWh"]-consumption_unknown["consumption_kWh"])/consumption_total["consumption_kWh"],0)))
         self.fire_event("custom_notify", message=message_text, target="telegram_jo")
+        
+        # pv money yesterday
+        try:
+            pv_saved_money_total_yesterday = self.get_state(self.app_config["pv"]["entity_pv_saved_money_total_yesterday"])
+            pv_saved_money_by_consuming_yesterday = self.get_state(self.app_config["pv"]["entity_pv_saved_money_by_consuming_yesterday"])
+            pv_saved_money_by_selling_yesterday = self.get_state(self.app_config["pv"]["entity_pv_saved_money_by_selling_yesterday"])
+            message_text = "PV Ertrag gestern: {} €\ndurch Eigenverbrauch: {} €\ndurch Einspeisung: {} €".format(round(pv_saved_money_total_yesterday,2),round(pv_saved_money_by_consuming_yesterday,2),round(pv_saved_money_by_selling_yesterday,2))
+        except Exception as e:
+            self.log("Could not collect pv data from yesterday. Error was {}".format(e))
+            message_text = "Fehler beim Sammeln der PV-Daten von gestern"
+        self.fire_event("custom_notify", message=message_text, target="telegram_jo")
 
     def prepare_data_for_energy_consumption_and_costs_calculation(self, date_str):
         ts_start_calculation_total = datetime.datetime.now().timestamp()
