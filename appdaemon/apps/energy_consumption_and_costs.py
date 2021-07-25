@@ -121,9 +121,9 @@ class energy_consumption_and_costs(hass.Hass):
         
         # pv money yesterday
         try:
-            pv_saved_money_total_yesterday = self.get_state(self.app_config["pv"]["entity_pv_saved_money_total_yesterday"])
-            pv_saved_money_by_consuming_yesterday = self.get_state(self.app_config["pv"]["entity_pv_saved_money_by_consuming_yesterday"])
-            pv_saved_money_by_selling_yesterday = self.get_state(self.app_config["pv"]["entity_pv_saved_money_by_selling_yesterday"])
+            pv_saved_money_total_yesterday = float(self.get_state(self.app_config["pv"]["entity_pv_saved_money_total_yesterday"]))
+            pv_saved_money_by_consuming_yesterday = float(self.get_state(self.app_config["pv"]["entity_pv_saved_money_by_consuming_yesterday"]))
+            pv_saved_money_by_selling_yesterday = float(self.get_state(self.app_config["pv"]["entity_pv_saved_money_by_selling_yesterday"]))
             message_text = "PV Ertrag gestern: {} €\ndurch Eigenverbrauch: {} €\ndurch Einspeisung: {} €".format(round(pv_saved_money_total_yesterday,2),round(pv_saved_money_by_consuming_yesterday,2),round(pv_saved_money_by_selling_yesterday,2))
         except Exception as e:
             self.log("Could not collect pv data from yesterday. Error was {}".format(e))
