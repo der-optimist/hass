@@ -30,6 +30,8 @@ cards:
         name: Temperatur aktuell
       - entity: water_heater.dhw1
         name: Water-Heater
+      - entity: switch.pv_heizung_1
+        name: PV-Strom
       - type: section
         label: Gerät
       - entity: sensor.bosch_health_status
