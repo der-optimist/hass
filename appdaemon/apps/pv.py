@@ -21,6 +21,7 @@ class pv(hass.Hass):
 #            self.update_forecast(self.sensor_rest_forecast, "forecasts", None, current_forecasts, None)
 #        except Exception as e:
 #            self.log("Error running forecast at startup. Error was {}".format(e))
+        self.pv_boost_blocked = False
         self.run_every(self.update_forecast_regularly, "now", 15 * 60)
         # --- initialize database stuff
         self.host = self.app_config["global_vars"]["db_host"]
@@ -155,10 +156,16 @@ class pv(hass.Hass):
             self.log("Will increase water target temp now")
             #self.call_service("water_heater/set_operation_mode", entity_id = self.args["entity_water_heater"], operation_mode = self.args["program_hot"])
             self.turn_on("switch.pv_heizung_1")
+            if not self.pv_boost_blocked:
+                self.pv_boost_blocked = True
+                self.run_in(self.reset_pv_boost_block, 60 * self.args["pv_boost_minimum_minutes"])
         else:
-            self.log("Will set water heater to eco")
+            self.log("Will set water heater to eco, if not blocked")
             #self.call_service("water_heater/set_operation_mode", entity_id = self.args["entity_water_heater"], operation_mode = self.args["program_eco"])
-            self.turn_off("switch.pv_heizung_1")
+            if self.pv_boost_blocked:
+                self.log("blocked")
+            else:
+                self.turn_off("switch.pv_heizung_1")
             
         timestamps_daily.append(datetime.datetime.combine(day_0, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
         timestamps_daily.append(datetime.datetime.combine(day_1, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
@@ -178,7 +185,8 @@ class pv(hass.Hass):
         self.set_state(self.sensor_forecast_data_chart, state = str(datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")), attributes = {"timestamps": timestamps, "forecast_values": forecast_values, "timestamps_daily": timestamps_daily, "forecast_values_daily": forecast_values_daily, "timestamp_today": timestamp_today, "pv_production_today": pv_production_today})
         self.log("updating solar forecast - done")
         
-
+    def reset_pv_boost_block(self, kwargs):
+        self.pv_boost_blocked = False
 
     def check_reminder(self, kwargs):
         pass
