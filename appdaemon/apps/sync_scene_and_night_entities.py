@@ -53,15 +53,9 @@ class sync_scene_and_night_entities(hass.Hass):
             self.log("Le steht auf")
             self.turn_off("switch.le_schlaft")
         elif data["data"] == [21]:
-            self.log("Lueftung hochschalten")
-            # setze Laufzeit Stoßlüftung auf 30 Minuten
-            self.call_service("modbus/write_register", address = 1103, unit = 1, value = 30, hub = "lueftungsanlage")
-            time.sleep(1)
-            # starte Stoßlüftung
-            self.call_service("modbus/write_register", address = 1161, unit = 1, value = 4, hub = "lueftungsanlage")
+            self.log("Lueftung hochschalten - handeled by ventilation app, not here")
         elif data["data"] == [22]:
-            self.log("Lueftung Automatik")
-            self.call_service("modbus/write_register", address = 1161, unit = 1, value = 1, hub = "lueftungsanlage")
+            self.log("Lueftung Automatik - handeled by ventilation app, not here")
             
     def toggle_poweroutlet_phone_ma(self,event_name,data,kwargs):
         self.log("Toggle poweroutlet phone ma")
