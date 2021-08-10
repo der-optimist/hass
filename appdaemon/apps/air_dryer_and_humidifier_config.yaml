@@ -6,8 +6,8 @@ luftentfeuchter_waschkueche:
   energy_measurement_sensor: sensor.el_leistung_innr_sp_120_luftentfeuchter_waschkuche
   humidity_sensor: sensor.luftfeuchtigkeit_waschkuche
 #  humidity_sensor: sensor.dht22_waschkueche_humidity
-  humidity_standard_max: 50
-  humidity_standard_min: 45
+  humidity_standard_max: 55
+  humidity_standard_min: 50
   humidity_special_max: 47
   humidity_special_min: 42
   use_pv_power: True
@@ -30,14 +30,15 @@ luftentfeuchter_partyraum:
   air_dryer_or_humidifier_switch: switch.innr_sp_120_luftentfeuchter_partyraum
   energy_measurement_sensor: sensor.el_leistung_innr_sp_120_luftentfeuchter_partyraum
   humidity_sensor: sensor.luftfeuchtigkeit_partyraum
-  humidity_standard_max: 58
-  humidity_standard_min: 56
+  humidity_standard_max: 63
+  humidity_standard_min: 61
   humidity_special_max: 53
   humidity_special_min: 51
   use_pv_power: True
   pv_power_sensor: sensor.statistics_el_leistung_einspeisung_letzte_3_min
   pv_power_for_step_1: 500
-  humidity_change_step_1: 10
+  humidity_change_step_1: 5
+  #humidity_change_step_1: 10
   zigbee: False
   input_number_timer_special_humidity: input_number.timer_spezial_luftf_werkelraum
   name_reminder_switch_tank: switch.reminder_luftentfeuchter_werkelraum_tank
@@ -49,8 +50,8 @@ luftentfeuchter_speis:
   air_dryer_or_humidifier_switch: switch.kuhlschrank_keller
   energy_measurement_sensor: sensor.el_leistung_luftentf_vorratsraum
   humidity_sensor: sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_sht31
-  humidity_standard_max: 55
-  humidity_standard_min: 50
+  humidity_standard_max: 60
+  humidity_standard_min: 55
   humidity_special_max: 50
   humidity_special_min: 45
   use_pv_power: True
