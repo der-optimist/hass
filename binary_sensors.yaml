@@ -9,6 +9,11 @@
     name: ping_odroidxu4
     count: 2
     scan_interval: 60
+  - platform: ping
+    host: 192.168.178.87
+    name: ping_wechselrichter_pv
+    count: 2
+    scan_interval: 60
 
 # Time of Day
   - platform: tod
