@@ -19,6 +19,7 @@ homeassistant:
   whitelist_external_dirs:
     - /share
 
+default_config:
 zone: !include zones.yaml
 
 frontend: 
