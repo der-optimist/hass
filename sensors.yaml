@@ -988,6 +988,16 @@
       device: 1
     - sensor_type: power_flow
 #
+  - platform: fronius_inverter
+    ip_address: 192.168.178.28
+    name: FroniusCustom
+    powerflow: True
+    smartmeter: True
+    model: gen24
+    scan_interval: 20
+    units: kWh
+#
+#
 # --------------------------------
 # --                            --
 # --          solcast           --
