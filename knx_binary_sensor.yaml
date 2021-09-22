@@ -1,7 +1,7 @@
 # Küche
   - state_address: '6/0/9'
     name: PM_E_KU_Küche
-    device_class: motion
+    device_class: occupancy
   - state_address: '6/0/23'
     name: PM_E_KU_Bar_EZ
     device_class: motion
