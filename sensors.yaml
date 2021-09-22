@@ -979,7 +979,7 @@
 # --------------------------------
 #
   - platform: fronius
-    resource: fronius1.fritz.box
+    resource: http://fronius1.fritz.box
     monitored_conditions:
     - sensor_type: logger_info
     - sensor_type: inverter
