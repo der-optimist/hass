@@ -187,7 +187,7 @@
       el_leistung_pv_ac:
         value_template: >-
           {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
-            {{ states('sensor.fronius1_modbus_power_ac') | float }}
+            {{ states('sensor.froniuscustom_ac_power') | float }}
           {% else %}
             0.0
           {% endif %}
