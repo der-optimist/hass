@@ -1,6 +1,7 @@
   - name: fronius1
     type: tcp
-    host: fronius1.fritz.box
+    #host: fronius1.fritz.box
+    host: "192.168.178.28"
     port: 502
     sensors:
       - name: fronius1_modbus_power_from_grid
