@@ -4,7 +4,7 @@
     device_class: occupancy
   - state_address: '6/0/23'
     name: PM_E_KU_Bar_EZ
-    device_class: motion
+    device_class: presence
   - state_address: '14/0/3'
     name: Wasser unter Spüle
     device_class: problem
