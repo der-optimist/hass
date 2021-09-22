@@ -858,7 +858,12 @@
 # --                            --
 # --------------------------------
 #
-# nothing here
+  - platform: integration
+    source: sensor.froniuscustom_ac_power
+    name: pv_ac_energy_riemann
+    unit_prefix: k
+    round: 2
+    method: left
 #
 # --------------------------------
 # --                            --
