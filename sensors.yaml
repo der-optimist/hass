@@ -978,7 +978,15 @@
 # --                            --
 # --------------------------------
 #
-# done via modbus
+  - platform: fronius
+    resource: fronius1.fritz.box
+    monitored_conditions:
+    - sensor_type: logger_info
+    - sensor_type: inverter
+      scope: system
+    - sensor_type: meter
+      device: 1
+    - sensor_type: power_flow
 #
 # --------------------------------
 # --                            --
