@@ -59,4 +59,7 @@ cover.jalousie_wz_couch:
   icon: mdi:format-align-justify
 
 # Sensors
-
+sensor.stromzaehler_netzbezug:
+  last_reset: "2019-09-01T00:00:00+00:00"
+sensor.stromzaehler_netzeinspeisung:
+  last_reset: "2021-05-01T00:00:00+00:00"
