@@ -10,7 +10,7 @@
     count: 2
     scan_interval: 60
   - platform: ping
-    host: 192.168.178.87
+    host: fronius1.fritz.box
     name: ping_wechselrichter_pv
     count: 2
     scan_interval: 60
