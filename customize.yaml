@@ -60,6 +60,8 @@ cover.jalousie_wz_couch:
 
 # Sensors
 sensor.stromzaehler_netzbezug:
-  last_reset: "2019-09-01T00:00:00+00:00"
+  state_class: total_increasing
+  #last_reset: "2019-09-01T00:00:00+00:00"
 sensor.stromzaehler_netzeinspeisung:
-  last_reset: "2021-05-01T00:00:00+00:00"
+  state_class: total_increasing
+  #last_reset: "2021-05-01T00:00:00+00:00"
