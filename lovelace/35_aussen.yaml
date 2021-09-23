@@ -16,7 +16,7 @@ cards:
       entity: light.bodenlicht_eingang
       name: Bodenlicht
       toggle: true
-    - entity: light.spots_carport
+    - entity: light.spots_carport_2
       name: Spots Carport
     - entity: light.abstellraum_carport
       name: Abstellraum
