@@ -1055,3 +1055,15 @@
     command: "cat /sys/class/thermal/thermal_zone0/temp"
     unit_of_measurement: "°C"
     value_template: '{{ value | multiply(0.001) | round(1) }}'
+#
+# --------------------------------
+# --                            --
+# --           Scrape           --
+# --                            --
+# --------------------------------
+#
+  - platform: scrape
+    resource: https://www.arcgis.com/apps/dashboards/772c158654d446d2b7ceabb5b2b01aea
+    name: Covidfälle Waldburg
+    select: "body > div > div > div > div.flex-fluid.flex-horizontal.position-relative.overflow-hidden > div.flex-fluid.position-relative.overflow-hidden > div > div > margin-container > full-container > div:nth-child(1) > margin-container > full-container > div > div.widget-body.flex-fluid.full-width.flex-vertical.overflow-y-auto.overflow-x-hidden > div > div.flex-horizontal.feature-list-item.active > div > div > p:nth-child(4) > span"
+    unit_of_measurement: "Menschen"
