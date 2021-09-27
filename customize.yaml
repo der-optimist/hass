@@ -65,3 +65,9 @@ sensor.stromzaehler_netzbezug:
 sensor.stromzaehler_netzeinspeisung:
   state_class: total_increasing
   #last_reset: "2021-05-01T00:00:00+00:00"
+
+# Binary Sensors
+binary_sensor.pm_e_ku_bar_ez:
+  friendly_name: Theke / Esszimmer (PM Küche)
+binary_sensor.pm_e_ku_kuche:
+  friendly_name: Küche (PM Küche)
