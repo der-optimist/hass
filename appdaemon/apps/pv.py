@@ -154,18 +154,18 @@ class pv(hass.Hass):
             current_pv_power_without_heating = forecast_next_30_min
         if pv_peak and current_pv_power_without_heating >= self.args["minimum_pv_power_for_increasing_water_temp"]:
             self.log("Will increase water target temp now")
-            #self.call_service("water_heater/set_operation_mode", entity_id = self.args["entity_water_heater"], operation_mode = self.args["program_hot"])
-            self.turn_on("switch.pv_heizung_1")
+            self.call_service("water_heater/set_operation_mode", entity_id = self.args["entity_water_heater"], operation_mode = self.args["program_hot"])
+            #self.turn_on("switch.pv_heizung_1")
             if not self.pv_boost_blocked:
                 self.pv_boost_blocked = True
                 self.run_in(self.reset_pv_boost_block, 60 * self.args["pv_boost_minimum_minutes"])
         else:
             self.log("Will set water heater to eco, if not blocked")
-            #self.call_service("water_heater/set_operation_mode", entity_id = self.args["entity_water_heater"], operation_mode = self.args["program_eco"])
             if self.pv_boost_blocked:
                 self.log("blocked")
             else:
-                self.turn_off("switch.pv_heizung_1")
+                #self.turn_off("switch.pv_heizung_1")
+                self.call_service("water_heater/set_operation_mode", entity_id = self.args["entity_water_heater"], operation_mode = self.args["program_eco"])
             
         timestamps_daily.append(datetime.datetime.combine(day_0, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
         timestamps_daily.append(datetime.datetime.combine(day_1, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
