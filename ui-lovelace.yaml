@@ -1,7 +1,7 @@
 title: Lieblingshaus
 views:
   - !include lovelace/01_home.yaml
-  - !include lovelace/02_home_mobile.yaml
+#  - !include lovelace/02_home_mobile.yaml
   - !include lovelace/10_wohnbereich.yaml
   - !include lovelace/20_eltern.yaml
   - !include lovelace/30_flure_treppen_carport.yaml
