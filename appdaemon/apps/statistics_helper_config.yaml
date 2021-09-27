@@ -48,3 +48,13 @@ statistics_helper_leistung_netz_letzte_3_min:
   startup_delay: 14
   function_type: "mean"
   trigger_type: "fixed_timestep"
+statistics_helper_leistung_netz_letzte_10_min:
+  module: statistics_helper
+  class: statistics_helper
+  input_entity: sensor.el_leistung_netz
+  output_entity: sensor.statistics_el_leistung_netz_letzte_10_min
+  number_of_values: 20
+  time_interval_sec: 30
+  startup_delay: 15
+  function_type: "mean"
+  trigger_type: "fixed_timestep"
