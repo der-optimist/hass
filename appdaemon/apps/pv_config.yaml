@@ -21,13 +21,13 @@ pv:
   entity_pv_saved_money_total_day: "sensor.pv_geldertrag_gesamt_tag"
   entity_pv_saved_money_total_yesterday: "sensor.pv_geldertrag_gesamt_gestern"
   # water heater
-  water_temp_heating_will_start_on_eco: 40
+  water_temp_heating_will_start_on_eco: 42
   water_temp_heating_will_start_on_hot: 46
   water_temp_heating_will_not_start_on_hot: 49
   temp_loss_per_hour: 0.3
   pv_boost_minimum_minutes: 59
   entity_water_temp_current: "sensor.water_heater_current_temp"
-  minimum_pv_power_for_increasing_water_temp: 2000
+  minimum_pv_power_for_increasing_water_temp: 1600
   entity_pv_power: sensor.statistics_el_leistung_netz_letzte_3_min
   entity_water_heater: "water_heater.dhw1"
   program_eco: "eco"
