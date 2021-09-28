@@ -67,7 +67,81 @@ sensor.stromzaehler_netzeinspeisung:
   #last_reset: "2021-05-01T00:00:00+00:00"
 
 # Binary Sensors
+binary_sensor.pm_e_ba:
+  friendly_name: Bad EG
+binary_sensor.pm_e_ez_bar_kuche:
+  friendly_name: Theke / Küche (PM Esszimmer)
+binary_sensor.pm_e_ez_esstisch:
+  friendly_name: Esstisch (PM Esszimmer)
+binary_sensor.pm_e_fl_flur:
+  friendly_name: Flur EG (PM Flur EG)
+binary_sensor.pm_e_fl_treppe_og:
+  friendly_name: Treppe OG (PM Flur EG)
+binary_sensor.pm_e_fl_windfang:
+  friendly_name: Windfang (PM Flur EG)
 binary_sensor.pm_e_ku_bar_ez:
   friendly_name: Theke / Esszimmer (PM Küche)
 binary_sensor.pm_e_ku_kuche:
   friendly_name: Küche (PM Küche)
+binary_sensor.pm_e_sz_bett:
+  friendly_name: SZ Bett / Schrank
+binary_sensor.pm_e_sz_gang:
+  friendly_name: SZ Gang
+binary_sensor.pm_e_wc:
+  friendly_name: WC EG
+binary_sensor.pm_e_wf_flur:
+  friendly_name: Flur EG (PM Windfang)
+binary_sensor.pm_e_wf_garderobe:
+  friendly_name: Garderobe (PM Windfang)
+binary_sensor.pm_e_wf_haustur:
+  friendly_name: Haustür
+binary_sensor.pm_e_wz_couch_links:
+  friendly_name: Couch links
+binary_sensor.pm_e_wz_couch_rechts:
+  friendly_name: Couch rechts
+binary_sensor.pm_e_wz_durchgang:
+  friendly_name: Wohnzimmer Durchgang
+# OG
+binary_sensor.pm_o_ba:
+  friendly_name: Bad OG
+binary_sensor.pm_o_fl_flur:
+  friendly_name: Flur OG
+binary_sensor.pm_o_fl_treppe:
+  friendly_name: Treppe OG (oben)
+binary_sensor.pm_o_gz:
+  friendly_name: Gästezimmer
+binary_sensor.pm_o_ko_la_raum:
+  friendly_name: Lara Raum
+binary_sensor.pm_o_ko_la_tuer:
+  friendly_name: Lara Tür
+binary_sensor.pm_o_kw_le_raum:
+  friendly_name: Lea Raum
+binary_sensor.pm_o_kw_le_tuer:
+  friendly_name: Lea Tür
+binary_sensor.pm_o_nz:
+  friendly_name: Arbeitszimmer
+# Keller
+binary_sensor.pm_k_fl:
+  friendly_name: Kellerflur
+binary_sensor.pm_k_te:
+  friendly_name: Waschküche
+binary_sensor.pm_k_timer_bewegung_partyraum:
+  friendly_name: Partyraum
+  device_class: occupancy
+binary_sensor.pm_k_timer_magnetsensor_vorratsraum:
+  friendly_name: Speis
+  device_class: occupancy
+binary_sensor.pm_k_timer_magnetsensor_werkelraum:
+  friendly_name: Werkelraum
+  device_class: occupancy
+binary_sensor.pm_ktr_flur:
+  friendly_name: Flur EG (BWM Kellertreppe)
+binary_sensor.pm_ktr_treppe:
+  friendly_name: Kellertreppe
+# außen
+binary_sensor.pm_a_ar:
+  friendly_name: Abstellraum
+binary_sensor.pm_a_cp:
+  friendly_name: Carport
+binary_sensor.pm_a_eg:
+  friendly_name: Eingangsbereich / Carport
