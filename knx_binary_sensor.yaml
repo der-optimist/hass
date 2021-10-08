@@ -1,10 +1,10 @@
 # Küche
   - state_address: '6/0/9'
     name: PM_E_KU_Küche
-    device_class: motion
+    device_class: moving
   - state_address: '6/0/23'
     name: PM_E_KU_Bar_EZ
-    device_class: motion
+    device_class: moving
   - state_address: '14/0/3'
     name: Wasser unter Spüle
     device_class: problem
@@ -23,7 +23,7 @@
 # Wohnzimmer
   - state_address: '6/1/9'
     name: PM_E_WZ_Durchgang
-    device_class: motion
+    device_class: moving
   - state_address: '6/1/23'
     name: PM_E_WZ_Couch_links
     device_class: motion
