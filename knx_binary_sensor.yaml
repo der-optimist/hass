@@ -12,10 +12,10 @@
 # Esszimmer
   - state_address: '6/0/137'
     name: PM_E_EZ_Bar_Küche
-    device_class: motion
+    device_class: moving
   - state_address: '6/0/151'
     name: PM_E_EZ_Esstisch
-    device_class: motion
+    device_class: moving
   - state_address: '11/0/0'
     name: HST offen
     device_class: door
@@ -26,110 +26,110 @@
     device_class: moving
   - state_address: '6/1/23'
     name: PM_E_WZ_Couch_links
-    device_class: motion
+    device_class: moving
   - state_address: '6/1/37'
     name: PM_E_WZ_Couch_rechts
-    device_class: motion
+    device_class: moving
 
 # Schlafzimmer
   - state_address: '6/1/137'
     name: PM_E_SZ_Gang
-    device_class: motion
+    device_class: moving
   - state_address: '6/1/151'
     name: PM_E_SZ_Bett
-    device_class: motion
+    device_class: moving
 
 # Bad EG
   - state_address: '6/2/9'
     name: PM_E_BA
-    device_class: motion
+    device_class: moving
 
 # Flur EG
   - state_address: '6/2/137'
     name: PM_E_FL_Flur
-    device_class: motion
+    device_class: moving
   - state_address: '6/2/151'
     name: PM_E_FL_Treppe_OG
-    device_class: motion
+    device_class: moving
   - state_address: '6/2/165'
     name: PM_E_FL_Windfang
-    device_class: motion
+    device_class: moving
 
 # Windfang
   - state_address: '6/3/9'
     name: PM_E_WF_Haustür
-    device_class: motion
+    device_class: moving
   - state_address: '6/3/23'
     name: PM_E_WF_Garderobe
-    device_class: motion
+    device_class: moving
   - state_address: '6/3/37'
     name: PM_E_WF_Flur
-    device_class: motion
+    device_class: moving
 
 # WC
   - state_address: '6/3/137'
     name: PM_E_WC
-    device_class: motion
+    device_class: moving
 
 # Kellertreppe
   - state_address: '8/0/1'
     name: PM_KTr_Treppe
-    device_class: motion
+    device_class: moving
   - state_address: '8/0/0'
     name: PM_KTr_Flur
-    device_class: motion
+    device_class: moving
 
 # La
   - state_address: '7/0/9'
     name: PM_O_KO_La_Raum
-    device_class: motion
+    device_class: moving
   - state_address: '7/0/23'
     name: PM_O_KO_La_Tuer
-    device_class: motion
+    device_class: moving
 
 # Nähzimmer
   - state_address: '7/0/137'
     name: PM_O_NZ
-    device_class: motion
+    device_class: moving
 
 # Le
   - state_address: '7/1/9'
     name: PM_O_KW_Le_Raum
-    device_class: motion
+    device_class: moving
   - state_address: '7/1/23'
     name: PM_O_KW_Le_Tuer
-    device_class: motion
+    device_class: moving
 
 # Gästezimmer
   - state_address: '7/1/137'
     name: PM_O_GZ
-    device_class: motion
+    device_class: moving
 
 # Flur OG
   - state_address: '7/2/9'
     name: PM_O_FL_Flur
-    device_class: motion
+    device_class: moving
   - state_address: '7/2/23'
     name: PM_O_FL_Treppe
-    device_class: motion
+    device_class: moving
   - state_address: '15/0/41'
     name: O FL Logik Bewegung rund um Treppe
-    device_class: motion
+    device_class: moving
   - state_address: '15/0/42'
     name: O FL Logik Min Ein Kind schläft
 
 # Bad OG
   - state_address: '7/2/137'
     name: PM_O_BA
-    device_class: motion
+    device_class: moving
 
 # Keller
   - state_address: '0/1/100'
     name: PM_K_FL
-    device_class: motion
+    device_class: moving
   - state_address:  '0/1/120'
     name: PM_K_TE
-    device_class: motion
+    device_class: moving
   - state_address: '14/0/1'
     name: Eimer Hebeanlage voll
     device_class: problem
@@ -143,13 +143,13 @@
 # Aussen
   - state_address: '8/0/60'
     name: PM_A_EG
-    device_class: motion
+    device_class: moving
   - state_address: '8/0/80'
     name: PM_A_CP
-    device_class: motion
+    device_class: moving
   - state_address: '8/0/100'
     name: PM_A_AR
-    device_class: motion
+    device_class: moving
 
 # --- Wetter ---
   - state_address: '13/0/4'
