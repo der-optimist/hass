@@ -127,13 +127,13 @@ binary_sensor.pm_k_te:
   friendly_name: Waschküche
 binary_sensor.pm_k_timer_bewegung_partyraum:
   friendly_name: Partyraum
-  device_class: motion
+#  device_class: motion
 binary_sensor.pm_k_timer_magnetsensor_vorratsraum:
   friendly_name: Speis
-  device_class: motion
+#  device_class: motion
 binary_sensor.pm_k_timer_magnetsensor_werkelraum:
   friendly_name: Werkelraum
-  device_class: motion
+#  device_class: motion
 binary_sensor.pm_ktr_flur:
   friendly_name: Flur EG (BWM Kellertreppe)
 binary_sensor.pm_ktr_treppe:
