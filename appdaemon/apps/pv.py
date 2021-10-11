@@ -41,6 +41,7 @@ class pv(hass.Hass):
     def save_counter_values_at_midnight(self, kwargs):
         # calculate production of the day
         pv_produced_day = float(self.get_state(self.args["counter_entity_pv_produced"])) - float(self.get_state(self.args["sensor_name_counter_pv_produced_midnight"], namespace = self.ad_namespace))
+        self.set_state(self.args["counter_entity_pv_produced_yesterday"], state = round(pv_produced_day,2), attributes = {"fiendly_name": "PV-Erzeugung gestern", "icon":"mdi:counter",  "unit_of_measurement": "kWh"})
         pv_sold_day = float(self.get_state(self.args["counter_entity_pv_sold"])) - float(self.get_state(self.args["sensor_name_counter_pv_sold_midnight"], namespace = self.ad_namespace))
         # reset counters fo next day
         value_counter_pv_produced_midnight = self.get_state(self.args["counter_entity_pv_produced"])
