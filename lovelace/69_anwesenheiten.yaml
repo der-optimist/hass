@@ -16,6 +16,7 @@ cards:
       type: entities
       title: "OG"
       show_header_toggle: false
+      state_color: true
     filter:
       include:
         - entity_id: "binary_sensor.pm_o*"
@@ -31,6 +32,7 @@ cards:
       type: entities
       title: "Keller/Außen"
       show_header_toggle: false
+      state_color: true
     filter:
       include:
         - entity_id: "binary_sensor.pm_k*"
@@ -40,6 +42,7 @@ cards:
       type: entities
       title: "Sonstige"
       show_header_toggle: false
+      state_color: true
     filter:
       include:
         - entity_id: "binary_sensor.anwesenheit*"
