@@ -8,8 +8,6 @@ import appdaemon.plugins.hass.hassapi as hass
 class test_ad(hass.Hass):
     
     def initialize(self):
-        self.remove_entity("sensor.stromverbrauch_unbekannte_verbraucher", namespace = "ad_namespace")
-        self.remove_entity("sensor.stromverbrauch_verbrauch_gesamt", namespace = "ad_namespace")
         return
         # initialize database stuff 
         self.host = self.args.get("db_host", "a0d7b954-influxdb")
