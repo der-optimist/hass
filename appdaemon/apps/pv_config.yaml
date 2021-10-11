@@ -7,6 +7,7 @@ pv:
   sensor_name_counter_pv_produced_midnight: "sensor.counter_pv_produced_midnight"
   counter_entity_pv_produced: "sensor.stromzaehler_pv_ac_gesamt"
   counter_entity_pv_produced_day: "sensor.pv_erzeugung_tag"
+  counter_entity_pv_produced_yesterday: "sensor.pv_erzeugung_gestern"
   # sold
   sensor_name_counter_pv_sold_midnight: "sensor.counter_pv_sold_midnight"
   counter_entity_pv_sold: "sensor.stromzaehler_netzeinspeisung"
