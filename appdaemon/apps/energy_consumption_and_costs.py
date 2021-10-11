@@ -124,7 +124,8 @@ class energy_consumption_and_costs(hass.Hass):
             pv_saved_money_total_yesterday = float(self.get_state(self.app_config["pv"]["entity_pv_saved_money_total_yesterday"]))
             pv_saved_money_by_consuming_yesterday = float(self.get_state(self.app_config["pv"]["entity_pv_saved_money_by_consuming_yesterday"]))
             pv_saved_money_by_selling_yesterday = float(self.get_state(self.app_config["pv"]["entity_pv_saved_money_by_selling_yesterday"]))
-            message_text = "PV Ertrag gestern: {} €\ndurch Eigenverbrauch: {} €\ndurch Einspeisung: {} €".format(round(pv_saved_money_total_yesterday,2),round(pv_saved_money_by_consuming_yesterday,2),round(pv_saved_money_by_selling_yesterday,2))
+            pv_production_yesterday = float(self.get_state(self.app_config["pv"]["counter_entity_pv_produced_yesterday"]))
+            message_text = "PV Ertrag gestern: {} €\ndurch Eigenverbrauch: {} €\ndurch Einspeisung: {} €\n\nerzeugt wurden: {} kWh".format(round(pv_saved_money_total_yesterday,2),round(pv_saved_money_by_consuming_yesterday,2),round(pv_saved_money_by_selling_yesterday,2),round(pv_production_yesterday,1))
         except Exception as e:
             self.log("Could not collect pv data from yesterday. Error was {}".format(e))
             message_text = "Fehler beim Sammeln der PV-Daten von gestern"
