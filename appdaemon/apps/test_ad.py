@@ -8,6 +8,8 @@ import appdaemon.plugins.hass.hassapi as hass
 class test_ad(hass.Hass):
     
     def initialize(self):
+        self.remove_entity("sensor.stromverbrauch_unbekannte_verbraucher", namespace = "ad_namespace")
+        self.remove_entity("sensor.stromverbrauch_verbrauch_gesamt", namespace = "ad_namespace")
         return
         # initialize database stuff
         self.host = self.args.get("db_host", "a0d7b954-influxdb")
@@ -17,8 +19,6 @@ class test_ad(hass.Hass):
         self.db_name = self.args.get("db_name", "homeassistant_permanent")
         self.client = InfluxDBClient(self.host, self.port, self.user, self.password, self.db_name)
         #self.remove_old_sensors_from_db()
-        self.remove_entity("sensor.stromverbrauch_unbekannte_verbraucher", namespace = "ad_namespace")
-        self.remove_entity("sensor.stromverbrauch_verbrauch_gesamt", namespace = "ad_namespace")
 
 
     def get_ha_power_sensors_for_consumption_calculation(self):
