@@ -11,7 +11,7 @@ class test_ad(hass.Hass):
         self.remove_entity("sensor.stromverbrauch_unbekannte_verbraucher", namespace = "ad_namespace")
         self.remove_entity("sensor.stromverbrauch_verbrauch_gesamt", namespace = "ad_namespace")
         return
-        # initialize database stuff
+        # initialize database stuff 
         self.host = self.args.get("db_host", "a0d7b954-influxdb")
         self.port=8086
         self.user = self.args.get("db_user", "appdaemon")
