@@ -19,7 +19,6 @@ class cover_blocking(hass.Hass):
         self.temp_blocking_humidity = self.args["temp_blocking_humidity"]
         self.humidity_blocking = self.args["humidity_blocking"]
         self.temp_release = self.args["temp_release"]
-        self.internal_switch_off_command = False
         self.timer_handle_manually_deactivated_blocking = None
         self.manually_deactivated_blocking = False
         
@@ -59,11 +58,14 @@ class cover_blocking(hass.Hass):
             self.log("Rain Status Error: {}".format(self.get_state(self.rain_entity)))
             return
         if (humidity > self.humidity_blocking and temp < self.temp_blocking_humidity) or (rain_status == "on" and temp < self.temp_blocking_rain):
-            self.set_state(self.ice_blocking_switch,state="on")
+            if self.get_state(self.ice_blocking_switch) != "on":
+                if self.manually_deactivated_blocking:
+                    self.log("Should block the covers, but this function is deactivated for some time...")
+                else:
+                    self.set_state(self.ice_blocking_switch,state="on")
             #self.log("ice blocking switch on")
         elif temp > 5:
-            if self.get_state(self.ice_blocking_switch) == "on":
-                self.internal_switch_off_command = True
+            if self.get_state(self.ice_blocking_switch) != "off":
                 self.set_state(self.ice_blocking_switch,state="off")
             #self.log("ice blocking switch off")
         else:
@@ -89,26 +91,21 @@ class cover_blocking(hass.Hass):
             self.manually_deactivated_blocking = False
             if self.timer_handle_manually_deactivated_blocking != None:
                 self.cancel_timer(self.timer_handle_manually_deactivated_blocking)
-        if new == 'off' and old == 'on' and not self.internal_switch_off_command:
-            self.log("Blocking manually deactivated. Will not block covers for a certain time now")
+        if new == 'off':
             self.manually_deactivated_blocking = True
             self.timer_handle_manually_deactivated_blocking = self.run_in(self.end_manually_deactivate_blocking,30*60)
-        else:
-            if new == 'on' and self.manually_deactivated_blocking:
-                self.log("blocking should be applied, but is manually deactivated")
-            else:
-                self.check_if_cover_should_be_blocked("cover.jalousie_bad_og", "input_boolean.sperre_jal_ba_og")
-                self.check_if_cover_should_be_blocked("cover.jalousie_gastezimmer", "input_boolean.sperre_jal_gz")
-                self.check_if_cover_should_be_blocked("cover.jalousie_hst", "input_boolean.sperre_jal_hst")
-                self.check_if_cover_should_be_blocked("cover.jalousie_kuche", "input_boolean.sperre_jal_ku")
-                self.check_if_cover_should_be_blocked("cover.jalousie_la_bodentiefes", "input_boolean.sperre_jal_la_bodentiefes")
-                self.check_if_cover_should_be_blocked("cover.jalousie_la_lichtband", "input_boolean.sperre_jal_la_lichtband")
-                self.check_if_cover_should_be_blocked("cover.jalousie_le_bodentiefes", "input_boolean.sperre_jal_le_bodentiefes")
-                self.check_if_cover_should_be_blocked("cover.jalousie_le_lichtband", "input_boolean.sperre_jal_le_lichtband")
-                self.check_if_cover_should_be_blocked("cover.jalousie_nahzimmer", "input_boolean.sperre_jal_nz")
-                self.check_if_cover_should_be_blocked("cover.jalousie_schlafzimmer", "input_boolean.sperre_jal_sz")
-                self.check_if_cover_should_be_blocked("cover.jalousie_wz_bodentiefes", "input_boolean.sperre_jal_wz_bodentiefes")
-                self.check_if_cover_should_be_blocked("cover.jalousie_wz_couch", "input_boolean.sperre_jal_wz_couch")
+        self.check_if_cover_should_be_blocked("cover.jalousie_bad_og", "input_boolean.sperre_jal_ba_og")
+        self.check_if_cover_should_be_blocked("cover.jalousie_gastezimmer", "input_boolean.sperre_jal_gz")
+        self.check_if_cover_should_be_blocked("cover.jalousie_hst", "input_boolean.sperre_jal_hst")
+        self.check_if_cover_should_be_blocked("cover.jalousie_kuche", "input_boolean.sperre_jal_ku")
+        self.check_if_cover_should_be_blocked("cover.jalousie_la_bodentiefes", "input_boolean.sperre_jal_la_bodentiefes")
+        self.check_if_cover_should_be_blocked("cover.jalousie_la_lichtband", "input_boolean.sperre_jal_la_lichtband")
+        self.check_if_cover_should_be_blocked("cover.jalousie_le_bodentiefes", "input_boolean.sperre_jal_le_bodentiefes")
+        self.check_if_cover_should_be_blocked("cover.jalousie_le_lichtband", "input_boolean.sperre_jal_le_lichtband")
+        self.check_if_cover_should_be_blocked("cover.jalousie_nahzimmer", "input_boolean.sperre_jal_nz")
+        self.check_if_cover_should_be_blocked("cover.jalousie_schlafzimmer", "input_boolean.sperre_jal_sz")
+        self.check_if_cover_should_be_blocked("cover.jalousie_wz_bodentiefes", "input_boolean.sperre_jal_wz_bodentiefes")
+        self.check_if_cover_should_be_blocked("cover.jalousie_wz_couch", "input_boolean.sperre_jal_wz_couch")
     
     def end_manually_deactivate_blocking(self, kwargs):
         self.manually_deactivated_blocking = False
