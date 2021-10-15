@@ -382,7 +382,7 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_naehtisch_nz:
-        value_template: "{{ '%.1f'%(state_attr('light.ikea_panel_arbeitszimmer_level_light_color_on_off', 'brightness') | float / 255 * 29)| float }}"
+        value_template: "{{ '%.1f'%(state_attr('light.ikea_panel_arbeitszimmer_esphome', 'brightness') | float / 255 * 29)| float }}"
         friendly_name: 'El. Leistung Licht Decke Ma (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
