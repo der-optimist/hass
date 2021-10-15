@@ -365,6 +365,10 @@ auto_light_e_wz_schrankbeleuchtung:
   min_illuminance_values:
     "00:00": 150
   illuminance_sensor: sensor.helligkeit_wohnzimmer_pm
+  keeping_on_entities:
+    - switch.bleib_so_wz_licht
+  keeping_off_entities:
+    - switch.bleib_so_wz_licht
   keeping_fix_entities:
     binary_sensor.tv_pizza_abend: 30
     binary_sensor.tv_abend_ohne_pizza: 20
@@ -395,7 +399,10 @@ auto_light_e_wz_stehlampe:
     binary_sensor.tv_pizza_abend: [20, "orange"]
     binary_sensor.tv_abend_ohne_pizza: [1, "orange"]
     input_boolean.gaeste_abends: [80, "orange"]
+  keeping_on_entities:
+    - switch.bleib_so_wz_licht
   keeping_off_entities:
+    - switch.bleib_so_wz_licht
     - switch.luften_ez
   switching_off_entities:
     - switch.luften_ez
