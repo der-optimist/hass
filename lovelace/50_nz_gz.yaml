@@ -9,7 +9,7 @@ cards:
     - type: section
       label: Licht
     - type: custom:slider-entity-row
-      entity: light.ikea_panel_arbeitszimmer_level_light_color_on_off
+      entity: light.ikea_panel_arbeitszimmer_esphome
       toggle: true
       name: !secret name_ma
     - entity: light.schreibtisch_decke
