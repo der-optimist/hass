@@ -16,18 +16,18 @@ auto_light_o_nz_ma:
   class: auto_light
   debug: quiet
   app_switch: input_boolean.app_switch_licht_naehzimmer
-  light: light.ikea_panel_arbeitszimmer_level_light_color_on_off
+  light: light.ikea_panel_arbeitszimmer_esphome
   type: dim
   triggers: 
     - binary_sensor.pm_o_nz
   brightness_values:
     "00:00": 30
-    "04:00": 10
-    "06:30": 30
-    "07:30": 40
-    "09:00": 70
-    "18:00": 40
-    "19:00": 30
+    "04:00": 20
+    "06:30": 40
+    "07:30": 50
+    "09:00": 80
+    "18:00": 50
+    "19:00": 40
   min_illuminance_values:
     "00:00": 10
   illuminance_sensor: sensor.helligkeit_nahzimmer_pm
