@@ -1,4 +1,5 @@
 import appdaemon.plugins.hass.hassapi as hass
+import random
 
 #
 # App to switch an air dryer or humidifier on and off depending on air humidity
@@ -35,13 +36,13 @@ class air_dryer_and_humidifier(hass.Hass):
         self.humidity_change_current = 0
         
         self.listen_state(self.timer_state_changed, self.input_number_timer_special_humidity)
-        self.listen_state(self.humidity_state_changed, self.humidity_sensor)
-        self.listen_state(self.electrical_measurement_state_changed, self.energy_measurement_sensor)
+        #self.listen_state(self.humidity_state_changed, self.humidity_sensor)
+        #self.listen_state(self.electrical_measurement_state_changed, self.energy_measurement_sensor)
         if self.zigbee:
             self.listen_event(self.button_time_1, "zha_event", device_ieee = self.zha_device_ieee, command = self.zha_device_command_time_1)
             self.listen_event(self.button_time_2, "zha_event", device_ieee = self.zha_device_ieee, command = self.zha_device_command_time_2)
-        if self.use_pv_power:
-            self.listen_state(self.pv_power_changed, self.args["pv_power_sensor"])
+        #if self.use_pv_power:
+        #    self.listen_state(self.pv_power_changed, self.args["pv_power_sensor"])
         
         # define tank full reminder switch
         icon_reminder_tank = "/local/icons/reminders/drop_blue_blink.svg"
@@ -86,6 +87,10 @@ class air_dryer_and_humidifier(hass.Hass):
         self.check_if_dryer_or_humidifier_running(None)
         
         self.check_if_dryer_or_humidifier_full_or_empty()
+        
+        random_seconds = random.randint(0,59)
+        time_interval_sec = 300
+        self.run_every(self.run_regularly, "now+{}".format(random_seconds), time_interval_sec)
 
     def check_if_dryer_or_humidifier_needed(self):
         if self.machine_type == "dryer":
@@ -193,6 +198,33 @@ class air_dryer_and_humidifier(hass.Hass):
         
     def electrical_measurement_state_changed(self, entity, attributes, old, new, kwargs):
         if float(new) > 1.0:
+            self.dryer_or_humidifier_is_running = True
+            self.set_state(self.name_reminder_switch_tank, state = "off", attributes = self.attributes_reminder_tank)
+            #self.log("measurement changed, above 1, set reminder to off")
+        else:
+            self.dryer_or_humidifier_is_running = False
+#            self.log("measurement changed, below 1, will check if dryer_or_humidifier full")
+            self.check_if_dryer_or_humidifier_full_or_empty()
+    
+    def run_regularly(self, kwargs):
+        # update humidity sensor
+        self.current_humidity = float(self.get_state(self.humidity_sensor))
+        # check pv power
+        if self.use_pv_power:
+            current_pv_power = float(self.get_state(self.args["pv_power_sensor"]))
+            try: 
+                value = float(current_pv_power)
+                if value > self.pv_power_for_step_1:
+                    self.humidity_change_current = self.humidity_change_step_1
+                else:
+                    self.humidity_change_current = 0
+            except:
+                self.log("error converting current_pv_power value to float")
+                pass
+        self.check_if_dryer_or_humidifier_needed()
+        # check elctric measurement
+        current_energy_measurement = float(self.get_state(self.energy_measurement_sensor))
+        if float(current_energy_measurement) > 1.0:
             self.dryer_or_humidifier_is_running = True
             self.set_state(self.name_reminder_switch_tank, state = "off", attributes = self.attributes_reminder_tank)
             #self.log("measurement changed, above 1, set reminder to off")
