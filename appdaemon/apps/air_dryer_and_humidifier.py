@@ -86,7 +86,7 @@ class air_dryer_and_humidifier(hass.Hass):
         #dryer_or_humidifier already running?
         self.check_if_dryer_or_humidifier_running(None)
         
-        self.check_if_dryer_or_humidifier_full_or_empty()
+        #self.check_if_dryer_or_humidifier_full_or_empty()
         
         random_seconds = random.randint(0,59)
         time_interval_sec = 300
