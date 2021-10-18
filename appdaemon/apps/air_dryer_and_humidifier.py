@@ -81,12 +81,12 @@ class air_dryer_and_humidifier(hass.Hass):
             return
         self.log("El. Power Sensor ready. Value is {}".format(el_power))
         
-        self.check_if_dryer_or_humidifier_needed()
+#        self.check_if_dryer_or_humidifier_needed()
         
         #dryer_or_humidifier already running?
-        #self.check_if_dryer_or_humidifier_running(None)
+#        self.check_if_dryer_or_humidifier_running(None)
         
-        #self.check_if_dryer_or_humidifier_full_or_empty()
+#        self.check_if_dryer_or_humidifier_full_or_empty()
         
         random_seconds = random.randint(0,59)
         time_interval_sec = 300
@@ -180,58 +180,33 @@ class air_dryer_and_humidifier(hass.Hass):
                 self.special_mode = True
         self.check_if_dryer_or_humidifier_needed()
 
-    def humidity_state_changed(self, entity, attributes, old, new, kwargs):
-        self.current_humidity = float(self.get_state(self.humidity_sensor))
-        self.check_if_dryer_or_humidifier_needed()
-            
-    def pv_power_changed(self, entity, attributes, old, new, kwargs):
-        try: 
-            value = float(new)
-            if value > self.pv_power_for_step_1:
-                self.humidity_change_current = self.humidity_change_step_1
-            else:
-                self.humidity_change_current = 0
-        except:
-            self.log("error converting new value to float")
-            pass
-        self.check_if_dryer_or_humidifier_needed()
-        
-    def electrical_measurement_state_changed(self, entity, attributes, old, new, kwargs):
-        if float(new) > 1.0:
-            self.dryer_or_humidifier_is_running = True
-            self.set_state(self.name_reminder_switch_tank, state = "off", attributes = self.attributes_reminder_tank)
-            #self.log("measurement changed, above 1, set reminder to off")
-        else:
-            self.dryer_or_humidifier_is_running = False
-#            self.log("measurement changed, below 1, will check if dryer_or_humidifier full")
-            self.check_if_dryer_or_humidifier_full_or_empty()
     
     def run_regularly(self, kwargs):
         # update humidity sensor
         self.current_humidity = float(self.get_state(self.humidity_sensor))
         # check pv power
         if self.use_pv_power:
-            current_pv_power = float(self.get_state(self.args["pv_power_sensor"]))
             try: 
-                value = float(current_pv_power)
+                value =float(self.get_state(self.args["pv_power_sensor"]))
                 if value > self.pv_power_for_step_1:
                     self.humidity_change_current = self.humidity_change_step_1
                 else:
                     self.humidity_change_current = 0
             except:
                 self.log("error converting current_pv_power value to float")
+                self.humidity_change_current = 0
                 pass
         self.check_if_dryer_or_humidifier_needed()
         # check elctric measurement
-        current_energy_measurement = float(self.get_state(self.energy_measurement_sensor))
-        if float(current_energy_measurement) > 1.0:
-            self.dryer_or_humidifier_is_running = True
-            self.set_state(self.name_reminder_switch_tank, state = "off", attributes = self.attributes_reminder_tank)
+#        current_energy_measurement = float(self.get_state(self.energy_measurement_sensor))
+#        if float(current_energy_measurement) > 1.0:
+#            self.dryer_or_humidifier_is_running = True
+#            self.set_state(self.name_reminder_switch_tank, state = "off", attributes = self.attributes_reminder_tank)
             #self.log("measurement changed, above 1, set reminder to off")
-        else:
-            self.dryer_or_humidifier_is_running = False
+#        else:
+#            self.dryer_or_humidifier_is_running = False
 #            self.log("measurement changed, below 1, will check if dryer_or_humidifier full")
-            self.check_if_dryer_or_humidifier_full_or_empty()
+#            self.check_if_dryer_or_humidifier_full_or_empty()
         
     def check_if_dryer_or_humidifier_running(self, kwargs):
         if float(self.get_state(self.energy_measurement_sensor)) > 20.0:
