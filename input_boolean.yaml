@@ -178,6 +178,12 @@
   app_switch_licht_aussen_carport:
     name: Automatik Licht Carport
     icon: mdi:auto-fix
+  app_switch_licht_bodenstrahler_blumenbeet:
+    name: Automatik Bodenstrahler
+    icon: mdi:auto-fix
+  app_switch_licht_stern_blumenbeet:
+    name: Automatik Stern
+    icon: mdi:auto-fix
   app_switch_jalousie_kueche:
     name: Automatik Jalousie Küche
     icon: mdi:auto-fix
