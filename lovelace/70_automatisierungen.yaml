@@ -44,6 +44,10 @@ cards:
         name: Keller
       - entity: input_boolean.app_switch_licht_aussen_carport
         name: Carport
+      - entity: input_boolean.app_switch_licht_bodenstrahler_blumenbeet
+        name: Bodenstrahler Sitzbank
+      - entity: input_boolean.app_switch_licht_stern_blumenbeet
+        name: Stern Blumenbeet
   - type: entities
     title: Jalousien
     show_header_toggle: true
