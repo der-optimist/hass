@@ -14,7 +14,7 @@ auto_light_a_cp_led_streifen:
   brightness_values:
     "00:00": 60
   min_illuminance_values:
-    "00:00": 600
+    "00:00": 800
   illuminance_sensor: sensor.helligkeit_wetterstation
 auto_light_a_eg_bodenlicht:
   module: auto_light
@@ -31,7 +31,7 @@ auto_light_a_eg_bodenlicht:
   brightness_values:
     "00:00": 70
   min_illuminance_values:
-    "00:00": 600
+    "00:00": 800
   illuminance_sensor: sensor.helligkeit_wetterstation
 # - Spots Carport
 auto_light_a_cp_spots:
@@ -49,7 +49,7 @@ auto_light_a_cp_spots:
   brightness_values:
     "00:00": 80
   min_illuminance_values:
-    "00:00": 1000
+    "00:00": 2000
   illuminance_sensor: sensor.helligkeit_wetterstation
 # - Abstellraum
 auto_light_a_abstellraum:
@@ -145,5 +145,5 @@ auto_light_a_tr_stern_blumenbeet:
   triggers: 
     - binary_sensor.zeit_stern
   min_illuminance_values:
-    "00:00": 1000
+    "00:00": 10000
   illuminance_sensor: sensor.helligkeit_wetterstation
