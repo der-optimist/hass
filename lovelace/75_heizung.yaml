@@ -12,8 +12,8 @@ cards:
         name: Zieltemperatur Vorlauf
       - entity: sensor.actual_supply_temp
         name: Vorlauf aktuell
-      - entity: sensor.return_temp
-        name: Rücklauf aktuell
+#      - entity: sensor.return_temp
+#        name: Rücklauf aktuell
       - entity: sensor.stellwert_heizung_aktueller_maxwert
         name: Max. Stellung Ventile aktuell
       - entity: sensor.stellwert_heizung_zeitverlauf_mean
