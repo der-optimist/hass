@@ -22,6 +22,7 @@ class pv(hass.Hass):
 #        except Exception as e:
 #            self.log("Error running forecast at startup. Error was {}".format(e))
         self.pv_boost_blocked = False
+        self.pv_boost_state = "init"
         self.run_every(self.update_forecast_regularly, "now", 15 * 60)
         # --- initialize database stuff
         self.host = self.app_config["global_vars"]["db_host"]
@@ -153,9 +154,10 @@ class pv(hass.Hass):
             current_pv_power_without_heating = -1*float(self.get_state(self.args["entity_pv_power"])) + float(self.get_state("sensor.el_leistung_wp_aussenteil"))
         except:
             current_pv_power_without_heating = forecast_next_30_min
-        if pv_peak and current_pv_power_without_heating >= self.args["minimum_pv_power_for_increasing_water_temp"]:
+        if (pv_peak or self.pv_boost_state == "on") and current_pv_power_without_heating >= self.args["minimum_pv_power_for_increasing_water_temp"]: # self.pv_boost_state == "on" because should not end boosting if new forecast arrived but there is enough power
             self.log("Will increase water target temp now")
             self.call_service("water_heater/set_operation_mode", entity_id = self.args["entity_water_heater"], operation_mode = self.args["program_hot"])
+            self.pv_boost_state = "on"
             #self.turn_on("switch.pv_heizung_1")
             if not self.pv_boost_blocked:
                 self.pv_boost_blocked = True
@@ -167,6 +169,7 @@ class pv(hass.Hass):
             else:
                 #self.turn_off("switch.pv_heizung_1")
                 self.call_service("water_heater/set_operation_mode", entity_id = self.args["entity_water_heater"], operation_mode = self.args["program_eco"])
+                self.pv_boost_state = "off"
             
         timestamps_daily.append(datetime.datetime.combine(day_0, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
         timestamps_daily.append(datetime.datetime.combine(day_1, datetime.time(0,0,0,0)).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z")
