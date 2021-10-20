@@ -502,7 +502,7 @@ battery_sim:
     name: BYD HVS 10_2
     import_sensor: sensor.stromzaehler_netzbezug
     export_sensor: sensor.stromzaehler_netzeinspeisung
-    size_kwh: 5.1
+    size_kwh: 10.2
     max_discharge_rate_kw: 10.0
     max_charge_rate_kw: 10.0
     efficiency: 0.95
