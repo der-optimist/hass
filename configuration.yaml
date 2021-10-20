@@ -480,6 +480,7 @@ input_text:
 
 battery_sim:
   tesla_powerwall:
+  # Beginn: 20.10.2021
     name: Tesla Powerwall
     import_sensor: sensor.stromzaehler_netzbezug
     export_sensor: sensor.stromzaehler_netzeinspeisung
@@ -488,6 +489,7 @@ battery_sim:
     max_charge_rate_kw: 3.68
     efficiency: 0.9
   byd_hvs_05_1:
+  # Beginn: 20.10.2021
     name: BYD HVS 5_1
     import_sensor: sensor.stromzaehler_netzbezug
     export_sensor: sensor.stromzaehler_netzeinspeisung
@@ -496,6 +498,7 @@ battery_sim:
     max_charge_rate_kw: 5.1
     efficiency: 0.95
   byd_hvs_10_2:
+  # Beginn: 20.10.2021
     name: BYD HVS 10_2
     import_sensor: sensor.stromzaehler_netzbezug
     export_sensor: sensor.stromzaehler_netzeinspeisung
@@ -504,6 +507,7 @@ battery_sim:
     max_charge_rate_kw: 10.0
     efficiency: 0.95
   byd_hvm_11_0:
+  # Beginn: 20.10.2021
     name: BYD HVM 11_0
     import_sensor: sensor.stromzaehler_netzbezug
     export_sensor: sensor.stromzaehler_netzeinspeisung
@@ -512,6 +516,7 @@ battery_sim:
     max_charge_rate_kw: 10.0
     efficiency: 0.95
   byd_hvm_16_6:
+  # Beginn: 20.10.2021
     name: BYD HVM 16_6
     import_sensor: sensor.stromzaehler_netzbezug
     export_sensor: sensor.stromzaehler_netzeinspeisung
@@ -520,6 +525,7 @@ battery_sim:
     max_charge_rate_kw: 10.0
     efficiency: 0.95
   byd_hvm_22_1:
+  # Beginn: 20.10.2021
     name: BYD HVM 22_1
     import_sensor: sensor.stromzaehler_netzbezug
     export_sensor: sensor.stromzaehler_netzeinspeisung
