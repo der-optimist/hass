@@ -899,12 +899,6 @@
     sampling_size: 2000
     max_age:
       minutes: 30
-  - platform: statistics
-    name: Blitz Distanz Mean
-    entity_id: sensor.blitzortung_lightning_distance
-    sampling_size: 1000
-    max_age:
-      minutes: 5
 
 #
 # --------------------------------
