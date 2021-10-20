@@ -284,7 +284,7 @@ cards:
       - type: custom:auto-entities
         show_empty: false
         card:
-          type: glance
+          type: entities
           title: Batterie wechseln
         filter:
           include:
