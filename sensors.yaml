@@ -925,3 +925,4 @@
 #    name: Covidfälle Waldburg
 #    select: "body > div > div > div > div.flex-fluid.flex-horizontal.position-relative.overflow-hidden > div.flex-fluid.position-relative.overflow-hidden > div > div > margin-container > full-container > div:nth-child(1) > margin-container > full-container > div > div.widget-body.flex-fluid.full-width.flex-vertical.overflow-y-auto.overflow-x-hidden > div > div.flex-horizontal.feature-list-item.active > div > div > p:nth-child(4) > span"
 #    unit_of_measurement: "Menschen"
+#  => funktioniert so noch nicht
