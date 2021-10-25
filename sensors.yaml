@@ -233,6 +233,11 @@
         friendly_name: 'El. Leistung Verbrauch gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      battery_sim_energy_saved_byd_hvm_11_0:
+        value_template: "{{ state_attr('sensor.byd_hvm_11_0', 'energy_saved') | float }}"
+        friendly_name: 'Batterie-Sim BYD HVM 11_0 Energy Saved'
+        unit_of_measurement: 'kWh'
+        icon_template: mdi:counter
 #
 #       --------------------------------
 #       --   effektiver Strompreis    --
