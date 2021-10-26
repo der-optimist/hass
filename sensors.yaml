@@ -239,6 +239,7 @@
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
 #
+#
 #       --------------------------------
 #       --   effektiver Strompreis    --
 #       --------------------------------
