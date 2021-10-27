@@ -95,6 +95,8 @@ lovelace:
       type: module
     - url: /hacsfiles/swipe-card/swipe-card.js
       type: module
+    - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
+      type: module
 
 automation: !include automations.yaml
 config:
