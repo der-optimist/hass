@@ -3,10 +3,11 @@ path: multimedia
 icon: mdi:disc-player
 cards:
   - type: entities
-    title: "Sonos"
+    title: "Sonos Entities"
     show_header_toggle: false
     entities:
-      - entity: sensor.processor_use
-      - entity: sensor.cpu_temperatur
-      - entity: sensor.memory_use_percent
-      - entity: sensor.disk_use_percent
+      - entity: media_player.sonos_move
+      - entity: sensor.sonos_move_battery
+      - entity: binary_sensor.sonos_move_power
+  - type: media-control
+    entity: media_player.sonos_move
