@@ -70,6 +70,22 @@ cards:
       control:
         - preset: false
         - hvac: false
+    - type: section
+      label: Luftsensor
+    - entity: sensor.temp_esp_wemos_d1_7_bme680
+      name: Temperatur
+    - entity: sensor.luftfeuchtigkeit_esp_wemos_d1_7_bme680
+      name: Luftfeuchtigkeit
+    - entity: sensor.iaq_text
+      name: Luftqualität
+    - entity: sensor.iaq_esp_wemos_d1_7_bme680
+      name: Luftqualität (IAQ)
+    - entity: sensor.co2_equivalent_esp_wemos_d1_7_bme680
+      name: CO2
+    - entity: sensor.atmung_voc_equivalent_esp_wemos_d1_7_bme680
+      name: VOC
+    - entity: sensor.iaq_genauigkeit_text_esp_wemos_d1_7_bme680
+      name: Status Sensor
   - type: entities
     title: !secret name_le
     show_header_toggle: false
