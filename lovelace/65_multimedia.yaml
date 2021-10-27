@@ -9,6 +9,12 @@ cards:
       - entity: media_player.sonos_move
       - entity: sensor.sonos_move_battery
       - entity: binary_sensor.sonos_move_power
+      - type: divider
+        style: 
+          height: 1px
+          background-color: "#ff9c27"
+          opacity: 0.25
+      - entity: media_player.samsung_7_series_55
   - type: media-control
     entity: media_player.sonos_move
   - type: custom:mini-media-player
