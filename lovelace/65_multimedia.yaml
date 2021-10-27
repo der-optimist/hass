@@ -3,29 +3,36 @@ path: multimedia
 icon: mdi:disc-player
 cards:
   - type: entities
-    title: "Sonos Entities"
+    title: "Sonos"
     show_header_toggle: false
     entities:
-      - entity: media_player.sonos_move
-      - entity: sensor.sonos_move_battery
-      - entity: binary_sensor.sonos_move_power
+      - type: custom:mini-media-player
+        entity: media_player.media_player.sonos_one_1
       - type: divider
         style: 
           height: 1px
           background-color: "#ff9c27"
           opacity: 0.25
+      - type: custom:mini-media-player
+        entity: media_player.beam
+      - type: divider
+        style: 
+          height: 1px
+          background-color: "#ff9c27"
+          opacity: 0.25
+      - type: custom:mini-media-player
+        entity: media_player.sonos_move
+      - entity: sensor.sonos_move_battery
+      - entity: binary_sensor.sonos_move_power
+  - type: entities
+    title: "TV und Kodi"
+    show_header_toggle: false
+    entities:
       - entity: media_player.samsung_7_series_55
       - type: divider
         style: 
           height: 1px
           background-color: "#ff9c27"
           opacity: 0.25
-      - entity: media_player.kodi_wz
-  - type: media-control
-    entity: media_player.sonos_move
-  - type: media-control
-    entity: media_player.samsung_7_series_55
-  - type: media-control
-    entity: media_player.kodi_wz
-  - type: custom:mini-media-player
-    entity: media_player.sonos_move
+      - type: custom:mini-media-player
+        entity: media_player.kodi_wz
