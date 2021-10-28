@@ -13,7 +13,6 @@ cards:
           play_stop: False
           volume_level: False
           runtime: False
-        artwork: full
         source: full
         speaker_group:
           platform: sonos
