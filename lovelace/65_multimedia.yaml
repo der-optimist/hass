@@ -13,8 +13,18 @@ cards:
           play_stop: False
           volume_level: False
           runtime: False
-        artwork: full-cover
+        artwork: full
         source: full
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities:
+            - entity_id: media_player.sonos_one_1
+              name: One (Theke)
+            - entity_id: media_player.beam
+              name: Wohnzimmer
+            - entity_id: media_player.sonos_move
+              name: Move
       - type: divider
         style: 
           height: 1px
