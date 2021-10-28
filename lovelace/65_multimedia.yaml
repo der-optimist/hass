@@ -7,7 +7,7 @@ cards:
     show_header_toggle: false
     entities:
       - type: custom:mini-media-player
-        entity: media_player.media_player.sonos_one_1
+        entity: media_player.sonos_one_1
       - type: divider
         style: 
           height: 1px
