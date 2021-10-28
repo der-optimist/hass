@@ -2,74 +2,61 @@ title: Multimedia
 path: multimedia
 icon: mdi:disc-player
 cards:
+  - type: custom:mini-media-player
+    entity: media_player.sonos_one_1
+    hide:
+      play_stop: False
+      volume_level: False
+      runtime: False
+    source: full
+    speaker_group:
+      platform: sonos
+      show_group_count: true
+      entities:
+        - entity_id: media_player.sonos_one_1
+          name: One (Theke)
+        - entity_id: media_player.beam
+          name: Wohnzimmer
+        - entity_id: media_player.sonos_move
+          name: Move
+  - type: custom:mini-media-player
+    entity: media_player.beam
+    hide:
+      play_stop: False
+      volume_level: False
+      runtime: False
+    source: full
+    speaker_group:
+      platform: sonos
+      show_group_count: true
+      entities:
+        - entity_id: media_player.sonos_one_1
+          name: One (Theke)
+        - entity_id: media_player.beam
+          name: Wohnzimmer
+        - entity_id: media_player.sonos_move
+          name: Move
+  - type: custom:mini-media-player
+    entity: media_player.sonos_move
+    hide:
+      play_stop: False
+      volume_level: False
+      runtime: False
+    source: full
+    speaker_group:
+      platform: sonos
+      show_group_count: true
+      entities:
+        - entity_id: media_player.sonos_one_1
+          name: One (Theke)
+        - entity_id: media_player.beam
+          name: Wohnzimmer
+        - entity_id: media_player.sonos_move
+          name: Move
   - type: entities
-    title: "Sonos"
+    title: "Akku Move"
     show_header_toggle: false
     entities:
-      - type: custom:mini-media-player
-        entity: media_player.sonos_one_1
-        group: True
-        hide:
-          play_stop: False
-          volume_level: False
-          runtime: False
-        source: full
-        speaker_group:
-          platform: sonos
-          show_group_count: true
-          entities:
-            - entity_id: media_player.sonos_one_1
-              name: One (Theke)
-            - entity_id: media_player.beam
-              name: Wohnzimmer
-            - entity_id: media_player.sonos_move
-              name: Move
-      - type: divider
-        style: 
-          height: 1px
-          background-color: "#ff9c27"
-          opacity: 0.25
-      - type: custom:mini-media-player
-        entity: media_player.beam
-        group: True
-        hide:
-          play_stop: False
-          volume_level: False
-          runtime: False
-        source: full
-        speaker_group:
-          platform: sonos
-          show_group_count: true
-          entities:
-            - entity_id: media_player.sonos_one_1
-              name: One (Theke)
-            - entity_id: media_player.beam
-              name: Wohnzimmer
-            - entity_id: media_player.sonos_move
-              name: Move
-      - type: divider
-        style: 
-          height: 1px
-          background-color: "#ff9c27"
-          opacity: 0.25
-      - type: custom:mini-media-player
-        entity: media_player.sonos_move
-        group: True
-        hide:
-          play_stop: False
-          volume_level: False
-          runtime: False
-        source: full
-        speaker_group:
-          platform: sonos
-          show_group_count: true
-          entities:
-            - entity_id: media_player.sonos_one_1
-              name: One (Theke)
-            - entity_id: media_player.beam
-              name: Wohnzimmer
-            - entity_id: media_player.sonos_move
-              name: Move
       - entity: sensor.sonos_move_battery
       - entity: binary_sensor.sonos_move_power
   - type: entities
