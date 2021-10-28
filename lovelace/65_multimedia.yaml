@@ -8,6 +8,11 @@ cards:
     entities:
       - type: custom:mini-media-player
         entity: media_player.sonos_one_1
+        group: True
+        hide:
+          play_stop: False
+          volume_level: False
+          runtime: False
       - type: divider
         style: 
           height: 1px
@@ -15,6 +20,7 @@ cards:
           opacity: 0.25
       - type: custom:mini-media-player
         entity: media_player.beam
+        group: True
       - type: divider
         style: 
           height: 1px
@@ -22,6 +28,7 @@ cards:
           opacity: 0.25
       - type: custom:mini-media-player
         entity: media_player.sonos_move
+        group: True
       - entity: sensor.sonos_move_battery
       - entity: binary_sensor.sonos_move_power
   - type: entities
