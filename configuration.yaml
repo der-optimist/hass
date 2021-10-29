@@ -366,6 +366,8 @@ folder_watcher:
   - folder: /share/abstellraum/
 
 cloud:
+  alexa: !include alexa.yaml
+
 rest_command:
   bildschirm_theke_command:
     url: 'http://192.168.178.42:2323/?cmd={{ cmd }}&key={{ key }}&value={{ value }}&type=json&password=nopw'
