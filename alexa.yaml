@@ -1,0 +1,20 @@
+    filter:
+#      include_entities:
+#        - alarm_control_panel.house
+      include_domains:
+        - light
+      exclude_entities:
+        - light.bildschirm_theke_helligkeit
+    entity_config:
+      light.arbeitsplatte:
+        name: Licht Arbeitsplatte
+        description: Beleuchtung der Arbeitsplatte in der Küche
+        display_categories: LIGHT
+      light.bar_beleuchtung:
+        name: Thekenbeleuchtung
+        description: Thekenlicht
+        display_categories: LIGHT
+      light.bettbeleuchtung:
+        name: Bettbeleuchtung
+        description: Bettbeleuchtung Schlafzimmer
+        display_categories: LIGHT
