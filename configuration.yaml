@@ -366,7 +366,7 @@ folder_watcher:
   - folder: /share/abstellraum/
 
 cloud:
-  alexa: !include alexa.yaml
+#  alexa: !include alexa.yaml
 
 rest_command:
   bildschirm_theke_command:
