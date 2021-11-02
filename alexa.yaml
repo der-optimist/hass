@@ -18,3 +18,156 @@
         name: Bettbeleuchtung
         description: Bettbeleuchtung Schlafzimmer
         display_categories: LIGHT
+      light.bodenlicht_eingang:
+        name: Bodenlicht Eingang
+        description: Bodenlicht Podest Eingangsbereich
+        display_categories: LIGHT
+      light.bodenstrahler_blumenbeet:
+        name: Bodenstrahler Blumenbeet
+        description: Bodenstrahler Terrasse
+        display_categories: LIGHT
+      light.brettlicht_windfang:
+        name: Brettlicht Windfang
+        description: Brettlicht Windfang
+        display_categories: LIGHT
+      light.esp_wemos_d1_2_led_1:
+        name: Beleuchtung Hochzeitsbild
+        description: Lichterkette Hochzeitsbild Windfang
+        display_categories: LIGHT
+      light.flur_keller:
+        name: Flur Keller
+        description: Kellerflur
+        display_categories: LIGHT
+#      light.gastezimmer:
+#        name: Licht Gästezimmer
+#        description: Deckenlicht Gästezimmer
+#        display_categories: LIGHT
+      light.ikea_panel_arbeitszimmer_esphome:
+        name: Panel Mandys Schreibtisch
+        description: Ikea Panel Arbeitszimmer
+        display_categories: LIGHT
+      light.innr_e14_tw_kugellampe_schlafzimmer_level_light_color_on_off:
+        name: Kugellampe Schlafzimmer
+        description: Kugellampe
+        display_categories: LIGHT
+      light.innr_e14_tw_stehlampe_lea_level_light_color_on_off:
+        name: Stehlampe Lea
+        display_categories: LIGHT
+      light.innr_e14_ww_decke_gastezimmer_level_on_off:
+        name: Licht Gästezimmer
+        description: Deckenlicht Gästezimmer
+        display_categories: LIGHT
+      light.innr_e14_ww_stehlampe_lara_level_on_off:
+        name: Stehlampe Lara
+        display_categories: LIGHT
+      light.innr_e27_color_stehlampe_wz_level_light_color_on_off:
+        name: Stehlampe Wohnzimmer
+        display_categories: LIGHT
+      light.innr_e27_color_terrasse_feuerplatz_level_light_color_on_off:
+        name: Leuchtwürfel Feuerplatz
+        description: Leuchtwürfel Terrasse Feuerplatz
+        display_categories: LIGHT
+      light.innr_e27_rgb_flur_eg_oben_level_light_color_on_off:
+        name: Stehlampe Flur EG oben
+        description: Stehlampe Flur EG obere Farbe
+        display_categories: LIGHT
+      light.innr_e27_rgb_flur_eg_unten_level_light_color_on_off:
+        name: Stehlampe Flur EG unten
+        description: Stehlampe Flur EG untere Farbe
+        display_categories: LIGHT
+      light.innr_rb_285_c_55f50405_level_light_color_on_off:
+        name: Leuchtwürfel Ecke klein
+        description: kleiner Leuchtwürfel Terrasse
+        display_categories: LIGHT
+      light.innr_rb_285_c_7cc30105_level_light_color_on_off:
+        name: Leuchtwürfel Ecke groß
+        description: großer Leuchtwürfel Terrasse
+        display_categories: LIGHT
+      light.lagerraum:
+        name: Licht Partyraum
+        description: Deckenlicht im Partyraum
+        display_categories: LIGHT
+      light.led_auf_spiegelschrank_bad_eg:
+        name: warmes Spiegellicht Bad EG
+        description: LED auf Spiegelschrank Bad EG
+        display_categories: LIGHT
+      light.led_auf_spiegelschrank_bad_og:
+        name: warmes Spiegellicht Bad OG
+        description: LED auf Spiegelschrank Bad OG
+        display_categories: LIGHT
+      light.led_streifen_carport:
+        name: LED Streifen Carport
+        description: LED Streifen Carport
+        display_categories: LIGHT
+      light.panels_bad_eg:
+        name: Panels Bad EG
+        description: Panels Bad EG
+        display_categories: LIGHT
+      light.panels_bad_og:
+        name: Panels Bad OG
+        description: Panels Bad OG
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
+      light.:
+        name: 
+        description: 
+        display_categories: LIGHT
