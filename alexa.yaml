@@ -107,67 +107,151 @@
         name: Panels Bad OG
         description: Panels Bad OG
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.panels_bar:
+        name: Panels Theke
+        description: Panels Theke
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.panels_esszimmer:
+        name: Panels Esszimmer
+        description: Panels Esszimmer
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.panels_flur_eg:
+        name: Panels Flur EG
+        description: Panels Flur EG
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.panels_flur_og:
+        name: Panels Flur OG
+        description: Panels Flur OG
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.panels_kuche:
+        name: Panels Küche
+        description: Panels Küche
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.panels_la:
+        name: Panels Lara
+        description: Panels Laras Zimmer
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.panels_le:
+        name: Panels Lea
+        description: Panels Leas Zimmer
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.panels_schlafzimmer:
+        name: Panels Schlafzimmer
+        description: Panels Schlafzimmer
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.panels_treppe_og:
+        name: Panels Treppe
+        description: Panels Treppe OG
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.panels_wc:
+        name: Panel WC
+        description: Panels WC
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.panels_windfang:
+        name: Panels Windfang
+        description: Panels Windfang
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.panels_wohnzimmer:
+        name: Panels Wohnzimmer
+        description: Panels Wohnzimmer
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.regal_bad_eg:
+        name: Regal Bad EG
+        description: Regal Bad
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.schrankbeleuchtung_wohnzimmer:
+        name: Schrankbeleuchtung Wohnzimmer
+        description: Hängeschränke Wohnzimmer
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.schreibtisch_decke:
+        name: Panel Jochens Schreibtisch
+        description: Helles Licht Arbeitszimmer
         display_categories: LIGHT
-      light.:
-        name: 
-        description: 
+      light.sd_fussraum_bar:
+        name: Weihnachtsbaum
+        description: Weinhachtsbaumbeleuchtung
+        display_categories: LIGHT
+      light.shellydimmer_d472fe_light_0:
+        name: Licht Kellertreppe
+        description: Kellertreppe
+        display_categories: LIGHT
+      light.sockelbeleuchtung:
+        name: Sockelbeleuchtung
+        description: Sockelbeleuchtung Küche
+        display_categories: LIGHT
+      light.spiegel_bad_eg:
+        name: kaltes Spiegellicht Bad EG
+        description: helles Spiegellicht Bad EG
+        display_categories: LIGHT
+      light.spiegel_bad_og:
+        name: kaltes Spiegellicht Bad OG
+        description: helles Spiegellicht Bad OG
+        display_categories: LIGHT
+      light.spiegel_wc:
+        name: Spiegellicht WC
+        description: Spiegelbeleuchtung WC
+        display_categories: LIGHT
+      light.spots_carport_2:
+        name: Spots Carport
+        description: Spots Carport
+        display_categories: LIGHT
+      light.stern_blumenbeet:
+        name: Stern Blumenbeet
+        description: Weihnachtsbeleuchtung Blumenbeet
+        display_categories: LIGHT
+      light.stufenbeleuchtung_treppe:
+        name: Stufenbeleuchtung Treppe
+        description: Stufenlicht
+        display_categories: LIGHT
+      light.technikraum:
+        name: Licht Waschküche
+        description: Licht Technikraum
+        display_categories: LIGHT
+      light.vorratsraum:
+        name: Licht Speis
+        description: Licht Vorratsraum
+        display_categories: LIGHT
+      light.wandleuchten_esszimmer_gemutlich:
+        name: Wandleuchten Esszimmer gemütlich
+        description: warmes Licht Wandleuchten Esszimmer
+        display_categories: LIGHT
+      light.wandleuchten_esszimmer_hell:
+        name: Wandleuchten Esszimmer hell
+        description: helles Licht Wandleuchten Esszimmer
+        display_categories: LIGHT
+      light.wandwurfel_la:
+        name: Würfel Lara
+        description: Wandwürfel Lara
+        display_categories: LIGHT
+      light.wandwurfel_le:
+        name: Würfel Lea
+        description: Wandwürfel Lea
+        display_categories: LIGHT
+      light.wandwurfel_suden:
+        name: Wandleuchten Süden
+        description: Wandwürfel Süden
+        display_categories: LIGHT
+      light.wandwurfel_westen:
+        name: Wandleuchten Westen
+        description: Wandwürfel Westen
+        display_categories: LIGHT
+      light.werkelraum:
+        name: Licht Werkelraum
+        description: Licht Werkelraum
+        display_categories: LIGHT
+      light.wowa_fenster_bett_links_2:
+        name: Licht Wohnwagen Bett links
+        description: Licht Wohnwagen Bett links
+        display_categories: LIGHT
+      light.wowa_fenster_bett_rechts_2:
+        name: Licht Wohnwagen Bett rechts
+        description: Licht Wohnwagen Bett rechts
+        display_categories: LIGHT
+      light.wowa_fenster_sitzecke_links:
+        name: Licht Wohnwagen Sitzecke links
+        description: Licht Wohnwagen Sitzecke links
+        display_categories: LIGHT
+      light.wowa_fenster_sitzecke_rechts:
+        name: Licht Wohnwagen Sitzecke rechts
+        description: Licht Wohnwagen Sitzecke rechts
         display_categories: LIGHT
