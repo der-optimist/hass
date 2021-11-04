@@ -2,6 +2,7 @@
       include_entities:
         - input_number.pizza_timer_2
         - input_boolean.gaeste_abends
+        - input_boolean.eisschutz_jalousien
         - scene.jal_wohnbereich_hoch
         - scene.jal_wohnbereich_runter
       include_domains:
@@ -12,6 +13,9 @@
       input_boolean.gaeste_abends:
         name: Gäste
         description: Gäste-Knopf
+      input_boolean.eisschutz_jalousien:
+        name: Eisschutz Jalousien
+        description: Eisschutz Rollos
       scene.jal_wohnbereich_hoch:
         name: Rollos Wohnbereich hoch
         description: Jalousien Wohnbereich hoch
