@@ -2,6 +2,8 @@
       include_entities:
         - input_number.pizza_timer_2
         - input_boolean.gaeste_abends
+        - scene.jal_wohnbereich_hoch
+        - scene.jal_wohnbereich_runter
       include_domains:
         - light
       exclude_entities:
@@ -10,6 +12,14 @@
       input_boolean.gaeste_abends:
         name: Gäste
         description: Gäste-Knopf
+      scene.jal_wohnbereich_hoch:
+        name: Rollos Wohnbereich hoch
+        description: Jalousien Wohnbereich hoch
+        display_categories: SCENE_TRIGGER
+      scene.jal_wohnbereich_runter:
+        name: Rollos Wohnbereich runter
+        description: Jalousien Wohnbereich runter
+        display_categories: SCENE_TRIGGER
       light.arbeitsplatte:
         name: Licht Arbeitsplatte
         description: Beleuchtung der Arbeitsplatte in der Küche
