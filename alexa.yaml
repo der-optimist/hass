@@ -1,6 +1,7 @@
     filter:
-#      include_entities:
-#        - alarm_control_panel.house
+      include_entities:
+        - input_number.pizza_timer_2
+        - input_boolean.gaeste_abends
       include_domains:
         - light
       exclude_entities:
