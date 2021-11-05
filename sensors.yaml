@@ -496,7 +496,6 @@
             # repeater wz                    4   (online-Test)
             # Raspi Bilderrahmen             2   (wie Onewirepi)
             # Klingel                        5   (geschätzt)
-            # Babyphone                      6   (geschätzt) => entfernt
             # Kodi                           3   (gemessen)
             # Kodi-Platte                    2   (gemessen. Standby 1-2W, Betrieb 9W)
             # Relais Sicherung Keller        1   (geschätzt)
@@ -511,18 +510,20 @@
             # Sonos One Theke                3.5 (https://support.sonos.com/s/article/256?language=de)
             # Sonos Move                     3.5 (https://support.sonos.com/s/article/256?language=de)
             # Sonos Beam                     6.5 (https://support.sonos.com/s/article/256?language=de)
-            # WLAN-Steckdose                 3   (3 x 1 W geschätzt - Bildschirm, 2x Heizung Partyraum)
+            # WLAN-Steckdose esphome         3   (3 x 1 W geschätzt - Bildschirm, 2x Heizung Partyraum)
             # Zigbee-Steckdosen              2   (4 x 0.5 - Luftentfeuchter Waschk. + Partyraum, 2x Zigbee-Repeater)
             # Zigbee-Lampen                  4   (ca. 10 x 0.4)
             # Shelly Dimmer                  1
             # Shelly Schalter Bett-SD        1
             # Shelly Steckdose               1
-            # ESP-Sensoren                   5 (ca 5 x 1 W)
-            # Netzteil Laptop Ma             1 (geschätzt)
-            # Netzteil Laptop Jo             1 (geschätzt)
-            # Netzteil Laptop MaJo           1 (geschätzt)
-            # Standyby Monitor               3 (3 x 1 geschätzt)
-        value_template: "{{ (now().hour | float / 1000000) + 63 + 0.5 + 2 + 4.5 + 5 + 4 + 2 + 5 + 3 + 2 + 1 + 1.5 + 1.5 + 2 + 3 + 1 + 8 + 1.5 + 3.5 + 3.5 + 6.5 + 3 + 2 + 4 + 1 + 1 + 1 + 5 + 1 + 1 + 1 + 3 }}"
+            # ESP-Sensoren                   5   (ca 5 x 1 W)
+            # Netzteil Laptop Ma             1   (geschätzt)
+            # Netzteil Laptop Jo             1   (geschätzt)
+            # Netzteil Laptop MaJo           1   (geschätzt)
+            # Standyby Monitor               3   (3 x 1 geschätzt)
+            # Modbus Gateway Lueftungsanl.   1   (Datenblatt)
+            # Wechselrichter Froinus Gen24  10   (Datenblatt)
+        value_template: "{{ (now().hour | float / 1000000) + 63 + 0.5 + 2 + 4.5 + 5 + 4 + 2 + 5 + 3 + 2 + 1 + 1.5 + 1.5 + 2 + 3 + 1 + 8 + 1.5 + 3.5 + 3.5 + 6.5 + 3 + 2 + 4 + 1 + 1 + 1 + 5 + 1 + 1 + 1 + 3 + 1 + 10 }}"
         friendly_name: 'El. Leistung Dauerverbraucher'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer

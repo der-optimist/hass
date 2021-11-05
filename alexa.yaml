@@ -5,6 +5,23 @@
         - input_boolean.eisschutz_jalousien
         - scene.jal_wohnbereich_hoch
         - scene.jal_wohnbereich_runter
+        - sensor.el_leistung_pv_ac
+        - sensor.el_leistung_verbrauch_gesamt
+        - sensor.el_leistung_wp_gesamt
+        - sensor.iaq_text
+        - sensor.
+        - sensor.
+        - sensor.
+        - sensor.
+        - sensor.
+        - sensor.
+        - sensor.
+        - sensor.
+        - sensor.
+        - sensor.
+        - sensor.
+        - sensor.
+        - sensor.
       include_domains:
         - light
       exclude_entities:
@@ -24,6 +41,40 @@
         name: Rollos Wohnbereich runter
         description: Jalousien Wohnbereich runter
         display_categories: SCENE_TRIGGER
+      sensor.el_leistung_pv_ac:
+        name: Leistung PV-Anlage
+        description: elektrische Leistung PV
+      sensor.el_leistung_verbrauch_gesamt:
+        name: Stromverbrauch aktuell
+        description: elektische Leistung Verbrauch
+      sensor.el_leistung_wp_gesamt:
+        name: Stromverbrauch Heizung aktuell
+        description: elektrische Leistung Heizung
+      sensor.iaq_text:
+        name: Luftqualität in Laras Zimmer
+        description: IAQ
+      sensor.:
+        name: 
+        description: 
+      sensor.:
+        name: 
+        description: 
+      sensor.:
+        name: 
+        description: 
+      sensor.:
+        name: 
+        description: 
+      sensor.:
+        name: 
+        description: 
+      sensor.:
+        name: 
+        description: 
+      sensor.:
+        name: 
+        description: 
+      
       light.arbeitsplatte:
         name: Licht Arbeitsplatte
         description: Beleuchtung der Arbeitsplatte in der Küche
