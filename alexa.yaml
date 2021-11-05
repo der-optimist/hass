@@ -9,19 +9,45 @@
         - sensor.el_leistung_verbrauch_gesamt
         - sensor.el_leistung_wp_gesamt
         - sensor.iaq_text
-        - sensor.
-        - sensor.
-        - sensor.
-        - sensor.
-        - sensor.
-        - sensor.
-        - sensor.
-        - sensor.
-        - sensor.
-        - sensor.
-        - sensor.
-        - sensor.
-        - sensor.
+        - sensor.lueftungmodbus_rh_max
+        - sensor.luftfeuchtigkeit_aussen
+        - sensor.luftfeuchtigkeit_partyraum
+        - sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_sht31
+        - sensor.luftfeuchtigkeit_waschkuche
+        - sensor.luftfeuchtigkeit_werkelraum
+        - sensor.onewire_07_estrich_kueche
+        - sensor.onewire_14_estrich_wohnzimmer
+        - sensor.onewire_15_estrich_wc_1
+        - sensor.onewire_16_estrich_esszimmer
+        - sensor.onewire_20_estrich_bad_eg
+        - sensor.onewire_25_estrich_schlafzimmer
+        - sensor.pv_erzeugung_gestern
+        - sensor.pv_erzeugung_tag
+        - sensor.pv_geldertrag_gesamt
+        - sensor.strompreis_aktuell_effektiv_cent
+        - sensor.temp_aussen
+        - sensor.temp_bad_eg_pm
+        - sensor.temp_bad_og_pm
+        - sensor.temp_esszimmer_pm
+        - sensor.temp_flur_eg_pm
+        - sensor.temp_flur_og_pm
+        - sensor.temp_gastezimmer_pm
+        - sensor.temp_kuche_pm
+        - sensor.temp_la_pm
+        - sensor.temp_le_pm
+        - sensor.temp_nahzimmer_pm
+        - sensor.temp_partyraum
+        - sensor.temp_schlafzimmer_pm
+        - sensor.temp_vorratsraum
+        - sensor.temp_waschkuche
+        - sensor.temp_wc_pm
+        - sensor.temp_werkelraum
+        - sensor.temp_windfang_pm
+        - sensor.temp_wohnzimmer_pm
+        - sensor.windgeschwindigkeit_wetterstation_kmh
+        - switch.bleib_so_wz_licht
+        - switch.knutschen
+        - switch.majo_schlafen
       include_domains:
         - light
       exclude_entities:
@@ -53,28 +79,123 @@
       sensor.iaq_text:
         name: Luftqualität in Laras Zimmer
         description: IAQ
-      sensor.:
-        name: 
-        description: 
-      sensor.:
-        name: 
-        description: 
-      sensor.:
-        name: 
-        description: 
-      sensor.:
-        name: 
-        description: 
-      sensor.:
-        name: 
-        description: 
-      sensor.:
-        name: 
-        description: 
-      sensor.:
-        name: 
-        description: 
-      
+      sensor.lueftungmodbus_rh_max:
+        name: Luftfeuchtigkeit Lüftungsanlage
+        description: Luftfeuchtigkeit Haus
+      sensor.luftfeuchtigkeit_aussen:
+        name: Luftfeuchtigkeit draußen
+        description: Luftfeuchtigkeit außen
+      sensor.luftfeuchtigkeit_partyraum:
+        name: Luftfeuchtigkeit Partyraum
+        description: Luftfeuchtigkeit im Partyraum
+      sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_sht31:
+        name: Luftfeuchtigkeit Speis
+        description: Luftfeuchtigkeit Vorratsraum
+      sensor.luftfeuchtigkeit_waschkuche:
+        name: Luftfeuchtigkeit Waschküche
+        description: Luftfeuchtigkeit Technikraum
+      sensor.luftfeuchtigkeit_werkelraum:
+        name: Luftfeuchtigkeit Werkelraum
+        description: Luftfeuchtigkeit im Werkelraum
+      sensor.onewire_07_estrich_kueche:
+        name: Fußbodentemperatur Küche
+        description: Estrichtemperatur Küche
+      sensor.onewire_14_estrich_wohnzimmer:
+        name: Fußbodentemperatur Wohnzimmer
+        description: Estrichtemperatur Wohnzimmer
+      sensor.onewire_15_estrich_wc_1:
+        name: Fußbodentemperatur WC
+        description: Estrichtemperatur WC
+      sensor.onewire_16_estrich_esszimmer:
+        name: Fußbodentemperatur Esszimmer
+        description: Estrichtemperatur Esszimmer
+      sensor.onewire_20_estrich_bad_eg:
+        name: Fußbodentemperatur Bad EG
+        description: Estrichtemperatur Bad EG
+      sensor.onewire_25_estrich_schlafzimmer:
+        name: Fußbodentemperatur Schlafzimmer
+        description: Estrichtemperatur Schlafzimmer
+      sensor.pv_erzeugung_gestern:
+        name: PV-Erzeugung gestern 
+        description: PV-Produktion gestern
+      sensor.pv_erzeugung_tag:
+        name: PV-Erzeugung heute 
+        description: PV-Produktion heute
+      sensor.pv_geldertrag_gesamt:
+        name: PV-Ertrag gesamt
+        description: Wie viel hat die PV-Anlage bis jetzt eingebracht
+      sensor.strompreis_aktuell_effektiv_cent:
+        name: aktueller Strompreis
+        description: Strompreis aktuell
+      sensor.temp_aussen:
+        name: Außentemperatur
+        description: Temperatur draußen
+      sensor.temp_bad_eg_pm:
+        name: Temperatur Bad EG
+        description: Temperatur Bad EG
+      sensor.temp_bad_og_pm:
+        name: Temperatur Bad OG
+        description: Temperatur 
+      sensor.temp_esszimmer_pm:
+        name: Temperatur Esszimmer
+        description: Temperatur Esszimmer
+      sensor.temp_flur_eg_pm:
+        name: Temperatur Flur EG
+        description: Temperatur Flur EG
+      sensor.temp_flur_og_pm:
+        name: Temperatur Flur OG
+        description: Temperatur Flur OG
+      sensor.temp_gastezimmer_pm:
+        name: Temperatur Gästezimmer
+        description: Temperatur Gästezimmer
+      sensor.temp_kuche_pm:
+        name: Temperatur Küche
+        description: Temperatur Küche
+      sensor.temp_la_pm:
+        name: Temperatur Laras Zimmer
+        description: Temperatur Laras Zimmer
+      sensor.temp_le_pm:
+        name: Temperatur Leas Zimmer
+        description: Temperatur Leas Zimmer
+      sensor.temp_nahzimmer_pm:
+        name: Temperatur Arbeitszimmer
+        description: Temperatur Büro
+      sensor.temp_partyraum:
+        name: Temperatur Partyraum
+        description: Temperatur Turnraum
+      sensor.temp_schlafzimmer_pm:
+        name: Temperatur Schlafzimmer
+        description: Temperatur Schlafzimmer
+      sensor.temp_vorratsraum:
+        name: Temperatur Speis
+        description: Temperatur Vorratsraum
+      sensor.temp_waschkuche:
+        name: Temperatur Waschküche
+        description: Temperatur Technikraum
+      sensor.temp_wc_pm:
+        name: Temperatur WC
+        description: Temperatur WC
+      sensor.temp_werkelraum:
+        name: Temperatur Werkelraum
+        description: Temperatur Werkelraum
+      sensor.temp_windfang_pm:
+        name: Temperatur Windfang
+        description: Temperatur Windfang
+      sensor.temp_wohnzimmer_pm:
+        name: Temperatur Wohnzimmer
+        description: Temperatur Wohnzimmer
+      sensor.windgeschwindigkeit_wetterstation_kmh:
+        name: Windgeschwindigkeit
+        description: wie windig ist es
+      switch.bleib_so_wz_licht:
+        name: Bleib so Licht Wohnzimmer
+        description: Bleib so Wohnzimmer-Licht
+      switch.knutschen:
+        name: Knutschen
+        description: Knutsch-Licht Schlafzimmer
+      switch.majo_schlafen:
+        name: Majo schlafen
+        description: Schlafen-Knopf Schlafzimmer
       light.arbeitsplatte:
         name: Licht Arbeitsplatte
         description: Beleuchtung der Arbeitsplatte in der Küche
