@@ -29,7 +29,7 @@ auto_light_o_nz_ma:
     "18:00": 50
     "19:00": 40
   min_illuminance_values:
-    "00:00": 25
+    "00:00": 35
   illuminance_sensor: sensor.helligkeit_nahzimmer_pm
   switching_off_offset: 30
   keeping_off_entities:
