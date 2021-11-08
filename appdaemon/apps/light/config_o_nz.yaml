@@ -31,7 +31,7 @@ auto_light_o_nz_ma:
   min_illuminance_values:
     "00:00": 35
   illuminance_sensor: sensor.helligkeit_nahzimmer_pm
-  switching_off_offset: 30
+  switching_off_offset: 60
   keeping_off_entities:
     - switch.gaste_schlafen
     - switch.luften_eg
