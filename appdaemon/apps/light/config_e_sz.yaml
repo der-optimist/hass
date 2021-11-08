@@ -35,7 +35,7 @@ auto_light_e_sz_panels:
 auto_light_e_sz_bett:
   module: auto_light
   class: auto_light
-  debug: quiet
+  debug: few
   app_switch: input_boolean.app_switch_licht_schlafzimmer
   light: light.bettbeleuchtung
   type: dim
