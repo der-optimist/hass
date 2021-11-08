@@ -5,6 +5,8 @@
         - input_boolean.eisschutz_jalousien
         - scene.jal_wohnbereich_hoch
         - scene.jal_wohnbereich_runter
+        - scene.lueftung_auto
+        - scene.lueftung_stosslueften
         - sensor.el_leistung_pv_ac
         - sensor.el_leistung_verbrauch_gesamt
         - sensor.el_leistung_wp_gesamt
@@ -68,6 +70,14 @@
       scene.jal_wohnbereich_runter:
         name: Rollos Wohnbereich runter
         description: Jalousien Wohnbereich runter
+        display_categories: SCENE_TRIGGER
+      scene.lueftung_auto:
+        name: Lüftung Automatik
+        description: Lüftungsanlage auf Automatik
+        display_categories: SCENE_TRIGGER
+      scene.lueftung_stosslueften:
+        name: Stoßlüften
+        description: Lüftungsanlage auf Stoßlüften
         display_categories: SCENE_TRIGGER
       sensor.el_leistung_pv_ac:
         name: Leistung PV-Anlage
