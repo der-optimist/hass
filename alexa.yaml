@@ -52,6 +52,8 @@
         - light
       exclude_entities:
         - light.bildschirm_theke_helligkeit
+        - light.nahtisch_decke
+        - light.gastezimmer
     entity_config:
       input_boolean.gaeste_abends:
         name: Gäste
