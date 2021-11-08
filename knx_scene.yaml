@@ -4,3 +4,9 @@
   - name: Jal Wohnbereich hoch
     address: 15/0/50
     scene_number: 8
+  - name: Lueftung Stosslueften
+    address: 15/0/50
+    scene_number: 22
+  - name: Lueftung Auto
+    address: 15/0/50
+    scene_number: 23
