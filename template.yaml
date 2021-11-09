@@ -1,3 +1,4 @@
+# Trigger based
   - trigger:
       - platform: state
         entity_id: sensor.wirkungsgrad_wechselrichter
@@ -6,3 +7,21 @@
       - name: Wirkungsgrad Wechselrichter gefiltert
         state: '{{ states("sensor.wirkungsgrad_wechselrichter") }}'
         unit_of_measurement: '%'
+#
+# State based
+  - sensor:
+      - name: helper_light_o_gz_deckenlicht_brightness
+        unit_of_measurement: "%"
+        state: >
+          {% set hours = 
+            ['00:00','08:00',20],
+            ['08:01','09:00',60],
+            ['09:01','10:00',80],
+            ['10:01','20:00',100],
+            ['20:01','22:00',70],
+            ['22:01','23:00',40],
+            ['23:01','23:59',20] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
