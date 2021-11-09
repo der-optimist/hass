@@ -25,3 +25,18 @@
           {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
               {{h[2]}}
           {% endfor %}
+      - name: helper_light_o_gz_deckenlicht_min_illuminance
+        unit_of_measurement: "%"
+        state: >
+          {% set hours = 
+            ['00:00','05:00',10],
+            ['05:01','06:30',20],
+            ['06:31','09:00',30],
+            ['09:01','17:00',40],
+            ['17:01','19:00',30],
+            ['19:01','23:00',20],
+            ['23:01','23:59',10] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
