@@ -10,7 +10,7 @@
 #
 # State based
   - sensor:
-      - name: helper_light_o_gz_deckenlicht_brightness
+      - name: helper_light_o_gz_deckenlicht_basic_brightness
         unit_of_measurement: "%"
         state: >
           {% set hours = 
@@ -25,6 +25,10 @@
           {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
               {{h[2]}}
           {% endfor %}
+      - name: helper_light_o_gz_deckenlicht_effective_brightness
+        unit_of_measurement: "%"
+        state: >
+          {{ states('sensor.helper_light_o_gz_deckenlicht_basic_brightness') }}
       - name: helper_light_o_gz_deckenlicht_min_illuminance
         unit_of_measurement: "%"
         state: >
