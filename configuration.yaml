@@ -21,490 +21,84 @@ homeassistant:
     - /share
 
 default_config:
-zone: !include zones.yaml
 
-frontend: 
-  themes: !include_dir_merge_named themes
-
-panel_iframe:
-  tasmoadmin:
-    title: TasmoAdmin
-    icon: mdi:lightbulb-on
-    url: http://192.168.178.39:9541
+#######
 
 api:
-mobile_app:
-
-system_log:
-  max_entries: 100
-  fire_event: true
-
-logger:
-  default: info
-  logs:
-#    homeassistant.core: debug
-#    homeassistant.components.zha: debug
-#    bellows.zigbee.application: debug
-#    bellows.ezsp: debug
-#    zigpy: debug
-#    zigpy_cc: debug
-#    zigpy_deconz.zigbee.application: debug
-#    zigpy_deconz.api: debug
-#    zigpy_xbee.zigbee.application: debug
-#    zigpy_xbee.api: debug
-#    zigpy_zigate: debug
-#    zigpy_znp: debug
-#    zhaquirks: debug
-    homeassistant.components.mqtt: warning
-    googleapiclient.discovery: warning
-
-lovelace:
-  mode: yaml
-  resources:
-    - url: /hacsfiles/lovelace-card-tools/card-tools.js
-      type: module
-    - url: /hacsfiles/lovelace-layout-card/layout-card.js
-      type: module
-    - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
-      type: module 
-    - url: /hacsfiles/simple-thermostat/simple-thermostat.js
-      type: module
-    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
-      type: module
-    - url: /hacsfiles/bar-card/bar-card.js
-      type: module
-    - url: /hacsfiles/lovelace-card-mod/card-mod.js
-      type: module
-    - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
-      type: module
-    - url: /hacsfiles/lovelace-hui-element/hui-element.js
-      type: module
-    - url: /hacsfiles/rgb-light-card/card.js
-      type: module
-    - url: /hacsfiles/numberbox-card/numberbox-card.js
-      type: module
-    - url: /hacsfiles/lovelace-template-entity-row/template-entity-row.js
-      type: module
-    - url: /hacsfiles/apexcharts-card/apexcharts-card.js
-      type: module
-    - url: /hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js
-      type: module
-    - url: /hacsfiles/power-wheel-card/power-wheel-card.js
-      type: module
-    - url: /hacsfiles/ha-knx-uf-iconset/ha-knx-uf-iconset.js
-      type: module
-    - url: /hacsfiles/swipe-card/swipe-card.js
-      type: module
-    - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
-      type: module
 
 automation: !include automations.yaml
-config:
 
-system_health:
+battery_sim: !include config_battery_sim.yaml
+
+binary_sensor: !include binary_sensors.yaml
+
+camera: !include config_camera.yaml
+
+climate:
+
+cloud:
+  alexa: !include alexa.yaml
+
+cover:
 
 discovery:
-
-mqtt:
-  broker: core-mosquitto
-  username: !secret mqtt_user_1
-  password: !secret mqtt_pw_1
-  client_id: home-assistant
-  discovery: true
-  birth_message:
-    topic: 'hass/status'
-    payload: 'online'
-  will_message:
-    topic: 'hass/status'
-    payload: 'offline'
-
-webhook:
-
-media_player:
-
-telegram_bot:
-  - platform: polling
-    api_key: !secret telegram_api_key
-    allowed_chat_ids:
-      - !secret telegram_id_1
-      - !secret telegram_id_2
-      - !secret telegram_id_alarm_gruppe
-
-notify:
-  - name: telegram_jo
-    platform: telegram
-    chat_id: !secret telegram_id_1
-  - name: telegram_ma
-    platform: telegram
-    chat_id: !secret telegram_id_2
-  - name: telegram_alarm_gruppe
-    platform: telegram
-    chat_id: !secret telegram_id_alarm_gruppe
-  - platform: kodi
-    name: kodi_wz
-    host: 192.168.178.38
 
 google:
   client_id: !secret google_calendar_client_id
   client_secret: !secret google_calendar_secret
 
-recorder:
-  include:
-    domains:
-      - sensor
-      - binary_sensor
-      - switch
-      - climate
-      - cover
-      - light
-      - device_tracker
-      - input_boolean
-  exclude:
-    entities:
-      - sensor.time
-      - sensor.last_boot
-      - sensor.windfang_wc_temp_ist_text
-      - sensor.windfang_wc_temp_soll_text
-  purge_keep_days: 7
-
-history:
-
-sun:
-
-weather:
-
-knx:
-  event_filter: 
-    - "0/3/20"
-    - "0/3/40"
-    - "1/5/200"
-    - "1/5/202"
-    - "1/6/0"
-    - "1/6/2"
-    - "1/6/40"
-    - "1/6/42"
-    - "1/6/80"
-    - "1/6/82"
-    - "1/6/120"
-    - "1/6/122"
-    - "10/7/6"
-    - "12/0/6"
-    - "15/0/28"
-    - "15/0/29"
-    - "15/0/47"
-    - "15/0/48"
-    - "15/0/50"
-    - "15/0/51"
-    - "15/0/52"
-    - "15/0/58"
-    - "15/0/65"
-    - "15/0/66"
-  state_updater: true
-  binary_sensor: !include knx_binary_sensor.yaml
-  switch: !include knx_switch.yaml
-  sensor: !include knx_sensor.yaml
-  cover: !include knx_cover.yaml
-  climate: !include knx_climate.yaml
-  light: !include knx_light.yaml
-  scene: !include knx_scene.yaml
-  expose:
-  - type: 'wind_speed_kmh'
-    entity_id: 'sensor.windgeschwindigkeit_wetterstation_kmh'
-    address: '13/0/50'
-  - type: 'binary'
-    entity_id: 'input_boolean.eisschutz_jalousien'
-    address: '13/0/32'
-  - type: 'binary'
-    entity_id: 'input_boolean.sperre_jal_ku'
-    address: '9/0/11'
-  - type: 'binary'
-    entity_id: 'input_boolean.sperre_jal_hst'
-    address: '9/0/31'
-  - type: 'binary'
-    entity_id: 'input_boolean.sperre_jal_wz_bodentiefes'
-    address: '9/0/51'
-  - type: 'binary'
-    entity_id: 'input_boolean.sperre_jal_wz_couch'
-    address: '9/0/71'
-  - type: 'binary'
-    entity_id: 'input_boolean.sperre_jal_sz'
-    address: '9/0/91'
-  - type: 'binary'
-    entity_id: 'input_boolean.sperre_jal_ba_og'
-    address: '9/0/231'
-  - type: 'binary'
-    entity_id: 'input_boolean.sperre_jal_la_bodentiefes'
-    address: '9/0/111'
-  - type: 'binary'
-    entity_id: 'input_boolean.sperre_jal_la_lichtband'
-    address: '9/0/131'
-  - type: 'binary'
-    entity_id: 'input_boolean.sperre_jal_nz'
-    address: '9/0/151'
-  - type: 'binary'
-    entity_id: 'input_boolean.sperre_jal_le_lichtband'
-    address: '9/0/171'
-  - type: 'binary'
-    entity_id: 'input_boolean.sperre_jal_le_bodentiefes'
-    address: '9/0/191'
-  - type: 'binary'
-    entity_id: 'input_boolean.sperre_jal_gz'
-    address: '9/0/211'
-  - type: 'string'
-    entity_id: 'sensor.windfang_wc_temp_ist_text'
-    address: '10/7/8'
-  - type: 'string'
-    entity_id: 'sensor.windfang_wc_temp_soll_text'
-    address: '10/7/7'
-#  - type: 'temperature'
-#    entity_id: 'sensor.temp_owm'
-#    address: '13/0/0'
-  - type: 'temperature'
-    entity_id: 'sensor.onewire_15_estrich_wc_1'
-    address: '12/0/6'
-  - type: 'binary'
-    entity_id: 'switch.shellyswitch25_10521c45de0b_relay_0'
-    address: '0/3/21'
-  - type: 'binary'
-    entity_id: 'switch.shellyswitch25_10521c45de0b_relay_1'
-    address: '0/3/41'
-  # Stehlampe WZ - Anzeige auf Taster
-  - type: "binary"
-    entity_id: "light.innr_e27_color_stehlampe_wz_level_light_color_on_off"
-    address: "1/6/81"
-    default: false
-  - type: "percentU8"
-    entity_id: "light.innr_e27_color_stehlampe_wz_level_light_color_on_off"
-    attribute: "brightness"
-    default: 0
-    address: "1/6/84"
-  # Stehlampe Le - Anzeige auf Taster
-  - type: "binary"
-    entity_id: "light.innr_e14_tw_stehlampe_lea_level_light_color_on_off"
-    address: "1/6/1"
-    default: false
-  - type: "percentU8"
-    entity_id: "light.innr_e14_tw_stehlampe_lea_level_light_color_on_off"
-    attribute: "brightness"
-    default: 0
-    address: "1/6/4"
-  # Stehlampe La - Anzeige auf Taster
-  - type: "binary"
-    entity_id: "light.innr_e14_ww_stehlampe_lara_level_on_off"
-    address: "1/5/201"
-    default: false
-  - type: "percentU8"
-    entity_id: "light.innr_e14_ww_stehlampe_lara_level_on_off"
-    attribute: "brightness"
-    default: 0
-    address: "1/5/204"
-  # Deckenlicht GZ - Anzeige auf Taster
-  - type: "binary"
-    entity_id: "light.innr_e14_ww_decke_gastezimmer_level_on_off"
-    address: "1/6/41"
-    default: false
-  - type: "percentU8"
-    entity_id: "light.innr_e14_ww_decke_gastezimmer_level_on_off"
-    attribute: "brightness"
-    default: 0
-    address: "1/6/44"
-
-light:
-  - platform: template
-    lights:
-      bildschirm_theke_helligkeit:
-        friendly_name: "Bildschirm Theke Helligkeit"
-        value_template: "{{ state_attr('sensor.kiosk_browser_bildschirm_theke', 'screenOn') }}"
-        level_template: "{{ state_attr('sensor.kiosk_browser_bildschirm_theke', 'screenBrightness')|int }}"
-        turn_on:
-          service: rest_command.bildschirm_theke_command
-          data:
-            cmd: screenOn
-        turn_off:
-          service: rest_command.bildschirm_theke_command
-          data:
-            cmd: screenOff
-        set_level:
-          service: rest_command.bildschirm_theke_command
-          data_template:
-            cmd: setStringSetting
-            key: screenBrightness
-            value: '{{ brightness }}'
-
-sensor: !include sensors.yaml
-binary_sensor: !include binary_sensors.yaml
-template: !include template.yaml
-
-switch:
-  - platform: command_line
-    switches:
-      bilderrahmen_1:
-        command_on: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/ssh-keys/id_rsa pi@rp3bildschirm.fritz.box './bilderrahmen/mon-an.sh'"
-        command_off: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/ssh-keys/id_rsa pi@rp3bildschirm.fritz.box './bilderrahmen/mon-aus.sh'"
-
-cover:
-
-climate:
-
-#utility_meter: !include utility_meter.yaml
-modbus: !include modbus.yaml
-
-stream:
-camera:
-  - platform: local_file
-    name: Meteogram
-    file_path: /config/www/meteograms/meteogram.png
-#  - platform: local_file
-#    name: Abstellraum_letze_Bewegung
-#    file_path: /config/www/camera_abstellraum/last_motion.jpg
-#  - platform: onvif
-#    host: 192.168.178.47
-#    password: !secret mqtt_pw_1
-#    port: 8080
-
 folder_watcher:
   - folder: /share/abstellraum/
 
-cloud:
-  alexa: !include alexa.yaml
+frontend: 
+  themes: !include_dir_merge_named themes
+
+knx: !include config_knx.yaml
+
+light: !include light.yaml
+
+logger:
+  default: info
+  logs:
+    homeassistant.components.mqtt: warning
+    googleapiclient.discovery: warning
+
+lovelace: !include config_lovelace.yaml
+
+input_boolean: !include input_boolean.yaml
+input_number: !include input_number.yaml
+input_text: !include input_text.yaml
+
+media_player:
+
+modbus: !include modbus.yaml
+
+mqtt: !include config_mqtt.yaml
+
+notify: !include config_notify.yaml
+
+recorder: !include config_recorder.yaml
 
 rest_command:
   bildschirm_theke_command:
     url: 'http://192.168.178.42:2323/?cmd={{ cmd }}&key={{ key }}&value={{ value }}&type=json&password=nopw'
 
-# Inputs
-input_boolean: !include input_boolean.yaml
-input_number:
-  pizza_timer_2:
-    name: Pizza Timer
-#    initial: 0
-    min: 0
-    max: 30
-    step: 1
-  target_temp_kuehlbox:
-    name: Zieltemperatur Kühlbox
-    min: 1
-    max: 60
-    step: 1
-  strompreis:
-    name: Strompreis
-    min: 0
-    max: 0.5
-    step: 0.001
-  pv_einspeiseverguetung:
-    name: PV Einspeisevergütung
-    min: 0.07
-    max: 0.08
-    step: 0.001
-  pv_einspeisebegrenzung_prozent:
-    name: PV Einspeisebegrenzung Prozent
-    min: 0
-    max: 100
-    step: 1
-  pv_installierte_peakleistung:
-    name: PV installierte Peakleistung
-    min: 9000
-    max: 10000
-    step: 10
-    initial: 9360
-  timer_spezial_luftf_waschk:
-    name: Timer verringerte Luftfeuchtigkeit Waschküche
-    initial: 0
-    min: 0
-    max: 12
-    step: 1
-  timer_spezial_luftf_werkelraum:
-    name: Timer verringerte Luftfeuchtigkeit Werkelraum
-    initial: 0
-    min: 0
-    max: 12
-    step: 1
-  timer_spezial_luftf_vorratsraum:
-    name: Timer verringerte Luftfeuchtigkeit Speis
-    initial: 0
-    min: 0
-    max: 12
-    step: 1
-  timer_spezial_luftf_wz:
-    name: Timer erhöhte Luftfeuchtigkeit WZ
-    initial: 0
-    min: 0
-    max: 24
-    step: 1
-input_text:
-  location_jo_roh:
-    name: Location Jo roh
-  saved_reminder_01:
-    max: 255
-  saved_reminder_02:
-    max: 255
-  saved_reminder_03:
-    max: 255
-  saved_reminder_04:
-    max: 255
-  saved_reminder_05:
-    max: 255
-  saved_reminder_06:
-    max: 255
-  saved_reminder_07:
-    max: 255
-  saved_reminder_08:
-    max: 255
-  saved_reminder_09:
-    max: 255
+telegram_bot: !include config_telegram_bot.yaml
 
-battery_sim:
-  tesla_powerwall:
-  # Beginn: 25.10.2021
-    name: Tesla Powerwall
-    import_sensor: sensor.stromzaehler_netzbezug
-    export_sensor: sensor.stromzaehler_netzeinspeisung
-    size_kwh: 13.5
-    max_discharge_rate_kw: 4.6
-    max_charge_rate_kw: 3.68
-    efficiency: 0.9
-  byd_hvs_05_1:
-  # Beginn: 25.10.2021
-    name: BYD HVS 5_1
-    import_sensor: sensor.stromzaehler_netzbezug
-    export_sensor: sensor.stromzaehler_netzeinspeisung
-    size_kwh: 5.1
-    max_discharge_rate_kw: 5.1
-    max_charge_rate_kw: 5.1
-    efficiency: 0.95
-  byd_hvs_10_2:
-  # Beginn: 25.10.2021
-    name: BYD HVS 10_2
-    import_sensor: sensor.stromzaehler_netzbezug
-    export_sensor: sensor.stromzaehler_netzeinspeisung
-    size_kwh: 10.2
-    max_discharge_rate_kw: 10.0
-    max_charge_rate_kw: 10.0
-    efficiency: 0.95
-  byd_hvm_11_0:
-  # Beginn: 25.10.2021
-    name: BYD HVM 11_0
-    import_sensor: sensor.stromzaehler_netzbezug
-    export_sensor: sensor.stromzaehler_netzeinspeisung
-    size_kwh: 11.0
-    max_discharge_rate_kw: 10.0
-    max_charge_rate_kw: 10.0
-    efficiency: 0.95
-  byd_hvm_16_6:
-  # Beginn: 25.10.2021
-    name: BYD HVM 16_6
-    import_sensor: sensor.stromzaehler_netzbezug
-    export_sensor: sensor.stromzaehler_netzeinspeisung
-    size_kwh: 16.6
-    max_discharge_rate_kw: 10.0
-    max_charge_rate_kw: 10.0
-    efficiency: 0.95
-  byd_hvm_22_1:
-  # Beginn: 25.10.2021
-    name: BYD HVM 22_1
-    import_sensor: sensor.stromzaehler_netzbezug
-    export_sensor: sensor.stromzaehler_netzeinspeisung
-    size_kwh: 22.1
-    max_discharge_rate_kw: 10.0
-    max_charge_rate_kw: 10.0
-    efficiency: 0.95
+template: !include template.yaml
+
+#utility_meter: !include utility_meter.yaml
+
+sensor: !include sensors.yaml
+
+stream:
+
+switch: !include switch.yaml
+
+system_log:
+  max_entries: 100
+  fire_event: true
+
+weather:
+
+zone: !include zones.yaml

@@ -1,0 +1,5 @@
+- platform: command_line
+  switches:
+    bilderrahmen_1:
+      command_on: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/ssh-keys/id_rsa pi@rp3bildschirm.fritz.box './bilderrahmen/mon-an.sh'"
+      command_off: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/ssh-keys/id_rsa pi@rp3bildschirm.fritz.box './bilderrahmen/mon-aus.sh'"

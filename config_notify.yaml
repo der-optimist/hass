@@ -1,0 +1,12 @@
+- name: telegram_jo
+  platform: telegram
+  chat_id: !secret telegram_id_1
+- name: telegram_ma
+  platform: telegram
+  chat_id: !secret telegram_id_2
+- name: telegram_alarm_gruppe
+  platform: telegram
+  chat_id: !secret telegram_id_alarm_gruppe
+- platform: kodi
+  name: kodi_wz
+  host: 192.168.178.38

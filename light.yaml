@@ -1,0 +1,20 @@
+- platform: template
+  lights:
+    bildschirm_theke_helligkeit:
+      friendly_name: "Bildschirm Theke Helligkeit"
+      value_template: "{{ state_attr('sensor.kiosk_browser_bildschirm_theke', 'screenOn') }}"
+      level_template: "{{ state_attr('sensor.kiosk_browser_bildschirm_theke', 'screenBrightness')|int }}"
+      turn_on:
+        service: rest_command.bildschirm_theke_command
+        data:
+          cmd: screenOn
+      turn_off:
+        service: rest_command.bildschirm_theke_command
+        data:
+          cmd: screenOff
+      set_level:
+        service: rest_command.bildschirm_theke_command
+        data_template:
+          cmd: setStringSetting
+          key: screenBrightness
+          value: '{{ brightness }}'

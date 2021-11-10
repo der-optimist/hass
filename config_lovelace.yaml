@@ -1,0 +1,38 @@
+mode: yaml
+resources:
+  - url: /hacsfiles/lovelace-card-tools/card-tools.js
+    type: module
+  - url: /hacsfiles/lovelace-layout-card/layout-card.js
+    type: module
+  - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
+    type: module 
+  - url: /hacsfiles/simple-thermostat/simple-thermostat.js
+    type: module
+  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+    type: module
+  - url: /hacsfiles/bar-card/bar-card.js
+    type: module
+  - url: /hacsfiles/lovelace-card-mod/card-mod.js
+    type: module
+  - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+    type: module
+  - url: /hacsfiles/lovelace-hui-element/hui-element.js
+    type: module
+  - url: /hacsfiles/rgb-light-card/card.js
+    type: module
+  - url: /hacsfiles/numberbox-card/numberbox-card.js
+    type: module
+  - url: /hacsfiles/lovelace-template-entity-row/template-entity-row.js
+    type: module
+  - url: /hacsfiles/apexcharts-card/apexcharts-card.js
+    type: module
+  - url: /hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js
+    type: module
+  - url: /hacsfiles/power-wheel-card/power-wheel-card.js
+    type: module
+  - url: /hacsfiles/ha-knx-uf-iconset/ha-knx-uf-iconset.js
+    type: module
+  - url: /hacsfiles/swipe-card/swipe-card.js
+    type: module
+  - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
+    type: module
