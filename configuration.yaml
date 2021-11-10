@@ -26,7 +26,8 @@ default_config:
 
 api:
 
-automation: !include automations.yaml
+#automation: !include automations.yaml
+automation:
 
 battery_sim: !include config_battery_sim.yaml
 
