@@ -10,6 +10,7 @@
 #
 # State based
   - sensor:
+      # Helper entities for light automation
       - name: helper_light_o_gz_deckenlicht_basic_brightness
         unit_of_measurement: "%"
         state: >
@@ -44,3 +45,23 @@
           {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
               {{h[2]}}
           {% endfor %}
+    #
+    ### Binary Sensor
+    #
+    binary_sensor:
+      - name: helper_light_o_gz_deckenlicht_trigger
+        state: >
+          {{ is_state('binary_sensor.pm_o_gz', 'on') }}
+      - name: helper_light_o_gz_deckenlicht_keeping_off_entities
+        state: >
+          {{ is_state('switch.gaste_schlafen', 'on')
+             or is_state('switch.luften_le', 'on') }}
+      - name: helper_light_o_gz_deckenlicht_keeping_on_entities 
+        state: >
+          {{ False }}
+      - name: helper_light_o_gz_deckenlicht_keeping_fix_entities 
+        state: >
+          {{ False }}
+        attributes:
+          brightness: >
+            {{ 0 }}
