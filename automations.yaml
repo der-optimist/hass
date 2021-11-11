@@ -29,4 +29,37 @@
 #	    - conditions:
 #        - condition: trigger
 #          id: motion
-         
+
+- alias: KNX relative dimming Stehlampe WZ
+  id: 'knx_relative_dimming_stehlampe_wz'
+  description: ''
+  use_blueprint:
+    path: blueprints/knx_relative_dimming_farmio.yaml
+    input:
+      target_lights: light.innr_e27_color_stehlampe_wz_level_light_color_on_off
+      switch_address: '1/6/80'
+      dimm_address: '1/6/82'
+      dimm_time: 5
+      dimm_steps: 20
+- alias: KNX relative dimming Stehlampe Lea
+  id: 'knx_relative_dimming_stehlampe_lea'
+  description: ''
+  use_blueprint:
+    path: blueprints/knx_relative_dimming_farmio.yaml
+    input:
+      target_lights: light.innr_e14_tw_stehlampe_lea_level_light_color_on_off
+      switch_address: '1/6/0'
+      dimm_address: '1/6/2'
+      dimm_time: 5
+      dimm_steps: 20
+- alias: KNX relative dimming Stehlampe Lara
+  id: 'knx_relative_dimming_stehlampe_lara'
+  description: ''
+  use_blueprint:
+    path: blueprints/knx_relative_dimming_farmio.yaml
+    input:
+      target_lights: light.innr_e14_ww_stehlampe_lara_level_on_off
+      switch_address: '1/5/200'
+      dimm_address: '1/5/202'
+      dimm_time: 5
+      dimm_steps: 20
