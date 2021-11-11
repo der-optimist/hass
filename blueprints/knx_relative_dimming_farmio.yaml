@@ -1,0 +1,152 @@
+blueprint:
+  name: KNX - relative dimming for lights
+  description: Controll Home Assistant Light entities from KNX switching and relative dimming (DPT 3.007) telegrams.
+  domain: automation
+  input:
+    target_lights:
+      name: Light
+      description: The lights that shall be controled.
+      selector:
+        target:
+          entity:
+            domain: light
+    switch_address:
+      name: Switch group address
+      description: >
+        Group address for switching the lights on and off. DPT 1
+        Example: '1/2/3'
+    dimm_address:
+      name: Relative dimming address
+      description: >
+        Group address for dimming the lights. DPT 3.007
+        Example: '1/2/4'
+    dimm_time:
+      name: Dimm time
+      description: Time dimming from 0 to 100% shall take.
+      selector:
+        number:
+          min: 1
+          max: 20
+          step: 0.1
+          unit_of_measurement: seconds
+          mode: slider
+      default: 4
+    dimm_steps:
+      name: Dimm steps
+      description: Steps used to dimm from 0 to 100%.
+      selector:
+        number:
+          min: 2
+          max: 100
+          step: 1
+          unit_of_measurement: steps
+          mode: slider
+      default: 20
+
+mode: restart
+max_exceeded: silent
+
+variables:
+  target_lights: !input target_lights
+  entity_list: >-
+    {%- if target_lights.entity_id is string -%}
+      {{ [target_lights.entity_id] }}
+    {%- else -%}
+      {{ target_lights.entity_id }}
+    {%- endif -%}
+  switch_address: !input switch_address
+  dimm_address: !input dimm_address
+  _dimm_time: !input dimm_time
+  _dimm_steps: !input dimm_steps
+  dimm_time: "{{ _dimm_time|float }}"
+  dimm_steps: "{{ _dimm_steps|int }}"
+  dimm_step: "{{ (255 / dimm_steps) | round(0, 'ceil') }}"
+  dimm_delay: "{{ dimm_time * 1000 / dimm_steps }}"
+
+
+trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: event
+    event_type: knx_event
+    event_data:
+      destination: !input switch_address
+  - platform: event
+    event_type: knx_event
+    event_data:
+      destination: !input dimm_address
+
+action:
+  - choose:
+    - conditions:
+        - condition: template
+          value_template: '{{ trigger is defined and trigger.platform == "event" and trigger.event.event_type == "knx_event" }}'
+      sequence:
+        - choose:
+          # TURN ON
+          - conditions:
+              - condition: template
+                value_template: "{{ trigger.event.data.destination == switch_address and trigger.event.data.data == 1 }}"
+            sequence:
+              - service: light.turn_on
+                data:
+                  entity_id: "{{ entity_list }}"
+          # TURN OFF
+          - conditions:
+              - condition: template
+                value_template: "{{ trigger.event.data.destination == switch_address and trigger.event.data.data == 0 }}"
+            sequence:
+              - service: light.turn_off
+                data:
+                  entity_id: "{{ entity_list }}"
+          # DIMM UP
+          - conditions:
+              - condition: template
+                value_template: >- 
+                  {{ trigger.event.data.destination == dimm_address 
+                    and (9 <= trigger.event.data.data <= 15) }}
+            sequence:
+              - repeat:
+                  count: '{{ dimm_steps }}'
+                  sequence:
+                    - service: light.turn_on
+                      data:
+                        brightness_step: '{{ dimm_step }}'
+                        entity_id: "{{ entity_list }}"
+                    - delay:
+                        milliseconds: '{{ dimm_delay }}'
+          # DIMM DOWN
+          - conditions:
+              - condition: template
+                value_template: >-
+                  {{ trigger.event.data.destination == dimm_address 
+                    and (1 <= trigger.event.data.data <= 7) }}
+            sequence:
+              - repeat:
+                  count: '{{ dimm_steps }}'
+                  sequence:
+                    - service: light.turn_on
+                      data:
+                        brightness_step: '{{ -dimm_step }}'
+                        entity_id: "{{ entity_list }}"
+                    - delay:
+                        milliseconds: '{{ dimm_delay }}'
+    # INITIALIZE
+    - conditions:
+        condition: or
+        conditions:
+        - condition: template
+          value_template: "{{ trigger is not defined }}"
+        - condition: template
+          value_template: '{{ trigger.platform == "homeassistant" }}'
+        - condition: template
+          value_template: '{{ trigger.platform == "event" and trigger.event.event_type == "automation_reloaded" }}'
+      sequence:
+        - service: knx.event_register
+          data:
+            address: '{{ switch_address }}'
+        - service: knx.event_register
+          data:
+            address: '{{ dimm_address }}'
