@@ -41,7 +41,7 @@
       switch_address: '1/6/80'
       dimm_address: '1/6/82'
       dimm_time: 5
-      dimm_steps: 20
+      dimm_steps: 10
 - alias: KNX relative dimming Stehlampe Lea
   id: 'knx_relative_dimming_stehlampe_lea'
   description: ''
@@ -53,7 +53,7 @@
       switch_address: '1/6/0'
       dimm_address: '1/6/2'
       dimm_time: 5
-      dimm_steps: 20
+      dimm_steps: 10
 - alias: KNX relative dimming Stehlampe Lara
   id: 'knx_relative_dimming_stehlampe_lara'
   description: ''
@@ -65,7 +65,7 @@
       switch_address: '1/5/200'
       dimm_address: '1/5/202'
       dimm_time: 5
-      dimm_steps: 20
+      dimm_steps: 10
 - alias: KNX relative dimming Panel Arbeitszimmer
   id: 'knx_relative_dimming_panel_arbeitszimmer'
   description: ''
@@ -77,4 +77,4 @@
       switch_address: '1/6/120'
       dimm_address: '1/6/122'
       dimm_time: 5
-      dimm_steps: 20
+      dimm_steps: 10
