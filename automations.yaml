@@ -4,28 +4,29 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.helper_light_o_gz_deckenlicht_trigger
-      to: "on"
-      id: "motion"
+      to: 'on'
+      id: 'motion'
     - platform: state
       entity_id: binary_sensor.helper_light_o_gz_deckenlicht_keeping_fix_entities
-      to: "on"
-      id: "keeping_fix"
+      to: 'on'
+      id: 'keeping_fix'
     - platform: state
       entity_id: 
         - switch.gaste_schlafen
         - switch.luften_le
-      to: "on"
-      id: "switching_off"
+      to: 'on'
+      id: 'switching_off'
     - platform: state
       entity_id: sensor.helligkeit_gastezimmer_pm
-      id: "illuminance_sensor"
+      id: 'illuminance_sensor'
     - platform: state
       entity_id: sensor.helper_light_o_gz_deckenlicht_min_illuminance
-      id: "min_illuminance"
+      id: 'min_illuminance'
 
   action:
-    - choose:              
-	    - conditions:
-        - condition: trigger
-          id: motion
+    - delay: 0:01
+#    - choose:
+#	    - conditions:
+#        - condition: trigger
+#          id: motion
          
