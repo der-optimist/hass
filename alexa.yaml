@@ -57,6 +57,9 @@
         - light.nahtisch_decke
         - light.gastezimmer
     entity_config:
+      input_number.pizza_timer_2:
+        name: Pizza-Zeit
+        description: Pizza-Zeit in Minuten
       input_boolean.gaeste_abends:
         name: Gäste
         description: Gäste-Knopf
