@@ -63,10 +63,6 @@ cards:
       name: Thekenlicht
       toggle: true
     - type: custom:slider-entity-row
-      entity: light.schrankbeleuchtung_esszimmer
-      name: Hängeschränke
-      toggle: true
-    - type: custom:slider-entity-row
       entity: light.wandleuchten_esszimmer_hell
       name: Wandleuchten hell
       toggle: true
