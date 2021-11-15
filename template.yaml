@@ -65,3 +65,9 @@
         attributes:
           brightness: >
             {{ 0 }}
+      - name: helper_light_o_gz_deckenlicht_is_too_dark
+        state: >
+          {{ (states("sensor.helligkeit_gastezimmer_pm") | float) < (states("sensor.helper_light_o_gz_deckenlicht_min_illuminance") | float) }}
+      - name: helper_light_o_gz_deckenlicht_is_too_bright
+        state: >
+          {{ (states("sensor.helligkeit_gastezimmer_pm") | float) > (states("sensor.helper_light_o_gz_deckenlicht_min_illuminance") | float + 100 ) }}
