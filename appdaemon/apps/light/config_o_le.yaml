@@ -11,6 +11,7 @@ auto_light_o_le_panels:
     - binary_sensor.pm_o_kw_le_tuer
   brightness_values:
     "00:00": 25
+    "05:30": 40
     "07:30": 50
     "08:00": 70
     "09:00": 90
