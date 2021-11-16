@@ -91,3 +91,75 @@
       dimm_address: '1/6/122'
       dimm_time: 5
       dimm_steps: 10
+- id: '1637055201020'
+  alias: Test Licht GZ 2
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.automation_switch_licht_gz_decke
+    id: app_switch
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.helper_light_o_gz_deckenlicht_trigger
+    id: motion
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: app_switch
+      sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.helper_light_o_gz_deckenlicht_auto_switched
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: binary_sensor.helper_light_o_gz_deckenlicht_keeping_fix_entities
+            state: 'on'
+          sequence:
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_light_o_gz_deckenlicht_trigger
+                state: 'on'
+              sequence:
+              - choose:
+                - conditions:
+                  - condition: state
+                    entity_id: binary_sensor.helper_light_o_gz_deckenlicht_is_too_dark
+                    state: 'on'
+                  sequence:
+                  - condition: state
+                    entity_id: input_boolean.automation_switch_licht_gz_decke
+                    state: 'on'
+                  - condition: state
+                    state: 'off'
+                    entity_id: binary_sensor.helper_light_o_gz_deckenlicht_keeping_off_entities
+                  - condition: state
+                    state: 'off'
+                    entity_id: input_boolean.helper_light_o_gz_deckenlicht_manually_switched_off
+                  - choose:
+                    - conditions:
+                      - condition: state
+                        entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
+                        state: 'off'
+                      sequence:
+                      - condition: state
+                        entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
+                        state: 'on'
+                      - service: input_boolean.turn_on
+                        target:
+                          entity_id: input_boolean.helper_light_o_gz_deckenlicht_auto_switched
+                      - service: light.turn_on
+                        target:
+                          entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
+                        data:
+                          transition: 1
+                    default: []
+                default: []
+            default: []
+        default: []
+    default: []
+  mode: queued
+  max: 10
