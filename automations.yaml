@@ -152,7 +152,7 @@
                         target:
                           entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
                         data:
-                          transition: 1
+                          transition: 2
                       - condition: state
                         entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
                         state: 'on'
@@ -161,7 +161,7 @@
                         target:
                           entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
                         data:
-                          transition: 1
+                          transition: 2
                     default: []
                 default: []
             default: []
