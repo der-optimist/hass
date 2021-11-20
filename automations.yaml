@@ -148,23 +148,13 @@
                       - service: input_boolean.turn_on
                         target:
                           entity_id: input_boolean.helper_light_o_gz_deckenlicht_auto_switched
-                      - service: light.turn_on
-                        target:
-                          entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
-                        data:
-                          transition: 2
-                  - choose:
-                    - conditions:
-                      - condition: state
-                        entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
-                        state: 'on'
-                      sequence:
-                      - service: light.turn_on
-                        target:
-                          entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
-                        data:
-                          transition: 2
                     default: []
+                  - service: light.turn_on
+                    target:
+                      entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
+                    data:
+                      transition: 2
+                      brightness_pct: 75
                 default: []
             default: []
         default: []
