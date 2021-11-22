@@ -48,18 +48,21 @@
     #
     # Mapping of "raw" sensors to constant names
       - unique_id: el_leistung_heizung_partyraum_vorne
+        # name: change entity_id in UI after creation
         unit_of_measurement: "W"
         state: >
           {{ states('sensor.el_leistung_esp_sd_4') }}
         attributes:
           friendly_name: "El. Leistung Heizung Partyraum vorne"
       - unique_id: el_leistung_heizung_partyraum_hinten
+        # name: change entity_id in UI after creation
         unit_of_measurement: "W"
         state: >
           {{ states('sensor.el_leistung_esp_sd_5') }}
         attributes:
           friendly_name: "El. Leistung Heizung Partyraum hinten"
       - unique_id: el_leistung_luftentfeuchter_partyraum
+        # name: change entity_id in UI after creation
         unit_of_measurement: "W"
         state: >
           {{ states('sensor.el_leistung_esp_sd_6') }}
