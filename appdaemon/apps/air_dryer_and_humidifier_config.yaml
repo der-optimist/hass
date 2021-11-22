@@ -3,7 +3,7 @@ luftentfeuchter_waschkueche:
   class: air_dryer_and_humidifier
   machine_type: dryer
   air_dryer_or_humidifier_switch: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
-  energy_measurement_sensor: sensor.el_leistung_innr_sp_120_luftentfeuchter_waschkuche
+  energy_measurement_sensor: sensor.el_leistung_luftentfeuchter_waschkueche
   humidity_sensor: sensor.luftfeuchtigkeit_waschkuche
 #  humidity_sensor: sensor.dht22_waschkueche_humidity
   humidity_standard_max: 55
@@ -27,8 +27,8 @@ luftentfeuchter_partyraum:
   module: air_dryer_and_humidifier
   class: air_dryer_and_humidifier
   machine_type: dryer
-  air_dryer_or_humidifier_switch: switch.innr_sp_120_luftentfeuchter_partyraum
-  energy_measurement_sensor: sensor.el_leistung_innr_sp_120_luftentfeuchter_partyraum
+  air_dryer_or_humidifier_switch: switch.esp_sd_6_relais
+  energy_measurement_sensor: sensor.el_leistung_luftentfeuchter_partyraum
   humidity_sensor: sensor.luftfeuchtigkeit_partyraum
   humidity_standard_max: 63
   humidity_standard_min: 61
