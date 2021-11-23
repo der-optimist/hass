@@ -222,8 +222,8 @@
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       stromzaehler_pv_ac_gesamt:
-        value_template: "{{ (states('sensor.pv_ac_energy_riemann') | float + 3740.43) | round(1) }}"
-        #value_template: "{{ ((states('sensor.fronius1_modbus_energy_ac_lifetime') | float / 1000) + 3740.43) | round(1) }}"
+        #value_template: "{{ (states('sensor.pv_ac_energy_riemann') | float + 3740.43) | round(1) }}"
+        value_template: "{{ ((states('sensor.fronius1_modbus_energy_ac_lifetime') | float / 1000) + 3740.43) | round(1) }}"
         # 3740.43 was total production of first inverter that had a defect
         friendly_name: 'Gesamtproduktion PV'
         unit_of_measurement: 'kWh'
