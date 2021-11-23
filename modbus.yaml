@@ -13,14 +13,14 @@
         scan_interval: 10
       - name: fronius1_modbus_power_ac
         unit_of_measurement: W
-        slave: 0
+        slave: 1
         count: 2
         data_type: float
         address: 40091
         scan_interval: 10
       - name: fronius1_modbus_power_dc
         unit_of_measurement: W
-        slave: 0
+        slave: 1
         count: 2
         data_type: float
         address: 40107
@@ -48,7 +48,7 @@
 #        scan_interval: 10
       - name: fronius1_modbus_energy_ac_lifetime
         unit_of_measurement: Wh
-        slave: 0
+        slave: 1
         count: 2
         data_type: float
         address: 40101
