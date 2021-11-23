@@ -20,7 +20,7 @@
         scan_interval: 10
       - name: fronius1_modbus_power_dc
         unit_of_measurement: W
-        slave: 1
+        slave: 0
         count: 2
         data_type: float
         address: 40107
