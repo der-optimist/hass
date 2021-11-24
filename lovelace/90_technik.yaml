@@ -48,41 +48,15 @@ cards:
     entities:
       - entity: switch.wasserabsperrventil
         name: Wasserfluss
-  - type: entities
-    title: "Testbereich"
-    show_header_toggle: false
-    entities:
-      - entity: input_boolean.beleuchtung_hochzeitsbild
-      - entity: binary_sensor.bewegung_hochzeitsbild
-      - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off
-      - entity: switch.bilderrahmen_1
-      - entity: switch.lumi_lumi_plug_mmeu01_on_off
-  - type: markdown
-    content: |
-      {%- set mapper = {0:'"#eeeeee"',1:'"#F2DB06"',2:'"#FB8D00"',3:'"#E63632"',4:'"#F300FF"'} %}
-      {% set ns = namespace(first=true) %}
-      {%- for sensor in states.sensor %}
-        {%- if 'sensor.dwd_warn' in sensor.entity_id and sensor.state != "off" %}
-          {%- set danger = sensor.attributes["Gefahr (0-4)"] %}
-          {% if ns.first  == false %}
-      ----------------------------------------
-          {% endif %}
-          {%- set ns.first = false %}
-      {{ sensor.state}}: 
-      <font color = {{- mapper[danger] if danger in mapper else 'grey'}}>**{{ sensor.attributes.friendly_name }}**</font>
-      {%- if danger == 0 %}
-      Gefahrenstufe: Info
-      {%- elif danger == 1 %}
-      Gefahrenstufe: gering
-      {%- elif danger == 2 %}
-      Gefahrenstufe: mittel
-      {%- elif danger == 3 %}
-      Gefahrenstufe: hoch
-      {%- elif danger == 4 %}
-      Gefahrenstufe: extrem
-      {%- else %}
-      Gefahrenstufe: unbekannt
-      {%- endif %}
-        {%- endif %}
-      
-      {%- endfor %}
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: "Test Licht-Auto"
+      show_header_toggle: false
+      state_color: true
+    filter:
+      include:
+        - entity_id: "input_boolean.automation_switch_light*"
+        - entity_id: "input_boolean.helper_light*"
+        - entity_id: "binary_sensor.helper_light*"
+        - entity_id: "sensor.helper_light*"
