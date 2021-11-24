@@ -51,12 +51,22 @@ cards:
   - type: custom:auto-entities
     card:
       type: entities
-      title: "Test Licht-Auto"
+      title: "Test Licht-Auto GZ"
       show_header_toggle: false
       state_color: true
     filter:
       include:
-        - entity_id: "input_boolean.automation_switch_light*"
-        - entity_id: "input_boolean.helper_light*"
-        - entity_id: "binary_sensor.helper_light*"
-        - entity_id: "sensor.helper_light*"
+        - entity_id: "input_boolean.*light_o_gz_deckenlicht"
+        - entity_id: "binary_sensor.*light_o_gz_deckenlicht"
+        - entity_id: "sensor.*light_o_gz_deckenlicht"
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: "Test Licht-Auto Regal"
+      show_header_toggle: false
+      state_color: true
+    filter:
+      include:
+        - entity_id: "input_boolean.*light_e_ba_regal"
+        - entity_id: "binary_sensor.*light_e_ba_regal"
+        - entity_id: "sensor.*light_e_ba_regal"
