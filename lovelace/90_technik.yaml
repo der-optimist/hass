@@ -56,6 +56,7 @@ cards:
       state_color: true
     filter:
       include:
+        - entity_id: "automation.test_licht_gz_2"
         - entity_id: "input_boolean.*light*_o_gz_deckenlicht"
         - entity_id: "binary_sensor.*light*_o_gz_deckenlicht"
         - entity_id: "sensor.*light*_o_gz_deckenlicht"
@@ -67,6 +68,7 @@ cards:
       state_color: true
     filter:
       include:
+        - entity_id: "automation.test_licht_regal_bad_eg"
         - entity_id: "input_boolean.*light*_e_ba_regal"
         - entity_id: "binary_sensor.*light*_e_ba_regal"
         - entity_id: "sensor.*light*_e_ba_regal"
