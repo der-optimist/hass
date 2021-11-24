@@ -96,11 +96,11 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: input_boolean.automation_switch_licht_gz_decke
+    entity_id: input_boolean.automation_switch_light_o_gz_deckenlicht
     id: app_switch
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.helper_light_o_gz_deckenlicht_trigger
+    entity_id: binary_sensor.helper_light_trigger_o_gz_deckenlicht
     id: motion
   condition: []
   action:
@@ -111,34 +111,34 @@
       sequence:
       - service: input_boolean.turn_off
         target:
-          entity_id: input_boolean.helper_light_o_gz_deckenlicht_auto_switched
+          entity_id: input_boolean.helper_light_auto_switched_o_gz_deckenlicht
       - choose:
         - conditions:
           - condition: state
-            entity_id: binary_sensor.helper_light_o_gz_deckenlicht_keeping_fix_entities
+            entity_id: binary_sensor.helper_light_keeping_fix_entities_o_gz_deckenlicht
             state: 'off'
           sequence:
           - choose:
             - conditions:
               - condition: state
-                entity_id: binary_sensor.helper_light_o_gz_deckenlicht_trigger
+                entity_id: binary_sensor.helper_light_trigger_o_gz_deckenlicht
                 state: 'on'
               sequence:
               - choose:
                 - conditions:
                   - condition: state
-                    entity_id: binary_sensor.helper_light_o_gz_deckenlicht_is_too_dark
+                    entity_id: binary_sensor.helper_light_is_too_dark_o_gz_deckenlicht
                     state: 'on'
                   sequence:
                   - condition: state
-                    entity_id: input_boolean.automation_switch_licht_gz_decke
+                    entity_id: input_boolean.automation_switch_light_o_gz_deckenlicht
                     state: 'on'
                   - condition: state
                     state: 'off'
-                    entity_id: binary_sensor.helper_light_o_gz_deckenlicht_keeping_off_entities
+                    entity_id: binary_sensor.helper_light_keeping_off_entities_o_gz_deckenlicht
                   - condition: state
                     state: 'off'
-                    entity_id: input_boolean.helper_light_o_gz_deckenlicht_manually_switched_off
+                    entity_id: input_boolean.helper_light_manually_switched_off_o_gz_deckenlicht
                   - choose:
                     - conditions:
                       - condition: state
@@ -147,11 +147,81 @@
                       sequence:
                       - service: input_boolean.turn_on
                         target:
-                          entity_id: input_boolean.helper_light_o_gz_deckenlicht_auto_switched
+                          entity_id: input_boolean.helper_light_auto_switched_o_gz_deckenlicht
                     default: []
                   - service: light.turn_on
                     target:
                       entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
+                    data:
+                      transition: 2
+                      brightness_pct: 75
+                default: []
+            default: []
+        default: []
+    default: []
+  mode: queued
+  max: 10
+- id: '1637055201021'
+  alias: Test Licht Regal Bad EG
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.automation_switch_light_e_ba_regal
+    id: app_switch
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+    id: motion
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: app_switch
+      sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+            state: 'off'
+          sequence:
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+                state: 'on'
+              sequence:
+              - choose:
+                - conditions:
+                  - condition: state
+                    entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
+                    state: 'on'
+                  sequence:
+                  - condition: state
+                    entity_id: input_boolean.automation_switch_light_e_ba_regal
+                    state: 'on'
+                  - condition: state
+                    state: 'off'
+                    entity_id: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
+                  - condition: state
+                    state: 'off'
+                    entity_id: input_boolean.helper_light_manually_switched_off_e_ba_regal
+                  - choose:
+                    - conditions:
+                      - condition: state
+                        entity_id: light.regal_bad_eg
+                        state: 'off'
+                      sequence:
+                      - service: input_boolean.turn_on
+                        target:
+                          entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                    default: []
+                  - service: light.turn_on
+                    target:
+                      entity_id: light.regal_bad_eg
                     data:
                       transition: 2
                       brightness_pct: 75

@@ -230,17 +230,33 @@
   beleuchtung_hochzeitsbild:
     name: Beleuchtung Hochzeitsbild
     icon: mdi:lightbulb-on-outline
+#
 # --- Begin Light GZ Decke ---
-  automation_switch_licht_gz_decke:
+  automation_switch_light_o_gz_deckenlicht:
     name: Automatik Licht Gästezimmer
     icon: mdi:auto-fix
-  helper_light_o_gz_deckenlicht_auto_switched:
+  helper_light_auto_switched_o_gz_deckenlicht:
     name: Helper - Auto Switched - Licht Gästezimmer
     initial: off
-  helper_light_o_gz_deckenlicht_manually_switched_on:
+  helper_light_manually_switched_on_o_gz_deckenlicht:
     name: Helper - Man Switched on - Licht Gästezimmer
     initial: off
-  helper_light_o_gz_deckenlicht_manually_switched_off:
+  helper_light_manually_switched_off_o_gz_deckenlicht:
     name: Helper - Man Switched off - Licht Gästezimmer
     initial: off
 # --- End Light GZ Decke ---
+#
+# --- Begin Light Regal Bad EG ---
+  automation_switch_light_e_ba_regal:
+    name: Automatik Licht Regal Bad EG
+    icon: mdi:auto-fix
+  helper_light_auto_switched_e_ba_regal:
+    name: Helper - Auto Switched - Licht Regal Bad EG
+    initial: off
+  helper_light_manually_switched_on_e_ba_regal:
+    name: Helper - Man Switched on - Licht Regal Bad EG
+    initial: off
+  helper_light_manually_switched_off_e_ba_regal:
+    name: Helper - Man Switched off - Licht Regal Bad EG
+    initial: off
+# --- End Light Regal Bad EG ---
