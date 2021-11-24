@@ -7,6 +7,6 @@ cover_blocking:
   ice_blocking_automation_switch: input_boolean.automatik_eisschutz_jalousien
   rain_entity: binary_sensor.regenalarm
   temp_blocking_rain: 2
-  temp_blocking_humidity: 1
-  humidity_blocking: 90
-  temp_release: 5
+  temp_blocking_humidity: 0
+  humidity_blocking: 95
+  temp_release: 3

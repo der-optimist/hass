@@ -93,7 +93,7 @@ class cover_blocking(hass.Hass):
                 self.cancel_timer(self.timer_handle_manually_deactivated_blocking)
         if new == 'off':
             self.manually_deactivated_blocking = True
-            self.timer_handle_manually_deactivated_blocking = self.run_in(self.end_manually_deactivate_blocking,30*60)
+            self.timer_handle_manually_deactivated_blocking = self.run_in(self.end_manually_deactivate_blocking,180*60)
         self.check_if_cover_should_be_blocked("cover.jalousie_bad_og", "input_boolean.sperre_jal_ba_og")
         self.check_if_cover_should_be_blocked("cover.jalousie_gastezimmer", "input_boolean.sperre_jal_gz")
         self.check_if_cover_should_be_blocked("cover.jalousie_hst", "input_boolean.sperre_jal_hst")
