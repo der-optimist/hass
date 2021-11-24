@@ -177,9 +177,11 @@
                   - service: light.turn_on
                     target:
                       entity_id: light.regal_bad_eg
-                    data:
-                      transition: 2
-                      brightness_pct: 75
+                    data_template:
+                      brightness: >
+                        {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
+                      transition: >
+                        {{ 2 }}
                 default: []
             default: []
         default: []
