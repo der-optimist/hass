@@ -212,6 +212,41 @@
                     target:
                       entity_id: light.regal_bad_eg
                 default: []
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+                state: 'off'
+              sequence: # check from here
+              - condition: state
+                entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
+                state: 'on'
+              - condition: state
+                entity_id: input_boolean.automation_switch_light_e_ba_regal
+                state: 'on'
+              - condition: state
+                state: 'off'
+                entity_id: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
+              - condition: state
+                state: 'off'
+                entity_id: input_boolean.helper_light_manually_switched_off_e_ba_regal
+              - choose:
+                - conditions:
+                  - condition: state
+                    entity_id: light.regal_bad_eg
+                    state: 'off'
+                  sequence:
+                  - service: input_boolean.turn_on
+                    target:
+                      entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                default: []
+              - service: light.turn_on
+                target:
+                  entity_id: light.regal_bad_eg
+                data_template:
+                  brightness: >
+                    {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
+                  transition: >
+                    {{ 2 }}
             default: []
         default: []
     default: []
