@@ -130,6 +130,7 @@
   condition: []
   action:
   - choose:
+    # path 1
     - conditions:
       - condition: trigger
         id: app_switch
@@ -182,6 +183,7 @@
                         {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
                       transition: >
                         {{ 2 }}
+                # path 2
                 - conditions:
                   - condition: state
                     entity_id: binary_sensor.helper_light_is_too_bright_e_ba_regal
