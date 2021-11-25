@@ -123,6 +123,12 @@
     default: []
   mode: queued
   max: 10
+#
+#
+#
+# --- Regal ---
+#
+#
 - id: '1637055201021'
   alias: Test Licht Regal Bad EG
   description: ''
@@ -137,10 +143,13 @@
   condition: []
   action:
   - choose:
-    # path 1
     - conditions:
-      - condition: trigger
-        id: app_switch
+      - condition: or
+        conditions:
+          - condition: trigger
+            id: app_switch
+          - condition: trigger
+            id: ha_start
       sequence:
       - service: input_boolean.turn_off
         target:
