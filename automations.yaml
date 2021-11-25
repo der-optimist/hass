@@ -137,6 +137,9 @@
     entity_id: input_boolean.automation_switch_light_e_ba_regal
     id: app_switch
     to: 'on'
+  - platform: homeassistant
+    event: start
+    id: ha_start
   - platform: state
     entity_id: binary_sensor.helper_light_trigger_e_ba_regal
     id: motion
