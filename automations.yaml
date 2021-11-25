@@ -54,6 +54,9 @@
     entity_id: input_boolean.automation_switch_light_o_gz_deckenlicht
     id: app_switch
     to: 'on'
+  - platform: homeassistant
+    event: start
+    id: ha_start
   - platform: state
     entity_id: binary_sensor.helper_light_trigger_o_gz_deckenlicht
     id: motion
@@ -61,8 +64,12 @@
   action:
   - choose:
     - conditions:
-      - condition: trigger
-        id: app_switch
+      - condition: or
+        conditions:
+          - condition: trigger
+            id: app_switch
+          - condition: trigger
+            id: ha_start
       sequence:
       - service: input_boolean.turn_off
         target:
