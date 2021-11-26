@@ -132,6 +132,8 @@
 - id: '1637055201021'
   alias: Test Licht Regal Bad EG
   description: ''
+  variables:
+    transition_time: 1
   trigger:
   - platform: state
     entity_id: input_boolean.automation_switch_light_e_ba_regal
@@ -208,7 +210,7 @@
                       brightness: >
                         {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
                       transition: >
-                        {{ 2 }}
+                        {{ transition_time }}
                 # path 2
                 - conditions:
                   - condition: state
@@ -289,7 +291,7 @@
               brightness: >
                 {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
               transition: >
-                {{ 2 }}
+                {{ transition_time }}
         default: []
     # path 5
     - conditions:
@@ -328,7 +330,40 @@
           brightness: >
             {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
           transition: >
-            {{ 2 }}
+            {{ transition_time }}
+    # path 6
+    - conditions:
+      - condition: trigger
+        id: motion_off
+      sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.helper_light_manually_switched_on_e_ba_regal
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.helper_light_manually_switched_off_e_ba_regal
+      - condition: state
+        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+        state: 'off'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: light.regal_bad_eg
+            state: 'on'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+        default: []
+      - service: light.turn_off
+        target:
+          entity_id: light.regal_bad_eg
     default: []
   mode: queued
   max: 10
