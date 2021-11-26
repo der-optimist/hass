@@ -155,6 +155,14 @@
   - platform: state
     entity_id: sensor.helper_light_switching_off_entities_e_ba_regal
     id: switching_off_entities
+  - platform: state
+    entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
+    id: too_dark
+    to: "on"
+  - platform: state
+    entity_id: binary_sensor.helper_light_is_too_bright_e_ba_regal
+    id: too_bright
+    to: "on"
   condition: []
   action:
   - choose:
@@ -381,6 +389,74 @@
       - condition: state
         entity_id: input_boolean.automation_switch_light_e_ba_regal
         state: 'on'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: light.regal_bad_eg
+            state: 'on'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+        default: []
+      - service: light.turn_off
+        target:
+          entity_id: light.regal_bad_eg
+    # path 8
+    - conditions:
+      - condition: trigger
+        id: too_dark
+      sequence:
+      - condition: state
+        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.helper_light_manually_switched_off_e_ba_regal
+        state: 'off'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: light.regal_bad_eg
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+        default: []
+      - service: light.turn_on
+        target:
+          entity_id: light.regal_bad_eg
+        data_template:
+          brightness: >
+            {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
+          transition: >
+            {{ transition_time }}
+    # path 9
+    - conditions:
+      - condition: trigger
+        id: too_bright
+      sequence:
+      - condition: state
+        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.helper_light_manually_switched_on_e_ba_regal
+        state: 'off'
       - choose:
         - conditions:
           - condition: state
