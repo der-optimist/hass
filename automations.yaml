@@ -152,6 +152,9 @@
     id: motion_off
     from: "on"
     to: "off"
+  - platform: state
+    entity_id: sensor.helper_light_switching_off_entities_e_ba_regal
+    id: switching_off_entities
   condition: []
   action:
   - choose:
@@ -351,6 +354,33 @@
       - condition: state
         entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
         state: 'off'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: light.regal_bad_eg
+            state: 'on'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+        default: []
+      - service: light.turn_off
+        target:
+          entity_id: light.regal_bad_eg
+    # path 7
+    - conditions:
+      - condition: trigger
+        id: switching_off_entities
+      sequence:
+      - condition: template
+        value_template: '{{ is_number(trigger.to_state.state) }}'
+      - condition: template
+        value_template: '{{ is_number(trigger.from_state.state) }}'
+      - condition: template
+        value_template: '{{ (trigger.to_state.state | float(0)) > (trigger.from_state.state | float(1)) }}'
+      - condition: state
+        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        state: 'on'
       - choose:
         - conditions:
           - condition: state
