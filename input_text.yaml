@@ -18,3 +18,5 @@ saved_reminder_08:
   max: 255
 saved_reminder_09:
   max: 255
+play_on_kodi_wz:
+  max: 255
