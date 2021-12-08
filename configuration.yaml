@@ -60,6 +60,11 @@ google:
   client_id: !secret google_calendar_client_id
   client_secret: !secret google_calendar_secret
 
+http:
+  cors_allowed_origins:
+    - http://odroidxu4.fritz.box
+    - http://192.168.178.23/
+
 folder_watcher:
   - folder: /share/abstellraum/
 
