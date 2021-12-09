@@ -46,6 +46,22 @@
       dimm_address: '1/6/122'
       dimm_time: 5
       dimm_steps: 10
+- id: '1639043665489'
+  alias: Play on Kodi WZ
+  description: ''
+  trigger:
+  - platform: event
+    event_type: play_on_kodi_wz
+    id: play_on_kodi_wz
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: '{{ trigger.event.data.filepath }}'
+      media_content_type: video
+    target:
+      entity_id: media_player.kodi_wz_2
+  mode: restart
 - id: '1637055201020'
   alias: Test Licht GZ 2
   description: ''
