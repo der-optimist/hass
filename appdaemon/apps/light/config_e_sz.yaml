@@ -10,8 +10,8 @@ auto_light_e_sz_panels:
     - binary_sensor.pm_e_sz_bett
     - binary_sensor.pm_e_sz_gang
   brightness_values:
-    "00:00": 15
-    "06:30": 20
+    "00:00": 30
+    "06:30": 45
     "09:30": 90
     "17:00": 80
     "18:00": 70
