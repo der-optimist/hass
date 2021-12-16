@@ -73,7 +73,7 @@
         value_template: "{{ states('sensor.anteil_kinder_wach_letzte_stunde')|float < 17 and is_state('binary_sensor.la_oder_le_schlafen','off') }}"
       schlafen_oder_aufwachphase_majo:
         friendly_name: "Schlafen oder Aufwachphase MaJo"
-        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 10 }}"
+        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 34 }}"
       schlafen_oder_licht_noch_aus_lassen_majo:
         friendly_name: "Schlafen oder Licht noch aus lassen MaJo"
         value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 50
