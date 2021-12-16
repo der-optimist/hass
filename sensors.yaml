@@ -33,17 +33,17 @@
       luftfeuchtigkeit_kuche_aqara:
         friendly_name: 'Luftfeuchtigkeit Küche'
         unit_of_measurement: '%'
-        value_template: "{{ (states('sensor.lumi_lumi_weather_57dc3d03_humidity') | float) | round }}"
+        value_template: "{{ (states('sensor.lumi_lumi_weather_57dc3d03_humidity') | float(0)) | round }}"
         device_class: humidity
       temp_kuche_aqara:
         friendly_name: 'Temp. Küche Aqara'
         unit_of_measurement: '°C'
-        value_template: "{{ (states('sensor.lumi_lumi_weather_57dc3d03_temperature') | float) | round(1) }}"
+        value_template: "{{ (states('sensor.lumi_lumi_weather_57dc3d03_temperature') | float(0)) | round(1) }}"
         device_class: temperature
       luftdruck_kuche_aqara:
         friendly_name: 'Luftdruck Küche Aqara'
         unit_of_measurement: 'hPa'
-        value_template: "{{ (states('sensor.lumi_lumi_weather_57dc3d03_pressure') | float) | round }}"
+        value_template: "{{ (states('sensor.lumi_lumi_weather_57dc3d03_pressure') | float(0)) | round }}"
         device_class: pressure
       luftfeuchtigkeit_waschkuche:
         friendly_name: 'Luftfeuchtigkeit Waschküche'
@@ -78,7 +78,7 @@
       luftfeuchtigkeit_vorratsraum:
         friendly_name: 'Luftfeuchtigkeit Speis'
         unit_of_measurement: '%'
-        value_template: "{{ (states('sensor.lumi_lumi_weather_humidity') | float -4.5) | round(1) }}"
+        value_template: "{{ (states('sensor.lumi_lumi_weather_humidity') | float(3) -3) | round(1) }}"
         device_class: humidity
       temp_vorratsraum:
         friendly_name: 'Temp. Speis'
@@ -102,17 +102,17 @@
 #     --------------------------------
 #
       stromzaehler_netzbezug:
-        value_template: "{{ '%.1f'%(states('sensor.stromzahler_positive_active_energy_in_tariff_t1') | float /1000) | float }}"
+        value_template: "{{ '%.1f'%(states('sensor.stromzahler_positive_active_energy_in_tariff_t1') | float(0) /1000) | float(0) }}"
         friendly_name: 'Stromzähler Netzbezug'
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromzaehler_netzeinspeisung:
-        value_template: "{{ '%.1f'%(states('sensor.stromzahler_negative_active_energy_in_tariff_t1') | float /1000) | float }}"
+        value_template: "{{ '%.1f'%(states('sensor.stromzahler_negative_active_energy_in_tariff_t1') | float(0) /1000) | float(0) }}"
         friendly_name: 'Stromzähler Netzeinspeisung'
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       stromkosten_netzbezug:
-        value_template: "{{ '%.2f'%((states('sensor.stromzaehler_netzbezug') | float ) * (states('input_number.strompreis') | float)) }}"
+        value_template: "{{ '%.2f'%((states('sensor.stromzaehler_netzbezug') | float(0) ) * (states('input_number.strompreis') | float(0))) }}"
         friendly_name: 'Stromkosten Netzbezug'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
@@ -122,22 +122,22 @@
 #     --------------------------------
 #
       pv_geldertrag_durch_einspeisung_gesamt:
-        value_template: "{{ '%.2f'%((states('sensor.stromzaehler_netzeinspeisung') | float ) * (states('input_number.pv_einspeiseverguetung') | float)) }}"
+        value_template: "{{ '%.2f'%((states('sensor.stromzaehler_netzeinspeisung') | float(0) ) * (states('input_number.pv_einspeiseverguetung') | float(0))) }}"
         friendly_name: 'PV Ertrag Einspeisung'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
       pv_geldertrag_durch_eigenverbrauch_gesamt:
-        value_template: "{{ '%.2f'%(((states('sensor.stromzaehler_pv_ac_gesamt') | float ) - (states('sensor.stromzaehler_netzeinspeisung') | float ))* (states('input_number.strompreis') | float)) }}"
+        value_template: "{{ '%.2f'%(((states('sensor.stromzaehler_pv_ac_gesamt') | flfloat(0)oat ) - (states('sensor.stromzaehler_netzeinspeisung') | float(0) ))* (states('input_number.strompreis') | float(0))) }}"
         friendly_name: 'PV Ertrag Eigenverbrauch'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
       pv_geldertrag_gesamt:
-        value_template: "{{ '%.2f'%((states('sensor.pv_geldertrag_durch_einspeisung_gesamt') | float ) + (states('sensor.pv_geldertrag_durch_eigenverbrauch_gesamt') | float)) }}"
+        value_template: "{{ '%.2f'%((states('sensor.pv_geldertrag_durch_einspeisung_gesamt') | float(0) ) + (states('sensor.pv_geldertrag_durch_eigenverbrauch_gesamt') | float(0))) }}"
         friendly_name: 'PV Ertrag gesamt'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
       pv_geldbetrag_bis_amortisation:
-        value_template: "{{ '%.2f'%(13724.42 - (states('sensor.pv_geldertrag_gesamt') | float)) }}"
+        value_template: "{{ '%.2f'%(13724.42 - (states('sensor.pv_geldertrag_gesamt') | float(0))) }}"
         friendly_name: 'PV verbleibend bis Amortisation'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
@@ -158,17 +158,17 @@
       el_leistung_netz:
         value_template: >-
           {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
-            {{ states('sensor.fronius1_modbus_power_from_grid') | float }}
+            {{ states('sensor.fronius1_modbus_power_from_grid') | float(0) }}
           {% else %}
-            {{ states('sensor.el_leistung_stromzaehler_netzbezug') | float }}
+            {{ states('sensor.el_leistung_stromzaehler_netzbezug') | float(0) }}
           {% endif %}
         friendly_name: 'El. Leistung Netz (positiv gleich Bezug)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_einspeisung:
         value_template: >-
-          {% if (states('sensor.el_leistung_netz') | float) < 0 %}
-            {{ -1*(states('sensor.el_leistung_netz') | float) }}
+          {% if (states('sensor.el_leistung_netz') | float(0)) < 0 %}
+            {{ -1*(states('sensor.el_leistung_netz') | float(0)) }}
           {% else %}
             0.0
           {% endif %}
@@ -178,7 +178,7 @@
       el_leistung_pv_ac:
         value_template: >-
           {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
-            {{ states('sensor.froniuscustom_ac_power') | float }}
+            {{ states('sensor.froniuscustom_ac_power') | float(0) }}
           {% else %}
             0.0
           {% endif %}
@@ -188,7 +188,7 @@
       el_leistung_pv_dc:
         value_template: >-
           {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
-            {{ states('sensor.froniuscustom_panel_status') | float }}
+            {{ states('sensor.froniuscustom_panel_status') | float(0) }}
           {% else %}
             0.0
           {% endif %}
@@ -197,13 +197,13 @@
         icon_template: mdi:speedometer
       wirkungsgrad_wechselrichter:
         value_template: >-
-          {% if (states('sensor.el_leistung_pv_dc') | float) > 0 %}
-            {% if ((states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float)) > 1 %}
+          {% if (states('sensor.el_leistung_pv_dc') | float(0)) > 0 %}
+            {% if ((states('sensor.el_leistung_pv_ac') | float(0)) / (states('sensor.el_leistung_pv_dc') | float(1))) > 1 %}
               100.0
-            {% elif ((states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float)) < 0 %}
+            {% elif ((states('sensor.el_leistung_pv_ac') | float(0)) / (states('sensor.el_leistung_pv_dc') | float(1))) < 0 %}
               0.0
             {% else %}
-              {{ (100*((states('sensor.el_leistung_pv_ac') | float) / (states('sensor.el_leistung_pv_dc') | float))) | round(1) }}
+              {{ (100*((states('sensor.el_leistung_pv_ac') | float(0)) / (states('sensor.el_leistung_pv_dc') | float(1)))) | round(1) }}
             {% endif %}
           {% else %}
             0.0
@@ -212,29 +212,29 @@
         unit_of_measurement: '%'
         icon_template: mdi:chart-bell-curve-cumulative
       el_leistung_pv_dc_string1:
-        value_template: "{{ ((states('sensor.fronius1_modbus_power_dc_string1_raw') | int) * (10 ** ((states('sensor.fronius1_modbus_power_dc_scaling_factor')| int )) )) |round(0)}}"
+        value_template: "{{ ((states('sensor.fronius1_modbus_power_dc_string1_raw') | int(0)) * (10 ** ((states('sensor.fronius1_modbus_power_dc_scaling_factor')| int(0) )) )) |round(0)}}"
         friendly_name: 'El. Leistung PV DC String 1'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_pv_dc_string2:
-        value_template: "{{ ((states('sensor.fronius1_modbus_power_dc_string2_raw') | int) * (10 ** ((states('sensor.fronius1_modbus_power_dc_scaling_factor')| int )) )) |round(0)}}"
+        value_template: "{{ ((states('sensor.fronius1_modbus_power_dc_string2_raw') | int(0)) * (10 ** ((states('sensor.fronius1_modbus_power_dc_scaling_factor')| int(0) )) )) |round(0)}}"
         friendly_name: 'El. Leistung PV DC String 2'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       stromzaehler_pv_ac_gesamt:
-        #value_template: "{{ (states('sensor.pv_ac_energy_riemann') | float + 3740.43) | round(1) }}"
-        value_template: "{{ ((states('sensor.fronius1_modbus_energy_ac_lifetime') | float / 1000) + 3740.43) | round(1) }}"
+        #value_template: "{{ (states('sensor.pv_ac_energy_riemann') | float(0) + 3740.43) | round(1) }}"
+        value_template: "{{ ((states('sensor.fronius1_modbus_energy_ac_lifetime') | float(0) / 1000) + 3740.43) | round(1) }}"
         # 3740.43 was total production of first inverter that had a defect
         friendly_name: 'Gesamtproduktion PV'
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       el_leistung_verbrauch_gesamt:
-        value_template: "{{ (states('sensor.el_leistung_netz') | float ) +  (states('sensor.el_leistung_pv_ac') | float )}}"
+        value_template: "{{ (states('sensor.el_leistung_netz') | float(0) ) +  (states('sensor.el_leistung_pv_ac') | float(0) )}}"
         friendly_name: 'El. Leistung Verbrauch gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       battery_sim_energy_saved_byd_hvm_11_0:
-        value_template: "{{ state_attr('sensor.byd_hvm_11_0', 'energy_saved') | float }}"
+        value_template: "{{ state_attr('sensor.byd_hvm_11_0', 'energy_saved') | float(0) }}"
         friendly_name: 'Batterie-Sim BYD HVM 11_0 Energy Saved'
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
@@ -245,15 +245,15 @@
 #       --------------------------------
 #
       einspeiselimit_watt:
-        value_template: "{{ (states('input_number.pv_einspeisebegrenzung_prozent') | float ) * (states('input_number.pv_installierte_peakleistung') | float ) * 0.01 }}"
+        value_template: "{{ (states('input_number.pv_einspeisebegrenzung_prozent') | float(0) ) * (states('input_number.pv_installierte_peakleistung') | float(0) ) * 0.01 }}"
 #        value_template: "{{ 30 }}"
         friendly_name: 'El. Leistung Einspeiselimit'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       anteil_el_leistung_netzbezug:
         value_template: >-
-          {% if (states('sensor.el_leistung_netz') | float) > 0 %}
-            {{ (states('sensor.el_leistung_netz') | float) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
+          {% if (states('sensor.el_leistung_netz') | float(0)) > 0 %}
+            {{ (states('sensor.el_leistung_netz') | float(0)) / (states('sensor.el_leistung_verbrauch_gesamt') | float(1)) }}
           {% else %}
             0.0
           {% endif %}
@@ -262,10 +262,10 @@
         icon_template: mdi:chart-donut
       anteil_el_leistung_pv_nicht_einspeisbar:
         value_template: >-
-          {% if (states('sensor.el_leistung_pv_ac') | float) > ((states('sensor.einspeiselimit_watt') | float) + (states('sensor.el_leistung_verbrauch_gesamt') | float)) %}
+          {% if (states('sensor.el_leistung_pv_ac') | float(0)) > ((states('sensor.einspeiselimit_watt') | float(0)) + (states('sensor.el_leistung_verbrauch_gesamt') | float(0))) %}
             1.0
-          {% elif (states('sensor.el_leistung_pv_ac') | float) > (states('sensor.einspeiselimit_watt') | float) %}
-            {{ ((states('sensor.el_leistung_pv_ac') | float) - (states('sensor.einspeiselimit_watt') | float)) / (states('sensor.el_leistung_verbrauch_gesamt') | float) }}
+          {% elif (states('sensor.el_leistung_pv_ac') | float(0)) > (states('sensor.einspeiselimit_watt') | float(0)) %}
+            {{ ((states('sensor.el_leistung_pv_ac') | float(0)) - (states('sensor.einspeiselimit_watt') | float(0))) / (states('sensor.el_leistung_verbrauch_gesamt') | float(1)) }}
           {% else %}
             0.0
           {% endif %}
@@ -273,22 +273,22 @@
         unit_of_measurement: 'Anteil'
         icon_template: mdi:chart-donut
       anteil_el_leistung_pv_einspeisbar:
-        value_template: "{{ 1 - (states('sensor.anteil_el_leistung_netzbezug') | float ) - (states('sensor.anteil_el_leistung_pv_nicht_einspeisbar') | float ) }}"
+        value_template: "{{ 1 - (states('sensor.anteil_el_leistung_netzbezug') | float(0) ) - (states('sensor.anteil_el_leistung_pv_nicht_einspeisbar') | float(0) ) }}"
         friendly_name: 'El. Leistung Anteil PV einspeisbar'
         unit_of_measurement: 'Anteil'
         icon_template: mdi:chart-donut
       strompreis_aktuell_effektiv_euro:
-        value_template: "{{ (states('input_number.strompreis') | float ) * (states('sensor.anteil_el_leistung_netzbezug') | float ) + (states('input_number.pv_einspeiseverguetung') | float ) * (states('sensor.anteil_el_leistung_pv_einspeisbar') | float ) }}"
+        value_template: "{{ (states('input_number.strompreis') | float(0) ) * (states('sensor.anteil_el_leistung_netzbezug') | float(0) ) + (states('input_number.pv_einspeiseverguetung') | float(0) ) * (states('sensor.anteil_el_leistung_pv_einspeisbar') | float(0) ) }}"
         friendly_name: 'Strompreis aktuell effektiv Euro'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
       strompreis_aktuell_abrechnung_euro:
-        value_template: "{{ (states('input_number.strompreis') | float ) * (states('sensor.anteil_el_leistung_netzbezug') | float ) }}"
+        value_template: "{{ (states('input_number.strompreis') | float(0) ) * (states('sensor.anteil_el_leistung_netzbezug') | float(0) ) }}"
         friendly_name: 'Strompreis aktuell Abrechnung Euro'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
       strompreis_aktuell_effektiv_cent:
-        value_template: "{{ ((states('sensor.strompreis_aktuell_effektiv_euro') | float) * 100) | round(0) }}"
+        value_template: "{{ ((states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) * 100) | round(0) }}"
         friendly_name: 'Strompreis aktuell effektiv Cent'
         unit_of_measurement: 'ct'
         icon_template: mdi:currency-eur
@@ -298,176 +298,176 @@
 #       --------------------------------
 #
       el_leistung_berechnet_licht_zigbee_licht_gaestezimmer:
-        value_template: "{{ '%.1f'%(state_attr('light.innr_e14_ww_decke_gastezimmer_level_on_off', 'brightness') | float / 255 * 5.3)| float }}"
+        value_template: "{{ '%.1f'%(state_attr('light.innr_e14_ww_decke_gastezimmer_level_on_off', 'brightness') | float(0) / 255 * 5.3)| float(0) }}"
         friendly_name: 'El. Leistung Licht Gästezimmer (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_zigbee_stehlampe_le:
-        value_template: "{{ '%.1f'%(state_attr('light.innr_e14_tw_stehlampe_lea_level_light_color_on_off', 'brightness') | float / 255 * 5.8)| float }}"
+        value_template: "{{ '%.1f'%(state_attr('light.innr_e14_tw_stehlampe_lea_level_light_color_on_off', 'brightness') | float(0) / 255 * 5.8)| float(0) }}"
         friendly_name: 'El. Leistung Stehlampe Le (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_zigbee_stehlampe_la:
-        value_template: "{{ '%.1f'%(state_attr('light.innr_e14_ww_stehlampe_lara_level_on_off', 'brightness') | float / 255 * 5.3)| float }}"
+        value_template: "{{ '%.1f'%(state_attr('light.innr_e14_ww_stehlampe_lara_level_on_off', 'brightness') | float(0) / 255 * 5.3)| float(0) }}"
         friendly_name: 'El. Leistung Stehlampe La (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_zigbee_kugellampe_sz:
-        value_template: "{{ '%.1f'%(state_attr('light.innr_e14_tw_kugellampe_schlafzimmer_level_light_color_on_off', 'brightness') | float / 255 * 5.8)| float }}"
+        value_template: "{{ '%.1f'%(state_attr('light.innr_e14_tw_kugellampe_schlafzimmer_level_light_color_on_off', 'brightness') | float(0) / 255 * 5.8)| float(0) }}"
         friendly_name: 'El. Leistung Kugellampe SZ (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_zigbee_terrasse_ecke_gr:
-        value_template: "{{ '%.1f'%(state_attr('light.innr_e27_color_terrasse_ecke_gross_level_light_color_on_off', 'brightness') | float / 255 * 9.5)| float }}"
+        value_template: "{{ '%.1f'%(state_attr('light.innr_e27_color_terrasse_ecke_gross_level_light_color_on_off', 'brightness') | float(0) / 255 * 9.5)| float(0) }}"
         friendly_name: 'El. Leistung Würfel Terrasse Ecke groß (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_zigbee_terrasse_ecke_kl:
-        value_template: "{{ '%.1f'%(state_attr('light.innr_rb_285_c_55f50405_level_light_color_on_off', 'brightness') | float / 255 * 9.5)| float }}"
+        value_template: "{{ '%.1f'%(state_attr('light.innr_rb_285_c_55f50405_level_light_color_on_off', 'brightness') | float(0) / 255 * 9.5)| float(0) }}"
         friendly_name: 'El. Leistung Würfel Terrasse Ecke klein (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_zigbee_terrasse_feuerstelle:
-        value_template: "{{ '%.1f'%(state_attr('light.innr_rb_285_c_7cc30105_level_light_color_on_off', 'brightness') | float / 255 * 9.5)| float }}"
+        value_template: "{{ '%.1f'%(state_attr('light.innr_rb_285_c_7cc30105_level_light_color_on_off', 'brightness') | float(0) / 255 * 9.5)| float(0) }}"
         friendly_name: 'El. Leistung Würfel Terrasse Feuerstelle (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_flur_keller:
-        value_template: "{{ is_state('light.flur_keller','on') | float * 20 }}"
+        value_template: "{{ is_state('light.flur_keller','on') | float(0) * 20 }}"
         friendly_name: 'El. Leistung Licht Flur Keller (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_technikraum:
-        value_template: "{{ is_state('light.technikraum','on') | float * 20 }}"
+        value_template: "{{ is_state('light.technikraum','on') | float(0) * 20 }}"
         friendly_name: 'El. Leistung Licht Technikraum (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_vorratsraum:
-        value_template: "{{ is_state('light.vorratsraum','on') | float * 20 }}"
+        value_template: "{{ is_state('light.vorratsraum','on') | float(0) * 20 }}"
         friendly_name: 'El. Leistung Licht Vorratsraum (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_werkelraum:
-        value_template: "{{ is_state('light.werkelraum','on') | float * 60 }}"
+        value_template: "{{ is_state('light.werkelraum','on') | float(0) * 60 }}"
         friendly_name: 'El. Leistung Licht Werkelraum (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_partyraum:
-        value_template: "{{ is_state('light.lagerraum','on') | float * 22 }}"
+        value_template: "{{ is_state('light.lagerraum','on') | float(0) * 22 }}"
         friendly_name: 'El. Leistung Licht Partyraum (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_spots_carport:
-        value_template: "{{ is_state('light.spots_carport','on') | float * 25 }}"
+        value_template: "{{ is_state('light.spots_carport','on') | float(0) * 25 }}"
         friendly_name: 'El. Leistung Spots Carport (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_wandwuerfel_sued:
-        value_template: "{{ is_state('light.wandwurfel_suden','on') | float * 21 }}"
+        value_template: "{{ is_state('light.wandwurfel_suden','on') | float(0) * 21 }}"
         friendly_name: 'El. Leistung Wandwürfel Süd (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_wandwuerfel_west:
-        value_template: "{{ is_state('light.wandwurfel_westen','on') | float * 21 }}"
+        value_template: "{{ is_state('light.wandwurfel_westen','on') | float(0) * 21 }}"
         friendly_name: 'El. Leistung Wandwürfel West (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_abstellraum:
-        value_template: "{{ is_state('light.abstellraum_carport','on') | float * 24 }}"
+        value_template: "{{ is_state('light.abstellraum_carport','on') | float(0) * 24 }}"
         friendly_name: 'El. Leistung Licht Abstellraum CP (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_naehtisch_nz:
-        value_template: "{{ '%.1f'%(state_attr('light.ikea_panel_arbeitszimmer_esphome', 'brightness') | float / 255 * 29)| float }}"
+        value_template: "{{ '%.1f'%(state_attr('light.ikea_panel_arbeitszimmer_esphome', 'brightness') | float(0) / 255 * 29)| float(0) }}"
         friendly_name: 'El. Leistung Licht Decke Ma (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_schreibtisch_nz:
-        value_template: "{{ is_state('light.schreibtisch_decke','on') | float * 24 }}"
+        value_template: "{{ is_state('light.schreibtisch_decke','on') | float(0) * 24 }}"
         friendly_name: 'El. Leistung Licht Decke Jo (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_spiegel_bad_eg:
-        value_template: "{{ is_state('light.spiegel_bad_eg','on') | float * 11.5 }}"
+        value_template: "{{ is_state('light.spiegel_bad_eg','on') | float(0) * 11.5 }}"
         friendly_name: 'El. Leistung Spiegel Bad EG (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_spiegel_bad_og:
-        value_template: "{{ is_state('light.spiegel_bad_og','on') | float * 11.5 }}"
+        value_template: "{{ is_state('light.spiegel_bad_og','on') | float(0) * 11.5 }}"
         friendly_name: 'El. Leistung Spiegel Bad OG (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnet_licht_spiegel_wc:
-        value_template: "{{ is_state('light.spiegel_wc','on') | float * 20 }}"
+        value_template: "{{ is_state('light.spiegel_wc','on') | float(0) * 20 }}"
         friendly_name: 'El. Leistung Spiegel WC (berechnet)'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_licht_sicherung_3_2:
         value_template: >-
-          {% if states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float == 0 %}
+          {% if states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) == 0 %}
             0.0
-          {% elif states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float < 8 %}
-            {{ states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float * (0.28 + 0.01) }}
-          {% elif states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float < 15 %}
-            {{ states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float * (states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float * (-0.017821) + 0.424589 + 0.01) }}
-          {% elif states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float < 20 %}
-            {{ states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float * (states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float * (-0.003710) + 0.169098 + 0.01) }}
-          {% elif states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float < 120 %}
-            {{ states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float * (states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float * 0.005517 + 0.090330 + 0.01) }}
+          {% elif states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) < 8 %}
+            {{ states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) * (0.28 + 0.01) }}
+          {% elif states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) < 15 %}
+            {{ states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) * (states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) * (-0.017821) + 0.424589 + 0.01) }}
+          {% elif states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) < 20 %}
+            {{ states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) * (states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) * (-0.003710) + 0.169098 + 0.01) }}
+          {% elif states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) < 120 %}
+            {{ states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) * (states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) * 0.005517 + 0.090330 + 0.01) }}
           {% else %}
-            {{ states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float * (0.8 + 0.01) }}
+            {{ states('sensor.el_leistung_licht_sicherung_3_2_scheinleistung') | float(0) * (0.8 + 0.01) }}
           {% endif %}
         friendly_name: 'El. Leistung Licht Sicherung 3.2'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_licht_sicherung_3_3:
         value_template: >-
-          {% if states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float == 0 %}
+          {% if states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float(0) == 0 %}
             0.0
-          {% elif states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float < 35 %}
-            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * (states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * 0.003962 + 0.053906 + 0.01) }}
-          {% elif states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float < 100 %}
-            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * (states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * 0.003834 + 0.180579 + 0.01) }}
-          {% elif states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float < 300 %}
-            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * (states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * 0.001312 + 0.406724 + 0.01) }}
+          {% elif states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float(0) < 35 %}
+            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float(0) * (states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float(0) * 0.003962 + 0.053906 + 0.01) }}
+          {% elif states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float(0) < 100 %}
+            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float(0) * (states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float(0) * 0.003834 + 0.180579 + 0.01) }}
+          {% elif states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float(0) < 300 %}
+            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float(0) * (states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float(0) * 0.001312 + 0.406724 + 0.01) }}
           {% else %}
-            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float * (0.8 + 0.01) }}
+            {{ states('sensor.el_leistung_licht_sicherung_3_3_scheinleistung') | float(0) * (0.8 + 0.01) }}
           {% endif %}
         friendly_name: 'El. Leistung Licht Sicherung 3.3'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_berechnete_lichter:
         value_template: >-
-          {{ states('sensor.el_leistung_berechnet_licht_zigbee_licht_gaestezimmer') | float
-           + states('sensor.el_leistung_berechnet_licht_zigbee_stehlampe_le') | float
-           + states('sensor.el_leistung_berechnet_licht_zigbee_stehlampe_la') | float
-           + states('sensor.el_leistung_berechnet_licht_zigbee_kugellampe_sz') | float
-           + states('sensor.el_leistung_berechnet_licht_zigbee_terrasse_ecke_gr') | float
-           + states('sensor.el_leistung_berechnet_licht_zigbee_terrasse_ecke_kl') | float
-           + states('sensor.el_leistung_berechnet_licht_zigbee_terrasse_feuerstelle') | float
-           + states('sensor.el_leistung_berechnet_licht_flur_keller') | float
-           + states('sensor.el_leistung_berechnet_licht_technikraum') | float
-           + states('sensor.el_leistung_berechnet_licht_vorratsraum') | float
-           + states('sensor.el_leistung_berechnet_licht_werkelraum') | float
-           + states('sensor.el_leistung_berechnet_licht_partyraum') | float
-           + states('sensor.el_leistung_berechnet_licht_spots_carport') | float
-           + states('sensor.el_leistung_berechnet_licht_wandwuerfel_sued') | float
-           + states('sensor.el_leistung_berechnet_licht_wandwuerfel_west') | float
-           + states('sensor.el_leistung_berechnet_licht_abstellraum') | float
-           + states('sensor.el_leistung_berechnet_licht_naehtisch_nz') | float
-           + states('sensor.el_leistung_berechnet_licht_schreibtisch_nz') | float
-           + states('sensor.el_leistung_berechnet_licht_spiegel_bad_eg') | float
-           + states('sensor.el_leistung_berechnet_licht_spiegel_bad_og') | float
-           + states('sensor.el_leistung_berechnet_licht_spiegel_wc') | float }}
+          {{ states('sensor.el_leistung_berechnet_licht_zigbee_licht_gaestezimmer') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_zigbee_stehlampe_le') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_zigbee_stehlampe_la') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_zigbee_kugellampe_sz') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_zigbee_terrasse_ecke_gr') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_zigbee_terrasse_ecke_kl') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_zigbee_terrasse_feuerstelle') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_flur_keller') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_technikraum') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_vorratsraum') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_werkelraum') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_partyraum') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_spots_carport') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_wandwuerfel_sued') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_wandwuerfel_west') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_abstellraum') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_naehtisch_nz') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_schreibtisch_nz') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_spiegel_bad_eg') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_spiegel_bad_og') | float(0)
+           + states('sensor.el_leistung_berechnet_licht_spiegel_wc') | float(0) }}
         friendly_name: 'El. Leistung berechnete Lichter'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_licht_gesamt:
         value_template: >-
-          {{ states('sensor.el_leistung_berechnete_lichter') | float 
-           + states('sensor.el_leistung_licht_sicherung_3_2') | float
-           + states('sensor.el_leistung_licht_sicherung_3_3') | float
-           + states('sensor.el_leistung_shellydimmer_d472fe_power') | float }}
+          {{ states('sensor.el_leistung_berechnete_lichter') | float(0) 
+           + states('sensor.el_leistung_licht_sicherung_3_2') | float(0)
+           + states('sensor.el_leistung_licht_sicherung_3_3') | float(0)
+           + states('sensor.el_leistung_shellydimmer_d472fe_power') | float(0) }}
         friendly_name: 'El. Leistung Licht gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
@@ -523,104 +523,104 @@
             # Standyby Monitor               3   (3 x 1 geschätzt)
             # Modbus Gateway Lueftungsanl.   1   (Datenblatt)
             # Wechselrichter Froinus Gen24  10   (Datenblatt)
-        value_template: "{{ (now().hour | float / 1000000) + 63 + 0.5 + 2 + 4.5 + 5 + 4 + 2 + 5 + 3 + 2 + 1 + 1 + 1.5 + 1.5 + 2 + 3 + 1 + 8 + 1.5 + 3.5 + 3.5 + 6.5 + 3 + 2 + 4 + 1 + 1 + 1 + 5 + 1 + 1 + 1 + 3 + 1 + 10 }}"
+        value_template: "{{ (now().hour | float(0) / 1000000) + 63 + 0.5 + 2 + 4.5 + 5 + 4 + 2 + 5 + 3 + 2 + 1 + 1 + 1.5 + 1.5 + 2 + 3 + 1 + 8 + 1.5 + 3.5 + 3.5 + 6.5 + 3 + 2 + 4 + 1 + 1 + 1 + 5 + 1 + 1 + 1 + 3 + 1 + 10 }}"
         friendly_name: 'El. Leistung Dauerverbraucher'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_luftentf_vorratsraum:
         value_template: >-
-          {% if states('sensor.el_leistung_kuhlschrank_keller') | float < 1 %}
+          {% if states('sensor.el_leistung_kuhlschrank_keller') | float(0) < 1 %}
             0.0
-          {% elif states('sensor.el_leistung_kuhlschrank_keller') | float < 100 %}
-            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float * 0.53) }}
+          {% elif states('sensor.el_leistung_kuhlschrank_keller') | float(0) < 100 %}
+            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float(0) * 0.53) }}
           {% else %}
-            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float * 0.656) }}
+            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float(0) * 0.656) }}
           {% endif %}
         friendly_name: 'El. Leistung Luftentf. Vorratsraum'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_waschmaschine:
         value_template: >-
-          {% if states('sensor.el_leistung_waschmaschine_scheinleistung') | float < 15 %}
+          {% if states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) < 15 %}
             0.4
-          {% elif states('sensor.el_leistung_waschmaschine_scheinleistung') | float < 360 %}
-            {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float * (states('sensor.el_leistung_waschmaschine_scheinleistung') | float * 0.000688 + 0.561576)) }}
-          {% elif states('sensor.el_leistung_waschmaschine_scheinleistung') | float < 1000 %}
-            {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float * 0.81) }}
+          {% elif states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) < 360 %}
+            {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) * (states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) * 0.000688 + 0.561576)) }}
+          {% elif states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) < 1000 %}
+            {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) * 0.81) }}
           {% else %}
-            {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float * 1) }}
+            {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) * 1) }}
           {% endif %}
         friendly_name: 'El. Leistung Waschmaschine'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_trockner:
         value_template: >-
-          {% if states('sensor.el_leistung_trockner_scheinleistung') | float < 6 %}
+          {% if states('sensor.el_leistung_trockner_scheinleistung') | float(0) < 6 %}
             0.0
-          {% elif states('sensor.el_leistung_trockner_scheinleistung') | float < 9 %}
-            {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float * (states('sensor.el_leistung_trockner_scheinleistung') | float * (-0.008991) + 0.072442)) }}
-          {% elif states('sensor.el_leistung_trockner_scheinleistung') | float < 10 %}
-            {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float * 0.15) }}
+          {% elif states('sensor.el_leistung_trockner_scheinleistung') | float(0) < 9 %}
+            {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float(0) * (states('sensor.el_leistung_trockner_scheinleistung') | float(0) * (-0.008991) + 0.072442)) }}
+          {% elif states('sensor.el_leistung_trockner_scheinleistung') | float(0) < 10 %}
+            {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float(0) * 0.15) }}
           {% else %}
-            {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float * 1) }}
+            {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float(0) * 1) }}
           {% endif %}
         friendly_name: 'El. Leistung Trockner'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_gefrierschrank:
         value_template: >-
-          {% if states('sensor.el_leistung_gefrierschrank_scheinleistung') | float < 22 %}
-            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float * 0.064) }}
-          {% elif states('sensor.el_leistung_gefrierschrank_scheinleistung') | float < 80 %}
-            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float * 0.73) }}
+          {% if states('sensor.el_leistung_gefrierschrank_scheinleistung') | float(0) < 22 %}
+            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float(0) * 0.064) }}
+          {% elif states('sensor.el_leistung_gefrierschrank_scheinleistung') | float(0) < 80 %}
+            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float(0) * 0.73) }}
           {% else %}
-            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float * 0.82) }}
+            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float(0) * 0.82) }}
           {% endif %}
         friendly_name: 'El. Leistung Gefrierschrank'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_kuhlschrank_kuche:
         value_template: >-
-          {% if states('sensor.el_leistung_kuhlschrank_kuche_scheinleistung') | float < 10 %}
+          {% if states('sensor.el_leistung_kuhlschrank_kuche_scheinleistung') | float(0) < 10 %}
             0.0
-          {% elif states('sensor.el_leistung_kuhlschrank_kuche_scheinleistung') | float < 20 %}
-            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche_scheinleistung') | float * 0.95) }}
+          {% elif states('sensor.el_leistung_kuhlschrank_kuche_scheinleistung') | float(0) < 20 %}
+            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche_scheinleistung') | float(0) * 0.95) }}
           {% else %}
-            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche_scheinleistung') | float * 0.75) }}
+            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche_scheinleistung') | float(0) * 0.75) }}
           {% endif %}
         friendly_name: 'El. Leistung Kühlschrank Küche'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_spulmaschine:
         value_template: >-
-          {% if states('sensor.el_leistung_spulmaschine_scheinleistung') | float < 6 %}
+          {% if states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 6 %}
             0.0
-          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float < 8 %}
-            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float * 0.2) }}
-          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float < 20 %}
-            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float * 1.0) }}
-          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float < 60 %}
-            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float * 0.55) }}
-          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float < 200 %}
-            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float * 0.81) }}
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 8 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 0.2) }}
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 20 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 1.0) }}
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 60 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 0.55) }}
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 200 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 0.81) }}
           {% else %}
-            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float * 1.0) }}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 1.0) }}
           {% endif %}
         friendly_name: 'El. Leistung Spülmaschine'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_tv:
         value_template: >-
-          {% if states('sensor.el_leistung_tv_scheinleistung') | float == 0 %}
+          {% if states('sensor.el_leistung_tv_scheinleistung') | float(0) == 0 %}
             0.0
-          {% elif states('sensor.el_leistung_tv_scheinleistung') | float < 15 %}
+          {% elif states('sensor.el_leistung_tv_scheinleistung') | float(0) < 15 %}
             0.3
-          {% elif states('sensor.el_leistung_tv_scheinleistung') | float < 30 %}
-            {{ '%.1f'%(states('sensor.el_leistung_tv_scheinleistung') | float * 0.5) }}
-          {% elif states('sensor.el_leistung_tv_scheinleistung') | float < 70 %}
-            {{ '%.1f'%(states('sensor.el_leistung_tv_scheinleistung') | float * 0.815) }}
+          {% elif states('sensor.el_leistung_tv_scheinleistung') | float(0) < 30 %}
+            {{ '%.1f'%(states('sensor.el_leistung_tv_scheinleistung') | float(0) * 0.5) }}
+          {% elif states('sensor.el_leistung_tv_scheinleistung') | float(0) < 70 %}
+            {{ '%.1f'%(states('sensor.el_leistung_tv_scheinleistung') | float(0) * 0.815) }}
           {% else %}
-            {{ '%.1f'%(states('sensor.el_leistung_tv_scheinleistung') | float * 0.855) }}
+            {{ '%.1f'%(states('sensor.el_leistung_tv_scheinleistung') | float(0) * 0.855) }}
           {% endif %}
         friendly_name: 'El. Leistung TV'
         unit_of_measurement: 'W'
@@ -659,9 +659,9 @@
         icon_template: mdi:speedometer
       el_leistung_wp_gesamt:
         value_template: >-
-          {{ states('sensor.el_leistung_wp_aussenteil_esp') | float 
-           + states('sensor.el_leistung_wp_heizstab_esp') | float
-           + states('sensor.el_leistung_wp_innenteil_esp') | float }}
+          {{ states('sensor.el_leistung_wp_aussenteil_esp') | float(0) 
+           + states('sensor.el_leistung_wp_heizstab_esp') | float(0)
+           + states('sensor.el_leistung_wp_innenteil_esp') | float(0) }}
         friendly_name: 'El. Leistung WP gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
@@ -695,7 +695,7 @@
       target_temp_kuehlbox:
         friendly_name: 'Zieltemperatur Kühlbox'
         unit_of_measurement: '°C'
-        value_template: "{{ states('input_number.target_temp_kuehlbox') | float }}"
+        value_template: "{{ states('input_number.target_temp_kuehlbox') | float(0) }}"
 #
 #
 #   --------------------------------

@@ -61,26 +61,26 @@
       # On = in der letzten Stunde weniger als 10 Minuten wach
       schlafen_oder_aufwachphase_la:
         friendly_name: "Schlafen oder Aufwachphase La"
-        value_template: "{{ states('sensor.anteil_la_wach_letzte_stunde')|float < 17 }}"
+        value_template: "{{ states('sensor.anteil_la_wach_letzte_stunde')|float(0) < 17 }}"
       schlafen_oder_aufwachphase_le:
         friendly_name: "Schlafen oder Aufwachphase Le"
-        value_template: "{{ states('sensor.anteil_le_wach_letzte_stunde')|float < 17 }}"
+        value_template: "{{ states('sensor.anteil_le_wach_letzte_stunde')|float(0) < 17 }}"
       schlafen_oder_aufwachphase_kinder:
         friendly_name: "Schlafen oder Aufwachphase Kinder"
-        value_template: "{{ states('sensor.anteil_kinder_wach_letzte_stunde')|float < 17 }}"
+        value_template: "{{ states('sensor.anteil_kinder_wach_letzte_stunde')|float(0) < 17 }}"
       aufwachphase_kinder:
         friendly_name: "Aufwachphase Kinder"
-        value_template: "{{ states('sensor.anteil_kinder_wach_letzte_stunde')|float < 17 and is_state('binary_sensor.la_oder_le_schlafen','off') }}"
+        value_template: "{{ states('sensor.anteil_kinder_wach_letzte_stunde')|float(0) < 17 and is_state('binary_sensor.la_oder_le_schlafen','off') }}"
       schlafen_oder_aufwachphase_majo:
         friendly_name: "Schlafen oder Aufwachphase MaJo"
-        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 34 }}"
+        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 34 }}"
       schlafen_oder_licht_noch_aus_lassen_majo:
         friendly_name: "Schlafen oder Licht noch aus lassen MaJo"
-        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 50
-                            and states('sensor.helligkeit_wetterstation')|float > 20000 }}"
+        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 50
+                            and states('sensor.helligkeit_wetterstation')|float(0) > 20000 }}"
       nachtmodus_wc:
         friendly_name: "Nachtmodus WC"
-        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float < 50
+        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 50
                             or is_state('switch.majo_schlafen', 'on') }}"
       la_schon_im_bett:
         friendly_name: "La schon im Bett"
@@ -96,8 +96,8 @@
                             and is_state('switch.kinder_schon_wach', 'off') }}"
       bodenstrahler_blumenbeet_ist_sichtbar:
         friendly_name: "Bodenstrahler Blumenbeet ist sichtbar"
-        value_template: "{{ (state_attr('cover.jalousie_hst','current_position')|float < 40)
-                            or ((state_attr('cover.jalousie_hst','current_tilt_position')|float > 25) and (state_attr('cover.jalousie_hst','current_tilt_position')|float < 85)) }}"
+        value_template: "{{ (state_attr('cover.jalousie_hst','current_position')|float(0) < 40)
+                            or ((state_attr('cover.jalousie_hst','current_tilt_position')|float(0) > 25) and (state_attr('cover.jalousie_hst','current_tilt_position')|float(0) < 85)) }}"
       bodenstrahler_blumenbeet_soll_an_sein:
         friendly_name: "Bodenstrahler Blumenbeet soll an sein"
         value_template: "{{ (is_state('binary_sensor.bodenstrahler_blumenbeet_ist_sichtbar', 'on') and is_state('binary_sensor.standardzeit_bodenstrahler_blumenbeet', 'on'))
@@ -247,33 +247,33 @@
         friendly_name: "Würfel Terrasse"
         value_template: >-
           {{ is_state('binary_sensor.hst_offen', 'on')
-             and states('sensor.helligkeit_wetterstation')|float < 500 }}
+             and states('sensor.helligkeit_wetterstation')|float(0) < 500 }}
       heizstab_ist_an:
         friendly_name: "Heizstab an"
-        value_template: "{{ states('sensor.el_leistung_wp_heizstab')|float > 1 }}"
+        value_template: "{{ states('sensor.el_leistung_wp_heizstab')|float(0) > 11 }}"
       tv_ist_an:
         friendly_name: "TV an"
         delay_off:
           seconds: 3
-        value_template: "{{ states('sensor.el_leistung_tv_scheinleistung')|float > 31 }}"
+        value_template: "{{ states('sensor.el_leistung_tv_scheinleistung')|float(0) > 31 }}"
       mixi_ist_an:
         friendly_name: "Mixi an"
-        value_template: "{{ states('sensor.el_leistung_mixi')|float > 5 }}"
+        value_template: "{{ states('sensor.el_leistung_mixi')|float(0) > 5 }}"
       backofen_ist_an:
         friendly_name: "Backofen an"
-        value_template: "{{ states('sensor.el_leistung_backofen')|float > 2 }}"
+        value_template: "{{ states('sensor.el_leistung_backofen')|float(0) > 2 }}"
       waschmaschine_ist_an:
         friendly_name: "Waschmaschine läuft"
         delay_on:
           minutes: 3
-        value_template: "{{ states('sensor.el_leistung_waschmaschine_scheinleistung')|float > 15 }}"
+        value_template: "{{ states('sensor.el_leistung_waschmaschine_scheinleistung')|float(0) > 15 }}"
       trockner_ist_an:
         friendly_name: "Trockner läuft"
         delay_on:
           minutes: 1
         delay_off:
           minutes: 4
-        value_template: "{{ states('sensor.el_leistung_trockner_scheinleistung')|float > 10 }}"
+        value_template: "{{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) > 10 }}"
       trockner_ist_geleert:
         friendly_name: "Trockner geleert"
-        value_template: "{{ states('sensor.el_leistung_trockner_scheinleistung')|float < 5 }}"
+        value_template: "{{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) < 5 }}"
