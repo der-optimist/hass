@@ -127,7 +127,7 @@
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
       pv_geldertrag_durch_eigenverbrauch_gesamt:
-        value_template: "{{ '%.2f'%(((states('sensor.stromzaehler_pv_ac_gesamt') | flfloat(0)oat ) - (states('sensor.stromzaehler_netzeinspeisung') | float(0) ))* (states('input_number.strompreis') | float(0))) }}"
+        value_template: "{{ '%.2f'%(((states('sensor.stromzaehler_pv_ac_gesamt') | float(0) ) - (states('sensor.stromzaehler_netzeinspeisung') | float(0) ))* (states('input_number.strompreis') | float(0))) }}"
         friendly_name: 'PV Ertrag Eigenverbrauch'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
