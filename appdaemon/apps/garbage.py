@@ -15,11 +15,11 @@ class garbage(hass.Hass):
         self.calendar_waste = "calendar.restmuelltonne"
         self.calendar_organic = "calendar.biotonne"
         self.calendar_paper = "calendar.papiertonne"
-        self.calendar_plastic = "calendar.raweg"
+        self.calendar_plastic = "calendar.gelbe_tonne"
         self.sensor_display_waste = "sensor.restmuelltonne_anzeige"
         self.sensor_display_organic = "sensor.biotonne_anzeige"
         self.sensor_display_paper = "sensor.papiertonne_anzeige"
-        self.sensor_display_plastic = "sensor.raweg_anzeige"
+        self.sensor_display_plastic = "sensor.gelbe_tonne_anzeige"
         self.sensor_display_1 = "sensor.abfall_anzeige_1"
         self.sensor_display_2 = "sensor.abfall_anzeige_2"
         self.sensor_display_3 = "sensor.abfall_anzeige_3"
@@ -27,7 +27,7 @@ class garbage(hass.Hass):
         self.switch_reminder_waste = "switch.reminder_garbage_restmuelltonne"
         self.switch_reminder_organic = "switch.reminder_garbage_biotonne"
         self.switch_reminder_paper = "switch.reminder_garbage_papiertonne"
-        self.switch_reminder_plastic = "switch.reminder_garbage_raweg"
+        self.switch_reminder_plastic = "switch.reminder_garbage_gelbe_tonne"
         self.icon_waste = "/local/icons/garbage/tonne_grau.svg"
         self.icon_organic = "/local/icons/garbage/tonne_braun.svg"
         self.icon_paper = "/local/icons/garbage/tonne_blau.svg"
@@ -80,7 +80,7 @@ class garbage(hass.Hass):
             self.log("Tomorrow is plastic collection")
             attributes = self.get_state(self.switch_reminder_plastic, attribute="all")["attributes"]
             self.set_state(self.switch_reminder_plastic, state = "on", attributes=attributes)
-            self.fire_event("custom_notify", message="Morgen ist RaWeg", target="telegram_jo")
+            self.fire_event("custom_notify", message="Morgen ist gelbe Tonne", target="telegram_jo")
 
     def end_waste(self, entity, attribute, old, new, kwargs):
         if new is not None:
@@ -164,9 +164,9 @@ class garbage(hass.Hass):
             self.set_state(self.switch_reminder_paper, state = "off", attributes={"entity_picture":self.icon_paper_blink, "friendly_name": "Papiertonne raus"})
         if self.entity_exists(self.switch_reminder_plastic):
             curr_state = self.get_state(self.switch_reminder_plastic)
-            self.set_state(self.switch_reminder_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic_blink, "friendly_name": "RaWeg herrichten"})
+            self.set_state(self.switch_reminder_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic_blink, "friendly_name": "gelbe Tonne raus"})
         else:
-            self.set_state(self.switch_reminder_plastic, state = "off", attributes={"entity_picture":self.icon_plastic_blink, "friendly_name": "RaWeg herrichten"})
+            self.set_state(self.switch_reminder_plastic, state = "off", attributes={"entity_picture":self.icon_plastic_blink, "friendly_name": "gelbe Tonne raus"})
 
     def create_display_sensors(self, kwargs):
         initial_timestamp = 9999999999
@@ -199,9 +199,9 @@ class garbage(hass.Hass):
             timestamp = self.get_state(self.sensor_display_plastic, attribute = "timestamp")
             if timestamp == None:
                 timestamp = initial_timestamp
-            self.set_state(self.sensor_display_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic, "friendly_name": "RaWeg", "timestamp": timestamp})
+            self.set_state(self.sensor_display_plastic, state = curr_state, attributes={"entity_picture":self.icon_plastic, "friendly_name": "gelbe Tonne", "timestamp": timestamp})
         else:
-            self.set_state(self.sensor_display_plastic, state = "warte...", attributes={"entity_picture":self.icon_plastic, "friendly_name": "RaWeg", "timestamp": initial_timestamp})
+            self.set_state(self.sensor_display_plastic, state = "warte...", attributes={"entity_picture":self.icon_plastic, "friendly_name": "gelbe Tonne", "timestamp": initial_timestamp})
         self.set_state(self.sensor_display_1, state = "warte...")
         self.set_state(self.sensor_display_2, state = "warte...")
         self.set_state(self.sensor_display_3, state = "warte...")
