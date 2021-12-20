@@ -185,7 +185,7 @@ class air_dryer_and_humidifier(hass.Hass):
         self.run_in(self.check_if_dryer_or_humidifier_running,60)
         
     def check_if_dryer_or_humidifier_running(self, kwargs):
-        if float(self.get_state(self.energy_measurement_sensor)) > 20.0:
+        if float(self.get_state(self.energy_measurement_sensor)) > 5.0:
             self.dryer_or_humidifier_is_running = True
         else:
             self.dryer_or_humidifier_is_running = False
