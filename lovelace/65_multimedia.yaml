@@ -70,7 +70,7 @@ cards:
           background-color: "#ff9c27"
           opacity: 0.25
       - type: custom:mini-media-player
-        entity: media_player.kodi_wz
+        entity: media_player.kodi_wz_2
         group: True
         hide:
           play_stop: False
