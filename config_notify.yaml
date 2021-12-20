@@ -8,5 +8,5 @@
   platform: telegram
   chat_id: !secret telegram_id_alarm_gruppe
 - platform: kodi
-  name: kodi_wz
-  host: 192.168.178.38
+  name: kodi_wz_2
+  host: kodi-wz-2.fritz.box
