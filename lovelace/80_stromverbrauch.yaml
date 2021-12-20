@@ -51,9 +51,9 @@ cards:
             name: Luftentf. Waschküche
           - entity: sensor.el_leistung_innr_sp_120_luftentfeuchter_partyraum
             name: Luftentf. Partyraum
-          - entity: sensor.el_leistung_tuya_sd_2
+          - entity: sensor.el_leistung_heizung_partyraum_vorne
             name: Heizung Partyraum vorne
-          - entity: sensor.el_leistung_tuya_sd_1
+          - entity: sensor.el_leistung_heizung_partyraum_hinten
             name: Heizung Partyraum hinten
           - type: custom:template-entity-row
             name: Lüftungsanlage
@@ -180,14 +180,14 @@ cards:
             secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_innr_sp_120_luftentfeuchter_partyraum', 'Einsparung durch PV gestern') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_innr_sp_120_luftentfeuchter_partyraum', 'Einsparung Prozent durch PV gestern') | float) }} %"
           - type: custom:template-entity-row
             name: Heizung Partyraum vorne
-            entity: sensor.stromverbrauch_tuya_sd_2
-            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Verbrauch gestern') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Kosten mit PV Abrechnung gestern')) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Einsparung durch PV gestern') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Einsparung Prozent durch PV gestern') | float) }} %"
+            entity: sensor.stromverbrauch_heizung_partyraum_vorne
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Verbrauch gestern') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Kosten mit PV Abrechnung gestern')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Einsparung durch PV gestern') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Einsparung Prozent durch PV gestern') | float) }} %"
           - type: custom:template-entity-row
             name: Heizung Partyraum hinten
-            entity: sensor.stromverbrauch_tuya_sd_1
-            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Verbrauch gestern') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Kosten mit PV Abrechnung gestern')) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Einsparung durch PV gestern') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Einsparung Prozent durch PV gestern') | float) }} %"
+            entity: sensor.stromverbrauch_heizung_partyraum_hinten
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Verbrauch gestern') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Kosten mit PV Abrechnung gestern')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Einsparung durch PV gestern') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Einsparung Prozent durch PV gestern') | float) }} %"
           - type: custom:template-entity-row
             name: Lüftungsanlage
             entity: sensor.stromverbrauch_luftungsanlage
@@ -339,14 +339,14 @@ cards:
             secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_innr_sp_120_luftentfeuchter_partyraum', 'Einsparung durch PV dieser Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_innr_sp_120_luftentfeuchter_partyraum', 'Einsparung Prozent durch PV dieser Monat') | float) }} %"
           - type: custom:template-entity-row
             name: Heizung Partyraum vorne
-            entity: sensor.stromverbrauch_tuya_sd_2
-            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Verbrauch dieser Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Kosten mit PV Abrechnung dieser Monat')) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Einsparung durch PV dieser Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Einsparung Prozent durch PV dieser Monat') | float) }} %"
+            entity: sensor.stromverbrauch_heizung_partyraum_vorne
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Verbrauch dieser Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Kosten mit PV Abrechnung dieser Monat')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Einsparung durch PV dieser Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Einsparung Prozent durch PV dieser Monat') | float) }} %"
           - type: custom:template-entity-row
             name: Heizung Partyraum hinten
-            entity: sensor.stromverbrauch_tuya_sd_1
-            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Verbrauch dieser Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Kosten mit PV Abrechnung dieser Monat')) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Einsparung durch PV dieser Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Einsparung Prozent durch PV dieser Monat') | float) }} %"
+            entity: sensor.stromverbrauch_heizung_partyraum_hinten
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Verbrauch dieser Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Kosten mit PV Abrechnung dieser Monat')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Einsparung durch PV dieser Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Einsparung Prozent durch PV dieser Monat') | float) }} %"
           - type: custom:template-entity-row
             name: Lüftungsanlage
             entity: sensor.stromverbrauch_luftungsanlage
@@ -498,14 +498,14 @@ cards:
             secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_innr_sp_120_luftentfeuchter_partyraum', 'Einsparung durch PV letzter Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_innr_sp_120_luftentfeuchter_partyraum', 'Einsparung Prozent durch PV letzter Monat') | float) }} %"
           - type: custom:template-entity-row
             name: Heizung Partyraum vorne
-            entity: sensor.stromverbrauch_tuya_sd_2
-            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Verbrauch letzter Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Kosten mit PV Abrechnung letzter Monat')) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Einsparung durch PV letzter Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Einsparung Prozent durch PV letzter Monat') | float) }} %"
+            entity: sensor.stromverbrauch_heizung_partyraum_vorne
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Verbrauch letzter Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Kosten mit PV Abrechnung letzter Monat')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Einsparung durch PV letzter Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Einsparung Prozent durch PV letzter Monat') | float) }} %"
           - type: custom:template-entity-row
             name: Heizung Partyraum hinten
-            entity: sensor.stromverbrauch_tuya_sd_1
-            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Verbrauch letzter Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Kosten mit PV Abrechnung letzter Monat')) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Einsparung durch PV letzter Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Einsparung Prozent durch PV letzter Monat') | float) }} %"
+            entity: sensor.stromverbrauch_heizung_partyraum_hinten
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Verbrauch letzter Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Kosten mit PV Abrechnung letzter Monat')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Einsparung durch PV letzter Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Einsparung Prozent durch PV letzter Monat') | float) }} %"
           - type: custom:template-entity-row
             name: Lüftungsanlage
             entity: sensor.stromverbrauch_luftungsanlage
@@ -657,14 +657,14 @@ cards:
             secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_innr_sp_120_luftentfeuchter_partyraum', 'Einsparung durch PV dieses Kalenderjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_innr_sp_120_luftentfeuchter_partyraum', 'Einsparung Prozent durch PV dieses Kalenderjahr') | float) }} %"
           - type: custom:template-entity-row
             name: Heizung Partyraum vorne
-            entity: sensor.stromverbrauch_tuya_sd_2
-            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Verbrauch dieses Kalenderjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Kosten mit PV Abrechnung dieses Kalenderjahr')) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Einsparung durch PV dieses Kalenderjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Einsparung Prozent durch PV dieses Kalenderjahr') | float) }} %"
+            entity: sensor.stromverbrauch_heizung_partyraum_vorne
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Verbrauch dieses Kalenderjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Kosten mit PV Abrechnung dieses Kalenderjahr')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Einsparung durch PV dieses Kalenderjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Einsparung Prozent durch PV dieses Kalenderjahr') | float) }} %"
           - type: custom:template-entity-row
             name: Heizung Partyraum hinten
-            entity: sensor.stromverbrauch_tuya_sd_1
-            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Verbrauch dieses Kalenderjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Kosten mit PV Abrechnung dieses Kalenderjahr')) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Einsparung durch PV dieses Kalenderjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Einsparung Prozent durch PV dieses Kalenderjahr') | float) }} %"
+            entity: sensor.stromverbrauch_heizung_partyraum_hinten
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Verbrauch dieses Kalenderjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Kosten mit PV Abrechnung dieses Kalenderjahr')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Einsparung durch PV dieses Kalenderjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Einsparung Prozent durch PV dieses Kalenderjahr') | float) }} %"
           - type: custom:template-entity-row
             name: Lüftungsanlage
             entity: sensor.stromverbrauch_luftungsanlage
@@ -816,14 +816,14 @@ cards:
             secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_innr_sp_120_luftentfeuchter_partyraum', 'Einsparung durch PV dieses Winterjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_innr_sp_120_luftentfeuchter_partyraum', 'Einsparung Prozent durch PV dieses Winterjahr') | float) }} %"
           - type: custom:template-entity-row
             name: Heizung Partyraum vorne
-            entity: sensor.stromverbrauch_tuya_sd_2
-            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Verbrauch dieses Winterjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Kosten mit PV Abrechnung dieses Winterjahr')) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Einsparung durch PV dieses Winterjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_tuya_sd_2', 'Einsparung Prozent durch PV dieses Winterjahr') | float) }} %"
+            entity: sensor.stromverbrauch_heizung_partyraum_vorne
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Verbrauch dieses Winterjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Kosten mit PV Abrechnung dieses Winterjahr')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Einsparung durch PV dieses Winterjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_vorne', 'Einsparung Prozent durch PV dieses Winterjahr') | float) }} %"
           - type: custom:template-entity-row
             name: Heizung Partyraum hinten
-            entity: sensor.stromverbrauch_tuya_sd_1
-            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Verbrauch dieses Winterjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Kosten mit PV Abrechnung dieses Winterjahr')) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Einsparung durch PV dieses Winterjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_tuya_sd_1', 'Einsparung Prozent durch PV dieses Winterjahr') | float) }} %"
+            entity: sensor.stromverbrauch_heizung_partyraum_hinten
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Verbrauch dieses Winterjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Kosten mit PV Abrechnung dieses Winterjahr')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Einsparung durch PV dieses Winterjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_heizung_partyraum_hinten', 'Einsparung Prozent durch PV dieses Winterjahr') | float) }} %"
           - type: custom:template-entity-row
             name: Lüftungsanlage
             entity: sensor.stromverbrauch_luftungsanlage
