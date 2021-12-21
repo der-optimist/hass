@@ -192,8 +192,9 @@ class air_dryer_and_humidifier(hass.Hass):
             
         if self.dryer_or_humidifier_needed and not self.dryer_or_humidifier_is_running:
             self.log("Tank Luftdrockner ist wohl voll")
+            if self.get_state(self.name_reminder_switch_tank) != "on":
+                self.fire_event("custom_notify", message=self.text_reminder_switch_tank, target="telegram_jo")
             self.set_state(self.name_reminder_switch_tank, state = "on", attributes = self.attributes_reminder_tank)
-            self.fire_event("custom_notify", message=self.text_reminder_switch_tank, target="telegram_jo")
         else:
             self.set_state(self.name_reminder_switch_tank, state = "off", attributes = self.attributes_reminder_tank)
         
