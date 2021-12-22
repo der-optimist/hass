@@ -97,6 +97,50 @@
       seconds: 10
       milliseconds: 0
   mode: single
+- id: '1640156192212'
+  alias: ZigBee Taster Lea
+  description: ''
+  trigger_variables:
+      device_ieee: 00:15:8d:00:06:6f:9b:9d
+  trigger:
+  - platform: event
+    event_type: zha_event
+    id: zha_event
+    event_data:
+      device_ieee: "{{ device_ieee }}"
+  condition: []
+  action:
+  - service: switch.toggle
+    target:
+      entity_id: switch.le_schlaft
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  mode: single
+- id: '1640156192213'
+  alias: ZigBee Taster Gäste
+  description: ''
+  trigger_variables:
+      device_ieee: 00:15:8d:00:02:5f:22:62
+  trigger:
+  - platform: event
+    event_type: zha_event
+    id: zha_event
+    event_data:
+      device_ieee: "{{ device_ieee }}"
+  condition: []
+  action:
+  - service: switch.toggle
+    target:
+      entity_id: switch.gaste_schlafen
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  mode: single
 #
 #
 #
