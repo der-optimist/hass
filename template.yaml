@@ -7,6 +7,14 @@
       - name: Wirkungsgrad Wechselrichter gefiltert
         state: '{{ states("sensor.wirkungsgrad_wechselrichter") }}'
         unit_of_measurement: '%'
+  - trigger:
+      - platform: state
+        entity_id: binary_sensor.storung_heizaktor_eg
+        for: "00:01:00"
+    binary_sensor:
+      - name: storung_heizaktor_eg_notify
+        state: '{{ states("binary_sensor.storung_heizaktor_eg") }}'
+        device_class: problem
 #
 # State based
   - sensor:
