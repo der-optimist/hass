@@ -8,8 +8,8 @@ le_zigbee_button:
   class: zigbee_button_toggle
   zha_device_ieee: '00:15:8d:00:06:6f:9b:9d'
   toggle_entity: switch.le_schlaft
-la_zigbee_button:
-  module: zigbee_button_toggle
-  class: zigbee_button_toggle
-  zha_device_ieee: '00:15:8d:00:06:72:6e:97'
-  toggle_entity: switch.la_schlaft
+#la_zigbee_button:
+#  module: zigbee_button_toggle
+#  class: zigbee_button_toggle
+#  zha_device_ieee: '00:15:8d:00:06:72:6e:97'
+#  toggle_entity: switch.la_schlaft
