@@ -75,6 +75,34 @@
     target:
       entity_id: media_player.kodi_wz_2
   mode: restart
+- id: '1640156192211'
+  alias: ZigBee Taster Lara
+  description: ''
+  variables:
+      device_ieee: 00:15:8d:00:06:72:6e:97
+  trigger:
+  - platform: event
+    event_type: zha_event
+    id: zha_event
+    event_data:
+      device_ieee: "{{ device_ieee }}"
+  condition: []
+  action:
+  - service: switch.toggle
+    target:
+      entity_id: switch.la_schlaft
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  mode: single
+#
+#
+#
+# --- Licht GZ 2 ---
+#
+#
 - id: '1637055201020'
   alias: Test Licht GZ 2
   description: ''
