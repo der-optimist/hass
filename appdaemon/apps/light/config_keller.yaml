@@ -41,6 +41,6 @@ auto_light_k_kellerflur:
   type: switch
   triggers: 
     - binary_sensor.pm_ktr_treppe
-    - binary_sensor.pm_k_fl
+    - binary_sensor.pm_k_fl_2
   min_illuminance_values:
     "00:00": 1

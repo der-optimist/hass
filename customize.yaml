@@ -121,7 +121,7 @@ binary_sensor.pm_o_kw_le_tuer:
 binary_sensor.pm_o_nz:
   friendly_name: Arbeitszimmer
 # Keller
-binary_sensor.pm_k_fl:
+binary_sensor.pm_k_fl_2:
   friendly_name: Kellerflur
 binary_sensor.pm_k_te:
   friendly_name: Waschküche

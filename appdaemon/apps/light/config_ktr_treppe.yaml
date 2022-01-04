@@ -7,7 +7,7 @@ auto_light_k_kellertreppe:
   type: dim
   triggers: 
     - binary_sensor.pm_ktr_treppe
-    - binary_sensor.pm_k_fl
+    - binary_sensor.pm_k_fl_2
   brightness_values:
     "00:00": 40
   min_illuminance_values:
