@@ -124,7 +124,7 @@
     device_class: moving
 
 # Keller
-  - state_address: '0/1/100'
+  - state_address: '8/0/40'
     name: PM_K_FL
     device_class: moving
   - state_address:  '0/1/120'
