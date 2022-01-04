@@ -32,3 +32,15 @@ auto_light_k_partyraum:
     - binary_sensor.pm_k_timer_bewegung_partyraum
   min_illuminance_values:
     "00:00": 1
+auto_light_k_kellerflur:
+  module: auto_light
+  class: auto_light
+  debug: quiet
+  app_switch: input_boolean.app_switch_licht_treppe_keller
+  light: light.flur_keller
+  type: switch
+  triggers: 
+    - binary_sensor.pm_ktr_treppe
+    - binary_sensor.pm_k_fl
+  min_illuminance_values:
+    "00:00": 1
