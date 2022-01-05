@@ -275,8 +275,8 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-        - entity: input_boolean.eisschutz_jalousien
-          name: Eisschutz Jalousien
+        - entity: input_boolean.arbeit_theke
+          name: Arbeit Theke
   - type: vertical-stack
     view_layout:
       grid-area: birthdays
@@ -315,7 +315,7 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
+        - entity: input_boolean.eisschutz_jalousien
+          name: Eisschutz Jalousien
         - entity: input_boolean.gaeste_abends
           name: Gäste
-        - entity: input_boolean.arbeit_theke
-          name: Arbeit Theke
