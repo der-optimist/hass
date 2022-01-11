@@ -830,6 +830,101 @@
                 {{ trigger.to_state.state | int(80) }}
               transition: >
                 {{ transition_time }}
+          # path 17
+        - conditions:
+          - condition: template
+            value_template: >
+              {{ (trigger.to_state.state | int(0)) == 0 }}
+          sequence:
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+                state: 'on'
+              sequence:
+              - choose:
+                - conditions:
+                  - condition: state
+                    entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
+                    state: 'on'
+                  sequence:
+                  - condition: state
+                    entity_id: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
+                    state: 'off'
+                  - condition: state
+                    entity_id: input_boolean.helper_light_manually_switched_off_e_ba_regal
+                    state: 'off'
+                  - choose:
+                    - conditions:
+                      - condition: state
+                        entity_id: light.regal_bad_eg
+                        state: 'off'
+                      sequence:
+                      - service: input_boolean.turn_on
+                        target:
+                          entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                    default: []
+                  - service: light.turn_on
+                    target:
+                      entity_id: light.regal_bad_eg
+                    data_template:
+                      brightness: >
+                        {{ trigger.to_state.state | int(80) }}
+                      transition: >
+                        {{ transition_time }}
+                # path 18
+                - conditions:
+                  - condition: state
+                    entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
+                    state: 'off'
+                  sequence:
+                  - condition: state
+                    entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
+                    state: 'off'
+                  - condition: state
+                    entity_id: input_boolean.helper_light_manually_switched_on_e_ba_regal
+                    state: 'off'
+                  - choose:
+                    - conditions:
+                      - condition: state
+                        entity_id: light.regal_bad_eg
+                        state: 'on'
+                      sequence:
+                      - service: input_boolean.turn_on
+                        target:
+                          entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                    default: []
+                  - service: light.turn_off
+                    target:
+                      entity_id: light.regal_bad_eg
+                default: []
+            # path 19
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+                state: 'off'
+              sequence:
+              - condition: state
+                entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
+                state: 'off'
+              - condition: state
+                entity_id: input_boolean.helper_light_manually_switched_on_e_ba_regal
+                state: 'off'
+              - choose:
+                - conditions:
+                  - condition: state
+                    entity_id: light.regal_bad_eg
+                    state: 'on'
+                  sequence:
+                  - service: input_boolean.turn_on
+                    target:
+                      entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                default: []
+              - service: light.turn_off
+                target:
+                  entity_id: light.regal_bad_eg
+            default: []
+        default: []
     default: []
   mode: queued
   max: 10
