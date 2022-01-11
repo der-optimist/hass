@@ -197,20 +197,20 @@
   description: ''
   trigger:
     - platform: template
-      value_template: "{% if states.sensor.esp_wemos_d1_2_wlan_signal.last_updated is defined %}{{ ((as_timestamp(now()) - as_timestamp(states.sensor.esp_wemos_d1_2_wlan_signal.last_updated)) / 3600) > 12 }}{% else %}{{ false }}{% endif %}"
+      value_template: "{% if states.sensor.esp_wemos_d1_2_wlan_signal.last_updated is defined %}{{ ((as_timestamp(now()) - as_timestamp(states.sensor.esp_wemos_d1_2_wlan_signal.last_updated)) / 3600) > 0.25 }}{% else %}{{ false }}{% endif %}"
   condition: []
   action:
     - repeat:
         while:
           - condition: template
-            value_template: "{% if states.sensor.esp_wemos_d1_2_wlan_signal.last_updated is defined %}{{ ((as_timestamp(now()) - as_timestamp(states.sensor.esp_wemos_d1_2_wlan_signal.last_updated)) / 3600) > 12 }}{% else %}{{ false }}{% endif %}"
+            value_template: "{% if states.sensor.esp_wemos_d1_2_wlan_signal.last_updated is defined %}{{ ((as_timestamp(now()) - as_timestamp(states.sensor.esp_wemos_d1_2_wlan_signal.last_updated)) / 3600) > 0.25 }}{% else %}{{ false }}{% endif %}"
         sequence:
           - service: notify.telegram_jo
             data:
               message: Batterie Hochzeitsbild ist leer
           - delay:
-              hours: 12
-              minutes: 0
+              hours: 0
+              minutes: 3
               seconds: 0
               milliseconds: 0
   mode: single
