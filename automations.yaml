@@ -352,6 +352,9 @@
     entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
     attribute: brightness
     id: keeping_fix_brightness_changed
+  - platform: state
+    entity_id: sensor.helper_light_effective_brightness_e_ba_regal
+    id: effective_brightness_changed
   condition: []
   action:
   - choose:
@@ -925,6 +928,28 @@
                   entity_id: light.regal_bad_eg
             default: []
         default: []
+    # path 20
+    - conditions:
+      - condition: trigger
+        id: effective_brightness_changed
+      sequence:
+      - condition: template
+        value_template: >
+          {{ (trigger.to_state.state | int(0)) != (states(sensor.helper_light_basic_brightness_e_ba_regal) | int(0)) }}
+      - condition: state
+        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        state: 'on'
+      - condition: state
+        entity_id: light.regal_bad_eg
+        state: 'on'
+      - service: light.turn_on
+        target:
+          entity_id: light.regal_bad_eg
+        data_template:
+          brightness: >
+            {{ trigger.to_state.state | int(80) }}
+          transition: >
+            {{ transition_time }}
     default: []
   mode: queued
-  max: 10
+  max: 20
