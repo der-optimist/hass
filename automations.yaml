@@ -136,6 +136,62 @@
       seconds: 10
       milliseconds: 0
   mode: single
+- id: '3f8caab8-7874-4d85-a0a6-13a83dd0fcc0'
+  alias: Erinnerung Heizung Partyraum vorne lange an
+  description: ''
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.el_leistung_heizung_partyraum_vorne
+      above: '100'
+      for:
+        hours: 4
+        minutes: 0
+        seconds: 0
+  condition: []
+  action:
+    - repeat:
+        while:
+          - condition: numeric_state
+            entity_id: sensor.el_leistung_heizung_partyraum_vorne
+            above: '100'
+        sequence:
+          - service: notify.telegram_jo
+            data:
+              message: Heizung Partyraum vorne ist noch an
+          - delay:
+              hours: 2
+              minutes: 0
+              seconds: 0
+              milliseconds: 0
+  mode: single
+- id: 'e1fa2ab4-17ee-476d-9cde-02c450ad93b9'
+  alias: Erinnerung Heizung Partyraum hinten lange an
+  description: ''
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.el_leistung_heizung_partyraum_hinten
+      above: '100'
+      for:
+        hours: 4
+        minutes: 0
+        seconds: 0
+  condition: []
+  action:
+    - repeat:
+        while:
+          - condition: numeric_state
+            entity_id: sensor.el_leistung_heizung_partyraum_hinten
+            above: '100'
+        sequence:
+          - service: notify.telegram_jo
+            data:
+              message: Heizung Partyraum hinten ist noch an
+          - delay:
+              hours: 2
+              minutes: 0
+              seconds: 0
+              milliseconds: 0
+  mode: single
 #
 #
 #
