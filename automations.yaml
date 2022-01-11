@@ -192,6 +192,28 @@
               seconds: 0
               milliseconds: 0
   mode: single
+- id: '8fc7df48-115a-44a8-ab48-8f8a514563f1'
+  alias: Erinnerung Batterie Hochzeitsbild
+  description: ''
+  trigger:
+    - platform: template
+      value_template: "{% if states.sensor.esp_wemos_d1_2_wlan_signal.last_updated is defined %}{{ ((as_timestamp(now()) - as_timestamp(states.sensor.esp_wemos_d1_2_wlan_signal.last_updated)) / 3600) > 12 }}{% else %}{{ false }}{% endif %}"
+  condition: []
+  action:
+    - repeat:
+        while:
+          - condition: template
+            value_template: "{% if states.sensor.esp_wemos_d1_2_wlan_signal.last_updated is defined %}{{ ((as_timestamp(now()) - as_timestamp(states.sensor.esp_wemos_d1_2_wlan_signal.last_updated)) / 3600) > 12 }}{% else %}{{ false }}{% endif %}"
+        sequence:
+          - service: notify.telegram_jo
+            data:
+              message: Batterie Hochzeitsbild ist leer
+          - delay:
+              hours: 12
+              minutes: 0
+              seconds: 0
+              milliseconds: 0
+  mode: single
 #
 #
 #
