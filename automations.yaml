@@ -348,6 +348,10 @@
     entity_id: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
     id: keeping_off_ended
     to: "off"
+  - platform: state
+    entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+    attribute: brightness
+    id: keeping_fix_brightness_changed
   condition: []
   action:
   - choose:
@@ -794,6 +798,38 @@
           - service: light.turn_off
             target:
               entity_id: light.regal_bad_eg
+    # path 16
+    - conditions:
+      - condition: trigger
+        id: keeping_fix_brightness_changed
+      - condition: state
+        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        state: 'on'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: >
+              {{ (trigger.to_state.state | int(0)) > 0 }}
+          sequence:
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: light.regal_bad_eg
+                state: 'off'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+            default: []
+          - service: light.turn_on
+            target:
+              entity_id: light.regal_bad_eg
+            data_template:
+              brightness: >
+                {{ trigger.to_state.state | int(80) }}
+              transition: >
+                {{ transition_time }}
     default: []
   mode: queued
   max: 10
