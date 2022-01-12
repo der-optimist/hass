@@ -10,6 +10,13 @@ blueprint:
         target:
           entity:
             domain: light
+    automation_switch:
+      name: Automation Switch
+      description: Switching the automation function on or off without deactivating the HA automation
+      selector:
+        target:
+          entity:
+            domain: input_boolean
     transition_time:
       name: Transition Time
       description: Time in s
@@ -31,7 +38,7 @@ variables:
 
 trigger:
   - platform: state
-    entity_id: input_boolean.automation_switch_light_e_ba_regal
+    entity_id: !input automation_switch
     id: app_switch
     to: 'on'
   - platform: homeassistant
@@ -121,7 +128,7 @@ action:
                     state: 'on'
                   sequence:
                   - condition: state
-                    entity_id: input_boolean.automation_switch_light_e_ba_regal
+                    entity_id: !input automation_switch
                     state: 'on'
                   - condition: state
                     state: 'off'
@@ -154,7 +161,7 @@ action:
                     state: 'on'
                   sequence:
                   - condition: state
-                    entity_id: input_boolean.automation_switch_light_e_ba_regal
+                    entity_id: !input automation_switch
                     state: 'on'
                   - condition: state
                     state: 'off'
@@ -182,7 +189,7 @@ action:
                 state: 'off'
               sequence:
               - condition: state
-                entity_id: input_boolean.automation_switch_light_e_ba_regal
+                entity_id: !input automation_switch
                 state: 'on'
               - condition: state
                 state: 'off'
@@ -208,7 +215,7 @@ action:
             state: 'on'
           sequence:
           - condition: state
-            entity_id: input_boolean.automation_switch_light_e_ba_regal
+            entity_id: !input automation_switch
             state: 'on'
           - choose:
             - conditions:
@@ -241,7 +248,7 @@ action:
         target:
           entity_id: input_boolean.helper_light_manually_switched_on_e_ba_regal
       - condition: state
-        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        entity_id: !input automation_switch
         state: 'on'
       - condition: state
         entity_id: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
@@ -282,7 +289,7 @@ action:
         target:
           entity_id: input_boolean.helper_light_manually_switched_off_e_ba_regal
       - condition: state
-        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        entity_id: !input automation_switch
         state: 'on'
       - condition: state
         entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
@@ -315,7 +322,7 @@ action:
       - condition: template
         value_template: '{{ (trigger.to_state.state | float(0)) > (trigger.from_state.state | float(1)) }}'
       - condition: state
-        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        entity_id: !input automation_switch
         state: 'on'
       - choose:
         - conditions:
@@ -336,7 +343,7 @@ action:
         id: too_dark
       sequence:
       - condition: state
-        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        entity_id: !input automation_switch
         state: 'on'
       - condition: state
         entity_id: binary_sensor.helper_light_trigger_e_ba_regal
@@ -374,7 +381,7 @@ action:
         id: too_bright
       sequence:
       - condition: state
-        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        entity_id: !input automation_switch
         state: 'on'
       - condition: state
         entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
@@ -444,7 +451,7 @@ action:
         id: keeping_off_ended
       sequence:
       - condition: state
-        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        entity_id: !input automation_switch
         state: 'on'
       - condition: state
         entity_id: binary_sensor.helper_light_trigger_e_ba_regal
@@ -488,7 +495,7 @@ action:
             state: 'on'
           sequence:
           - condition: state
-            entity_id: input_boolean.automation_switch_light_e_ba_regal
+            entity_id: !input automation_switch
             state: 'on'
           - condition: state
             entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
@@ -519,7 +526,7 @@ action:
             state: 'off'
           sequence:
           - condition: state
-            entity_id: input_boolean.automation_switch_light_e_ba_regal
+            entity_id: !input automation_switch
             state: 'on'
           - condition: state
             entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
@@ -542,7 +549,7 @@ action:
       - condition: trigger
         id: keeping_fix_brightness_changed
       - condition: state
-        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        entity_id: !input automation_switch
         state: 'on'
       sequence:
       - choose:
@@ -673,7 +680,7 @@ action:
         value_template: >
           {{ (trigger.to_state.state | int(0)) != (states(sensor.helper_light_basic_brightness_e_ba_regal) | int(0)) }}
       - condition: state
-        entity_id: input_boolean.automation_switch_light_e_ba_regal
+        entity_id: !input automation_switch
         state: 'on'
       - condition: state
         entity_id: !input light_entity

@@ -221,6 +221,7 @@
     path: /config/blueprints/light_automation.yaml
     input:
       light_entity: light.regal_bad_eg
+      automation_switch: input_boolean.automation_switch_light_e_ba_regal
       transition_time: 1
 #
 #
