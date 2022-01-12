@@ -214,6 +214,14 @@
               seconds: 0
               milliseconds: 0
   mode: single
+- alias: Licht E Bad Regal Blueprint
+  id: 'licht_e_bad_regal_blueprint'
+  description: ''
+  use_blueprint:
+    path: /config/blueprints/light_automation.yaml
+    input:
+      light_entity: light.regal_bad_eg
+      transition_time: 1
 #
 #
 #
