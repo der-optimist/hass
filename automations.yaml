@@ -720,7 +720,7 @@
     # path 13
     - conditions:
       - condition: trigger
-        id: keeping_on_ended
+        id: keeping_off_ended
       sequence:
       - condition: state
         entity_id: input_boolean.automation_switch_light_e_ba_regal
@@ -758,7 +758,7 @@
     # path 14
     - conditions:
       - condition: trigger
-        id: keeping_off_ended
+        id: keeping_on_ended
       sequence:
       - choose:
         - conditions:
