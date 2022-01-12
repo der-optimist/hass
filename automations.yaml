@@ -308,6 +308,7 @@
   description: ''
   variables:
     transition_time: 1
+    light_entity: light.regal_bad_eg
   trigger:
   - platform: state
     entity_id: input_boolean.automation_switch_light_e_ba_regal
@@ -338,7 +339,7 @@
     id: too_bright
     to: "on"
   - platform: state
-    entity_id: light.regal_bad_eg
+    entity_id: "{{ light_entity }}"
     id: light_on_or_off
   - platform: state
     entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
@@ -411,7 +412,7 @@
                   - choose:
                     - conditions:
                       - condition: state
-                        entity_id: light.regal_bad_eg
+                        entity_id: "{{ light_entity }}"
                         state: 'off'
                       sequence:
                       - service: input_boolean.turn_on
@@ -420,7 +421,7 @@
                     default: []
                   - service: light.turn_on
                     target:
-                      entity_id: light.regal_bad_eg
+                      entity_id: "{{ light_entity }}"
                     data_template:
                       brightness_pct: >
                         {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
@@ -444,7 +445,7 @@
                   - choose:
                     - conditions:
                       - condition: state
-                        entity_id: light.regal_bad_eg
+                        entity_id: "{{ light_entity }}"
                         state: 'on'
                       sequence:
                       - service: input_boolean.turn_on
@@ -453,7 +454,7 @@
                     default: []
                   - service: light.turn_off
                     target:
-                      entity_id: light.regal_bad_eg
+                      entity_id: "{{ light_entity }}"
                 default: []
             - conditions:
               - condition: state
@@ -469,7 +470,7 @@
               - choose:
                 - conditions:
                   - condition: state
-                    entity_id: light.regal_bad_eg
+                    entity_id: "{{ light_entity }}"
                     state: 'on'
                   sequence:
                   - service: input_boolean.turn_on
@@ -478,7 +479,7 @@
                 default: []
               - service: light.turn_off
                 target:
-                  entity_id: light.regal_bad_eg
+                  entity_id: "{{ light_entity }}"
             default: []
         # path 4
         - conditions:
@@ -492,7 +493,7 @@
           - choose:
             - conditions:
               - condition: state
-                entity_id: light.regal_bad_eg
+                entity_id: "{{ light_entity }}"
                 state: 'off'
               sequence:
               - service: input_boolean.turn_on
@@ -501,7 +502,7 @@
             default: []
           - service: light.turn_on
             target:
-              entity_id: light.regal_bad_eg
+              entity_id: "{{ light_entity }}"
             data_template:
               brightness_pct: >
                 {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
@@ -534,7 +535,7 @@
       - choose:
         - conditions:
           - condition: state
-            entity_id: light.regal_bad_eg
+            entity_id: "{{ light_entity }}"
             state: 'off'
           sequence:
           - service: input_boolean.turn_on
@@ -543,7 +544,7 @@
         default: []
       - service: light.turn_on
         target:
-          entity_id: light.regal_bad_eg
+          entity_id: "{{ light_entity }}"
         data_template:
           brightness_pct: >
             {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
@@ -572,7 +573,7 @@
       - choose:
         - conditions:
           - condition: state
-            entity_id: light.regal_bad_eg
+            entity_id: "{{ light_entity }}"
             state: 'on'
           sequence:
           - service: input_boolean.turn_on
@@ -581,7 +582,7 @@
         default: []
       - service: light.turn_off
         target:
-          entity_id: light.regal_bad_eg
+          entity_id: "{{ light_entity }}"
     # path 7
     - conditions:
       - condition: trigger
@@ -599,7 +600,7 @@
       - choose:
         - conditions:
           - condition: state
-            entity_id: light.regal_bad_eg
+            entity_id: "{{ light_entity }}"
             state: 'on'
           sequence:
           - service: input_boolean.turn_on
@@ -608,7 +609,7 @@
         default: []
       - service: light.turn_off
         target:
-          entity_id: light.regal_bad_eg
+          entity_id: "{{ light_entity }}"
     # path 8
     - conditions:
       - condition: trigger
@@ -632,7 +633,7 @@
       - choose:
         - conditions:
           - condition: state
-            entity_id: light.regal_bad_eg
+            entity_id: "{{ light_entity }}"
             state: 'off'
           sequence:
           - service: input_boolean.turn_on
@@ -641,7 +642,7 @@
         default: []
       - service: light.turn_on
         target:
-          entity_id: light.regal_bad_eg
+          entity_id: "{{ light_entity }}"
         data_template:
           brightness_pct: >
             {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
@@ -667,7 +668,7 @@
       - choose:
         - conditions:
           - condition: state
-            entity_id: light.regal_bad_eg
+            entity_id: "{{ light_entity }}"
             state: 'on'
           sequence:
           - service: input_boolean.turn_on
@@ -676,7 +677,7 @@
         default: []
       - service: light.turn_off
         target:
-          entity_id: light.regal_bad_eg
+          entity_id: "{{ light_entity }}"
     # path 10
     - conditions:
       - condition: trigger
@@ -740,7 +741,7 @@
       - choose:
         - conditions:
           - condition: state
-            entity_id: light.regal_bad_eg
+            entity_id: "{{ light_entity }}"
             state: 'off'
           sequence:
           - service: input_boolean.turn_on
@@ -749,7 +750,7 @@
         default: []
       - service: light.turn_on
         target:
-          entity_id: light.regal_bad_eg
+          entity_id: "{{ light_entity }}"
         data_template:
           brightness_pct: >
             {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
@@ -781,7 +782,7 @@
           - choose:
             - conditions:
               - condition: state
-                entity_id: light.regal_bad_eg
+                entity_id: "{{ light_entity }}"
                 state: 'on'
               sequence:
               - service: input_boolean.turn_on
@@ -790,7 +791,7 @@
             default: []
           - service: light.turn_off
             target:
-              entity_id: light.regal_bad_eg
+              entity_id: "{{ light_entity }}"
         # path 15
         - conditions:
           - condition: state
@@ -806,7 +807,7 @@
           - choose:
             - conditions:
               - condition: state
-                entity_id: light.regal_bad_eg
+                entity_id: "{{ light_entity }}"
                 state: 'on'
               sequence:
               - service: input_boolean.turn_on
@@ -815,7 +816,7 @@
             default: []
           - service: light.turn_off
             target:
-              entity_id: light.regal_bad_eg
+              entity_id: "{{ light_entity }}"
     # path 16
     - conditions:
       - condition: trigger
@@ -833,7 +834,7 @@
           - choose:
             - conditions:
               - condition: state
-                entity_id: light.regal_bad_eg
+                entity_id: "{{ light_entity }}"
                 state: 'off'
               sequence:
               - service: input_boolean.turn_on
@@ -842,7 +843,7 @@
             default: []
           - service: light.turn_on
             target:
-              entity_id: light.regal_bad_eg
+              entity_id: "{{ light_entity }}"
             data_template:
               brightness_pct: >
                 {{ trigger.to_state.state | int(80) }}
@@ -875,7 +876,7 @@
                   - choose:
                     - conditions:
                       - condition: state
-                        entity_id: light.regal_bad_eg
+                        entity_id: "{{ light_entity }}"
                         state: 'off'
                       sequence:
                       - service: input_boolean.turn_on
@@ -884,7 +885,7 @@
                     default: []
                   - service: light.turn_on
                     target:
-                      entity_id: light.regal_bad_eg
+                      entity_id: "{{ light_entity }}"
                     data_template:
                       brightness_pct: >
                         {{ trigger.to_state.state | int(80) }}
@@ -905,7 +906,7 @@
                   - choose:
                     - conditions:
                       - condition: state
-                        entity_id: light.regal_bad_eg
+                        entity_id: "{{ light_entity }}"
                         state: 'on'
                       sequence:
                       - service: input_boolean.turn_on
@@ -914,7 +915,7 @@
                     default: []
                   - service: light.turn_off
                     target:
-                      entity_id: light.regal_bad_eg
+                      entity_id: "{{ light_entity }}"
                 default: []
             # path 19
             - conditions:
@@ -931,7 +932,7 @@
               - choose:
                 - conditions:
                   - condition: state
-                    entity_id: light.regal_bad_eg
+                    entity_id: "{{ light_entity }}"
                     state: 'on'
                   sequence:
                   - service: input_boolean.turn_on
@@ -940,7 +941,7 @@
                 default: []
               - service: light.turn_off
                 target:
-                  entity_id: light.regal_bad_eg
+                  entity_id: "{{ light_entity }}"
             default: []
         default: []
     # path 20
@@ -955,11 +956,11 @@
         entity_id: input_boolean.automation_switch_light_e_ba_regal
         state: 'on'
       - condition: state
-        entity_id: light.regal_bad_eg
+        entity_id: "{{ light_entity }}"
         state: 'on'
       - service: light.turn_on
         target:
-          entity_id: light.regal_bad_eg
+          entity_id: "{{ light_entity }}"
         data_template:
           brightness_pct: >
             {{ trigger.to_state.state | int(80) }}
