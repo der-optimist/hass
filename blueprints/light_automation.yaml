@@ -52,6 +52,13 @@ blueprint:
         target:
           entity:
             domain: binary_sensor
+    helper_auto_switched:
+      name: Helper Auto-Switched
+      description: Variable that stores information if light was switched by automation or manually
+      selector:
+        target:
+          entity:
+            domain: input_boolean
     transition_time:
       name: Transition Time
       description: Time in s
@@ -133,7 +140,7 @@ action:
       sequence:
       - service: input_boolean.turn_off
         target:
-          entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+          entity_id: !input helper_auto_switched
       - choose:
         - conditions:
           - condition: trigger
@@ -181,7 +188,7 @@ action:
                       sequence:
                       - service: input_boolean.turn_on
                         target:
-                          entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                          entity_id: !input helper_auto_switched
                     default: []
                   - service: light.turn_on
                     target:
@@ -214,7 +221,7 @@ action:
                       sequence:
                       - service: input_boolean.turn_on
                         target:
-                          entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                          entity_id: !input helper_auto_switched
                     default: []
                   - service: light.turn_off
                     target:
@@ -239,7 +246,7 @@ action:
                   sequence:
                   - service: input_boolean.turn_on
                     target:
-                      entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                      entity_id: !input helper_auto_switched
                 default: []
               - service: light.turn_off
                 target:
@@ -262,7 +269,7 @@ action:
               sequence:
               - service: input_boolean.turn_on
                 target:
-                  entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                  entity_id: !input helper_auto_switched
             default: []
           - service: light.turn_on
             target:
@@ -304,7 +311,7 @@ action:
           sequence:
           - service: input_boolean.turn_on
             target:
-              entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+              entity_id: !input helper_auto_switched
         default: []
       - service: light.turn_on
         target:
@@ -342,7 +349,7 @@ action:
           sequence:
           - service: input_boolean.turn_on
             target:
-              entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+              entity_id: !input helper_auto_switched
         default: []
       - service: light.turn_off
         target:
@@ -369,7 +376,7 @@ action:
           sequence:
           - service: input_boolean.turn_on
             target:
-              entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+              entity_id: !input helper_auto_switched
         default: []
       - service: light.turn_off
         target:
@@ -402,7 +409,7 @@ action:
           sequence:
           - service: input_boolean.turn_on
             target:
-              entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+              entity_id: !input helper_auto_switched
         default: []
       - service: light.turn_on
         target:
@@ -437,7 +444,7 @@ action:
           sequence:
           - service: input_boolean.turn_on
             target:
-              entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+              entity_id: !input helper_auto_switched
         default: []
       - service: light.turn_off
         target:
@@ -450,7 +457,7 @@ action:
       - choose:
         - conditions:
           - condition: state
-            entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+            entity_id: !input helper_auto_switched
             state: 'off'
           sequence:
           - choose:
@@ -475,12 +482,12 @@ action:
         # path 12
         - conditions:
           - condition: state
-            entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+            entity_id: !input helper_auto_switched
             state: 'on'
           sequence:
           - service: input_boolean.turn_off
             target:
-              entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+              entity_id: !input helper_auto_switched
         default: []
     # path 13
     - conditions:
@@ -510,7 +517,7 @@ action:
           sequence:
           - service: input_boolean.turn_on
             target:
-              entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+              entity_id: !input helper_auto_switched
         default: []
       - service: light.turn_on
         target:
@@ -551,7 +558,7 @@ action:
               sequence:
               - service: input_boolean.turn_on
                 target:
-                  entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                  entity_id: !input helper_auto_switched
             default: []
           - service: light.turn_off
             target:
@@ -576,7 +583,7 @@ action:
               sequence:
               - service: input_boolean.turn_on
                 target:
-                  entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                  entity_id: !input helper_auto_switched
             default: []
           - service: light.turn_off
             target:
@@ -603,7 +610,7 @@ action:
               sequence:
               - service: input_boolean.turn_on
                 target:
-                  entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                  entity_id: !input helper_auto_switched
             default: []
           - service: light.turn_on
             target:
@@ -645,7 +652,7 @@ action:
                       sequence:
                       - service: input_boolean.turn_on
                         target:
-                          entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                          entity_id: !input helper_auto_switched
                     default: []
                   - service: light.turn_on
                     target:
@@ -675,7 +682,7 @@ action:
                       sequence:
                       - service: input_boolean.turn_on
                         target:
-                          entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                          entity_id: !input helper_auto_switched
                     default: []
                   - service: light.turn_off
                     target:
@@ -701,7 +708,7 @@ action:
                   sequence:
                   - service: input_boolean.turn_on
                     target:
-                      entity_id: input_boolean.helper_light_auto_switched_e_ba_regal
+                      entity_id: !input helper_auto_switched
                 default: []
               - service: light.turn_off
                 target:
