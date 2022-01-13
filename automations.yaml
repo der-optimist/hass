@@ -228,6 +228,8 @@
       helper_is_too_dark: binary_sensor.helper_light_is_too_dark_e_ba_regal
       helper_is_too_bright: binary_sensor.helper_light_is_too_bright_e_ba_regal
       helper_auto_switched: input_boolean.helper_light_auto_switched_e_ba_regal
+      helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_e_ba_regal
+      helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_e_ba_regal
       transition_time: 1
 #
 #
