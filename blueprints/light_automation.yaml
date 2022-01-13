@@ -17,6 +17,13 @@ blueprint:
         target:
           entity:
             domain: input_boolean
+    helper_effective_brightness:
+      name: Helper Effective Brightness
+      description: Helper Entity (sensor), that keeps the current effective brightness
+      selector:
+        target:
+          entity:
+            domain: sensor
     transition_time:
       name: Transition Time
       description: Time in s
@@ -35,6 +42,7 @@ max_exceeded: silent
 
 variables:
   transition_time: !input transition_time
+  helper_effective_brightness: !input helper_effective_brightness
 
 trigger:
   - platform: state
@@ -151,7 +159,7 @@ action:
                       entity_id: !input light_entity
                     data_template:
                       brightness_pct: >
-                        {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
+                        {{ states(helper_effective_brightness) | int(80) }}
                       transition: >
                         {{ transition_time }}
                 # path 2
@@ -232,7 +240,7 @@ action:
               entity_id: !input light_entity
             data_template:
               brightness_pct: >
-                {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
+                {{ states(helper_effective_brightness) | int(80) }}
               transition: >
                 {{ transition_time }}
         default: []
@@ -274,7 +282,7 @@ action:
           entity_id: !input light_entity
         data_template:
           brightness_pct: >
-            {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
+            {{ states(helper_effective_brightness) | int(5) }}
           transition: >
             {{ transition_time }}
     # path 6
@@ -372,7 +380,7 @@ action:
           entity_id: !input light_entity
         data_template:
           brightness_pct: >
-            {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
+            {{ states(helper_effective_brightness) | int(80) }}
           transition: >
             {{ transition_time }}
     # path 9
@@ -480,7 +488,7 @@ action:
           entity_id: !input light_entity
         data_template:
           brightness_pct: >
-            {{ states('sensor.helper_light_effective_brightness_e_ba_regal') | int(80) }}
+            {{ states(helper_effective_brightness) | int(80) }}
           transition: >
             {{ transition_time }}
     # path 14
