@@ -73,6 +73,34 @@ blueprint:
         target:
           entity:
             domain: input_boolean
+    helper_switching_off_entities:
+      name: Helper Switching Off Entities
+      description: Sensor for number of active switching off entities
+      selector:
+        target:
+          entity:
+            domain: sensor
+    helper_keeping_on_entities:
+      name: Helper Keeping On Entities
+      description: Binary Sensor that indicates if a keeping on entity is active
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
+    helper_keeping_off_entities:
+      name: Helper Keeping Off Entities
+      description: Binary Sensor that indicates if a keeping off entity is active
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
+    helper_keeping_fix_entities:
+      name: Helper Keeping Fix Entities
+      description: Binary Sensor that indicates if a keeping fix entity is active
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
     transition_time:
       name: Transition Time
       description: Time in s
@@ -113,7 +141,7 @@ trigger:
     from: "on"
     to: "off"
   - platform: state
-    entity_id: sensor.helper_light_switching_off_entities_e_ba_regal
+    entity_id: !input helper_switching_off_entities
     id: switching_off_entities
   - platform: state
     entity_id: !input helper_is_too_dark
@@ -127,15 +155,15 @@ trigger:
     entity_id: !input light_entity
     id: light_on_or_off
   - platform: state
-    entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
+    entity_id: !input helper_keeping_on_entities
     id: keeping_on_ended
     to: "off"
   - platform: state
-    entity_id: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
+    entity_id: !input helper_keeping_off_entities
     id: keeping_off_ended
     to: "off"
   - platform: state
-    entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+    entity_id: !input helper_keeping_fix_entities
     attribute: brightness
     id: keeping_fix_brightness_changed
   - platform: state
@@ -170,7 +198,7 @@ action:
       - choose:
         - conditions:
           - condition: state
-            entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+            entity_id: !input helper_keeping_fix_entities
             state: 'off'
           sequence:
           - choose:
@@ -190,7 +218,7 @@ action:
                     state: 'on'
                   - condition: state
                     state: 'off'
-                    entity_id: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
+                    entity_id: !input helper_keeping_off_entities
                   - condition: state
                     state: 'off'
                     entity_id: !input helper_manually_switched_off
@@ -223,7 +251,7 @@ action:
                     state: 'on'
                   - condition: state
                     state: 'off'
-                    entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
+                    entity_id: !input helper_keeping_on_entities
                   - condition: state
                     state: 'off'
                     entity_id: !input helper_manually_switched_on
@@ -251,7 +279,7 @@ action:
                 state: 'on'
               - condition: state
                 state: 'off'
-                entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
+                entity_id: !input helper_keeping_on_entities
               - choose:
                 - conditions:
                   - condition: state
@@ -269,7 +297,7 @@ action:
         # path 4
         - conditions:
           - condition: state
-            entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+            entity_id: !input helper_keeping_fix_entities
             state: 'on'
           sequence:
           - condition: state
@@ -309,10 +337,10 @@ action:
         entity_id: !input automation_switch
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
+        entity_id: !input helper_keeping_off_entities
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+        entity_id: !input helper_keeping_fix_entities
         state: 'off'
       - condition: state
         entity_id: !input helper_is_too_dark
@@ -332,7 +360,7 @@ action:
           entity_id: !input light_entity
         data_template:
           brightness_pct: >
-            {{ states(helper_effective_brightness) | int(5) }}
+            {{ states(helper_effective_brightness) | int(80) }}
           transition: >
             {{ transition_time }}
     # path 6
@@ -350,10 +378,10 @@ action:
         entity_id: !input automation_switch
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
+        entity_id: !input helper_keeping_on_entities
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+        entity_id: !input helper_keeping_fix_entities
         state: 'off'
       - choose:
         - conditions:
@@ -407,10 +435,10 @@ action:
         entity_id: !input trigger
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
+        entity_id: !input helper_keeping_off_entities
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+        entity_id: !input helper_keeping_fix_entities
         state: 'off'
       - condition: state
         entity_id: !input helper_manually_switched_off
@@ -442,10 +470,10 @@ action:
         entity_id: !input automation_switch
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
+        entity_id: !input helper_keeping_on_entities
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+        entity_id: !input helper_keeping_fix_entities
         state: 'off'
       - condition: state
         entity_id: !input helper_manually_switched_on
@@ -521,7 +549,7 @@ action:
         entity_id: !input helper_manually_switched_off
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+        entity_id: !input helper_keeping_fix_entities
         state: 'off'
       - choose:
         - conditions:
@@ -562,7 +590,7 @@ action:
             entity_id: !input helper_manually_switched_on
             state: 'off'
           - condition: state
-            entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+            entity_id: !input helper_keeping_fix_entities
             state: 'off'
           - choose:
             - conditions:
@@ -587,7 +615,7 @@ action:
             entity_id: !input automation_switch
             state: 'on'
           - condition: state
-            entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
+            entity_id: !input helper_keeping_fix_entities
             state: 'off'
           - choose:
             - conditions:
@@ -653,7 +681,7 @@ action:
                     state: 'on'
                   sequence:
                   - condition: state
-                    entity_id: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
+                    entity_id: !input helper_keeping_off_entities
                     state: 'off'
                   - condition: state
                     entity_id: !input helper_manually_switched_off
@@ -683,7 +711,7 @@ action:
                     state: 'off'
                   sequence:
                   - condition: state
-                    entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
+                    entity_id: !input helper_keeping_on_entities
                     state: 'off'
                   - condition: state
                     entity_id: !input helper_manually_switched_on
@@ -709,7 +737,7 @@ action:
                 state: 'off'
               sequence:
               - condition: state
-                entity_id: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
+                entity_id: !input helper_keeping_on_entities
                 state: 'off'
               - condition: state
                 entity_id: !input helper_manually_switched_on
