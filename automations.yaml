@@ -225,6 +225,8 @@
       trigger: binary_sensor.helper_light_trigger_e_ba_regal
       helper_effective_brightness: sensor.helper_light_effective_brightness_e_ba_regal
       helper_basic_brightness: sensor.helper_light_basic_brightness_e_ba_regal
+      helper_is_too_dark: binary_sensor.helper_light_is_too_dark_e_ba_regal
+      helper_is_too_bright: binary_sensor.helper_light_is_too_bright_e_ba_regal
       transition_time: 1
 #
 #

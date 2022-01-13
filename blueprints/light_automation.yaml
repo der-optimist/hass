@@ -38,6 +38,20 @@ blueprint:
         target:
           entity:
             domain: sensor
+    helper_is_too_dark:
+      name: Helper showing if too dark
+      description: Helper Entity (binary sensor), that indicates if it is too dark
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
+    helper_is_too_bright:
+      name: Helper showing if too bright
+      description: Helper Entity (binary sensor), that indicates if it is too bright
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
     transition_time:
       name: Transition Time
       description: Time in s
@@ -81,11 +95,11 @@ trigger:
     entity_id: sensor.helper_light_switching_off_entities_e_ba_regal
     id: switching_off_entities
   - platform: state
-    entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
+    entity_id: !input helper_is_too_dark
     id: too_dark
     to: "on"
   - platform: state
-    entity_id: binary_sensor.helper_light_is_too_bright_e_ba_regal
+    entity_id: !input helper_is_too_bright
     id: too_bright
     to: "on"
   - platform: state
@@ -147,7 +161,7 @@ action:
               - choose:
                 - conditions:
                   - condition: state
-                    entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
+                    entity_id: !input helper_is_too_dark
                     state: 'on'
                   sequence:
                   - condition: state
@@ -180,7 +194,7 @@ action:
                 # path 2
                 - conditions:
                   - condition: state
-                    entity_id: binary_sensor.helper_light_is_too_bright_e_ba_regal
+                    entity_id: !input helper_is_too_bright
                     state: 'on'
                   sequence:
                   - condition: state
@@ -280,7 +294,7 @@ action:
         entity_id: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
+        entity_id: !input helper_is_too_dark
         state: 'on'
       - choose:
         - conditions:
@@ -480,7 +494,7 @@ action:
         entity_id: !input trigger
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
+        entity_id: !input helper_is_too_dark
         state: 'on'
       - condition: state
         entity_id: input_boolean.helper_light_manually_switched_off_e_ba_regal
@@ -521,7 +535,7 @@ action:
             entity_id: !input automation_switch
             state: 'on'
           - condition: state
-            entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
+            entity_id: !input helper_is_too_dark
             state: 'off'
           - condition: state
             entity_id: input_boolean.helper_light_manually_switched_on_e_ba_regal
@@ -614,7 +628,7 @@ action:
               - choose:
                 - conditions:
                   - condition: state
-                    entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
+                    entity_id: !input helper_is_too_dark
                     state: 'on'
                   sequence:
                   - condition: state
@@ -644,7 +658,7 @@ action:
                 # path 18
                 - conditions:
                   - condition: state
-                    entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
+                    entity_id: !input helper_is_too_dark
                     state: 'off'
                   sequence:
                   - condition: state
