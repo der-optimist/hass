@@ -24,6 +24,13 @@ blueprint:
         target:
           entity:
             domain: sensor
+    helper_basic_brightness:
+      name: Helper Basic Brightness
+      description: Helper Entity (sensor), that keeps the current basic brightness
+      selector:
+        target:
+          entity:
+            domain: sensor
     transition_time:
       name: Transition Time
       description: Time in s
@@ -43,6 +50,7 @@ max_exceeded: silent
 variables:
   transition_time: !input transition_time
   helper_effective_brightness: !input helper_effective_brightness
+  helper_basic_brightness: !input helper_basic_brightness
 
 trigger:
   - platform: state
@@ -686,7 +694,7 @@ action:
       sequence:
       - condition: template
         value_template: >
-          {{ (trigger.to_state.state | int(0)) != (states(sensor.helper_light_basic_brightness_e_ba_regal) | int(0)) }}
+          {{ (trigger.to_state.state | int(0)) != (states(helper_basic_brightness) | int(0)) }}
       - condition: state
         entity_id: !input automation_switch
         state: 'on'
