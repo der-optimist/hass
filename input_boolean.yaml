@@ -246,17 +246,3 @@
     initial: off
 # --- End Light GZ Decke ---
 #
-# --- Begin Light Regal Bad EG ---
-  automation_switch_light_e_ba_regal:
-    name: Automatik Licht Regal Bad EG
-    icon: mdi:auto-fix
-  helper_light_auto_switched_e_ba_regal:
-    name: Helper - Auto Switched - Licht Regal Bad EG
-    initial: off
-  helper_light_manually_switched_on_e_ba_regal:
-    name: Helper - Man Switched on - Licht Regal Bad EG
-    initial: off
-  helper_light_manually_switched_off_e_ba_regal:
-    name: Helper - Man Switched off - Licht Regal Bad EG
-    initial: off
-# --- End Light Regal Bad EG ---

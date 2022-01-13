@@ -185,18 +185,6 @@ action:
           entity_id: !input helper_auto_switched
       - choose:
         - conditions:
-          - condition: trigger
-            id: ha_start
-          sequence:
-          - service: input_boolean.turn_off
-            target:
-              entity_id: !input helper_manually_switched_off
-          - service: input_boolean.turn_off
-            target:
-              entity_id: !input helper_manually_switched_on
-        default: []
-      - choose:
-        - conditions:
           - condition: state
             entity_id: !input helper_keeping_fix_entities
             state: 'off'

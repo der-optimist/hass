@@ -58,43 +58,6 @@
         unit_of_measurement: "number"
         state: >
           {{ [states('switch.gaste_schlafen'), states('switch.luften_le')] | select('equalto', 'on') | list | count }}
-      #
-      # Regal Bad EG
-      - name: helper_light_basic_brightness_e_ba_regal
-        unit_of_measurement: "%"
-        state: >
-          {% set hours = 
-            ['00:00','06:00',60],
-            ['06:01','07:00',70],
-            ['07:01','17:00',80],
-            ['17:01','18:00',70],
-            ['18:01','23:59',60] %}
-          {% set t = states('sensor.time').replace(':','')|int %}
-          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
-              {{h[2]}}
-          {% endfor %}
-      - name: helper_light_effective_brightness_e_ba_regal
-        unit_of_measurement: "%"
-        state: >
-          {{ states('sensor.helper_light_basic_brightness_e_ba_regal') }}
-      - name: helper_light_min_illuminance_e_ba_regal
-        unit_of_measurement: "lx"
-        state: >
-          {% set hours = 
-            ['00:00','06:00',10],
-            ['06:01','07:00',25],
-            ['07:01','08:00',40],
-            ['08:01','17:00',50],
-            ['17:01','18:00',40],
-            ['18:01','23:59',30] %}
-          {% set t = states('sensor.time').replace(':','')|int %}
-          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
-              {{h[2]}}
-          {% endfor %}
-      - name: helper_light_switching_off_entities_e_ba_regal
-        unit_of_measurement: "number"
-        state: >
-          {{ [] | select('equalto', 'on') | list | count }}
     #
     # Mapping of "raw" sensors to constant names
       - unique_id: el_leistung_heizung_partyraum_vorne
@@ -159,25 +122,3 @@
       - name: helper_light_is_too_bright_o_gz_deckenlicht
         state: >
           {{ (states("sensor.helligkeit_gastezimmer_pm") | float) > (states("sensor.helper_light_min_illuminance_o_gz_deckenlicht") | float + 100 ) }}
-      # Regal Bad EG
-      - name: helper_light_trigger_e_ba_regal
-        state: >
-          {{ is_state('binary_sensor.pm_e_ba', 'on') }}
-      - name: helper_light_keeping_off_entities_e_ba_regal
-        state: >
-          {{ is_state('switch.majo_schlafen', 'on') }}
-      - name: helper_light_keeping_on_entities_e_ba_regal
-        state: >
-          {{ False }}
-      - name: helper_light_keeping_fix_entities_e_ba_regal
-        state: >
-          {{ False }}
-        attributes:
-          brightness: >
-            {{ 0 }}
-      - name: helper_light_is_too_dark_e_ba_regal
-        state: >
-          {{ (states("sensor.helligkeit_bad_eg_pm") | float) < (states("sensor.helper_light_min_illuminance_e_ba_regal") | float) }}
-      - name: helper_light_is_too_bright_e_ba_regal
-        state: >
-          {{ (states("sensor.helligkeit_bad_eg_pm") | float) > (states("sensor.helper_light_min_illuminance_e_ba_regal") | float + 100 ) }}
