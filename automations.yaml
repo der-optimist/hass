@@ -222,6 +222,7 @@
     input:
       light_entity: light.regal_bad_eg
       automation_switch: input_boolean.automation_switch_light_e_ba_regal
+      trigger: binary_sensor.helper_light_trigger_e_ba_regal
       helper_effective_brightness: sensor.helper_light_effective_brightness_e_ba_regal
       helper_basic_brightness: sensor.helper_light_basic_brightness_e_ba_regal
       transition_time: 1

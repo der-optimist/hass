@@ -17,6 +17,13 @@ blueprint:
         target:
           entity:
             domain: input_boolean
+    trigger:
+      name: Helper Trigger
+      description: Binary Sensor that represents occupancy
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
     helper_effective_brightness:
       name: Helper Effective Brightness
       description: Helper Entity (sensor), that keeps the current effective brightness
@@ -61,12 +68,12 @@ trigger:
     event: start
     id: ha_start
   - platform: state
-    entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+    entity_id: !input trigger
     id: motion_on
     from: "off"
     to: "on"
   - platform: state
-    entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+    entity_id: !input trigger
     id: motion_off
     from: "on"
     to: "off"
@@ -134,7 +141,7 @@ action:
           - choose:
             - conditions:
               - condition: state
-                entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+                entity_id: !input trigger
                 state: 'on'
               sequence:
               - choose:
@@ -201,7 +208,7 @@ action:
                 default: []
             - conditions:
               - condition: state
-                entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+                entity_id: !input trigger
                 state: 'off'
               sequence:
               - condition: state
@@ -362,7 +369,7 @@ action:
         entity_id: !input automation_switch
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+        entity_id: !input trigger
         state: 'on'
       - condition: state
         entity_id: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
@@ -470,7 +477,7 @@ action:
         entity_id: !input automation_switch
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+        entity_id: !input trigger
         state: 'on'
       - condition: state
         entity_id: binary_sensor.helper_light_is_too_dark_e_ba_regal
@@ -507,7 +514,7 @@ action:
       - choose:
         - conditions:
           - condition: state
-            entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+            entity_id: !input trigger
             state: 'on'
           sequence:
           - condition: state
@@ -538,7 +545,7 @@ action:
         # path 15
         - conditions:
           - condition: state
-            entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+            entity_id: !input trigger
             state: 'off'
           sequence:
           - condition: state
@@ -601,7 +608,7 @@ action:
           - choose:
             - conditions:
               - condition: state
-                entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+                entity_id: !input trigger
                 state: 'on'
               sequence:
               - choose:
@@ -663,7 +670,7 @@ action:
             # path 19
             - conditions:
               - condition: state
-                entity_id: binary_sensor.helper_light_trigger_e_ba_regal
+                entity_id: !input trigger
                 state: 'off'
               sequence:
               - condition: state
