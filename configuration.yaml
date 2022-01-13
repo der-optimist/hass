@@ -97,8 +97,6 @@ mqtt: !include config_mqtt.yaml
 
 notify: !include config_notify.yaml
 
-packages: !include_dir_merge_named packages/
-
 recorder: !include config_recorder.yaml
 
 rest_command:
