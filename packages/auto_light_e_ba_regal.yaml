@@ -82,6 +82,8 @@ automation:
   - alias: Licht EG Bad Regal
     id: 'auto_light_e_ba_regal'
     description: ''
+    trace:
+      stored_traces: 5
     use_blueprint:
       path: /config/blueprints/light_automation.yaml
       input:

@@ -95,6 +95,8 @@ automation:
   - alias: Licht OG Lea Wandwürfel
     id: 'auto_light_o_le_wandwuerfel'
     description: ''
+    trace:
+      stored_traces: 10
     use_blueprint:
       path: /config/blueprints/light_automation.yaml
       input:
