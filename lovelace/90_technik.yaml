@@ -56,7 +56,6 @@ cards:
       state_color: true
     filter:
       include:
-        - entity_id: "automation.*light*_o_gz_deckenlicht"
         - entity_id: "input_boolean.*light*_o_gz_deckenlicht"
         - entity_id: "binary_sensor.*light*_o_gz_deckenlicht"
         - entity_id: "sensor.*light*_o_gz_deckenlicht"
@@ -68,7 +67,15 @@ cards:
       state_color: true
     filter:
       include:
-        - entity_id: "automation.*light*_e_ba_regal"
         - entity_id: "input_boolean.*light*_e_ba_regal"
         - entity_id: "binary_sensor.*light*_e_ba_regal"
         - entity_id: "sensor.*light*_e_ba_regal"
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: "Alle Licht-Automatik-Schalter"
+      show_header_toggle: false
+      state_color: true
+    filter:
+      include:
+        - entity_id: "input_boolean.automation_switch_light*"
