@@ -70,7 +70,7 @@ cards:
         - entity_id: "input_boolean.*light*_e_ba_regal"
         - entity_id: "binary_sensor.*light*_e_ba_regal"
         - entity_id: "sensor.*light*_e_ba_regal"
-   - type: custom:auto-entities
+  - type: custom:auto-entities
     card:
       type: entities
       title: "Test Licht-Auto Le WaWü"
