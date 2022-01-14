@@ -154,6 +154,7 @@ trigger:
   - platform: state
     entity_id: !input light_entity
     id: light_on_or_off
+    to: ~
   - platform: state
     entity_id: !input helper_keeping_on_entities
     id: keeping_on_ended
@@ -166,6 +167,7 @@ trigger:
     entity_id: !input helper_keeping_fix_entities
     attribute: brightness
     id: keeping_fix_brightness_changed
+    to: ~
   - platform: state
     entity_id: !input helper_effective_brightness
     id: effective_brightness_changed
@@ -630,7 +632,7 @@ action:
         - conditions:
           - condition: template
             value_template: >
-              {{ (trigger.to_state.state | int(0)) > 0 }}
+              {{ (trigger.to_state.attributes.brightness | int(0)) > 0 }}
           sequence:
           - choose:
             - conditions:
@@ -654,7 +656,7 @@ action:
         - conditions:
           - condition: template
             value_template: >
-              {{ (trigger.to_state.state | int(0)) == 0 }}
+              {{ (trigger.to_state.attributes.brightness | int(0)) == 0 }}
           sequence:
           - choose:
             - conditions:
@@ -689,7 +691,7 @@ action:
                       entity_id: !input light_entity
                     data_template:
                       brightness_pct: >
-                        {{ trigger.to_state.state | int(80) }}
+                        {{ trigger.to_state.attributes.brightness | int(80) }}
                       transition: >
                         {{ transition_time }}
                 # path 18
