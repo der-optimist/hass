@@ -78,7 +78,7 @@ cards:
               service: input_number.set_value
               service_data:
                 entity_id: input_number.pizza_timer_2
-                value: 11
+                value: 12
             entity: input_number.pizza_timer_2
           - type: entity-button
             name: runter
