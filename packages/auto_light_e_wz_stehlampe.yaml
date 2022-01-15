@@ -1,0 +1,119 @@
+# strings to replace:
+#
+# friendly name: Licht EG WZ Stehlampe
+# id name: e_wz_stehlampe
+# light: light.innr_e27_color_stehlampe_wz_level_light_color_on_off
+
+input_boolean:
+  automation_switch_light_e_wz_stehlampe:
+    name: Automatik Licht EG WZ Stehlampe
+    icon: mdi:auto-fix
+  helper_light_auto_switched_e_wz_stehlampe:
+    name: Helper - Auto Switched - Licht EG WZ Stehlampe
+    initial: off
+  helper_light_manually_switched_on_e_wz_stehlampe:
+    name: Helper - Man Switched on - Licht EG WZ Stehlampe
+    initial: off
+  helper_light_manually_switched_off_e_wz_stehlampe:
+    name: Helper - Man Switched off - Licht EG WZ Stehlampe
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_e_wz_stehlampe
+        unit_of_measurement: "%"
+        state: >
+          {% set hours = 
+            ['00:00','19:00',50],
+            ['19:01','22:00',70],
+            ['22:01','23:59',50] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
+        attributes:
+          color: >
+            {% set colormap = { 'rot':[255,0,0],'grün':[0,255,0],'blau':[0,0,255],'orange':[255,127,0],'pink':[255,0,127],'lila':[255,0,255],'violett':[127,0,255],'gelb':[255,255,0],'gold':[255,215,0],'hellblau':[0,127,255],'türkis':[0,255,255],'gelbgrün':[127,255,0],'weiß':[255,255,255]} %}
+            {{ colormap['orange'] }}
+      - name: helper_light_effective_brightness_e_wz_stehlampe
+        unit_of_measurement: "%"
+        state: >
+          {{ states('sensor.helper_light_basic_brightness_e_wz_stehlampe') }}
+        attributes:
+          color: >
+            {{ state_attr('sensor.helper_light_basic_brightness_e_wz_stehlampe','color') }}
+      - name: helper_light_min_illuminance_e_wz_stehlampe
+        unit_of_measurement: "lx"
+        state: >
+          {{ int(250) }}
+      - name: helper_light_switching_off_entities_e_wz_stehlampe
+        unit_of_measurement: "number"
+        state: >
+          {{ [states('switch.luften_ez')] | select('equalto', 'on') | list | count }}
+    binary_sensor:
+      - name: helper_light_trigger_e_wz_stehlampe
+        state: >
+          {{ is_state('binary_sensor.pm_e_ez_bar_kuche', 'on')
+             or is_state('binary_sensor.pm_e_ez_esstisch', 'on')
+             or is_state('binary_sensor.pm_e_ku_bar_ez', 'on')
+             or is_state('binary_sensor.pm_e_ku_kuche', 'on')
+             or is_state('binary_sensor.pm_e_wz_durchgang', 'on')
+             or is_state('binary_sensor.pm_e_wz_couch_links', 'on')
+             or is_state('binary_sensor.pm_e_wz_couch_rechts', 'on') }}
+      - name: helper_light_keeping_off_entities_e_wz_stehlampe
+        state: >
+          {{ is_state('switch.luften_ez', 'on')
+             or is_state('switch.bleib_so_wz_licht', 'on') }}
+      - name: helper_light_keeping_on_entities_e_wz_stehlampe
+        state: >
+          {{ is_state('switch.bleib_so_wz_licht', 'on') }}
+      - name: helper_light_keeping_fix_entities_e_wz_stehlampe
+        state: >
+          {{ is_state('binary_sensor.tv_pizza_abend', 'on')
+             or is_state('binary_sensor.tv_abend_ohne_pizza', 'on')
+             or is_state('input_boolean.gaeste_abends', 'on') }}
+        attributes:
+          brightness: >
+            {% if is_state('input_boolean.gaeste_abends', 'on') %}
+              {{ int(80) }}
+            {% elif is_state('binary_sensor.tv_pizza_abend', 'on') %}
+              {{ int(20) }}
+            {% elif is_state('binary_sensor.tv_abend_ohne_pizza', 'on') %}
+              {{ int(1) }}
+            {% else %}
+              {{ int(0) }}
+            {% endif %}
+          color: >
+            {% set colormap = { 'rot':[255,0,0],'grün':[0,255,0],'blau':[0,0,255],'orange':[255,127,0],'pink':[255,0,127],'lila':[255,0,255],'violett':[127,0,255],'gelb':[255,255,0],'gold':[255,215,0],'hellblau':[0,127,255],'türkis':[0,255,255],'gelbgrün':[127,255,0],'weiß':[255,255,255]} %}
+            {{ colormap['orange'] }}
+      - name: helper_light_is_too_dark_e_wz_stehlampe
+        state: >
+          {{ (states("sensor.helligkeit_wohnzimmer_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_wz_stehlampe") | float(1)) }}
+      - name: helper_light_is_too_bright_e_wz_stehlampe
+        state: >
+          {{ (states("sensor.helligkeit_wohnzimmer_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_wz_stehlampe") | float(1) + 100 ) }}
+
+#automation:
+#  - alias: Licht EG WZ Stehlampe
+#    id: 'auto_light_e_wz_stehlampe'
+#    description: ''
+#    trace:
+#      stored_traces: 10
+#    use_blueprint:
+#      path: /config/blueprints/light_automation.yaml
+#      input:
+#        light_entity: light.innr_e27_color_stehlampe_wz_level_light_color_on_off
+#        automation_switch: input_boolean.automation_switch_light_e_wz_stehlampe
+#        trigger: binary_sensor.helper_light_trigger_e_wz_stehlampe
+#        helper_effective_brightness: sensor.helper_light_effective_brightness_e_wz_stehlampe
+#        helper_basic_brightness: sensor.helper_light_basic_brightness_e_wz_stehlampe
+#        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_e_wz_stehlampe
+#        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_e_wz_stehlampe
+#        helper_auto_switched: input_boolean.helper_light_auto_switched_e_wz_stehlampe
+#        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_e_wz_stehlampe
+#        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_e_wz_stehlampe
+#        helper_switching_off_entities: sensor.helper_light_switching_off_entities_e_wz_stehlampe
+#        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_e_wz_stehlampe
+#        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_e_wz_stehlampe
+#        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_e_wz_stehlampe
+#        transition_time: 1
