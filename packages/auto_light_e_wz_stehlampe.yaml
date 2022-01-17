@@ -93,27 +93,27 @@ template:
         state: >
           {{ (states("sensor.helligkeit_wohnzimmer_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_wz_stehlampe") | float(1) + 100 ) }}
 
-#automation:
-#  - alias: Licht EG WZ Stehlampe
-#    id: 'auto_light_e_wz_stehlampe'
-#    description: ''
-#    trace:
-#      stored_traces: 10
-#    use_blueprint:
-#      path: /config/blueprints/light_automation.yaml
-#      input:
-#        light_entity: light.innr_e27_color_stehlampe_wz_level_light_color_on_off
-#        automation_switch: input_boolean.automation_switch_light_e_wz_stehlampe
-#        trigger: binary_sensor.helper_light_trigger_e_wz_stehlampe
-#        helper_effective_brightness: sensor.helper_light_effective_brightness_e_wz_stehlampe
-#        helper_basic_brightness: sensor.helper_light_basic_brightness_e_wz_stehlampe
-#        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_e_wz_stehlampe
-#        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_e_wz_stehlampe
-#        helper_auto_switched: input_boolean.helper_light_auto_switched_e_wz_stehlampe
-#        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_e_wz_stehlampe
-#        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_e_wz_stehlampe
-#        helper_switching_off_entities: sensor.helper_light_switching_off_entities_e_wz_stehlampe
-#        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_e_wz_stehlampe
-#        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_e_wz_stehlampe
-#        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_e_wz_stehlampe
-#        transition_time: 1
+automation:
+  - alias: Licht EG WZ Stehlampe
+    id: 'auto_light_e_wz_stehlampe'
+    description: ''
+    trace:
+      stored_traces: 10
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.innr_e27_color_stehlampe_wz_level_light_color_on_off
+        automation_switch: input_boolean.automation_switch_light_e_wz_stehlampe
+        trigger: binary_sensor.helper_light_trigger_e_wz_stehlampe
+        helper_effective_brightness: sensor.helper_light_effective_brightness_e_wz_stehlampe
+        helper_basic_brightness: sensor.helper_light_basic_brightness_e_wz_stehlampe
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_e_wz_stehlampe
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_e_wz_stehlampe
+        helper_auto_switched: input_boolean.helper_light_auto_switched_e_wz_stehlampe
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_e_wz_stehlampe
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_e_wz_stehlampe
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_e_wz_stehlampe
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_e_wz_stehlampe
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_e_wz_stehlampe
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_e_wz_stehlampe
+        transition_time: 1
