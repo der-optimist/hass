@@ -51,14 +51,14 @@ cards:
   - type: custom:auto-entities
     card:
       type: entities
-      title: "Test Licht-Auto GZ"
+      title: "Test Licht-Auto Stehlampe WZ"
       show_header_toggle: false
       state_color: true
     filter:
       include:
-        - entity_id: "input_boolean.*light*_o_gz_deckenlicht"
-        - entity_id: "binary_sensor.*light*_o_gz_deckenlicht"
-        - entity_id: "sensor.*light*_o_gz_deckenlicht"
+        - entity_id: "input_boolean.*light*_e_wz_stehlampe"
+        - entity_id: "binary_sensor.*light*_e_wz_stehlampe"
+        - entity_id: "sensor.*light*_e_wz_stehlampe"
   - type: custom:auto-entities
     card:
       type: entities
