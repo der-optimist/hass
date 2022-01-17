@@ -225,7 +225,7 @@ action:
                   - choose:
                     - conditions:
                       - condition: template
-                        value_template: '{{ state_attr(helper_effective_brightness, 'color') == none }}'
+                        value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
                       sequence:
                       - service: light.turn_on
                         target:
@@ -237,7 +237,7 @@ action:
                             {{ transition_time }}
                     - conditions:
                       - condition: template
-                        value_template: '{{ state_attr(helper_effective_brightness, 'color') != none }}'
+                        value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
                       sequence:
                       - service: light.turn_on
                         target:
@@ -248,7 +248,7 @@ action:
                           transition: >
                             {{ transition_time }}
                           rgb_color: >
-                            {{ state_attr(helper_effective_brightness, 'color') }}
+                            {{ state_attr(helper_effective_brightness, "color") }}
                     default: []
                 # path 2
                 - conditions:
@@ -326,7 +326,7 @@ action:
           - choose:
             - conditions:
               - condition: template
-                value_template: '{{ state_attr(helper_effective_brightness, 'color') == none }}'
+                value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
               sequence:
               - service: light.turn_on
                 target:
@@ -338,7 +338,7 @@ action:
                     {{ transition_time }}
             - conditions:
               - condition: template
-                value_template: '{{ state_attr(helper_effective_brightness, 'color') != none }}'
+                value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
               sequence:
               - service: light.turn_on
                 target:
@@ -349,7 +349,7 @@ action:
                   transition: >
                     {{ transition_time }}
                   rgb_color: >
-                    {{ state_attr(helper_effective_brightness, 'color') }}
+                    {{ state_attr(helper_effective_brightness, "color") }}
             default: []
         default: []
     # path 5
@@ -388,7 +388,7 @@ action:
       - choose:
         - conditions:
           - condition: template
-            value_template: '{{ state_attr(helper_effective_brightness, 'color') == none }}'
+            value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
           sequence:
           - service: light.turn_on
             target:
@@ -400,7 +400,7 @@ action:
                 {{ transition_time }}
         - conditions:
           - condition: template
-            value_template: '{{ state_attr(helper_effective_brightness, 'color') != none }}'
+            value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
           sequence:
           - service: light.turn_on
             target:
@@ -411,7 +411,7 @@ action:
               transition: >
                 {{ transition_time }}
               rgb_color: >
-                {{ state_attr(helper_effective_brightness, 'color') }}
+                {{ state_attr(helper_effective_brightness, "color") }}
         default: []
     # path 6
     - conditions:
@@ -506,7 +506,7 @@ action:
       - choose:
         - conditions:
           - condition: template
-            value_template: '{{ state_attr(helper_effective_brightness, 'color') == none }}'
+            value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
           sequence:
           - service: light.turn_on
             target:
@@ -518,7 +518,7 @@ action:
                 {{ transition_time }}
         - conditions:
           - condition: template
-            value_template: '{{ state_attr(helper_effective_brightness, 'color') != none }}'
+            value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
           sequence:
           - service: light.turn_on
             target:
@@ -529,7 +529,7 @@ action:
               transition: >
                 {{ transition_time }}
               rgb_color: >
-                {{ state_attr(helper_effective_brightness, 'color') }}
+                {{ state_attr(helper_effective_brightness, "color") }}
         default: []
     # path 9
     - conditions:
@@ -634,7 +634,7 @@ action:
       - choose:
         - conditions:
           - condition: template
-            value_template: '{{ state_attr(helper_effective_brightness, 'color') == none }}'
+            value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
           sequence:
           - service: light.turn_on
             target:
@@ -646,7 +646,7 @@ action:
                 {{ transition_time }}
         - conditions:
           - condition: template
-            value_template: '{{ state_attr(helper_effective_brightness, 'color') != none }}'
+            value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
           sequence:
           - service: light.turn_on
             target:
@@ -657,7 +657,7 @@ action:
               transition: >
                 {{ transition_time }}
               rgb_color: >
-                {{ state_attr(helper_effective_brightness, 'color') }}
+                {{ state_attr(helper_effective_brightness, "color") }}
         default: []
     # path 14
     - conditions:
@@ -747,7 +747,7 @@ action:
           - choose:
             - conditions:
               - condition: template
-                value_template: '{{ state_attr(helper_effective_brightness, 'color') == none }}'
+                value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
               sequence:
               - service: light.turn_on
                 target:
@@ -759,7 +759,7 @@ action:
                     {{ transition_time }}
             - conditions:
               - condition: template
-                value_template: '{{ state_attr(helper_effective_brightness, 'color') != none }}'
+                value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
               sequence:
               - service: light.turn_on
                 target:
@@ -809,7 +809,7 @@ action:
                   - choose:
                     - conditions:
                       - condition: template
-                        value_template: '{{ state_attr(helper_effective_brightness, 'color') == none }}'
+                        value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
                       sequence:
                       - service: light.turn_on
                         target:
@@ -821,7 +821,7 @@ action:
                             {{ transition_time }}
                     - conditions:
                       - condition: template
-                        value_template: '{{ state_attr(helper_effective_brightness, 'color') != none }}'
+                        value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
                       sequence:
                       - service: light.turn_on
                         target:
@@ -832,7 +832,7 @@ action:
                           transition: >
                             {{ transition_time }}
                           rgb_color: >
-                            {{ state_attr(helper_effective_brightness, 'color') }}
+                            {{ state_attr(helper_effective_brightness, "color") }}
                     default: []
                 # path 18
                 - conditions:
@@ -904,7 +904,7 @@ action:
       - choose:
         - conditions:
           - condition: template
-            value_template: '{{ state_attr(helper_effective_brightness, 'color') == none }}'
+            value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
           sequence:
           - service: light.turn_on
             target:
@@ -916,7 +916,7 @@ action:
                 {{ transition_time }}
         - conditions:
           - condition: template
-            value_template: '{{ state_attr(helper_effective_brightness, 'color') != none }}'
+            value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
           sequence:
           - service: light.turn_on
             target:
@@ -927,6 +927,6 @@ action:
               transition: >
                 {{ transition_time }}
               rgb_color: >
-                {{ state_attr(helper_effective_brightness, 'color') }}
+                {{ state_attr(helper_effective_brightness, "color") }}
         default: []
     default: []
