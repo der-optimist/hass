@@ -67,9 +67,9 @@ cards:
       state_color: true
     filter:
       include:
-        - entity_id: "input_boolean.*light*_e_ba_regal"
-        - entity_id: "binary_sensor.*light*_e_ba_regal"
-        - entity_id: "sensor.*light*_e_ba_regal"
+        - entity_id: "input_boolean.*light*_e_ez_wandleuchten_warm"
+        - entity_id: "binary_sensor.*light*_e_ez_wandleuchten_warm"
+        - entity_id: "sensor.*light*_e_ez_wandleuchten_warm"
   - type: custom:auto-entities
     card:
       type: entities
@@ -78,9 +78,9 @@ cards:
       state_color: true
     filter:
       include:
-        - entity_id: "input_boolean.*light*_o_le_wandwuerfel"
-        - entity_id: "binary_sensor.*light*_o_le_wandwuerfel"
-        - entity_id: "sensor.*light*_o_le_wandwuerfel"
+        - entity_id: "input_boolean.*light*_e_ez_wandleuchten_hell"
+        - entity_id: "binary_sensor.*light*_e_ez_wandleuchten_hell"
+        - entity_id: "sensor.*light*_e_ez_wandleuchten_hell"
   - type: custom:auto-entities
     card:
       type: entities
