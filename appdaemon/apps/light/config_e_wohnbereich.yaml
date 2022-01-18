@@ -74,37 +74,37 @@ auto_light_e_ez_panels:
 #    - input_boolean.gaeste_abends
 #    - input_boolean.arbeit_theke
 #    - switch.luften_ez
-auto_light_e_ez_wandleuchten_warm:
-  module: auto_light
-  class: auto_light
-  debug: quiet
-  app_switch: input_boolean.app_switch_licht_esszimmer
-  light: light.wandleuchten_esszimmer_gemutlich
-  type: dim
-  triggers: 
-    - binary_sensor.pm_e_ez_bar_kuche
-    - binary_sensor.pm_e_ez_esstisch
-    - binary_sensor.pm_e_ku_bar_ez
-    - binary_sensor.pm_e_ku_kuche
-    - binary_sensor.pm_e_wz_durchgang
-  brightness_values:
-    "00:00": 60
-    "04:00": 0
-    "18:55": 60
-  min_illuminance_values:
-    "00:00": 60
-  illuminance_sensor: sensor.helligkeit_esszimmer_pm
-  special_brightness_entities:
-    binary_sensor.nachtmodus_wohnbereich_licht: 20
-#    binary_sensor.tv_zeit_abend: 60
-    input_boolean.gaeste_abends: 70
-  switching_off_entities:
-    - binary_sensor.kodi_abends
-    - input_boolean.arbeit_theke
-    - switch.luften_ez
-  keeping_off_entities:
-    - input_boolean.arbeit_theke
-    - switch.luften_ez
+#auto_light_e_ez_wandleuchten_warm:
+#  module: auto_light
+#  class: auto_light
+#  debug: quiet
+#  app_switch: input_boolean.app_switch_licht_esszimmer
+#  light: light.wandleuchten_esszimmer_gemutlich
+#  type: dim
+#  triggers: 
+#    - binary_sensor.pm_e_ez_bar_kuche
+#    - binary_sensor.pm_e_ez_esstisch
+#    - binary_sensor.pm_e_ku_bar_ez
+#    - binary_sensor.pm_e_ku_kuche
+#    - binary_sensor.pm_e_wz_durchgang
+#  brightness_values:
+#    "00:00": 60
+#    "04:00": 0
+#    "18:55": 60
+#  min_illuminance_values:
+#    "00:00": 60
+#  illuminance_sensor: sensor.helligkeit_esszimmer_pm
+#  special_brightness_entities:
+#    binary_sensor.nachtmodus_wohnbereich_licht: 20
+##    binary_sensor.tv_zeit_abend: 60
+#    input_boolean.gaeste_abends: 70
+#  switching_off_entities:
+#    - binary_sensor.kodi_abends
+#    - input_boolean.arbeit_theke
+#    - switch.luften_ez
+#  keeping_off_entities:
+#    - input_boolean.arbeit_theke
+#    - switch.luften_ez
 auto_light_e_ez_theke_warm:
   module: auto_light
   class: auto_light
