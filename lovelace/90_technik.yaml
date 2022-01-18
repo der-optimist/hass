@@ -30,11 +30,6 @@ cards:
       - entity: switch.esp_sd_3_relais
         name: Steckdose
   - type: entities
-    title: "Kodi"
-    show_header_toggle: false
-    entities:
-      - entity: media_player.kodi_wz
-  - type: entities
     title: "externe Stromberechnung"
     show_header_toggle: false
     entities:
@@ -42,16 +37,10 @@ cards:
       - entity: input_boolean.stromverbrauch_ist_berechnet
       - entity: sensor.stromverbrauch_tag_extern_berechnet
       - entity: sensor.stromverbrauch_verbrauch_gesamt
-  - type: entities
-    title: "Wasser"
-    show_header_toggle: false
-    entities:
-      - entity: switch.wasserabsperrventil
-        name: Wasserfluss
   - type: custom:auto-entities
     card:
       type: entities
-      title: "Test Licht-Auto Stehlampe WZ"
+      title: "Licht WZ Stehlampe"
       show_header_toggle: false
       state_color: true
     filter:
@@ -62,7 +51,7 @@ cards:
   - type: custom:auto-entities
     card:
       type: entities
-      title: "Test Licht-Auto Regal"
+      title: "Licht EZ Wandl. warm"
       show_header_toggle: false
       state_color: true
     filter:
@@ -73,7 +62,7 @@ cards:
   - type: custom:auto-entities
     card:
       type: entities
-      title: "Test Licht-Auto Le WaWü"
+      title: "Licht EZ Wandl. hell"
       show_header_toggle: false
       state_color: true
     filter:
