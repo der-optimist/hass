@@ -1,0 +1,104 @@
+# strings to replace:
+#
+# friendly name: Licht EG EZ Thekenbeleuchtung
+# id name: e_ez_thekenbeleuchtung
+# light: light.bar_beleuchtung
+
+input_boolean:
+  automation_switch_light_e_ez_thekenbeleuchtung:
+    name: Automatik Licht EG EZ Thekenbeleuchtung
+    icon: mdi:auto-fix
+  helper_light_auto_switched_e_ez_thekenbeleuchtung:
+    name: Helper - Auto Switched - Licht EG EZ Thekenbeleuchtung
+    initial: off
+  helper_light_manually_switched_on_e_ez_thekenbeleuchtung:
+    name: Helper - Man Switched on - Licht EG EZ Thekenbeleuchtung
+    initial: off
+  helper_light_manually_switched_off_e_ez_thekenbeleuchtung:
+    name: Helper - Man Switched off - Licht EG EZ Thekenbeleuchtung
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_e_ez_thekenbeleuchtung
+        unit_of_measurement: "%"
+        state: >
+          {% set hours = 
+            ['00:00','05:00',40],
+            ['05:01','23:59',50] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
+      - name: helper_light_effective_brightness_e_ez_thekenbeleuchtung
+        unit_of_measurement: "%"
+        state: >
+          {% if is_state('input_boolean.gaeste_abends', 'on') %}
+            {{ int(55) }}
+          {% elif is_state('binary_sensor.nachtmodus_wohnbereich_licht', 'on') %}
+            {{ int(20) }}
+          {% elif is_state('binary_sensor.tv_zeit_abend', 'on') %}
+            {{ int(60) }}
+          {% else %}
+            {{ states('sensor.helper_light_basic_brightness_e_ez_thekenbeleuchtung') }}
+          {% endif %}
+      - name: helper_light_min_illuminance_e_ez_thekenbeleuchtung
+        unit_of_measurement: "lx"
+        state: >
+          {{ int(60) }}
+      - name: helper_light_switching_off_entities_e_ez_thekenbeleuchtung
+        unit_of_measurement: "number"
+        state: >
+          {{ [states('input_boolean.arbeit_theke'),states('switch.luften_ez')] | select('equalto', 'on') | list | count }}
+    binary_sensor:
+      - name: helper_light_trigger_e_ez_thekenbeleuchtung
+        state: >
+          {{ is_state('binary_sensor.pm_e_ez_bar_kuche', 'on')
+             or is_state('binary_sensor.pm_e_ez_esstisch', 'on')
+             or is_state('binary_sensor.pm_e_ku_bar_ez', 'on')
+             or is_state('binary_sensor.pm_e_ku_kuche', 'on')
+             or is_state('binary_sensor.pm_e_wz_durchgang', 'on') }}
+      - name: helper_light_keeping_off_entities_e_ez_thekenbeleuchtung
+        state: >
+          {{ is_state('input_boolean.arbeit_theke', 'on')
+             or is_state('switch.luften_ez', 'on') }}
+      - name: helper_light_keeping_on_entities_e_ez_thekenbeleuchtung
+        state: >
+          {{ false }}
+      - name: helper_light_keeping_fix_entities_e_ez_thekenbeleuchtung
+        state: >
+          {{ false }}
+        attributes:
+          brightness: >
+            {{ int(0) }}
+      - name: helper_light_is_too_dark_e_ez_thekenbeleuchtung
+        state: >
+          {{ (states("sensor.helligkeit_esszimmer_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_ez_thekenbeleuchtung") | float(1)) }}
+      - name: helper_light_is_too_bright_e_ez_thekenbeleuchtung
+        state: >
+          {{ (states("sensor.helligkeit_esszimmer_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_ez_thekenbeleuchtung") | float(1) + 60 ) }}
+
+automation:
+  - alias: Licht EG EZ Thekenbeleuchtung
+    id: 'auto_light_e_ez_thekenbeleuchtung'
+    description: ''
+    trace:
+      stored_traces: 10
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.bar_beleuchtung
+        automation_switch: input_boolean.automation_switch_light_e_ez_thekenbeleuchtung
+        trigger: binary_sensor.helper_light_trigger_e_ez_thekenbeleuchtung
+        helper_effective_brightness: sensor.helper_light_effective_brightness_e_ez_thekenbeleuchtung
+        helper_basic_brightness: sensor.helper_light_basic_brightness_e_ez_thekenbeleuchtung
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_e_ez_thekenbeleuchtung
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_e_ez_thekenbeleuchtung
+        helper_auto_switched: input_boolean.helper_light_auto_switched_e_ez_thekenbeleuchtung
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_e_ez_thekenbeleuchtung
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_e_ez_thekenbeleuchtung
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_e_ez_thekenbeleuchtung
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_e_ez_thekenbeleuchtung
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_e_ez_thekenbeleuchtung
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_e_ez_thekenbeleuchtung
+        transition_time: 1
