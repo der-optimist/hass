@@ -73,10 +73,10 @@ template:
             {{ int(0) }}
       - name: helper_light_is_too_dark_e_ez_wandleuchten_warm
         state: >
-          {{ (states("sensor.helligkeit_esszimmer_pm") | float) < (states("sensor.helper_light_min_illuminance_e_ez_wandleuchten_warm") | float) }}
+          {{ (states("sensor.helligkeit_esszimmer_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_ez_wandleuchten_warm") | float(1)) }}
       - name: helper_light_is_too_bright_e_ez_wandleuchten_warm
         state: >
-          {{ (states("sensor.helligkeit_esszimmer_pm") | float) > (states("sensor.helper_light_min_illuminance_e_ez_wandleuchten_warm") | float + 100 ) }}
+          {{ (states("sensor.helligkeit_esszimmer_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_ez_wandleuchten_warm") | float(1) + 100 ) }}
 
 automation:
   - alias: Licht EG EZ Wandleuchten warm

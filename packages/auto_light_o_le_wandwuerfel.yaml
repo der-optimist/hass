@@ -86,10 +86,10 @@ template:
             {% endif %}
       - name: helper_light_is_too_dark_o_le_wandwuerfel
         state: >
-          {{ (states("sensor.helligkeit_le_pm") | float) < (states("sensor.helper_light_min_illuminance_o_le_wandwuerfel") | float) }}
+          {{ (states("sensor.helligkeit_le_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_o_le_wandwuerfel") | float(1)) }}
       - name: helper_light_is_too_bright_o_le_wandwuerfel
         state: >
-          {{ (states("sensor.helligkeit_le_pm") | float) > (states("sensor.helper_light_min_illuminance_o_le_wandwuerfel") | float + 100 ) }}
+          {{ (states("sensor.helligkeit_le_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_o_le_wandwuerfel") | float(1) + 100 ) }}
 
 automation:
   - alias: Licht OG Lea Wandwürfel
