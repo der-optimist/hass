@@ -60,7 +60,7 @@ template:
       - name: helper_light_keeping_off_entities_e_ez_wandleuchten_warm
         state: >
           {{ is_state('input_boolean.arbeit_theke', 'on')
-             of is_state('binary_sensor.tv_zeit_abend', 'off')
+             or is_state('binary_sensor.tv_zeit_abend', 'off')
              or is_state('switch.luften_ez', 'on') }}
       - name: helper_light_keeping_on_entities_e_ez_wandleuchten_warm
         state: >
