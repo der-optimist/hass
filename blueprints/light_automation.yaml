@@ -577,6 +577,9 @@ action:
               - condition: template
                 value_template: >
                   {{ trigger.to_state.state == 'on' }}
+              - condition: template
+                value_template: >
+                  {{ trigger.from_state.state == 'off' }}
               sequence:
               - service: input_boolean.turn_on
                 target:
@@ -586,6 +589,9 @@ action:
               - condition: template
                 value_template: >
                   {{ trigger.to_state.state == 'off' }}
+              - condition: template
+                value_template: >
+                  {{ trigger.from_state.state == 'on' }}
               sequence:
               - service: input_boolean.turn_on
                 target:
