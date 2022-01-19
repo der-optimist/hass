@@ -214,25 +214,3 @@
               seconds: 0
               milliseconds: 0
   mode: single
-#- alias: Licht E Bad Regal Blueprint
-#  id: 'licht_e_bad_regal_blueprint'
-#  description: ''
-#  use_blueprint:
-#    path: /config/blueprints/light_automation.yaml
-#    input:
-#      light_entity: light.regal_bad_eg
-#      automation_switch: input_boolean.automation_switch_light_e_ba_regal
-#      trigger: binary_sensor.helper_light_trigger_e_ba_regal
-#      helper_effective_brightness: sensor.helper_light_effective_brightness_e_ba_regal
-#      helper_basic_brightness: sensor.helper_light_basic_brightness_e_ba_regal
-#      helper_is_too_dark: binary_sensor.helper_light_is_too_dark_e_ba_regal
-#      helper_is_too_bright: binary_sensor.helper_light_is_too_bright_e_ba_regal
-#      helper_auto_switched: input_boolean.helper_light_auto_switched_e_ba_regal
-#      helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_e_ba_regal
-#      helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_e_ba_regal
-#      helper_switching_off_entities: sensor.helper_light_switching_off_entities_e_ba_regal
-#      helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_e_ba_regal
-#      helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_e_ba_regal
-#      helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_e_ba_regal
-#      transition_time: 1
-#
