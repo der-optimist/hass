@@ -160,7 +160,7 @@ cards:
             - entity_id: "input_boolean.app_switch_licht_treppe_og"
             - entity_id: "input_boolean.automation_switch_light_o_tr*"
   - type: vertical-stack
-    title: Keller und Außen
+    title: Keller, Außen, Jalousien
     cards:
       - type: custom:auto-entities
         card:
@@ -207,9 +207,3 @@ cards:
             name: Gästezimmer
           - entity: input_boolean.app_switch_jalousie_bad_og
             name: Bad OG
-      - type: entities
-        title: Sonstiges
-        show_header_toggle: true
-        entities:
-          - entity: input_boolean.app_switch_log_events
-            name: Log Events in AD
