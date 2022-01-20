@@ -122,67 +122,67 @@
     icon: mdi:cellphone-wireless
   # App Switches
   app_switch_licht_kueche:
-    name: Automatik Licht Küche
+    name: Automatik Licht Küche (alt)
     icon: mdi:auto-fix
   app_switch_licht_esszimmer:
-    name: Automatik Licht Esszimmer
+    name: Automatik Licht Esszimmer (alt)
     icon: mdi:auto-fix
   app_switch_licht_christbaum:
-    name: Automatik Licht Christbaum
+    name: Automatik Licht Christbaum (alt)
     icon: mdi:auto-fix
   app_switch_licht_wohnzimmer:
-    name: Automatik Licht Wohnzimmer
+    name: Automatik Licht Wohnzimmer (alt)
     icon: mdi:auto-fix
   app_switch_licht_schlafzimmer:
-    name: Automatik Licht Schlafzimmer
+    name: Automatik Licht Schlafzimmer (alt)
     icon: mdi:auto-fix
   app_switch_licht_bad_eg:
-    name: Automatik Licht Bad EG
+    name: Automatik Licht Bad EG (alt)
     icon: mdi:auto-fix
   app_switch_licht_flur_eg:
-    name: Automatik Licht Flur EG
+    name: Automatik Licht Flur EG (alt)
     icon: mdi:auto-fix
   app_switch_licht_windfang:
-    name: Automatik Licht Windfang
+    name: Automatik Licht Windfang (alt)
     icon: mdi:auto-fix
   app_switch_licht_wc:
-    name: Automatik Licht WC
+    name: Automatik Licht WC (alt)
     icon: mdi:auto-fix
   app_switch_licht_la:
-    name: Automatik Licht La
+    name: Automatik Licht La (alt)
     icon: mdi:auto-fix
   app_switch_licht_naehzimmer:
-    name: Automatik Licht Nähzimmer
+    name: Automatik Licht Nähzimmer (alt)
     icon: mdi:auto-fix
   app_switch_licht_le:
-    name: Automatik Licht Le
+    name: Automatik Licht Le (alt)
     icon: mdi:auto-fix
   app_switch_licht_gaestezimmer:
-    name: Automatik Licht Gästezimmer
+    name: Automatik Licht Gästezimmer (alt)
     icon: mdi:auto-fix
   app_switch_licht_flur_og:
-    name: Automatik Licht Flur OG
+    name: Automatik Licht Flur OG (alt)
     icon: mdi:auto-fix
   app_switch_licht_bad_og:
-    name: Automatik Licht Bad OG
+    name: Automatik Licht Bad OG (alt)
     icon: mdi:auto-fix
   app_switch_licht_treppe_og:
-    name: Automatik Licht Treppe OG
+    name: Automatik Licht Treppe OG (alt)
     icon: mdi:auto-fix
   app_switch_licht_treppe_keller:
-    name: Automatik Licht Kellertreppe
+    name: Automatik Licht Kellertreppe (alt)
     icon: mdi:auto-fix
   app_switch_licht_keller:
-    name: Automatik Licht Keller
+    name: Automatik Licht Keller (alt)
     icon: mdi:auto-fix
   app_switch_licht_aussen_carport:
-    name: Automatik Licht Carport
+    name: Automatik Licht Carport (alt)
     icon: mdi:auto-fix
   app_switch_licht_bodenstrahler_blumenbeet:
-    name: Automatik Bodenstrahler
+    name: Automatik Bodenstrahler (alt)
     icon: mdi:auto-fix
   app_switch_licht_stern_blumenbeet:
-    name: Automatik Stern
+    name: Automatik Stern (alt)
     icon: mdi:auto-fix
   app_switch_jalousie_kueche:
     name: Automatik Jalousie Küche

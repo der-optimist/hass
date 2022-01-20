@@ -2,77 +2,217 @@ title: Automatisierungen
 path: automatisierungen
 icon: mdi:auto-fix
 cards:
-  - type: entities
-    title: Licht
-    show_header_toggle: true
-    entities:
-      - entity: input_boolean.app_switch_licht_kueche
-        name: Küche
-      - entity: input_boolean.app_switch_licht_esszimmer
-        name: Esszimmer
-      - entity: input_boolean.app_switch_licht_christbaum
-        name: Weihnachtsbaum
-      - entity: input_boolean.app_switch_licht_wohnzimmer
-        name: Wohnzimmer
-      - entity: input_boolean.app_switch_licht_schlafzimmer
-        name: Schlafzimmer
-      - entity: input_boolean.app_switch_licht_bad_eg
-        name: Bad EG
-      - entity: input_boolean.app_switch_licht_flur_eg
-        name: Flur EG
-      - entity: input_boolean.app_switch_licht_windfang
-        name: Windfang
-      - entity: input_boolean.app_switch_licht_wc
-        name: WC
-      - entity: input_boolean.app_switch_licht_la
-        name: !secret name_la
-      - entity: input_boolean.app_switch_licht_naehzimmer
-        name: Nähzimmer
-      - entity: input_boolean.app_switch_licht_le
-        name: !secret name_le
-      - entity: input_boolean.app_switch_licht_gaestezimmer
-        name: Gästezimmer
-      - entity: input_boolean.app_switch_licht_flur_og
-        name: Flur OG
-      - entity: input_boolean.app_switch_licht_bad_og
-        name: Bad OG
-      - entity: input_boolean.app_switch_licht_treppe_og
-        name: Treppe OG
-      - entity: input_boolean.app_switch_licht_treppe_keller
-        name: Kellertreppe und Flur
-      - entity: input_boolean.app_switch_licht_keller
-        name: Kellerräume
-      - entity: input_boolean.app_switch_licht_aussen_carport
-        name: Carport
-      - entity: input_boolean.app_switch_licht_bodenstrahler_blumenbeet
-        name: Bodenstrahler Sitzbank
-      - entity: input_boolean.app_switch_licht_stern_blumenbeet
-        name: Stern Blumenbeet
-  - type: entities
-    title: Jalousien
-    show_header_toggle: true
-    entities:
-      - entity: input_boolean.app_switch_jalousie_kueche
-        name: Küche
-      - entity: input_boolean.app_switch_jalousie_esszimmer
-        name: Esszimmer
-      - entity: input_boolean.app_switch_jalousie_wohnzimmer
-        name: Wohnzimmer
-      - entity: input_boolean.app_switch_jalousie_schlafzimmer
-        name: Schlafzimmer
-      - entity: input_boolean.app_switch_jalousie_la
-        name: !secret name_la
-      - entity: input_boolean.app_switch_jalousie_naehzimmer
-        name: Nähzimmer
-      - entity: input_boolean.app_switch_jalousie_le
-        name: !secret name_le
-      - entity: input_boolean.app_switch_jalousie_gaestezimmer
-        name: Gästezimmer
-      - entity: input_boolean.app_switch_jalousie_bad_og
-        name: Bad OG
-  - type: entities
-    title: Sonstiges
-    show_header_toggle: true
-    entities:
-      - entity: input_boolean.app_switch_log_events
-        name: Log Events in AD
+  - type: vertical-stack
+    title: Licht EG
+    cards:
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Küche"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_kueche"
+            - entity_id: "input_boolean.automation_switch_light_e_ku*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Esszimmer"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_esszimmer"
+            - entity_id: "input_boolean.app_switch_licht_christbaum"
+            - entity_id: "input_boolean.automation_switch_light_e_ez*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Wohnzimmer"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_wohnzimmer"
+            - entity_id: "input_boolean.automation_switch_light_e_wz*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Schlafzimmer"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_schlafzimmer"
+            - entity_id: "input_boolean.automation_switch_light_e_sz*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Bad"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_bad_eg"
+            - entity_id: "input_boolean.automation_switch_light_e_ba*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Flur"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_flur_eg"
+            - entity_id: "input_boolean.automation_switch_light_e_fl*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Windfang"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_windfang"
+            - entity_id: "input_boolean.automation_switch_light_e_wf*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "WC"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_wc"
+            - entity_id: "input_boolean.automation_switch_light_e_wc*"
+  - type: vertical-stack
+    title: Licht OG
+    cards:
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Lara"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_la"
+            - entity_id: "input_boolean.automation_switch_light_o_la*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Lea"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_le"
+            - entity_id: "input_boolean.automation_switch_light_o_le*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Arbeitszimmer"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_naehzimmer"
+            - entity_id: "input_boolean.automation_switch_light_o_az*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Gästezimmer"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_gaestezimmer"
+            - entity_id: "input_boolean.automation_switch_light_o_gz*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Bad"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_bad_og"
+            - entity_id: "input_boolean.automation_switch_light_o_ba*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Flur"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_flur_og"
+            - entity_id: "input_boolean.automation_switch_light_o_fl*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Treppe OG"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_treppe_og"
+            - entity_id: "input_boolean.automation_switch_light_o_tr*"
+  - type: vertical-stack
+    title: Keller und Außen
+    cards:
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Keller"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_treppe_keller"
+            - entity_id: "input_boolean.app_switch_licht_keller"
+            - entity_id: "input_boolean.automation_switch_light_k_*"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Außen"
+          show_header_toggle: true
+          state_color: true
+        filter:
+          include:
+            - entity_id: "input_boolean.app_switch_licht_aussen_carport"
+            - entity_id: "input_boolean.app_switch_licht_bodenstrahler_blumenbeet"
+            - entity_id: "input_boolean.app_switch_licht_stern_blumenbeet"
+            - entity_id: "input_boolean.automation_switch_light_a_*"
+  - type: vertical-stack
+    title: Jalousien und Sonstiges
+    cards:
+      - type: entities
+        title: Jalousien
+        show_header_toggle: true
+        entities:
+          - entity: input_boolean.app_switch_jalousie_kueche
+            name: Küche
+          - entity: input_boolean.app_switch_jalousie_esszimmer
+            name: Esszimmer
+          - entity: input_boolean.app_switch_jalousie_wohnzimmer
+            name: Wohnzimmer
+          - entity: input_boolean.app_switch_jalousie_schlafzimmer
+            name: Schlafzimmer
+          - entity: input_boolean.app_switch_jalousie_la
+            name: !secret name_la
+          - entity: input_boolean.app_switch_jalousie_naehzimmer
+            name: Nähzimmer
+          - entity: input_boolean.app_switch_jalousie_le
+            name: !secret name_le
+          - entity: input_boolean.app_switch_jalousie_gaestezimmer
+            name: Gästezimmer
+          - entity: input_boolean.app_switch_jalousie_bad_og
+            name: Bad OG
+      - type: entities
+        title: Sonstiges
+        show_header_toggle: true
+        entities:
+          - entity: input_boolean.app_switch_log_events
+            name: Log Events in AD
