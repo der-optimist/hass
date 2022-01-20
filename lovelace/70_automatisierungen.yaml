@@ -185,9 +185,6 @@ cards:
             - entity_id: "input_boolean.app_switch_licht_bodenstrahler_blumenbeet"
             - entity_id: "input_boolean.app_switch_licht_stern_blumenbeet"
             - entity_id: "input_boolean.automation_switch_light_a_*"
-  - type: vertical-stack
-    title: Jalousien und Sonstiges
-    cards:
       - type: entities
         title: Jalousien
         show_header_toggle: true
