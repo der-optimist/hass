@@ -121,18 +121,18 @@
     initial: off
     icon: mdi:cellphone-wireless
   # App Switches
-  app_switch_licht_kueche:
-    name: Automatik Licht Küche (alt)
-    icon: mdi:auto-fix
-  app_switch_licht_esszimmer:
-    name: Automatik Licht Esszimmer (alt)
-    icon: mdi:auto-fix
+#  app_switch_licht_kueche:
+#    name: Automatik Licht Küche (alt)
+#    icon: mdi:auto-fix
+#  app_switch_licht_esszimmer:
+#    name: Automatik Licht Esszimmer (alt)
+#    icon: mdi:auto-fix
   app_switch_licht_christbaum:
     name: Automatik Licht Christbaum (alt)
     icon: mdi:auto-fix
-  app_switch_licht_wohnzimmer:
-    name: Automatik Licht Wohnzimmer (alt)
-    icon: mdi:auto-fix
+#  app_switch_licht_wohnzimmer:
+#    name: Automatik Licht Wohnzimmer (alt)
+#    icon: mdi:auto-fix
   app_switch_licht_schlafzimmer:
     name: Automatik Licht Schlafzimmer (alt)
     icon: mdi:auto-fix
