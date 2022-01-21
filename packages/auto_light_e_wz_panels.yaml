@@ -1,0 +1,116 @@
+# strings to replace:
+#
+# friendly name: Licht EG WZ Panels
+# id name: e_wz_panels
+# light: light.panels_wohnzimmer
+
+input_boolean:
+  automation_switch_light_e_wz_panels:
+    name: Auto Licht EG WZ Panels
+    icon: mdi:auto-fix
+  helper_light_auto_switched_e_wz_panels:
+    name: Helper - Auto Switched - Licht EG WZ Panels
+    initial: off
+  helper_light_manually_switched_on_e_wz_panels:
+    name: Helper - Man Switched on - Licht EG WZ Panels
+    initial: off
+  helper_light_manually_switched_off_e_wz_panels:
+    name: Helper - Man Switched off - Licht EG WZ Panels
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_e_wz_panels
+        unit_of_measurement: "%"
+        state: >
+          {% set hours = 
+            ['00:00','04:59',50],
+            ['05:00','05:59',60],
+            ['06:00','06:59',70],
+            ['07:00','18:59',80],
+            ['19:00','19:59',50],
+            ['20:00','20:59',40],
+            ['21:00','21:59',30],
+            ['22:00','23:59',20] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
+      - name: helper_light_effective_brightness_e_wz_panels
+        unit_of_measurement: "%"
+        state: >
+          {% if is_state('binary_sensor.tv_ist_an', 'on') %}
+            {{ int(55) }}
+          {% else %}
+            {{ states('sensor.helper_light_basic_brightness_e_wz_panels') }}
+          {% endif %}
+      - name: helper_light_min_illuminance_e_wz_panels
+        unit_of_measurement: "lx"
+        state: >
+          {% set hours = 
+            ['00:00','06:59',20],
+            ['07:00','07:59',30],
+            ['08:00','08:59',40],
+            ['09:00','16:59',50],
+            ['17:00','18:29',40],
+            ['18:30','21:29',30],
+            ['21:30','23:59',20] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
+      - name: helper_light_switching_off_entities_e_wz_panels
+        unit_of_measurement: "number"
+        state: >
+          {{ [states('binary_sensor.tv_zeit_abend'),states('switch.luften_ez')] | select('equalto', 'on') | list | count }}
+    binary_sensor:
+      - name: helper_light_trigger_e_wz_panels
+        state: >
+          {{ is_state('binary_sensor.pm_e_wz_durchgang', 'on')
+             or is_state('binary_sensor.pm_e_wz_couch_links', 'on')
+             or is_state('binary_sensor.pm_e_wz_couch_rechts', 'on') }}
+      - name: helper_light_keeping_off_entities_e_wz_panels
+        state: >
+          {{ is_state('switch.bleib_so_wz_licht', 'on')
+             or is_state('binary_sensor.tv_zeit_abend', 'on')
+             or is_state('switch.luften_ez', 'on') }}
+      - name: helper_light_keeping_on_entities_e_wz_panels
+        state: >
+          {{ is_state('switch.bleib_so_wz_licht', 'on') }}
+      - name: helper_light_keeping_fix_entities_e_wz_panels
+        state: >
+          {{ false }}
+        attributes:
+          brightness: >
+            {{ int(0) }}
+      - name: helper_light_is_too_dark_e_wz_panels
+        state: >
+          {{ (states("sensor.helligkeit_wohnzimmer_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_wz_panels") | float(1)) }}
+      - name: helper_light_is_too_bright_e_wz_panels
+        state: >
+          {{ (states("sensor.helligkeit_wohnzimmer_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_wz_panels") | float(1) + 100 ) }}
+
+automation:
+  - alias: Licht EG WZ Panels
+    id: 'auto_light_e_wz_panels'
+    description: ''
+    trace:
+      stored_traces: 10
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.panels_wohnzimmer
+        automation_switch: input_boolean.automation_switch_light_e_wz_panels
+        trigger: binary_sensor.helper_light_trigger_e_wz_panels
+        helper_effective_brightness: sensor.helper_light_effective_brightness_e_wz_panels
+        helper_basic_brightness: sensor.helper_light_basic_brightness_e_wz_panels
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_e_wz_panels
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_e_wz_panels
+        helper_auto_switched: input_boolean.helper_light_auto_switched_e_wz_panels
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_e_wz_panels
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_e_wz_panels
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_e_wz_panels
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_e_wz_panels
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_e_wz_panels
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_e_wz_panels
+        transition_time: 1

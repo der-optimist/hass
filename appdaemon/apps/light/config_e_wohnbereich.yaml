@@ -306,46 +306,46 @@ auto_light_e_ez_christbaum:
 #    - input_boolean.gaeste_abends
 #    - switch.luften_ez
 # - Wohnzimmer
-auto_light_e_wz_panels:
-  module: auto_light
-  class: auto_light
-  debug: quiet
-  app_switch: input_boolean.app_switch_licht_wohnzimmer
-  light: light.panels_wohnzimmer
-  type: dim
-  triggers: 
-    - binary_sensor.pm_e_wz_durchgang
-    - binary_sensor.pm_e_wz_couch_links
-    - binary_sensor.pm_e_wz_couch_rechts
-  brightness_values:
-    "00:00": 50
-    "05:00": 60
-    "06:00": 70
-    "07:00": 80
-    "19:00": 50
-    "20:00": 40
-    "21:00": 30
-    "22:00": 20
-  min_illuminance_values:
-    "00:00": 20
-    "07:00": 30
-    "08:00": 40
-    "09:00": 50
-    "17:00": 40
-    "18:30": 30
-    "21:30": 20
-  illuminance_sensor: sensor.helligkeit_wohnzimmer_pm
-  special_brightness_entities:
-    binary_sensor.tv_ist_an: 55
-  keeping_on_entities:
-    - switch.bleib_so_wz_licht
-  keeping_off_entities:
-    - switch.bleib_so_wz_licht
-    - binary_sensor.tv_zeit_abend
-    - switch.luften_ez
-  switching_off_entities:
-    - binary_sensor.tv_zeit_abend
-    - switch.luften_ez
+#auto_light_e_wz_panels:
+#  module: auto_light
+#  class: auto_light
+#  debug: quiet
+#  app_switch: input_boolean.app_switch_licht_wohnzimmer
+#  light: light.panels_wohnzimmer
+#  type: dim
+#  triggers: 
+#    - binary_sensor.pm_e_wz_durchgang
+#    - binary_sensor.pm_e_wz_couch_links
+#    - binary_sensor.pm_e_wz_couch_rechts
+#  brightness_values:
+#    "00:00": 50
+#    "05:00": 60
+#    "06:00": 70
+#    "07:00": 80
+#    "19:00": 50
+#    "20:00": 40
+#    "21:00": 30
+#    "22:00": 20
+#  min_illuminance_values:
+#    "00:00": 20
+#    "07:00": 30
+#    "08:00": 40
+#    "09:00": 50
+#    "17:00": 40
+#    "18:30": 30
+#    "21:30": 20
+#  illuminance_sensor: sensor.helligkeit_wohnzimmer_pm
+#  special_brightness_entities:
+#    binary_sensor.tv_ist_an: 55
+#  keeping_on_entities:
+#    - switch.bleib_so_wz_licht
+#  keeping_off_entities:
+#    - switch.bleib_so_wz_licht
+#    - binary_sensor.tv_zeit_abend
+#    - switch.luften_ez
+#  switching_off_entities:
+#    - binary_sensor.tv_zeit_abend
+#    - switch.luften_ez
 #auto_light_e_wz_schrankbeleuchtung:
 #  module: auto_light
 #  class: auto_light
