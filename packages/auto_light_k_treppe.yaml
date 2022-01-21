@@ -1,0 +1,86 @@
+# strings to replace:
+#
+# friendly name: Licht Keller Treppe
+# id name: k_treppe
+# light: light.shellydimmer_d472fe_light_0
+
+input_boolean:
+  automation_switch_light_k_treppe:
+    name: Auto Licht Keller Treppe
+    icon: mdi:auto-fix
+  helper_light_auto_switched_k_treppe:
+    name: Helper - Auto Switched - Licht Keller Treppe
+    initial: off
+  helper_light_manually_switched_on_k_treppe:
+    name: Helper - Man Switched on - Licht Keller Treppe
+    initial: off
+  helper_light_manually_switched_off_k_treppe:
+    name: Helper - Man Switched off - Licht Keller Treppe
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_k_treppe
+        unit_of_measurement: "%"
+        state: >
+          {{ int(40 )}}
+      - name: helper_light_effective_brightness_k_treppe
+        unit_of_measurement: "%"
+        state: >
+          {{ states('sensor.helper_light_basic_brightness_k_treppe') }}
+      - name: helper_light_min_illuminance_k_treppe
+        unit_of_measurement: "lx"
+        state: >
+          {{ int(100) }}
+      - name: helper_light_switching_off_entities_k_treppe
+        unit_of_measurement: "number"
+        state: >
+          {{ [] | select('equalto', 'on') | list | count }}
+    binary_sensor:
+      - name: helper_light_trigger_k_treppe
+        state: >
+          {{ is_state('binary_sensor.pm_ktr_treppe', 'on') 
+             or is_state('binary_sensor.pm_k_fl_2', 'on') }}
+      - name: helper_light_keeping_off_entities_k_treppe
+        state: >
+          {{ False }}
+      - name: helper_light_keeping_on_entities_k_treppe
+        state: >
+          {{ False }}
+      - name: helper_light_keeping_fix_entities_k_treppe
+        state: >
+          {{ False }}
+        attributes:
+          brightness: >
+            {{ int(0) }}
+      - name: helper_light_is_too_dark_k_treppe
+        state: >
+          {{ true }}
+      - name: helper_light_is_too_bright_k_treppe
+        state: >
+          {{ false }}
+
+automation:
+  - alias: Licht Keller Treppe
+    id: 'auto_light_k_treppe'
+    description: ''
+    trace:
+      stored_traces: 5
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.shellydimmer_d472fe_light_0
+        automation_switch: input_boolean.automation_switch_light_k_treppe
+        trigger: binary_sensor.helper_light_trigger_k_treppe
+        helper_effective_brightness: sensor.helper_light_effective_brightness_k_treppe
+        helper_basic_brightness: sensor.helper_light_basic_brightness_k_treppe
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_k_treppe
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_k_treppe
+        helper_auto_switched: input_boolean.helper_light_auto_switched_k_treppe
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_k_treppe
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_k_treppe
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_k_treppe
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_k_treppe
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_k_treppe
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_k_treppe
+        transition_time: 0

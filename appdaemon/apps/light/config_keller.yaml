@@ -1,15 +1,15 @@
-auto_light_k_vorratsraum:
-  module: auto_light
-  class: auto_light
-  debug: quiet
-  app_switch: input_boolean.app_switch_licht_keller
-  light: light.vorratsraum
-  type: switch
-  triggers: 
-    - binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off
-    - binary_sensor.pm_k_timer_magnetsensor_vorratsraum
-  min_illuminance_values:
-    "00:00": 1
+#auto_light_k_vorratsraum:
+#  module: auto_light
+#  class: auto_light
+#  debug: quiet
+#  app_switch: input_boolean.app_switch_licht_keller
+#  light: light.vorratsraum
+#  type: switch
+#  triggers: 
+#    - binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off
+#    - binary_sensor.pm_k_timer_magnetsensor_vorratsraum
+#  min_illuminance_values:
+#    "00:00": 1
 #auto_light_k_werkelraum:
 #  module: auto_light
 #  class: auto_light
@@ -21,26 +21,26 @@ auto_light_k_vorratsraum:
 #    - binary_sensor.pm_k_timer_magnetsensor_werkelraum
 #  min_illuminance_values:
 #    "00:00": 1
-auto_light_k_partyraum:
-  module: auto_light
-  class: auto_light
-  debug: quiet
-  app_switch: input_boolean.app_switch_licht_keller
-  light: light.lagerraum
-  type: switch
-  triggers: 
-    - binary_sensor.pm_k_timer_bewegung_partyraum
-  min_illuminance_values:
-    "00:00": 1
-auto_light_k_kellerflur:
-  module: auto_light
-  class: auto_light
-  debug: quiet
-  app_switch: input_boolean.app_switch_licht_treppe_keller
-  light: light.flur_keller
-  type: switch
-  triggers: 
-    - binary_sensor.pm_ktr_treppe
-    - binary_sensor.pm_k_fl_2
-  min_illuminance_values:
-    "00:00": 1
+#auto_light_k_partyraum:
+#  module: auto_light
+#  class: auto_light
+#  debug: quiet
+#  app_switch: input_boolean.app_switch_licht_keller
+#  light: light.lagerraum
+#  type: switch
+#  triggers: 
+#    - binary_sensor.pm_k_timer_bewegung_partyraum
+#  min_illuminance_values:
+#    "00:00": 1
+#auto_light_k_kellerflur:
+#  module: auto_light
+#  class: auto_light
+#  debug: quiet
+#  app_switch: input_boolean.app_switch_licht_treppe_keller
+#  light: light.flur_keller
+#  type: switch
+#  triggers: 
+#    - binary_sensor.pm_ktr_treppe
+#    - binary_sensor.pm_k_fl_2
+#  min_illuminance_values:
+#    "00:00": 1
