@@ -6,7 +6,7 @@
 
 input_boolean:
   automation_switch_light_o_le_wandwuerfel:
-    name: Automatik Licht OG Lea Wandwürfel
+    name: Auto Licht OG Lea Wandwürfel
     icon: mdi:auto-fix
   helper_light_auto_switched_o_le_wandwuerfel:
     name: Helper - Auto Switched - Licht OG Lea Wandwürfel

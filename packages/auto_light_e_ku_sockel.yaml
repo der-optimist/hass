@@ -6,7 +6,7 @@
 
 input_boolean:
   automation_switch_light_e_ku_sockel:
-    name: Automatik Licht EG Küche Sockel
+    name: Auto Licht EG Küche Sockel
     icon: mdi:auto-fix
   helper_light_auto_switched_e_ku_sockel:
     name: Helper - Auto Switched - Licht EG Küche Sockel

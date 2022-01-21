@@ -6,7 +6,7 @@
 
 input_boolean:
   automation_switch_light_k_wr_decke:
-    name: Automatik Licht Keller Werkelraum Decke
+    name: Auto Licht Keller Werkelraum Decke
     icon: mdi:auto-fix
   helper_light_auto_switched_k_wr_decke:
     name: Helper - Auto Switched - Licht Keller Werkelraum Decke

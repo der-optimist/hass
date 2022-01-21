@@ -6,7 +6,7 @@
 
 input_boolean:
   automation_switch_light_e_ku_theke_panels:
-    name: Automatik Licht EG Küche Theke Panels
+    name: Auto Licht EG Küche Theke Panels
     icon: mdi:auto-fix
   helper_light_auto_switched_e_ku_theke_panels:
     name: Helper - Auto Switched - Licht EG Küche Theke Panels

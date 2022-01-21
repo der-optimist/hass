@@ -6,7 +6,7 @@
 
 input_boolean:
   automation_switch_light_e_ba_regal:
-    name: Automatik Licht EG Bad Regal
+    name: Auto Licht EG Bad Regal
     icon: mdi:auto-fix
   helper_light_auto_switched_e_ba_regal:
     name: Helper - Auto Switched - Licht EG Bad Regal

@@ -6,7 +6,7 @@
 
 input_boolean:
   automation_switch_light_e_ez_wandleuchten_warm:
-    name: Automatik Licht EG EZ Wandleuchten warm
+    name: Auto Licht EG EZ Wandleuchten warm
     icon: mdi:auto-fix
   helper_light_auto_switched_e_ez_wandleuchten_warm:
     name: Helper - Auto Switched - Licht EG EZ Wandleuchten warm

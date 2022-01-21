@@ -6,7 +6,7 @@
 
 input_boolean:
   automation_switch_light_e_ez_wandleuchten_hell:
-    name: Automatik Licht EG EZ Wandleuchten hell
+    name: Auto Licht EG EZ Wandleuchten hell
     icon: mdi:auto-fix
   helper_light_auto_switched_e_ez_wandleuchten_hell:
     name: Helper - Auto Switched - Licht EG EZ Wandleuchten hell
