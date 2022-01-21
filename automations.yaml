@@ -209,7 +209,7 @@
             data:
               message: Batterie Hochzeitsbild ist leer
           - delay:
-              hours: 12
+              hours: 8
               minutes: 0
               seconds: 0
               milliseconds: 0
