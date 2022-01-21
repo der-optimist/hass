@@ -169,12 +169,12 @@
   app_switch_licht_treppe_og:
     name: Automatik Licht Treppe OG (alt)
     icon: mdi:auto-fix
-  app_switch_licht_treppe_keller:
-    name: Automatik Licht Kellertreppe (alt)
-    icon: mdi:auto-fix
-  app_switch_licht_keller:
-    name: Automatik Licht Keller (alt)
-    icon: mdi:auto-fix
+#  app_switch_licht_treppe_keller:
+#    name: Automatik Licht Kellertreppe (alt)
+#    icon: mdi:auto-fix
+#  app_switch_licht_keller:
+#    name: Automatik Licht Keller (alt)
+#    icon: mdi:auto-fix
   app_switch_licht_aussen_carport:
     name: Automatik Licht Carport (alt)
     icon: mdi:auto-fix
