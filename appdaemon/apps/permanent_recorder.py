@@ -37,8 +37,8 @@ class permanent_recorder(hass.Hass):
         all_ha_lights = self.get_state("light")
         all_ha_sensors = self.get_state("sensor")
 
-        for entity in all_ha_lights.keys():
-            self.listen_state(self.light_brightness_changed, entity)
+#        for entity in all_ha_lights.keys():
+#            self.listen_state(self.light_brightness_changed, entity)
         for entity in self.state_string:
             self.listen_state(self.state_string_changed, entity)    
         for entity in self.state_boolean:
