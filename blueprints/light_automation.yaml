@@ -773,8 +773,8 @@ action:
                 data_template:
                   brightness_pct: >
                     {{ trigger.to_state.attributes.brightness | int(75) }}
-                  transition: >
-                    {{ transition_time }}
+#                  transition: >
+#                    {{ transition_time }}
                   rgb_color: >
                     {{ trigger.to_state.attributes.color }}
             default: []
@@ -835,8 +835,8 @@ action:
                         data_template:
                           brightness_pct: >
                             {{ states(helper_effective_brightness) | int(75) }}
-                          transition: >
-                            {{ transition_time }}
+#                          transition: >
+#                            {{ transition_time }}
                           rgb_color: >
                             {{ state_attr(helper_effective_brightness, "color") }}
                     default: []
