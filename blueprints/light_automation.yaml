@@ -869,9 +869,9 @@ action:
       - condition: trigger
         id: effective_brightness_changed
       sequence:
-      - condition: template
-        value_template: >
-          {{ (trigger.to_state.state | int(0)) != (states(helper_basic_brightness) | int(0)) }}
+#      - condition: template
+#        value_template: >
+#          {{ (trigger.to_state.state | int(0)) != (states(helper_basic_brightness) | int(0)) }}
       - condition: state
         entity_id: !input automation_switch
         state: 'on'
