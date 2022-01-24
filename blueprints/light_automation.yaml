@@ -169,7 +169,16 @@ trigger:
     to: ~
   - platform: state
     entity_id: !input helper_effective_brightness
-    id: effective_brightness_changed
+    attribute: basic_or_special
+    from: "basic"
+    to: "special"
+    id: special_or_basic_brightness_switched
+  - platform: state
+    entity_id: !input helper_effective_brightness
+    attribute: basic_or_special
+    from: "special"
+    to: "basic"
+    id: special_or_basic_brightness_switched
 
 action:
   - choose:
@@ -867,7 +876,7 @@ action:
     # path 20
     - conditions:
       - condition: trigger
-        id: effective_brightness_changed
+        id: special_or_basic_brightness_switched
       sequence:
 #      - condition: template
 #        value_template: >
@@ -888,7 +897,7 @@ action:
               entity_id: !input light_entity
             data_template:
               brightness_pct: >
-                {{ trigger.to_state.state | int(75) }}
+                {{ states(helper_effective_brightness) | int(75) }}
         - conditions:
           - condition: template
             value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
@@ -898,7 +907,7 @@ action:
               entity_id: !input light_entity
             data_template:
               brightness_pct: >
-                {{ trigger.to_state.state | int(75) }}
+                {{ states(helper_effective_brightness) | int(75) }}
               rgb_color: >
                 {{ state_attr(helper_effective_brightness, "color") }}
         default: []
