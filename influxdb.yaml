@@ -1,0 +1,6 @@
+exclude:
+  entities:
+    - sensor.time
+    - sensor.last_boot
+    - sensor.windfang_wc_temp_ist_text
+    - sensor.windfang_wc_temp_soll_text

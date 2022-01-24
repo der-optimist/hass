@@ -85,6 +85,8 @@ logger:
 
 lovelace: !include config_lovelace.yaml
 
+influxdb: !include influxdb.yaml
+
 input_boolean: !include input_boolean.yaml
 input_number: !include input_number.yaml
 input_text: !include input_text.yaml
