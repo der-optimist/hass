@@ -1,0 +1,116 @@
+# strings to replace:
+#
+# friendly name: Licht EG Windfang Panels
+# id name: e_wf_panels
+# light: light.panels_windfang
+
+input_boolean:
+  automation_switch_light_e_wf_panels:
+    name: Auto Licht EG Windfang Panels
+    icon: mdi:auto-fix
+  helper_light_auto_switched_e_wf_panels:
+    name: Helper - Auto Switched - Licht EG Windfang Panels
+    initial: off
+  helper_light_manually_switched_on_e_wf_panels:
+    name: Helper - Man Switched on - Licht EG Windfang Panels
+    initial: off
+  helper_light_manually_switched_off_e_wf_panels:
+    name: Helper - Man Switched off - Licht EG Windfang Panels
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_e_wf_panels
+        unit_of_measurement: "%"
+        state: >
+          {% set hours = 
+            ['00:00','04:59',60],
+            ['05:00','06:29',50],
+            ['06:30','07:44',60],
+            ['07:45','08:59',80],
+            ['09:00','16:59',100],
+            ['17:00','21:29',80],
+            ['21:30','23:59',70] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
+      - name: helper_light_effective_brightness_e_wf_panels
+        unit_of_measurement: "%"
+        state: >
+          {{ states('sensor.helper_light_basic_brightness_e_wf_panels') }}
+        attributes:
+          basic_or_special: >
+            {% if states('sensor.helper_light_effective_brightness_e_wf_panels') == states('sensor.helper_light_basic_brightness_e_wf_panels') %}
+              {{ 'basic' }}
+            {% else %}
+              {{ 'special' }}
+            {% endif %}
+      - name: helper_light_min_illuminance_e_wf_panels
+        unit_of_measurement: "lx"
+        state: >
+          {% set hours = 
+            ['00:00','04:59',10],
+            ['05:00','06:29',15],
+            ['06:30','08:59',20],
+            ['09:00','16:59',25],
+            ['17:00','22:59',20],
+            ['23:00','23:59',10] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
+      - name: helper_light_switching_off_entities_e_wf_panels
+        unit_of_measurement: "number"
+        state: >
+          {{ [states('switch.majo_schlafen')] | select('equalto', 'on') | list | count }}
+    binary_sensor:
+      - name: helper_light_trigger_e_wf_panels
+        state: >
+          {{ is_state('binary_sensor.pm_e_wf_haustur', 'on')
+             or is_state('binary_sensor.pm_e_wf_garderobe', 'on')
+             or is_state('binary_sensor.pm_e_fl_windfang', 'on')
+             or is_state('binary_sensor.pm_e_wc', 'on') }}
+      - name: helper_light_keeping_off_entities_e_wf_panels
+        state: >
+          {{ is_state('switch.majo_schlafen', 'on') }}
+      - name: helper_light_keeping_on_entities_e_wf_panels
+        state: >
+          {{ false }}
+      - name: helper_light_keeping_fix_entities_e_wf_panels
+        state: >
+          {{ false }}
+        attributes:
+          brightness: >
+            {{ int(0) }}
+      - name: helper_light_is_too_dark_e_wf_panels
+        state: >
+          {{ (states("sensor.helligkeit_windfang_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_wf_panels") | float(1)) }}
+      - name: helper_light_is_too_bright_e_wf_panels
+        state: >
+          {{ (states("sensor.helligkeit_windfang_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_wf_panels") | float(1) + 100 ) }}
+
+automation:
+  - alias: Licht EG Windfang Panels
+    id: 'auto_light_e_wf_panels'
+    description: ''
+    trace:
+      stored_traces: 10
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.panels_windfang
+        automation_switch: input_boolean.automation_switch_light_e_wf_panels
+        trigger: binary_sensor.helper_light_trigger_e_wf_panels
+        helper_effective_brightness: sensor.helper_light_effective_brightness_e_wf_panels
+        helper_basic_brightness: sensor.helper_light_basic_brightness_e_wf_panels
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_e_wf_panels
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_e_wf_panels
+        helper_auto_switched: input_boolean.helper_light_auto_switched_e_wf_panels
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_e_wf_panels
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_e_wf_panels
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_e_wf_panels
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_e_wf_panels
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_e_wf_panels
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_e_wf_panels
+        transition_time: 1
