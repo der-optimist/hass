@@ -17,9 +17,10 @@ heating_controller_foresight_ez:
 heating_controller_foresight_wz:
   module: heating_controller_foresight
   class: heating_controller_foresight
+  db_name: home_assistant
   db_passwd: !secret permanent_db_passwd
   db_measurement: sensor.temp_esszimmer_pm
-  db_field: state_float
+  db_field: value
   number_of_derivatives_for_average: 5
   minutes_for_evaltuation: [30, 60, 90, 120, 150]
   multiplicator: 6
