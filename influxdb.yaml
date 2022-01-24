@@ -1,3 +1,4 @@
+measurement_attr: entity_id
 exclude:
   entities:
     - sensor.time
