@@ -1,0 +1,103 @@
+# strings to replace:
+#
+# friendly name: Licht EG WC Spiegel
+# id name: e_wc_spiegel
+# light: light.spiegel_wc
+
+input_boolean:
+  automation_switch_light_e_wc_spiegel:
+    name: Auto Licht EG WC Spiegel
+    icon: mdi:auto-fix
+  helper_light_auto_switched_e_wc_spiegel:
+    name: Helper - Auto Switched - Licht EG WC Spiegel
+    initial: off
+  helper_light_manually_switched_on_e_wc_spiegel:
+    name: Helper - Man Switched on - Licht EG WC Spiegel
+    initial: off
+  helper_light_manually_switched_off_e_wc_spiegel:
+    name: Helper - Man Switched off - Licht EG WC Spiegel
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_e_wc_spiegel
+        unit_of_measurement: "%"
+        state: >
+          {{ int(100) }}
+      - name: helper_light_effective_brightness_e_wc_spiegel
+        unit_of_measurement: "%"
+        state: >
+          {{ states('sensor.helper_light_basic_brightness_e_wc_spiegel') }}
+        attributes:
+          basic_or_special: >
+            {% if states('sensor.helper_light_effective_brightness_e_wc_spiegel') == states('sensor.helper_light_basic_brightness_e_wc_spiegel') %}
+              {{ 'basic' }}
+            {% else %}
+              {{ 'special' }}
+            {% endif %}
+      - name: helper_light_min_illuminance_e_wc_spiegel
+        unit_of_measurement: "lx"
+        state: >
+          {% set hours = 
+            ['00:00','04:59',10],
+            ['05:00','06:29',20],
+            ['06:30','08:59',30],
+            ['09:00','16:59',40],
+            ['17:00','18:59',30],
+            ['19:00','22:59',20],
+            ['23:00','23:59',10] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
+      - name: helper_light_switching_off_entities_e_wc_spiegel
+        unit_of_measurement: "number"
+        state: >
+          {{ [] | select('equalto', 'on') | list | count }}
+    binary_sensor:
+      - name: helper_light_trigger_e_wc_spiegel
+        state: >
+          {{ is_state('binary_sensor.pm_e_wc', 'on') }}
+      - name: helper_light_keeping_off_entities_e_wc_spiegel
+        state: >
+          {{ is_state('binary_sensor.nachtmodus_wc', 'on') }}
+      - name: helper_light_keeping_on_entities_e_wc_spiegel
+        state: >
+          {{ false }}
+      - name: helper_light_keeping_fix_entities_e_wc_spiegel
+        state: >
+          {{ false }}
+        attributes:
+          brightness: >
+            {{ int(0) }}
+      - name: helper_light_is_too_dark_e_wc_spiegel
+        state: >
+          {{ (states("sensor.helligkeit_wc_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_wc_spiegel") | float(1)) }}
+      - name: helper_light_is_too_bright_e_wc_spiegel
+        state: >
+          {{ (states("sensor.helligkeit_wc_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_wc_spiegel") | float(1) + 120 ) }}
+
+automation:
+  - alias: Licht EG WC Spiegel
+    id: 'auto_light_e_wc_spiegel'
+    description: ''
+    trace:
+      stored_traces: 10
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.spiegel_wc
+        automation_switch: input_boolean.automation_switch_light_e_wc_spiegel
+        trigger: binary_sensor.helper_light_trigger_e_wc_spiegel
+        helper_effective_brightness: sensor.helper_light_effective_brightness_e_wc_spiegel
+        helper_basic_brightness: sensor.helper_light_basic_brightness_e_wc_spiegel
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_e_wc_spiegel
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_e_wc_spiegel
+        helper_auto_switched: input_boolean.helper_light_auto_switched_e_wc_spiegel
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_e_wc_spiegel
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_e_wc_spiegel
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_e_wc_spiegel
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_e_wc_spiegel
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_e_wc_spiegel
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_e_wc_spiegel
+        transition_time: 1
