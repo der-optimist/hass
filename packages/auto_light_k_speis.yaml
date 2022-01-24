@@ -28,6 +28,13 @@ template:
         unit_of_measurement: "%"
         state: >
           {{ states('sensor.helper_light_basic_brightness_k_speis') }}
+        attributes:
+          basic_or_special: >
+            {% if states('sensor.helper_light_effective_brightness_k_speis') == states('sensor.helper_light_basic_brightness_k_speis') %}
+              {{ 'basic' }}
+            {% else %}
+              {{ 'special' }}
+            {% endif %}
       - name: helper_light_min_illuminance_k_speis
         unit_of_measurement: "lx"
         state: >

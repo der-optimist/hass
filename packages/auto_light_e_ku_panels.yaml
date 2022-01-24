@@ -46,6 +46,13 @@ template:
           {% else %}
             {{ states('sensor.helper_light_basic_brightness_e_ku_panels') }}
           {% endif %}
+        attributes:
+          basic_or_special: >
+            {% if states('sensor.helper_light_effective_brightness_e_ku_panels') == states('sensor.helper_light_basic_brightness_e_ku_panels') %}
+              {{ 'basic' }}
+            {% else %}
+              {{ 'special' }}
+            {% endif %}
       - name: helper_light_min_illuminance_e_ku_panels
         unit_of_measurement: "lx"
         state: >
