@@ -118,7 +118,6 @@ max: 20
 max_exceeded: silent
 
 variables:
-  transition_time: !input transition_time
   helper_effective_brightness: !input helper_effective_brightness
   helper_basic_brightness: !input helper_basic_brightness
 
@@ -233,8 +232,6 @@ action:
                         data_template:
                           brightness_pct: >
                             {{ states(helper_effective_brightness) | int(75) }}
-                          transition: >
-                            {{ transition_time }}
                     - conditions:
                       - condition: template
                         value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
@@ -245,8 +242,6 @@ action:
                         data_template:
                           brightness_pct: >
                             {{ states(helper_effective_brightness) | int(75) }}
-                          transition: >
-                            {{ transition_time }}
                           rgb_color: >
                             {{ state_attr(helper_effective_brightness, "color") }}
                     default: []
@@ -334,8 +329,6 @@ action:
                 data_template:
                   brightness_pct: >
                     {{ states(helper_effective_brightness) | int(75) }}
-                  transition: >
-                    {{ transition_time }}
             - conditions:
               - condition: template
                 value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
@@ -346,8 +339,6 @@ action:
                 data_template:
                   brightness_pct: >
                     {{ states(helper_effective_brightness) | int(75) }}
-                  transition: >
-                    {{ transition_time }}
                   rgb_color: >
                     {{ state_attr(helper_effective_brightness, "color") }}
             default: []
@@ -396,8 +387,6 @@ action:
             data_template:
               brightness_pct: >
                 {{ states(helper_effective_brightness) | int(75) }}
-              transition: >
-                {{ transition_time }}
         - conditions:
           - condition: template
             value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
@@ -408,8 +397,6 @@ action:
             data_template:
               brightness_pct: >
                 {{ states(helper_effective_brightness) | int(75) }}
-              transition: >
-                {{ transition_time }}
               rgb_color: >
                 {{ state_attr(helper_effective_brightness, "color") }}
         default: []
@@ -514,8 +501,6 @@ action:
             data_template:
               brightness_pct: >
                 {{ states(helper_effective_brightness) | int(75) }}
-              transition: >
-                {{ transition_time }}
         - conditions:
           - condition: template
             value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
@@ -526,8 +511,6 @@ action:
             data_template:
               brightness_pct: >
                 {{ states(helper_effective_brightness) | int(75) }}
-              transition: >
-                {{ transition_time }}
               rgb_color: >
                 {{ state_attr(helper_effective_brightness, "color") }}
         default: []
@@ -648,8 +631,6 @@ action:
             data_template:
               brightness_pct: >
                 {{ states(helper_effective_brightness) | int(75) }}
-              transition: >
-                {{ transition_time }}
         - conditions:
           - condition: template
             value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
@@ -660,8 +641,6 @@ action:
             data_template:
               brightness_pct: >
                 {{ states(helper_effective_brightness) | int(75) }}
-              transition: >
-                {{ transition_time }}
               rgb_color: >
                 {{ state_attr(helper_effective_brightness, "color") }}
         default: []
@@ -761,8 +740,6 @@ action:
                 data_template:
                   brightness_pct: >
                     {{ trigger.to_state.attributes.brightness | int(75) }}
-                  transition: >
-                    {{ transition_time }}
             - conditions:
               - condition: template
                 value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
@@ -773,8 +750,6 @@ action:
                 data_template:
                   brightness_pct: >
                     {{ trigger.to_state.attributes.brightness | int(75) }}
-#                  transition: >
-#                    {{ transition_time }}
                   rgb_color: >
                     {{ trigger.to_state.attributes.color }}
             default: []
@@ -823,8 +798,6 @@ action:
                         data_template:
                           brightness_pct: >
                             {{ states(helper_effective_brightness) | int(75) }}
-                          transition: >
-                            {{ transition_time }}
                     - conditions:
                       - condition: template
                         value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
@@ -835,8 +808,6 @@ action:
                         data_template:
                           brightness_pct: >
                             {{ states(helper_effective_brightness) | int(75) }}
-#                          transition: >
-#                            {{ transition_time }}
                           rgb_color: >
                             {{ state_attr(helper_effective_brightness, "color") }}
                     default: []
@@ -918,8 +889,6 @@ action:
             data_template:
               brightness_pct: >
                 {{ trigger.to_state.state | int(75) }}
-              transition: >
-                {{ transition_time }}
         - conditions:
           - condition: template
             value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
@@ -930,8 +899,6 @@ action:
             data_template:
               brightness_pct: >
                 {{ trigger.to_state.state | int(75) }}
-              transition: >
-                {{ transition_time }}
               rgb_color: >
                 {{ state_attr(helper_effective_brightness, "color") }}
         default: []
