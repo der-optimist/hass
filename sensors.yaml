@@ -23,7 +23,7 @@
       temp_aussen:
         friendly_name: 'Temp. Außen'
         unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.temp_wetterstation') }}"
+        value_template: "{{ states('sensor.bosch_outdoor_temperature') }}"
         device_class: temperature
       luftfeuchtigkeit_aussen:
         friendly_name: 'Luftfeuchtigkeit Außen'
