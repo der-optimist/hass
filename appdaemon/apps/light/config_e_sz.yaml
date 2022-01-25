@@ -1,65 +1,65 @@
 # - Schlafzimmer
-auto_light_e_sz_panels:
-  module: auto_light
-  class: auto_light
-  debug: few
-  app_switch: input_boolean.app_switch_licht_schlafzimmer
-  light: light.panels_schlafzimmer
-  type: dim
-  triggers: 
-    - binary_sensor.pm_e_sz_bett
-    - binary_sensor.pm_e_sz_gang
-  brightness_values:
-    "00:00": 30
-    "06:30": 45
-    "09:30": 90
-    "17:00": 80
-    "18:00": 70
-    "19:00": 60
-    "22:00": 30
-  min_illuminance_values:
-    "00:00": 5
-    "04:30": 10
-    "23:00": 5
-  illuminance_sensor: sensor.helligkeit_schlafzimmer_pm
-  keeping_off_entities:
-    - switch.majo_schlafen
-    - binary_sensor.schlafen_oder_aufwachphase_majo
-    - binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo
-    - switch.knutschen
-    - switch.luften_sz
-  switching_off_entities:
-    - switch.majo_schlafen
-    - switch.knutschen
-    - switch.luften_sz
-auto_light_e_sz_bett:
-  module: auto_light
-  class: auto_light
-  debug: quiet
-  app_switch: input_boolean.app_switch_licht_schlafzimmer
-  light: light.bettbeleuchtung
-  type: dim
-  triggers: 
-    - binary_sensor.pm_e_sz_bett
-    - binary_sensor.pm_e_sz_gang
-  brightness_values:
-    "00:00": 50
-    "06:30": 70
-    "09:00": 0
-    "17:00": 70
-    "20:00": 50
-  min_illuminance_values:
-    "00:00": 50
-  illuminance_sensor: sensor.helligkeit_schlafzimmer_pm
-  keeping_fix_entities:
-    switch.majo_schlafen: 3
-    switch.knutschen: 70
-  special_brightness_entities:
-    binary_sensor.schlafen_oder_aufwachphase_majo: 40
-  switching_off_entities:
-    - switch.luften_sz
-  keeping_off_entities:
-    - switch.luften_sz
+#auto_light_e_sz_panels:
+#  module: auto_light
+#  class: auto_light
+#  debug: few
+#  app_switch: input_boolean.app_switch_licht_schlafzimmer
+#  light: light.panels_schlafzimmer
+#  type: dim
+#  triggers: 
+#    - binary_sensor.pm_e_sz_bett
+#    - binary_sensor.pm_e_sz_gang
+#  brightness_values:
+#    "00:00": 30
+#    "06:30": 45
+#    "09:30": 90
+#    "17:00": 80
+#    "18:00": 70
+#    "19:00": 60
+#    "22:00": 30
+#  min_illuminance_values:
+#    "00:00": 5
+#    "04:30": 10
+#    "23:00": 5
+#  illuminance_sensor: sensor.helligkeit_schlafzimmer_pm
+#  keeping_off_entities:
+#    - switch.majo_schlafen
+#    - binary_sensor.schlafen_oder_aufwachphase_majo
+#    - binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo
+#    - switch.knutschen
+#    - switch.luften_sz
+#  switching_off_entities:
+#    - switch.majo_schlafen
+#    - switch.knutschen
+#    - switch.luften_sz
+#auto_light_e_sz_bett:
+#  module: auto_light
+#  class: auto_light
+#  debug: quiet
+#  app_switch: input_boolean.app_switch_licht_schlafzimmer
+#  light: light.bettbeleuchtung
+#  type: dim
+#  triggers: 
+#    - binary_sensor.pm_e_sz_bett
+#    - binary_sensor.pm_e_sz_gang
+#  brightness_values:
+#    "00:00": 50
+#    "06:30": 70
+#    "09:00": 0
+#    "17:00": 70
+#    "20:00": 50
+#  min_illuminance_values:
+#    "00:00": 50
+#  illuminance_sensor: sensor.helligkeit_schlafzimmer_pm
+#  keeping_fix_entities:
+#    switch.majo_schlafen: 3
+#    switch.knutschen: 70
+#  special_brightness_entities:
+#    binary_sensor.schlafen_oder_aufwachphase_majo: 40
+#  switching_off_entities:
+#    - switch.luften_sz
+#  keeping_off_entities:
+#    - switch.luften_sz
 auto_light_e_sz_zigbee_lampe:
   module: auto_light
   class: auto_light
