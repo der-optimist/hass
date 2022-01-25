@@ -1,44 +1,44 @@
 # - Le
-auto_light_o_le_panels:
-  module: auto_light
-  class: auto_light
-  debug: quiet
-  app_switch: input_boolean.app_switch_licht_le
-  light: light.panels_le
-  type: dim
-  triggers: 
-    - binary_sensor.pm_o_kw_le_raum
-    - binary_sensor.pm_o_kw_le_tuer
-  brightness_values:
-    "00:00": 25
-    "05:30": 40
-    "07:30": 50
-    "08:00": 70
-    "09:00": 90
-    "17:00": 80
-    "18:00": 70
-    "20:00": 50
-    "21:00": 30
-  min_illuminance_values:
-    "00:00": 20
-    "05:30": 30
-    "07:30": 40
-    "09:00": 50
-    "18:00": 35
-    "21:00": 20
-  illuminance_sensor: sensor.helligkeit_le_pm
-  keeping_off_entities:
-    - switch.le_schlaft
-    - switch.bleib_so_le_licht
-    - switch.luften_le
-  keeping_on_entities:
-    - switch.bleib_so_le_licht
-  switching_off_entities:
-    - switch.le_schlaft
-    - switch.luften_le
-  special_brightness_entities:
-    binary_sensor.schlafen_oder_aufwachphase_le: 5
-    binary_sensor.la_schon_im_bett: 25
+#auto_light_o_le_panels:
+#  module: auto_light
+#  class: auto_light
+#  debug: quiet
+#  app_switch: input_boolean.app_switch_licht_le
+#  light: light.panels_le
+#  type: dim
+#  triggers: 
+#    - binary_sensor.pm_o_kw_le_raum
+#    - binary_sensor.pm_o_kw_le_tuer
+#  brightness_values:
+#    "00:00": 25
+#    "05:30": 40
+#    "07:30": 50
+#    "08:00": 70
+#    "09:00": 90
+#    "17:00": 80
+#    "18:00": 70
+#    "20:00": 50
+#    "21:00": 30
+#  min_illuminance_values:
+#    "00:00": 20
+#    "05:30": 30
+#    "07:30": 40
+#    "09:00": 50
+#    "18:00": 35
+#    "21:00": 20
+#  illuminance_sensor: sensor.helligkeit_le_pm
+#  keeping_off_entities:
+#    - switch.le_schlaft
+#    - switch.bleib_so_le_licht
+#    - switch.luften_le
+#  keeping_on_entities:
+#    - switch.bleib_so_le_licht
+#  switching_off_entities:
+#    - switch.le_schlaft
+#    - switch.luften_le
+#  special_brightness_entities:
+#    binary_sensor.schlafen_oder_aufwachphase_le: 5
+#    binary_sensor.la_schon_im_bett: 25
 #auto_light_o_le_wuerfel:
 #  module: auto_light
 #  class: auto_light
