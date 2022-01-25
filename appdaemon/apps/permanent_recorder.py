@@ -39,10 +39,10 @@ class permanent_recorder(hass.Hass):
 
 #        for entity in all_ha_lights.keys():
 #            self.listen_state(self.light_brightness_changed, entity)
-        for entity in self.state_string:
-            self.listen_state(self.state_string_changed, entity)    
-        for entity in self.state_boolean:
-            self.listen_state(self.state_boolean_changed, entity)   
+#        for entity in self.state_string:
+#            self.listen_state(self.state_string_changed, entity)    
+#        for entity in self.state_boolean:
+#            self.listen_state(self.state_boolean_changed, entity)   
         for entity in self.heating_target_temperature:
             self.listen_state(self.heating_target_temperature_changed, entity, attribute = "temperature")    
         # state float
@@ -57,9 +57,9 @@ class permanent_recorder(hass.Hass):
                 self.listen_state(self.state_float_changed, entity)
                 self.state_float_sensors.append(entity)
         # cover
-        for entity in self.cover:
-            self.listen_state(self.cover_changed, entity, attribute = "current_position")
-            self.listen_state(self.cover_changed, entity, attribute = "current_tilt_position")
+#        for entity in self.cover:
+#            self.listen_state(self.cover_changed, entity, attribute = "current_position")
+#            self.listen_state(self.cover_changed, entity, attribute = "current_tilt_position")
         
         # Heizung
         #

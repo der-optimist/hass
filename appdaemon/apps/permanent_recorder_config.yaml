@@ -161,41 +161,41 @@ permanent_recorder:
     - cover.jalousie_wz_bodentiefes
     - cover.jalousie_wz_couch
   state_float:
-    - sensor.anteil_el_leistung_*
-    - sensor.bme280*
-    - sensor.bosch_outdoor_temperature
-    - sensor.diesel_*
-    - sensor.e10_*
-    - sensor.e5_*
-    - sensor.einspeiselimit_watt
+#    - sensor.anteil_el_leistung_*
+#    - sensor.bme280*
+#    - sensor.bosch_outdoor_temperature
+#    - sensor.diesel_*
+#    - sensor.e10_*
+#    - sensor.e5_*
+#    - sensor.einspeiselimit_watt
     - sensor.el_leistung_*
-    - sensor.helligkeit_*
-    - sensor.humidity_outside_internet
-    - sensor.luftdruck_kuche_aqara
-    - sensor.luftfeuchtigkeit_*
-    - sensor.lumi_lumi_remote_b286acn01_power
-    - sensor.lumi_lumi_sensor_magnet_aq2_83155c04_power
-    - sensor.lumi_lumi_sensor_magnet_aq2_power
-    - sensor.lumi_lumi_sensor_motion_aq2_illuminance
-    - sensor.lumi_lumi_sensor_motion_aq2_power
-    - sensor.lumi_lumi_weather_57dc3d03_humidity
-    - sensor.lumi_lumi_weather_57dc3d03_power
-    - sensor.lumi_lumi_weather_57dc3d03_temperature
-    - sensor.lumi_lumi_weather_humidity
-    - sensor.lumi_lumi_weather_power
-    - sensor.lumi_lumi_weather_temperature
-    - sensor.onewire_*
+#    - sensor.helligkeit_*
+#    - sensor.humidity_outside_internet
+#    - sensor.luftdruck_kuche_aqara
+#    - sensor.luftfeuchtigkeit_*
+#    - sensor.lumi_lumi_remote_b286acn01_power
+#    - sensor.lumi_lumi_sensor_magnet_aq2_83155c04_power
+#    - sensor.lumi_lumi_sensor_magnet_aq2_power
+#    - sensor.lumi_lumi_sensor_motion_aq2_illuminance
+#    - sensor.lumi_lumi_sensor_motion_aq2_power
+#    - sensor.lumi_lumi_weather_57dc3d03_humidity
+#    - sensor.lumi_lumi_weather_57dc3d03_power
+#    - sensor.lumi_lumi_weather_57dc3d03_temperature
+#    - sensor.lumi_lumi_weather_humidity
+#    - sensor.lumi_lumi_weather_power
+#    - sensor.lumi_lumi_weather_temperature
+#    - sensor.onewire_*
     - sensor.sollwert_heizung_*
-    - sensor.sonoff_pow_*
-    - sensor.stellwert_heizung_*
-    - input_number.strompreis
+#    - sensor.sonoff_pow_*
+#    - sensor.stellwert_heizung_*
+#    - input_number.strompreis
     - sensor.strompreis_aktuell_effektiv_euro
     - sensor.strompreis_aktuell_abrechnung_euro
     - sensor.stromzaehler_netzbezug
     - sensor.temp_*
-    - sensor.windgeschwindigkeit_wetterstation
-    - sensor.windgeschwindigkeit_wetterstation_kmh
-    - sensor.wirkungsgrad_wechselrichter
+#    - sensor.windgeschwindigkeit_wetterstation
+#    - sensor.windgeschwindigkeit_wetterstation_kmh
+#    - sensor.wirkungsgrad_wechselrichter
   state_string:
     - sensor.diagnose_heizkreis_bad_eg
     - sensor.diagnose_heizkreis_bad_og
