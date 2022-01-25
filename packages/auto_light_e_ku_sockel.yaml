@@ -45,12 +45,8 @@ template:
             {{ states('sensor.helper_light_basic_brightness_e_ku_sockel') }}
           {% endif %}
         attributes:
-          basic_or_special: >
-            {% if states('sensor.helper_light_effective_brightness_e_ku_sockel') == states('sensor.helper_light_basic_brightness_e_ku_sockel') %}
-              {{ 'basic' }}
-            {% else %}
-              {{ 'special' }}
-            {% endif %}
+          special_brightness: >
+            {{ [states('input_boolean.gaeste_abends'),states('binary_sensor.kodi_abends'),states('binary_sensor.tv_abends_an'),states('binary_sensor.nachtmodus_wohnbereich_licht')] | select('equalto', 'on') | list | count }}
       - name: helper_light_min_illuminance_e_ku_sockel
         unit_of_measurement: "lx"
         state: >

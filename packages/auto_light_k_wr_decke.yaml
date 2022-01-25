@@ -29,12 +29,8 @@ template:
         state: >
           {{ states('sensor.helper_light_basic_brightness_k_wr_decke') }}
         attributes:
-          basic_or_special: >
-            {% if states('sensor.helper_light_effective_brightness_k_wr_decke') == states('sensor.helper_light_basic_brightness_k_wr_decke') %}
-              {{ 'basic' }}
-            {% else %}
-              {{ 'special' }}
-            {% endif %}
+          special_brightness: >
+            {{ [] | select('equalto', 'on') | list | count }}
       - name: helper_light_min_illuminance_k_wr_decke
         unit_of_measurement: "lx"
         state: >

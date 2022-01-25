@@ -40,12 +40,8 @@ template:
             {{ states('sensor.helper_light_basic_brightness_e_sz_bettbeleuchtung') }}
           {% endif %}
         attributes:
-          basic_or_special: >
-            {% if states('sensor.helper_light_effective_brightness_e_sz_bettbeleuchtung') == states('sensor.helper_light_basic_brightness_e_sz_bettbeleuchtung') %}
-              {{ 'basic' }}
-            {% else %}
-              {{ 'special' }}
-            {% endif %}
+          special_brightness: >
+            {{ [states('binary_sensor.schlafen_oder_aufwachphase_majo')] | select('equalto', 'on') | list | count }}
       - name: helper_light_min_illuminance_e_sz_bettbeleuchtung
         unit_of_measurement: "lx"
         state: >

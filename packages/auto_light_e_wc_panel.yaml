@@ -42,12 +42,8 @@ template:
             {{ states('sensor.helper_light_basic_brightness_e_wc_panel') }}
           {% endif %}
         attributes:
-          basic_or_special: >
-            {% if states('sensor.helper_light_effective_brightness_e_wc_panel') == states('sensor.helper_light_basic_brightness_e_wc_panel') %}
-              {{ 'basic' }}
-            {% else %}
-              {{ 'special' }}
-            {% endif %}
+          special_brightness: >
+            {{ [states('binary_sensor.nachtmodus_wc')] | select('equalto', 'on') | list | count }}
       - name: helper_light_min_illuminance_e_wc_panel
         unit_of_measurement: "lx"
         state: >

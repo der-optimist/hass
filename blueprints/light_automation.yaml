@@ -169,16 +169,9 @@ trigger:
     to: ~
   - platform: state
     entity_id: !input helper_effective_brightness
-    attribute: basic_or_special
-    from: "basic"
-    to: "special"
-    id: special_or_basic_brightness_switched
-  - platform: state
-    entity_id: !input helper_effective_brightness
-    attribute: basic_or_special
-    from: "special"
-    to: "basic"
-    id: special_or_basic_brightness_switched
+    attribute: special_brightness
+    to: ~
+    id: no_of_special_brightness_changed
 
 action:
   - choose:
@@ -876,17 +869,18 @@ action:
     # path 20
     - conditions:
       - condition: trigger
-        id: special_or_basic_brightness_switched
+        id: no_of_special_brightness_changed
       sequence:
-#      - condition: template
-#        value_template: >
-#          {{ (trigger.to_state.state | int(0)) != (states(helper_basic_brightness) | int(0)) }}
       - condition: state
         entity_id: !input automation_switch
         state: 'on'
       - condition: state
+        entity_id: !input helper_keeping_fix_entities
+        state: 'off'
+      - condition: state
         entity_id: !input light_entity
         state: 'on'
+      - delay: 1
       - choose:
         - conditions:
           - condition: template

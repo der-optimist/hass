@@ -36,12 +36,8 @@ template:
         state: >
           {{ states('sensor.helper_light_basic_brightness_e_wz_schraenke') }}
         attributes:
-          basic_or_special: >
-            {% if states('sensor.helper_light_effective_brightness_e_wz_schraenke') == states('sensor.helper_light_basic_brightness_e_wz_schraenke') %}
-              {{ 'basic' }}
-            {% else %}
-              {{ 'special' }}
-            {% endif %}
+          special_brightness: >
+            {{ [] | select('equalto', 'on') | list | count }}
       - name: helper_light_min_illuminance_e_wz_schraenke
         unit_of_measurement: "lx"
         state: >

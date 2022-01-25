@@ -42,12 +42,8 @@ template:
             {{ states('sensor.helper_light_basic_brightness_e_ez_wandleuchten_warm') }}
           {% endif %}
         attributes:
-          basic_or_special: >
-            {% if states('sensor.helper_light_effective_brightness_e_ez_wandleuchten_warm') == states('sensor.helper_light_basic_brightness_e_ez_wandleuchten_warm') %}
-              {{ 'basic' }}
-            {% else %}
-              {{ 'special' }}
-            {% endif %}
+          special_brightness: >
+            {{ [states('input_boolean.gaeste_abends'),states('binary_sensor.nachtmodus_wohnbereich_licht')] | select('equalto', 'on') | list | count }}
       - name: helper_light_min_illuminance_e_ez_wandleuchten_warm
         unit_of_measurement: "lx"
         state: >
