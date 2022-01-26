@@ -1,0 +1,119 @@
+# strings to replace:
+#
+# friendly name: Licht OG Flur Panels
+# id name: o_fl_panels
+# light: light.panels_flur_og
+
+input_boolean:
+  automation_switch_light_o_fl_panels:
+    name: Auto Licht OG Flur Panels
+    icon: mdi:auto-fix
+  helper_light_auto_switched_o_fl_panels:
+    name: Helper - Auto Switched - Licht OG Flur Panels
+    initial: off
+  helper_light_manually_switched_on_o_fl_panels:
+    name: Helper - Man Switched on - Licht OG Flur Panels
+    initial: off
+  helper_light_manually_switched_off_o_fl_panels:
+    name: Helper - Man Switched off - Licht OG Flur Panels
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_o_fl_panels
+        unit_of_measurement: "%"
+        state: >
+          {% set hours = 
+            ['00:00','02:59',30],
+            ['03:00','06:29',10],
+            ['06:30','07:59',40],
+            ['08:00','08:59',80],
+            ['09:00','16:59',90],
+            ['17:00','17:59',80],
+            ['18:00','20:29',70],
+            ['20:30','23:59',50] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
+      - name: helper_light_effective_brightness_o_fl_panels
+        unit_of_measurement: "%"
+        state: >
+          {% if is_state('binary_sensor.schlafen_oder_aufwachphase_kinder', 'on') %}
+            {{ int(15) }}
+          {% else %}
+            {{ states('sensor.helper_light_basic_brightness_o_fl_panels') }}
+          {% endif %}
+        attributes:
+          special_brightness: >
+            {{ [states('binary_sensor.schlafen_oder_aufwachphase_kinder')] | select('equalto', 'on') | list | count }}
+      - name: helper_light_min_illuminance_o_fl_panels
+        unit_of_measurement: "lx"
+        state: >
+          {% set hours = 
+            ['00:00','06:29',5],
+            ['06:30','08:59',25],
+            ['09:00','16:59',30],
+            ['17:00','18:59',25],
+            ['19:00','22:59',10],
+            ['23:00','23:59',5] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
+      - name: helper_light_switching_off_entities_o_fl_panels
+        unit_of_measurement: "number"
+        state: >
+          {{ [states('binary_sensor.la_oder_le_schlafen'),states('switch.luften_le'),states('switch.luften_la')] | select('equalto', 'on') | list | count }}
+    binary_sensor:
+      - name: helper_light_trigger_o_fl_panels
+        state: >
+          {{ is_state('binary_sensor.pm_o_fl_treppe', 'on')
+             or is_state('binary_sensor.pm_o_fl_flur', 'on')
+             or is_state('binary_sensor.pm_o_ko_la_tuer', 'on')
+             or is_state('binary_sensor.pm_o_kw_le_tuer', 'on') }}
+      - name: helper_light_keeping_off_entities_o_fl_panels
+        state: >
+          {{ is_state('binary_sensor.la_oder_le_schlafen', 'on')
+             or is_state('switch.luften_le', 'on')
+             or is_state('switch.luften_la', 'on') }}
+      - name: helper_light_keeping_on_entities_o_fl_panels
+        state: >
+          {{ false }}
+      - name: helper_light_keeping_fix_entities_o_fl_panels
+        state: >
+          {{ false }}
+        attributes:
+          brightness: >
+            {{ int(0) }}
+      - name: helper_light_is_too_dark_o_fl_panels
+        state: >
+          {{ (states("sensor.helligkeit_flur_og_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_o_fl_panels") | float(1)) }}
+      - name: helper_light_is_too_bright_o_fl_panels
+        state: >
+          {{ (states("sensor.helligkeit_flur_og_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_o_fl_panels") | float(1) + 100 ) }}
+
+automation:
+  - alias: Licht OG Flur Panels
+    id: 'auto_light_o_fl_panels'
+    description: ''
+    trace:
+      stored_traces: 10
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.panels_flur_og
+        automation_switch: input_boolean.automation_switch_light_o_fl_panels
+        trigger: binary_sensor.helper_light_trigger_o_fl_panels
+        helper_effective_brightness: sensor.helper_light_effective_brightness_o_fl_panels
+        helper_basic_brightness: sensor.helper_light_basic_brightness_o_fl_panels
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_o_fl_panels
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_o_fl_panels
+        helper_auto_switched: input_boolean.helper_light_auto_switched_o_fl_panels
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_o_fl_panels
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_o_fl_panels
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_o_fl_panels
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_o_fl_panels
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_o_fl_panels
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_o_fl_panels
+        transition_time: 1
