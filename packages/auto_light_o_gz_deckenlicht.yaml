@@ -1,0 +1,111 @@
+# strings to replace:
+#
+# friendly name: Licht OG Gästezimmer Deckenlicht
+# id name: o_gz_deckenlicht
+# light: light.innr_e14_ww_decke_gastezimmer_level_on_off
+
+input_boolean:
+  automation_switch_light_o_gz_deckenlicht:
+    name: Auto Licht OG Gästezimmer Deckenlicht
+    icon: mdi:auto-fix
+  helper_light_auto_switched_o_gz_deckenlicht:
+    name: Helper - Auto Switched - Licht OG Gästezimmer Deckenlicht
+    initial: off
+  helper_light_manually_switched_on_o_gz_deckenlicht:
+    name: Helper - Man Switched on - Licht OG Gästezimmer Deckenlicht
+    initial: off
+  helper_light_manually_switched_off_o_gz_deckenlicht:
+    name: Helper - Man Switched off - Licht OG Gästezimmer Deckenlicht
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_o_gz_deckenlicht
+        unit_of_measurement: "%"
+        state: >
+          {% set hours = 
+            ['00:00','07:59',20],
+            ['08:00','08:59',70],
+            ['09:00','09:59',80],
+            ['10:00','19:59',100],
+            ['20:00','21:59',70],
+            ['22:00','22:59',40],
+            ['23:00','23:59',20] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
+      - name: helper_light_effective_brightness_o_gz_deckenlicht
+        unit_of_measurement: "%"
+        state: >
+          {{ states('sensor.helper_light_basic_brightness_o_gz_deckenlicht') }}
+        attributes:
+          special_brightness: >
+            {{ [] | select('equalto', 'on') | list | count }}
+      - name: helper_light_min_illuminance_o_gz_deckenlicht
+        unit_of_measurement: "lx"
+        state: >
+          {% set hours = 
+            ['00:00','05:29',10],
+            ['05:30','06:29',20],
+            ['06:30','08:59',30],
+            ['09:00','16:59',40],
+            ['17:00','18:59',30],
+            ['19:00','22:59',20],
+            ['23:00','23:59',10] %}
+          {% set t = states('sensor.time').replace(':','')|int %}
+          {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
+              {{h[2]}}
+          {% endfor %}
+      - name: helper_light_switching_off_entities_o_gz_deckenlicht
+        unit_of_measurement: "number"
+        state: >
+          {{ [states('switch.gaste_schlafen'),states('switch.luften_le')] | select('equalto', 'on') | list | count }}
+    binary_sensor:
+      - name: helper_light_trigger_o_gz_deckenlicht
+        state: >
+          {{ is_state('binary_sensor.pm_o_gz', 'on') }}
+      - name: helper_light_keeping_off_entities_o_gz_deckenlicht
+        state: >
+          {{ is_state('switch.gaste_schlafen', 'on')
+             or is_state('switch.luften_le', 'on') }}
+      - name: helper_light_keeping_on_entities_o_gz_deckenlicht
+        state: >
+          {{ false }}
+      - name: helper_light_keeping_fix_entities_o_gz_deckenlicht
+        state: >
+          {{ false }}
+        attributes:
+          brightness: >
+            {{ int(0) }}
+      - name: helper_light_is_too_dark_o_gz_deckenlicht
+        state: >
+          {{ (states("sensor.helligkeit_gastezimmer_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_o_gz_deckenlicht") | float(1)) }}
+      - name: helper_light_is_too_bright_o_gz_deckenlicht
+        state: >
+          {{ (states("sensor.helligkeit_gastezimmer_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_o_gz_deckenlicht") | float(1) + 100 ) }}
+
+automation:
+  - alias: Licht OG Gästezimmer Deckenlicht
+    id: 'auto_light_o_gz_deckenlicht'
+    description: ''
+    trace:
+      stored_traces: 10
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.innr_e14_ww_decke_gastezimmer_level_on_off
+        automation_switch: input_boolean.automation_switch_light_o_gz_deckenlicht
+        trigger: binary_sensor.helper_light_trigger_o_gz_deckenlicht
+        helper_effective_brightness: sensor.helper_light_effective_brightness_o_gz_deckenlicht
+        helper_basic_brightness: sensor.helper_light_basic_brightness_o_gz_deckenlicht
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_o_gz_deckenlicht
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_o_gz_deckenlicht
+        helper_auto_switched: input_boolean.helper_light_auto_switched_o_gz_deckenlicht
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_o_gz_deckenlicht
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_o_gz_deckenlicht
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_o_gz_deckenlicht
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_o_gz_deckenlicht
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_o_gz_deckenlicht
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_o_gz_deckenlicht
+        transition_time: 1
