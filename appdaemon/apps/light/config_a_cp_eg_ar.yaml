@@ -1,21 +1,21 @@
 # - LED-Streifen Carport
-auto_light_a_cp_led_streifen:
-  module: auto_light
-  class: auto_light
-  debug: quiet
-  app_switch: input_boolean.app_switch_licht_aussen_carport
-  light: light.led_streifen_carport
-  type: dim
-  triggers: 
-    - binary_sensor.pm_a_eg
-    - binary_sensor.pm_a_cp
-  keeping_on_entities:
-    - binary_sensor.pm_a_ar
-  brightness_values:
-    "00:00": 60
-  min_illuminance_values:
-    "00:00": 800
-  illuminance_sensor: sensor.helligkeit_wetterstation
+#auto_light_a_cp_led_streifen:
+#  module: auto_light
+#  class: auto_light
+#  debug: quiet
+#  app_switch: input_boolean.app_switch_licht_aussen_carport
+#  light: light.led_streifen_carport
+#  type: dim
+#  triggers: 
+#    - binary_sensor.pm_a_eg
+#    - binary_sensor.pm_a_cp
+#  keeping_on_entities:
+#    - binary_sensor.pm_a_ar
+#  brightness_values:
+#    "00:00": 60
+#  min_illuminance_values:
+#    "00:00": 800
+#  illuminance_sensor: sensor.helligkeit_wetterstation
 auto_light_a_eg_bodenlicht:
   module: auto_light
   class: auto_light

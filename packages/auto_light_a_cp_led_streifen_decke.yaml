@@ -1,0 +1,89 @@
+# strings to replace:
+#
+# friendly name: Licht Carport LED-Streifen Decke
+# id name: a_cp_led_streifen_decke
+# light: light.led_streifen_carport
+
+input_boolean:
+  automation_switch_light_a_cp_led_streifen_decke:
+    name: Auto Licht Carport LED-Streifen Decke
+    icon: mdi:auto-fix
+  helper_light_auto_switched_a_cp_led_streifen_decke:
+    name: Helper - Auto Switched - Licht Carport LED-Streifen Decke
+    initial: off
+  helper_light_manually_switched_on_a_cp_led_streifen_decke:
+    name: Helper - Man Switched on - Licht Carport LED-Streifen Decke
+    initial: off
+  helper_light_manually_switched_off_a_cp_led_streifen_decke:
+    name: Helper - Man Switched off - Licht Carport LED-Streifen Decke
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_a_cp_led_streifen_decke
+        unit_of_measurement: "%"
+        state: >
+          {{ int(60) }}
+      - name: helper_light_effective_brightness_a_cp_led_streifen_decke
+        unit_of_measurement: "%"
+        state: >
+          {{ states('sensor.helper_light_basic_brightness_a_cp_led_streifen_decke') }}
+        attributes:
+          special_brightness: >
+            {{ [] | select('equalto', 'on') | list | count }}
+      - name: helper_light_min_illuminance_a_cp_led_streifen_decke
+        unit_of_measurement: "lx"
+        state: >
+          {{ int(800) }}
+      - name: helper_light_switching_off_entities_a_cp_led_streifen_decke
+        unit_of_measurement: "number"
+        state: >
+          {{ [] | select('equalto', 'on') | list | count }}
+    binary_sensor:
+      - name: helper_light_trigger_a_cp_led_streifen_decke
+        state: >
+          {{ is_state('binary_sensor.pm_a_eg', 'on') 
+             or is_state('binary_sensor.pm_a_cp', 'on') }}
+      - name: helper_light_keeping_off_entities_a_cp_led_streifen_decke
+        state: >
+          {{ false }}
+      - name: helper_light_keeping_on_entities_a_cp_led_streifen_decke
+        state: >
+          {{ is_state('binary_sensor.pm_a_ar', 'on') }}
+      - name: helper_light_keeping_fix_entities_a_cp_led_streifen_decke
+        state: >
+          {{ false }}
+        attributes:
+          brightness: >
+            {{ int(0) }}
+      - name: helper_light_is_too_dark_a_cp_led_streifen_decke
+        state: >
+          {{ (states("sensor.helligkeit_wetterstation") | float(0)) < (states("sensor.helper_light_min_illuminance_a_cp_led_streifen_decke") | float(1)) }}
+      - name: helper_light_is_too_bright_a_cp_led_streifen_decke
+        state: >
+          {{ (states("sensor.helligkeit_wetterstation") | float(0)) > (states("sensor.helper_light_min_illuminance_a_cp_led_streifen_decke") | float(1) + 100 ) }}
+
+automation:
+  - alias: Licht Carport LED-Streifen Decke
+    id: 'auto_light_a_cp_led_streifen_decke'
+    description: ''
+    trace:
+      stored_traces: 10
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.led_streifen_carport
+        automation_switch: input_boolean.automation_switch_light_a_cp_led_streifen_decke
+        trigger: binary_sensor.helper_light_trigger_a_cp_led_streifen_decke
+        helper_effective_brightness: sensor.helper_light_effective_brightness_a_cp_led_streifen_decke
+        helper_basic_brightness: sensor.helper_light_basic_brightness_a_cp_led_streifen_decke
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_a_cp_led_streifen_decke
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_a_cp_led_streifen_decke
+        helper_auto_switched: input_boolean.helper_light_auto_switched_a_cp_led_streifen_decke
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_a_cp_led_streifen_decke
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_a_cp_led_streifen_decke
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_a_cp_led_streifen_decke
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_a_cp_led_streifen_decke
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_a_cp_led_streifen_decke
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_a_cp_led_streifen_decke
+        transition_time: 1
