@@ -1,6 +1,6 @@
 # strings to replace:
 #
-# friendly name: Licht OG Treppe Panels
+# friendly name: Licht OG Treppe Panels (nur aktiv wenn kein Kind schlaeft. Sonst wird vom PM Flur OG KNX-intern geschalten auf 8%)
 # id name: o_tr_panels
 # light: light.panels_treppe_og
 
