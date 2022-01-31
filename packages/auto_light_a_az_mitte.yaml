@@ -1,0 +1,88 @@
+# strings to replace:
+#
+# friendly name: Licht OG Arbeitszimmer Mitte
+# id name: o_az_mitte
+# light: light.schreibtisch_decke
+
+input_boolean:
+  automation_switch_light_o_az_mitte:
+    name: Auto Licht OG Arbeitszimmer Mitte
+    icon: mdi:auto-fix
+  helper_light_auto_switched_o_az_mitte:
+    name: Helper - Auto Switched - Licht OG Arbeitszimmer Mitte
+    initial: off
+  helper_light_manually_switched_on_o_az_mitte:
+    name: Helper - Man Switched on - Licht OG Arbeitszimmer Mitte
+    initial: off
+  helper_light_manually_switched_off_o_az_mitte:
+    name: Helper - Man Switched off - Licht OG Arbeitszimmer Mitte
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_o_az_mitte
+        unit_of_measurement: "%"
+        state: >
+          {{ int(100) }}
+      - name: helper_light_effective_brightness_o_az_mitte
+        unit_of_measurement: "%"
+        state: >
+          {{ states('sensor.helper_light_basic_brightness_o_az_mitte') }}
+        attributes:
+          special_brightness: >
+            {{ [] | select('equalto', 'on') | list | count }}
+      - name: helper_light_min_illuminance_o_az_mitte
+        unit_of_measurement: "lx"
+        state: >
+          {{ int(100) }}
+      - name: helper_light_switching_off_entities_o_az_mitte
+        unit_of_measurement: "number"
+        state: >
+          {{ [] | select('equalto', 'on') | list | count }}
+    binary_sensor:
+      - name: helper_light_trigger_o_az_mitte
+        state: >
+          {{ is_state('binary_sensor.pm_o_nz', 'on') }}
+      - name: helper_light_keeping_off_entities_o_az_mitte
+        state: >
+          {{ true }}
+      - name: helper_light_keeping_on_entities_o_az_mitte
+        state: >
+          {{ false }}
+      - name: helper_light_keeping_fix_entities_o_az_mitte
+        state: >
+          {{ false }}
+        attributes:
+          brightness: >
+            {{ int(0) }}
+      - name: helper_light_is_too_dark_o_az_mitte
+        state: >
+          {{ false }}
+      - name: helper_light_is_too_bright_o_az_mitte
+        state: >
+          {{ false }}
+
+automation:
+  - alias: Licht OG Arbeitszimmer Mitte
+    id: 'auto_light_o_az_mitte'
+    description: ''
+    trace:
+      stored_traces: 3
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.schreibtisch_decke
+        automation_switch: input_boolean.automation_switch_light_o_az_mitte
+        trigger: binary_sensor.helper_light_trigger_o_az_mitte
+        helper_effective_brightness: sensor.helper_light_effective_brightness_o_az_mitte
+        helper_basic_brightness: sensor.helper_light_basic_brightness_o_az_mitte
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_o_az_mitte
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_o_az_mitte
+        helper_auto_switched: input_boolean.helper_light_auto_switched_o_az_mitte
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_o_az_mitte
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_o_az_mitte
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_o_az_mitte
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_o_az_mitte
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_o_az_mitte
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_o_az_mitte
+        transition_time: 1

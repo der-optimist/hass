@@ -67,7 +67,7 @@ automation:
     id: 'auto_light_e_ba_spiegel_vorne'
     description: ''
     trace:
-      stored_traces: 10
+      stored_traces: 3
     use_blueprint:
       path: /config/blueprints/light_automation.yaml
       input:
