@@ -214,3 +214,17 @@
               seconds: 0
               milliseconds: 0
   mode: single
+- id: 'f59f075d-d8f6-4b8e-b8e8-23c39b261b5c'
+  alias: KNX Scenes
+  description: ''
+  mode: queued
+  trigger:
+    - platform: event
+      event_type: knx_event
+      event_data:
+        destination: 15/0/50
+  condition: []
+  action:
+    - service: notify.telegram_jo
+      data:
+        message: knx scene detected
