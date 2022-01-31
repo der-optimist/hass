@@ -50,25 +50,25 @@
   alias: Play on Kodi WZ
   description: ''
   trigger:
-  - platform: event
-    event_type: play_on_kodi_wz
-    id: play_on_kodi_wz
+    - platform: event
+      event_type: play_on_kodi_wz
+      id: play_on_kodi_wz
   condition: []
   action:
-  - service: media_player.turn_on
-    target:
-      entity_id: media_player.samsung_7_series_55
-  - service: media_player.play_media
-    data:
-      media_content_id: '{{ trigger.event.data.filepath }}'
-      media_content_type: video
-    target:
-      entity_id: media_player.kodi_wz_2
-  - service: media_player.volume_set
-    target:
-      entity_id: media_player.beam
-    data:
-      volume_level: 0.2
+    - service: media_player.turn_on
+      target:
+        entity_id: media_player.samsung_7_series_55
+    - service: media_player.play_media
+      data:
+        media_content_id: '{{ trigger.event.data.filepath }}'
+        media_content_type: video
+      target:
+        entity_id: media_player.kodi_wz_2
+    - service: media_player.volume_set
+      target:
+        entity_id: media_player.beam
+      data:
+        volume_level: 0.2
   mode: restart
 - id: '1640156192211'
   alias: ZigBee Taster Lara
@@ -76,21 +76,21 @@
   trigger_variables:
       device_ieee: 00:15:8d:00:06:72:6e:97
   trigger:
-  - platform: event
-    event_type: zha_event
-    id: zha_event
-    event_data:
-      device_ieee: "{{ device_ieee }}"
+    - platform: event
+      event_type: zha_event
+      id: zha_event
+      event_data:
+        device_ieee: "{{ device_ieee }}"
   condition: []
   action:
-  - service: switch.toggle
-    target:
-      entity_id: switch.la_schlaft
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 10
-      milliseconds: 0
+    - service: switch.toggle
+      target:
+        entity_id: switch.la_schlaft
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 10
+        milliseconds: 0
   mode: single
 - id: '1640156192212'
   alias: ZigBee Taster Lea
@@ -98,21 +98,21 @@
   trigger_variables:
       device_ieee: 00:15:8d:00:06:6f:9b:9d
   trigger:
-  - platform: event
-    event_type: zha_event
-    id: zha_event
-    event_data:
-      device_ieee: "{{ device_ieee }}"
+    - platform: event
+      event_type: zha_event
+      id: zha_event
+      event_data:
+        device_ieee: "{{ device_ieee }}"
   condition: []
   action:
-  - service: switch.toggle
-    target:
-      entity_id: switch.le_schlaft
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 10
-      milliseconds: 0
+    - service: switch.toggle
+      target:
+        entity_id: switch.le_schlaft
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 10
+        milliseconds: 0
   mode: single
 - id: '1640156192213'
   alias: ZigBee Taster Gäste
@@ -120,21 +120,21 @@
   trigger_variables:
       device_ieee: 00:15:8d:00:02:5f:22:62
   trigger:
-  - platform: event
-    event_type: zha_event
-    id: zha_event
-    event_data:
-      device_ieee: "{{ device_ieee }}"
+    - platform: event
+      event_type: zha_event
+      id: zha_event
+      event_data:
+        device_ieee: "{{ device_ieee }}"
   condition: []
   action:
-  - service: switch.toggle
-    target:
-      entity_id: switch.gaste_schlafen
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 10
-      milliseconds: 0
+    - service: switch.toggle
+      target:
+        entity_id: switch.gaste_schlafen
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 10
+        milliseconds: 0
   mode: single
 - id: '3f8caab8-7874-4d85-a0a6-13a83dd0fcc0'
   alias: Erinnerung Heizung Partyraum vorne lange an
@@ -309,16 +309,16 @@
   description: ''
   mode: queued
   trigger:
-  - platform: state
-    entity_id: binary_sensor.la_oder_le_schlafen
-    id: to_on
-    from: "off"
-    to: "on"
-  - platform: state
-    entity_id: binary_sensor.la_oder_le_schlafen
-    id: to_off
-    from: "on"
-    to: "off"
+    - platform: state
+      entity_id: binary_sensor.la_oder_le_schlafen
+      id: to_on
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.la_oder_le_schlafen
+      id: to_off
+      from: "on"
+      to: "off"
   condition: []
   action:
     - choose:
@@ -342,16 +342,16 @@
   description: ''
   mode: queued
   trigger:
-  - platform: state
-    entity_id: input_boolean.gaeste_abends
-    id: to_on
-    from: "off"
-    to: "on"
-  - platform: state
-    entity_id: input_boolean.gaeste_abends
-    id: to_off
-    from: "on"
-    to: "off"
+    - platform: state
+      entity_id: input_boolean.gaeste_abends
+      id: to_on
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.gaeste_abends
+      id: to_off
+      from: "on"
+      to: "off"
   condition: []
   action:
     - choose:
