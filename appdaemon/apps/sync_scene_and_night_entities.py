@@ -20,7 +20,7 @@ class sync_scene_and_night_entities(hass.Hass):
         self.listen_event(self.toggle_poweroutlet_phone_jo, event = "knx_event", destination = "0/3/40")
         self.run_daily(self.reset_sleep_switches, datetime.time(9, 0, 0))
         # set "Bad OG Nachtmodus" if one of the children sleeps...
-        self.listen_state(self.children_sleeping_changed, "binary_sensor.la_oder_le_schlafen")
+        #self.listen_state(self.children_sleeping_changed, "binary_sensor.la_oder_le_schlafen")
         # set "Kater-Knopf" to off when majo_sleep turned off
         self.listen_state(self.reset_kater_knopf, "switch.majo_schlafen", new = "off")
         # Alles-Lüften handeln und Panels Treppe OG aus wenn Lüften Le oder La
