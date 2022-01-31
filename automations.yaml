@@ -225,17 +225,49 @@
         destination: 15/0/50
   condition: []
   action:
-    - service: notify.telegram_jo
-      data:
-        message: knx scene detected
-    - service: notify.telegram_jo
-      data:
-        message: '{{ trigger.event.data.data }}'
     - choose:
       - conditions:
         - condition: template
-          value_template: '{{ trigger.event.data.data == [22] }}'
+          value_template: '{{ trigger.event.data.data[0] == 0 }}'
         sequence:
         - service: notify.telegram_jo
           data:
-            message: Lüftung auto
+            message: KNX Szene - Lara geht ins Bett
+        - service: light.turn_on
+          target:
+            entity_id: light.innr_e14_ww_stehlampe_lara_level_on_off
+          data:
+            brightness_pct: 100
+      - conditions:
+        - condition: template
+          value_template: '{{ trigger.event.data.data[0] == 1 }}'
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: KNX Szene - Lea geht ins Bett
+        - service: light.turn_on
+          target:
+            entity_id: light.innr_e14_tw_stehlampe_lea_level_light_color_on_off
+          data:
+            brightness_pct: 100
+      - conditions:
+        - condition: template
+          value_template: '{{ trigger.event.data.data[0] == 4 }}'
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: KNX Szene - Lara steht auf
+        - service: switch.turn_off
+          target:
+            entity_id: switch.la_schlaft
+      - conditions:
+        - condition: template
+          value_template: '{{ trigger.event.data.data[0] == 5 }}'
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: KNX Szene - Lea steht auf
+        - service: switch.turn_off
+          target:
+            entity_id: switch.le_schlaft
+      default: []
