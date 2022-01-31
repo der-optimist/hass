@@ -337,3 +337,55 @@
           target:
             entity_id: switch.bad_og_nachtmodus
       default: []
+- id: '0a4738a0-494a-49f7-90e2-1a9d89c87149'
+  alias: Lüftung hoch wenn Gäste
+  description: ''
+  mode: queued
+  trigger:
+  - platform: state
+    entity_id: input_boolean.gaeste_abends
+    id: to_on
+    from: "off"
+    to: "on"
+  - platform: state
+    entity_id: input_boolean.gaeste_abends
+    id: to_off
+    from: "on"
+    to: "off"
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: to_on
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: KNX Szene - Lüftung Party
+        - service: modbus.write_register
+          data:
+            address: 1104
+            unit: 1
+            value: 8
+            hub: lueftungsanlage
+        - delay: 1
+        - service: modbus.write_register
+          data:
+            address: 1161
+            unit: 1
+            value: 3
+            hub: lueftungsanlage
+      - conditions:
+        - condition: trigger
+          id: to_off
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: KNX Szene - Lüftung Auto
+        - service: modbus.write_register
+          data:
+            address: 1161
+            unit: 1
+            value: 1
+            hub: lueftungsanlage
+      default: []
