@@ -270,6 +270,39 @@
         - service: switch.turn_off
           target:
             entity_id: switch.le_schlaft
+      - conditions:
+        - condition: template
+          value_template: '{{ trigger.event.data.data[0] == 21 }}'
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: KNX Szene - Lüftung Stoß
+        - service: modbus.write_register
+          data:
+            address: 1103
+            unit: 1
+            value: 30
+            hub: lueftungsanlage
+        - delay: 1
+        - service: modbus.write_register
+          data:
+            address: 1161
+            unit: 1
+            value: 4
+            hub: lueftungsanlage
+      - conditions:
+        - condition: template
+          value_template: '{{ trigger.event.data.data[0] == 22 }}'
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: KNX Szene - Lüftung Auto
+        - service: modbus.write_register
+          data:
+            address: 1161
+            unit: 1
+            value: 1
+            hub: lueftungsanlage
       default: []
 - id: '9dfe5e71-06f3-44f6-944a-c9702203e72b'
   alias: Nachtmodus Bad OG

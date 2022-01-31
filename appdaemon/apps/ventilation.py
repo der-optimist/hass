@@ -13,7 +13,7 @@ class ventilation(hass.Hass):
 
     def initialize(self):
         # listen for knx scene events
-        self.listen_event(self.scene, event = "knx_event", destination = "15/0/50")
+        #self.listen_event(self.scene, event = "knx_event", destination = "15/0/50")
         # gäste
         self.listen_state(self.gaeste_start, "input_boolean.gaeste_abends", new = "on", old = "off")
         self.listen_state(self.gaeste_end, "input_boolean.gaeste_abends", new = "off", old = "on")
