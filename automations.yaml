@@ -231,7 +231,7 @@
     - choose:
       - conditions:
         - condition: template
-          value_template: '{{ trigger.event.data.data == 22 }}'
+          value_template: '{{ trigger.event.data.data == [22] }}'
         sequence:
         - service: notify.telegram_jo
           data:
