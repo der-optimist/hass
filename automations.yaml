@@ -228,6 +228,9 @@
     - service: notify.telegram_jo
       data:
         message: knx scene detected
+    - service: notify.telegram_jo
+      data:
+        message: '{{ trigger.event.data.data }}'
     - choose:
       - conditions:
         - condition: template
