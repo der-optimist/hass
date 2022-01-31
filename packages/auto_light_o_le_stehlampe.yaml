@@ -58,10 +58,10 @@ template:
             {{ int(0) }}
       - name: helper_light_is_too_dark_o_le_stehlampe
         state: >
-          {{ (states("sensor.helligkeit_le_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_o_le_stehlampe") | float(1)) }}
+          {{ false }}
       - name: helper_light_is_too_bright_o_le_stehlampe
         state: >
-          {{ (states("sensor.helligkeit_le_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_o_le_stehlampe") | float(1) + 100 ) }}
+          {{ false }}
 
 automation:
   - alias: Licht OG Lea Stehlampe

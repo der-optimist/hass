@@ -1,0 +1,88 @@
+# strings to replace:
+#
+# friendly name: Licht EG Bad Spiegel vorne
+# id name: e_ba_spiegel_vorne
+# light: light.spiegel_bad_eg
+
+input_boolean:
+  automation_switch_light_e_ba_spiegel_vorne:
+    name: Auto Licht EG Bad Spiegel vorne
+    icon: mdi:auto-fix
+  helper_light_auto_switched_e_ba_spiegel_vorne:
+    name: Helper - Auto Switched - Licht EG Bad Spiegel vorne
+    initial: off
+  helper_light_manually_switched_on_e_ba_spiegel_vorne:
+    name: Helper - Man Switched on - Licht EG Bad Spiegel vorne
+    initial: off
+  helper_light_manually_switched_off_e_ba_spiegel_vorne:
+    name: Helper - Man Switched off - Licht EG Bad Spiegel vorne
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_e_ba_spiegel_vorne
+        unit_of_measurement: "%"
+        state: >
+          {{ int(100) }}
+      - name: helper_light_effective_brightness_e_ba_spiegel_vorne
+        unit_of_measurement: "%"
+        state: >
+          {{ states('sensor.helper_light_basic_brightness_e_ba_spiegel_vorne') }}
+        attributes:
+          special_brightness: >
+            {{ [] | select('equalto', 'on') | list | count }}
+      - name: helper_light_min_illuminance_e_ba_spiegel_vorne
+        unit_of_measurement: "lx"
+        state: >
+          {{ int(100) }}
+      - name: helper_light_switching_off_entities_e_ba_spiegel_vorne
+        unit_of_measurement: "number"
+        state: >
+          {{ [] | select('equalto', 'on') | list | count }}
+    binary_sensor:
+      - name: helper_light_trigger_e_ba_spiegel_vorne
+        state: >
+          {{ is_state('binary_sensor.pm_e_ba', 'on') }}
+      - name: helper_light_keeping_off_entities_e_ba_spiegel_vorne
+        state: >
+          {{ true }}
+      - name: helper_light_keeping_on_entities_e_ba_spiegel_vorne
+        state: >
+          {{ false }}
+      - name: helper_light_keeping_fix_entities_e_ba_spiegel_vorne
+        state: >
+          {{ false }}
+        attributes:
+          brightness: >
+            {{ int(0) }}
+      - name: helper_light_is_too_dark_e_ba_spiegel_vorne
+        state: >
+          {{ false }}
+      - name: helper_light_is_too_bright_e_ba_spiegel_vorne
+        state: >
+          {{ false }}
+
+automation:
+  - alias: Licht EG Bad Spiegel vorne
+    id: 'auto_light_e_ba_spiegel_vorne'
+    description: ''
+    trace:
+      stored_traces: 10
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.spiegel_bad_eg
+        automation_switch: input_boolean.automation_switch_light_e_ba_spiegel_vorne
+        trigger: binary_sensor.helper_light_trigger_e_ba_spiegel_vorne
+        helper_effective_brightness: sensor.helper_light_effective_brightness_e_ba_spiegel_vorne
+        helper_basic_brightness: sensor.helper_light_basic_brightness_e_ba_spiegel_vorne
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_e_ba_spiegel_vorne
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_e_ba_spiegel_vorne
+        helper_auto_switched: input_boolean.helper_light_auto_switched_e_ba_spiegel_vorne
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_e_ba_spiegel_vorne
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_e_ba_spiegel_vorne
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_e_ba_spiegel_vorne
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_e_ba_spiegel_vorne
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_e_ba_spiegel_vorne
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_e_ba_spiegel_vorne
+        transition_time: 1
