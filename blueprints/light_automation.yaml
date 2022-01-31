@@ -101,17 +101,6 @@ blueprint:
         target:
           entity:
             domain: binary_sensor
-    transition_time:
-      name: Transition Time
-      description: Time in s
-      selector:
-        number:
-          min: 0
-          max: 10
-          step: 1
-          unit_of_measurement: steps
-          mode: slider
-      default: 1
 
 mode: queued
 max: 20

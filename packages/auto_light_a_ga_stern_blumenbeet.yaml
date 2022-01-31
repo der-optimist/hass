@@ -85,4 +85,3 @@ automation:
         helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_a_ga_stern_blumenbeet
         helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_a_ga_stern_blumenbeet
         helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_a_ga_stern_blumenbeet
-        transition_time: 0

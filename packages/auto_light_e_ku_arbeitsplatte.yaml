@@ -118,4 +118,3 @@ automation:
         helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_e_ku_arbeitsplatte
         helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_e_ku_arbeitsplatte
         helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_e_ku_arbeitsplatte
-        transition_time: 1
