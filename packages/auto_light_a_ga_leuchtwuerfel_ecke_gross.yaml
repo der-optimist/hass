@@ -1,0 +1,97 @@
+# strings to replace:
+#
+# friendly name: Licht Garten Leuchtwürfel Ecke gross
+# id name: a_ga_leuchtwuerfel_ecke_gross
+# light: light.innr_rb_285_c_7cc30105_level_light_color_on_off
+
+input_boolean:
+  automation_switch_light_a_ga_leuchtwuerfel_ecke_gross:
+    name: Auto Licht Garten Leuchtwürfel Ecke gross
+    icon: mdi:auto-fix
+  helper_light_auto_switched_a_ga_leuchtwuerfel_ecke_gross:
+    name: Helper - Auto Switched - Licht Garten Leuchtwürfel Ecke gross
+    initial: off
+  helper_light_manually_switched_on_a_ga_leuchtwuerfel_ecke_gross:
+    name: Helper - Man Switched on - Licht Garten Leuchtwürfel Ecke gross
+    initial: off
+  helper_light_manually_switched_off_a_ga_leuchtwuerfel_ecke_gross:
+    name: Helper - Man Switched off - Licht Garten Leuchtwürfel Ecke gross
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_a_ga_leuchtwuerfel_ecke_gross
+        unit_of_measurement: "%"
+        state: >
+          {{ int(85) }}
+        attributes:
+          color: >
+            {% set colormap = { 'rot':[255,0,0],'grün':[0,255,0],'blau':[0,0,255],'orange':[255,127,0],'pink':[255,0,127],'lila':[255,0,255],'violett':[127,0,255],'gelb':[255,255,0],'gold':[255,215,0],'hellblau':[0,127,255],'türkis':[0,255,255],'gelbgrün':[127,255,0],'weiß':[255,255,255]} %}
+            {{ colormap['pink'] }}
+      - name: helper_light_effective_brightness_a_ga_leuchtwuerfel_ecke_gross
+        unit_of_measurement: "%"
+        state: >
+          {{ states('sensor.helper_light_basic_brightness_a_ga_leuchtwuerfel_ecke_gross') }}
+        attributes:
+          color: >
+            {{ state_attr('sensor.helper_light_basic_brightness_a_ga_leuchtwuerfel_ecke_gross','color') }}
+          special_brightness: >
+            {{ [] | select('equalto', 'on') | list | count }}
+      - name: helper_light_min_illuminance_a_ga_leuchtwuerfel_ecke_gross
+        unit_of_measurement: "lx"
+        state: >
+          {{ int(2000) }}
+      - name: helper_light_switching_off_entities_a_ga_leuchtwuerfel_ecke_gross
+        unit_of_measurement: "number"
+        state: >
+          {{ [] | select('equalto', 'on') | list | count }}
+    binary_sensor:
+      - name: helper_light_trigger_a_ga_leuchtwuerfel_ecke_gross
+        state: >
+          {{ is_state('binary_sensor.hst_offen', 'on') }}
+      - name: helper_light_keeping_off_entities_a_ga_leuchtwuerfel_ecke_gross
+        state: >
+          {{ false }}
+      - name: helper_light_keeping_on_entities_a_ga_leuchtwuerfel_ecke_gross
+        state: >
+          {{ false }}
+      - name: helper_light_keeping_fix_entities_a_ga_leuchtwuerfel_ecke_gross
+        state: >
+          {{ false }}
+        attributes:
+          brightness: >
+            {{ int(0) }}
+          color: >
+            {% set colormap = { 'rot':[255,0,0],'grün':[0,255,0],'blau':[0,0,255],'orange':[255,127,0],'pink':[255,0,127],'lila':[255,0,255],'violett':[127,0,255],'gelb':[255,255,0],'gold':[255,215,0],'hellblau':[0,127,255],'türkis':[0,255,255],'gelbgrün':[127,255,0],'weiß':[255,255,255]} %}
+            {{ colormap['orange'] }}
+      - name: helper_light_is_too_dark_a_ga_leuchtwuerfel_ecke_gross
+        state: >
+          {{ (states("sensor.helligkeit_wetterstation") | float(0)) < (states("sensor.helper_light_min_illuminance_a_ga_leuchtwuerfel_ecke_gross") | float(1)) }}
+      - name: helper_light_is_too_bright_a_ga_leuchtwuerfel_ecke_gross
+        state: >
+          {{ (states("sensor.helligkeit_wetterstation") | float(0)) > (states("sensor.helper_light_min_illuminance_a_ga_leuchtwuerfel_ecke_gross") | float(1) + 1000 ) }}
+
+automation:
+  - alias: Licht Garten Leuchtwürfel Ecke gross
+    id: 'auto_light_a_ga_leuchtwuerfel_ecke_gross'
+    description: ''
+    trace:
+      stored_traces: 5
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.innr_rb_285_c_7cc30105_level_light_color_on_off
+        automation_switch: input_boolean.automation_switch_light_a_ga_leuchtwuerfel_ecke_gross
+        trigger: binary_sensor.helper_light_trigger_a_ga_leuchtwuerfel_ecke_gross
+        helper_effective_brightness: sensor.helper_light_effective_brightness_a_ga_leuchtwuerfel_ecke_gross
+        helper_basic_brightness: sensor.helper_light_basic_brightness_a_ga_leuchtwuerfel_ecke_gross
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_a_ga_leuchtwuerfel_ecke_gross
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_a_ga_leuchtwuerfel_ecke_gross
+        helper_auto_switched: input_boolean.helper_light_auto_switched_a_ga_leuchtwuerfel_ecke_gross
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_a_ga_leuchtwuerfel_ecke_gross
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_a_ga_leuchtwuerfel_ecke_gross
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_a_ga_leuchtwuerfel_ecke_gross
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_a_ga_leuchtwuerfel_ecke_gross
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_a_ga_leuchtwuerfel_ecke_gross
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_a_ga_leuchtwuerfel_ecke_gross
+        transition_time: 1
