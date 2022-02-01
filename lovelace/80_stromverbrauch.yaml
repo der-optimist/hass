@@ -63,6 +63,8 @@ cards:
             name: Waschmaschine
           - entity: sensor.el_leistung_trockner
             name: Trockner
+          - entity: sensor.el_leistung_hebeanlage
+            name: Hebeanlage
           - type: custom:template-entity-row
             name: Gefrierschrank
             entity: sensor.el_leistung_gefrierschrank
@@ -203,6 +205,11 @@ cards:
             entity: sensor.stromverbrauch_trockner
             state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_trockner', 'Verbrauch gestern') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_trockner', 'Kosten mit PV Abrechnung gestern')) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_trockner', 'Einsparung durch PV gestern') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_trockner', 'Einsparung Prozent durch PV gestern') | float) }} %"
+          - type: custom:template-entity-row
+            name: Hebeanlage
+            entity: sensor.stromverbrauch_hebeanlage
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Verbrauch gestern') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Kosten mit PV Abrechnung gestern')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Einsparung durch PV gestern') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Einsparung Prozent durch PV gestern') | float) }} %"
           - type: custom:template-entity-row
             name: Gefrierschrank
             entity: sensor.stromverbrauch_gefrierschrank
@@ -363,6 +370,11 @@ cards:
             state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_trockner', 'Verbrauch dieser Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_trockner', 'Kosten mit PV Abrechnung dieser Monat')) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_trockner', 'Einsparung durch PV dieser Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_trockner', 'Einsparung Prozent durch PV dieser Monat') | float) }} %"
           - type: custom:template-entity-row
+            name: Hebeanlage
+            entity: sensor.stromverbrauch_hebeanlage
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Verbrauch dieser Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Kosten mit PV Abrechnung dieser Monat')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Einsparung durch PV dieser Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Einsparung Prozent durch PV dieser Monat') | float) }} %"
+          - type: custom:template-entity-row
             name: Gefrierschrank
             entity: sensor.stromverbrauch_gefrierschrank
             state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_gefrierschrank', 'Verbrauch dieser Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_gefrierschrank', 'Kosten mit PV Abrechnung dieser Monat')) }} €"
@@ -521,6 +533,11 @@ cards:
             entity: sensor.stromverbrauch_trockner
             state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_trockner', 'Verbrauch letzter Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_trockner', 'Kosten mit PV Abrechnung letzter Monat')) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_trockner', 'Einsparung durch PV letzter Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_trockner', 'Einsparung Prozent durch PV letzter Monat') | float) }} %"
+          - type: custom:template-entity-row
+            name: Hebeanlage
+            entity: sensor.stromverbrauch_hebeanlage
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Verbrauch letzter Monat') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Kosten mit PV Abrechnung letzter Monat')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Einsparung durch PV letzter Monat') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Einsparung Prozent durch PV letzter Monat') | float) }} %"
           - type: custom:template-entity-row
             name: Gefrierschrank
             entity: sensor.stromverbrauch_gefrierschrank
@@ -681,6 +698,11 @@ cards:
             state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_trockner', 'Verbrauch dieses Kalenderjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_trockner', 'Kosten mit PV Abrechnung dieses Kalenderjahr')) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_trockner', 'Einsparung durch PV dieses Kalenderjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_trockner', 'Einsparung Prozent durch PV dieses Kalenderjahr') | float) }} %"
           - type: custom:template-entity-row
+            name: Hebeanlage
+            entity: sensor.stromverbrauch_hebeanlage
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Verbrauch dieses Kalenderjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Kosten mit PV Abrechnung dieses Kalenderjahr')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Einsparung durch PV dieses Kalenderjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Einsparung Prozent durch PV dieses Kalenderjahr') | float) }} %"
+          - type: custom:template-entity-row
             name: Gefrierschrank
             entity: sensor.stromverbrauch_gefrierschrank
             state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_gefrierschrank', 'Verbrauch dieses Kalenderjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_gefrierschrank', 'Kosten mit PV Abrechnung dieses Kalenderjahr')) }} €"
@@ -839,6 +861,11 @@ cards:
             entity: sensor.stromverbrauch_trockner
             state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_trockner', 'Verbrauch dieses Winterjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_trockner', 'Kosten mit PV Abrechnung dieses Winterjahr')) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_trockner', 'Einsparung durch PV dieses Winterjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_trockner', 'Einsparung Prozent durch PV dieses Winterjahr') | float) }} %"
+          - type: custom:template-entity-row
+            name: Hebeanlage
+            entity: sensor.stromverbrauch_hebeanlage
+            state: "{{ '%.1f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Verbrauch dieses Winterjahr') | float) }} kWh => {{ '%.2f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Kosten mit PV Abrechnung dieses Winterjahr')) }} €"
+            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Einsparung durch PV dieses Winterjahr') | float) }} € bzw. {{ '%.f'%(state_attr('sensor.stromverbrauch_hebeanlage', 'Einsparung Prozent durch PV dieses Winterjahr') | float) }} %"
           - type: custom:template-entity-row
             name: Gefrierschrank
             entity: sensor.stromverbrauch_gefrierschrank
