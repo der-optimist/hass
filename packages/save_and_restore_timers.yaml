@@ -1,0 +1,95 @@
+# Timers have to be intergrated manually to automation "Timers Save"
+#
+
+input_text:
+  timers_active:
+    name: Active Timers
+    max: 255
+  timers_paused:
+    name: Paused Timers
+    max: 255
+
+timer:
+  eisschutz_jalousien_manuell_deaktiviert:
+    duration: "03:00:00"
+  pizza_timer_ha:
+    duration: "00:12:00"
+
+automation:
+  - alias: 'Timers Save'
+    mode: queued
+    trigger:
+      platform: state
+      entity_id:
+      - timer.eisschutz_jalousien_manuell_deaktiviert
+      - timer.pizza_timer_ha
+    action:
+    - variables:
+        timers:
+        - timer.eisschutz_jalousien_manuell_deaktiviert
+        - timer.pizza_timer_ha
+        modes:
+        - active
+        - paused
+    - repeat:
+        count: 2
+        sequence:
+        - variables:
+            mode: '{{ modes[repeat.index-1] }}'
+        - service: input_text.set_value
+          data:
+            entity_id: 'input_text.timers_{{ mode }}'
+            value: >
+              {% set ns = namespace(timers = []) %}
+              {% for t in expand(timers) | selectattr('state', 'eq', mode) | list  %}
+                {% set d = t.attributes.remaining.split(':') | map('int') | list %}
+                {% set s = d[0]*3600 + d[1]*60 + d[2] + (t.last_changed.timestamp()|int if mode == 'active' else 0) %}
+                {% set ns.timers = ns.timers + ['{} {}'.format(t.object_id, s)] %}
+              {% endfor %}
+              {{ ns.timers | join(',')}}
+  - alias: 'Timers Restore'
+    mode: single
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+    - variables:
+        modes:
+        - active
+        - paused
+    - repeat:
+        count: 2
+        sequence:
+        - variables:
+            mode: '{{ modes[repeat.index-1] }}'
+            timers_text: "{{ states('input_text.timers_' ~ mode) }}"
+        - choose:
+          - conditions: '{{ timers_text | length > 0 }}'
+            sequence:
+            - variables:
+                timers: "{{ timers_text.split(',') }}"
+            - repeat:
+                count: '{{ timers | count }}'
+                sequence:
+                - variables:
+                    t: '{{ timers[repeat.index-1].split() }}'
+                    id: 'timer.{{t[0]}}'
+                    d: >
+                      {% set ts = t[1]|int %}
+                      {% if mode == 'active' %}
+                        {% set ts = ts - now().timestamp()|int %}
+                        {{ ts if ts > 0 else 1 }}
+                      {% else %}
+                        {{ ts }}
+                      {% endif %}
+                - condition: template
+                  value_template: '{{ d > 0 }}'
+                - service: timer.start
+                  data:
+                    entity_id: '{{ id }}'
+                    duration: '{{ d }}'
+                - condition: template
+                  value_template: "{{ mode == 'paused' }}"
+                - service: timer.pause
+                  data:
+                    entity_id: '{{ id }}'
