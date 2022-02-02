@@ -1,3 +1,6 @@
+###############################################
+#####    KNX rel. dimming Stehlampe WZ    #####
+###############################################
 - alias: KNX relative dimming Stehlampe WZ
   id: 'knx_relative_dimming_stehlampe_wz'
   description: ''
@@ -10,6 +13,10 @@
       dimm_address: '1/6/82'
       dimm_time: 5
       dimm_steps: 10
+#
+###############################################
+#####   KNX rel. dimming Stehlampe Lea    #####
+###############################################
 - alias: KNX relative dimming Stehlampe Lea
   id: 'knx_relative_dimming_stehlampe_lea'
   description: ''
@@ -22,6 +29,10 @@
       dimm_address: '1/6/2'
       dimm_time: 5
       dimm_steps: 10
+#
+###############################################
+#####   KNX rel. dimming Stehlampe Lara   #####
+###############################################
 - alias: KNX relative dimming Stehlampe Lara
   id: 'knx_relative_dimming_stehlampe_lara'
   description: ''
@@ -34,6 +45,10 @@
       dimm_address: '1/5/202'
       dimm_time: 5
       dimm_steps: 10
+#
+###############################################
+#####    KNX relative dimming Panel AZ    #####
+###############################################
 - alias: KNX relative dimming Panel Arbeitszimmer
   id: 'knx_relative_dimming_panel_arbeitszimmer'
   description: ''
@@ -46,6 +61,10 @@
       dimm_address: '1/6/122'
       dimm_time: 5
       dimm_steps: 10
+#
+###############################################
+#####           Play on Kodi WZ           #####
+###############################################
 - id: '1639043665489'
   alias: Play on Kodi WZ
   description: ''
@@ -70,6 +89,10 @@
       data:
         volume_level: 0.2
   mode: restart
+#
+###############################################
+#####         ZigBee Taster Lara          #####
+###############################################
 - id: '1640156192211'
   alias: ZigBee Taster Lara
   description: ''
@@ -92,6 +115,10 @@
         seconds: 10
         milliseconds: 0
   mode: single
+#
+###############################################
+#####         ZigBee Taster Lea           #####
+###############################################
 - id: '1640156192212'
   alias: ZigBee Taster Lea
   description: ''
@@ -114,6 +141,10 @@
         seconds: 10
         milliseconds: 0
   mode: single
+#
+###############################################
+#####         ZigBee Taster Gäste         #####
+###############################################
 - id: '1640156192213'
   alias: ZigBee Taster Gäste
   description: ''
@@ -136,6 +167,10 @@
         seconds: 10
         milliseconds: 0
   mode: single
+#
+###############################################
+#####  Erinnerung Heizung Partyr. vorne   #####
+###############################################
 - id: '3f8caab8-7874-4d85-a0a6-13a83dd0fcc0'
   alias: Erinnerung Heizung Partyraum vorne lange an
   description: ''
@@ -164,6 +199,10 @@
               seconds: 0
               milliseconds: 0
   mode: single
+#
+###############################################
+#####  Erinnerung Heizung Partyr. hinten  #####
+###############################################
 - id: 'e1fa2ab4-17ee-476d-9cde-02c450ad93b9'
   alias: Erinnerung Heizung Partyraum hinten lange an
   description: ''
@@ -192,6 +231,10 @@
               seconds: 0
               milliseconds: 0
   mode: single
+#
+###############################################
+#####  Erinnerung Batterie Hochzeitsbild  #####
+###############################################
 - id: '8fc7df48-115a-44a8-ab48-8f8a514563f1'
   alias: Erinnerung Batterie Hochzeitsbild
   description: ''
@@ -214,6 +257,10 @@
               seconds: 0
               milliseconds: 0
   mode: single
+#
+###############################################
+#####             KNX Scenes              #####
+###############################################
 - id: 'f59f075d-d8f6-4b8e-b8e8-23c39b261b5c'
   alias: KNX Scenes
   description: ''
@@ -304,6 +351,10 @@
             value: 1
             hub: lueftungsanlage
       default: []
+#
+###############################################
+#####         Nachtmodus Bad OG           #####
+###############################################
 - id: '9dfe5e71-06f3-44f6-944a-c9702203e72b'
   alias: Nachtmodus Bad OG
   description: ''
@@ -337,6 +388,10 @@
           target:
             entity_id: switch.bad_og_nachtmodus
       default: []
+#
+###############################################
+#####      Lüftung hoch wenn Gäste        #####
+###############################################
 - id: '0a4738a0-494a-49f7-90e2-1a9d89c87149'
   alias: Lüftung hoch wenn Gäste
   description: ''
@@ -388,4 +443,287 @@
             unit: 1
             value: 1
             hub: lueftungsanlage
+      default: []
+#
+###############################################
+#####          Bewegungsalarm             #####
+###############################################
+- id: 'fd83d1a0-de60-4abf-9efa-87a1ed31f6f0'
+  alias: Bewegungsalarm
+  description: ''
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.pm_o_ko_la_tuer
+      id: la_tuer
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.pm_o_kw_le_tuer
+      id: le_tuer
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.pm_o_fl_flur
+      id: flur_og
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.pm_o_fl_treppe
+      id: treppe_oben
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.pm_e_fl_treppe_og
+      id: treppe_unten
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.pm_e_fl_flur
+      id: flur_eg
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.pm_e_wf_garderobe
+      id: garderobe
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.pm_e_wf_haustur
+      id: haustuer
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.pm_e_sz_gang
+      id: sz_gang
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.pm_ktr_treppe
+      id: kellertreppe
+      from: "off"
+      to: "on"
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: la_tuer
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_jo
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: Bewegung! => Tür Lara
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_ma
+              state: 'on'
+            sequence:
+            - service: notify.telegram_ma
+              data:
+                message: Bewegung! => Tür Lara
+          default: []
+      - conditions:
+        - condition: trigger
+          id: le_tuer
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_jo
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: Bewegung! => Tür Lea
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_ma
+              state: 'on'
+            sequence:
+            - service: notify.telegram_ma
+              data:
+                message: Bewegung! => Tür Lea
+          default: []
+      - conditions:
+        - condition: trigger
+          id: flur_og
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_jo
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: Bewegung! => Flur OG
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_ma
+              state: 'on'
+            sequence:
+            - service: notify.telegram_ma
+              data:
+                message: Bewegung! => Flur OG
+          default: []
+      - conditions:
+        - condition: trigger
+          id: treppe_oben
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_jo
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: Bewegung! => Treppe oben
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_ma
+              state: 'on'
+            sequence:
+            - service: notify.telegram_ma
+              data:
+                message: Bewegung! => Treppe oben
+          default: []
+      - conditions:
+        - condition: trigger
+          id: treppe_unten
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_jo
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: Bewegung! => Treppe unten
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_ma
+              state: 'on'
+            sequence:
+            - service: notify.telegram_ma
+              data:
+                message: Bewegung! => Treppe unten
+          default: []
+      - conditions:
+        - condition: trigger
+          id: flur_eg
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_jo
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: Bewegung! => Flur EG
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_ma
+              state: 'on'
+            sequence:
+            - service: notify.telegram_ma
+              data:
+                message: Bewegung! => Flur EG
+          default: []
+      - conditions:
+        - condition: trigger
+          id: garderobe
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_jo
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: Bewegung! => Garderobe
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_ma
+              state: 'on'
+            sequence:
+            - service: notify.telegram_ma
+              data:
+                message: Bewegung! => Garderobe
+          default: []
+      - conditions:
+        - condition: trigger
+          id: haustuer
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_jo
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: Bewegung! => Haustür
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_ma
+              state: 'on'
+            sequence:
+            - service: notify.telegram_ma
+              data:
+                message: Bewegung! => Haustür
+          default: []
+      - conditions:
+        - condition: trigger
+          id: sz_gang
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_jo
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: Bewegung! => Schlafzimmer Gang
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_ma
+              state: 'on'
+            sequence:
+            - service: notify.telegram_ma
+              data:
+                message: Bewegung! => Schlafzimmer Gang
+          default: []
+      - conditions:
+        - condition: trigger
+          id: kellertreppe
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_jo
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: Bewegung! => Kellertreppe
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_ma
+              state: 'on'
+            sequence:
+            - service: notify.telegram_ma
+              data:
+                message: Bewegung! => Kellertreppe
+          default: []
       default: []
