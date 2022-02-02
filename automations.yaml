@@ -519,6 +519,7 @@
             - service: notify.telegram_jo
               data:
                 message: Bewegung! => Tür Lara
+        - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
@@ -541,6 +542,7 @@
             - service: notify.telegram_jo
               data:
                 message: Bewegung! => Tür Lea
+        - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
@@ -563,6 +565,7 @@
             - service: notify.telegram_jo
               data:
                 message: Bewegung! => Flur OG
+        - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
@@ -585,6 +588,7 @@
             - service: notify.telegram_jo
               data:
                 message: Bewegung! => Treppe oben
+        - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
@@ -607,6 +611,7 @@
             - service: notify.telegram_jo
               data:
                 message: Bewegung! => Treppe unten
+        - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
@@ -629,6 +634,7 @@
             - service: notify.telegram_jo
               data:
                 message: Bewegung! => Flur EG
+        - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
@@ -651,6 +657,7 @@
             - service: notify.telegram_jo
               data:
                 message: Bewegung! => Garderobe
+        - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
@@ -673,6 +680,7 @@
             - service: notify.telegram_jo
               data:
                 message: Bewegung! => Haustür
+        - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
@@ -695,6 +703,7 @@
             - service: notify.telegram_jo
               data:
                 message: Bewegung! => Schlafzimmer Gang
+        - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
@@ -717,6 +726,7 @@
             - service: notify.telegram_jo
               data:
                 message: Bewegung! => Kellertreppe
+        - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
