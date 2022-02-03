@@ -132,7 +132,7 @@ class calendar_and_reminders(hass.Hass):
             if "summary" in r.text:
                 resp = json.loads(r.text) # List
             else:
-        	    resp = []
+                resp = []
         else:
             self.log("loading calendar {} failed. http error {}".format(calendar,r.status_code))
             resp = "error"
