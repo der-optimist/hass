@@ -36,11 +36,11 @@ cards:
       - type: custom:template-entity-row
         name: Prozent abbezahlt
         entity: sensor.pv_geldertrag_gesamt
-        state: "{{ '%.2f'%(100*(states('sensor.pv_geldertrag_gesamt') | float) / ((states('sensor.pv_geldertrag_gesamt') | float) + (states('sensor.pv_geldbetrag_bis_amortisation') | float))) }} %"
+        state: "{{ '%.2f'%(100*(states('sensor.pv_geldertrag_gesamt') | float(0)) / ((states('sensor.pv_geldertrag_gesamt') | float(1)) + (states('sensor.pv_geldbetrag_bis_amortisation') | float(0)))) }} %"
       - type: custom:template-entity-row
         name: Strompreis effektiv letzte 3 Minuten
         entity: sensor.strompreis_effektiv_letzte_3_minuten
-        state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float)) }} ct"
+        state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float(0))) }} ct"
       - sensor.strompreis_effektiv_letzte_3_minuten
       - switch.pv_heizung_1
   - type: custom:apexcharts-card
@@ -191,7 +191,7 @@ cards:
           - type: custom:template-entity-row
             name: Prozent abbezahlt
             entity: sensor.pv_geldertrag_gesamt
-            state: "{{ '%.2f'%(100*(states('sensor.pv_geldertrag_gesamt') | float) / ((states('sensor.pv_geldertrag_gesamt') | float) + (states('sensor.pv_geldbetrag_bis_amortisation') | float))) }} %"
+            state: "{{ '%.2f'%(100*(states('sensor.pv_geldertrag_gesamt') | float(0)) / ((states('sensor.pv_geldertrag_gesamt') | float(1)) + (states('sensor.pv_geldbetrag_bis_amortisation') | float(0)))) }} %"
   - type: custom:sun-card
     showAzimuth: true
     showElevation: true

@@ -31,7 +31,7 @@ cards:
                 font-size: 2.4em;
               }  
             content: >
-              # {{ '%.1f'%(states('sensor.temp_esszimmer_pm') | float) | float }}°C
+              # {{ '%.1f'%(states('sensor.temp_esszimmer_pm') | float(0)) | float(0) }}°C
               
               Luftfeuchtigkeit: {{ states('sensor.luftfeuchtigkeit_kuche_aqara') }}%
           - type: markdown
@@ -203,7 +203,7 @@ cards:
           - type: custom:template-entity-row
             name: Strompreis aktuell
             entity: sensor.strompreis_effektiv_letzte_3_minuten
-            state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float)) }} ct"
+            state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float(0))) }} ct"
           - type: divider
             style: 
               height: 1px
@@ -213,7 +213,7 @@ cards:
             name: 7-Tage Inzidenz RV
             icon: mdi:medical-bag
             entity: sensor.lk_ravensburg_weekincidence
-            state: "{{ '%.0f'%(states('sensor.lk_ravensburg_weekincidence')) | float | round(0) }}"
+            state: "{{ '%.0f'%(states('sensor.lk_ravensburg_weekincidence')) | float(0) | round(0) }}"
   - type: vertical-stack
     view_layout:
       grid-area: garbage
