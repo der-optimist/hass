@@ -41,7 +41,7 @@ template:
         unit_of_measurement: "%"
         state: >
           {% if is_state('binary_sensor.schlafen_oder_aufwachphase_la', 'on') %}
-            {{ int(30) }}
+            {{ int(25) }}
           {% else %}
             {{ states('sensor.helper_light_basic_brightness_o_la_wandwuerfel') }}
           {% endif %}
