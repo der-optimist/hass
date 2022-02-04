@@ -74,7 +74,8 @@ template:
              or is_state('binary_sensor.pm_e_wc', 'on')
              or is_state('binary_sensor.pm_e_sz_gang', 'on')
              or is_state('binary_sensor.pm_ktr_flur', 'on')
-             or is_state('binary_sensor.pm_k_fl', 'on') }}
+             or is_state('binary_sensor.pm_ktr_treppe', 'on')
+             or is_state('binary_sensor.pm_k_fl_2', 'on') }}
       - name: helper_light_keeping_off_entities_e_fl_stehlampe_unten
         state: >
           {{ is_state('switch.majo_schlafen', 'on')
