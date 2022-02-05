@@ -17,48 +17,6 @@
   gewitter:
     name: Gewitter
     icon: mdi:flash-alert
-  automatik_eisschutz_jalousien:
-    name: Automatik Eisschutz Jalousien
-    icon: mdi:auto-fix
-  eisschutz_jalousien:
-    name: Eisschutz Jalousien
-    icon: mdi:snowflake-alert
-  sperre_jal_ku:
-    name: Sperre Jal. Küche
-    icon: mdi:lock-alert
-  sperre_jal_hst:
-    name: Sperre Jal. HST
-    icon: mdi:lock-alert
-  sperre_jal_wz_bodentiefes:
-    name: Sperre Jal. WZ Bodentiefes
-    icon: mdi:lock-alert
-  sperre_jal_wz_couch:
-    name: Sperre Jal. WZ Couch
-    icon: mdi:lock-alert
-  sperre_jal_sz:
-    name: Sperre Jal. SZ
-    icon: mdi:lock-alert
-  sperre_jal_ba_og:
-    name: Sperre Jal. Bad OG
-    icon: mdi:lock-alert
-  sperre_jal_la_bodentiefes:
-    name: Sperre Jal. La Bodentiefes
-    icon: mdi:lock-alert
-  sperre_jal_la_lichtband:
-    name: Sperre Jal. La Lichtband
-    icon: mdi:lock-alert
-  sperre_jal_nz:
-    name: Sperre Jal. NZ
-    icon: mdi:lock-alert
-  sperre_jal_le_lichtband:
-    name: Sperre Jal. Le Lichtband
-    icon: mdi:lock-alert
-  sperre_jal_le_bodentiefes:
-    name: Sperre Jal. Le Bodentiefes
-    icon: mdi:lock-alert
-  sperre_jal_gz:
-    name: Sperre Jal. GZ
-    icon: mdi:lock-alert
   anwesenheit_simulieren:
     name: Anwesenheit simulieren
     icon: mdi:bag-checked
