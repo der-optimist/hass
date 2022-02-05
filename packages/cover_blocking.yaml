@@ -53,3 +53,99 @@ template:
           {% else %}
             {{ false }}
           {% endif %}
+      - name: helper_cover_blocking_condition_met_jalousie_bad_og
+        state: >
+          {% set jal='cover.jalousie_bad_og' %}
+          {% if is_state('binary_sensor.helper_cover_blocking_condition_outside','on') and (state_attr(jal, 'current_position') | float(100)) > 91 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+      - name: helper_cover_blocking_condition_met_jalousie_gastezimmer
+        state: >
+          {% set jal='cover.jalousie_gastezimmer' %}
+          {% if is_state('binary_sensor.helper_cover_blocking_condition_outside','on') and (state_attr(jal, 'current_position') | float(100)) > 91 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+      - name: helper_cover_blocking_condition_met_jalousie_hst
+        state: >
+          {% set jal='cover.jalousie_hst' %}
+          {% if is_state('binary_sensor.helper_cover_blocking_condition_outside','on') and (state_attr(jal, 'current_position') | float(100)) > 91 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+      - name: helper_cover_blocking_condition_met_jalousie_kuche
+        state: >
+          {% set jal='cover.jalousie_kuche' %}
+          {% if is_state('binary_sensor.helper_cover_blocking_condition_outside','on') and (state_attr(jal, 'current_position') | float(100)) > 91 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+      - name: helper_cover_blocking_condition_met_jalousie_la_bodentiefes
+        state: >
+          {% set jal='cover.jalousie_la_bodentiefes' %}
+          {% if is_state('binary_sensor.helper_cover_blocking_condition_outside','on') and (state_attr(jal, 'current_position') | float(100)) > 91 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+      - name: helper_cover_blocking_condition_met_jalousie_la_lichtband
+        state: >
+          {% set jal='cover.jalousie_la_lichtband' %}
+          {% if is_state('binary_sensor.helper_cover_blocking_condition_outside','on') and (state_attr(jal, 'current_position') | float(100)) > 91 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+      - name: helper_cover_blocking_condition_met_jalousie_le_bodentiefes
+        state: >
+          {% set jal='cover.jalousie_le_bodentiefes' %}
+          {% if is_state('binary_sensor.helper_cover_blocking_condition_outside','on') and (state_attr(jal, 'current_position') | float(100)) > 91 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+      - name: helper_cover_blocking_condition_met_jalousie_le_lichtband
+        state: >
+          {% set jal='cover.jalousie_le_lichtband' %}
+          {% if is_state('binary_sensor.helper_cover_blocking_condition_outside','on') and (state_attr(jal, 'current_position') | float(100)) > 91 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+      - name: helper_cover_blocking_condition_met_jalousie_nahzimmer
+        state: >
+          {% set jal='cover.jalousie_nahzimmer' %}
+          {% if is_state('binary_sensor.helper_cover_blocking_condition_outside','on') and (state_attr(jal, 'current_position') | float(100)) > 91 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+      - name: helper_cover_blocking_condition_met_jalousie_schlafzimmer
+        state: >
+          {% set jal='cover.jalousie_schlafzimmer' %}
+          {% if is_state('binary_sensor.helper_cover_blocking_condition_outside','on') and (state_attr(jal, 'current_position') | float(100)) > 91 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+      - name: helper_cover_blocking_condition_met_jalousie_wz_bodentiefes
+        state: >
+          {% set jal='cover.jalousie_wz_bodentiefes' %}
+          {% if is_state('binary_sensor.helper_cover_blocking_condition_outside','on') and (state_attr(jal, 'current_position') | float(100)) > 91 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+      - name: helper_cover_blocking_condition_met_jalousie_wz_couch
+        state: >
+          {% set jal='cover.jalousie_wz_couch' %}
+          {% if is_state('binary_sensor.helper_cover_blocking_condition_outside','on') and (state_attr(jal, 'current_position') | float(100)) > 91 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
