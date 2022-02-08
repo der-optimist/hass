@@ -158,14 +158,19 @@
         device_ieee: "{{ device_ieee }}"
   condition: []
   action:
-    - service: switch.toggle
+    - service: light.turn_on
       target:
-        entity_id: switch.gaste_schlafen
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 10
-        milliseconds: 0
+        entity_id: light.panels_schlafzimmer
+      data:
+        brightness_pct: 15
+  #  - service: switch.toggle
+  #    target:
+  #      entity_id: switch.gaste_schlafen
+  #  - delay:
+  #      hours: 0
+  #      minutes: 0
+  #      seconds: 10
+  #      milliseconds: 0
   mode: single
 #
 ###############################################
