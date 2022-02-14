@@ -188,3 +188,9 @@
   beleuchtung_hochzeitsbild:
     name: Beleuchtung Hochzeitsbild
     icon: mdi:lightbulb-on-outline
+  reminder_wm:
+    name: Waschmaschine ist fertig
+    icon: mdi:washing-machine
+  reminder_dryer:
+    name: Trockner ist fertig
+    icon: mdi:tumble-dryer

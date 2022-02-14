@@ -781,4 +781,36 @@
             entity_id: timer.wm_door_delay
           data:
             duration: '00:03:00'
+      - conditions:
+        - condition: trigger
+          id: wm_door_delay_finished
+        sequence:
+        - service: timer.start
+          target:
+            entity_id: timer.wm_reminder
+          data:
+            duration: '01:00:00'
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.reminder_wm
+      - conditions:
+        - condition: trigger
+          id: wm_reminder
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'HA: Waschmaschine ist seit einer Stunde fertig'
+      - conditions:
+        - condition: trigger
+          id: wm_opened
+        sequence:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.reminder_wm
+        - service: timer.cancel
+          target:
+            entity_id: timer.wm_reminder
+        - service: timer.cancel
+          target:
+            entity_id: timer.wm_door_delay
       default: []

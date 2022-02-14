@@ -48,42 +48,18 @@ cards:
   - type: custom:auto-entities
     card:
       type: entities
-      title: "Licht WZ Stehlampe"
-      show_header_toggle: false
-      state_color: true
-    filter:
-      include:
-        - entity_id: "input_boolean.*light*_e_wz_stehlampe"
-        - entity_id: "binary_sensor.*light*_e_wz_stehlampe"
-        - entity_id: "sensor.*light*_e_wz_stehlampe"
-  - type: custom:auto-entities
-    card:
-      type: entities
-      title: "Licht EZ Wandl. warm"
-      show_header_toggle: false
-      state_color: true
-    filter:
-      include:
-        - entity_id: "input_boolean.*light*_e_ez_wandleuchten_warm"
-        - entity_id: "binary_sensor.*light*_e_ez_wandleuchten_warm"
-        - entity_id: "sensor.*light*_e_ez_wandleuchten_warm"
-  - type: custom:auto-entities
-    card:
-      type: entities
-      title: "Licht EZ Wandl. hell"
-      show_header_toggle: false
-      state_color: true
-    filter:
-      include:
-        - entity_id: "input_boolean.*light*_e_ez_wandleuchten_hell"
-        - entity_id: "binary_sensor.*light*_e_ez_wandleuchten_hell"
-        - entity_id: "sensor.*light*_e_ez_wandleuchten_hell"
-  - type: custom:auto-entities
-    card:
-      type: entities
       title: "Alle Licht-Automatik-Schalter"
       show_header_toggle: false
       state_color: true
     filter:
       include:
         - entity_id: "input_boolean.automation_switch_light*"
+  - type: entities
+    title: "Waschmaschine"
+    show_header_toggle: false
+    entities:
+      - entity: input_boolean.reminder_wm
+      - entity: timer.wm_door_delay
+      - entity: timer.wm_reminder
+      - entity: binary_sensor.waschmaschine_ist_an
+      - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
