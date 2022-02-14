@@ -11,9 +11,15 @@ input_text:
 
 timer:
   eisschutz_jalousien_manuell_deaktiviert:
-    duration: "03:00:00"
+    duration: "05:00:00"
   pizza_timer_ha:
-    duration: "00:12:00"
+    duration: "00:01:00"
+  wm_door_delay:
+    duration: "00:03:00"
+  wm_reminder:
+    duration: "01:00:00"
+  dryer_reminder:
+    duration: "02:00:00"
 
 automation:
   - alias: 'Timers Save'
@@ -23,11 +29,17 @@ automation:
       entity_id:
       - timer.eisschutz_jalousien_manuell_deaktiviert
       - timer.pizza_timer_ha
+      - timer.wm_door_delay
+      - timer.wm_reminder
+      - timer.dryer_reminder
     action:
     - variables:
         timers:
         - timer.eisschutz_jalousien_manuell_deaktiviert
         - timer.pizza_timer_ha
+        - timer.wm_door_delay
+        - timer.wm_reminder
+        - timer.dryer_reminder
         modes:
         - active
         - paused
