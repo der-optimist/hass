@@ -742,3 +742,43 @@
                 message: Bewegung! => Kellertreppe
           default: []
       default: []
+###############################################
+#####           Waschmaschine             #####
+###############################################
+- id: '72050f03-17bc-40d6-b20b-ef7836d5a830'
+  alias: Waschmaschine
+  description: ''
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.waschmaschine_ist_an
+      id: wm_ended
+      from: "on"
+      to: "off"
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.wm_door_delay
+      id: wm_door_delay_finished
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
+      id: wm_opened
+      to: "on"
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.wm_reminder
+      id: wm_reminder
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: wm_ended
+        sequence:
+        - service: timer.start
+          target:
+            entity_id: timer.wm_door_delay
+          data:
+            duration: '00:03:00'
+      default: []
