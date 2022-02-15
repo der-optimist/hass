@@ -1,13 +1,13 @@
 # - Gästezimmer
-knx_dim_funk_gz_deckenlicht:
-  module: knx_dim_funk
-  class: knx_dim_funk
-  light_entity: light.innr_e14_ww_decke_gastezimmer_level_on_off
-  steps:
-    - 0
-    - 5
-    - 30
-    - 70
-    - 100
-  command_ga_dim: "15/0/51"
-  command_ga_switch: "15/0/52"
+#knx_dim_funk_gz_deckenlicht:
+#  module: knx_dim_funk
+#  class: knx_dim_funk
+#  light_entity: light.innr_e14_ww_decke_gastezimmer_level_on_off
+#  steps:
+#    - 0
+#    - 5
+#    - 30
+#    - 70
+#    - 100
+#  command_ga_dim: "15/0/51"
+#  command_ga_switch: "15/0/52"

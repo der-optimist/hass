@@ -63,6 +63,22 @@
       dimm_steps: 10
 #
 ###############################################
+#####    KNX relative dimming Decke GZ    #####
+###############################################
+- alias: KNX relative dimming Decke GZ
+  id: 'knx_relative_dimming_decke_gz'
+  description: ''
+  use_blueprint:
+    path: /config/blueprints/knx_relative_dimming_farmio.yaml
+    input:
+      target_lights:
+        entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
+      switch_address: '1/6/40'
+      dimm_address: '1/6/42'
+      dimm_time: 5
+      dimm_steps: 10
+#
+###############################################
 #####           Play on Kodi WZ           #####
 ###############################################
 - id: '1639043665489'

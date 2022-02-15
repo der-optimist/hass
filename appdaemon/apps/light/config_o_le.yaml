@@ -1,35 +1,35 @@
 # - Le
-dimmer_steps_panels_le:
-  module: dimmer_steps
-  class: dimmer_steps
-  light_entity: light.panels_le
-  steps:
-    - 0
-    - 5
-    - 30
-    - 50
-    - 70
-    - 100
-  command_ga: "15/0/28"
-dimmer_steps_wuerfel_le:
-  module: dimmer_steps
-  class: dimmer_steps
-  light_entity: light.wandwurfel_le
-  steps:
-    - 0
-    - 3
-    - 20
-    - 55
-    - 100
-  command_ga: "15/0/47"
-dimmer_steps_stehlampe_le:
-  module: dimmer_steps
-  class: dimmer_steps
-  light_entity: light.innr_e14_tw_stehlampe_lea_level_light_color_on_off
-  steps:
-    - 0
-    - 3
-    - 15
-    - 50
-    - 100
-  command_ga: "15/0/65"
+#dimmer_steps_panels_le:
+#  module: dimmer_steps
+#  class: dimmer_steps
+#  light_entity: light.panels_le
+#  steps:
+#    - 0
+#    - 5
+#    - 30
+#    - 50
+#    - 70
+#    - 100
+#  command_ga: "15/0/28"
+#dimmer_steps_wuerfel_le:
+#  module: dimmer_steps
+#  class: dimmer_steps
+#  light_entity: light.wandwurfel_le
+#  steps:
+#    - 0
+#    - 3
+#    - 20
+#    - 55
+#    - 100
+#  command_ga: "15/0/47"
+#dimmer_steps_stehlampe_le:
+#  module: dimmer_steps
+#  class: dimmer_steps
+#  light_entity: light.innr_e14_tw_stehlampe_lea_level_light_color_on_off
+#  steps:
+#    - 0
+#    - 3
+#    - 15
+#    - 50
+#    - 100
+#  command_ga: "15/0/65"
