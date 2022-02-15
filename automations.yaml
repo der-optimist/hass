@@ -756,6 +756,10 @@
       id: wm_ended
       from: "on"
       to: "off"
+    - platform: state
+      entity_id: binary_sensor.waschmaschine_ist_an
+      id: wm_run
+      to: "on"
     - platform: event
       event_type: timer.finished
       event_data:
@@ -804,6 +808,19 @@
       - conditions:
         - condition: trigger
           id: wm_opened
+        sequence:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.reminder_wm
+        - service: timer.cancel
+          target:
+            entity_id: timer.wm_reminder
+        - service: timer.cancel
+          target:
+            entity_id: timer.wm_door_delay
+      - conditions:
+        - condition: trigger
+          id: wm_run
         sequence:
         - service: input_boolean.turn_off
           target:
