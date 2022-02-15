@@ -206,38 +206,39 @@
         command: shake
   condition: []
   action:
-    - conditions:
-      - condition: trigger
-        id: shake
-      sequence:
-      - choose:
-        - conditions:
-          - condition: state
-            entity_id: light.spiegel_wc
-            state: 'on'
-          sequence:
-          - service: light.turn_on
-            target:
-              entity_id: light.panels_wc
-            data:
-              brightness_pct: 5
-          - service: light.turn_off
-            target:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: shake
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
               entity_id: light.spiegel_wc
-        - conditions:
-          - condition: state
-            entity_id: light.spiegel_wc
-            state: 'off'
-          sequence:
-          - service: light.turn_on
-            target:
-              entity_id: light.panels_wc
-            data:
-              brightness_pct: 70
-          - service: light.turn_on
-            target:
+              state: 'on'
+            sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.panels_wc
+              data:
+                brightness_pct: 5
+            - service: light.turn_off
+              target:
+                entity_id: light.spiegel_wc
+          - conditions:
+            - condition: state
               entity_id: light.spiegel_wc
-        default: []
+              state: 'off'
+            sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.panels_wc
+              data:
+                brightness_pct: 70
+            - service: light.turn_on
+              target:
+                entity_id: light.spiegel_wc
+          default: []
       default: []
   mode: single
 #
