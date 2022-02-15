@@ -2,13 +2,13 @@
   icon: mdi:format-align-justify
 "sensor.stromzahler*":
   icon: mdi:counter
-  unit_of_measurement: kWh
+#  unit_of_measurement: kWh
 "sensor.helligkeit*":
   icon: mdi:weather-sunny
   unit_of_measurement: lx
 "sensor.windgeschwindigkeit*":
   icon: mdi:weather-windy
-  unit_of_measurement: km/h
+#  unit_of_measurement: km/h
 "sensor.el_leistung*":
   icon: mdi:speedometer
   unit_of_measurement: W
