@@ -1,4 +1,4 @@
-cube_terrasse:
-  module: cube_terrasse
-  class: cube_terrasse
-  zha_device_ieee: '00:15:8d:00:02:7d:45:07'
+#cube_terrasse:
+#  module: cube_terrasse
+#  class: cube_terrasse
+#  zha_device_ieee: '00:15:8d:00:02:7d:45:07'

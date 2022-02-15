@@ -190,6 +190,58 @@
   mode: single
 #
 ###############################################
+#####              Cube WC                #####
+###############################################
+- id: '08f25ae6-5ade-46ae-b571-7596cc14c01a'
+  alias: Cube WC
+  description: ''
+  trigger_variables:
+      device_ieee: 00:15:8d:00:02:7d:45:07
+  trigger:
+    - platform: event
+      event_type: zha_event
+      id: shake
+      event_data:
+        device_ieee: "{{ device_ieee }}"
+        command: shake
+  condition: []
+  action:
+    - conditions:
+      - condition: trigger
+        id: shake
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: light.spiegel_wc
+            state: 'on'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.panels_wc
+            data:
+              brightness_pct: 5
+          - service: light.turn_off
+            target:
+              entity_id: light.spiegel_wc
+        - conditions:
+          - condition: state
+            entity_id: light.spiegel_wc
+            state: 'off'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.panels_wc
+            data:
+              brightness_pct: 70
+          - service: light.turn_on
+            target:
+              entity_id: light.spiegel_wc
+        default: []
+      default: []
+  mode: single
+#
+###############################################
 #####  Erinnerung Heizung Partyr. vorne   #####
 ###############################################
 - id: '3f8caab8-7874-4d85-a0a6-13a83dd0fcc0'
