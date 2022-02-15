@@ -193,4 +193,5 @@
     icon: mdi:washing-machine
   reminder_dryer:
     name: Trockner ist fertig
-    icon: mdi:tumble-dryer
+#    icon: mdi:tumble-dryer
+    entity_picture: /local/icons/reminders/dryer_orange_blink.svg
