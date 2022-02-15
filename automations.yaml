@@ -742,6 +742,7 @@
                 message: Bewegung! => Kellertreppe
           default: []
       default: []
+#
 ###############################################
 #####           Waschmaschine             #####
 ###############################################
@@ -789,7 +790,7 @@
           target:
             entity_id: timer.wm_reminder
           data:
-            duration: '01:00:00'
+            duration: '00:05:00'
         - service: input_boolean.turn_on
           target:
             entity_id: input_boolean.reminder_wm
@@ -799,7 +800,7 @@
         sequence:
         - service: notify.telegram_jo
           data:
-            message: 'HA: Waschmaschine ist seit einer Stunde fertig'
+            message: 'HA: Waschmaschine ist seit 5 Minuten fertig'
       - conditions:
         - condition: trigger
           id: wm_opened
@@ -813,4 +814,60 @@
         - service: timer.cancel
           target:
             entity_id: timer.wm_door_delay
+      default: []
+#
+###############################################
+#####             Trockner               #####
+###############################################
+- id: 'f9bf2e02-9e91-4e02-8fbf-55048f9a1343'
+  alias: Trockner
+  description: ''
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.trockner_ist_an
+      id: dryer_ended
+      from: "on"
+      to: "off"
+    - platform: state
+      entity_id: binary_sensor.trockner_ist_geleert
+      id: dryer_opened
+      to: "on"
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.dryer_reminder
+      id: dryer_reminder
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: dryer_ended
+        sequence:
+        - service: timer.start
+          target:
+            entity_id: timer.dryer_reminder
+          data:
+            duration: '00:05:00'
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.reminder_dryer
+      - conditions:
+        - condition: trigger
+          id: dryer_reminder
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'HA: Trockner ist seit 5 Minuten fertig'
+      - conditions:
+        - condition: trigger
+          id: dryer_opened
+        sequence:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.reminder_dryer
+        - service: timer.cancel
+          target:
+            entity_id: timer.dryer_reminder
       default: []

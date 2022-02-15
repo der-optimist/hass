@@ -63,3 +63,11 @@ cards:
       - entity: timer.wm_reminder
       - entity: binary_sensor.waschmaschine_ist_an
       - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
+  - type: entities
+    title: "Trockner"
+    show_header_toggle: false
+    entities:
+      - entity: input_boolean.reminder_dryer
+      - entity: timer.dryer_reminder
+      - entity: binary_sensor.trockner_ist_an
+      - entity: binary_sensor.trockner_ist_geleert
