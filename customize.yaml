@@ -145,3 +145,9 @@ binary_sensor.pm_a_cp:
   friendly_name: Carport
 binary_sensor.pm_a_eg:
   friendly_name: Eingangsbereich / Carport
+
+# Input Boolean
+input_boolean.reminder_wm:
+  entity_picture: '/local/icons/reminders/washing-machine_orange_blink.svg'
+input_boolean.reminder_dryer:
+  entity_picture: '/local/icons/reminders/dryer_orange_blink.svg'
