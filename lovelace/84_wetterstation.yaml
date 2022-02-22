@@ -8,14 +8,6 @@ cards:
     entities:
       - entity: input_boolean.gewitter
         name: Gewitter!
-      - entity: sensor.blitz_distanz_wemos_d1_1
-        name: Blitz Distanz
-      - entity: sensor.blitz_distanz_min
-        name: nächster Blitz letzte 5 min
-      - entity: sensor.blitz_energie_wemos_d1_1
-        name: Blitz Energie
-      - entity: sensor.blitz_event_wemos_d1_1
-        name: Ereignis-Art Sensor
   - type: entities
     title: Temperatur, Helligkeit, Regen
     show_header_toggle: false
@@ -46,12 +38,12 @@ cards:
       - entity: binary_sensor.windalarm_2
       - entity: binary_sensor.windalarm_3
   - type: entities
-    title: Beschattung
+    title: genutzte Werte Draußen
     show_header_toggle: false
     entities:
-      - entity: sensor.sonnenschutz_fassade_1_position
-      - entity: sensor.sonnenschutz_fassade_1_lamellen
-      - entity: sensor.sonnenschutz_fassade_2_position
-      - entity: sensor.sonnenschutz_fassade_2_lamellen
-      - entity: sensor.sonnenschutz_fassade_3_position
-      - entity: sensor.sonnenschutz_fassade_3_lamellen
+      - entity: sensor.temp_aussen
+        name: Temperatur
+      - entity: sensor.luftfeuchtigkeit_aussen
+        name: Luftfeuchtigkeit
+      - entity: binary_sensor.helper_cover_blocking_condition_outside
+        name: Eisschutz-Situation

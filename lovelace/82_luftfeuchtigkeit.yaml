@@ -20,10 +20,8 @@ cards:
     entities:
       - entity: sensor.luftfeuchtigkeit_kuche_aqara
         name: Küche (aqara)
-      - entity: sensor.lumi_lumi_weather_0f9c4805_humidity
-        name: Schlafzimmer
-      - entity: sensor.lumi_lumi_weather_16237905_humidity
-        name: Le
+      - entity: sensor.luftfeuchtigkeit_esp_wemos_d1_7_bme680
+        name: Lara
   - type: entities
     title: Draußen
     show_header_toggle: false
