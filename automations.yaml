@@ -272,7 +272,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.el_leistung_heizung_partyraum_vorne
-      above: '100'
+      above: 100
       for:
         hours: 4
         minutes: 0
@@ -283,7 +283,7 @@
         while:
           - condition: numeric_state
             entity_id: sensor.el_leistung_heizung_partyraum_vorne
-            above: '100'
+            above: 100
         sequence:
           - service: notify.telegram_jo
             data:
@@ -304,7 +304,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.el_leistung_heizung_partyraum_hinten
-      above: '100'
+      above: 100
       for:
         hours: 4
         minutes: 0
@@ -315,7 +315,7 @@
         while:
           - condition: numeric_state
             entity_id: sensor.el_leistung_heizung_partyraum_hinten
-            above: '100'
+            above: 100
         sequence:
           - service: notify.telegram_jo
             data:
@@ -983,4 +983,103 @@
         - service: timer.cancel
           target:
             entity_id: timer.dryer_reminder
+      default: []
+#
+###############################################
+#####   Wasserventil wöchentlich bewegen  #####
+###############################################
+- id: '584a5dce-458c-48db-afb9-65ac55606847'
+  alias: Wasserventil wöchentlich bewegen
+  description: ''
+  mode: queued
+  trigger:
+    - platform: time
+      at: "03:38:02"
+      id: time_daily
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.water_valve_weekly
+      id: timer_finished
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: time_daily
+        - condition: time
+          weekday:
+            - wed
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: binary_sensor.pm_e_ba
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: 'Wasserventil konnte nicht bewegt werden, da noch jemand im Bad EG unterwegs war'
+          - conditions:
+            - condition: state
+              entity_id: binary_sensor.pm_e_wc
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: 'Wasserventil konnte nicht bewegt werden, da noch jemand im WC unterwegs war'
+          - conditions:
+            - condition: state
+              entity_id: binary_sensor.pm_e_ku_kuche
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: 'Wasserventil konnte nicht bewegt werden, da noch jemand in der Küche unterwegs war'
+          - conditions:
+            - condition: state
+              entity_id: binary_sensor.pm_o_ba
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: 'Wasserventil konnte nicht bewegt werden, da noch jemand im Bad OG unterwegs war'
+          - conditions:
+            - condition: state
+              entity_id: binary_sensor.waschmaschine_ist_an
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: 'Wasserventil konnte nicht bewegt werden, da die Waschmaschine läuft'
+          - conditions:
+            - condition: numeric_state
+              entity_id: sensor.el_leistung_spulmaschine
+              above: 0.1
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: 'Wasserventil konnte nicht bewegt werden, da die Spülmaschine läuft'
+          default: 
+            - service: switch.turn_off
+              target:
+                entity_id: switch.wasserabsperrventil
+            - service: timer.start
+              target:
+                entity_id: timer.water_valve_weekly
+              data:
+                duration: '00:00:45'
+            - service: notify.telegram_jo
+              data:
+                message: 'Wasserventil wöchentlich zu'
+      - conditions:
+        - condition: trigger
+          id: timer_finished
+        sequence:
+        - service: switch.turn_on
+          target:
+            entity_id: switch.wasserabsperrventil
+        - service: notify.telegram_jo
+          data:
+            message: 'Wasserventil wieder auf'
       default: []
