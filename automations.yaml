@@ -884,7 +884,7 @@
           target:
             entity_id: timer.wm_reminder
           data:
-            duration: '00:05:00'
+            duration: '01:00:00'
         - service: input_boolean.turn_on
           target:
             entity_id: input_boolean.reminder_wm
@@ -892,9 +892,12 @@
         - condition: trigger
           id: wm_reminder
         sequence:
+        - service: notify.telegram_ma
+          data:
+            message: 'Waschmaschine ist seit einer Stunde fertig'
         - service: notify.telegram_jo
           data:
-            message: 'HA: Waschmaschine ist seit 5 Minuten fertig'
+            message: 'Waschmaschine ist seit einer Stunde fertig'
       - conditions:
         - condition: trigger
           id: wm_opened
@@ -956,7 +959,7 @@
           target:
             entity_id: timer.dryer_reminder
           data:
-            duration: '00:05:00'
+            duration: '02:00:00'
         - service: input_boolean.turn_on
           target:
             entity_id: input_boolean.reminder_dryer
@@ -964,9 +967,12 @@
         - condition: trigger
           id: dryer_reminder
         sequence:
+        - service: notify.telegram_ma
+          data:
+            message: 'Trockner ist seit 2 Stunden fertig'
         - service: notify.telegram_jo
           data:
-            message: 'HA: Trockner ist seit 5 Minuten fertig'
+            message: 'Trockner ist seit 2 Stunden fertig'
       - conditions:
         - condition: trigger
           id: dryer_opened

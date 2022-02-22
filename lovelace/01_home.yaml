@@ -127,6 +127,8 @@ cards:
           include:
             - entity_id: "switch.reminder*"
               state: "on"
+            - entity_id: "input_boolean.reminder_*"
+              state: "on"
       - type: custom:swipe-card
         cards: 
           - type: custom:apexcharts-card
