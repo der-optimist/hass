@@ -14,6 +14,11 @@
     name: ping_wechselrichter_pv
     count: 2
     scan_interval: 60
+  - platform: ping
+    host: 192.168.178.42
+    name: ping_wall_panel
+    count: 2
+    scan_interval: 60
 
 # Time of Day
   - platform: tod
