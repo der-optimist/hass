@@ -1083,3 +1083,46 @@
           data:
             message: 'Wasserventil wieder auf'
       default: []
+#
+###############################################
+#####         Bildschirm Theke            #####
+###############################################
+- id: '8e8ef7aa-b20b-436c-8110-94030f1069b8'
+  alias: Bildschirm Theke
+  description: ''
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.anwesenheit_bildschirm
+      to: "on"
+      id: presence_on
+    - platform: state
+      entity_id: binary_sensor.anwesenheit_bildschirm
+      to: "off"
+      id: presence_off
+    - platform: state
+      entity_id: sensor.helligkeit_kuche_pm
+      to:
+      id: brightness
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: presence_on
+        sequence:
+        - service: rest_command.bildschirm_theke_command
+          data:
+            cmd: screenOn
+            key: ''
+            value: ''
+      - conditions:
+        - condition: trigger
+          id: presence_off
+        sequence:
+        - service: rest_command.bildschirm_theke_command
+          data:
+            cmd: screenOff
+            key: ''
+            value: ''
+      default: []
