@@ -1061,17 +1061,17 @@
               data:
                 message: 'Wasserventil konnte nicht bewegt werden, da die Spülmaschine läuft'
           default: 
-            - service: switch.turn_off
-              target:
-                entity_id: switch.wasserabsperrventil
-            - service: timer.start
-              target:
-                entity_id: timer.water_valve_weekly
-              data:
-                duration: '00:00:45'
-            - service: notify.telegram_jo
-              data:
-                message: 'Wasserventil wöchentlich zu'
+          - service: switch.turn_off
+            target:
+              entity_id: switch.wasserabsperrventil
+          - service: timer.start
+            target:
+              entity_id: timer.water_valve_weekly
+            data:
+              duration: '00:00:45'
+          - service: notify.telegram_jo
+            data:
+              message: 'Wasserventil wöchentlich zu'
       - conditions:
         - condition: trigger
           id: timer_finished
@@ -1104,6 +1104,15 @@
       entity_id: sensor.helligkeit_kuche_pm
       to:
       id: brightness
+    - platform: time_pattern
+      minutes: "*"
+      seconds: 23
+      id: regularly
+    - platform: state
+      entity_id: sensor.kiosk_browser_bildschirm_theke
+      to: "unavailable"
+      for: "00:10:00"
+      id: no_connection
   condition: []
   action:
     - choose:
@@ -1125,4 +1134,127 @@
             cmd: screenOff
             key: ''
             value: ''
+      - conditions:
+        - condition: trigger
+          id: brightness
+        sequence:
+        - choose:
+          - conditions:
+            - condition: numeric_state
+              entity_id: sensor.helligkeit_kuche_pm
+              below: 5
+            sequence:
+            - service: rest_command.bildschirm_theke_command
+              data:
+                cmd: setStringSetting
+                key: screenBrightness
+                value: 51
+          - conditions:
+            - condition: numeric_state
+              entity_id: sensor.helligkeit_kuche_pm
+              below: 10
+            sequence:
+            - service: rest_command.bildschirm_theke_command
+              data:
+                cmd: setStringSetting
+                key: screenBrightness
+                value: 77
+          - conditions:
+            - condition: numeric_state
+              entity_id: sensor.helligkeit_kuche_pm
+              below: 15
+            sequence:
+            - service: rest_command.bildschirm_theke_command
+              data:
+                cmd: setStringSetting
+                key: screenBrightness
+                value: 102
+          - conditions:
+            - condition: numeric_state
+              entity_id: sensor.helligkeit_kuche_pm
+              below: 20
+            sequence:
+            - service: rest_command.bildschirm_theke_command
+              data:
+                cmd: setStringSetting
+                key: screenBrightness
+                value: 128
+          - conditions:
+            - condition: numeric_state
+              entity_id: sensor.helligkeit_kuche_pm
+              below: 25
+            sequence:
+            - service: rest_command.bildschirm_theke_command
+              data:
+                cmd: setStringSetting
+                key: screenBrightness
+                value: 153
+          - conditions:
+            - condition: numeric_state
+              entity_id: sensor.helligkeit_kuche_pm
+              below: 40
+            sequence:
+            - service: rest_command.bildschirm_theke_command
+              data:
+                cmd: setStringSetting
+                key: screenBrightness
+                value: 178
+          - conditions:
+            - condition: numeric_state
+              entity_id: sensor.helligkeit_kuche_pm
+              below: 80
+            sequence:
+            - service: rest_command.bildschirm_theke_command
+              data:
+                cmd: setStringSetting
+                key: screenBrightness
+                value: 204
+          - conditions:
+            - condition: numeric_state
+              entity_id: sensor.helligkeit_kuche_pm
+              below: 200
+            sequence:
+            - service: rest_command.bildschirm_theke_command
+              data:
+                cmd: setStringSetting
+                key: screenBrightness
+                value: 230
+          default:
+          - service: rest_command.bildschirm_theke_command
+            data:
+              cmd: setStringSetting
+              key: screenBrightness
+              value: 245
+      - conditions:
+        - condition: trigger
+          id: regularly
+        sequence:
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: binary_sensor.anwesenheit_bildschirm
+              state: 'off'
+            sequence:
+            - service: rest_command.bildschirm_theke_command
+              data:
+                cmd: screenOff
+                key: ''
+                value: ''
+          default:
+          - service: rest_command.bildschirm_theke_command
+            data:
+              cmd: screenOn
+              key: ''
+              value: ''
+      - conditions:
+        - condition: trigger
+          id: no_connection
+        sequence:
+        - service: switch.turn_off
+          target:
+            entity_id: switch.esp_sd_3_relais
+        - delay: 5
+        - service: switch.turn_on
+          target:
+            entity_id: switch.esp_sd_3_relais
       default: []
