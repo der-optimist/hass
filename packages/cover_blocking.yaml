@@ -46,7 +46,7 @@ template:
   - binary_sensor:
       - name: helper_cover_blocking_condition_outside
         state: >
-          {% if (states('sensor.luftfeuchtigkeit_aussen') | float(100)) > 95 and (states('sensor.temp_aussen') | float(-20)) < (3 if is_state('binary_sensor.helper_cover_blocking_condition_outside', 'on') else 0) %}
+          {% if (states('sensor.luftfeuchtigkeit_aussen') | float(100)) > (0 if is_state('binary_sensor.helper_cover_blocking_condition_outside', 'on') else 95) and (states('sensor.temp_aussen') | float(-20)) < (3 if is_state('binary_sensor.helper_cover_blocking_condition_outside', 'on') else 0) %}
             {{ true }}
           {% elif is_state('binary_sensor.regenalarm','on') and (states('sensor.temp_aussen') | float(-20)) < (3 if is_state('binary_sensor.helper_cover_blocking_condition_outside', 'on') else 2) %}
             {{ true }}
