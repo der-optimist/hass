@@ -280,4 +280,63 @@ automation:
           - service: input_boolean.turn_on
             target:
               entity_id: input_boolean.eisschutz_jalousien
+        - conditions:
+          - condition: trigger
+            id: blocking_outside_to_off
+          sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.eisschutz_jalousien
+        - conditions:
+          - condition: trigger
+            id: ib_eisschutz_to_off
+          - condition: state
+            entity_id: binary_sensor.helper_cover_blocking_condition_outside
+            state: 'on'
+          sequence:
+          - service: timer.start
+            target:
+              entity_id: timer.eisschutz_jalousien_manuell_deaktiviert
+            data:
+              duration: '05:00:00'
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.sperre_jal_ku
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.sperre_jal_hst
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.sperre_jal_wz_bodentiefes
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.sperre_jal_wz_couch
+          - delay: 1
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.sperre_jal_sz
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.sperre_jal_ba_og
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.sperre_jal_la_bodentiefes
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.sperre_jal_la_lichtband
+          - delay: 1
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.sperre_jal_nz
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.sperre_jal_le_lichtband
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.sperre_jal_le_bodentiefes
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.sperre_jal_gz
+
+
         default: []
