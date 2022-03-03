@@ -46,9 +46,9 @@ template:
   - binary_sensor:
       - name: helper_cover_blocking_condition_outside
         state: >
-          {% if (states('sensor.luftfeuchtigkeit_aussen') | float(100)) > (0 if is_state('binary_sensor.helper_cover_blocking_condition_outside', 'on') else 95) and (states('sensor.temp_aussen') | float(-20)) < (3 if is_state('binary_sensor.helper_cover_blocking_condition_outside', 'on') else 0) %}
+          {% if (states('sensor.luftfeuchtigkeit_aussen') | float(100)) > (0 if is_state('input_boolean.eisschutz_jalousien', 'on') else 95) and (states('sensor.temp_aussen') | float(-20)) < (3 if is_state('input_boolean.eisschutz_jalousien', 'on') else 0) %}
             {{ true }}
-          {% elif is_state('binary_sensor.regenalarm','on') and (states('sensor.temp_aussen') | float(-20)) < (3 if is_state('binary_sensor.helper_cover_blocking_condition_outside', 'on') else 2) %}
+          {% elif is_state('binary_sensor.regenalarm','on') and (states('sensor.temp_aussen') | float(-20)) < (3 if is_state('input_boolean.eisschutz_jalousien', 'on') else 2) %}
             {{ true }}
           {% else %}
             {{ false }}
@@ -149,3 +149,135 @@ template:
           {% else %}
             {{ false }}
           {% endif %}
+
+automation:
+  - alias: 'Cover Blocking'
+    mode: queued
+    max: 25
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_outside
+        to: 'on'
+        id: blocking_outside_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_outside
+        to: 'off'
+        id: blocking_outside_to_off
+      - platform: state
+        entity_id: input_boolean.eisschutz_jalousien
+        to: 'off'
+        id: ib_eisschutz_to_off
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.eisschutz_jalousien_manuell_deaktiviert
+        id: timer_eisschutz_jalousien_manuell_deaktiviert_finished
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_bad_og
+        to: 'on'
+        id: blocking_condition_met_jalousie_bad_og_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_gastezimmer
+        to: 'on'
+        id: blocking_condition_met_jalousie_gastezimmer_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_hst
+        to: 'on'
+        id: blocking_condition_met_jalousie_hst_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_kuche
+        to: 'on'
+        id: blocking_condition_met_jalousie_kuche_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_la_bodentiefes
+        to: 'on'
+        id: blocking_condition_met_jalousie_la_bodentiefes_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_la_lichtband
+        to: 'on'
+        id: blocking_condition_met_jalousie_la_lichtband_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_le_bodentiefes
+        to: 'on'
+        id: blocking_condition_met_jalousie_le_bodentiefes_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_le_lichtband
+        to: 'on'
+        id: blocking_condition_met_jalousie_le_lichtband_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_nahzimmer
+        to: 'on'
+        id: blocking_condition_met_jalousie_nahzimmer_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_schlafzimmer
+        to: 'on'
+        id: blocking_condition_met_jalousie_schlafzimmer_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_wz_bodentiefes
+        to: 'on'
+        id: blocking_condition_met_jalousie_wz_bodentiefes_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_wz_couch
+        to: 'on'
+        id: blocking_condition_met_jalousie_wz_couch_to_on
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_bad_og
+        to: 'off'
+        id: blocking_condition_met_jalousie_bad_og_to_off
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_gastezimmer
+        to: 'off'
+        id: blocking_condition_met_jalousie_gastezimmer_to_off
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_hst
+        to: 'off'
+        id: blocking_condition_met_jalousie_hst_to_off
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_kuche
+        to: 'off'
+        id: blocking_condition_met_jalousie_kuche_to_off
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_la_bodentiefes
+        to: 'off'
+        id: blocking_condition_met_jalousie_la_bodentiefes_to_off
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_la_lichtband
+        to: 'off'
+        id: blocking_condition_met_jalousie_la_lichtband_to_off
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_le_bodentiefes
+        to: 'off'
+        id: blocking_condition_met_jalousie_le_bodentiefes_to_off
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_le_lichtband
+        to: 'off'
+        id: blocking_condition_met_jalousie_le_lichtband_to_off
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_nahzimmer
+        to: 'off'
+        id: blocking_condition_met_jalousie_nahzimmer_to_off
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_schlafzimmer
+        to: 'off'
+        id: blocking_condition_met_jalousie_schlafzimmer_to_off
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_wz_bodentiefes
+        to: 'off'
+        id: blocking_condition_met_jalousie_wz_bodentiefes_to_off
+      - platform: state
+        entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_wz_couch
+        to: 'off'
+        id: blocking_condition_met_jalousie_wz_couch_to_off
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: blocking_outside_to_on
+          - condition: state
+            entity_id: timer.eisschutz_jalousien_manuell_deaktiviert
+            state: 'idle'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.eisschutz_jalousien
+        default: []
