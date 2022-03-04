@@ -337,6 +337,139 @@ automation:
           - service: input_boolean.turn_off
             target:
               entity_id: input_boolean.sperre_jal_gz
+        - conditions:
+          - condition: trigger
+            id: timer_eisschutz_jalousien_manuell_deaktiviert_finished
+          - condition: state
+            entity_id: binary_sensor.helper_cover_blocking_condition_outside
+            state: 'on'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.eisschutz_jalousien
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_bad_og
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.sperre_jal_ba_og
+            default: []
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_gastezimmer
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.sperre_jal_gz
+            default: []
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_hst
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.sperre_jal_hst
+            default: []
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_kuche
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.sperre_jal_ku
+            default: []
+          - delay: 1
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_la_bodentiefes
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.sperre_jal_la_bodentiefes
+            default: []
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_la_lichtband
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.sperre_jal_la_lichtband
+            default: []
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_le_bodentiefes
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.sperre_jal_le_bodentiefes
+            default: []
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_le_lichtband
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.sperre_jal_le_lichtband
+            default: []
+          - delay: 1
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_nahzimmer
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.sperre_jal_nz
+            default: []
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_schlafzimmer
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.sperre_jal_sz
+            default: []
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_wz_bodentiefes
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.sperre_jal_wz_bodentiefes
+            default: []
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: binary_sensor.helper_cover_blocking_condition_met_jalousie_wz_couch
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.sperre_jal_wz_couch
+            default: []
+
 
 
         default: []
