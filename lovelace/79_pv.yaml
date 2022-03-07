@@ -6,11 +6,26 @@ cards:
     title: "Test"
     show_header_toggle: false
     entities:
-      - sensor.el_leistung_stromzaehler_netzbezug
-      - sensor.el_leistung_netz
-      - sensor.el_leistung_pv_ac
-      - sensor.el_leistung_pv_dc
-      - sensor.el_leistung_verbrauch_gesamt
+      - type: custom:template-entity-row
+        name: Strompzähler Netzbezug
+        entity: sensor.el_leistung_stromzaehler_netzbezug
+        state: "{{ (states('sensor.el_leistung_stromzaehler_netzbezug') | float(0)) | round(0) }}"
+      - type: custom:template-entity-row
+        name: Leistung Netz (pos. = Bezug)
+        entity: sensor.el_leistung_netz
+        state: "{{ (states('sensor.el_leistung_netz') | float(0)) | round(0) }}"
+      - type: custom:template-entity-row
+        name: Leistung Verbrauch
+        entity: sensor.el_leistung_verbrauch_gesamt
+        state: "{{ (states('sensor.el_leistung_verbrauch_gesamt') | float(0)) | round(0) }}"
+      - type: custom:template-entity-row
+        name: Leistung PV AC
+        entity: sensor.el_leistung_pv_ac
+        state: "{{ (states('sensor.el_leistung_pv_ac') | float(0)) | round(0) }}"
+      - type: custom:template-entity-row
+        name: Leistung PV DC
+        entity: sensor.el_leistung_pv_dc
+        state: "{{ (states('sensor.el_leistung_pv_dc') | float(0)) | round(0) }}"
       - sensor.wirkungsgrad_wechselrichter
       - sensor.wirkungsgrad_wechselrichter_gefiltert
       - input_number.pv_einspeisebegrenzung_prozent
