@@ -29,7 +29,7 @@ api:
 automation: !include automations.yaml
 #automation:
 
-battery_sim: !include config_battery_sim.yaml
+#battery_sim: !include config_battery_sim.yaml
 
 binary_sensor: !include binary_sensors.yaml
 

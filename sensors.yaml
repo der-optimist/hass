@@ -237,11 +237,11 @@
         friendly_name: 'El. Leistung Verbrauch gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
-      battery_sim_energy_saved_byd_hvm_11_0:
-        value_template: "{{ state_attr('sensor.byd_hvm_11_0', 'energy_saved') | float(0) }}"
-        friendly_name: 'Batterie-Sim BYD HVM 11_0 Energy Saved'
-        unit_of_measurement: 'kWh'
-        icon_template: mdi:counter
+#      battery_sim_energy_saved_byd_hvm_11_0:
+#        value_template: "{{ state_attr('sensor.byd_hvm_11_0', 'energy_saved') | float(0) }}"
+#        friendly_name: 'Batterie-Sim BYD HVM 11_0 Energy Saved'
+#        unit_of_measurement: 'kWh'
+#        icon_template: mdi:counter
 #
 #
 #       --------------------------------
@@ -879,14 +879,14 @@
 # --                            --
 # --------------------------------
 #
-  - platform: fronius_inverter
-    ip_address: 192.168.178.28
-    name: FroniusCustom
-    powerflow: True
-    smartmeter: True
-    model: gen24
-    scan_interval: 20
-    units: kWh
+#  - platform: fronius_inverter
+#    ip_address: 192.168.178.28
+#    name: FroniusCustom
+#    powerflow: True
+#    smartmeter: True
+#    model: gen24
+#    scan_interval: 20
+#    units: kWh
 #
 #
 # --------------------------------
