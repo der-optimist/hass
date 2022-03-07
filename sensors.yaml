@@ -137,7 +137,7 @@
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
       pv_geldbetrag_bis_amortisation:
-        value_template: "{{ '%.2f'%(13724.42 - (states('sensor.pv_geldertrag_gesamt') | float(0))) }}"
+        value_template: "{{ '%.2f'%(13724.42 - (states('sensor.pv_geldertrag_gesamt') | float(13724.42))) }}"
         friendly_name: 'PV verbleibend bis Amortisation'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
@@ -158,7 +158,7 @@
       el_leistung_netz:
         value_template: >-
           {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
-            {{ states('sensor.fronius1_modbus_power_from_grid') | float(0) }}
+            {{ states('sensor.power_grid_fronius_power_flow_0_192_168_178_28') | float(0) }}
           {% else %}
             {{ states('sensor.el_leistung_stromzaehler_netzbezug') | float(0) }}
           {% endif %}
@@ -178,7 +178,7 @@
       el_leistung_pv_ac:
         value_template: >-
           {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
-            {{ states('sensor.froniuscustom_ac_power') | float(0) }}
+            {{ states('sensor.power_photovoltaics_fronius_power_flow_0_192_168_178_28') | float(0) }}
           {% else %}
             0.0
           {% endif %}
@@ -188,7 +188,7 @@
       el_leistung_pv_dc:
         value_template: >-
           {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
-            {{ states('sensor.froniuscustom_panel_status') | float(0) }}
+            {{ ((states('sensor.voltage_dc_fronius_inverter_1_192_168_178_28') | float(0)) * (states('sensor.current_dc_fronius_inverter_1_192_168_178_28') | float(0))) + ((states('sensor.voltage_dc_2_fronius_inverter_1_192_168_178_28') | float(0)) * (states('sensor.current_dc_2_fronius_inverter_1_192_168_178_28') | float(0))) }}
           {% else %}
             0.0
           {% endif %}
@@ -197,39 +197,43 @@
         icon_template: mdi:speedometer
       wirkungsgrad_wechselrichter:
         value_template: >-
-          {% if (states('sensor.el_leistung_pv_dc') | float(0)) > 0 %}
-            {% if ((states('sensor.el_leistung_pv_ac') | float(0)) / (states('sensor.el_leistung_pv_dc') | float(1))) > 1 %}
-              100.0
-            {% elif ((states('sensor.el_leistung_pv_ac') | float(0)) / (states('sensor.el_leistung_pv_dc') | float(1))) < 0 %}
-              0.0
-            {% else %}
-              {{ (100*((states('sensor.el_leistung_pv_ac') | float(0)) / (states('sensor.el_leistung_pv_dc') | float(1)))) | round(1) }}
-            {% endif %}
-          {% else %}
+          {% set dc = ((states('sensor.voltage_dc_fronius_inverter_1_192_168_178_28') | float(1)) * (states('sensor.current_dc_fronius_inverter_1_192_168_178_28') | float(1))) + ((states('sensor.voltage_dc_2_fronius_inverter_1_192_168_178_28') | float(0)) * (states('sensor.current_dc_2_fronius_inverter_1_192_168_178_28') | float(0))) %}
+          {% set ac = states('sensor.power_ac_fronius_inverter_1_192_168_178_28') | float(0) %}
+          {% set eta = (ac / dc) * 100 %}
+          {% if eta > 100 %}
+            100.0
+          {% elif eta < 0 %}
             0.0
+          {% else %}
+            {{ eta | round(1) }}
           {% endif %}
         friendly_name: 'Wirkungsgrad Wechselrichter'
         unit_of_measurement: '%'
         icon_template: mdi:chart-bell-curve-cumulative
       el_leistung_pv_dc_string1:
-        value_template: "{{ ((states('sensor.fronius1_modbus_power_dc_string1_raw') | int(0)) * (10 ** ((states('sensor.fronius1_modbus_power_dc_scaling_factor')| int(0) )) )) |round(0)}}"
+        value_template: "{{ ((states('sensor.voltage_dc_fronius_inverter_1_192_168_178_28') | float(0)) * (states('sensor.current_dc_fronius_inverter_1_192_168_178_28') | float(0))) |round(0) }}"
         friendly_name: 'El. Leistung PV DC String 1'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_pv_dc_string2:
-        value_template: "{{ ((states('sensor.fronius1_modbus_power_dc_string2_raw') | int(0)) * (10 ** ((states('sensor.fronius1_modbus_power_dc_scaling_factor')| int(0) )) )) |round(0)}}"
+        value_template: "{{ ((states('sensor.voltage_dc_2_fronius_inverter_1_192_168_178_28') | float(0)) * (states('sensor.current_dc_2_fronius_inverter_1_192_168_178_28') | float(0))) |round(0) }}"
         friendly_name: 'El. Leistung PV DC String 2'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       stromzaehler_pv_ac_gesamt:
         #value_template: "{{ (states('sensor.pv_ac_energy_riemann') | float(0) + 3740.43) | round(1) }}"
-        value_template: "{{ ((states('sensor.fronius1_modbus_energy_ac_lifetime') | float(0) / 1000) + 3740.43) | round(1) }}"
+        value_template: "{{ ((states('sensor.energy_total_fronius_inverter_1_192_168_178_28') | float(0) / 1000) + 3740.43) | round(1) }}"
         # 3740.43 was total production of first inverter that had a defect
         friendly_name: 'Gesamtproduktion PV'
         unit_of_measurement: 'kWh'
         icon_template: mdi:counter
       el_leistung_verbrauch_gesamt:
-        value_template: "{{ (states('sensor.el_leistung_netz') | float(0) ) +  (states('sensor.el_leistung_pv_ac') | float(0) )}}"
+        value_template: >-
+          {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
+            {{ states('sensor.power_load_fronius_power_flow_0_192_168_178_28') | float(0) }}
+          {% else %}
+            {{ states('sensor.el_leistung_stromzaehler_netzbezug') | float(0) }}
+          {% endif %}
         friendly_name: 'El. Leistung Verbrauch gesamt'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
@@ -756,7 +760,7 @@
 # --------------------------------
 #
   - platform: integration
-    source: sensor.froniuscustom_ac_power
+    source: sensor.power_photovoltaics_fronius_power_flow_0_192_168_178_28
     name: pv_ac_energy_riemann
     unit_prefix: k
     round: 2
