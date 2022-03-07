@@ -230,9 +230,9 @@
       el_leistung_verbrauch_gesamt:
         value_template: >-
           {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
-            {{ states('sensor.power_load_fronius_power_flow_0_192_168_178_28') | float(0) }}
+            {{ -1*states('sensor.power_load_fronius_power_flow_0_192_168_178_28') | float(0) }}
           {% else %}
-            {{ states('sensor.el_leistung_stromzaehler_netzbezug') | float(0) }}
+            {{ -1*states('sensor.el_leistung_stromzaehler_netzbezug') | float(0) }}
           {% endif %}
         friendly_name: 'El. Leistung Verbrauch gesamt'
         unit_of_measurement: 'W'
