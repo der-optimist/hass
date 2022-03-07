@@ -152,6 +152,7 @@ template:
 
 automation:
   - alias: 'Cover Blocking'
+    id: 'd97e3b0d-4e4a-476d-8df9-d84c64765c90'
     mode: queued
     max: 25
     trigger:
