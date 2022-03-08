@@ -220,6 +220,18 @@
         friendly_name: 'El. Leistung PV DC String 2'
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
+      unterschied_pv_string1_string2:
+        value_template: >-
+          {% set dc1 = (states('sensor.el_leistung_pv_dc_string1') | float(0)) %}
+          {% set dc2 = (states('sensor.el_leistung_pv_dc_string2') | float(0)) %}
+          {% if dc1 > 500 and dc2 > 500 %}
+            {{ (((dc1 - dc2) / (0.5*(dc1 + dc2))) * 100) | round(1) }}
+          {% else %}
+            {{ 0.0 }}
+          {% endif %}
+        friendly_name: 'Unterschied PV String 1 zu String 2'
+        unit_of_measurement: '%'
+        icon_template: mdi:percent-outline
       stromzaehler_pv_ac_gesamt:
         #value_template: "{{ (states('sensor.pv_ac_energy_riemann') | float(0) + 3740.43) | round(1) }}"
         value_template: "{{ ((states('sensor.energy_total_fronius_inverter_1_192_168_178_28') | float(0) / 1000) + 3740.43) | round(1) }}"
