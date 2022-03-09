@@ -17,6 +17,17 @@
         value_template: '{{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}'
 #
 #     --------------------------------
+#     --     Temporäre Dinge        --
+#     --------------------------------
+#
+      helligkeit_wetterstation_ersatz:
+        value_template: >-
+          {{ (states('sensor.el_leistung_pv_ac') | float(0)) * 5 }}
+        friendly_name: 'Helligkeit Wetterstation Ersatz'
+        unit_of_measurement: 'lx'
+        icon_template: mdi:weather-sunny
+#
+#     --------------------------------
 #     --    Temp. und Luftf.        --
 #     --------------------------------
 #

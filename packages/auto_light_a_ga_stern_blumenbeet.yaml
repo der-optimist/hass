@@ -57,10 +57,10 @@ template:
             {{ int(0) }}
       - name: helper_light_is_too_dark_a_ga_stern_blumenbeet
         state: >
-          {{ (states("sensor.helligkeit_wetterstation") | float(0)) < (states("sensor.helper_light_min_illuminance_a_ga_stern_blumenbeet") | float(1)) }}
+          {{ (states("sensor.helligkeit_wetterstation_ersatz") | float(0)) < (states("sensor.helper_light_min_illuminance_a_ga_stern_blumenbeet") | float(1)) }}
       - name: helper_light_is_too_bright_a_ga_stern_blumenbeet
         state: >
-          {{ (states("sensor.helligkeit_wetterstation") | float(0)) > (states("sensor.helper_light_min_illuminance_a_ga_stern_blumenbeet") | float(1) + 5000 ) }}
+          {{ (states("sensor.helligkeit_wetterstation_ersatz") | float(0)) > (states("sensor.helper_light_min_illuminance_a_ga_stern_blumenbeet") | float(1) + 5000 ) }}
 
 automation:
   - alias: Licht Garten Stern Blumenbeet
