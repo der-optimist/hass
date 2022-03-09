@@ -41,6 +41,14 @@
 # --- Template ---
   - platform: template
     sensors:
+      tag_nacht_wetterstation_ersatz:
+        friendly_name: "Tag-Nacht Wetterstation Ersatz"
+        value_template: >-
+          {% if (state_attr('sun.sun', 'elevation') | float(0)) > -5 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
       la_und_le_schlafen:
         friendly_name: "Beide Mädels schlafen"
         value_template: >-

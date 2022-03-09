@@ -56,6 +56,9 @@ climate: !include knx_climate.yaml
 light: !include knx_light.yaml
 scene: !include knx_scene.yaml
 expose:
+- type: 'binary'
+  entity_id: 'binary_sensor.tag_nacht_wetterstation_ersatz'
+  address: '13/0/3'
 - type: 'wind_speed_kmh'
   entity_id: 'sensor.windgeschwindigkeit_wetterstation_kmh'
   address: '13/0/50'
