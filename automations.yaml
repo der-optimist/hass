@@ -954,6 +954,9 @@
       - conditions:
         - condition: trigger
           id: dryer_ended
+        - condition: state
+          entity_id: binary_sensor.trockner_ist_geleert
+          state: 'off'
         sequence:
         - service: timer.start
           target:
