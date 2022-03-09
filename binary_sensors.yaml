@@ -283,7 +283,7 @@
       trockner_zieht_strom:
         friendly_name: "Trockner zieht Strom"
         delay_on:
-          minutes: 1
+          seconds: 10
         delay_off:
           minutes: 4
         value_template: "{{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) > 10 }}"
