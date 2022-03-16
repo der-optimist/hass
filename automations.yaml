@@ -96,7 +96,7 @@
     - service: media_player.play_media
       data:
         media_content_id: '{{ trigger.event.data.filepath }}'
-        media_content_type: video
+        media_content_type: file
       target:
         entity_id: media_player.kodi_wz_2
     - service: media_player.volume_set
