@@ -121,6 +121,8 @@ system_log:
   max_entries: 100
   fire_event: true
 
+waste_collection_schedule: !include config_waste_collection_schedule.yaml
+
 weather:
 
 zone: !include zones.yaml

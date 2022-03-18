@@ -1,0 +1,19 @@
+sources:
+  - name: ics
+    args:
+      file: "abfall_termine.ics"
+    calendar_title: Abfalltermine
+    customize:
+      - type: Gelbe Tonne
+        alias: Gelbe Tonne
+        icon: "/local/icons/garbage/tonne_gelb.svg"
+      - type: Restmuelltonne
+        alias: Restmülltonne
+        icon: "/local/icons/garbage/tonne_grau.svg"
+      - type: Papiertonne
+        alias: Papiertonne
+        icon: "/local/icons/garbage/tonne_blau.svg"
+      - type: Biotonne
+        alias: Biotonne
+        icon: "/local/icons/garbage/tonne_braun.svg"
+day_switch_time: "11:00"
