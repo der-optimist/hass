@@ -725,6 +725,25 @@
         value_template: "{{ states('input_number.target_temp_kuehlbox') | float(0) }}"
 #
 #
+# --------------------------------
+# --                            --
+# --          PowerCalc         --
+# --                            --
+# --------------------------------
+#
+  - platform: powercalc
+    create_group: Alle Lichter
+    entities:
+      - entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
+        linear:
+          min_power: 0.5
+          max_power: 5.3
+        standby_power: 0.4
+      - entity_id: light.technikraum
+        fixed:
+          power: 20
+#
+#
 #   --------------------------------
 #   --     Sonoff POW R2 1        --
 #   --------------------------------
