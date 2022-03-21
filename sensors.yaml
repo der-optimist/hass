@@ -973,8 +973,24 @@
     name: abfall_naechste_gelbe_tonne
     details_format: appointment_types
     count: 4
-    value_template: '{% if value.daysTo == 0 %}heute{% elif value.daysTo == 1 %}morgen{% else %}{{value.date.strftime("%a, %d.%m.")}} ({{value.daysTo}} T.){% endif %}'
-    date_template: '{% if value.daysTo == 0 %}heute{% elif value.daysTo == 1 %}morgen{% else %}{{value.date.strftime("%a, %d.%m.")}} ({{value.daysTo}} T.){% endif %}'
+    value_template: >-
+      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% if value.daysTo == 0 %}
+        heute
+      {% elif value.daysTo == 1 %}
+        morgen
+      {% else %}
+        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+      {% endif %}
+    date_template: >-
+      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% if value.daysTo == 0 %}
+        heute
+      {% elif value.daysTo == 1 %}
+        morgen
+      {% else %}
+        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+      {% endif %}
     add_days_to: True
     types:
       - Gelbe Tonne
@@ -982,8 +998,24 @@
     name: abfall_naechste_restmuelltonne
     details_format: appointment_types
     count: 4
-    value_template: '{% if value.daysTo == 0 %}heute{% elif value.daysTo == 1 %}morgen{% else %}{{value.date.strftime("%a, %d.%m.")}} ({{value.daysTo}} T.){% endif %}'
-    date_template: '{% if value.daysTo == 0 %}heute{% elif value.daysTo == 1 %}morgen{% else %}{{value.date.strftime("%a, %d.%m.")}} ({{value.daysTo}} T.){% endif %}'
+    value_template: >-
+      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% if value.daysTo == 0 %}
+        heute
+      {% elif value.daysTo == 1 %}
+        morgen
+      {% else %}
+        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+      {% endif %}
+    date_template: >-
+      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% if value.daysTo == 0 %}
+        heute
+      {% elif value.daysTo == 1 %}
+        morgen
+      {% else %}
+        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+      {% endif %}
     add_days_to: True
     types:
       - Restmülltonne
@@ -991,8 +1023,24 @@
     name: abfall_naechste_papiertonne
     details_format: appointment_types
     count: 4
-    value_template: '{% if value.daysTo == 0 %}heute{% elif value.daysTo == 1 %}morgen{% else %}{{value.date.strftime("%a, %d.%m.")}} ({{value.daysTo}} T.){% endif %}'
-    date_template: '{% if value.daysTo == 0 %}heute{% elif value.daysTo == 1 %}morgen{% else %}{{value.date.strftime("%a, %d.%m.")}} ({{value.daysTo}} T.){% endif %}'
+    value_template: >-
+      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% if value.daysTo == 0 %}
+        heute
+      {% elif value.daysTo == 1 %}
+        morgen
+      {% else %}
+        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+      {% endif %}
+    date_template: >-
+      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% if value.daysTo == 0 %}
+        heute
+      {% elif value.daysTo == 1 %}
+        morgen
+      {% else %}
+        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+      {% endif %}
     add_days_to: True
     types:
       - Papiertonne
@@ -1000,8 +1048,24 @@
     name: abfall_naechste_biotonne
     details_format: appointment_types
     count: 4
-    value_template: '{% if value.daysTo == 0 %}heute{% elif value.daysTo == 1 %}morgen{% else %}{{value.date.strftime("%a, %d.%m.")}} ({{value.daysTo}} T.){% endif %}'
-    date_template: '{% if value.daysTo == 0 %}heute{% elif value.daysTo == 1 %}morgen{% else %}{{value.date.strftime("%a, %d.%m.")}} ({{value.daysTo}} T.){% endif %}'
+    value_template: >-
+      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% if value.daysTo == 0 %}
+        heute
+      {% elif value.daysTo == 1 %}
+        morgen
+      {% else %}
+        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+      {% endif %}
+    date_template: >-
+      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% if value.daysTo == 0 %}
+        heute
+      {% elif value.daysTo == 1 %}
+        morgen
+      {% else %}
+        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+      {% endif %}
     add_days_to: True
     types:
       - Biotonne
