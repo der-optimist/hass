@@ -1,0 +1,15 @@
+enable_autodiscovery: false
+scan_interval: 00:05:00
+create_energy_sensors: true
+power_sensor_naming: "El. Leistung PowerCalc {}"
+energy_sensor_naming: "Stromzähler PowerCalc {}"
+create_utility_meters: true
+utility_meter_types:
+  - daily
+  - monthly
+  - yearly
+energy_integration_method: left
+energy_sensor_precision: 3
+create_domain_groups:
+  - light
+  - media_player
