@@ -95,7 +95,7 @@ media_player:
 
 modbus: !include modbus.yaml
 
-mqtt: !include config_mqtt.yaml
+mqtt: #!include config_mqtt.yaml
 
 notify: !include config_notify.yaml
 
