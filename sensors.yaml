@@ -732,46 +732,48 @@
 # --------------------------------
 #
   - platform: powercalc
-    create_group: Alle Lichter
+    create_group: Bekannte Verbraucher
     entities:
-      - create_group: Lichter Küche
+      - create_group: Alle Lichter
         entities:
-          - entity_id: light.arbeitsplatte
-            linear:
-              min_power: 2
-              max_power: 90
-              gamma_curve: 4
-            disable_standby_power: true
-          - entity_id: light.panels_kuche
-            linear:
-              min_power: 1
-              max_power: 24
-              gamma_curve: 4
-            disable_standby_power: true
-          - entity_id: light.panels_bar
-            linear:
-              min_power: 1
-              max_power: 16
-              gamma_curve: 4
-            disable_standby_power: true
-          - entity_id: light.sockelbeleuchtung
-            linear:
-              min_power: 2
-              max_power: 28
-              gamma_curve: 4
-            disable_standby_power: true
-      - create_group: Lichter Gästezimmer
-        entities:
-          - entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
-            linear:
-              min_power: 0.5
-              max_power: 5.3
-            standby_power: 0.4
-      - create_group: Lichter Keller
-        entities:
-          - entity_id: light.technikraum
-            fixed:
-              power: 20
+          - create_group: Lichter Küche
+            entities:
+              - entity_id: light.arbeitsplatte
+                linear:
+                  min_power: 2
+                  max_power: 90
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.panels_kuche
+                linear:
+                  min_power: 1
+                  max_power: 24
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.panels_bar
+                linear:
+                  min_power: 1
+                  max_power: 16
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.sockelbeleuchtung
+                linear:
+                  min_power: 2
+                  max_power: 28
+                  gamma_curve: 4
+                disable_standby_power: true
+          - create_group: Lichter Gästezimmer
+            entities:
+              - entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
+                linear:
+                  min_power: 0.5
+                  max_power: 5.3
+                standby_power: 0.4
+          - create_group: Lichter Keller
+            entities:
+              - entity_id: light.technikraum
+                fixed:
+                  power: 20
 #
 #
 #   --------------------------------
