@@ -774,6 +774,17 @@
               - entity_id: light.technikraum
                 fixed:
                   power: 20
+      - create_group: Wärmepumpe gesamt
+        entities:
+          - entity_id: sensor.el_leistung_wp_aussenteil
+            power_sensor_id: sensor.el_leistung_wp_aussenteil
+            name: WP Aussenteil
+          - entity_id: sensor.el_leistung_wp_innenteil
+            power_sensor_id: sensor.el_leistung_wp_innenteil
+            name: WP Innenteil
+          - entity_id: sensor.el_leistung_wp_heizstab
+            power_sensor_id: sensor.el_leistung_wp_heizstab
+            name: WP Heizstab
 #
 #
 #   --------------------------------
