@@ -10,6 +10,6 @@ utility_meter_types:
   - yearly
 energy_integration_method: left
 energy_sensor_precision: 3
-create_domain_groups:
-  - light
-  - media_player
+#create_domain_groups:
+#  - light
+#  - media_player
