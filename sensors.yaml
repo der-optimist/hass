@@ -1005,13 +1005,13 @@
                   - entity_id: light.bodenlicht_eingang
                     linear:
                       min_power: 1
-                      max_power: 
+                      max_power: 16
                       gamma_curve: 4
                     disable_standby_power: true
                   - entity_id: light.spots_carport_2
                     linear:
                       min_power: 1
-                      max_power: 
+                      max_power: 22
                       gamma_curve: 4
                     disable_standby_power: true
                   - entity_id: light.abstellraum_carport
