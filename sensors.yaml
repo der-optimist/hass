@@ -973,9 +973,73 @@
                   power: 12
           - create_group: Lichter Keller
             entities:
+              - entity_id: light.shellydimmer_d472fe_light_0
+                power_sensor_id: sensor.el_leistung_shellydimmer_d472fe_power
+                name: Licht Kellertreppe
+              - entity_id: light.flur_keller
+                fixed:
+                  power: 20
+              - entity_id: light.vorratsraum
+                fixed:
+                  power: 20
               - entity_id: light.technikraum
                 fixed:
                   power: 20
+              - entity_id: light.lagerraum
+                name: Licht Partyraum
+                fixed:
+                  power: 22
+              - entity_id: light.werkelraum
+                fixed:
+                  power: 60
+          - create_group: Lichter Aussen
+            entities:
+              - create_group: Lichter Carport
+                entities:
+                  - entity_id: light.led_streifen_carport
+                    linear:
+                      min_power: 1
+                      max_power: 67
+                      gamma_curve: 4
+                    disable_standby_power: true
+                  - entity_id: light.bodenlicht_eingang
+                    linear:
+                      min_power: 1
+                      max_power: 
+                      gamma_curve: 4
+                    disable_standby_power: true
+                  - entity_id: light.spots_carport_2
+                    linear:
+                      min_power: 1
+                      max_power: 
+                      gamma_curve: 4
+                    disable_standby_power: true
+                  - entity_id: light.abstellraum_carport
+                    fixed:
+                      power: 24
+              - create_group: Lichter Garten und Terrasse
+                entities:
+                  - entity_id: light.wandwurfel_suden
+                    fixed:
+                      power: 21
+                  - entity_id: light.wandwurfel_westen
+                    fixed:
+                      power: 21
+                  - entity_id: light.bodenstrahler_blumenbeet
+                    fixed:
+                      power: 6
+                  - entity_id: light.innr_rb_285_c_7cc30105_level_light_color_on_off
+                    name: Leuchtwürfel Ecke gross
+                    manufacturer: innr
+                    model: 'RB 285 C'
+                  - entity_id: light.innr_rb_285_c_55f50405_level_light_color_on_off
+                    name: Leuchtwürfel Ecke klein
+                    manufacturer: innr
+                    model: 'RB 285 C'
+                  - entity_id: light.innr_e27_color_terrasse_feuerplatz_level_light_color_on_off
+                    name: Leuchtwürfel Feuerplatz
+                    manufacturer: innr
+                    model: 'RB 285 C'
       - create_group: Wärmepumpe gesamt
         entities:
           - entity_id: sensor.el_leistung_wp_aussenteil
