@@ -954,6 +954,23 @@
                   max_power: 16
                   gamma_curve: 4
                 disable_standby_power: true
+          - create_group: Lichter Bad OG
+            entities:
+              - entity_id: light.panels_bad_og
+                linear:
+                  min_power: 1
+                  max_power: 48
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.led_auf_spiegelschrank_bad_og
+                linear:
+                  min_power: 1
+                  max_power: 17
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.spiegel_bad_og
+                fixed:
+                  power: 12
           - create_group: Lichter Keller
             entities:
               - entity_id: light.technikraum
