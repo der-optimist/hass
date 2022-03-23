@@ -876,6 +876,57 @@
               - entity_id: light.spiegel_wc
                 fixed:
                   power: 20
+          - create_group: Lichter Lara
+            entities:
+              - entity_id: light.panels_la
+                linear:
+                  min_power: 1
+                  max_power: 40
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.wandwurfel_la
+                linear:
+                  min_power: 1
+                  max_power: 12
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.innr_e14_ww_stehlampe_lara_level_on_off
+                name: Stehlampe Lara
+                linear:
+                  min_power: 0.5
+                  max_power: 5.3
+                standby_power: 0.4
+          - create_group: Lichter Arbeitszimmer
+            entities:
+              - entity_id: light.schreibtisch_decke
+                fixed:
+                  power: 24
+              - entity_id: light.ikea_panel_arbeitszimmer_esphome
+                linear:
+                  min_power: 1
+                  max_power: 29
+                  gamma_curve: 2.8
+                standby_power: 1
+          - create_group: Lichter Lea
+            entities:
+              - entity_id: light.panels_le
+                linear:
+                  min_power: 1
+                  max_power: 40
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.wandwurfel_le
+                linear:
+                  min_power: 1
+                  max_power: 12
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.innr_e14_tw_stehlampe_lea_level_light_color_on_off
+                name: Stehlampe Lara
+                linear:
+                  min_power: 0.5
+                  max_power: 5.8
+                standby_power: 0.4
           - create_group: Lichter Gästezimmer
             entities:
               - entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
