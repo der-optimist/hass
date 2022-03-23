@@ -762,6 +762,32 @@
                   max_power: 28
                   gamma_curve: 4
                 disable_standby_power: true
+          - create_group: Lichter Esszimmer
+            entities:
+              - entity_id: light.panels_esszimmer
+                linear:
+                  min_power: 1
+                  max_power: 32
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.wandleuchten_esszimmer_hell
+                linear:
+                  min_power: 1
+                  max_power: 34
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.wandleuchten_esszimmer_gemutlich
+                linear:
+                  min_power: 1
+                  max_power: 25
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.bar_beleuchtung
+                linear:
+                  min_power: 1
+                  max_power: 17
+                  gamma_curve: 4
+                disable_standby_power: true
           - create_group: Lichter Gästezimmer
             entities:
               - entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
