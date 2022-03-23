@@ -800,6 +800,26 @@
                 name: Stehlampe Wohnzimmer
                 manufacturer: innr
                 model: 'RB 285 C'
+          - create_group: Lichter Schlafzimmer
+            entities:
+              - entity_id: light.panels_schlafzimmer
+                linear:
+                  min_power: 1
+                  max_power: 48
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.bettbeleuchtung
+                linear:
+                  min_power: 1
+                  max_power: 28
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.innr_e14_tw_kugellampe_schlafzimmer_level_light_color_on_off
+                name: Kugellampe Schlafzimmer
+                linear:
+                  min_power: 0.5
+                  max_power: 5.8
+                standby_power: 0.4
           - create_group: Lichter Gästezimmer
             entities:
               - entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
