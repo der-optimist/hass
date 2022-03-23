@@ -1051,6 +1051,33 @@
           - entity_id: sensor.el_leistung_wp_heizstab
             power_sensor_id: sensor.el_leistung_wp_heizstab
             name: WP Heizstab
+      - create_group: Küchengeräte ohne Kühlschrank
+        entities:
+          - entity_id: sensor.el_leistung_backofen
+            power_sensor_id: sensor.el_leistung_backofen
+            name: Backofen
+          - entity_id: sensor.el_leistung_kochfeld
+            power_sensor_id: sensor.el_leistung_kochfeld
+            name: Kochfeld
+          - entity_id: sensor.el_leistung_mixi
+            power_sensor_id: sensor.el_leistung_mixi
+            name: Mixi
+          - entity_id: sensor.el_leistung_spulmaschine
+            power_sensor_id: sensor.el_leistung_spulmaschine
+            name: Spülmaschine
+      - create_group: Kühlgeräte
+        entities:
+          - entity_id: sensor.el_leistung_kuhlschrank_kuche
+            power_sensor_id: sensor.el_leistung_kuhlschrank_kuche
+            name: Kühlschrank Küche
+          - entity_id: sensor.el_leistung_gefrierschrank
+            power_sensor_id: sensor.el_leistung_gefrierschrank
+            name: Gefrierschrank
+      - create_group: Multimedia
+        entities:
+          - entity_id: sensor.el_leistung_tv
+            power_sensor_id: sensor.el_leistung_tv
+            name: TV
 #
 #
 #   --------------------------------
