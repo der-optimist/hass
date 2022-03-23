@@ -820,6 +820,29 @@
                   min_power: 0.5
                   max_power: 5.8
                 standby_power: 0.4
+          - create_group: Lichter Bad EG
+            entities:
+              - entity_id: light.panels_bad_eg
+                linear:
+                  min_power: 1
+                  max_power: 40
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.regal_bad_eg
+                linear:
+                  min_power: 1
+                  max_power: 15
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.led_auf_spiegelschrank_bad_eg
+                linear:
+                  min_power: 1
+                  max_power: 17
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.spiegel_bad_eg
+                fixed:
+                  power: 12
           - create_group: Lichter Gästezimmer
             entities:
               - entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
