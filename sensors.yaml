@@ -1172,6 +1172,28 @@
             # Netzteil Laptop MaJo             1    (geschätzt)
             # Standyby Monitor                 3    (3 x 1 geschätzt)
             # Raspi Bilderrahmen Flur          2
+      - create_group: Luftentfeuchter und Befeuchter
+        entities:
+          - entity_id: sensor.el_leistung_luftentfeuchter_waschkueche
+            power_sensor_id: sensor.el_leistung_luftentfeuchter_waschkueche
+            name: Luftentfeuchter Waschküche
+          - entity_id: sensor.el_leistung_luftentfeuchter_partyraum
+            power_sensor_id: sensor.el_leistung_luftentfeuchter_partyraum
+            name: Luftentfeuchter Partyraum
+          - entity_id: sensor.el_leistung_luftentf_vorratsraum
+            power_sensor_id: sensor.el_leistung_luftentf_vorratsraum
+            name: Luftentfeuchter Speis
+          - entity_id: sensor.el_leistung_esp_sd_2
+            power_sensor_id: sensor.el_leistung_esp_sd_2
+            name: Luftbefeuchter WZ
+      - create_group: Heizung Partyraum
+        entities:
+          - entity_id: sensor.el_leistung_heizung_partyraum_vorne
+            power_sensor_id: sensor.el_leistung_heizung_partyraum_vorne
+            name: Heizung Partyraum vorne
+          - entity_id: sensor.el_leistung_heizung_partyraum_hinten
+            power_sensor_id: sensor.el_leistung_heizung_partyraum_hinten
+            name: Heizung Partyraum hinten
 #
 #
 #   --------------------------------
