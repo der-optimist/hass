@@ -111,6 +111,10 @@ telegram_bot: !include config_telegram_bot.yaml
 
 template: !include template.yaml
 
+tts:
+  - platform: google_translate
+    language: "de"
+
 #utility_meter: !include utility_meter.yaml
 
 sensor: !include sensors.yaml
