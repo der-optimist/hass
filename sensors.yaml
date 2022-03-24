@@ -976,6 +976,10 @@
               - entity_id: light.shellydimmer_d472fe_light_0
                 power_sensor_id: sensor.el_leistung_shellydimmer_d472fe_power
                 name: Licht Kellertreppe
+              - name: Standby Dimmer Kellertreppe
+                daily_fixed_energy:
+                  value: 1
+                  unit_of_measurement: W
               - entity_id: light.flur_keller
                 fixed:
                   power: 20
@@ -1078,6 +1082,96 @@
           - entity_id: sensor.el_leistung_tv
             power_sensor_id: sensor.el_leistung_tv
             name: TV
+          - entity_id: media_player.beam
+            fixed:
+              power: 6.5
+          - entity_id: media_player.sonos_move
+            fixed:
+              power: 3.5
+          - entity_id: media_player.sonos_one_1
+            fixed:
+              power: 3.5
+          - entity_id: media_player.kodi_wz_2
+            fixed:
+              power: 2
+          - name: Digibit Receiver
+            daily_fixed_energy:
+              value: 8
+              unit_of_measurement: W
+          - name: Radio Lea
+            daily_fixed_energy:
+              value: 1
+              unit_of_measurement: W
+          - name: Echo Arbeitszimmer
+            daily_fixed_energy:
+              value: 2
+              unit_of_measurement: W
+#          - name: Echo Lea
+#            daily_fixed_energy:
+#              value: 1.8
+#              unit_of_measurement: W
+#          - name: Echo Lara
+#            daily_fixed_energy:
+#              value: 1.8
+#              unit_of_measurement: W
+      - create_group: Waschmaschine und Trockner
+        entities:
+          - entity_id: sensor.el_leistung_waschmaschine
+            power_sensor_id: sensor.el_leistung_waschmaschine
+            name: Waschmaschine
+          - entity_id: sensor.el_leistung_trockner
+            power_sensor_id: sensor.el_leistung_trockner
+            name: Trockner
+      - create_group: Haustechnik
+        entities:
+          - entity_id: sensor.el_leistung_luftungsanlage
+            power_sensor_id: sensor.el_leistung_luftungsanlage
+            name: Lüftungsanlage
+          - entity_id: sensor.el_leistung_hebeanlage
+            power_sensor_id: sensor.el_leistung_hebeanlage
+            name: Hebeanlage
+          - entity_id: sensor.el_leistung_bildschirm_theke
+            power_sensor_id: sensor.el_leistung_bildschirm_theke
+            name: Bildschirm Theke
+          - name: Dauerverbraucher Haustechnik
+            daily_fixed_energy:
+              value: 50
+              unit_of_measurement: W
+            # KNX Netzteil:                   12    (Abschätzung)
+            # Wetterstation:                   2    (Datenblatt)
+            # Wasserabsperrhahn:               0.5
+            # Wechselrichter:                 10    (Datenblatt)
+            # Modbus Gateway Lüftungsanlage:   1.5  (Datenblatt + Netzteil)
+            # Entkalkungsanlage:               3    (geschätzt)
+            # Klingel:                         5    (geschätzt)
+            # Relais Sicherung Keller:         1    (geschätzt)
+            # Shelly Schalter Bett-Steckdosen: 1
+            # Shelly Steckdose Hebeanlage:     1
+            # WLAN-Steckdosen:                 3    (3 x 1 W geschätzt - Bildschirm, 2x Heizung Partyraum)
+            # Zigbee-Steckdosen                2    (4 x 0.5 - Luftentfeuchter Waschk. + Partyraum, 2x Zigbee-Repeater)
+            # ESP-Sensoren                     5    (ca 5 x 1 W)
+            # Onewirepi                        2
+            # Robbi                            1
+      - create_group: Netzwerk Telefon und Computer
+        entities:
+          - name: Netzwerk
+            daily_fixed_energy:
+              value: 64.5
+              unit_of_measurement: W
+            # an USV:                         51    (gemessen. USV, Fritzbox, Kabelmodem, Repeater Keller)
+            # Repeater WZ                      4    (online-Test)
+            # OdroidXU4 inkl. Platte           9.5  (4.5 Odroid, 5 Festplatte)
+          - name: Telefon und Computer
+            daily_fixed_energy:
+              value: 10.5
+              unit_of_measurement: W
+            # Telefon                          1    (<1 gemessen bzw nicht messbar)
+            # Drucker                          1.5  (gemessen, an)
+            # Netzteil Laptop Ma               1    (geschätzt)
+            # Netzteil Laptop Jo               1    (geschätzt)
+            # Netzteil Laptop MaJo             1    (geschätzt)
+            # Standyby Monitor                 3    (3 x 1 geschätzt)
+            # Raspi Bilderrahmen Flur          2
 #
 #
 #   --------------------------------
