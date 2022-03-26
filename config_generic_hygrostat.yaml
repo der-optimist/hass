@@ -1,0 +1,36 @@
+- name: Luftentfeuchter Waschküche
+  humidifier: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
+  target_sensor: sensor.luftfeuchtigkeit_waschkuche
+  target_humidity: 52
+  dry_tolerance: 3
+  wet_tolerance: 3
+  device_class: "dehumidifier"
+  min_cycle_duration:
+    minutes: 10
+  keep_alive:
+    minutes: 15
+  sensor_stale_duration: 02:00:00
+- name: Luftentfeuchter Partyraum
+  humidifier: switch.esp_sd_6_relais
+  target_sensor: sensor.luftfeuchtigkeit_partyraum
+  target_humidity: 62
+  dry_tolerance: 2
+  wet_tolerance: 1
+  device_class: "dehumidifier"
+  min_cycle_duration:
+    minutes: 10
+  keep_alive:
+    minutes: 15
+  sensor_stale_duration: 02:00:00
+- name: Luftentfeuchter Speis
+  humidifier: switch.kuhlschrank_keller
+  target_sensor: sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_sht31
+  target_humidity: 57
+  dry_tolerance: 2
+  wet_tolerance: 3
+  device_class: "dehumidifier"
+  min_cycle_duration:
+    minutes: 10
+  keep_alive:
+    minutes: 15
+  sensor_stale_duration: 02:00:00
