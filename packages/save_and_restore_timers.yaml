@@ -22,6 +22,8 @@ timer:
     duration: "02:00:00"
   water_valve_weekly:
     duration: "00:01:00"
+  special_humidity_waschkueche:
+    duration: "04:00:00"
 
 automation:
   - alias: 'Timers Save'
@@ -35,6 +37,7 @@ automation:
       - timer.wm_reminder
       - timer.dryer_reminder
       - timer.water_valve_weekly
+      - timer.special_humidity_waschkueche
     action:
     - variables:
         timers:
@@ -44,6 +47,7 @@ automation:
         - timer.wm_reminder
         - timer.dryer_reminder
         - timer.water_valve_weekly
+        - timer.special_humidity_waschkueche
         modes:
         - active
         - paused
