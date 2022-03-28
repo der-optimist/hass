@@ -1280,3 +1280,23 @@
         url: !secret url_meteogram
         filename: meteogram.png
         overwrite: true
+#
+###############################################
+#####      Notify KNX unavailable         #####
+###############################################
+- id: '61987d8a-44d0-4def-8580-b9acfc7f23ab'
+  alias: Notify KNX unavailable
+  description: ''
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.pm_o_ko_la_raum
+      to: "unavailable"
+    - platform: state
+      entity_id: binary_sensor.pm_o_ko_la_raum
+      to: "unknown"
+  condition: []
+  action:
+    - service: notify.telegram_jo
+      data:
+        message: 'KNX unavailable'
