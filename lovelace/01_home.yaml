@@ -198,6 +198,7 @@ cards:
             entities:
               - sensor.el_leistung_pv_ac
               - sensor.el_leistung_verbrauch_gesamt
+              - sensor.el_leistung_einspeisung
               - sensor.pv_geldertrag_gesamt
       - type: entities
         show_header_toggle: false
@@ -206,16 +207,16 @@ cards:
             name: Strompreis aktuell
             entity: sensor.strompreis_effektiv_letzte_3_minuten
             state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float(0))) }} ct"
-          - type: divider
-            style: 
-              height: 1px
-              background-color: "#ff9c27"
-              opacity: 0.25
-          - type: custom:template-entity-row
-            name: 7-Tage Inzidenz RV
-            icon: mdi:medical-bag
-            entity: sensor.lk_ravensburg_weekincidence
-            state: "{{ '%.0f'%(states('sensor.lk_ravensburg_weekincidence')) | float(0) | round(0) }}"
+#          - type: divider
+#            style: 
+#              height: 1px
+#              background-color: "#ff9c27"
+#              opacity: 0.25
+#          - type: custom:template-entity-row
+#            name: 7-Tage Inzidenz RV
+#            icon: mdi:medical-bag
+#            entity: sensor.lk_ravensburg_weekincidence
+#            state: "{{ '%.0f'%(states('sensor.lk_ravensburg_weekincidence')) | float(0) | round(0) }}"
   - type: vertical-stack
     view_layout:
       grid-area: garbage
