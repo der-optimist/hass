@@ -131,67 +131,67 @@ cards:
               state: "on"
       - type: custom:swipe-card
         cards: 
-          - type: custom:apexcharts-card
-            experimental:
-              color_threshold: true
-            graph_span: 48h
-            update_interval: 5min
-            apex_config:
-              yaxis:
-                min: 0
-                max: 10000
-                tickAmount: 5
-            now:
-              show: True
-              label: "jetzt"
-            span:
-              start: hour
-            series:
-              - entity: sensor.solcast_forecast_chart
-                data_generator: | # This is what builds the data
-                  return entity.attributes.timestamps.map((ts, index) => {
-                    return [new Date(ts).getTime(), entity.attributes.forecast_values[index]];
-                  });
-                color_threshold:
-                  - value: 0
-                    color: gray
-                  - value: 1500
-                    color: gray
-                  - value: 2000
-                    color: darkorange
-                  - value: 6552
-                    color: darkorange
-                  - value: 6852
-                    color: lime
-          - type: custom:apexcharts-card
-            graph_span: 5d
-            update_interval: 15min
-            stacked: True
-            apex_config:
-              yaxis:
-                min: 0
-              legend:
-                show: false
-            span:
-              start: day
-            series:
-              - entity: sensor.solcast_forecast_chart
-                type: column
-                show:
-                  datalabels: True
-                data_generator: | # This is what builds the data
-                  return entity.attributes.timestamps_daily.map((ts_d, index) => {
-                    return [new Date(ts_d).getTime(), entity.attributes.forecast_values_daily[index]];
-                  });
-              - entity: sensor.solcast_forecast_chart
-                type: column
-                color: green
-                show:
-                  datalabels: True
-                data_generator: | # This is what builds the data
-                  return entity.attributes.timestamp_today.map((ts_d, index) => {
-                    return [new Date(ts_d).getTime(), entity.attributes.pv_production_today[index]];
-                  });
+#          - type: custom:apexcharts-card
+#            experimental:
+#              color_threshold: true
+#            graph_span: 48h
+#            update_interval: 5min
+#            apex_config:
+#              yaxis:
+#                min: 0
+#                max: 10000
+#                tickAmount: 5
+#            now:
+#              show: True
+#              label: "jetzt"
+#            span:
+#              start: hour
+#            series:
+#              - entity: sensor.solcast_forecast_chart
+#                data_generator: | # This is what builds the data
+#                  return entity.attributes.timestamps.map((ts, index) => {
+#                    return [new Date(ts).getTime(), entity.attributes.forecast_values[index]];
+#                  });
+#                color_threshold:
+#                  - value: 0
+#                    color: gray
+#                  - value: 1500
+#                    color: gray
+#                  - value: 2000
+#                    color: darkorange
+#                  - value: 6552
+#                    color: darkorange
+#                  - value: 6852
+#                    color: lime
+#          - type: custom:apexcharts-card
+#            graph_span: 5d
+#            update_interval: 15min
+#            stacked: True
+#            apex_config:
+#              yaxis:
+#                min: 0
+#              legend:
+#                show: false
+#            span:
+#              start: day
+#            series:
+#              - entity: sensor.solcast_forecast_chart
+#                type: column
+#                show:
+#                  datalabels: True
+#                data_generator: | # This is what builds the data
+#                  return entity.attributes.timestamps_daily.map((ts_d, index) => {
+#                    return [new Date(ts_d).getTime(), entity.attributes.forecast_values_daily[index]];
+#                  });
+#              - entity: sensor.solcast_forecast_chart
+#                type: column
+#                color: green
+#                show:
+#                  datalabels: True
+#                data_generator: | # This is what builds the data
+#                  return entity.attributes.timestamp_today.map((ts_d, index) => {
+#                    return [new Date(ts_d).getTime(), entity.attributes.pv_production_today[index]];
+#                  });
           - type: entities
             title: "PV-Anlage"
             show_header_toggle: false
@@ -266,7 +266,11 @@ cards:
           show_header_toggle: false
         filter:
           include:
-            - entity_id: "sensor.abfall_anzeige*"
+            - entity_id: "sensor.abfall_naechste*"
+        sort:
+          method: attribute
+          attribute: daysTo
+          numeric: true
       - type: entities
         show_header_toggle: false
         entities:
