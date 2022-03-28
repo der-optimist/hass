@@ -985,7 +985,7 @@
     details_format: appointment_types
     count: 4
     value_template: >-
-      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
       {% if value.daysTo == 0 %}
         heute
       {% elif value.daysTo == 1 %}
@@ -994,7 +994,7 @@
         {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
       {% endif %}
     date_template: >-
-      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
       {% if value.daysTo == 0 %}
         heute
       {% elif value.daysTo == 1 %}
@@ -1010,7 +1010,7 @@
     details_format: appointment_types
     count: 4
     value_template: >-
-      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
       {% if value.daysTo == 0 %}
         heute
       {% elif value.daysTo == 1 %}
@@ -1019,7 +1019,7 @@
         {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
       {% endif %}
     date_template: >-
-      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
       {% if value.daysTo == 0 %}
         heute
       {% elif value.daysTo == 1 %}
@@ -1035,7 +1035,7 @@
     details_format: appointment_types
     count: 4
     value_template: >-
-      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
       {% if value.daysTo == 0 %}
         heute
       {% elif value.daysTo == 1 %}
@@ -1044,7 +1044,7 @@
         {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
       {% endif %}
     date_template: >-
-      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
       {% if value.daysTo == 0 %}
         heute
       {% elif value.daysTo == 1 %}
@@ -1060,7 +1060,7 @@
     details_format: appointment_types
     count: 4
     value_template: >-
-      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
       {% if value.daysTo == 0 %}
         heute
       {% elif value.daysTo == 1 %}
@@ -1069,7 +1069,7 @@
         {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
       {% endif %}
     date_template: >-
-      {% set day = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"] %}
+      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
       {% if value.daysTo == 0 %}
         heute
       {% elif value.daysTo == 1 %}
