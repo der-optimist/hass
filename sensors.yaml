@@ -951,6 +951,9 @@
     - ip6
     - deviceId
     value_template: 'OK'
+  - platform: rest
+    name: Geburtstage Google
+    resource_template: 'http://localhost/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
 #
 # --------------------------------
 # --                            --
