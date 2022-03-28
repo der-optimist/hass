@@ -61,8 +61,6 @@ expose:
   address: '13/0/3'
 - type: time
   address: '13/0/11'
-- type: date
-  address: '13/0/10'
 - type: datetime
   address: '13/0/12'
 - type: 'wind_speed_kmh'
