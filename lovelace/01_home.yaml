@@ -56,11 +56,11 @@ cards:
         decimals: 1
         show:
           labels: true
-      - type: entities
-        title: "Wer ist wo..."
-        show_header_toggle: false
-        entities:
-          - entity: sensor.location_jo
+#      - type: entities
+#        title: "Wer ist wo..."
+#        show_header_toggle: false
+#        entities:
+#          - entity: sensor.location_jo
       - type: entities
         title: Pizza Timer
         show_header_toggle: false
