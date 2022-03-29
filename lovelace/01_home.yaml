@@ -318,7 +318,6 @@ cards:
         firstDayOfWeek: 1
         maxDaysToShow: 30
         maxEventCount: 4
-        refreshInterval: 60
         entities:
           - calendar.geburtstage_und_jahrestag
         showMonth: true
