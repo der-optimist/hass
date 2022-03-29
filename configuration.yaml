@@ -88,7 +88,7 @@ light: !include light.yaml
 logger:
   default: info
   logs:
-    xknx: debug
+    xknx.log: debug
 
 lovelace: !include config_lovelace.yaml
 
