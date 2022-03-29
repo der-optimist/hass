@@ -980,106 +980,106 @@
 # --                            --
 # --------------------------------
 #
-  - platform: waste_collection_schedule
-    name: abfall_naechste_gelbe_tonne
-    details_format: appointment_types
-    count: 4
-    value_template: >-
-      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
-      {% if value.daysTo == 0 %}
-        heute
-      {% elif value.daysTo == 1 %}
-        morgen
-      {% else %}
-        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
-      {% endif %}
-    date_template: >-
-      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
-      {% if value.daysTo == 0 %}
-        heute
-      {% elif value.daysTo == 1 %}
-        morgen
-      {% else %}
-        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
-      {% endif %}
-    add_days_to: True
-    types:
-      - Gelbe Tonne
-  - platform: waste_collection_schedule
-    name: abfall_naechste_restmuelltonne
-    details_format: appointment_types
-    count: 4
-    value_template: >-
-      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
-      {% if value.daysTo == 0 %}
-        heute
-      {% elif value.daysTo == 1 %}
-        morgen
-      {% else %}
-        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
-      {% endif %}
-    date_template: >-
-      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
-      {% if value.daysTo == 0 %}
-        heute
-      {% elif value.daysTo == 1 %}
-        morgen
-      {% else %}
-        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
-      {% endif %}
-    add_days_to: True
-    types:
-      - Restmülltonne
-  - platform: waste_collection_schedule
-    name: abfall_naechste_papiertonne
-    details_format: appointment_types
-    count: 4
-    value_template: >-
-      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
-      {% if value.daysTo == 0 %}
-        heute
-      {% elif value.daysTo == 1 %}
-        morgen
-      {% else %}
-        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
-      {% endif %}
-    date_template: >-
-      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
-      {% if value.daysTo == 0 %}
-        heute
-      {% elif value.daysTo == 1 %}
-        morgen
-      {% else %}
-        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
-      {% endif %}
-    add_days_to: True
-    types:
-      - Papiertonne
-  - platform: waste_collection_schedule
-    name: abfall_naechste_biotonne
-    details_format: appointment_types
-    count: 4
-    value_template: >-
-      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
-      {% if value.daysTo == 0 %}
-        heute
-      {% elif value.daysTo == 1 %}
-        morgen
-      {% else %}
-        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
-      {% endif %}
-    date_template: >-
-      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
-      {% if value.daysTo == 0 %}
-        heute
-      {% elif value.daysTo == 1 %}
-        morgen
-      {% else %}
-        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
-      {% endif %}
-    add_days_to: True
-    types:
-      - Biotonne
+#  - platform: waste_collection_schedule
+#    name: abfall_naechste_gelbe_tonne
+#    details_format: appointment_types
+#    count: 4
+#    value_template: >-
+#      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
+#      {% if value.daysTo == 0 %}
+#        heute
+#      {% elif value.daysTo == 1 %}
+#        morgen
+#      {% else %}
+#        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+#      {% endif %}
+#    date_template: >-
+#      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
+#      {% if value.daysTo == 0 %}
+#        heute
+#      {% elif value.daysTo == 1 %}
+#        morgen
+#      {% else %}
+#        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+#      {% endif %}
+#    add_days_to: True
+#    types:
+#      - Gelbe Tonne
+#  - platform: waste_collection_schedule
+#    name: abfall_naechste_restmuelltonne
+#    details_format: appointment_types
+#    count: 4
+#    value_template: >-
+#      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
+#      {% if value.daysTo == 0 %}
+#        heute
+#      {% elif value.daysTo == 1 %}
+#        morgen
+#      {% else %}
+#        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+#      {% endif %}
+#    date_template: >-
+#      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
+#      {% if value.daysTo == 0 %}
+#        heute
+#      {% elif value.daysTo == 1 %}
+#        morgen
+#      {% else %}
+#        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+#      {% endif %}
+#    add_days_to: True
+#    types:
+#      - Restmülltonne
+#  - platform: waste_collection_schedule
+#    name: abfall_naechste_papiertonne
+#    details_format: appointment_types
+#    count: 4
+#    value_template: >-
+#      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
+#      {% if value.daysTo == 0 %}
+#        heute
+#      {% elif value.daysTo == 1 %}
+#        morgen
+#      {% else %}
+#        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+#      {% endif %}
+#    date_template: >-
+#      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
+#      {% if value.daysTo == 0 %}
+#        heute
+#      {% elif value.daysTo == 1 %}
+#        morgen
+#      {% else %}
+#        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+#      {% endif %}
+#    add_days_to: True
+#    types:
+#      - Papiertonne
+#  - platform: waste_collection_schedule
+#    name: abfall_naechste_biotonne
+#    details_format: appointment_types
+#    count: 4
+#    value_template: >-
+#      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
+#      {% if value.daysTo == 0 %}
+#        heute
+#      {% elif value.daysTo == 1 %}
+#        morgen
+#      {% else %}
+#        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+#      {% endif %}
+#    date_template: >-
+#      {% set day = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] %}
+#      {% if value.daysTo == 0 %}
+#        heute
+#      {% elif value.daysTo == 1 %}
+#        morgen
+#      {% else %}
+#        {{day[value.date.weekday()]}}, {{value.date.strftime("%d.%m.")}} ({{value.daysTo}} T.)
+#      {% endif %}
+#    add_days_to: True
+#    types:
+#      - Biotonne
 #
 # --------------------------------
 # --                            --
