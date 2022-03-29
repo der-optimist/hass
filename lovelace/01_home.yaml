@@ -330,6 +330,8 @@ cards:
         europeanDate: true
         showHiddenText: false
         showHours: false
+        showLoader: false
+        refreshInterval: 600
       - type: entities
         show_header_toggle: false
         entities:
