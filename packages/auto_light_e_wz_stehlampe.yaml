@@ -74,26 +74,46 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_wz_stehlampe
         state: >
-          {{ is_state('switch.luften_ez', 'on')
-             or is_state('switch.bleib_so_wz_licht', 'on') }}
+          {% if states('switch.luften_ez') in ['unavialable', 'unknown', 'none']
+             or states('switch.bleib_so_wz_licht') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_e_wz_stehlampe') }}
+          {% else %}
+            {{ is_state('switch.luften_ez', 'on')
+              or is_state('switch.bleib_so_wz_licht', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_e_wz_stehlampe
         state: >
-          {{ is_state('switch.bleib_so_wz_licht', 'on') }}
+          {% if states('switch.bleib_so_wz_licht') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_on_entities_e_wz_stehlampe') }}
+          {% else %}
+            {{ is_state('switch.bleib_so_wz_licht', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_fix_entities_e_wz_stehlampe
         state: >
-          {{ is_state('binary_sensor.tv_pizza_abend', 'on')
-             or is_state('binary_sensor.tv_abend_ohne_pizza', 'on')
-             or is_state('input_boolean.gaeste_abends', 'on') }}
+          {% if states('binary_sensor.tv_pizza_abend') in ['unavialable', 'unknown', 'none']
+             or states('binary_sensor.tv_abend_ohne_pizza') in ['unavialable', 'unknown', 'none']
+             or states('input_boolean.gaeste_abends') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_fix_entities_e_wz_stehlampe') }}
+          {% else %}
+            {{ is_state('binary_sensor.tv_pizza_abend', 'on')
+              or is_state('binary_sensor.tv_abend_ohne_pizza', 'on')
+              or is_state('input_boolean.gaeste_abends', 'on') }}
+          {% endif %}
         attributes:
           brightness: >
-            {% if is_state('input_boolean.gaeste_abends', 'on') %}
-              {{ int(80) }}
-            {% elif is_state('binary_sensor.tv_pizza_abend', 'on') %}
-              {{ int(20) }}
-            {% elif is_state('binary_sensor.tv_abend_ohne_pizza', 'on') %}
-              {{ int(1) }}
+            {% if states('binary_sensor.tv_pizza_abend') in ['unavialable', 'unknown', 'none']
+              or states('binary_sensor.tv_abend_ohne_pizza') in ['unavialable', 'unknown', 'none'] %}
+              {{ state_attr('binary_sensor.helper_light_keeping_fix_entities_e_wz_schraenke', 'brightness') }}
             {% else %}
-              {{ int(0) }}
+              {% if is_state('input_boolean.gaeste_abends', 'on') %}
+                {{ int(80) }}
+              {% elif is_state('binary_sensor.tv_pizza_abend', 'on') %}
+                {{ int(20) }}
+              {% elif is_state('binary_sensor.tv_abend_ohne_pizza', 'on') %}
+                {{ int(1) }}
+              {% else %}
+                {{ int(0) }}
+              {% endif %}
             {% endif %}
           color: >
             {% set colormap = { 'rot':[255,0,0],'grün':[0,255,0],'blau':[0,0,255],'orange':[255,127,0],'pink':[255,0,127],'lila':[255,0,255],'violett':[127,0,255],'gelb':[255,255,0],'gold':[255,215,0],'hellblau':[0,127,255],'türkis':[0,255,255],'gelbgrün':[127,255,0],'weiß':[255,255,255]} %}

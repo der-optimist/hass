@@ -74,16 +74,26 @@ template:
           {{ false }}
       - name: helper_light_keeping_fix_entities_e_sz_bettbeleuchtung
         state: >
-          {{ is_state('switch.majo_schlafen', 'on')
-             or is_state('switch.knutschen', 'on') }}
+          {% if states('switch.majo_schlafen') in ['unavialable', 'unknown', 'none']
+             or states('switch.knutschen') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_fix_entities_e_sz_bettbeleuchtung') }}
+          {% else %}
+            {{ is_state('switch.majo_schlafen', 'on')
+              or is_state('switch.knutschen', 'on') }}
+          {% endif %}
         attributes:
           brightness: >
-            {% if is_state('switch.knutschen', 'on') %}
-              {{ int(70) }}
-            {% elif is_state('switch.majo_schlafen', 'on') %}
-              {{ int(3) }}
+            {% if states('switch.majo_schlafen') in ['unavialable', 'unknown', 'none']
+              or states('switch.knutschen') in ['unavialable', 'unknown', 'none'] %}
+              {{ state_attr('binary_sensor.helper_light_keeping_fix_entities_e_sz_bettbeleuchtung', 'brightness') }}
             {% else %}
-              {{ int(0) }}
+              {% if is_state('switch.knutschen', 'on') %}
+                {{ int(70) }}
+              {% elif is_state('switch.majo_schlafen', 'on') %}
+                {{ int(3) }}
+              {% else %}
+                {{ int(0) }}
+              {% endif %}
             {% endif %}
       - name: helper_light_is_too_dark_e_sz_bettbeleuchtung
         state: >

@@ -80,12 +80,22 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_wz_panels
         state: >
-          {{ is_state('switch.bleib_so_wz_licht', 'on')
-             or is_state('binary_sensor.tv_zeit_abend', 'on')
-             or is_state('switch.luften_ez', 'on') }}
+          {% if states('switch.bleib_so_wz_licht') in ['unavialable', 'unknown', 'none']
+             or states('binary_sensor.tv_zeit_abend') in ['unavialable', 'unknown', 'none']
+             or states('switch.luften_ez') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_e_wz_panels') }}
+          {% else %}
+            {{ is_state('switch.bleib_so_wz_licht', 'on')
+              or is_state('binary_sensor.tv_zeit_abend', 'on')
+              or is_state('switch.luften_ez', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_e_wz_panels
         state: >
-          {{ is_state('switch.bleib_so_wz_licht', 'on') }}
+          {% if states('switch.bleib_so_wz_licht') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_on_entities_e_wz_panels') }}
+          {% else %}
+            {{ is_state('switch.bleib_so_wz_licht', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_fix_entities_e_wz_panels
         state: >
           {{ false }}
