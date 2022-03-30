@@ -61,6 +61,7 @@
           {% set day_dt = as_datetime(state_attr('calendar.restmuelltonne','end_time')) %}
           {% set day_ts = as_timestamp(day_dt) %}
           {% set today_ts = as_timestamp(today_at("00:00")) %}
+          {% set please_update_my_template_regularly = now() %}
           {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
           {% set day = {"Mon":"Mo", "Tue":"Di", "Wed":"Mi", "Thu":"Do", "Fri":"Fr", "Sat":"Sa", "Sun":"So"} %}
           {% if daysTo == 0 %}
@@ -77,6 +78,7 @@
             {% set day_dt = as_datetime(state_attr('calendar.restmuelltonne','end_time')) %}
             {% set day_ts = as_timestamp(day_dt) %}
             {% set today_ts = as_timestamp(today_at("00:00")) %}
+            {% set please_update_my_template_regularly = now() %}
             {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
             {{daysTo}}
       - unique_id: abfall_naechste_biotonne_template
@@ -85,6 +87,7 @@
           {% set day_dt = as_datetime(state_attr('calendar.biotonne','end_time')) %}
           {% set day_ts = as_timestamp(day_dt) %}
           {% set today_ts = as_timestamp(today_at("00:00")) %}
+          {% set please_update_my_template_regularly = now() %}
           {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
           {% set day = {"Mon":"Mo", "Tue":"Di", "Wed":"Mi", "Thu":"Do", "Fri":"Fr", "Sat":"Sa", "Sun":"So"} %}
           {% if daysTo == 0 %}
@@ -101,6 +104,7 @@
             {% set day_dt = as_datetime(state_attr('calendar.biotonne','end_time')) %}
             {% set day_ts = as_timestamp(day_dt) %}
             {% set today_ts = as_timestamp(today_at("00:00")) %}
+            {% set please_update_my_template_regularly = now() %}
             {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
             {{daysTo}}
       - unique_id: abfall_naechste_papiertonne_template
@@ -109,6 +113,7 @@
           {% set day_dt = as_datetime(state_attr('calendar.papiertonne','end_time')) %}
           {% set day_ts = as_timestamp(day_dt) %}
           {% set today_ts = as_timestamp(today_at("00:00")) %}
+          {% set please_update_my_template_regularly = now() %}
           {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
           {% set day = {"Mon":"Mo", "Tue":"Di", "Wed":"Mi", "Thu":"Do", "Fri":"Fr", "Sat":"Sa", "Sun":"So"} %}
           {% if daysTo == 0 %}
@@ -125,6 +130,7 @@
             {% set day_dt = as_datetime(state_attr('calendar.papiertonne','end_time')) %}
             {% set day_ts = as_timestamp(day_dt) %}
             {% set today_ts = as_timestamp(today_at("00:00")) %}
+            {% set please_update_my_template_regularly = now() %}
             {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
             {{daysTo}}
       - unique_id: abfall_naechste_gelbe_tonne_template
@@ -133,6 +139,7 @@
           {% set day_dt = as_datetime(state_attr('calendar.gelbe_tonne','end_time')) %}
           {% set day_ts = as_timestamp(day_dt) %}
           {% set today_ts = as_timestamp(today_at("00:00")) %}
+          {% set please_update_my_template_regularly = now() %}
           {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
           {% set day = {"Mon":"Mo", "Tue":"Di", "Wed":"Mi", "Thu":"Do", "Fri":"Fr", "Sat":"Sa", "Sun":"So"} %}
           {% if daysTo == 0 %}
@@ -149,5 +156,6 @@
             {% set day_dt = as_datetime(state_attr('calendar.gelbe_tonne','end_time')) %}
             {% set day_ts = as_timestamp(day_dt) %}
             {% set today_ts = as_timestamp(today_at("00:00")) %}
+            {% set please_update_my_template_regularly = now() %}
             {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
             {{daysTo}}
