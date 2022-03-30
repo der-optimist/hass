@@ -78,12 +78,22 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_o_la_panels
         state: >
-          {{ is_state('switch.la_schlaft', 'on')
-             or is_state('switch.bleib_so_la_licht', 'on')
-             or is_state('switch.luften_la', 'on') }}
+          {% if states('switch.la_schlaft') in ['unavialable', 'unknown', 'none'] 
+             or states('switch.bleib_so_la_licht') in ['unavialable', 'unknown', 'none']
+             or states('switch.luften_la') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_o_la_panels') }}
+          {% else %}
+            {{ is_state('switch.la_schlaft', 'on')
+               or is_state('switch.bleib_so_la_licht', 'on')
+               or is_state('switch.luften_la', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_o_la_panels
         state: >
-          {{ is_state('switch.bleib_so_la_licht', 'on') }}
+          {% if states('switch.bleib_so_la_licht') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_on_entities_o_la_panels') }}
+          {% else %}
+            {{ is_state('switch.bleib_so_la_licht', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_fix_entities_o_la_panels
         state: >
           {{ false }}

@@ -77,20 +77,37 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_o_le_wandwuerfel
         state: >
-          {{ is_state('switch.bleib_so_le_licht', 'on')
-             or is_state('switch.luften_le', 'on') }}
+          {% if states('switch.bleib_so_le_licht') in ['unavialable', 'unknown', 'none']
+             or states('switch.luften_le') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_o_le_wandwuerfel') }}
+          {% else %}
+            {{ is_state('switch.bleib_so_le_licht', 'on')
+               or is_state('switch.luften_le', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_o_le_wandwuerfel
         state: >
-          {{ is_state('switch.bleib_so_le_licht', 'on') }}
+          {% if states('switch.bleib_so_le_licht') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_on_entities_o_le_wandwuerfel') }}
+          {% else %}
+            {{ is_state('switch.bleib_so_le_licht', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_fix_entities_o_le_wandwuerfel
         state: >
-          {{ is_state('switch.le_schlaft', 'on') }}
+          {% if states('switch.le_schlaft') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_fix_entities_o_le_wandwuerfel') }}
+          {% else %}
+            {{ is_state('switch.le_schlaft', 'on') }}
+          {% endif %}
         attributes:
           brightness: >
-            {% if is_state('switch.le_schlaft', 'on') %}
-              {{ int(2) }}
+            {% if states('switch.le_schlaft') in ['unavialable', 'unknown', 'none'] %}
+              {{ state_attr('binary_sensor.helper_light_keeping_fix_entities_o_le_wandwuerfel', 'brightness') }}
             {% else %}
-              {{ int(0) }}
+              {% if is_state('switch.le_schlaft', 'on') %}
+                {{ int(2) }}
+              {% else %}
+                {{ int(0) }}
+              {% endif %}
             {% endif %}
       - name: helper_light_is_too_dark_o_le_wandwuerfel
         state: >
