@@ -199,7 +199,7 @@ cards:
               - type: custom:template-entity-row
                 name: PV-Leistung aktuell
                 entity: sensor.el_leistung_pv_ac
-                state: "{{ ((float(states('sensor.el_leistung_pv_ac'),0) / 10) | round(0)) * 10 }} W"
+                state: "{{ ((float(states('sensor.el_leistung_pv_ac'),0) / 100) | round(0)) * 100 }} W"
               - type: custom:template-entity-row
                 name: Verbrauch aktuell
                 entity: sensor.el_leistung_verbrauch_gesamt
@@ -207,7 +207,7 @@ cards:
               - type: custom:template-entity-row
                 name: PV-Einspeisung aktuell
                 entity: sensor.el_leistung_einspeisung
-                state: "{{ ((float(states('sensor.el_leistung_einspeisung'),0) / 10) | round(0)) * 10 }} W"
+                state: "{{ ((float(states('sensor.el_leistung_einspeisung'),0) / 100) | round(0)) * 100 }} W"
               - sensor.pv_geldertrag_gesamt
       - type: entities
         show_header_toggle: false
