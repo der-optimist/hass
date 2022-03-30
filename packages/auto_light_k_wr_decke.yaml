@@ -42,7 +42,11 @@ template:
     binary_sensor:
       - name: helper_light_trigger_k_wr_decke
         state: >
-          {{ is_state('binary_sensor.pm_k_timer_magnetsensor_werkelraum', 'on') }}
+          {% if states('binary_sensor.pm_k_timer_magnetsensor_werkelraum') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_trigger_k_wr_decke') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_k_timer_magnetsensor_werkelraum', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_off_entities_k_wr_decke
         state: >
           {{ False }}

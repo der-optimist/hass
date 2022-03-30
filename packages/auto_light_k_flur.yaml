@@ -42,8 +42,13 @@ template:
     binary_sensor:
       - name: helper_light_trigger_k_flur
         state: >
-          {{ is_state('binary_sensor.pm_ktr_treppe', 'on') 
-             or is_state('binary_sensor.pm_k_fl_2', 'on') }}
+          {% if states('binary_sensor.pm_ktr_treppe') in ['unavialable', 'unknown', 'none']
+             or states('binary_sensor.pm_k_fl_2') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_trigger_k_flur') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_ktr_treppe', 'on')
+               or is_state('binary_sensor.pm_k_fl_2', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_off_entities_k_flur
         state: >
           {{ False }}
