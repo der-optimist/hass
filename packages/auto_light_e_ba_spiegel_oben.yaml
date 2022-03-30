@@ -67,7 +67,11 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_ba_spiegel_oben
         state: >
-          {{ is_state('switch.majo_schlafen', 'on') }}
+          {% if states('switch.majo_schlafen') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_e_ba_spiegel_oben') }}
+          {% else %}
+            {{ is_state('switch.majo_schlafen', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_e_ba_spiegel_oben
         state: >
           {{ False }}

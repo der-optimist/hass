@@ -91,10 +91,17 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_fl_stehlampe_unten
         state: >
-          {{ is_state('switch.majo_schlafen', 'on')
-             or is_state('switch.knutschen', 'on')
-             or is_state('switch.luften_ez', 'on')
-             or is_state('switch.luften_sz', 'on') }}
+          {% if states('switch.majo_schlafen') in ['unavialable', 'unknown', 'none']
+             or states('switch.knutschen') in ['unavialable', 'unknown', 'none']
+             or states('switch.luften_ez') in ['unavialable', 'unknown', 'none']
+             or states('switch.luften_sz') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_e_fl_stehlampe_unten') }}
+          {% else %}
+            {{ is_state('switch.majo_schlafen', 'on')
+              or is_state('switch.knutschen', 'on')
+              or is_state('switch.luften_ez', 'on')
+              or is_state('switch.luften_sz', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_e_fl_stehlampe_unten
         state: >
           {{ false }}

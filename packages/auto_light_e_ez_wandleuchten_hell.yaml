@@ -75,11 +75,19 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_ez_wandleuchten_hell
         state: >
-          {{ is_state('binary_sensor.nachtmodus_wohnbereich_licht', 'on')
-             or is_state('binary_sensor.tv_zeit_abend', 'on')
-             or is_state('input_boolean.gaeste_abends', 'on')
-             or is_state('input_boolean.arbeit_theke', 'on')
-             or is_state('switch.luften_ez', 'on') }}
+          {% if states('binary_sensor.nachtmodus_wohnbereich_licht') in ['unavialable', 'unknown', 'none']
+             or states('binary_sensor.tv_zeit_abend') in ['unavialable', 'unknown', 'none']
+             or states('input_boolean.gaeste_abends') in ['unavialable', 'unknown', 'none']
+             or states('input_boolean.arbeit_theke') in ['unavialable', 'unknown', 'none']
+             or states('switch.luften_ez') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_e_ez_wandleuchten_hell') }}
+          {% else %}
+            {{ is_state('binary_sensor.nachtmodus_wohnbereich_licht', 'on')
+              or is_state('binary_sensor.tv_zeit_abend', 'on')
+              or is_state('input_boolean.gaeste_abends', 'on')
+              or is_state('input_boolean.arbeit_theke', 'on')
+              or is_state('switch.luften_ez', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_e_ez_wandleuchten_hell
         state: >
           {{ false }}

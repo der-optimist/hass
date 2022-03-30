@@ -60,9 +60,15 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_o_az_fenster
         state: >
-          {{ is_state('switch.gaste_schlafen', 'on')
-             or is_state('switch.luften_le', 'on')
-             or is_state('switch.luften_la', 'on') }}
+          {% if states('switch.gaste_schlafen') in ['unavialable', 'unknown', 'none'] 
+             or states('switch.luften_la') in ['unavialable', 'unknown', 'none']
+             or states('switch.luften_le') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_o_az_fenster') }}
+          {% else %}
+            {{ is_state('switch.gaste_schlafen', 'on')
+               or is_state('switch.luften_la', 'on')
+               or is_state('switch.luften_le', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_o_az_fenster
         state: >
           {{ false }}

@@ -82,9 +82,15 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_ez_panels
         state: >
-          {{ is_state('binary_sensor.tv_abends_an', 'on')
-             or is_state('input_boolean.arbeit_theke', 'on')
-             or is_state('switch.luften_ez', 'on') }}
+          {% if states('binary_sensor.tv_abends_an') in ['unavialable', 'unknown', 'none']
+             or states('input_boolean.arbeit_theke') in ['unavialable', 'unknown', 'none']
+             or states('switch.luften_ez') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_e_ez_panels') }}
+          {% else %}
+            {{ is_state('binary_sensor.tv_abends_an', 'on')
+              or is_state('input_boolean.arbeit_theke', 'on')
+              or is_state('switch.luften_ez', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_e_ez_panels
         state: >
           {{ false }}

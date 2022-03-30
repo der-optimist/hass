@@ -85,9 +85,15 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_ku_theke_panels
         state: >
-          {{ is_state('binary_sensor.kodi_abends', 'on')
-             or is_state('input_boolean.gaeste_abends', 'on')
-             or is_state('switch.luften_ez', 'on') }}
+          {% if states('binary_sensor.kodi_abends') in ['unavialable', 'unknown', 'none']
+             or states('input_boolean.gaeste_abends') in ['unavialable', 'unknown', 'none']
+             or states('switch.luften_ez') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_e_ku_theke_panels') }}
+          {% else %}
+            {{ is_state('binary_sensor.kodi_abends', 'on')
+              or is_state('input_boolean.gaeste_abends', 'on')
+              or is_state('switch.luften_ez', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_e_ku_theke_panels
         state: >
           {{ false }}
