@@ -64,7 +64,11 @@ template:
     binary_sensor:
       - name: helper_light_trigger_o_gz_deckenlicht
         state: >
-          {{ is_state('binary_sensor.pm_o_gz', 'on') }}
+          {% if states('binary_sensor.pm_o_gz') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_trigger_o_gz_deckenlicht') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_o_gz', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_off_entities_o_gz_deckenlicht
         state: >
           {{ is_state('switch.gaste_schlafen', 'on')

@@ -69,8 +69,13 @@ template:
     binary_sensor:
       - name: helper_light_trigger_o_la_panels
         state: >
-          {{ is_state('binary_sensor.pm_o_ko_la_raum', 'on')
-             or is_state('binary_sensor.pm_o_ko_la_tuer', 'on') }}
+          {% if states('binary_sensor.pm_o_ko_la_raum') in ['unavialable', 'unknown', 'none'] 
+             or states('binary_sensor.pm_o_ko_la_tuer') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_trigger_o_la_panels') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_o_ko_la_raum', 'on')
+               or is_state('binary_sensor.pm_o_ko_la_tuer', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_off_entities_o_la_panels
         state: >
           {{ is_state('switch.la_schlaft', 'on')

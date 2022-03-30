@@ -69,9 +69,15 @@ template:
     binary_sensor:
       - name: helper_light_trigger_e_wz_panels
         state: >
-          {{ is_state('binary_sensor.pm_e_wz_durchgang', 'on')
-             or is_state('binary_sensor.pm_e_wz_couch_links', 'on')
-             or is_state('binary_sensor.pm_e_wz_couch_rechts', 'on') }}
+          {% if states('binary_sensor.pm_e_wz_couch_links') in ['unavialable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_couch_rechts') in ['unavialable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_durchgang') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_trigger_e_wz_panels') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_e_wz_couch_links', 'on')
+               or is_state('binary_sensor.pm_e_wz_couch_rechts', 'on')
+               or is_state('binary_sensor.pm_e_wz_durchgang', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_off_entities_e_wz_panels
         state: >
           {{ is_state('switch.bleib_so_wz_licht', 'on')

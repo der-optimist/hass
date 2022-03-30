@@ -42,8 +42,13 @@ template:
     binary_sensor:
       - name: helper_light_trigger_o_le_stehlampe
         state: >
-          {{ is_state('binary_sensor.pm_o_kw_le_raum', 'on')
-             or is_state('binary_sensor.pm_o_kw_le_tuer', 'on') }}
+          {% if states('binary_sensor.pm_o_kw_le_raum') in ['unavialable', 'unknown', 'none'] 
+             or states('binary_sensor.pm_o_kw_le_tuer') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_trigger_o_le_stehlampe') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_o_kw_le_raum', 'on')
+               or is_state('binary_sensor.pm_o_kw_le_tuer', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_off_entities_o_le_stehlampe
         state: >
           {{ true }}

@@ -53,7 +53,11 @@ template:
     binary_sensor:
       - name: helper_light_trigger_o_az_fenster
         state: >
-          {{ is_state('binary_sensor.pm_o_nz', 'on') }}
+          {% if states('binary_sensor.pm_o_nz') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_trigger_o_az_fenster') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_o_nz', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_off_entities_o_az_fenster
         state: >
           {{ is_state('switch.gaste_schlafen', 'on')

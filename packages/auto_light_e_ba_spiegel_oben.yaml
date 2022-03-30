@@ -60,7 +60,11 @@ template:
     binary_sensor:
       - name: helper_light_trigger_e_ba_spiegel_oben
         state: >
-          {{ is_state('binary_sensor.pm_e_ba', 'on') }}
+          {% if states('binary_sensor.pm_e_ba') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_trigger_e_ba_spiegel_oben') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_e_ba', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_off_entities_e_ba_spiegel_oben
         state: >
           {{ is_state('switch.majo_schlafen', 'on') }}

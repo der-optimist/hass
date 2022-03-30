@@ -68,9 +68,15 @@ template:
     binary_sensor:
       - name: helper_light_trigger_o_tr_panels
         state: >
-          {{ is_state('binary_sensor.pm_o_fl_treppe', 'on')
-             or is_state('binary_sensor.pm_o_fl_flur', 'on')
-             or is_state('binary_sensor.pm_e_fl_treppe_og', 'on') }}
+          {% if states('binary_sensor.pm_o_fl_treppe') in ['unavialable', 'unknown', 'none']
+             or states('binary_sensor.pm_o_fl_flur') in ['unavialable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_fl_treppe_og') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_trigger_o_tr_panels') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_o_fl_treppe', 'on')
+               or is_state('binary_sensor.pm_o_fl_flur', 'on')
+               or is_state('binary_sensor.pm_e_fl_treppe_og', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_off_entities_o_tr_panels
         state: >
           {{ is_state('binary_sensor.la_oder_le_schlafen', 'on') }}
