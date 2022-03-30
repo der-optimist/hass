@@ -81,9 +81,15 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_o_fl_panels
         state: >
-          {{ is_state('binary_sensor.la_oder_le_schlafen', 'on')
-             or is_state('switch.luften_le', 'on')
-             or is_state('switch.luften_la', 'on') }}
+          {% if states('binary_sensor.la_oder_le_schlafen') in ['unavialable', 'unknown', 'none'] 
+             or states('switch.luften_le') in ['unavialable', 'unknown', 'none']
+             or states('switch.luften_la') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_o_fl_panels') }}
+          {% else %}
+            {{ is_state('binary_sensor.la_oder_le_schlafen', 'on')
+               or is_state('switch.luften_le', 'on')
+               or is_state('switch.luften_la', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_o_fl_panels
         state: >
           {{ false }}

@@ -79,10 +79,18 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_o_tr_panels
         state: >
-          {{ is_state('binary_sensor.la_oder_le_schlafen', 'on') }}
+          {% if states('binary_sensor.la_oder_le_schlafen') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_o_tr_panels') }}
+          {% else %}
+            {{ is_state('binary_sensor.la_oder_le_schlafen', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_o_tr_panels
         state: >
-          {{ is_state('binary_sensor.la_oder_le_schlafen', 'on') }}
+          {% if states('binary_sensor.la_oder_le_schlafen') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_on_entities_o_tr_panels') }}
+          {% else %}
+            {{ is_state('binary_sensor.la_oder_le_schlafen', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_fix_entities_o_tr_panels
         state: >
           {{ false }}

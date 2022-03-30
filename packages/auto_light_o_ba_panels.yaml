@@ -67,7 +67,11 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_o_ba_panels
         state: >
-          {{ is_state('switch.bad_og_nachtmodus', 'on') }}
+          {% if states('switch.bad_og_nachtmodus') in ['unavialable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_o_ba_panels') }}
+          {% else %}
+            {{ is_state('switch.bad_og_nachtmodus', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_o_ba_panels
         state: >
           {{ false }}
