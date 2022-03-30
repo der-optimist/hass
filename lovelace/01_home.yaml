@@ -196,9 +196,18 @@ cards:
             title: "PV-Anlage"
             show_header_toggle: false
             entities:
-              - sensor.el_leistung_pv_ac
-              - sensor.el_leistung_verbrauch_gesamt
-              - sensor.el_leistung_einspeisung
+              - type: custom:template-entity-row
+                name: PV-Leistung aktuell
+                entity: sensor.el_leistung_pv_ac
+                state: "{{ ((float(states('sensor.el_leistung_pv_ac'),0) / 10) | round(0)) * 10 }} W"
+              - type: custom:template-entity-row
+                name: Verbrauch aktuell
+                entity: sensor.el_leistung_verbrauch_gesamt
+                state: "{{ ((float(states('sensor.el_leistung_verbrauch_gesamt'),0) / 10) | round(0)) * 10 }} W"
+              - type: custom:template-entity-row
+                name: PV-Einspeisung aktuell
+                entity: sensor.el_leistung_einspeisung
+                state: "{{ ((float(states('sensor.el_leistung_einspeisung'),0) / 10) | round(0)) * 10 }} W"
               - sensor.pv_geldertrag_gesamt
       - type: entities
         show_header_toggle: false
