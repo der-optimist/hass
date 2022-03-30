@@ -208,7 +208,10 @@ cards:
                 name: PV-Einspeisung aktuell
                 entity: sensor.el_leistung_einspeisung
                 state: "{{ ((float(states('sensor.el_leistung_einspeisung'),0) / 100) | round(0)) * 100 }} W"
-              - sensor.pv_geldertrag_gesamt
+              - type: custom:template-entity-row
+                name: PV-Ertrag gesamt
+                entity: sensor.pv_geldertrag_gesamt
+                state: "{{ float(states('sensor.pv_geldertrag_gesamt'),0) | round(0) }} €"
       - type: entities
         show_header_toggle: false
         entities:
