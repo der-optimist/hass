@@ -60,14 +60,14 @@ template:
     binary_sensor:
       - name: helper_light_trigger_o_ba_panels
         state: >
-          {% if states('binary_sensor.pm_o_ba') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_o_ba') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_o_ba_panels') }}
           {% else %}
             {{ is_state('binary_sensor.pm_o_ba', 'on') }}
           {% endif %}
       - name: helper_light_keeping_off_entities_o_ba_panels
         state: >
-          {% if states('switch.bad_og_nachtmodus') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('switch.bad_og_nachtmodus') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_off_entities_o_ba_panels') }}
           {% else %}
             {{ is_state('switch.bad_og_nachtmodus', 'on') }}
@@ -83,14 +83,14 @@ template:
             {{ int(0) }}
       - name: helper_light_is_too_dark_o_ba_panels
         state: >
-          {% if states('sensor.helligkeit_bad_og_pm') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('sensor.helligkeit_bad_og_pm') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_is_too_dark_o_ba_panels') }}
           {% else %}
             {{ (states("sensor.helligkeit_bad_og_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_o_ba_panels") | float(1)) }}
           {% endif %}
       - name: helper_light_is_too_bright_o_ba_panels
         state: >
-          {% if states('sensor.helligkeit_bad_og_pm') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('sensor.helligkeit_bad_og_pm') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_is_too_bright_o_ba_panels') }}
           {% else %}
             {{ (states("sensor.helligkeit_bad_og_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_o_ba_panels") | float(1) + 100 ) }}

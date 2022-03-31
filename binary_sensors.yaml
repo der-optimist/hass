@@ -170,7 +170,7 @@
         delay_off:
           minutes: 5
         value_template: >
-          {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.pm_k_timer_magnetsensor_vorratsraum') }}
           {% else %}
             {{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off', 'on') }}
@@ -181,7 +181,7 @@
         delay_off:
           minutes: 10
         value_template: >
-          {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.pm_k_timer_magnetsensor_werkelraum') }}
           {% else %}
             {{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off', 'on') }}
@@ -192,9 +192,9 @@
         delay_off:
           minutes: 10
         value_template: >
-          {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_36694e04_on_off') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.lumi_lumi_sensor_motion_aq2_6f2e5d04_occupancy') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_36694e04_on_off') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.lumi_lumi_sensor_motion_aq2_6f2e5d04_occupancy') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.pm_k_timer_bewegung_partyraum') }}
           {% else %}
             {{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_36694e04_on_off', 'on')
@@ -217,23 +217,23 @@
       anwesenheit_bildschirm:
         friendly_name: "Anwesenheit Bildschirm"
         value_template: >-
-          {% if states('binary_sensor.pm_e_ba') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_ez_bar_kuche') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_ez_esstisch') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_fl_flur') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_fl_treppe_og') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_fl_windfang') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wf_flur') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wf_garderobe') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_o_fl_treppe') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_ku_bar_ez') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_ku_kuche') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wc') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wz_couch_links') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wz_couch_rechts') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wz_durchgang') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_ktr_treppe') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_ktr_flur') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_e_ba') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ez_bar_kuche') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ez_esstisch') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_fl_flur') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_fl_treppe_og') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_fl_windfang') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wf_flur') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wf_garderobe') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_o_fl_treppe') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ku_bar_ez') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ku_kuche') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wc') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_couch_links') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_couch_rechts') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_durchgang') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_ktr_treppe') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_ktr_flur') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.anwesenheit_bildschirm') }}
           {% else %}
             {{ is_state('binary_sensor.pm_e_ba', 'on')

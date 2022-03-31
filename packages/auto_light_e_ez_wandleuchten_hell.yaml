@@ -60,11 +60,11 @@ template:
     binary_sensor:
       - name: helper_light_trigger_e_ez_wandleuchten_hell
         state: >
-          {% if states('binary_sensor.pm_e_ez_bar_kuche') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_ez_esstisch') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_ku_bar_ez') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_ku_kuche') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wz_durchgang') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_e_ez_bar_kuche') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ez_esstisch') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ku_bar_ez') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ku_kuche') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_durchgang') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_e_ez_wandleuchten_hell') }}
           {% else %}
             {{ is_state('binary_sensor.pm_e_ez_bar_kuche', 'on')
@@ -75,11 +75,11 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_ez_wandleuchten_hell
         state: >
-          {% if states('binary_sensor.nachtmodus_wohnbereich_licht') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.tv_zeit_abend') in ['unavialable', 'unknown', 'none']
-             or states('input_boolean.gaeste_abends') in ['unavialable', 'unknown', 'none']
-             or states('input_boolean.arbeit_theke') in ['unavialable', 'unknown', 'none']
-             or states('switch.luften_ez') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.nachtmodus_wohnbereich_licht') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.tv_zeit_abend') in ['unavailable', 'unknown', 'none']
+             or states('input_boolean.gaeste_abends') in ['unavailable', 'unknown', 'none']
+             or states('input_boolean.arbeit_theke') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_off_entities_e_ez_wandleuchten_hell') }}
           {% else %}
             {{ is_state('binary_sensor.nachtmodus_wohnbereich_licht', 'on')

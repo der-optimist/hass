@@ -42,7 +42,7 @@ template:
     binary_sensor:
       - name: helper_light_trigger_o_az_mitte
         state: >
-          {% if states('binary_sensor.pm_o_nz') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_o_nz') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_o_az_mitte') }}
           {% else %}
             {{ is_state('binary_sensor.pm_o_nz', 'on') }}

@@ -48,7 +48,7 @@ template:
     binary_sensor:
       - name: helper_light_trigger_o_ba_spiegel_oben
         state: >
-          {% if states('binary_sensor.pm_o_ba') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_o_ba') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_o_ba_spiegel_oben') }}
           {% else %}
             {{ is_state('binary_sensor.pm_o_ba', 'on') }}
@@ -67,10 +67,18 @@ template:
             {{ int(0) }}
       - name: helper_light_is_too_dark_o_ba_spiegel_oben
         state: >
-          {{ (states("sensor.helligkeit_bad_eg_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_o_ba_spiegel_oben") | float(1)) }}
+          {% if states('sensor.helligkeit_bad_og_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_dark_o_ba_spiegel_oben') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_bad_og_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_o_ba_spiegel_oben") | float(1)) }}
+          {% endif %}
       - name: helper_light_is_too_bright_o_ba_spiegel_oben
         state: >
-          {{ (states("sensor.helligkeit_bad_eg_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_o_ba_spiegel_oben") | float(1) + 100 ) }}
+          {% if states('sensor.helligkeit_bad_og_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_bright_o_ba_spiegel_oben') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_bad_og_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_o_ba_spiegel_oben") | float(1) + 100 ) }}
+          {% endif %}
 
 automation:
   - alias: Licht OG Bad Spiegel oben

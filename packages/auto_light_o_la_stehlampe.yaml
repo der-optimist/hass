@@ -42,8 +42,8 @@ template:
     binary_sensor:
       - name: helper_light_trigger_o_la_stehlampe
         state: >
-          {% if states('binary_sensor.pm_o_ko_la_raum') in ['unavialable', 'unknown', 'none'] 
-             or states('binary_sensor.pm_o_ko_la_tuer') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_o_ko_la_raum') in ['unavailable', 'unknown', 'none'] 
+             or states('binary_sensor.pm_o_ko_la_tuer') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_o_la_stehlampe') }}
           {% else %}
             {{ is_state('binary_sensor.pm_o_ko_la_raum', 'on')

@@ -66,16 +66,16 @@ template:
     binary_sensor:
       - name: helper_light_trigger_e_fl_stehlampe_oben
         state: >
-          {% if states('binary_sensor.pm_e_fl_treppe_og') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_fl_windfang') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wf_flur') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wf_garderobe') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_o_fl_treppe') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wc') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_sz_gang') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_ktr_flur') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_ktr_treppe') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_k_fl_2') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_e_fl_treppe_og') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_fl_windfang') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wf_flur') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wf_garderobe') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_o_fl_treppe') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wc') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_sz_gang') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_ktr_flur') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_ktr_treppe') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_k_fl_2') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_e_fl_stehlampe_oben') }}
           {% else %}
             {{ is_state('binary_sensor.pm_e_fl_treppe_og', 'on')
@@ -91,10 +91,10 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_fl_stehlampe_oben
         state: >
-          {% if states('switch.majo_schlafen') in ['unavialable', 'unknown', 'none']
-             or states('switch.knutschen') in ['unavialable', 'unknown', 'none']
-             or states('switch.luften_ez') in ['unavialable', 'unknown', 'none']
-             or states('switch.luften_sz') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
+             or states('switch.knutschen') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_ez') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_sz') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_off_entities_e_fl_stehlampe_oben') }}
           {% else %}
             {{ is_state('switch.majo_schlafen', 'on')

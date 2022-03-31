@@ -66,7 +66,7 @@ template:
     binary_sensor:
       - name: helper_light_trigger_e_wc_panel
         state: >
-          {% if states('binary_sensor.pm_e_wc') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_e_wc') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_e_wc_panel') }}
           {% else %}
             {{ is_state('binary_sensor.pm_e_wc', 'on') }}

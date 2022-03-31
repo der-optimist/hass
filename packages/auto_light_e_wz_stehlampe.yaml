@@ -55,13 +55,13 @@ template:
     binary_sensor:
       - name: helper_light_trigger_e_wz_stehlampe
         state: >
-          {% if states('binary_sensor.pm_e_ez_bar_kuche') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_ez_esstisch') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_ku_bar_ez') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_ku_kuche') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wz_couch_links') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wz_couch_rechts') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wz_durchgang') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_e_ez_bar_kuche') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ez_esstisch') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ku_bar_ez') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ku_kuche') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_couch_links') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_couch_rechts') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_durchgang') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_e_wz_stehlampe') }}
           {% else %}
             {{ is_state('binary_sensor.pm_e_ez_bar_kuche', 'on')
@@ -74,8 +74,8 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_wz_stehlampe
         state: >
-          {% if states('switch.luften_ez') in ['unavialable', 'unknown', 'none']
-             or states('switch.bleib_so_wz_licht') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('switch.luften_ez') in ['unavailable', 'unknown', 'none']
+             or states('switch.bleib_so_wz_licht') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_off_entities_e_wz_stehlampe') }}
           {% else %}
             {{ is_state('switch.luften_ez', 'on')
@@ -83,16 +83,16 @@ template:
           {% endif %}
       - name: helper_light_keeping_on_entities_e_wz_stehlampe
         state: >
-          {% if states('switch.bleib_so_wz_licht') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('switch.bleib_so_wz_licht') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_on_entities_e_wz_stehlampe') }}
           {% else %}
             {{ is_state('switch.bleib_so_wz_licht', 'on') }}
           {% endif %}
       - name: helper_light_keeping_fix_entities_e_wz_stehlampe
         state: >
-          {% if states('binary_sensor.tv_pizza_abend') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.tv_abend_ohne_pizza') in ['unavialable', 'unknown', 'none']
-             or states('input_boolean.gaeste_abends') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.tv_pizza_abend') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.tv_abend_ohne_pizza') in ['unavailable', 'unknown', 'none']
+             or states('input_boolean.gaeste_abends') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_fix_entities_e_wz_stehlampe') }}
           {% else %}
             {{ is_state('binary_sensor.tv_pizza_abend', 'on')
@@ -101,8 +101,8 @@ template:
           {% endif %}
         attributes:
           brightness: >
-            {% if states('binary_sensor.tv_pizza_abend') in ['unavialable', 'unknown', 'none']
-              or states('binary_sensor.tv_abend_ohne_pizza') in ['unavialable', 'unknown', 'none'] %}
+            {% if states('binary_sensor.tv_pizza_abend') in ['unavailable', 'unknown', 'none']
+              or states('binary_sensor.tv_abend_ohne_pizza') in ['unavailable', 'unknown', 'none'] %}
               {{ state_attr('binary_sensor.helper_light_keeping_fix_entities_e_wz_schraenke', 'brightness') }}
             {% else %}
               {% if is_state('input_boolean.gaeste_abends', 'on') %}

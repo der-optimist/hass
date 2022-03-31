@@ -42,8 +42,8 @@ template:
     binary_sensor:
       - name: helper_light_trigger_k_speis
         state: >
-          {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_k_timer_magnetsensor_vorratsraum') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_k_timer_magnetsensor_vorratsraum') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_k_speis') }}
           {% else %}
             {{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off', 'on')

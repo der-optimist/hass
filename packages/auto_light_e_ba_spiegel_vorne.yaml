@@ -42,7 +42,7 @@ template:
     binary_sensor:
       - name: helper_light_trigger_e_ba_spiegel_vorne
         state: >
-          {% if states('binary_sensor.pm_e_ba') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_e_ba') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_e_ba_spiegel_vorne') }}
           {% else %}
             {{ is_state('binary_sensor.pm_e_ba', 'on') }}

@@ -69,9 +69,9 @@ template:
     binary_sensor:
       - name: helper_light_trigger_e_wz_panels
         state: >
-          {% if states('binary_sensor.pm_e_wz_couch_links') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wz_couch_rechts') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_wz_durchgang') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_e_wz_couch_links') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_couch_rechts') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_durchgang') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_e_wz_panels') }}
           {% else %}
             {{ is_state('binary_sensor.pm_e_wz_couch_links', 'on')
@@ -80,9 +80,9 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_wz_panels
         state: >
-          {% if states('switch.bleib_so_wz_licht') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.tv_zeit_abend') in ['unavialable', 'unknown', 'none']
-             or states('switch.luften_ez') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('switch.bleib_so_wz_licht') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.tv_zeit_abend') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_off_entities_e_wz_panels') }}
           {% else %}
             {{ is_state('switch.bleib_so_wz_licht', 'on')
@@ -91,7 +91,7 @@ template:
           {% endif %}
       - name: helper_light_keeping_on_entities_e_wz_panels
         state: >
-          {% if states('switch.bleib_so_wz_licht') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('switch.bleib_so_wz_licht') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_on_entities_e_wz_panels') }}
           {% else %}
             {{ is_state('switch.bleib_so_wz_licht', 'on') }}

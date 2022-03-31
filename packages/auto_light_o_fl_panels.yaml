@@ -68,10 +68,10 @@ template:
     binary_sensor:
       - name: helper_light_trigger_o_fl_panels
         state: >
-          {% if states('binary_sensor.pm_o_fl_treppe') in ['unavialable', 'unknown', 'none'] 
-             or states('binary_sensor.pm_o_fl_flur') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_o_ko_la_tuer') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_o_kw_le_tuer') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_o_fl_treppe') in ['unavailable', 'unknown', 'none'] 
+             or states('binary_sensor.pm_o_fl_flur') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_o_ko_la_tuer') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_o_kw_le_tuer') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_o_fl_panels') }}
           {% else %}
             {{ is_state('binary_sensor.pm_o_fl_treppe', 'on')
@@ -81,9 +81,9 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_o_fl_panels
         state: >
-          {% if states('binary_sensor.la_oder_le_schlafen') in ['unavialable', 'unknown', 'none'] 
-             or states('switch.luften_le') in ['unavialable', 'unknown', 'none']
-             or states('switch.luften_la') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.la_oder_le_schlafen') in ['unavailable', 'unknown', 'none'] 
+             or states('switch.luften_le') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_la') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_off_entities_o_fl_panels') }}
           {% else %}
             {{ is_state('binary_sensor.la_oder_le_schlafen', 'on')
@@ -101,10 +101,18 @@ template:
             {{ int(0) }}
       - name: helper_light_is_too_dark_o_fl_panels
         state: >
-          {{ (states("sensor.helligkeit_flur_og_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_o_fl_panels") | float(1)) }}
+          {% if states('sensor.helligkeit_flur_og_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_dark_o_fl_panels') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_flur_og_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_o_fl_panels") | float(1)) }}
+          {% endif %}
       - name: helper_light_is_too_bright_o_fl_panels
         state: >
-          {{ (states("sensor.helligkeit_flur_og_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_o_fl_panels") | float(1) + 100 ) }}
+          {% if states('sensor.helligkeit_flur_og_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_bright_o_fl_panels') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_flur_og_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_o_fl_panels") | float(1) + 100 ) }}
+          {% endif %}
 
 automation:
   - alias: Licht OG Flur Panels

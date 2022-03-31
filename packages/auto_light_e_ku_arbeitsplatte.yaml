@@ -76,7 +76,7 @@ template:
     binary_sensor:
       - name: helper_light_trigger_e_ku_arbeitsplatte
         state: >
-          {% if states('binary_sensor.pm_e_ku_kuche') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_e_ku_kuche') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_e_ku_arbeitsplatte') }}
           {% else %}
             {{ is_state('binary_sensor.pm_e_ku_kuche', 'on') }}

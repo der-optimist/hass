@@ -42,7 +42,7 @@ template:
     binary_sensor:
       - name: helper_light_trigger_k_pr_decke
         state: >
-          {% if states('binary_sensor.pm_k_timer_bewegung_partyraum') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_k_timer_bewegung_partyraum') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_k_pr_decke') }}
           {% else %}
             {{ is_state('binary_sensor.pm_k_timer_bewegung_partyraum', 'on') }}

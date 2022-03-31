@@ -54,8 +54,8 @@ template:
     binary_sensor:
       - name: helper_light_trigger_e_sz_kugellampe
         state: >
-          {% if states('binary_sensor.pm_e_sz_bett') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.pm_e_sz_gang') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_e_sz_bett') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_sz_gang') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_e_sz_kugellampe') }}
           {% else %}
             {{ is_state('binary_sensor.pm_e_sz_bett', 'on')
@@ -64,10 +64,10 @@ template:
       - name: helper_light_keeping_off_entities_e_sz_kugellampe
         state: >
           {% set h = now().hour | int(0) %}
-          {% if states('switch.majo_schlafen') in ['unavialable', 'unknown', 'none']
-             or states('binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo') in ['unavialable', 'unknown', 'none']
-             or states('switch.knutschen') in ['unavialable', 'unknown', 'none']
-             or states('switch.luften_sz') in ['unavialable', 'unknown', 'none'] %}
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo') in ['unavailable', 'unknown', 'none']
+             or states('switch.knutschen') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_sz') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_off_entities_e_sz_kugellampe') }}
           {% else %}
             {{ is_state('switch.majo_schlafen', 'on')
