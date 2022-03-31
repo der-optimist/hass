@@ -60,7 +60,12 @@ template:
       - name: helper_light_switching_off_entities_o_gz_deckenlicht
         unit_of_measurement: "number"
         state: >
-          {{ [states('switch.gaste_schlafen'),states('switch.luften_le')] | select('equalto', 'on') | list | count }}
+          {% if states('switch.gaste_schlafen') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_le') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_o_gz_deckenlicht') }}
+          {% else %}
+            {{ [states('switch.gaste_schlafen'),states('switch.luften_le')] | select('equalto', 'on') | list | count }}
+          {% endif %}
     binary_sensor:
       - name: helper_light_trigger_o_gz_deckenlicht
         state: >

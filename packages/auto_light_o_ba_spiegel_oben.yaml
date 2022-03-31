@@ -27,16 +27,24 @@ template:
       - name: helper_light_effective_brightness_o_ba_spiegel_oben
         unit_of_measurement: "%"
         state: >
-          {% if is_state('switch.bad_og_nachtmodus', 'on') %}
-            {{ int(13) }}
-          {% elif is_state('binary_sensor.aufwachphase_kinder', 'on') %}
-            {{ int(65) }}
+          {% if states('switch.bad_og_nachtmodus') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_effective_brightness_o_ba_spiegel_oben') }}
           {% else %}
-            {{ states('sensor.helper_light_basic_brightness_o_ba_spiegel_oben') }}
+            {% if is_state('switch.bad_og_nachtmodus', 'on') %}
+              {{ int(13) }}
+            {% elif is_state('binary_sensor.aufwachphase_kinder', 'on') %}
+              {{ int(65) }}
+            {% else %}
+              {{ states('sensor.helper_light_basic_brightness_o_ba_spiegel_oben') }}
+            {% endif %}
           {% endif %}
         attributes:
           special_brightness: >
-            {{ [states('switch.bad_og_nachtmodus'),states('binary_sensor.aufwachphase_kinder')] | select('equalto', 'on') | list | count }}
+            {% if states('switch.bad_og_nachtmodus') in ['unavailable', 'unknown', 'none'] %}
+              {{ state_attr('binary_sensor.helper_light_effective_brightness_o_ba_spiegel_oben', 'special_brightness') }}
+            {% else %}
+              {{ [states('switch.bad_og_nachtmodus'),states('binary_sensor.aufwachphase_kinder')] | select('equalto', 'on') | list | count }}
+            {% endif %}
       - name: helper_light_min_illuminance_o_ba_spiegel_oben
         unit_of_measurement: "lx"
         state: >

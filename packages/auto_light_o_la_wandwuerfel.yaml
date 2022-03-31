@@ -64,7 +64,11 @@ template:
       - name: helper_light_switching_off_entities_o_la_wandwuerfel
         unit_of_measurement: "number"
         state: >
-          {{ [states('switch.luften_la')] | select('equalto', 'on') | list | count }}
+          {% if states('switch.luften_la') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_o_la_wandwuerfel') }}
+          {% else %}
+            {{ [states('switch.luften_la')] | select('equalto', 'on') | list | count }}
+          {% endif %}
     binary_sensor:
       - name: helper_light_trigger_o_la_wandwuerfel
         state: >

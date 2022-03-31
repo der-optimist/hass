@@ -64,7 +64,12 @@ template:
       - name: helper_light_switching_off_entities_o_fl_panels
         unit_of_measurement: "number"
         state: >
-          {{ [states('binary_sensor.la_oder_le_schlafen'),states('switch.luften_le'),states('switch.luften_la')] | select('equalto', 'on') | list | count }}
+          {% if states('switch.luften_le') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_la') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_o_fl_panels') }}
+          {% else %}
+            {{ [states('binary_sensor.la_oder_le_schlafen'),states('switch.luften_le'),states('switch.luften_la')] | select('equalto', 'on') | list | count }}
+          {% endif %}
     binary_sensor:
       - name: helper_light_trigger_o_fl_panels
         state: >
