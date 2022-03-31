@@ -561,6 +561,15 @@ action:
     - conditions:
       - condition: trigger
         id: light_on_or_off
+      - condition: template
+        value_template: >
+          {{ trigger.from_state.state != 'unavailable' }}
+      - condition: template
+        value_template: >
+          {{ trigger.from_state.state != 'unknown' }}
+      - condition: template
+        value_template: >
+          {{ trigger.from_state.state != 'none' }}
       sequence:
       - choose:
         - conditions:

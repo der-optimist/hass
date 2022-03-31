@@ -56,7 +56,11 @@ template:
       - name: helper_light_switching_off_entities_o_ba_panels
         unit_of_measurement: "number"
         state: >
-          {{ [states('switch.bad_og_nachtmodus')] | select('equalto', 'on') | list | count }}
+          {% if states('switch.bad_og_nachtmodus') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_o_ba_panels') }}
+          {% else %}
+            {{ [states('switch.bad_og_nachtmodus')] | select('equalto', 'on') | list | count }}
+          {% endif %}
     binary_sensor:
       - name: helper_light_trigger_o_ba_panels
         state: >
