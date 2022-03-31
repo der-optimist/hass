@@ -63,7 +63,13 @@ template:
       - name: helper_light_switching_off_entities_e_ez_panels
         unit_of_measurement: "number"
         state: >
-          {{ [states('binary_sensor.tv_abends_an'),states('input_boolean.arbeit_theke'),states('switch.luften_ez')] | select('equalto', 'on') | list | count }}
+          {% if states('binary_sensor.tv_abends_an') in ['unavailable', 'unknown', 'none']
+             or states('input_boolean.arbeit_theke') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_e_ez_panels') }}
+          {% else %}
+            {{ [states('binary_sensor.tv_abends_an'),states('input_boolean.arbeit_theke'),states('switch.luften_ez')] | select('equalto', 'on') | list | count }}
+          {% endif %}
     binary_sensor:
       - name: helper_light_trigger_e_ez_panels
         state: >

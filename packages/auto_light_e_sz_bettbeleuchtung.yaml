@@ -49,7 +49,11 @@ template:
       - name: helper_light_switching_off_entities_e_sz_bettbeleuchtung
         unit_of_measurement: "number"
         state: >
-          {{ [states('switch.luften_sz')] | select('equalto', 'on') | list | count }}
+          {% if states('switch.luften_sz') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_e_sz_bettbeleuchtung') }}
+          {% else %}
+            {{ [states('switch.luften_sz')] | select('equalto', 'on') | list | count }}
+          {% endif %}
     binary_sensor:
       - name: helper_light_trigger_e_sz_bettbeleuchtung
         state: >

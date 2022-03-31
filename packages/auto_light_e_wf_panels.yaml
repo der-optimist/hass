@@ -59,7 +59,11 @@ template:
       - name: helper_light_switching_off_entities_e_wf_panels
         unit_of_measurement: "number"
         state: >
-          {{ [states('switch.majo_schlafen')] | select('equalto', 'on') | list | count }}
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_e_wf_panels') }}
+          {% else %}
+            {{ [states('switch.majo_schlafen')] | select('equalto', 'on') | list | count }}
+          {% endif %}
     binary_sensor:
       - name: helper_light_trigger_e_wf_panels
         state: >

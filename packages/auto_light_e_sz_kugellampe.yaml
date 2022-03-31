@@ -50,7 +50,13 @@ template:
       - name: helper_light_switching_off_entities_e_sz_kugellampe
         unit_of_measurement: "number"
         state: >
-          {{ [states('switch.majo_schlafen'),states('switch.knutschen'),states('switch.luften_sz')] | select('equalto', 'on') | list | count }}
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
+             or states('switch.knutschen') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_sz') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_e_sz_kugellampe') }}
+          {% else %}
+            {{ [states('switch.majo_schlafen'),states('switch.knutschen'),states('switch.luften_sz')] | select('equalto', 'on') | list | count }}
+          {% endif %}
     binary_sensor:
       - name: helper_light_trigger_e_sz_kugellampe
         state: >

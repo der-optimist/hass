@@ -51,7 +51,11 @@ template:
       - name: helper_light_switching_off_entities_e_wz_stehlampe
         unit_of_measurement: "number"
         state: >
-          {{ [states('switch.luften_ez')] | select('equalto', 'on') | list | count }}
+          {% if states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_e_wz_stehlampe') }}
+          {% else %}
+            {{ [states('switch.luften_ez')] | select('equalto', 'on') | list | count }}
+          {% endif %}
     binary_sensor:
       - name: helper_light_trigger_e_wz_stehlampe
         state: >

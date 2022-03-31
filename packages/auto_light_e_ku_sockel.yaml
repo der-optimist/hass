@@ -54,7 +54,11 @@ template:
       - name: helper_light_switching_off_entities_e_ku_sockel
         unit_of_measurement: "number"
         state: >
-          {{ [states('input_boolean.arbeit_theke'),states('switch.luften_ez'),states('binary_sensor.kodi_abends')] | select('equalto', 'on') | list | count }}
+          {% if states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_e_ku_sockel') }}
+          {% else %}
+            {{ [states('input_boolean.arbeit_theke'),states('switch.luften_ez'),states('binary_sensor.kodi_abends')] | select('equalto', 'on') | list | count }}
+          {% endif %}
     binary_sensor:
       - name: helper_light_trigger_e_ku_sockel
         state: >

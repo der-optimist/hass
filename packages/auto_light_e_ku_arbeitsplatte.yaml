@@ -39,22 +39,30 @@ template:
       - name: helper_light_effective_brightness_e_ku_arbeitsplatte
         unit_of_measurement: "%"
         state: >
-          {% if is_state('switch.luften_ez', 'on') %}
-            {{ int(10) }}
-          {% elif is_state('input_boolean.gaeste_abends', 'on') %}
-            {{ int(35) }}
-          {% elif is_state('binary_sensor.kodi_abends', 'on') %}
-            {{ int(5) }}
-          {% elif is_state('binary_sensor.tv_abends_an', 'on') %}
-            {{ int(30) }}
-          {% elif is_state('binary_sensor.nachtmodus_wohnbereich_licht', 'on') %}
-            {{ int(20) }}
+          {% if states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_effective_brightness_e_ku_arbeitsplatte') }}
           {% else %}
-            {{ states('sensor.helper_light_basic_brightness_e_ku_arbeitsplatte') }}
+            {% if is_state('switch.luften_ez', 'on') %}
+              {{ int(10) }}
+            {% elif is_state('input_boolean.gaeste_abends', 'on') %}
+              {{ int(35) }}
+            {% elif is_state('binary_sensor.kodi_abends', 'on') %}
+              {{ int(5) }}
+            {% elif is_state('binary_sensor.tv_abends_an', 'on') %}
+              {{ int(30) }}
+            {% elif is_state('binary_sensor.nachtmodus_wohnbereich_licht', 'on') %}
+              {{ int(20) }}
+            {% else %}
+              {{ states('sensor.helper_light_basic_brightness_e_ku_arbeitsplatte') }}
+            {% endif %}
           {% endif %}
         attributes:
           special_brightness: >
-            {{ [states('switch.luften_ez'),states('input_boolean.gaeste_abends'),states('binary_sensor.kodi_abends'),states('binary_sensor.tv_abends_an'),states('binary_sensor.nachtmodus_wohnbereich_licht')] | select('equalto', 'on') | list | count }}
+            {% if states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
+              {{ state_attr('binary_sensor.helper_light_effective_brightness_e_ku_arbeitsplatte','special_brightness') }}
+            {% else %}
+              {{ [states('switch.luften_ez'),states('input_boolean.gaeste_abends'),states('binary_sensor.kodi_abends'),states('binary_sensor.tv_abends_an'),states('binary_sensor.nachtmodus_wohnbereich_licht')] | select('equalto', 'on') | list | count }}
+            {% endif %}
       - name: helper_light_min_illuminance_e_ku_arbeitsplatte
         unit_of_measurement: "lx"
         state: >
