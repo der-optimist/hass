@@ -52,25 +52,47 @@
       la_und_le_schlafen:
         friendly_name: "Beide Mädels schlafen"
         value_template: >-
-          {{ is_state('switch.la_schlaft', 'on')
-             and is_state('switch.le_schlaft', 'on') }}
+          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
+             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.la_und_le_schlafen') }}
+          {% else %}
+            {{ is_state('switch.la_schlaft', 'on')
+               and is_state('switch.le_schlaft', 'on') }}
+          {% endif %}
       la_oder_le_schlafen:
         friendly_name: "Min. 1 Kind schläft"
         value_template: >-
-          {{ is_state('switch.la_schlaft', 'on')
-             or is_state('switch.le_schlaft', 'on') }}
+          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
+             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.la_oder_le_schlafen') }}
+          {% else %}
+            {{ is_state('switch.la_schlaft', 'on')
+               or is_state('switch.le_schlaft', 'on') }}
+          {% endif %}
       alle_schlafen:
         friendly_name: "Alle schlafen"
         value_template: >-
-          {{ is_state('switch.la_schlaft', 'on')
-             and is_state('switch.le_schlaft', 'on')
-             and is_state('switch.majo_schlafen', 'on') }}
+          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
+             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none']
+             or states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.alle_schlafen') }}
+          {% else %}
+            {{ is_state('switch.la_schlaft', 'on')
+              and is_state('switch.le_schlaft', 'on')
+              and is_state('switch.majo_schlafen', 'on') }}
+          {% endif %}
       jemand_schlaeft:
         friendly_name: "Jemand schläft"
         value_template: >-
-          {{ is_state('switch.la_schlaft', 'on')
-             or is_state('switch.le_schlaft', 'on')
-             or is_state('switch.majo_schlafen', 'on') }}
+          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
+             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none']
+             or states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.jemand_schlaeft') }}
+          {% else %}
+            {{ is_state('switch.la_schlaft', 'on')
+              or is_state('switch.le_schlaft', 'on')
+              or is_state('switch.majo_schlafen', 'on') }}
+          {% endif %}
       # On = in der letzten Stunde weniger als 10 Minuten wach
       schlafen_oder_aufwachphase_la:
         friendly_name: "Schlafen oder Aufwachphase La"
@@ -93,20 +115,38 @@
                             and states('sensor.helligkeit_wetterstation')|float(0) > 20000 }}"
       nachtmodus_wc:
         friendly_name: "Nachtmodus WC"
-        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 50
-                            or is_state('switch.majo_schlafen', 'on') }}"
+        value_template: >
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.nachtmodus_wc') }}
+          {% else %}
+            {{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 50 or is_state('switch.majo_schlafen', 'on') }}
+          {% endif %}
       la_schon_im_bett:
         friendly_name: "La schon im Bett"
-        value_template: "{{ is_state('switch.la_schlaft', 'on')
-                            and is_state('binary_sensor.bettgehzeit_kinder', 'on') }}"
+        value_template: >
+          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.la_schon_im_bett') }}
+          {% else %}
+            {{ is_state('switch.la_schlaft', 'on') and is_state('binary_sensor.bettgehzeit_kinder', 'on') }}
+          {% endif %}
       nachtmodus_wohnbereich_licht:
         friendly_name: "Nachtmodus Wohnbereich Licht"
-        value_template: "{{ is_state('switch.majo_schlafen', 'on')
-                            and is_state('switch.kinder_schon_wach', 'off') }}"
+        value_template: >
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
+             or states('switch.kinder_schon_wach') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.nachtmodus_wohnbereich_licht') }}
+          {% else %}
+            {{ is_state('switch.majo_schlafen', 'on') and is_state('switch.kinder_schon_wach', 'off') }}
+          {% endif %}
       nachtmodus_wohnbereich_jalousie:
         friendly_name: "Nachtmodus Wohnbereich Jalousie"
-        value_template: "{{ is_state('binary_sensor.jemand_schlaeft', 'on')
-                            and is_state('switch.kinder_schon_wach', 'off') }}"
+        value_template: >
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
+             or states('switch.kinder_schon_wach') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.nachtmodus_wohnbereich_jalousie') }}
+          {% else %}
+            {{ is_state('switch.majo_schlafen', 'on') and is_state('switch.kinder_schon_wach', 'off') }}
+          {% endif %}
       bodenstrahler_blumenbeet_ist_sichtbar:
         friendly_name: "Bodenstrahler Blumenbeet ist sichtbar"
         value_template: "{{ (state_attr('cover.jalousie_hst','current_position')|float(0) < 40)
@@ -304,26 +344,46 @@
       tv_ist_an:
         friendly_name: "TV an"
         delay_off:
-          seconds: 3
-        value_template: "{{ states('sensor.el_leistung_tv_scheinleistung')|float(0) > 31 }}"
+          seconds: 6
+        value_template: >
+          {% if states('sensor.el_leistung_tv_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.tv_ist_an') }}
+          {% else %}
+            {{ states('sensor.el_leistung_tv_scheinleistung')|float(0) > 31 }}
+          {% endif %}
       mixi_ist_an:
         friendly_name: "Mixi an"
         value_template: "{{ states('sensor.el_leistung_mixi')|float(0) > 5 }}"
       backofen_ist_an:
         friendly_name: "Backofen an"
-        value_template: "{{ states('sensor.el_leistung_backofen')|float(0) > 2 }}"
+        value_template: >
+          {% if states('sensor.el_leistung_backofen') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.backofen_ist_an') }}
+          {% else %}
+            {{ states('sensor.el_leistung_backofen')|float(0) > 2 }}
+          {% endif %}
       waschmaschine_ist_an:
         friendly_name: "Waschmaschine läuft"
         delay_on:
           minutes: 3
-        value_template: "{{ states('sensor.el_leistung_waschmaschine_scheinleistung')|float(0) > 15 }}"
+        value_template: >
+          {% if states('sensor.el_leistung_waschmaschine_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.waschmaschine_ist_an') }}
+          {% else %}
+            {{ states('sensor.el_leistung_waschmaschine_scheinleistung')|float(0) > 15 }}
+          {% endif %}
       trockner_zieht_strom:
         friendly_name: "Trockner zieht Strom"
         delay_on:
           seconds: 10
         delay_off:
           minutes: 4
-        value_template: "{{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) > 10 }}"
+        value_template: >
+          {% if states('sensor.el_leistung_trockner_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.trockner_zieht_strom') }}
+          {% else %}
+            {{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) > 10 }}
+          {% endif %}
       trockner_ist_an:
         friendly_name: "Trockner läuft"
         delay_off:
@@ -333,4 +393,9 @@
              and not is_state('binary_sensor.trockner_ist_geleert', 'on') }}
       trockner_ist_geleert:
         friendly_name: "Trockner geleert"
-        value_template: "{{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) < 5 }}"
+        value_template: >
+          {% if states('sensor.el_leistung_trockner_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.trockner_ist_geleert') }}
+          {% else %}
+            {{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) < 5 }}
+          {% endif %}
