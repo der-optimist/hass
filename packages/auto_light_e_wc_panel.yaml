@@ -85,10 +85,18 @@ template:
             {{ int(0) }}
       - name: helper_light_is_too_dark_e_wc_panel
         state: >
-          {{ (states("sensor.helligkeit_wc_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_wc_panel") | float(1)) }}
+          {% if states('sensor.helligkeit_wc_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_dark_e_wc_panel') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_wc_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_wc_panel") | float(1)) }}
+          {% endif %}
       - name: helper_light_is_too_bright_e_wc_panel
         state: >
-          {{ (states("sensor.helligkeit_wc_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_wc_panel") | float(1) + 120 ) }}
+          {% if states('sensor.helligkeit_wc_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_bright_e_wc_panel') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_wc_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_wc_panel") | float(1) + 120 ) }}
+          {% endif %}
 
 automation:
   - alias: Licht EG WC Panel

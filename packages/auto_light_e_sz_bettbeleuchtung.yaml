@@ -97,10 +97,18 @@ template:
             {% endif %}
       - name: helper_light_is_too_dark_e_sz_bettbeleuchtung
         state: >
-          {{ (states("sensor.helligkeit_schlafzimmer_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_sz_bettbeleuchtung") | float(1)) }}
+          {% if states('sensor.helligkeit_schlafzimmer_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_dark_e_sz_bettbeleuchtung') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_schlafzimmer_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_sz_bettbeleuchtung") | float(1)) }}
+          {% endif %}
       - name: helper_light_is_too_bright_e_sz_bettbeleuchtung
         state: >
-          {{ (states("sensor.helligkeit_schlafzimmer_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_sz_bettbeleuchtung") | float(1) + 100 ) }}
+          {% if states('sensor.helligkeit_schlafzimmer_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_bright_e_sz_bettbeleuchtung') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_schlafzimmer_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_sz_bettbeleuchtung") | float(1) + 100 ) }}
+          {% endif %}
 
 automation:
   - alias: Licht EG Schlafzimmer Bettbeleuchtung

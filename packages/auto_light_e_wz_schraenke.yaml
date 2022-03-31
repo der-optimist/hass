@@ -101,10 +101,18 @@ template:
             {% endif %}
       - name: helper_light_is_too_dark_e_wz_schraenke
         state: >
-          {{ (states("sensor.helligkeit_wohnzimmer_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_wz_schraenke") | float(1)) }}
+          {% if states('sensor.helligkeit_wohnzimmer_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_dark_e_wz_schraenke') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_wohnzimmer_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_wz_schraenke") | float(1)) }}
+          {% endif %}
       - name: helper_light_is_too_bright_e_wz_schraenke
         state: >
-          {{ (states("sensor.helligkeit_wohnzimmer_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_wz_schraenke") | float(1) + 100 ) }}
+          {% if states('sensor.helligkeit_wohnzimmer_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_bright_e_wz_schraenke') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_wohnzimmer_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_wz_schraenke") | float(1) + 100 ) }}
+          {% endif %}
 
 automation:
   - alias: Licht EG WZ Schränke
