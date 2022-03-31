@@ -101,10 +101,18 @@ template:
             {{ int(0) }}
       - name: helper_light_is_too_dark_e_ku_panels
         state: >
-          {{ (states("sensor.helligkeit_kuche_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_ku_panels") | float(1)) }}
+          {% if states('sensor.helligkeit_kuche_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_dark_e_ku_panels') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_kuche_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_ku_panels") | float(1)) }}
+          {% endif %}
       - name: helper_light_is_too_bright_e_ku_panels
         state: >
-          {{ (states("sensor.helligkeit_kuche_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_ku_panels") | float(1) + 100 ) }}
+          {% if states('sensor.helligkeit_kuche_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_bright_e_ku_panels') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_kuche_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_ku_panels") | float(1) + 100 ) }}
+          {% endif %}
 
 automation:
   - alias: Licht EG Küche Panels

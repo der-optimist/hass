@@ -69,10 +69,18 @@ template:
             {{ int(0) }}
       - name: helper_light_is_too_dark_e_ez_weihnachtsbaum
         state: >
-          {{ (states("sensor.helligkeit_esszimmer_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_ez_weihnachtsbaum") | float(1)) }}
+          {% if states('sensor.helligkeit_esszimmer_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_dark_e_ez_weihnachtsbaum') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_esszimmer_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_ez_weihnachtsbaum") | float(1)) }}
+          {% endif %}
       - name: helper_light_is_too_bright_e_ez_weihnachtsbaum
         state: >
-          {{ (states("sensor.helligkeit_esszimmer_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_ez_weihnachtsbaum") | float(1) + 100 ) }}
+          {% if states('sensor.helligkeit_esszimmer_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_bright_e_ez_weihnachtsbaum') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_esszimmer_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_ez_weihnachtsbaum") | float(1) + 100 ) }}
+          {% endif %}
 
 automation:
   - alias: Licht EG EZ Weihnachtsbaum
