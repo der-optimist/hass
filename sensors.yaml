@@ -952,10 +952,11 @@
     - deviceId
     value_template: 'OK'
   - platform: rest
-    name: Geburtstage Google
+    name: Geburtstage Google 0 Name
     resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
     headers:
       Authorization: !secret calendar_api_token
+    value_template: "{{ value_json[0].summary }}"
 #
 # --------------------------------
 # --                            --
