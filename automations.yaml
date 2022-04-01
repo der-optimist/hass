@@ -1343,8 +1343,19 @@
                 - service: notify.telegram_jo
                   data:
                     message: 'Pizza ist fertig'
+#                - service: rest_command.bildschirm_theke_command
+#                  data:
+#                    cmd: textToSpeech
+#                    key: Pizza%20ist%20fertig%2E%20Lasst%20es%20euch%20schmecken
+#                    value: Pizza%20ist%20fertig%2E%20Lasst%20es%20euch%20schmecken
                 - service: media_player.media_pause
                   entity_id: media_player.kodi_wz_2
+                - service: notify.kodi_wz_2
+                  title: Pizza
+                  message: ist fertig
+                  data:
+                    displaytime: 15000
+                    icon: "http://odroidxu4/sonstiges/pizza2.jpg"
               default:
               - service: notify.telegram_jo
                 data:
@@ -1369,4 +1380,37 @@
         sequence:
         - service: input_number.decrement
           entity_id: input_number.pizza_timer_2
+      default: []
+#
+###############################################
+#####        Hochzeitsbild an aus         #####
+###############################################
+- id: '899e72d8-444a-4aef-9ef5-a7b908705177'
+  alias: Hochzeitsbild an aus
+  description: ''
+  mode: queued
+  trigger:
+    - platform: time
+      at: "16:55:00"
+      id: time_on
+    - platform: time
+      at: "23:00:00"
+      id: time_off
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: time_on
+        sequence:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.beleuchtung_hochzeitsbild
+      - conditions:
+        - condition: trigger
+          id: time_off
+        sequence:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.beleuchtung_hochzeitsbild
       default: []
