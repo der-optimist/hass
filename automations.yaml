@@ -1300,3 +1300,73 @@
     - service: notify.telegram_jo
       data:
         message: 'KNX unavailable'
+#
+###############################################
+#####            Pizza-Knopf              #####
+###############################################
+- id: '90891b56-958a-4460-a66d-389f3cab690c'
+  alias: Pizza-Knopf
+  description: ''
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: input_number.pizza_timer_2
+      to: ~
+      id: input_number_changed
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.pizza_timer_ha
+      id: timer_finished
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: input_number_changed
+        sequence:
+        - service: timer.cancel
+          target:
+            entity_id: timer.pizza_timer_ha
+        - choose:
+          - conditions:
+            - condition: template
+              value_template: >
+                {{ (trigger.to_state.state | float(0)) == 0 }}
+            sequence:
+            - choose:
+              - conditions:
+                - condition: state
+                  entity_id: timer.pizza_timer_ha
+                  state: 'idle'
+                sequence:
+                - service: notify.telegram_jo
+                  data:
+                    message: 'Pizza ist fertig'
+                - service: media_player.media_pause
+                  entity_id: media_player.kodi_wz_2
+              default:
+              - service: notify.telegram_jo
+                data:
+                  message: 'Pizza-Timer abgebrochen'
+          - conditions:
+            - condition: template
+              value_template: >
+                {{ (trigger.to_state.state | float(0)) > 0 }}
+            sequence:
+            - service: timer.start
+              target:
+                entity_id: timer.pizza_timer_ha
+              data:
+                duration: '00:01:00'
+          default: []
+      - conditions:
+        - condition: trigger
+          id: timer_finished
+        - condition: template
+          value_template: >
+            {{ (states('input_number.pizza_timer_2') | float(0)) > 0 }}
+        sequence:
+        - service: input_number.decrement
+          entity_id: input_number.pizza_timer_2
+      default: []
