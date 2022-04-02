@@ -957,7 +957,56 @@
     headers:
       Authorization: !secret calendar_api_token
     value_template: "{{ value_json[0].summary }}"
-    scan_interval: 600
+    scan_interval: 180
+  - platform: rest
+    name: Geburtstage Google 1 Name
+    resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
+    headers:
+      Authorization: !secret calendar_api_token
+    value_template: "{{ value_json[1].summary }}"
+    scan_interval: 180
+  - platform: rest
+    name: Geburtstage Google 2 Name
+    resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
+    headers:
+      Authorization: !secret calendar_api_token
+    value_template: "{{ value_json[2].summary }}"
+    scan_interval: 180
+  - platform: rest
+    name: Geburtstage Google 3 Name
+    resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
+    headers:
+      Authorization: !secret calendar_api_token
+    value_template: "{{ value_json[3].summary }}"
+    scan_interval: 180
+  - platform: rest
+    name: Geburtstage Google 0 Datum
+    resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
+    headers:
+      Authorization: !secret calendar_api_token
+    value_template: "{{ value_json[0].start.date }}"
+    scan_interval: 180
+  - platform: rest
+    name: Geburtstage Google 1 Datum
+    resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
+    headers:
+      Authorization: !secret calendar_api_token
+    value_template: "{{ value_json[1].start.date }}"
+    scan_interval: 180
+  - platform: rest
+    name: Geburtstage Google 2 Datum
+    resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
+    headers:
+      Authorization: !secret calendar_api_token
+    value_template: "{{ value_json[2].start.date }}"
+    scan_interval: 180
+  - platform: rest
+    name: Geburtstage Google 3 Datum
+    resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
+    headers:
+      Authorization: !secret calendar_api_token
+    value_template: "{{ value_json[3].start.date }}"
+    scan_interval: 180
 #
 # --------------------------------
 # --                            --
