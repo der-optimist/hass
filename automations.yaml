@@ -1349,11 +1349,12 @@
                 - service: media_player.media_pause
                   entity_id: media_player.kodi_wz_2
                 - service: notify.kodi_wz_2
-                  title: Pizza
-                  message: ist fertig
                   data:
-                    displaytime: 15000
-                    icon: "http://odroidxu4/sonstiges/pizza2.jpg"
+                    title: Pizza
+                    message: ist fertig
+                    data:
+                      displaytime: 15000
+                      icon: "http://odroidxu4/sonstiges/pizza2.jpg"
               default:
               - service: notify.telegram_jo
                 data:
