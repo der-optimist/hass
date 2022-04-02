@@ -1343,11 +1343,9 @@
                 - service: notify.telegram_jo
                   data:
                     message: 'Pizza ist fertig'
-#                - service: rest_command.bildschirm_theke_command
-#                  data:
-#                    cmd: textToSpeech
-#                    key: Pizza%20ist%20fertig%2E%20Lasst%20es%20euch%20schmecken
-#                    value: Pizza%20ist%20fertig%2E%20Lasst%20es%20euch%20schmecken
+                - service: rest_command.bildschirm_theke_speak
+                  data:
+                    text: Pizza%20ist%20fertig%2E%20Lasst%20es%20euch%20schmecken
                 - service: media_player.media_pause
                   entity_id: media_player.kodi_wz_2
                 - service: notify.kodi_wz_2
