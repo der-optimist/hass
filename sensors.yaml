@@ -957,6 +957,7 @@
     headers:
       Authorization: !secret calendar_api_token
     value_template: "{{ value_json[0].summary }}"
+    scan_interval: 600
 #
 # --------------------------------
 # --                            --
