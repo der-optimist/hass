@@ -114,7 +114,7 @@ rest_command:
   bildschirm_theke_command:
     url: 'http://192.168.178.42:2323/?cmd={{ cmd }}&key={{ key }}&value={{ value }}&type=json&password=nopw'
   bildschirm_theke_speak:
-    url: 'http://192.168.178.42:2323/?cmd=textToSpeech&text={{ text }}password=nopw'
+    url: 'http://192.168.178.42:2323/?cmd=textToSpeech&text={{ text }}&password=nopw'
 
 telegram_bot: !include config_telegram_bot.yaml
 
