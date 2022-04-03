@@ -159,3 +159,33 @@
             {% set please_update_my_template_regularly = now() %}
             {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
             {{daysTo}}
+  - binary_sensor:
+      # Luftentfeuchter
+      - unique_id: tank_luftentfeuchter_waschkueche_voll
+        # name: change entity_id in UI after creation
+        state: >
+          {{ is_state('switch.innr_sp_120_luftentfeuchter_waschkuche_on_off','on') and ((states('sensor.el_leistung_luftentfeuchter_waschkueche') | float(0)) < 20) }}
+        delay_on: '0:10:00'
+        attributes:
+          friendly_name: "Tank Luftentfeuchter Waschküche voll"
+      - unique_id: tank_luftentfeuchter_speis_voll
+        # name: change entity_id in UI after creation
+        state: >
+          {{ is_state('switch.kuhlschrank_keller','on') and ((states('sensor.el_leistung_luftentf_vorratsraum') | float(0)) < 20) }}
+        delay_on: '0:10:00'
+        attributes:
+          friendly_name: "Tank Luftentfeuchter Speis voll"
+      - unique_id: tank_luftentfeuchter_partyraum_voll
+        # name: change entity_id in UI after creation
+        state: >
+          {{ is_state('switch.esp_sd_6_relais','on') and ((states('sensor.el_leistung_luftentfeuchter_partyraum') | float(0)) < 20) }}
+        delay_on: '0:10:00'
+        attributes:
+          friendly_name: "Tank Luftentfeuchter Partyraum voll"
+      - unique_id: tank_luftbefeuchter_wz_leer
+        # name: change entity_id in UI after creation
+        state: >
+          {{ is_state('switch.esp_sd_2_relais','on') and ((states('sensor.el_leistung_esp_sd_2') | float(0)) < 4) }}
+        delay_on: '0:10:00'
+        attributes:
+          friendly_name: "Tank Luftbefeuchter WZ leer"

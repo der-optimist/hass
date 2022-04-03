@@ -30,6 +30,8 @@ cards:
       label: Luft
     - entity: sensor.temp_waschkuche
       name: Temperatur
+    - entity: humidifier.luftentfeuchter_waschkuche
+      name: Hygrostat
     - entity: sensor.luftfeuchtigkeit_waschkuche
       name: Luftfeuchtigkeit
     - entity: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
@@ -69,6 +71,8 @@ cards:
       label: Luft
     - entity: sensor.temp_vorratsraum
       name: Temperatur
+    - entity: humidifier.luftentfeuchter_speis
+      name: Hygrostat
     - entity: sensor.luftfeuchtigkeit_vorratsraum
       name: Luftf. Wand
     - entity: sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_sht31
@@ -111,6 +115,8 @@ cards:
       label: Luft
     - entity: sensor.temp_partyraum
       name: Temperatur
+    - entity: humidifier.luftentfeuchter_partyraum
+      name: Hygrostat
     - entity: sensor.luftfeuchtigkeit_partyraum
       name: Luftfeuchtigkeit
     - entity: switch.esp_sd_6_relais
