@@ -1,6 +1,6 @@
 template: 
   - binary_sensor:
-      # Luftentfeuchter
+      # Waschküche
       - unique_id: tank_luftentfeuchter_waschkueche_voll
         # name: change entity_id in UI after creation
         state: >
@@ -8,6 +8,15 @@ template:
         delay_on: '0:10:00'
         attributes:
           friendly_name: "Tank Luftentfeuchter Waschküche voll"
+      - unique_id: helper_luftentfeuchter_waschkuche_use_pv
+        # name: change entity_id in UI after creation
+        state: >
+          {{ (states('sensor.el_leistung_einspeisung') | float(0)) > 400) }}
+        delay_on: '0:04:00'
+        delay_off: '0:06:00'
+        attributes:
+          friendly_name: "Luftentfeuchter Waschküche soll PV nutzen"
+      # Speis
       - unique_id: tank_luftentfeuchter_speis_voll
         # name: change entity_id in UI after creation
         state: >
@@ -15,6 +24,15 @@ template:
         delay_on: '0:10:00'
         attributes:
           friendly_name: "Tank Luftentfeuchter Speis voll"
+      - unique_id: helper_luftentfeuchter_speis_use_pv
+        # name: change entity_id in UI after creation
+        state: >
+          {{ (states('sensor.el_leistung_einspeisung') | float(0)) > 600) }}
+        delay_on: '0:04:00'
+        delay_off: '0:06:00'
+        attributes:
+          friendly_name: "Luftentfeuchter Speis soll PV nutzen"
+      # Partyraum
       - unique_id: tank_luftentfeuchter_partyraum_voll
         # name: change entity_id in UI after creation
         state: >
@@ -22,6 +40,15 @@ template:
         delay_on: '0:10:00'
         attributes:
           friendly_name: "Tank Luftentfeuchter Partyraum voll"
+      - unique_id: helper_luftentfeuchter_partyraum_use_pv
+        # name: change entity_id in UI after creation
+        state: >
+          {{ (states('sensor.el_leistung_einspeisung') | float(0)) > 200) }}
+        delay_on: '0:04:00'
+        delay_off: '0:06:00'
+        attributes:
+          friendly_name: "Luftentfeuchter Partyraum soll PV nutzen"
+      # Wohnzimmer
       - unique_id: tank_luftbefeuchter_wz_leer
         # name: change entity_id in UI after creation
         state: >
@@ -29,3 +56,46 @@ template:
         delay_on: '0:10:00'
         attributes:
           friendly_name: "Tank Luftbefeuchter WZ leer"
+
+
+input_boolean:
+  reminder_tank_luftentfeuchter_waschkuche:
+    name: Luftentfeucher Waschküche leeren
+  reminder_tank_luftentfeuchter_speis:
+    name: Luftentfeucher Speis leeren
+  reminder_tank_luftentfeuchter_partyraum:
+    name: Luftentfeucher Partyraum leeren
+  reminder_tank_luftbefeuchter_wz:
+    name: Luftbefeuchter WZ füllen
+
+automation:
+  - id: 'efcb2b99-d9f9-41dc-ac0e-e7cba40c4685'
+    alias: Luftentfeucher Waschküche Erweiterungen
+    description: ''
+    mode: queued
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.template_tank_luftentfeuchter_waschkueche_voll
+        to: 'on'
+        id: tank_action_required
+      - platform: state
+        entity_id: binary_sensor.template_tank_luftentfeuchter_waschkueche_voll
+        to: 'off'
+        id: tank_done
+    condition: []
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: tank_action_required
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.reminder_tank_luftentfeuchter_waschkuche
+        - conditions:
+          - condition: trigger
+            id: tank_done
+          sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.reminder_tank_luftentfeuchter_waschkuche

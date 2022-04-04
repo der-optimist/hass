@@ -880,7 +880,13 @@
     state_characteristic: mean
     max_age:
       minutes: 30
-
+  - platform: statistics
+    name: PV Einspeisung letzte 3 Min Durchschnitt
+    entity_id: sensor.el_leistung_einspeisung
+    sampling_size: 40
+    state_characteristic: average_step
+    max_age:
+      minutes: 3
 #
 # --------------------------------
 # --                            --

@@ -151,3 +151,11 @@ input_boolean.reminder_wm:
   entity_picture: '/local/icons/reminders/washing-machine_orange_blink.svg'
 input_boolean.reminder_dryer:
   entity_picture: '/local/icons/reminders/dryer_orange_blink.svg'
+input_boolean.reminder_tank_luftentfeuchter_waschkuche:
+  entity_picture: '/local/icons/reminders/drop_blue_blink.svg'
+input_boolean.reminder_tank_luftentfeuchter_speis:
+  entity_picture: '/local/icons/reminders/drop_blue_blink.svg'
+input_boolean.reminder_tank_luftentfeuchter_partyraum:
+  entity_picture: '/local/icons/reminders/drop_blue_blink.svg'
+input_boolean.reminder_tank_luftbefeuchter_wz:
+  entity_picture: '/local/icons/reminders/drop_blue_blink.svg'
