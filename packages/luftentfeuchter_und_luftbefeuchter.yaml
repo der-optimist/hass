@@ -101,8 +101,8 @@ automation:
     alias: Luftentfeucher Waschküche Erweiterungen
     description: ''
     mode: queued
-  trigger_variables:
-      device_ieee: 00:15:8d:00:04:0b:11:2f
+    trigger_variables:
+        device_ieee: 00:15:8d:00:04:0b:11:2f
     trigger:
       - platform: state
         entity_id: binary_sensor.template_tank_luftentfeuchter_waschkueche_voll
