@@ -38,9 +38,8 @@ cards:
       name: Steckdose Luftentfeuchter
     - entity: sensor.el_leistung_luftentfeuchter_waschkueche
       name: Leistung Luftentfeuchter
-    - type: custom:slider-entity-row
-      entity: input_number.timer_spezial_luftf_waschk
-      full_row: true
+    - entity: timer.special_humidity_waschkueche
+      name: Laufzeit trockenere Luft
   - type: entities
     title: "Flur und Treppe"
     show_header_toggle: false
@@ -81,9 +80,6 @@ cards:
       name: Steckdose Luftentfeuchter
     - entity: sensor.el_leistung_luftentf_vorratsraum
       name: Leistung Luftentfeuchter
-    - type: custom:slider-entity-row
-      entity: input_number.timer_spezial_luftf_vorratsraum
-      full_row: true
   - type: entities
     title: "Lager-/Werkelraum"
     show_header_toggle: false
@@ -123,6 +119,3 @@ cards:
       name: Steckdose Luftentfeuchter
     - entity: sensor.el_leistung_luftentfeuchter_partyraum
       name: Leistung Luftentfeuchter
-    - type: custom:slider-entity-row
-      entity: input_number.timer_spezial_luftf_werkelraum
-      full_row: true

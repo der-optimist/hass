@@ -1,6 +1,5 @@
 pizza_timer_2:
   name: Pizza Timer
-#    initial: 0
   min: 0
   max: 30
   step: 1
@@ -30,27 +29,3 @@ pv_installierte_peakleistung:
   max: 10000
   step: 10
   initial: 9360
-timer_spezial_luftf_waschk:
-  name: Timer verringerte Luftfeuchtigkeit Waschküche
-  initial: 0
-  min: 0
-  max: 12
-  step: 1
-timer_spezial_luftf_werkelraum:
-  name: Timer verringerte Luftfeuchtigkeit Werkelraum
-  initial: 0
-  min: 0
-  max: 12
-  step: 1
-timer_spezial_luftf_vorratsraum:
-  name: Timer verringerte Luftfeuchtigkeit Speis
-  initial: 0
-  min: 0
-  max: 12
-  step: 1
-timer_spezial_luftf_wz:
-  name: Timer erhöhte Luftfeuchtigkeit WZ
-  initial: 0
-  min: 0
-  max: 24
-  step: 1
