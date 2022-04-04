@@ -113,7 +113,7 @@ automation:
         to: 'off'
         id: tank_done
       - platform: state
-        entity_id: sensor.template_helper_luftentfeuchter_waschkuche_target_humidity
+        entity_id: sensor.helper_luftentfeuchter_waschkuche_target_humidity
         id: target_humidity_changed
       - platform: event
         event_type: zha_event
@@ -190,7 +190,7 @@ automation:
         to: 'off'
         id: tank_done
       - platform: state
-        entity_id: sensor.template_helper_luftentfeuchter_speis_target_humidity
+        entity_id: sensor.helper_luftentfeuchter_speis_target_humidity
         id: target_humidity_changed
     condition: []
     action:
@@ -237,7 +237,7 @@ automation:
         to: 'off'
         id: tank_done
       - platform: state
-        entity_id: sensor.template_helper_luftentfeuchter_partyraum_target_humidity
+        entity_id: sensor.helper_luftentfeuchter_partyraum_target_humidity
         id: target_humidity_changed
     condition: []
     action:
