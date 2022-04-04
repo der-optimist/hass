@@ -11,7 +11,7 @@ template:
       - unique_id: helper_luftentfeuchter_waschkuche_use_pv
         # name: change entity_id in UI after creation
         state: >
-          {{ (states('sensor.el_leistung_einspeisung') | float(0)) > 400) }}
+          {{ (states('sensor.el_leistung_einspeisung') | float(0)) > 400 }}
         delay_on: '0:04:00'
         delay_off: '0:06:00'
         attributes:
@@ -27,7 +27,7 @@ template:
       - unique_id: helper_luftentfeuchter_speis_use_pv
         # name: change entity_id in UI after creation
         state: >
-          {{ (states('sensor.el_leistung_einspeisung') | float(0)) > 600) }}
+          {{ (states('sensor.el_leistung_einspeisung') | float(0)) > 600 }}
         delay_on: '0:04:00'
         delay_off: '0:06:00'
         attributes:
@@ -43,7 +43,7 @@ template:
       - unique_id: helper_luftentfeuchter_partyraum_use_pv
         # name: change entity_id in UI after creation
         state: >
-          {{ (states('sensor.el_leistung_einspeisung') | float(0)) > 200) }}
+          {{ (states('sensor.el_leistung_einspeisung') | float(0)) > 200 }}
         delay_on: '0:04:00'
         delay_off: '0:06:00'
         attributes:
