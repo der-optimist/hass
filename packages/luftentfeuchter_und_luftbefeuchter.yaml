@@ -155,7 +155,7 @@ automation:
             data:
               humidity: >
                 {% set backup_humidity = state_attr('humidifier.luftentfeuchter_waschkuche','saved_humidity') %}
-                {{ trigger.to_state_state | float(backup_humidity) }}
+                {{ trigger.to_state.state | float(backup_humidity) }}
               entity_id: humidifier.luftentfeuchter_waschkuche
         - conditions:
           - condition: trigger
@@ -220,7 +220,7 @@ automation:
             data:
               humidity: >
                 {% set backup_humidity = state_attr('humidifier.luftentfeuchter_speis','saved_humidity') %}
-                {{ trigger.to_state_state | float(backup_humidity) }}
+                {{ trigger.to_state.state | float(backup_humidity) }}
               entity_id: humidifier.luftentfeuchter_speis
         default: []
   - id: '97b8bda4-e59a-41e6-86e0-aa3d6d1468c6'
@@ -267,7 +267,7 @@ automation:
             data:
               humidity: >
                 {% set backup_humidity = state_attr('humidifier.luftentfeuchter_partyraum','saved_humidity') %}
-                {{ trigger.to_state_state | float(backup_humidity) }}
+                {{ trigger.to_state.state | float(backup_humidity) }}
               entity_id: humidifier.luftentfeuchter_partyraum
         default: []
   - id: '1e82680b-afd9-4955-9919-e7bf88ca49c6'
