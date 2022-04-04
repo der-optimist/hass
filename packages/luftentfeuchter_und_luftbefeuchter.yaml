@@ -56,6 +56,34 @@ template:
         delay_on: '0:10:00'
         attributes:
           friendly_name: "Tank Luftbefeuchter WZ leer"
+    sensor:
+      - name: helper_luftentfeuchter_waschkuche_target_humidity
+        unit_of_measurement: "%"
+        state: >
+          {% set humidity = state_attr('humidifier.luftentfeuchter_waschkuche','saved_humidity') %}
+          {% if is_state('binary_sensor.template_helper_luftentfeuchter_waschkuche_use_pv','on') %}
+            {% set humidity = humidity - 5 %}
+          {% endif %}
+          {% if is_state('timer.special_humidity_waschkueche','active') %}
+            {% set humidity = humidity - 7 %}
+          {% endif %}
+          {{ humidity }}
+      - name: helper_luftentfeuchter_speis_target_humidity
+        unit_of_measurement: "%"
+        state: >
+          {% set humidity = state_attr('humidifier.luftentfeuchter_speis','saved_humidity') %}
+          {% if is_state('binary_sensor.template_helper_luftentfeuchter_speis_use_pv','on') %}
+            {% set humidity = humidity - 6 %}
+          {% endif %}
+          {{ humidity }}
+      - name: helper_luftentfeuchter_partyraum_target_humidity
+        unit_of_measurement: "%"
+        state: >
+          {% set humidity = state_attr('humidifier.luftentfeuchter_partyraum','saved_humidity') %}
+          {% if is_state('binary_sensor.template_helper_luftentfeuchter_partyraum_use_pv','on') %}
+            {% set humidity = humidity - 7 %}
+          {% endif %}
+          {{ humidity }}
 
 
 input_boolean:
@@ -73,6 +101,8 @@ automation:
     alias: Luftentfeucher Waschküche Erweiterungen
     description: ''
     mode: queued
+  trigger_variables:
+      device_ieee: 00:15:8d:00:04:0b:11:2f
     trigger:
       - platform: state
         entity_id: binary_sensor.template_tank_luftentfeuchter_waschkueche_voll
@@ -80,6 +110,177 @@ automation:
         id: tank_action_required
       - platform: state
         entity_id: binary_sensor.template_tank_luftentfeuchter_waschkueche_voll
+        to: 'off'
+        id: tank_done
+      - platform: state
+        entity_id: helper_luftentfeuchter_waschkuche_target_humidity
+        id: target_humidity_changed
+      - platform: event
+        event_type: zha_event
+        id: zha_event_left_single
+        event_data:
+          device_ieee: "{{ device_ieee }}"
+          command: left_single
+      - platform: event
+        event_type: zha_event
+        id: zha_event_left_double
+        event_data:
+          device_ieee: "{{ device_ieee }}"
+          command: left_double
+    condition: []
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: tank_action_required
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.reminder_tank_luftentfeuchter_waschkuche
+          - service: notify.telegram_jo
+            data:
+              message: 'Tank Luftentfeuchter Waschküche ist voll'
+        - conditions:
+          - condition: trigger
+            id: tank_done
+          sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.reminder_tank_luftentfeuchter_waschkuche
+        - conditions:
+          - condition: trigger
+            id: target_humidity_changed
+          sequence:
+          - service: humidifier.set_humidity
+            data:
+              humidity: >
+                {% set backup_humidity = state_attr('humidifier.luftentfeuchter_waschkuche','saved_humidity') %}
+                {{ trigger.to_state_state | float(backup_humidity) }}
+              entity_id: humidifier.luftentfeuchter_waschkuche
+        - conditions:
+          - condition: trigger
+            id: zha_event_left_single
+          sequence:
+          - service: timer.start
+            target:
+              entity_id: timer.special_humidity_waschkueche
+            data:
+              duration: '04:00:00'
+        - conditions:
+          - condition: trigger
+            id: zha_event_left_double
+          sequence:
+          - service: timer.start
+            target:
+              entity_id: timer.special_humidity_waschkueche
+            data:
+              duration: '08:00:00'
+        default: []
+  - id: '472cf212-ec86-47dd-bac7-ddaedb52a9e7'
+    alias: Luftentfeucher Speis Erweiterungen
+    description: ''
+    mode: queued
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.template_tank_luftentfeuchter_speis_voll
+        to: 'on'
+        id: tank_action_required
+      - platform: state
+        entity_id: binary_sensor.template_tank_luftentfeuchter_speis_voll
+        to: 'off'
+        id: tank_done
+      - platform: state
+        entity_id: helper_luftentfeuchter_speis_target_humidity
+        id: target_humidity_changed
+    condition: []
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: tank_action_required
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.reminder_tank_luftentfeuchter_speis
+          - service: notify.telegram_jo
+            data:
+              message: 'Tank Luftentfeuchter Speis ist voll'
+        - conditions:
+          - condition: trigger
+            id: tank_done
+          sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.reminder_tank_luftentfeuchter_speis
+        - conditions:
+          - condition: trigger
+            id: target_humidity_changed
+          sequence:
+          - service: humidifier.set_humidity
+            data:
+              humidity: >
+                {% set backup_humidity = state_attr('humidifier.luftentfeuchter_speis','saved_humidity') %}
+                {{ trigger.to_state_state | float(backup_humidity) }}
+              entity_id: humidifier.luftentfeuchter_speis
+        default: []
+  - id: '97b8bda4-e59a-41e6-86e0-aa3d6d1468c6'
+    alias: Luftentfeucher Partyraum Erweiterungen
+    description: ''
+    mode: queued
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.template_tank_luftentfeuchter_partyraum_voll
+        to: 'on'
+        id: tank_action_required
+      - platform: state
+        entity_id: binary_sensor.template_tank_luftentfeuchter_partyraum_voll
+        to: 'off'
+        id: tank_done
+      - platform: state
+        entity_id: helper_luftentfeuchter_partyraum_target_humidity
+        id: target_humidity_changed
+    condition: []
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: tank_action_required
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.reminder_tank_luftentfeuchter_partyraum
+          - service: notify.telegram_jo
+            data:
+              message: 'Tank Luftentfeuchter Partyraum ist voll'
+        - conditions:
+          - condition: trigger
+            id: tank_done
+          sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.reminder_tank_luftentfeuchter_partyraum
+        - conditions:
+          - condition: trigger
+            id: target_humidity_changed
+          sequence:
+          - service: humidifier.set_humidity
+            data:
+              humidity: >
+                {% set backup_humidity = state_attr('humidifier.luftentfeuchter_partyraum','saved_humidity') %}
+                {{ trigger.to_state_state | float(backup_humidity) }}
+              entity_id: humidifier.luftentfeuchter_partyraum
+        default: []
+  - id: '1e82680b-afd9-4955-9919-e7bf88ca49c6'
+    alias: Luftbefeucher Wohnzimmer Erweiterungen
+    description: ''
+    mode: queued
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.template_tank_luftbefeuchter_wz_leer
+        to: 'on'
+        id: tank_action_required
+      - platform: state
+        entity_id: binary_sensor.template_tank_luftbefeuchter_wz_leer
         to: 'off'
         id: tank_done
     condition: []
@@ -91,11 +292,15 @@ automation:
           sequence:
           - service: input_boolean.turn_on
             target:
-              entity_id: input_boolean.reminder_tank_luftentfeuchter_waschkuche
+              entity_id: input_boolean.reminder_tank_luftbefeuchter_wz
+          - service: notify.telegram_jo
+            data:
+              message: 'Luftbefeuchter Wohnzimmer ist leer'
         - conditions:
           - condition: trigger
             id: tank_done
           sequence:
           - service: input_boolean.turn_off
             target:
-              entity_id: input_boolean.reminder_tank_luftentfeuchter_waschkuche
+              entity_id: input_boolean.reminder_tank_luftbefeuchter_wz
+        default: []

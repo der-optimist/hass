@@ -1,7 +1,7 @@
 - name: Luftentfeuchter Waschküche
   humidifier: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
   target_sensor: sensor.luftfeuchtigkeit_waschkuche
-  target_humidity: 52
+  target_humidity: 50
   dry_tolerance: 3
   wet_tolerance: 3
   device_class: "dehumidifier"
@@ -13,7 +13,7 @@
 - name: Luftentfeuchter Partyraum
   humidifier: switch.esp_sd_6_relais
   target_sensor: sensor.luftfeuchtigkeit_partyraum
-  target_humidity: 62
+  target_humidity: 60
   dry_tolerance: 2
   wet_tolerance: 1
   device_class: "dehumidifier"
