@@ -30,9 +30,6 @@ default_config:
 api:
 
 automation: !include automations.yaml
-#automation:
-
-#battery_sim: !include config_battery_sim.yaml
 
 binary_sensor: !include binary_sensors.yaml
 
@@ -135,8 +132,6 @@ switch: !include switch.yaml
 system_log:
   max_entries: 100
   fire_event: true
-
-#waste_collection_schedule: !include config_waste_collection_schedule.yaml
 
 weather:
 

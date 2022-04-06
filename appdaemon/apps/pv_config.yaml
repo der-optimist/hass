@@ -2,7 +2,7 @@ pv:
   module: pv
   class: pv
   dependencies: global_vars
-  # daily counter values => daily production
+  # daily counter values => daily production 
   # produced
   sensor_name_counter_pv_produced_midnight: "sensor.counter_pv_produced_midnight"
   counter_entity_pv_produced: "sensor.stromzaehler_pv_ac_gesamt"

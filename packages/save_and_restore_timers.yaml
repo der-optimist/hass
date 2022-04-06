@@ -24,6 +24,8 @@ timer:
     duration: "00:01:00"
   special_humidity_waschkueche:
     duration: "04:00:00"
+  minimum_time_water_heater_boost:
+    duration: "01:00:00"
 
 automation:
   - alias: 'Timers Save'
@@ -38,6 +40,7 @@ automation:
       - timer.dryer_reminder
       - timer.water_valve_weekly
       - timer.special_humidity_waschkueche
+      - timer.minimum_time_water_heater_boost
     action:
     - variables:
         timers:
@@ -48,6 +51,7 @@ automation:
         - timer.dryer_reminder
         - timer.water_valve_weekly
         - timer.special_humidity_waschkueche
+        - timer.minimum_time_water_heater_boost
         modes:
         - active
         - paused

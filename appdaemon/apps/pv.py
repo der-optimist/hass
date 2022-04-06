@@ -6,7 +6,7 @@ from influxdb import InfluxDBClient
 # What it does:
 #   - 
 # What args it needs:
-#   - 
+#   -  
 #  
 
 class pv(hass.Hass):

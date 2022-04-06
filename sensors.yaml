@@ -912,22 +912,6 @@
 #
 # --------------------------------
 # --                            --
-# --          Froinius          --
-# --                            --
-# --------------------------------
-#
-#  - platform: fronius_inverter
-#    ip_address: 192.168.178.28
-#    name: FroniusCustom
-#    powerflow: True
-#    smartmeter: True
-#    model: gen24
-#    scan_interval: 20
-#    units: kWh
-#
-#
-# --------------------------------
-# --                            --
 # --          solcast           --
 # --                            --
 # --------------------------------
@@ -939,7 +923,7 @@
       - "forecasts"
     name: 'solcast forecast REST'
     unit_of_measurement: "kW"
-    scan_interval: 10800
+    scan_interval: 3600
 #
 # --------------------------------
 # --                            --
