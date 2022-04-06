@@ -151,3 +151,13 @@ template:
           {{ ns.fc_next24|round(2) }}
         unit_of_measurement: 'kW'
         device_class: power
+        ##################
+        # Heizung
+        ##################
+      - name: "Stunden bis Warmwasser heizen"
+        unique_id: stunden_bis_warmwasser_heizen
+        state: >
+          {% set water_temp_heating_will_start = 42 %}
+          {% set temp_loss_per_hour = 0.3 %}
+          {{ (((states('sensor.water_heater_current_temp') | float(water_temp_heating_will_start)) - water_temp_heating_will_start) / temp_loss_per_hour) | round(0) }}
+        unit_of_measurement: 'hours'
