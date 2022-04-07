@@ -30,6 +30,9 @@ default_config:
 api:
 
 automation: !include automations.yaml
+# for your automations with secrets
+automation secret: !include secret_automations.yaml
+
 
 binary_sensor: !include binary_sensors.yaml
 

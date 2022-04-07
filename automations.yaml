@@ -1263,25 +1263,6 @@
       default: []
 #
 ###############################################
-#####        Download Meteogram           #####
-###############################################
-- id: '4461323f-ee9a-423e-8819-61efb3f9357d'
-  alias: Download Meteogram
-  description: ''
-  mode: queued
-  trigger:
-    - platform: time
-      at: "04:04:20"
-  condition: []
-  action:
-    - service: downloader.download_file
-      data:
-        subdir: meteograms
-        url: !secret url_meteogram
-        filename: meteogram.png
-        overwrite: true
-#
-###############################################
 #####      Notify KNX unavailable         #####
 ###############################################
 - id: '61987d8a-44d0-4def-8580-b9acfc7f23ab'
