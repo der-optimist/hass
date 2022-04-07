@@ -947,6 +947,11 @@
     headers:
       Authorization: !secret calendar_api_token
     value_template: "{{ value_json[0].summary }}"
+    json_attributes:
+      - 0
+      - 1
+      - 2
+      - 3
     scan_interval: 180
   - platform: rest
     name: Geburtstage Google 1 Name
@@ -954,6 +959,11 @@
     headers:
       Authorization: !secret calendar_api_token
     value_template: "{{ value_json[1].summary }}"
+    json_attributes:
+      - [0]
+      - [1]
+      - [2]
+      - [3]
     scan_interval: 180
   - platform: rest
     name: Geburtstage Google 2 Name
