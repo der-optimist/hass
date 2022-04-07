@@ -1548,3 +1548,53 @@
         - service: notify.telegram_ma
           data:
             message: 'Waschmaschine hat (wieder) Strom, Wasser ist wieder an'
+#
+###############################################
+#####        Handyladesteckdose Ma        #####
+###############################################
+- id: 'b83e5ea9-341a-4c26-969f-664cf1db6690'
+  alias: Handyladesteckdose Ma
+  description: ''
+  mode: queued
+  trigger:
+    - platform: time
+      at: "12:02:01"
+      id: turn_on
+    - platform: time
+      at: "18:02:01"
+      id: turn_on
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: turn_on
+        sequence:
+        - service: switch.turn_on
+          target:
+            entity_id: switch.shellyswitch25_10521c45de0b_relay_0
+#
+###############################################
+#####        Handyladesteckdose Jo        #####
+###############################################
+- id: 'b75d2a08-4740-4a26-bf8b-260c296393ae'
+  alias: Handyladesteckdose Jo
+  description: ''
+  mode: queued
+  trigger:
+    - platform: time
+      at: "12:02:02"
+      id: turn_on
+    - platform: time
+      at: "18:02:02"
+      id: turn_on
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: turn_on
+        sequence:
+        - service: switch.turn_on
+          target:
+            entity_id: switch.shellyswitch25_10521c45de0b_relay_1
