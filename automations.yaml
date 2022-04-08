@@ -1589,11 +1589,11 @@
   mode: queued
   trigger:
     - platform: numeric_state
-      entity_id: sensor.helligkeit_wetterstation
+      entity_id: sensor.helligkeit_wetterstation_ersatz
       below: 4000
       id: down
     - platform: numeric_state
-      entity_id: sensor.helligkeit_wetterstation
+      entity_id: sensor.helligkeit_wetterstation_ersatz
       below: 800
       id: down
     - platform: time
@@ -1615,7 +1615,7 @@
             entity_id: cover.jalousie_schlafzimmer
         - service: cover.set_cover_tilt_position
           data:
-            position: 100
+            tilt_position: 100
           target:
             entity_id: cover.jalousie_schlafzimmer
 #
@@ -1628,12 +1628,17 @@
   mode: queued
   trigger:
     - platform: numeric_state
-      entity_id: sensor.helligkeit_wetterstation
+      entity_id: sensor.helligkeit_wetterstation_ersatz
       below: 700
       id: down
     - platform: time
       at: "18:30:00"
       id: down
+    - platform: state
+      entity_id: switch.bad_og_nachtmodus
+      from: 'on'
+      to: 'off'
+      id: morning
   condition: []
   action:
     - choose:
@@ -1650,6 +1655,62 @@
             entity_id: cover.jalousie_bad_og
         - service: cover.set_cover_tilt_position
           data:
-            position: 17
+            tilt_position: 17
           target:
             entity_id: cover.jalousie_bad_og
+      - conditions:
+        - condition: trigger
+          id: morning
+        - condition: time
+          after: "04:00:00"
+          before: "11:00:00"
+        sequence:
+        - service: cover.set_cover_tilt_position
+          data:
+            tilt_position: 17
+          target:
+            entity_id: cover.jalousie_bad_og
+#
+###############################################
+#####       Jalousien Wohnbereich         #####
+###############################################
+- id: '5ea0b2bd-54bb-4e6c-8ff4-e0ec26e5e7d6'
+  alias: Jalousien Wohnbereich
+  description: ''
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.nachtmodus_wohnbereich_jalousie
+      from: 'on'
+      to: 'off'
+      id: morning
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: morning
+        - condition: time
+          after: "04:00:00"
+          before: "11:00:00"
+        sequence:
+        - service: cover.set_cover_tilt_position
+          data:
+            tilt_position: 80
+          target:
+            entity_id: cover.jalousie_kuche
+        - service: cover.set_cover_tilt_position
+          data:
+            tilt_position: 80
+          target:
+            entity_id: cover.jalousie_hst
+        - service: cover.set_cover_tilt_position
+          data:
+            tilt_position: 80
+          target:
+            entity_id: cover.jalousie_wz_bodentiefes
+        - service: cover.set_cover_tilt_position
+          data:
+            tilt_position: 80
+          target:
+            entity_id: cover.jalousie_wz_couch
