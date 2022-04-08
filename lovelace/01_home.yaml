@@ -242,7 +242,7 @@ cards:
             {%- set mapper = {0:'"#eeeeee"',1:'"#F2DB06"',2:'"#FB8D00"',3:'"#F9413D"',4:'"#F300FF"'} %}
             {% set ns = namespace(first=true) %}
             {%- for sensor in states.sensor %}
-              {%- if 'sensor.dwd_warn' in sensor.entity_id and sensor.state != "off" %}
+              {%- if 'sensor.dwd_warnung' in sensor.entity_id and sensor.state != "off" %}
                 {%- set danger = sensor.attributes["Gefahr (0-4)"] %}
                 {% if ns.first  == false %}
             ----------------------------------------
@@ -268,7 +268,7 @@ cards:
             {%- endfor %}
         filter:
           include:
-            - entity_id: "sensor.dwd_warn*"
+            - entity_id: "sensor.dwd_warnung*"
           exclude:
             - state: "off"
       - type: custom:auto-entities
