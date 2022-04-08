@@ -1579,3 +1579,77 @@
         - service: switch.turn_on
           target:
             entity_id: switch.shellyswitch25_10521c45de0b_relay_1
+#
+###############################################
+#####        Jalousie Schlafzimmer        #####
+###############################################
+- id: 'd19e392f-7525-49c9-8463-7b36baf387af'
+  alias: Jalousie Schlafzimmer
+  description: ''
+  mode: queued
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.helligkeit_wetterstation
+      below: 4000
+      id: down
+    - platform: numeric_state
+      entity_id: sensor.helligkeit_wetterstation
+      below: 800
+      id: down
+    - platform: time
+      at: "21:30:00"
+      id: down
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: down
+        - condition: time
+          after: "15:00:00"
+        sequence:
+        - service: cover.set_cover_position
+          data:
+            position: 100
+          target:
+            entity_id: cover.jalousie_schlafzimmer
+        - service: cover.set_cover_tilt_position
+          data:
+            position: 100
+          target:
+            entity_id: cover.jalousie_schlafzimmer
+#
+###############################################
+#####           Jalousie Bad OG           #####
+###############################################
+- id: '951576c5-9445-4787-858e-ab3679812971'
+  alias: Jalousie Bad OG
+  description: ''
+  mode: queued
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.helligkeit_wetterstation
+      below: 700
+      id: down
+    - platform: time
+      at: "18:30:00"
+      id: down
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: down
+        - condition: time
+          after: "15:00:00"
+        sequence:
+        - service: cover.set_cover_position
+          data:
+            position: 100
+          target:
+            entity_id: cover.jalousie_bad_og
+        - service: cover.set_cover_tilt_position
+          data:
+            position: 17
+          target:
+            entity_id: cover.jalousie_bad_og
