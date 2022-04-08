@@ -963,7 +963,7 @@
   - platform: rest
     name: dwd_warnings_raw
     resource: !secret url_dwd_warnings
-    value_template: "{{ OK }}"
+    value_template: "OK"
     scan_interval: 180
     json_attributes:
     - member
