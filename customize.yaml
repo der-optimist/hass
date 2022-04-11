@@ -159,3 +159,11 @@ input_boolean.reminder_tank_luftentfeuchter_partyraum:
   entity_picture: '/local/icons/reminders/drop_blue_blink.svg'
 input_boolean.reminder_tank_luftbefeuchter_wz:
   entity_picture: '/local/icons/reminders/drop_blue_blink.svg'
+input_boolean.reminder_restmuelltonne:
+  entity_picture: '/local/icons/garbage/tonne_grau_blink.svg'
+input_boolean.reminder_biotonne:
+  entity_picture: '/local/icons/garbage/tonne_braun_blink.svg'
+input_boolean.reminder_papiertonne:
+  entity_picture: '/local/icons/garbage/tonne_blau_blink.svg'
+input_boolean.reminder_gelbe_tonne:
+  entity_picture: '/local/icons/garbage/tonne_gelb_blink.svg'

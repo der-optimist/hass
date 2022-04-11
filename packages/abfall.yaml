@@ -1,0 +1,205 @@
+template: 
+  - sensor:
+      - unique_id: abfall_naechste_restmuelltonne_template
+        # name: change entity_id in UI after creation
+        state: >
+          {% set day_dt = as_datetime(state_attr('calendar.restmuelltonne','end_time')) %}
+          {% set day_ts = as_timestamp(day_dt) %}
+          {% set today_ts = as_timestamp(today_at("00:00")) %}
+          {% set please_update_my_template_regularly = now() %}
+          {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
+          {% set day = {"Mon":"Mo", "Tue":"Di", "Wed":"Mi", "Thu":"Do", "Fri":"Fr", "Sat":"Sa", "Sun":"So"} %}
+          {% if daysTo == 0 %}
+            heute
+          {% elif daysTo == 1 %}
+            morgen
+          {% else %}
+            {{day[day_dt.strftime("%a")]}}. {{day_dt.strftime("%d.%m.")}} ({{daysTo}} T.)
+          {% endif %}
+        attributes:
+          friendly_name: "Restmüll"
+          entity_picture: "/local/icons/garbage/tonne_grau.svg"
+          daysTo: >
+            {% set day_dt = as_datetime(state_attr('calendar.restmuelltonne','end_time')) %}
+            {% set day_ts = as_timestamp(day_dt) %}
+            {% set today_ts = as_timestamp(today_at("00:00")) %}
+            {% set please_update_my_template_regularly = now() %}
+            {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
+            {{daysTo}}
+      - unique_id: abfall_naechste_biotonne_template
+        # name: change entity_id in UI after creation
+        state: >
+          {% set day_dt = as_datetime(state_attr('calendar.biotonne','end_time')) %}
+          {% set day_ts = as_timestamp(day_dt) %}
+          {% set today_ts = as_timestamp(today_at("00:00")) %}
+          {% set please_update_my_template_regularly = now() %}
+          {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
+          {% set day = {"Mon":"Mo", "Tue":"Di", "Wed":"Mi", "Thu":"Do", "Fri":"Fr", "Sat":"Sa", "Sun":"So"} %}
+          {% if daysTo == 0 %}
+            heute
+          {% elif daysTo == 1 %}
+            morgen
+          {% else %}
+            {{day[day_dt.strftime("%a")]}}. {{day_dt.strftime("%d.%m.")}} ({{daysTo}} T.)
+          {% endif %}
+        attributes:
+          friendly_name: "Biotonne"
+          entity_picture: "/local/icons/garbage/tonne_braun.svg"
+          daysTo: >
+            {% set day_dt = as_datetime(state_attr('calendar.biotonne','end_time')) %}
+            {% set day_ts = as_timestamp(day_dt) %}
+            {% set today_ts = as_timestamp(today_at("00:00")) %}
+            {% set please_update_my_template_regularly = now() %}
+            {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
+            {{daysTo}}
+      - unique_id: abfall_naechste_papiertonne_template
+        # name: change entity_id in UI after creation
+        state: >
+          {% set day_dt = as_datetime(state_attr('calendar.papiertonne','end_time')) %}
+          {% set day_ts = as_timestamp(day_dt) %}
+          {% set today_ts = as_timestamp(today_at("00:00")) %}
+          {% set please_update_my_template_regularly = now() %}
+          {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
+          {% set day = {"Mon":"Mo", "Tue":"Di", "Wed":"Mi", "Thu":"Do", "Fri":"Fr", "Sat":"Sa", "Sun":"So"} %}
+          {% if daysTo == 0 %}
+            heute
+          {% elif daysTo == 1 %}
+            morgen
+          {% else %}
+            {{day[day_dt.strftime("%a")]}}. {{day_dt.strftime("%d.%m.")}} ({{daysTo}} T.)
+          {% endif %}
+        attributes:
+          friendly_name: "Papiertonne"
+          entity_picture: "/local/icons/garbage/tonne_blau.svg"
+          daysTo: >
+            {% set day_dt = as_datetime(state_attr('calendar.papiertonne','end_time')) %}
+            {% set day_ts = as_timestamp(day_dt) %}
+            {% set today_ts = as_timestamp(today_at("00:00")) %}
+            {% set please_update_my_template_regularly = now() %}
+            {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
+            {{daysTo}}
+      - unique_id: abfall_naechste_gelbe_tonne_template
+        # name: change entity_id in UI after creation
+        state: >
+          {% set day_dt = as_datetime(state_attr('calendar.gelbe_tonne','end_time')) %}
+          {% set day_ts = as_timestamp(day_dt) %}
+          {% set today_ts = as_timestamp(today_at("00:00")) %}
+          {% set please_update_my_template_regularly = now() %}
+          {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
+          {% set day = {"Mon":"Mo", "Tue":"Di", "Wed":"Mi", "Thu":"Do", "Fri":"Fr", "Sat":"Sa", "Sun":"So"} %}
+          {% if daysTo == 0 %}
+            heute
+          {% elif daysTo == 1 %}
+            morgen
+          {% else %}
+            {{day[day_dt.strftime("%a")]}}. {{day_dt.strftime("%d.%m.")}} ({{daysTo}} T.)
+          {% endif %}
+        attributes:
+          friendly_name: "Gelbe Tonne"
+          entity_picture: "/local/icons/garbage/tonne_gelb.svg"
+          daysTo: >
+            {% set day_dt = as_datetime(state_attr('calendar.gelbe_tonne','end_time')) %}
+            {% set day_ts = as_timestamp(day_dt) %}
+            {% set today_ts = as_timestamp(today_at("00:00")) %}
+            {% set please_update_my_template_regularly = now() %}
+            {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
+            {{daysTo}}
+
+
+input_boolean:
+  reminder_restmuelltonne:
+    name: Restmülltonne raus
+  reminder_biotonne:
+    name: Biotonne raus
+  reminder_papiertonne:
+    name: Papiertonne raus
+  reminder_gelbe_tonne:
+    name: Gelbe Tonne raus
+
+automation:
+  - id: '82bf65a7-046e-4b8e-a1a1-86decabb601c'
+    alias: Abfall-Erinnerung
+    description: ''
+    mode: queued
+    trigger:
+      - platform: time
+        at: "17:00:00"
+        id: check
+      - platform: time
+        at: "15:00:00"
+        id: reset
+    condition: []
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: check
+          sequence:
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: >
+                  {{ is_state_attr('sensor.abfall_naechste_restmuelltonne_template', 'daysTo', 1) }}
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.reminder_restmuelltonne
+              - service: notify.telegram_jo
+                data:
+                  message: 'Morgen ist Restmüll'
+            default: []
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: >
+                  {{ is_state_attr('sensor.abfall_naechste_biotonne_template', 'daysTo', 1) }}
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.reminder_biotonne
+              - service: notify.telegram_jo
+                data:
+                  message: 'Morgen ist Biotonne'
+            default: []
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: >
+                  {{ is_state_attr('sensor.abfall_naechste_papiertonne_template', 'daysTo', 1) }}
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.reminder_papiertonne
+              - service: notify.telegram_jo
+                data:
+                  message: 'Morgen ist Papiertonne'
+            default: []
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: >
+                  {{ is_state_attr('sensor.abfall_naechste_gelbe_tonne_template', 'daysTo', 1) }}
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.reminder_gelbe_tonne
+              - service: notify.telegram_jo
+                data:
+                  message: 'Morgen ist Gelbe Tonne'
+            default: []
+        - conditions:
+          - condition: trigger
+            id: reset
+          sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.reminder_restmuelltonne
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.reminder_biotonne
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.reminder_papiertonne
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.reminder_gelbe_tonne
