@@ -15,6 +15,14 @@
       - name: storung_heizaktor_eg_notify
         state: '{{ states("binary_sensor.storung_heizaktor_eg") }}'
         device_class: problem
+  - trigger:
+      - platform: time_pattern
+        minutes: "/2"
+    sensor:
+      - name: windgeschwindigkeit_wetterstation_kmh
+        state: '{{ (states("sensor.windgeschwindigkeit_wetterstation_max") | float(0)) * 3.6 }}'
+        unit_of_measurement: 'km/h'
+        icon: mdi:weather-windy
 #
 # State based
   - sensor:
