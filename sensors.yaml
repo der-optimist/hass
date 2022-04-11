@@ -960,15 +960,6 @@
         nothing___nothing___nothing___nothing___nothing___nothing___nothing___nothing
       {% endif %}
     scan_interval: 180
-  - platform: rest
-    name: dwd_warnings_raw
-    resource: !secret url_dwd_warnings
-    value_template: "OK"
-    scan_interval: 180
-    json_attributes:
-    - member
-    - converted
-    - "wfs:featurecollection"
 #  - platform: rest
 #    name: Geburtstage Google 1 Name
 #    resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
@@ -1037,3 +1028,12 @@
     command: "cat /sys/class/thermal/thermal_zone0/temp"
     unit_of_measurement: "°C"
     value_template: '{{ value | multiply(0.001) | round(1) }}'
+#
+# --------------------------------
+# --                            --
+# --         DWD Warn           --
+# --                            --
+# --------------------------------
+#
+  - platform: dwd_weather_warnings
+    region_name: !secret dwd_warncell_id_int
