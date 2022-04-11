@@ -19,7 +19,8 @@
       - platform: time_pattern
         minutes: "/2"
     sensor:
-      - name: windgeschwindigkeit_wetterstation_kmh
+      - name: Windgeschwindigkeit Wetterstation kmh
+        unique_id: 8d32a615-e6f2-423c-9fb1-987b2c7a72e2
         state: '{{ (states("sensor.windgeschwindigkeit_wetterstation_max") | float(0)) * 3.6 }}'
         unit_of_measurement: 'km/h'
         icon: mdi:weather-windy
