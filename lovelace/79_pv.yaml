@@ -59,6 +59,45 @@ cards:
       - sensor.strompreis_effektiv_letzte_3_minuten
       - switch.pv_heizung_1
   - type: custom:apexcharts-card
+    graph_span: 36h
+    span:
+      start: day
+      offset: '-6h'
+    header:
+      show: true
+      title: Solar Production vs. forecast
+      show_states: true
+    now:
+      show: true
+      label: now
+    apex_config:
+      legend:
+        show: false
+    series:
+      - entity: sensor.el_leistung_pv_ac
+        name: Actual
+        unit: W
+        fill_raw: last
+        extend_to_end: false
+        group_by:
+          func: avg
+          duration: 30min
+      - entity: sensor.solcast_forecast_average_30min
+        name: Forecast
+        unit: W
+        fill_raw: last
+        extend_to_end: false
+      - entity: sensor.solcast_forecast_data
+        type: line
+        extend_to_end: false
+        unit: W
+        show:
+          in_header: false
+        data_generator: |
+          return entity.attributes.forecasts.map((entry) => {
+            return [new Date(entry.period_end), entry.pv_estimate*1000];
+          });
+  - type: custom:apexcharts-card
     experimental:
       color_threshold: true
     graph_span: 48h
