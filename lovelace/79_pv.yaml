@@ -66,7 +66,7 @@ cards:
     experimental:
       color_threshold: true
     update_interval: 5min
-    pex_config:
+    apex_config:
       yaxis:
         min: 0
         max: 10000
@@ -113,10 +113,6 @@ cards:
         unit: W
         show:
           in_header: false
-        data_generator: |
-          return entity.attributes.forecasts.map((entry) => {
-            return [new Date(entry.period_end), entry.pv_estimate*1000];
-          });
         color_threshold:
           - value: 0
             color: gray
@@ -128,6 +124,10 @@ cards:
             color: darkorange
           - value: 6852
             color: lime
+        data_generator: |
+          return entity.attributes.forecasts.map((entry) => {
+            return [new Date(entry.period_end), entry.pv_estimate*1000];
+          });
   - type: custom:apexcharts-card
     experimental:
       color_threshold: true
