@@ -22,5 +22,4 @@ exclude:
     - sensor.pv_einspeisung_letzte_3_min_durchschnitt
   event_types:
     - call_service
-    - state_changed
 purge_keep_days: 3
