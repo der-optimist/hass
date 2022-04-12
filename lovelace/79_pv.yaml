@@ -87,7 +87,7 @@ cards:
         unit: W
         fill_raw: last
         extend_to_end: false
-      - entity: sensor.solcast_forecast_data
+      - entity: sensor.solcast_forecast_rest
         type: line
         extend_to_end: false
         unit: W
