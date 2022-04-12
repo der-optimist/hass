@@ -82,7 +82,7 @@ cards:
         group_by:
           func: avg
           duration: 30min
-      - entity: sensor.solcast_forecast_average_30min
+      - entity: sensor.solcast_forecast_average_30_min
         name: Forecast
         unit: W
         fill_raw: last
