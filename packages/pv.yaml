@@ -3,6 +3,11 @@ template:
         ##################
         # Solcast sensors
         ##################
+      - unique_id: solcast_forecast_average_30min
+        name: "Solcast Forecast Average 30 min"
+        unit_of_measurement: 'W'
+        state: >
+          {{ state_attr('sensor.solcast_forecast_rest', 'forecasts')[0].pv_estimate|default('variable is not defined')| round(2) *1000 }}
 #      - name: "Solcast Forecast Energy day 0"
 #        unique_id: solcast_forecast_energy_day_0
 #        unit_of_measurement: "kWh"
