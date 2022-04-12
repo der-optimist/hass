@@ -59,10 +59,10 @@ cards:
       - sensor.strompreis_effektiv_letzte_3_minuten
       - switch.pv_heizung_1
   - type: custom:apexcharts-card
-    graph_span: 36h
+    graph_span: 48h
     span:
       start: day
-      offset: '-6h'
+#      offset: '-6h'
     header:
       show: true
       title: Solar Production vs. forecast
