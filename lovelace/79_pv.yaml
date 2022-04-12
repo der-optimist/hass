@@ -63,30 +63,50 @@ cards:
     span:
       start: day
 #      offset: '-6h'
+    experimental:
+      color_threshold: true
+    update_interval: 5min
+    pex_config:
+      yaxis:
+        min: 0
+        max: 10000
+        tickAmount: 5
     header:
       show: true
       title: Solar Production vs. forecast
       show_states: true
     now:
       show: true
-      label: now
+      label: jetzt
     apex_config:
       legend:
         show: false
     series:
       - entity: sensor.el_leistung_pv_ac
-        name: Actual
+        name: Aktuell
         unit: W
         fill_raw: last
         extend_to_end: false
         group_by:
           func: avg
           duration: 30min
+        color_threshold:
+          - value: 0
+            color: gray
+          - value: 1500
+            color: gray
+          - value: 2000
+            color: darkorange
+          - value: 6552
+            color: darkorange
+          - value: 6852
+            color: lime
       - entity: sensor.solcast_forecast_average_30_min
-        name: Forecast
+        name: Vorhersage
         unit: W
         fill_raw: last
         extend_to_end: false
+        color: grey
       - entity: sensor.solcast_forecast_rest
         type: line
         extend_to_end: false
@@ -97,6 +117,17 @@ cards:
           return entity.attributes.forecasts.map((entry) => {
             return [new Date(entry.period_end), entry.pv_estimate*1000];
           });
+        color_threshold:
+          - value: 0
+            color: gray
+          - value: 1500
+            color: gray
+          - value: 2000
+            color: darkorange
+          - value: 6552
+            color: darkorange
+          - value: 6852
+            color: lime
   - type: custom:apexcharts-card
     experimental:
       color_threshold: true
