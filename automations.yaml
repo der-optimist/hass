@@ -1714,3 +1714,127 @@
             tilt_position: 80
           target:
             entity_id: cover.jalousie_wz_couch
+#
+###############################################
+#####              Gewitter               #####
+###############################################
+- id: '96ca5912-cf4c-4b2e-bd03-fa7932fceb9e'
+  alias: Gewitter
+  description: ''
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: input_boolean.gewitter
+      from: 'off'
+      to: 'on'
+      id: gewitter_start
+    - platform: state
+      entity_id: input_boolean.gewitter
+      from: 'on'
+      to: 'off'
+      id: gewitter_ende
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: gewitter_start
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Gewitter! Ich nehme TV, Mixi, Lüftung, Waschmaschine und Trockner jetzt den Strom'
+        - service: notify.telegram_ma
+          data:
+            message: 'Gewitter! Ich nehme TV, Mixi, Lüftung, Waschmaschine und Trockner jetzt den Strom'
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: binary_sensor.tv_ist_an
+              state: 'on'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: 'TV ist wohl grad an. Den lasse ich an'
+            - service: notify.telegram_ma
+              data:
+                message: 'TV ist wohl grad an. Den lasse ich an'
+          default: 
+          - service: switch.turn_off
+            target:
+              entity_id: switch.tv
+        - choose:
+          - conditions:
+            - condition: numeric_state
+              entity_id: sensor.el_leistung_mixi
+              above: 5
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: 'Mixi ist wohl grad an. Den lasse ich an'
+            - service: notify.telegram_ma
+              data:
+                message: 'Mixi ist wohl grad an. Den lasse ich an'
+          default: 
+          - service: switch.turn_off
+            target:
+              entity_id: switch.mixi
+        - choose:
+          - conditions:
+            - condition: numeric_state
+              entity_id: sensor.el_leistung_waschmaschine
+              above: 12
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: 'Waschmaschine ist wohl grad an. Die lasse ich an'
+            - service: notify.telegram_ma
+              data:
+                message: 'Waschmaschine ist wohl grad an. Die lasse ich an'
+          default: 
+          - service: switch.turn_off
+            target:
+              entity_id: switch.waschmaschine
+        - choose:
+          - conditions:
+            - condition: numeric_state
+              entity_id: sensor.el_leistung_trockner
+              above: 4
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: 'Trockner läuft wohl gerade. Den lasse ich an'
+            - service: notify.telegram_ma
+              data:
+                message: 'Trockner läuft wohl gerade. Den lasse ich an'
+          default: 
+          - service: switch.turn_off
+            target:
+              entity_id: switch.trockner
+        - service: switch.turn_off
+          target:
+            entity_id: switch.luftungsanlage
+      - conditions:
+        - condition: trigger
+          id: gewitter_ende
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Gewitter ist wohl vorbei, gut. Ich geb TV, Mixi, Lüftung, Waschmaschine und Trockner jetzt wieder Strom'
+        - service: notify.telegram_ma
+          data:
+            message: 'Gewitter ist wohl vorbei, gut. Ich geb TV, Mixi, Lüftung, Waschmaschine und Trockner jetzt wieder Strom'
+        - service: switch.turn_on
+          target:
+            entity_id: switch.luftungsanlage
+        - service: switch.turn_on
+          target:
+            entity_id: switch.trockner
+        - service: switch.turn_on
+          target:
+            entity_id: switch.waschmaschine
+        - service: switch.turn_on
+          target:
+            entity_id: switch.mixi
+        - service: switch.turn_on
+          target:
+            entity_id: switch.tv
