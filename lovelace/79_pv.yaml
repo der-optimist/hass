@@ -131,71 +131,73 @@ cards:
           return entity.attributes.forecasts.map((entry) => {
             return [new Date(entry.period_end), entry.pv_estimate*1000];
           });
-  - type: custom:apexcharts-card
-    graph_span: 72h
-    span:
-      start: day
-    experimental:
-      color_threshold: true
-    update_interval: 5min
-    apex_config:
-      yaxis:
-        min: 0
-        max: 10000
-        tickAmount: 5
-    header:
-      show: true
-      title: PV-Vorhersage
-      show_states: false
-    now:
-      show: true
-      label: jetzt
-    apex_config:
-      legend:
-        show: false
-    series:
-      - entity: sensor.el_leistung_pv_ac
-        name: Aktuell
-        unit: W
-        float_precision: 0
-        fill_raw: last
-        extend_to_end: false
-        group_by:
-          func: avg
-          duration: 30min
-        color_threshold:
-          - value: 0
-            color: gray
-          - value: 1500
-            color: gray
-          - value: 2000
-            color: darkorange
-          - value: 6552
-            color: darkorange
-          - value: 6852
-            color: lime
-      - entity: sensor.solcast_forecast_rest
-        type: line
-        extend_to_end: false
-        unit: W
-        float_precision: 0
-        show:
-          in_header: false
-        color_threshold:
-          - value: 0
-            color: gray
-          - value: 1500
-            color: gray
-          - value: 2000
-            color: darkorange
-          - value: 6552
-            color: darkorange
-          - value: 6852
-            color: lime
-        data_generator: |
-          return entity.attributes.forecasts.map((entry) => {
-            return [new Date(entry.period_end), entry.pv_estimate*1000];
-          });
+  - type: entities
+    title: PV-Vorhersage
+    show_header_toggle: false
+    entities:
+      - type: custom:apexcharts-card
+        graph_span: 72h
+        span:
+          start: day
+        experimental:
+          color_threshold: true
+        update_interval: 5min
+        apex_config:
+          yaxis:
+            min: 0
+            max: 10000
+            tickAmount: 5
+        header:
+          show: false
+        now:
+          show: true
+          label: jetzt
+        apex_config:
+          legend:
+            show: false
+        series:
+          - entity: sensor.el_leistung_pv_ac
+            name: Aktuell
+            unit: W
+            float_precision: 0
+            fill_raw: last
+            extend_to_end: false
+            group_by:
+              func: avg
+              duration: 30min
+            color_threshold:
+              - value: 0
+                color: gray
+              - value: 1500
+                color: gray
+              - value: 2000
+                color: darkorange
+              - value: 6552
+                color: darkorange
+              - value: 6852
+                color: lime
+          - entity: sensor.solcast_forecast_rest
+            type: line
+            extend_to_end: false
+            unit: W
+            float_precision: 0
+            show:
+              in_header: false
+            color_threshold:
+              - value: 0
+                color: gray
+              - value: 1500
+                color: gray
+              - value: 2000
+                color: darkorange
+              - value: 6552
+                color: darkorange
+              - value: 6852
+                color: lime
+            data_generator: |
+              return entity.attributes.forecasts.map((entry) => {
+                return [new Date(entry.period_end), entry.pv_estimate*1000];
+              });
   - type: custom:apexcharts-card
     graph_span: 5d
     update_interval: 15min
