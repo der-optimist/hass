@@ -144,7 +144,9 @@ cards:
         max: 10000
         tickAmount: 5
     header:
-      show: false
+      show: true
+      title: PV-Vorhersage
+      show_states: false
     now:
       show: true
       label: jetzt
