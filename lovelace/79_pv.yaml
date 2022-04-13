@@ -132,7 +132,7 @@ cards:
             return [new Date(entry.period_end), entry.pv_estimate*1000];
           });
   - type: custom:apexcharts-card
-    graph_span: 48h
+    graph_span: 72h
     span:
       start: day
     experimental:
