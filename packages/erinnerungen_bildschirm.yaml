@@ -1,0 +1,38 @@
+rest:
+  - resource_template: 'http://localhost:8123/api/calendars/calendar.erinnerungen_bildschirm?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(minutes = 1)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
+    headers:
+      Authorization: !secret calendar_api_token
+    scan_interval: 180
+    sensor:
+      - name: Erinnerungen Bildschirm 0
+        value_template: >
+          {% set len = (value_json | count) %}
+          {% if len > 0 %}
+            {{ value_json[0].summary }}___{{ value_json[0].start.dateTime }}___{{ value_json[0].etag }}
+          {% else %}
+            no_event
+          {% endif %}
+      - name: Erinnerungen Bildschirm 1
+        value_template: >
+          {% set len = (value_json | count) %}
+          {% if len > 1 %}
+            {{ value_json[1].summary }}___{{ value_json[1].start.dateTime }}___{{ value_json[1].etag }}
+          {% else %}
+            no_event
+          {% endif %}
+      - name: Erinnerungen Bildschirm 2
+        value_template: >
+          {% set len = (value_json | count) %}
+          {% if len > 2 %}
+            {{ value_json[2].summary }}___{{ value_json[2].start.dateTime }}___{{ value_json[2].etag }}
+          {% else %}
+            no_event
+          {% endif %}
+      - name: Erinnerungen Bildschirm 3
+        value_template: >
+          {% set len = (value_json | count) %}
+          {% if len > 3 %}
+            {{ value_json[3].summary }}___{{ value_json[3].start.dateTime }}___{{ value_json[3].etag }}
+          {% else %}
+            no_event
+          {% endif %}
