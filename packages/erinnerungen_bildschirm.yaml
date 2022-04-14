@@ -1,3 +1,7 @@
+# Limitations:
+# - Up to 4 calendar events at the same time
+# - Up to 10 active reminders (input_booleans with state "on")
+#
 rest:
   - resource_template: 'http://localhost:8123/api/calendars/calendar.erinnerungen_bildschirm?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(minutes = 1)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
     headers:
