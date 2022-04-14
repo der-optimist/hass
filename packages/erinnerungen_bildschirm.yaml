@@ -91,6 +91,16 @@ automation:
         entity_id: sensor.erinnerungen_bildschirm_0
         to:
         id: erinnerungen_bildschirm_changed
+      - platform: state
+        entity_id: sensor.erinnerungen_bildschirm_0
+        to: no_event
+        for: "00:05:00"
+        id: no_active_reminder
+      - platform: state
+        entity_id: sensor.template_helper_erinnerungen_bildschirm_first_free_reminder
+        to: no_free
+        for: "00:05:00"
+        id: no_free_reminder
     condition: []
     action:
       - choose:
@@ -111,5 +121,42 @@ automation:
             data:
               entity_id: "{{ states('sensor.template_helper_erinnerungen_bildschirm_first_free_reminder') }}"
               friendly_name: "{{ trigger.to_state.state.split('___')[0] }}"
+              entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
               state: 'on'
               allow_create: false
+          - service: input_text.set_value
+            data:
+              value: >
+                {% set ns = namespace() %}
+                {% set ns.tags = '' %}
+                {% for etag in states('input_text.helper_erinnerungen_bildschirm_known_etags').split('___') %}
+                  {% if ns.tags == '' %}
+                    {% set ns.tags = ns.tags + etag %}
+                  {% else %}
+                    {% set ns.tags = ns.tags + '___' + etag %}
+                  {% endif %}
+                {% endfor %}
+                {% if ns.tags == '' %}
+                  {% set ns.tags = ns.tags + trigger.to_state.state.split('___')[1] %}
+                {% else %}
+                  {% set ns.tags = ns.tags + '___' + trigger.to_state.state.split('___')[1] %}
+                {% endif %}
+                {{ ns.tags }}
+            target:
+              entity_id: input_text.helper_erinnerungen_bildschirm_known_etags
+        - conditions:
+          - condition: trigger
+            id: no_active_reminder
+          sequence:
+          - service: input_text.set_value
+            data:
+              value: 'inactive'
+            target:
+              entity_id: input_text.helper_erinnerungen_bildschirm_known_etags
+        - conditions:
+          - condition: trigger
+            id: no_free_reminder
+          sequence:
+          - service: notify.telegram_jo
+            data:
+              message: 'Alle 10 vorgesehenen Erinnerungen Bildschirm sind belegt! Neue werden nicht angelegt. Bitte mal was erledigen...'
