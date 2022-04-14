@@ -36,3 +36,15 @@ rest:
           {% else %}
             no_event
           {% endif %}
+
+input_boolean:
+  reminder_erinnerungen_bildschirm_0
+  reminder_erinnerungen_bildschirm_1
+  reminder_erinnerungen_bildschirm_2
+  reminder_erinnerungen_bildschirm_3
+  reminder_erinnerungen_bildschirm_4
+  reminder_erinnerungen_bildschirm_5
+  reminder_erinnerungen_bildschirm_6
+  reminder_erinnerungen_bildschirm_7
+  reminder_erinnerungen_bildschirm_8
+  reminder_erinnerungen_bildschirm_9
