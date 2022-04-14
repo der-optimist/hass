@@ -80,3 +80,36 @@ template:
           {% else %}
             {{ 'no_free' }}
           {% endif %}
+
+automation:
+  - id: 'f973a2b5-ba8a-46fe-8d3b-502aa1644799'
+    alias: Erinnerungen Bildschirm
+    description: ''
+    mode: queued
+    trigger:
+      - platform: state
+        entity_id: sensor.erinnerungen_bildschirm_0
+        to:
+        id: erinnerungen_bildschirm_changed
+    condition: []
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: erinnerungen_bildschirm_changed
+          - condition: template
+            value_template: >
+              {{ '___' in trigger.to_state.state }}
+          - condition: template
+            value_template: >
+              {{ trigger.to_state.state.split('___')[1] not in states('input_text.helper_erinnerungen_bildschirm_known_etags') }}
+          - condition: template
+            value_template: >
+              {{ 'input_boolean.reminder_erinnerungen_bildschirm_' in states('sensor.template_helper_erinnerungen_bildschirm_first_free_reminder') }}
+          sequence:
+          - service: python_script.set_state
+            data:
+              entity_id: "{{ states('sensor.template_helper_erinnerungen_bildschirm_first_free_reminder') }}"
+              friendly_name: "{{ trigger.to_state.state.split('___')[0] }}"
+              state: 'on'
+              allow_create: false
