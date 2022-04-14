@@ -152,6 +152,14 @@ automation:
             value_template: >
               {{ 'input_boolean.reminder_erinnerungen_bildschirm_' in states('sensor.template_helper_erinnerungen_bildschirm_first_free_reminder') }}
           sequence:
+          - service: input_text.set_value
+            data:
+              value: >
+                {{ trigger.to_state.state.split('___')[0] }}
+            target:
+              entity_id: >
+                {% set i = states('sensor.template_helper_erinnerungen_bildschirm_first_free_reminder')[-1:] %}
+                {{ 'input_text.helper_erinnerungen_bildschirm_reminder_' + i }}
           - service: python_script.set_state
             data:
               entity_id: "{{ states('sensor.template_helper_erinnerungen_bildschirm_first_free_reminder') }}"
@@ -162,21 +170,15 @@ automation:
           - service: input_text.set_value
             data:
               value: >
-                {{ trigger.to_state.state.split('___')[0] }}
-            target:
-              entity_id: >
-                {% set i = states('sensor.template_helper_erinnerungen_bildschirm_first_free_reminder')[-1:] %}
-                {{ 'input_text.helper_erinnerungen_bildschirm_reminder_' + i }}
-          - service: input_text.set_value
-            data:
-              value: >
                 {% set ns = namespace() %}
                 {% set ns.tags = '' %}
                 {% for etag in states('input_text.helper_erinnerungen_bildschirm_known_etags').split('___') %}
-                  {% if ns.tags == '' %}
-                    {% set ns.tags = ns.tags + etag %}
-                  {% else %}
-                    {% set ns.tags = ns.tags + '___' + etag %}
+                  {% if etag != 'inactive' %}
+                    {% if ns.tags == '' %}
+                      {% set ns.tags = ns.tags + etag %}
+                    {% else %}
+                      {% set ns.tags = ns.tags + '___' + etag %}
+                    {% endif %}
                   {% endif %}
                 {% endfor %}
                 {% if ns.tags == '' %}
