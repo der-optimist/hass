@@ -948,25 +948,25 @@
     - ip6
     - deviceId
     value_template: 'OK'
-  - platform: rest
-    name: Geburtstage Google
-    resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
-    headers:
-      Authorization: !secret calendar_api_token
-    value_template: >
-      {% set len = (value_json | count) %}
-      {% if len == 1 %}
-        {{ value_json[0].summary }}___{{ value_json[0].start.date }}___nothing___nothing___nothing___nothing___nothing___nothing
-      {% elif len == 2 %}
-        {{ value_json[0].summary }}___{{ value_json[0].start.date }}___{{ value_json[1].summary }}___{{ value_json[1].start.date }}___nothing___nothing___nothing___nothing
-      {% elif len == 3 %}
-        {{ value_json[0].summary }}___{{ value_json[0].start.date }}___{{ value_json[1].summary }}___{{ value_json[1].start.date }}___{{ value_json[2].summary }}___{{ value_json[2].start.date }}___nothing___nothing
-      {% elif len > 3 %}
-        {{ value_json[0].summary }}___{{ value_json[0].start.date }}___{{ value_json[1].summary }}___{{ value_json[1].start.date }}___{{ value_json[2].summary }}___{{ value_json[2].start.date }}___{{ value_json[3].summary }}___{{ value_json[3].start.date }}
-      {% else %}
-        nothing___nothing___nothing___nothing___nothing___nothing___nothing___nothing
-      {% endif %}
-    scan_interval: 180
+#  - platform: rest
+#    name: Geburtstage Google
+#    resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
+#    headers:
+#      Authorization: !secret calendar_api_token
+#    value_template: >
+#      {% set len = (value_json | count) %}
+#      {% if len == 1 %}
+#        {{ value_json[0].summary }}___{{ value_json[0].start.date }}___nothing___nothing___nothing___nothing___nothing___nothing
+#      {% elif len == 2 %}
+#        {{ value_json[0].summary }}___{{ value_json[0].start.date }}___{{ value_json[1].summary }}___{{ value_json[1].start.date }}___nothing___nothing___nothing___nothing
+#      {% elif len == 3 %}
+#        {{ value_json[0].summary }}___{{ value_json[0].start.date }}___{{ value_json[1].summary }}___{{ value_json[1].start.date }}___{{ value_json[2].summary }}___{{ value_json[2].start.date }}___nothing___nothing
+#      {% elif len > 3 %}
+#        {{ value_json[0].summary }}___{{ value_json[0].start.date }}___{{ value_json[1].summary }}___{{ value_json[1].start.date }}___{{ value_json[2].summary }}___{{ value_json[2].start.date }}___{{ value_json[3].summary }}___{{ value_json[3].start.date }}
+#      {% else %}
+#        nothing___nothing___nothing___nothing___nothing___nothing___nothing___nothing
+#      {% endif %}
+#    scan_interval: 180
 #
 # --------------------------------
 # --                            --
