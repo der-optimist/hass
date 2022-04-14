@@ -92,6 +92,18 @@ automation:
         to:
         id: erinnerungen_bildschirm_changed
       - platform: state
+        entity_id: sensor.erinnerungen_bildschirm_1
+        to:
+        id: erinnerungen_bildschirm_changed
+      - platform: state
+        entity_id: sensor.erinnerungen_bildschirm_2
+        to:
+        id: erinnerungen_bildschirm_changed
+      - platform: state
+        entity_id: sensor.erinnerungen_bildschirm_3
+        to:
+        id: erinnerungen_bildschirm_changed
+      - platform: state
         entity_id: sensor.erinnerungen_bildschirm_0
         to: no_event
         for: "00:05:00"
