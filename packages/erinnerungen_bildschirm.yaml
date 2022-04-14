@@ -52,6 +52,26 @@ input_boolean:
 input_text:
   helper_erinnerungen_bildschirm_known_etags:
     max: 255
+  helper_erinnerungen_bildschirm_reminder_0:
+    max: 255
+  helper_erinnerungen_bildschirm_reminder_1:
+    max: 255
+  helper_erinnerungen_bildschirm_reminder_2:
+    max: 255
+  helper_erinnerungen_bildschirm_reminder_3:
+    max: 255
+  helper_erinnerungen_bildschirm_reminder_4:
+    max: 255
+  helper_erinnerungen_bildschirm_reminder_5:
+    max: 255
+  helper_erinnerungen_bildschirm_reminder_6:
+    max: 255
+  helper_erinnerungen_bildschirm_reminder_7:
+    max: 255
+  helper_erinnerungen_bildschirm_reminder_8:
+    max: 255
+  helper_erinnerungen_bildschirm_reminder_9:
+    max: 255
 
 template: 
   - sensor:
@@ -113,6 +133,9 @@ automation:
         to: no_free
         for: "00:05:00"
         id: no_free_reminder
+      - platform: homeassistant
+        event: start
+        id: ha_start
     condition: []
     action:
       - choose:
@@ -136,6 +159,14 @@ automation:
               entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
               state: 'on'
               allow_create: false
+          - service: input_text.set_value
+            data:
+              value: >
+                {{ trigger.to_state.state.split('___')[0] }}
+            target:
+              entity_id: >
+                {% set i = states('sensor.template_helper_erinnerungen_bildschirm_first_free_reminder')[-1:] %}
+                {{ 'input_text.helper_erinnerungen_bildschirm_reminder_' + i }}
           - service: input_text.set_value
             data:
               value: >
@@ -171,4 +202,69 @@ automation:
           sequence:
           - service: notify.telegram_jo
             data:
-              message: 'Alle 10 vorgesehenen Erinnerungen Bildschirm sind belegt! Neue werden nicht angelegt. Bitte mal was erledigen...'
+              message: 'Alle vorgesehenen Erinnerungen Bildschirm sind belegt! Neue werden nicht angelegt. Bitte mal was erledigen...'
+        - conditions:
+          - condition: trigger
+            id: ha_start
+          sequence:
+          - delay: 10
+          - service: python_script.set_state
+            data:
+              entity_id: input_boolean.reminder_erinnerungen_bildschirm_0
+              friendly_name: "{{ states('input_text.helper_erinnerungen_bildschirm_reminder_0') }}"
+              entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
+              allow_create: false
+          - service: python_script.set_state
+            data:
+              entity_id: input_boolean.reminder_erinnerungen_bildschirm_1
+              friendly_name: "{{ states('input_text.helper_erinnerungen_bildschirm_reminder_1') }}"
+              entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
+              allow_create: false
+          - service: python_script.set_state
+            data:
+              entity_id: input_boolean.reminder_erinnerungen_bildschirm_2
+              friendly_name: "{{ states('input_text.helper_erinnerungen_bildschirm_reminder_2') }}"
+              entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
+              allow_create: false
+          - service: python_script.set_state
+            data:
+              entity_id: input_boolean.reminder_erinnerungen_bildschirm_3
+              friendly_name: "{{ states('input_text.helper_erinnerungen_bildschirm_reminder_3') }}"
+              entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
+              allow_create: false
+          - service: python_script.set_state
+            data:
+              entity_id: input_boolean.reminder_erinnerungen_bildschirm_4
+              friendly_name: "{{ states('input_text.helper_erinnerungen_bildschirm_reminder_4') }}"
+              entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
+              allow_create: false
+          - service: python_script.set_state
+            data:
+              entity_id: input_boolean.reminder_erinnerungen_bildschirm_5
+              friendly_name: "{{ states('input_text.helper_erinnerungen_bildschirm_reminder_5') }}"
+              entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
+              allow_create: false
+          - service: python_script.set_state
+            data:
+              entity_id: input_boolean.reminder_erinnerungen_bildschirm_6
+              friendly_name: "{{ states('input_text.helper_erinnerungen_bildschirm_reminder_6') }}"
+              entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
+              allow_create: false
+          - service: python_script.set_state
+            data:
+              entity_id: input_boolean.reminder_erinnerungen_bildschirm_7
+              friendly_name: "{{ states('input_text.helper_erinnerungen_bildschirm_reminder_7') }}"
+              entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
+              allow_create: false
+          - service: python_script.set_state
+            data:
+              entity_id: input_boolean.reminder_erinnerungen_bildschirm_8
+              friendly_name: "{{ states('input_text.helper_erinnerungen_bildschirm_reminder_8') }}"
+              entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
+              allow_create: false
+          - service: python_script.set_state
+            data:
+              entity_id: input_boolean.reminder_erinnerungen_bildschirm_9
+              friendly_name: "{{ states('input_text.helper_erinnerungen_bildschirm_reminder_9') }}"
+              entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
+              allow_create: false
