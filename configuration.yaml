@@ -105,7 +105,7 @@ notify: !include config_notify.yaml
 
 #powercalc: !include config_powercalc.yaml
 
-python_scripts:
+python_script:
 
 recorder: !include config_recorder.yaml
 
