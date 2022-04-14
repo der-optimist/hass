@@ -1,0 +1,166 @@
+rest:
+  - resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
+    headers:
+      Authorization: !secret calendar_api_token
+    scan_interval: 180
+    sensor:
+      - name: Geburtstage raw 0
+        value_template: >
+          {% set len = (value_json | count) %}
+          {% if len > 0 %}
+            {{ value_json[0].summary }}___{{ value_json[0].start.date }}
+          {% else %}
+            no_event
+          {% endif %}
+      - name: Geburtstage raw 1
+        value_template: >
+          {% set len = (value_json | count) %}
+          {% if len > 1 %}
+            {{ value_json[1].summary }}___{{ value_json[1].start.date }}
+          {% else %}
+            no_event
+          {% endif %}
+      - name: Geburtstage raw 2
+        value_template: >
+          {% set len = (value_json | count) %}
+          {% if len > 2 %}
+            {{ value_json[2].summary }}___{{ value_json[2].start.date }}
+          {% else %}
+            no_event
+          {% endif %}
+      - name: Geburtstage raw 3
+        value_template: >
+          {% set len = (value_json | count) %}
+          {% if len > 3 %}
+            {{ value_json[3].summary }}___{{ value_json[3].start.date }}
+          {% else %}
+            no_event
+          {% endif %}
+
+sensor:
+  - platform: template
+    sensors:
+      geburtstage_bildschirm_0:
+        friendly_name_template: >
+          {% if not '___' in states('sensor.geburtstage_raw_0') %}
+            {{ '-' }}
+          {% else %}
+            {{ states('sensor.geburtstage_raw_0').split('___')[0] }}
+          {% endif %}
+        value_template: >
+          {% if not '___' in states('sensor.geburtstage_raw_0') %}
+            {{ '-' }}
+          {% else %}
+            {% set day_dt = as_datetime(states('sensor.geburtstage_raw_0').split('___')[1]) %}
+            {% set day_ts = as_timestamp(day_dt) %}
+            {% set today_ts = as_timestamp(today_at("00:00")) %}
+            {% set please_update_my_template_regularly = now() %}
+            {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
+            {% set day = {"Mon":"Mo", "Tue":"Di", "Wed":"Mi", "Thu":"Do", "Fri":"Fr", "Sat":"Sa", "Sun":"So"} %}
+            {% if daysTo == 0 %}
+              heute
+            {% elif daysTo == 1 %}
+              morgen
+            {% else %}
+              {{day[day_dt.strftime("%a")]}}. {{day_dt.strftime("%d.%m.")}} ({{daysTo}} T.)
+            {% endif %}
+          {% endif %}
+        entity_picture_template: >
+          {% states('sensor.geburtstage_bildschirm_0') == 'heute' %}
+            {{ '/local/icons/reminders/champagne_yellow_noblink.svg' }}
+          {% else %}
+            {{ '/local/icons/reminders/champagne_orange_noblink.svg' }}
+          {% endif %}
+      geburtstage_bildschirm_1:
+        friendly_name_template: >
+          {% if not '___' in states('sensor.geburtstage_raw_1') %}
+            {{ '-' }}
+          {% else %}
+            {{ states('sensor.geburtstage_raw_1').split('___')[0] }}
+          {% endif %}
+        value_template: >
+          {% if not '___' in states('sensor.geburtstage_raw_1') %}
+            {{ '-' }}
+          {% else %}
+            {% set day_dt = as_datetime(states('sensor.geburtstage_raw_1').split('___')[1]) %}
+            {% set day_ts = as_timestamp(day_dt) %}
+            {% set today_ts = as_timestamp(today_at("00:00")) %}
+            {% set please_update_my_template_regularly = now() %}
+            {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
+            {% set day = {"Mon":"Mo", "Tue":"Di", "Wed":"Mi", "Thu":"Do", "Fri":"Fr", "Sat":"Sa", "Sun":"So"} %}
+            {% if daysTo == 0 %}
+              heute
+            {% elif daysTo == 1 %}
+              morgen
+            {% else %}
+              {{day[day_dt.strftime("%a")]}}. {{day_dt.strftime("%d.%m.")}} ({{daysTo}} T.)
+            {% endif %}
+          {% endif %}
+        entity_picture_template: >
+          {% states('sensor.geburtstage_bildschirm_1') == 'heute' %}
+            {{ '/local/icons/reminders/champagne_yellow_noblink.svg' }}
+          {% else %}
+            {{ '/local/icons/reminders/champagne_orange_noblink.svg' }}
+          {% endif %}
+      geburtstage_bildschirm_2:
+        friendly_name_template: >
+          {% if not '___' in states('sensor.geburtstage_raw_2') %}
+            {{ '-' }}
+          {% else %}
+            {{ states('sensor.geburtstage_raw_2').split('___')[0] }}
+          {% endif %}
+        value_template: >
+          {% if not '___' in states('sensor.geburtstage_raw_2') %}
+            {{ '-' }}
+          {% else %}
+            {% set day_dt = as_datetime(states('sensor.geburtstage_raw_2').split('___')[1]) %}
+            {% set day_ts = as_timestamp(day_dt) %}
+            {% set today_ts = as_timestamp(today_at("00:00")) %}
+            {% set please_update_my_template_regularly = now() %}
+            {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
+            {% set day = {"Mon":"Mo", "Tue":"Di", "Wed":"Mi", "Thu":"Do", "Fri":"Fr", "Sat":"Sa", "Sun":"So"} %}
+            {% if daysTo == 0 %}
+              heute
+            {% elif daysTo == 1 %}
+              morgen
+            {% else %}
+              {{day[day_dt.strftime("%a")]}}. {{day_dt.strftime("%d.%m.")}} ({{daysTo}} T.)
+            {% endif %}
+          {% endif %}
+        entity_picture_template: >
+          {% states('sensor.geburtstage_bildschirm_2') == 'heute' %}
+            {{ '/local/icons/reminders/champagne_yellow_noblink.svg' }}
+          {% else %}
+            {{ '/local/icons/reminders/champagne_orange_noblink.svg' }}
+          {% endif %}
+      geburtstage_bildschirm_3:
+        friendly_name_template: >
+          {% if not '___' in states('sensor.geburtstage_raw_3') %}
+            {{ '-' }}
+          {% else %}
+            {{ states('sensor.geburtstage_raw_3').split('___')[0] }}
+          {% endif %}
+        value_template: >
+          {% if not '___' in states('sensor.geburtstage_raw_3') %}
+            {{ '-' }}
+          {% else %}
+            {% set day_dt = as_datetime(states('sensor.geburtstage_raw_3').split('___')[1]) %}
+            {% set day_ts = as_timestamp(day_dt) %}
+            {% set today_ts = as_timestamp(today_at("00:00")) %}
+            {% set please_update_my_template_regularly = now() %}
+            {% set daysTo = ((day_ts - today_ts) / (3600*24)) | round(0, "floor", 100) %}
+            {% set day = {"Mon":"Mo", "Tue":"Di", "Wed":"Mi", "Thu":"Do", "Fri":"Fr", "Sat":"Sa", "Sun":"So"} %}
+            {% if daysTo == 0 %}
+              heute
+            {% elif daysTo == 1 %}
+              morgen
+            {% else %}
+              {{day[day_dt.strftime("%a")]}}. {{day_dt.strftime("%d.%m.")}} ({{daysTo}} T.)
+            {% endif %}
+          {% endif %}
+        entity_picture_template: >
+          {% states('sensor.geburtstage_bildschirm_3') == 'heute' %}
+            {{ '/local/icons/reminders/champagne_yellow_noblink.svg' }}
+          {% else %}
+            {{ '/local/icons/reminders/champagne_orange_noblink.svg' }}
+          {% endif %}
