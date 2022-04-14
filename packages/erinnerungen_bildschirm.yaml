@@ -8,7 +8,7 @@ rest:
         value_template: >
           {% set len = (value_json | count) %}
           {% if len > 0 %}
-            {{ value_json[0].summary }}___{{ value_json[0].start.dateTime }}___{{ value_json[0].etag }}
+            {{ value_json[0].summary }}___{{ value_json[0].etag | regex_replace(find='"', replace='', ignorecase=False) }}
           {% else %}
             no_event
           {% endif %}
@@ -16,7 +16,7 @@ rest:
         value_template: >
           {% set len = (value_json | count) %}
           {% if len > 1 %}
-            {{ value_json[1].summary }}___{{ value_json[1].start.dateTime }}___{{ value_json[1].etag }}
+            {{ value_json[1].summary }}___{{ value_json[1].etag | regex_replace(find='"', replace='', ignorecase=False) }}
           {% else %}
             no_event
           {% endif %}
@@ -24,7 +24,7 @@ rest:
         value_template: >
           {% set len = (value_json | count) %}
           {% if len > 2 %}
-            {{ value_json[2].summary }}___{{ value_json[2].start.dateTime }}___{{ value_json[2].etag }}
+            {{ value_json[2].summary }}___{{ value_json[2].etag | regex_replace(find='"', replace='', ignorecase=False) }}
           {% else %}
             no_event
           {% endif %}
@@ -32,7 +32,7 @@ rest:
         value_template: >
           {% set len = (value_json | count) %}
           {% if len > 3 %}
-            {{ value_json[3].summary }}___{{ value_json[3].start.dateTime }}___{{ value_json[3].etag }}
+            {{ value_json[3].summary }}___{{ value_json[3].etag | regex_replace(find='"', replace='', ignorecase=False) }}
           {% else %}
             no_event
           {% endif %}
@@ -48,3 +48,35 @@ input_boolean:
   reminder_erinnerungen_bildschirm_7:
   reminder_erinnerungen_bildschirm_8:
   reminder_erinnerungen_bildschirm_9:
+
+input_text:
+  helper_erinnerungen_bildschirm_known_etags:
+    max: 255
+
+template: 
+  - sensor:
+      - unique_id: helper_erinnerungen_bildschirm_first_free_reminder
+        state: >
+          {% if is_state('input_boolean.reminder_erinnerungen_bildschirm_0','off') %}
+            {{ 'input_boolean.reminder_erinnerungen_bildschirm_0' }}
+          {% elif is_state('input_boolean.reminder_erinnerungen_bildschirm_1','off') %}
+            {{ 'input_boolean.reminder_erinnerungen_bildschirm_1' }}
+          {% elif is_state('input_boolean.reminder_erinnerungen_bildschirm_2','off') %}
+            {{ 'input_boolean.reminder_erinnerungen_bildschirm_2' }}
+          {% elif is_state('input_boolean.reminder_erinnerungen_bildschirm_3','off') %}
+            {{ 'input_boolean.reminder_erinnerungen_bildschirm_3' }}
+          {% elif is_state('input_boolean.reminder_erinnerungen_bildschirm_4','off') %}
+            {{ 'input_boolean.reminder_erinnerungen_bildschirm_4' }}
+          {% elif is_state('input_boolean.reminder_erinnerungen_bildschirm_5','off') %}
+            {{ 'input_boolean.reminder_erinnerungen_bildschirm_5' }}
+          {% elif is_state('input_boolean.reminder_erinnerungen_bildschirm_6','off') %}
+            {{ 'input_boolean.reminder_erinnerungen_bildschirm_6' }}
+          {% elif is_state('input_boolean.reminder_erinnerungen_bildschirm_7','off') %}
+            {{ 'input_boolean.reminder_erinnerungen_bildschirm_7' }}
+          {% elif is_state('input_boolean.reminder_erinnerungen_bildschirm_8','off') %}
+            {{ 'input_boolean.reminder_erinnerungen_bildschirm_8' }}
+          {% elif is_state('input_boolean.reminder_erinnerungen_bildschirm_9','off') %}
+            {{ 'input_boolean.reminder_erinnerungen_bildschirm_9' }}
+          {% else %}
+            {{ 'no_free' }}
+          {% endif %}
