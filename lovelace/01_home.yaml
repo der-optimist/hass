@@ -112,7 +112,7 @@ cards:
           top: 50%
           width: 100%
           height: 100%
-  - type: vertical-stack
+  - type: 'custom:vertical-stack-in-card'
     view_layout:
       grid-area: todo
       align-self: start
