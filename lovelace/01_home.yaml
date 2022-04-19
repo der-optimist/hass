@@ -62,13 +62,15 @@ cards:
 #        entities:
 #          - entity: sensor.location_jo
       - type: entities
+        title: "Pizza-Timer"
         show_header_toggle: false
         entities:
           - type: custom:slider-entity-row
             entity: input_number.pizza_timer_2
-            name: Pizza-Timer
+            name: Minuten
+          - entity: input_button.pizza_timer_standard
       - type: entities
-        title: "PV-Anlage"
+        title: "PV aktuell"
         show_header_toggle: false
         entities:
           - type: custom:template-entity-row

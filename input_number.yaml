@@ -3,6 +3,7 @@ pizza_timer_2:
   min: 0
   max: 30
   step: 1
+  icon: mdi:timer-sand
 target_temp_kuehlbox:
   name: Zieltemperatur Kühlbox
   min: 1
