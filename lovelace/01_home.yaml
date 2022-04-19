@@ -314,6 +314,7 @@ cards:
       #                  width: 100%
       #                  height: 100%
       - type: entities
+        title: Geburtstage
         show_header_toggle: false
         entities:
         - entity: sensor.geburtstage_bildschirm_0
