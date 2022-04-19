@@ -62,42 +62,31 @@ cards:
 #        entities:
 #          - entity: sensor.location_jo
       - type: entities
-        title: Pizza Timer
         show_header_toggle: false
         entities:
           - type: custom:slider-entity-row
             entity: input_number.pizza_timer_2
-            full_row: true
-      - type: horizontal-stack
-        cards:
-          - type: entity-button
-            name: Pizza
-            icon: mdi:pizza
-            tap_action:
-              action: call-service
-              service: input_number.set_value
-              service_data:
-                entity_id: input_number.pizza_timer_2
-                value: 12
-            entity: input_number.pizza_timer_2
-          - type: entity-button
-            name: runter
-            icon: mdi:arrow-down-bold-box-outline
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.jal_wohnbereich_runter
-            entity: scene.jal_wohnbereich_runter
-          - type: entity-button
-            name: hoch
-            icon: mdi:arrow-up-bold-box-outline
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.jal_wohnbereich_hoch
-            entity: scene.jal_wohnbereich_hoch
+            name: Pizza-Timer
+      - type: entities
+        title: "PV-Anlage"
+        show_header_toggle: false
+        entities:
+          - type: custom:template-entity-row
+            name: PV-Leistung aktuell
+            entity: sensor.el_leistung_pv_ac
+            state: "{{ ((float(states('sensor.el_leistung_pv_ac'),0) / 100) | round(0)) * 100 }} W"
+          - type: custom:template-entity-row
+            name: Verbrauch aktuell
+            entity: sensor.el_leistung_verbrauch_gesamt
+            state: "{{ ((float(states('sensor.el_leistung_verbrauch_gesamt'),0) / 10) | round(0)) * 10 }} W"
+          - type: custom:template-entity-row
+            name: PV-Einspeisung aktuell
+            entity: sensor.el_leistung_einspeisung
+            state: "{{ ((float(states('sensor.el_leistung_einspeisung'),0) / 100) | round(0)) * 100 }} W"
+          - type: custom:template-entity-row
+            name: PV-Ertrag gesamt
+            entity: sensor.pv_geldertrag_gesamt
+            state: "{{ float(states('sensor.pv_geldertrag_gesamt'),0) | round(0) }} €"
   - type: custom:hui-element
     view_layout:
       grid-area: meteogram
