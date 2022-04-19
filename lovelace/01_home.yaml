@@ -136,6 +136,7 @@ cards:
             graph_span: 72h
             span:
               start: day
+              offset: +3h
             experimental:
               color_threshold: true
             update_interval: 5min
@@ -145,7 +146,7 @@ cards:
                 max: 10000
                 tickAmount: 5
               chart:
-                height: 250px
+                height: 260px
             header:
               show: false
             now:
