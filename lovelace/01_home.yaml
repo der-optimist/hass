@@ -313,36 +313,32 @@ cards:
       #                  top: 50%
       #                  width: 100%
       #                  height: 100%
-#      - type: custom:auto-entities
-#        show_empty: false
-#        card:
-#          type: entities
-#          title: "Geburtstage"
-#          show_header_toggle: false
-#        filter:
-#          include:
-#            - entity_id: "sensor.birthday*"
-#          exclude:
-#            - state: "off" 
-      - type: custom:atomic-calendar-revive
-        name: Geburtstage
-        enableModeChange: true
-        firstDayOfWeek: 1
-        maxDaysToShow: 30
-        maxEventCount: 4
+      - type: entities
+        show_header_toggle: false
         entities:
-          - calendar.geburtstage_und_jahrestag
-        showMonth: true
-        showWeekDay: true
-        showCurrentEventLine: false
-        showFullDayProgress: true
-        showProgressBar: false
-        showDescription: false
-        europeanDate: true
-        showHiddenText: false
-        showHours: false
-        showLoader: false
-        refreshInterval: 600
+        - entity: sensor.geburtstage_bildschirm_0
+        - entity: sensor.geburtstage_bildschirm_1
+        - entity: sensor.geburtstage_bildschirm_2
+        - entity: sensor.geburtstage_bildschirm_3
+#      - type: custom:atomic-calendar-revive
+#        name: Geburtstage
+#        enableModeChange: true
+#        firstDayOfWeek: 1
+#        maxDaysToShow: 30
+#        maxEventCount: 4
+#        entities:
+#          - calendar.geburtstage_und_jahrestag
+#        showMonth: true
+#        showWeekDay: true
+#        showCurrentEventLine: false
+#        showFullDayProgress: true
+#        showProgressBar: false
+#        showDescription: false
+#        europeanDate: true
+#        showHiddenText: false
+#        showHours: false
+#        showLoader: false
+#        refreshInterval: 600
       - type: entities
         show_header_toggle: false
         entities:
