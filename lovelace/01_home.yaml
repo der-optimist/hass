@@ -112,7 +112,7 @@ cards:
           top: 50%
           width: 100%
           height: 100%
-  - type: 'custom:vertical-stack-in-card'
+  - type: vertical-stack
     view_layout:
       grid-area: todo
       align-self: start
@@ -129,10 +129,9 @@ cards:
               state: "on"
             - entity_id: "input_boolean.reminder_*"
               state: "on"
-      - type: entities
+      - type: 'custom:vertical-stack-in-card'
         title: PV-Vorhersage
-        show_header_toggle: false
-        entities:
+        cards:
           - type: custom:apexcharts-card
             graph_span: 72h
             span:
@@ -145,6 +144,8 @@ cards:
                 min: 0
                 max: 10000
                 tickAmount: 5
+              chart:
+                height: 250px
             header:
               show: false
             now:
