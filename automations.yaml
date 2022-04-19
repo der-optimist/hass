@@ -1294,6 +1294,9 @@
       entity_id: input_number.pizza_timer_2
       to: ~
       id: input_number_changed
+    - platform: state
+      entity_id: input_button.pizza_timer_standard
+      id: input_button_pizza_timer_standard
     - platform: event
       event_type: timer.finished
       event_data:
@@ -1360,6 +1363,15 @@
         sequence:
         - service: input_number.decrement
           entity_id: input_number.pizza_timer_2
+      - conditions:
+        - condition: trigger
+          id: input_button_pizza_timer_standard
+        sequence:
+        - service: input_number.set_value
+          data:
+            value: 12
+          target:
+            entity_id: input_number.pizza_timer_2
       default: []
 #
 ###############################################
