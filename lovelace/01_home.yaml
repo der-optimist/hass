@@ -146,7 +146,7 @@ cards:
                 max: 10000
                 tickAmount: 5
               chart:
-                height: 500px
+                height: 100%
             header:
               show: false
             now:
