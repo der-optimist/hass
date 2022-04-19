@@ -1309,9 +1309,6 @@
         - condition: trigger
           id: input_number_changed
         sequence:
-        - service: timer.cancel
-          target:
-            entity_id: timer.pizza_timer_ha
         - choose:
           - conditions:
             - condition: template
@@ -1343,11 +1340,17 @@
               - service: notify.telegram_jo
                 data:
                   message: 'Pizza-Timer abgebrochen'
+              - service: timer.cancel
+                target:
+                  entity_id: timer.pizza_timer_ha
           - conditions:
             - condition: template
               value_template: >
                 {{ (trigger.to_state.state | float(0)) > 0 }}
             sequence:
+            - service: timer.cancel
+              target:
+                entity_id: timer.pizza_timer_ha
             - service: timer.start
               target:
                 entity_id: timer.pizza_timer_ha
