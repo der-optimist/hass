@@ -129,34 +129,73 @@ cards:
               state: "on"
             - entity_id: "input_boolean.reminder_*"
               state: "on"
-      - type: custom:swipe-card
-        cards: 
-          - type: entities
-            title: "PV-Anlage"
-            show_header_toggle: false
-            entities:
-              - type: custom:template-entity-row
-                name: PV-Leistung aktuell
-                entity: sensor.el_leistung_pv_ac
-                state: "{{ ((float(states('sensor.el_leistung_pv_ac'),0) / 100) | round(0)) * 100 }} W"
-              - type: custom:template-entity-row
-                name: Verbrauch aktuell
-                entity: sensor.el_leistung_verbrauch_gesamt
-                state: "{{ ((float(states('sensor.el_leistung_verbrauch_gesamt'),0) / 10) | round(0)) * 10 }} W"
-              - type: custom:template-entity-row
-                name: PV-Einspeisung aktuell
-                entity: sensor.el_leistung_einspeisung
-                state: "{{ ((float(states('sensor.el_leistung_einspeisung'),0) / 100) | round(0)) * 100 }} W"
-              - type: custom:template-entity-row
-                name: PV-Ertrag gesamt
-                entity: sensor.pv_geldertrag_gesamt
-                state: "{{ float(states('sensor.pv_geldertrag_gesamt'),0) | round(0) }} €"
       - type: entities
+        title: PV-Vorhersage
         show_header_toggle: false
         entities:
-          - type: custom:slider-entity-row
-            entity: input_number.pizza_timer_2
-            name: Pizza-Timer
+          - type: custom:apexcharts-card
+            graph_span: 72h
+            span:
+              start: day
+            experimental:
+              color_threshold: true
+            update_interval: 5min
+            apex_config:
+              yaxis:
+                min: 0
+                max: 10000
+                tickAmount: 5
+            header:
+              show: false
+            now:
+              show: true
+              label: jetzt
+            apex_config:
+              legend:
+                show: false
+            series:
+              - entity: sensor.el_leistung_pv_ac
+                name: Aktuell
+                unit: W
+                float_precision: 0
+                fill_raw: last
+                extend_to_end: false
+                group_by:
+                  func: avg
+                  duration: 30min
+                color_threshold:
+                  - value: 0
+                    color: gray
+                  - value: 1500
+                    color: gray
+                  - value: 2000
+                    color: darkorange
+                  - value: 6552
+                    color: darkorange
+                  - value: 6852
+                    color: lime
+              - entity: sensor.solcast_forecast_rest
+                type: line
+                extend_to_end: false
+                unit: W
+                float_precision: 0
+                show:
+                  in_header: false
+                color_threshold:
+                  - value: 0
+                    color: gray
+                  - value: 1500
+                    color: gray
+                  - value: 2000
+                    color: darkorange
+                  - value: 6552
+                    color: darkorange
+                  - value: 6852
+                    color: lime
+                data_generator: |
+                  return entity.attributes.forecasts.map((entry) => {
+                    return [new Date(entry.period_end), entry.pv_estimate*1000];
+                  });
   - type: vertical-stack
     view_layout:
       grid-area: garbage
