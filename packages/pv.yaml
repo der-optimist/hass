@@ -175,3 +175,18 @@ template:
             {{ states('sensor.stunden_bis_warmwasser_heizen') }}
           {% endif %}
         unit_of_measurement: 'hours'
+      - name: "Solcast Forecast Peak Zeit bis Wasser heizen"
+        unique_id: solcast_forecast_peak_time_before_water_heater
+        state: >
+          {% set ns = namespace (fc_today_max = 0, fc_today_max_time = 0) %}
+          {% set hours_water_heater = states('sensor.stunden_bis_warmwasser_heizen')|float(100) %}
+          {% for forecast in state_attr('sensor.solcast_forecast_rest', 'forecasts')|default('variable is not defined') %}
+            {% set diff = as_local(strptime(forecast.period_end, '%Y-%m-%dT%H:%M:%S.%f0Z').replace(tzinfo=utcnow().tzinfo)) - as_local(utcnow()) %} 
+            {% if diff.seconds < (hours_water_heater * 3600) %}
+              {% if ns.fc_today_max < forecast.pv_estimate|float %}
+                {% set ns.fc_today_max = forecast.pv_estimate|float %}
+                {% set ns.fc_today_max_time = forecast.period_end %}
+              {%- endif %}
+            {%- endif %}
+          {%- endfor %}
+          {{ ns.fc_today_max_time }}
