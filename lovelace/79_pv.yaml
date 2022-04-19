@@ -58,6 +58,7 @@ cards:
         state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float(0))) }} ct"
       - sensor.strompreis_effektiv_letzte_3_minuten
       - switch.pv_heizung_1
+      - binary_sensor.template_water_heater_pv_boost_condition
   - type: custom:apexcharts-card
     graph_span: 48h
     span:
