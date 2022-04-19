@@ -190,3 +190,28 @@ template:
             {%- endif %}
           {%- endfor %}
           {{ ns.fc_today_max_time }}
+    binary_sensor:
+      - unique_id: water_heater_pv_boost_condition
+        state: >
+          {% if is_state('timer.minimum_time_water_heater_boost','active') %}
+            {{ true }}
+          {% else %}
+            {% set ts_peak_time = as_timestamp(states('sensor.solcast_forecast_peak_zeit_bis_wasser_heizen')) %}
+            {% set ts_now = as_timestamp(now()) %}
+            {% set minutes_start_before_peak = 61 %}
+            {% set min_einspeisung_pv = 1500 %}
+            {% if (ts_peak_time - ts_now) < (minutes_start_before_peak * 60) %}
+              {% set netz = states('sensor.el_leistung_netz') | float(0) %}
+              {% set heizung = states('sensor.el_leistung_wp_gesamt') | float(0) %}
+              {% set netz_ohne_heizung = netz - heizung %}
+              {% if netz_ohne_heizung < (-1 * min_einspeisung_pv) %}
+                {{ true }}
+              {% else %}
+                {{ false }}
+              {% endif %}
+            {% else %}
+              {{ false }}
+            {% endif %}
+          {% endif %}
+        attributes:
+          friendly_name: "Water Heater PV-Boost Bedingungen"
