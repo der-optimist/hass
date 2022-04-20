@@ -71,6 +71,21 @@ template:
           minutes: 10
         attributes:
           friendly_name: "Water Heater PV-Boost Bedingungen"
+      - unique_id: water_heater_pv_power_sufficient
+        state: >
+          {% set min_einspeisung_pv = 1200 %}
+          {% set netz = states('sensor.el_leistung_netz') | float(0) %}
+          {% set heizung = states('sensor.el_leistung_wp_gesamt') | float(0) %}
+          {% set netz_ohne_heizung = netz - heizung %}
+          {% if netz_ohne_heizung < (-1 * min_einspeisung_pv) %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+        delay_on:
+          minutes: 10
+        attributes:
+          friendly_name: "Water Heater PV-Power sufficient"
 
 automation:
   - id: 'ab85056e-0160-46c3-9627-043b3a969489'
