@@ -66,6 +66,7 @@ cards:
       - sensor.solcast_forecast_peak_zeit_bis_wasser_heizen
       - sensor.el_leistung_netz
       - sensor.el_leistung_wp_gesamt
+      - binary_sensor.template_water_heater_pv_power_sufficient
       - binary_sensor.template_water_heater_pv_boost_condition
   - type: custom:apexcharts-card
     graph_span: 48h
