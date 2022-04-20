@@ -52,7 +52,7 @@ cards:
         entities: 
           - sensor.temp_wetterstation
         name: Außentemperatur
-        height: 150
+        height: 120
         hour24: true
         decimals: 1
         show:
