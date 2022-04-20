@@ -136,8 +136,8 @@ cards:
                 min: 0
                 max: 10000
                 tickAmount: 5
-#              chart:
-#                height: 100px
+              chart:
+                height: 250px
               legend:
                 show: false
             header:
