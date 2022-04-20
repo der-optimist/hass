@@ -51,12 +51,8 @@ template:
             {% set ts_peak_time = as_timestamp(states('sensor.solcast_forecast_peak_zeit_bis_wasser_heizen')) %}
             {% set ts_now = as_timestamp(now()) %}
             {% set minutes_start_before_peak = 61 %}
-            {% set min_einspeisung_pv = 1200 %}
             {% if (ts_peak_time - ts_now) < (minutes_start_before_peak * 60) %}
-              {% set netz = states('sensor.el_leistung_netz') | float(0) %}
-              {% set heizung = states('sensor.el_leistung_wp_gesamt') | float(0) %}
-              {% set netz_ohne_heizung = netz - heizung %}
-              {% if netz_ohne_heizung < (-1 * min_einspeisung_pv) %}
+              {% if is_states('binary_sensor.template_water_heater_pv_power_sufficient','on') %}
                 {{ true }}
               {% else %}
                 {{ false }}
@@ -65,10 +61,6 @@ template:
               {{ false }}
             {% endif %}
           {% endif %}
-        delay_on:
-          minutes: 10
-        delay_off:
-          minutes: 10
         attributes:
           friendly_name: "Water Heater PV-Boost Bedingungen"
       - unique_id: water_heater_pv_power_sufficient
@@ -84,6 +76,8 @@ template:
           {% endif %}
         delay_on:
           minutes: 10
+        delay_off:
+          minutes: 5
         attributes:
           friendly_name: "Water Heater PV-Power sufficient"
 
