@@ -84,6 +84,8 @@ cards:
         min: 0
         max: 10000
         tickAmount: 5
+      legend:
+        show: false
     header:
       show: true
       title: Solar Production vs. forecast
@@ -91,9 +93,6 @@ cards:
     now:
       show: true
       label: jetzt
-    apex_config:
-      legend:
-        show: false
     series:
       - entity: sensor.solcast_forecast_average_30_min
         name: Vorhersage

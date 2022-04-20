@@ -136,16 +136,15 @@ cards:
                 min: 0
                 max: 10000
                 tickAmount: 5
-              chart:
-                height: 100px
+#              chart:
+#                height: 100px
+              legend:
+                show: false
             header:
               show: false
             now:
               show: true
               label: jetzt
-            apex_config:
-              legend:
-                show: false
             series:
               - entity: sensor.el_leistung_pv_ac
                 name: Aktuell
