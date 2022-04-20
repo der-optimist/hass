@@ -68,6 +68,10 @@ cards:
       - sensor.el_leistung_wp_gesamt
       - binary_sensor.template_water_heater_pv_power_sufficient
       - binary_sensor.template_water_heater_pv_boost_condition
+      - entity: sensor.water_heater_target_temp
+        name: Zieltemperatur
+      - entity: sensor.water_heater_current_temp
+        name: Temperatur aktuell
   - type: custom:apexcharts-card
     graph_span: 48h
     span:
