@@ -58,6 +58,14 @@ cards:
         state: "{{ '%.0f'%(100*(states('sensor.strompreis_effektiv_letzte_3_minuten') | float(0))) }} ct"
       - sensor.strompreis_effektiv_letzte_3_minuten
       - switch.pv_heizung_1
+  - type: entities
+    title: "Warmwasser-Boost"
+    show_header_toggle: false
+    entities:
+      - sensor.stunden_bis_warmwasser_heizen
+      - sensor.solcast_forecast_peak_zeit_bis_wasser_heizen
+      - sensor.el_leistung_netz
+      - sensor.el_leistung_wp_gesamt
       - binary_sensor.template_water_heater_pv_boost_condition
   - type: custom:apexcharts-card
     graph_span: 48h
