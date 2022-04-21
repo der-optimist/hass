@@ -198,9 +198,7 @@ cards:
         content: >-      
           {% set current_count = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_count") %}
           {% set advance_count = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_count") %}
-          {% if ((current_count == 0 or current_count == None) and (advance_count == 0 or advance_count == None)) %}
-          **<font color=#c5e566>Keine Warnungen</font>**
-          {% else %}
+          {% if not ((current_count == 0 or current_count == None) and (advance_count == 0 or advance_count == None)) %}
             {% for i in range(current_count) %}
               {% set headline = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_headline") %}
               {% set description = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_description") %}
