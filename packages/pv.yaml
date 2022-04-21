@@ -137,5 +137,5 @@ automation:
           sequence:
           - service: notify.telegram_jo
             data:
-              message: 'Beende PV-Boost Condition unavailable'
+              message: 'PV-Boost Condition unavailable'
         default: []
