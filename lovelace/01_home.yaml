@@ -194,43 +194,80 @@ cards:
       grid-area: garbage
       align-self: start
     cards:
-      - type: custom:auto-entities
-        show_empty: false
-        card:
-          type: markdown
-          content: |
-            {%- set mapper = {0:'"#eeeeee"',1:'"#F2DB06"',2:'"#FB8D00"',3:'"#F9413D"',4:'"#F300FF"'} %}
-            {% set ns = namespace(first=true) %}
-            {%- for sensor in states.sensor %}
-              {%- if 'sensor.dwd_warnung' in sensor.entity_id and sensor.state != "off" %}
-                {%- set danger = sensor.attributes["Gefahr (0-4)"] %}
-                {% if ns.first  == false %}
-            ----------------------------------------
-                {% endif %}
-                {%- set ns.first = false %}
-            {{ sensor.state}}: 
-            <font color = {{- mapper[danger] if danger in mapper else 'grey'}}>**{{ sensor.attributes.friendly_name }}**</font>
-            {%- if danger == 0 %}
-            Gefahrenstufe: Info
-            {%- elif danger == 1 %}
-            Gefahrenstufe: gering
-            {%- elif danger == 2 %}
-            Gefahrenstufe: mittel
-            {%- elif danger == 3 %}
-            Gefahrenstufe: hoch
-            {%- elif danger == 4 %}
-            Gefahrenstufe: extrem
-            {%- else %}
-            Gefahrenstufe: unbekannt
-            {%- endif %}
-              {%- endif %}
-
-            {%- endfor %}
-        filter:
-          include:
-            - entity_id: "sensor.dwd_warnung*"
-          exclude:
-            - state: "off"
+      - type: markdown
+        content: >-      
+          {% set current_count = state_attr("sensor.wetterwarnungen_current_warning_level", "warning_count") %}
+          {% set advance_count = state_attr("sensor.wetterwarnungen_advance_warning_level", "warning_count") %}
+          {% if ((current_count == 0 or current_count == None) and (advance_count == 0 or advance_count == None)) %}
+          **<font color=#c5e566>Keine Warnungen</font>**
+          {% else %}
+            {% for i in range(current_count) %}
+              {% set headline = state_attr("sensor.wetterwarnungen_current_warning_level", "warning_" ~ loop.index ~ "_headline") %}
+              {% set description = state_attr("sensor.wetterwarnungen_current_warning_level", "warning_" ~ loop.index ~ "_description") %}
+              {% set level = state_attr("sensor.wetterwarnungen_current_warning_level", "warning_" ~ loop.index ~ "_level") %}
+              {% set time_start = state_attr("sensor.wetterwarnungen_current_warning_level", "warning_" ~ loop.index ~ "_start") %}
+              {% set weekday_start = as_timestamp(time_start) | timestamp_custom("%w", True) | int %}
+              {% set time_end = state_attr("sensor.wetterwarnungen_current_warning_level", "warning_" ~ loop.index ~ "_end") %}
+              {% set weekday_end = as_timestamp(time_end) | timestamp_custom("%w", True) | int %}
+              {% set color = state_attr("sensor.wetterwarnungen_current_warning_level", "warning_" ~ loop.index ~ "_color") %}
+            **<font color={{ color }}>{{ headline }}</font>**     
+            {{ ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][weekday_start-1] ~ ", " ~ time_start.strftime("%H:%M") ~ " - " ~ ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][weekday_end-1] ~ ", " ~ time_end.strftime("%H:%M") }}
+            *{{ description|trim }}*
+            {% if not loop.last %}***{% endif %}
+            {% endfor %}
+            {% if ((current_count != 0) and (advance_count != 0)) %}***{% endif %}
+            {% for i in range(advance_count) %}
+              {% set headline = state_attr("sensor.wetterwarnungen_advance_warning_level", "warning_" ~ loop.index ~ "_headline") %}
+              {% set description = state_attr("sensor.wetterwarnungen_advance_warning_level", "warning_" ~ loop.index ~ "_description") %}
+              {% set level = state_attr("sensor.sensor.wetterwarnungen_advance_warning_level", "warning_" ~ loop.index ~ "_level") %}
+              {% set time_start = state_attr("sensor.wetterwarnungen_advance_warning_level", "warning_" ~ loop.index ~ "_start") %}
+              {% set weekday_start = as_timestamp(time_start) | timestamp_custom("%w", True) | int %}
+              {% set time_end = state_attr("sensor.wetterwarnungen_advance_warning_level", "warning_" ~ loop.index ~ "_end") %}
+              {% set weekday_end = as_timestamp(time_end) | timestamp_custom("%w", True) | int %}
+              {% set color = state_attr("sensor.wetterwarnungen_advance_warning_level", "warning_" ~ loop.index ~ "_color") %}
+            **<font color={{ color }}>{{ headline }}</font>**
+            {{ ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][weekday_start-1] ~ ", " ~ time_start.strftime("%H:%M") ~ " - " ~ ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][weekday_end-1] ~ ", " ~ time_end.strftime("%H:%M") }}
+            *{{ description|trim }}*
+            {% if not loop.last %}***{% endif %}
+            {% endfor %}
+          {% endif %}  
+#      - type: custom:auto-entities
+#        show_empty: false
+#        card:
+#          type: markdown
+#          content: |
+#            {%- set mapper = {0:'"#eeeeee"',1:'"#F2DB06"',2:'"#FB8D00"',3:'"#F9413D"',4:'"#F300FF"'} %}
+#            {% set ns = namespace(first=true) %}
+#            {%- for sensor in states.sensor %}
+#              {%- if 'sensor.dwd_warnung' in sensor.entity_id and sensor.state != "off" %}
+#                {%- set danger = sensor.attributes["Gefahr (0-4)"] %}
+#                {% if ns.first  == false %}
+#            ----------------------------------------
+#                {% endif %}
+#                {%- set ns.first = false %}
+#            {{ sensor.state}}: 
+#            <font color = {{- mapper[danger] if danger in mapper else 'grey'}}>**{{ sensor.attributes.friendly_name }}**</font>
+#            {%- if danger == 0 %}
+#            Gefahrenstufe: Info
+#            {%- elif danger == 1 %}
+#            Gefahrenstufe: gering
+#            {%- elif danger == 2 %}
+#            Gefahrenstufe: mittel
+#            {%- elif danger == 3 %}
+#            Gefahrenstufe: hoch
+#            {%- elif danger == 4 %}
+#            Gefahrenstufe: extrem
+#            {%- else %}
+#            Gefahrenstufe: unbekannt
+#            {%- endif %}
+#              {%- endif %}
+#
+#            {%- endfor %}
+#        filter:
+#          include:
+#            - entity_id: "sensor.dwd_warnung*"
+#          exclude:
+#            - state: "off"
       - type: custom:auto-entities
         show_empty: false
         card:
