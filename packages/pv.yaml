@@ -52,7 +52,7 @@ template:
             {% set ts_now = as_timestamp(now()) %}
             {% set minutes_start_before_peak = 61 %}
             {% if (ts_peak_time - ts_now) < (minutes_start_before_peak * 60) %}
-              {% if is_states('binary_sensor.template_water_heater_pv_power_sufficient','on') %}
+              {% if is_state('binary_sensor.template_water_heater_pv_power_sufficient','on') %}
                 {{ true }}
               {% else %}
                 {{ false }}
