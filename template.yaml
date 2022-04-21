@@ -63,3 +63,11 @@
           {{ states('sensor.el_leistung_shellyplug_s_169d16_power') }}
         attributes:
           friendly_name: "El. Leistung Hebeanlage"
+    binary_sensor:
+      - name: dwd_weather_warnings_active
+        state: >
+          {% if (states('sensor.dwd_weather_warnings_advance_warning_level') | float(0) > 0) or (states('sensor.dwd_weather_warnings_current_warning_level') | float(0) > 0) %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
