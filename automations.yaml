@@ -1853,28 +1853,3 @@
         - service: switch.turn_on
           target:
             entity_id: switch.tv
-#
-###############################################
-#####           Wetter-Warnungen          #####
-###############################################
-- id: '01da7c50-7db6-4729-83e7-95910acdd914'
-  alias: Wetter-Warnungen
-  description: ''
-  mode: queued
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.dwd_weather_warnings_active
-      from: 'off'
-      to: 'on'
-      id: dwd_weather_warnings_active
-  condition: []
-  action:
-    - choose:
-      - conditions:
-        - condition: trigger
-          id: dwd_weather_warnings_active
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: 'Wetterwarnung'
-      default: []
