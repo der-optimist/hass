@@ -95,6 +95,10 @@ automation:
         entity_id: binary_sensor.template_water_heater_pv_boost_condition
         to: 'off'
         id: boost_end
+      - platform: state
+        entity_id: binary_sensor.template_water_heater_pv_boost_condition
+        to: 'unavailable'
+        id: unavail
     condition: []
     action:
       - choose:
@@ -127,4 +131,11 @@ automation:
               operation_mode: 'eco'
             target:
               entity_id: water_heater.dhw1
+        - conditions:
+          - condition: trigger
+            id: unavail
+          sequence:
+          - service: notify.telegram_jo
+            data:
+              message: 'Beende PV-Boost Condition unavailable'
         default: []
