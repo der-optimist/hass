@@ -194,13 +194,10 @@ cards:
       grid-area: garbage
       align-self: start
     cards:
-      - type: custom:auto-entities
-        show_empty: false
-        filter:
-          include:
-            - entity_id: "binary_sensor.template_dwd_weather_warnings_active"
-          exclude:
-            - state: "off"
+      - type: conditional
+        conditions:
+          - entity: binary_sensor.dwd_weather_warnings_active
+            state: 'on'
         card:
           type: markdown
           content: >-      
