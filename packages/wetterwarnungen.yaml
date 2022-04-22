@@ -23,6 +23,11 @@ automation:
         from: 'off'
         to: 'on'
         id: dwd_weather_warnings_active
+      - platform: state
+        entity_id: binary_sensor.dwd_weather_warnings_active
+        to: 'off'
+        for: '00:35:00'
+        id: dwd_weather_warnings_inactive
     condition: []
     action:
       - choose:
@@ -33,4 +38,13 @@ automation:
           - service: notify.telegram_jo
             data:
               message: 'Wetterwarnung'
+        - conditions:
+          - condition: trigger
+            id: dwd_weather_warnings_inactive
+          sequence:
+          - service: input_text.set_value
+            data:
+              value: 'inactive'
+            target:
+              entity_id: input_text.helper_wetterwarnungen_bekannte_ids
         default: []
