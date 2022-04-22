@@ -8,6 +8,12 @@ cards:
     entities:
       - entity: input_boolean.gewitter
         name: Gewitter!
+      - entity: sensor.blitzortung_lightning_distance
+        name: Blitz - Entfernung
+      - entity: sensor.blitzortung_lightning_azimuth
+        name: Blitz - Richtung
+      - entity: sensor.blitzortung_lightning_counter
+        name: Blitz - Anzahl
   - type: entities
     title: Temperatur, Helligkeit, Regen
     show_header_toggle: false
