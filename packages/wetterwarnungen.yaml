@@ -60,20 +60,149 @@ automation:
           - repeat:
               count: "{{ state_attr('sensor.dwd_weather_warnings_advance_warning_level','warning_count') | int(0) }}"
               sequence:
+                - service: notify.telegram_jo
+                  data:
+                    message: >
+                      {% set t_start = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ loop.index ~ '_start') %}
+                      {% set t_end = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ loop.index ~ '_start') %}
+                      {% set event = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ loop.index ~ '_name') %}
+                      {% set level = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ loop.index ~ '_level') %}
+                      {% set event_fix = event[:5] %}
+                      {% set str_hours = '{:03.0f}'.format((as_datetime(t_end) - as_datetime(t_start)).seconds / 3600) %}
+                      {% set str_ts_start = '{:10.0f}'.format(as_timestamp(t_start)) %}
+                      {% set str_level = '{:1.0f}'.format(level) %}
+                      {% set id = (event_fix + '-' + str_ts_start + '-' + str_hours + '-' + str_level) | slugify(separator='-') %}
+                      {{ id }}
                 - condition: template
                   value_template: >
-                    {{ '___' in trigger.to_state.state }}
-                    {% set str_start = '2022-04-10T22:00:00+00:00' %}
-                    {% set str_end = '2022-04-11T06:00:00+00:00' %}
-                    {% set event = 'FROSTIO' %}
-                    {% set level = 1 %}
+                    {% set t_start = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ loop.index ~ '_start') %}
+                    {% set t_end = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ loop.index ~ '_start') %}
+                    {% set event = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ loop.index ~ '_name') %}
+                    {% set level = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ loop.index ~ '_level') %}
                     {% set event_fix = event[:5] %}
-                    {% set str_hours = '{:03.0f}'.format((as_datetime(str_end) - as_datetime(str_start)).seconds / 3600) %}
-                    {% set str_ts_start = '{:10.0f}'.format(as_timestamp('2022-04-11T06:00:00+00:00')) %}
+                    {% set str_hours = '{:03.0f}'.format((as_datetime(t_end) - as_datetime(t_start)).seconds / 3600) %}
+                    {% set str_ts_start = '{:10.0f}'.format(as_timestamp(t_start)) %}
                     {% set str_level = '{:1.0f}'.format(level) %}
                     {% set id = (event_fix + '-' + str_ts_start + '-' + str_hours + '-' + str_level) | slugify(separator='-') %}
                     {{ id not in states('input_text.helper_wetterwarnungen_bekannte_ids') }}
                 - service: notify.telegram_jo
                   data:
                     message: 'neue Wetterwarnung erkannt'
+                - service: notify.telegram_jo
+                  data:
+                    message: >
+                      {% set headline = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_headline") %}
+                      {% set description = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_description") %}
+                      {% set level = state_attr("sensor.sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_level") %}
+                      {% set time_start = as_local(state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_start")) %}
+                      {% set weekday_start = as_timestamp(time_start) | timestamp_custom("%w", True) | int %}
+                      {% set time_end = as_local(state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_end")) %}
+                      {% set weekday_end = as_timestamp(time_end) | timestamp_custom("%w", True) | int %}
+                      {% set zeit = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][weekday_start-1] ~ ", " ~ time_start.strftime("%H:%M") ~ " bis " ~ ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][weekday_end-1] ~ ", " ~ time_end.strftime("%H:%M") %}
+                      {{ headline + ' von ' + zeit + ': ' + description }}
+                - service: input_text.set_value
+                  data:
+                    value: >
+                      {% set t_start = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ loop.index ~ '_start') %}
+                      {% set t_end = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ loop.index ~ '_start') %}
+                      {% set event = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ loop.index ~ '_name') %}
+                      {% set level = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ loop.index ~ '_level') %}
+                      {% set event_fix = event[:5] %}
+                      {% set str_hours = '{:03.0f}'.format((as_datetime(t_end) - as_datetime(t_start)).seconds / 3600) %}
+                      {% set str_ts_start = '{:10.0f}'.format(as_timestamp(t_start)) %}
+                      {% set str_level = '{:1.0f}'.format(level) %}
+                      {% set new_id = (event_fix + '-' + str_ts_start + '-' + str_hours + '-' + str_level) | slugify(separator='-') %}
+                      {% set ns = namespace() %}
+                      {% set ns.ids = '' %}
+                      {% for id in states('input_text.helper_wetterwarnungen_bekannte_ids').split(',') %}
+                        {% if id != 'inactive' %}
+                          {% if ns.ids == '' %}
+                            {% set ns.ids = ns.ids + id %}
+                          {% else %}
+                            {% set ns.ids = ns.ids + ',' + id %}
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                      {% if ns.ids == '' %}
+                        {% set ns.ids = ns.ids + new_id %}
+                      {% else %}
+                        {% set ns.ids = ns.ids + ',' + new_id %}
+                      {% endif %}
+                      {{ ns.ids }}
+                  target:
+                    entity_id: input_text.helper_wetterwarnungen_bekannte_ids
+          - repeat:
+              count: "{{ state_attr('sensor.dwd_weather_warnings_current_warning_level','warning_count') | int(0) }}"
+              sequence:
+                - service: notify.telegram_jo
+                  data:
+                    message: >
+                      {% set t_start = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ loop.index ~ '_start') %}
+                      {% set t_end = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ loop.index ~ '_start') %}
+                      {% set event = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ loop.index ~ '_name') %}
+                      {% set level = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ loop.index ~ '_level') %}
+                      {% set event_fix = event[:5] %}
+                      {% set str_hours = '{:03.0f}'.format((as_datetime(t_end) - as_datetime(t_start)).seconds / 3600) %}
+                      {% set str_ts_start = '{:10.0f}'.format(as_timestamp(t_start)) %}
+                      {% set str_level = '{:1.0f}'.format(level) %}
+                      {% set id = (event_fix + '-' + str_ts_start + '-' + str_hours + '-' + str_level) | slugify(separator='-') %}
+                      {{ id }}
+                - condition: template
+                  value_template: >
+                    {% set t_start = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ loop.index ~ '_start') %}
+                    {% set t_end = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ loop.index ~ '_start') %}
+                    {% set event = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ loop.index ~ '_name') %}
+                    {% set level = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ loop.index ~ '_level') %}
+                    {% set event_fix = event[:5] %}
+                    {% set str_hours = '{:03.0f}'.format((as_datetime(t_end) - as_datetime(t_start)).seconds / 3600) %}
+                    {% set str_ts_start = '{:10.0f}'.format(as_timestamp(t_start)) %}
+                    {% set str_level = '{:1.0f}'.format(level) %}
+                    {% set id = (event_fix + '-' + str_ts_start + '-' + str_hours + '-' + str_level) | slugify(separator='-') %}
+                    {{ id not in states('input_text.helper_wetterwarnungen_bekannte_ids') }}
+                - service: notify.telegram_jo
+                  data:
+                    message: 'neue Wetterwarnung erkannt'
+                - service: notify.telegram_jo
+                  data:
+                    message: >
+                      {% set headline = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_headline") %}
+                      {% set description = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_description") %}
+                      {% set level = state_attr("sensor.sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_level") %}
+                      {% set time_start = as_local(state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_start")) %}
+                      {% set weekday_start = as_timestamp(time_start) | timestamp_custom("%w", True) | int %}
+                      {% set time_end = as_local(state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_end")) %}
+                      {% set weekday_end = as_timestamp(time_end) | timestamp_custom("%w", True) | int %}
+                      {% set zeit = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][weekday_start-1] ~ ", " ~ time_start.strftime("%H:%M") ~ " bis " ~ ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][weekday_end-1] ~ ", " ~ time_end.strftime("%H:%M") %}
+                      {{ headline + ' von ' + zeit + ': ' + description }}
+                - service: input_text.set_value
+                  data:
+                    value: >
+                      {% set t_start = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ loop.index ~ '_start') %}
+                      {% set t_end = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ loop.index ~ '_start') %}
+                      {% set event = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ loop.index ~ '_name') %}
+                      {% set level = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ loop.index ~ '_level') %}
+                      {% set event_fix = event[:5] %}
+                      {% set str_hours = '{:03.0f}'.format((as_datetime(t_end) - as_datetime(t_start)).seconds / 3600) %}
+                      {% set str_ts_start = '{:10.0f}'.format(as_timestamp(t_start)) %}
+                      {% set str_level = '{:1.0f}'.format(level) %}
+                      {% set new_id = (event_fix + '-' + str_ts_start + '-' + str_hours + '-' + str_level) | slugify(separator='-') %}
+                      {% set ns = namespace() %}
+                      {% set ns.ids = '' %}
+                      {% for id in states('input_text.helper_wetterwarnungen_bekannte_ids').split(',') %}
+                        {% if id != 'inactive' %}
+                          {% if ns.ids == '' %}
+                            {% set ns.ids = ns.ids + id %}
+                          {% else %}
+                            {% set ns.ids = ns.ids + ',' + id %}
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                      {% if ns.ids == '' %}
+                        {% set ns.ids = ns.ids + new_id %}
+                      {% else %}
+                        {% set ns.ids = ns.ids + ',' + new_id %}
+                      {% endif %}
+                      {{ ns.ids }}
+                  target:
+                    entity_id: input_text.helper_wetterwarnungen_bekannte_ids
         default: []
