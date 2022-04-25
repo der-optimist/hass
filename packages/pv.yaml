@@ -14,17 +14,21 @@ template:
       - name: "Stunden bis Warmwasser heizen"
         unique_id: stunden_bis_warmwasser_heizen
         state: >
-          {% set water_temp_heating_will_start = 42 %}
-          {% set temp_loss_per_hour = 0.3 %}
-          {% set current_temp = states('sensor.water_heater_current_temp') %}
-          {% if is_number(current_temp) %}
-            {% if (current_temp | float(0)) > 0 %}
-              {{ (((current_temp | float(water_temp_heating_will_start)) - water_temp_heating_will_start) / temp_loss_per_hour) | round(0) }}
+          {% if is_state('binary_sensor.template_water_heater_pv_boost_condition','on') %}
+            {{ states('sensor.stunden_bis_warmwasser_heizen') }}
+          {% else %}
+            {% set water_temp_heating_will_start = 42 %}
+            {% set temp_loss_per_hour = 0.3 %}
+            {% set current_temp = states('sensor.water_heater_current_temp') %}
+            {% if is_number(current_temp) %}
+              {% if (current_temp | float(0)) > 0 %}
+                {{ (((current_temp | float(water_temp_heating_will_start)) - water_temp_heating_will_start) / temp_loss_per_hour) | round(0) }}
+              {% else %}
+                {{ states('sensor.stunden_bis_warmwasser_heizen') }}
+              {% endif %}
             {% else %}
               {{ states('sensor.stunden_bis_warmwasser_heizen') }}
             {% endif %}
-          {% else %}
-            {{ states('sensor.stunden_bis_warmwasser_heizen') }}
           {% endif %}
         unit_of_measurement: 'hours'
       - name: "Solcast Forecast Peak Zeit bis Wasser heizen"
