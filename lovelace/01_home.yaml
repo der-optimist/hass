@@ -4,7 +4,7 @@ icon: mdi:home-outline
 type: custom:grid-layout
 layout:
   grid-template-columns: 25% 25% 25% 25%
-  grid-template-rows: auto
+  grid-template-rows: minmax(auto, auto)
   grid-template-areas: |
     "main_left meteogram meteogram meteogram"
     "main_left todo garbage birthdays"
