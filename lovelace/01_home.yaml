@@ -343,3 +343,12 @@ cards:
           name: Eisschutz Jalousien
         - entity: input_boolean.gewitter
           name: Gewitter!
+  - type: custom:gap-card
+    view_layout:
+      grid-area: space2
+  - type: custom:gap-card
+    view_layout:
+      grid-area: space3
+  - type: custom:gap-card
+    view_layout:
+      grid-area: space4
