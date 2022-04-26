@@ -90,20 +90,11 @@ cards:
             name: PV-Ertrag gesamt
             entity: sensor.pv_geldertrag_gesamt
             state: "{{ float(states('sensor.pv_geldertrag_gesamt'),0) | round(0) }} €"
-  - type: custom:hui-element
+  - type: picture-entity
+    entity: camera.meteogram
+    camera_view: live
     view_layout:
       grid-area: meteogram
-    card_type: picture-elements
-    image: /local/meteograms/meteogram.png
-    elements:
-      - type: image
-        entity: camera.meteogram
-        camera_image: camera.meteogram
-        style:
-          left: 50%
-          top: 50%
-          width: 100%
-          height: 100%
   - type: vertical-stack
     view_layout:
       grid-area: todo
