@@ -8,6 +8,7 @@ layout:
   grid-template-areas: |
     "main_left meteogram meteogram meteogram"
     "main_left todo garbage birthdays"
+    "main_left space2 space3 space4"
   mediaquery:
     "(max-width: 800px)":
       grid-template-columns: 100%
