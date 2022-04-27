@@ -132,7 +132,7 @@ cards:
                 max: 10000
                 tickAmount: 5
               chart:
-                height: 190px
+                height: 200px
               legend:
                 show: false
             header:
@@ -183,6 +183,13 @@ cards:
                   return entity.attributes.forecasts.map((entry) => {
                     return [new Date(entry.period_end), entry.pv_estimate*1000];
                   });
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - type: custom:template-entity-row
+                name: PV-Ertrag gesamt
+                entity: sensor.pv_geldertrag_gesamt
+                state: "{{ float(states('sensor.pv_geldertrag_gesamt'),0) | round(0) }} €"
   - type: vertical-stack
     view_layout:
       grid-area: garbage
