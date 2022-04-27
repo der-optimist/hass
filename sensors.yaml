@@ -259,7 +259,28 @@
           {% endif %}
         friendly_name: 'El. Leistung Verbrauch gesamt'
         unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+        entity_picture_template: '/local/icons/power/power_usage.svg'
+      pv_einspeisung_letzte_3_min_durchschnitt_anzeige:
+        value_template: >-
+          {% if states('sensor.pv_einspeisung_letzte_3_min_durchschnitt') in ['unavailable', 'unknown', 'none'] %}
+            {{ 0 }}
+          {% else %}
+            {{ states('sensor.pv_einspeisung_letzte_3_min_durchschnitt') }}
+          {% endif %}
+        friendly_name: 'PV Einspeisung - Anzeige'
+        unit_of_measurement: 'W'
+        entity_picture_template: >
+          {% if states('sensor.pv_einspeisung_letzte_3_min_durchschnitt') in ['unavailable', 'unknown', 'none'] %}
+            {{ '/local/icons/power/solar_power_gray.svg' }}
+          {% else %}
+            {% if (states('sensor.pv_einspeisung_letzte_3_min_durchschnitt') | float(0)) > 6000 %}
+              {{ '/local/icons/power/solar_power_green.svg' }}
+            {% elif (states('sensor.pv_einspeisung_letzte_3_min_durchschnitt') | float(0)) > 1500 %}
+              {{ '/local/icons/power/solar_power_orange.svg' }}
+            {% else %}
+              {{ '/local/icons/power/solar_power_gray.svg' }}
+            {% endif %}
+          {% endif %}
 #      battery_sim_energy_saved_byd_hvm_11_0:
 #        value_template: "{{ state_attr('sensor.byd_hvm_11_0', 'energy_saved') | float(0) }}"
 #        friendly_name: 'Batterie-Sim BYD HVM 11_0 Energy Saved'
