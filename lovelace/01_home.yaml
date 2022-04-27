@@ -84,6 +84,10 @@ cards:
             entity: sensor.el_leistung_verbrauch_gesamt
             state: "{{ ((float(states('sensor.el_leistung_verbrauch_gesamt'),0) / 10) | round(0)) * 10 }} W"
           - type: custom:template-entity-row
+            style: |
+              ha-card {
+              color: {{ 'yellow' }};
+              }
             name: PV-Einspeisung aktuell
             entity: sensor.el_leistung_einspeisung
             state: "{{ ((float(states('sensor.el_leistung_einspeisung'),0) / 100) | round(0)) * 100 }} W"
