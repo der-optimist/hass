@@ -195,7 +195,7 @@
           {% endif %}
         friendly_name: 'El. Leistung PV AC'
         unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+        entity_picture_template: '/local/icons/power/solar_panel.svg'
       el_leistung_pv_dc:
         value_template: >-
           {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
