@@ -34,7 +34,7 @@ cards:
             content: >
               # {{ '%.1f'%(states('sensor.temp_esszimmer_pm') | float(0)) | float(0) }}°C
               
-              Luftfeuchtigkeit: {{ states('sensor.luftfeuchtigkeit_kuche_aqara') }}%
+              Luftfeuchte: {{ states('sensor.luftfeuchtigkeit_kuche_aqara') }}%
           - type: markdown
             style: |
               h1 {
@@ -53,7 +53,7 @@ cards:
         entities: 
           - sensor.temp_wetterstation
         name: Außentemperatur
-        height: 120
+        height: 110
         hour24: true
         decimals: 1
         show:
@@ -87,10 +87,6 @@ cards:
             name: PV-Einspeisung aktuell
             entity: sensor.el_leistung_einspeisung
             state: "{{ ((float(states('sensor.el_leistung_einspeisung'),0) / 100) | round(0)) * 100 }} W"
-          - type: custom:template-entity-row
-            name: PV-Ertrag gesamt
-            entity: sensor.pv_geldertrag_gesamt
-            state: "{{ float(states('sensor.pv_geldertrag_gesamt'),0) | round(0) }} €"
   - type: picture-entity
     entity: camera.meteogram
 #    camera_view: live
@@ -132,7 +128,7 @@ cards:
                 max: 10000
                 tickAmount: 5
               chart:
-                height: 200px
+                height: 220px
               legend:
                 show: false
             header:
