@@ -1853,3 +1853,20 @@
         - service: switch.turn_on
           target:
             entity_id: switch.tv
+#
+###############################################
+#####   Kinder-schon-wach-Knopf Reset     #####
+###############################################
+- id: '6410909e-aafc-4f0f-8567-ac3f338f4aef'
+  alias: Kinder-schon-wach-Knopf Reset
+  description: ''
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: switch.majo_schlafen
+      to: 'off'
+  condition: []
+  action:
+    - service: switch.turn_off
+      target:
+        entity_id: switch.kinder_schon_wach
