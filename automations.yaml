@@ -1870,3 +1870,22 @@
     - service: switch.turn_off
       target:
         entity_id: switch.kinder_schon_wach
+#
+###############################################
+#####     Schlafen-Knopf Kinder Reset     #####
+###############################################
+- id: '747ab1c2-edef-4e9c-b877-ea376633d87f'
+  alias: Schlafen-Knopf Kinder Reset
+  description: ''
+  mode: queued
+  trigger:
+    - platform: time
+      at: "09:30:02"
+  condition: []
+  action:
+    - service: switch.turn_off
+      target:
+        entity_id: switch.la_schlaft
+    - service: switch.turn_off
+      target:
+        entity_id: switch.le_schlaft
