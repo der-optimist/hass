@@ -56,9 +56,9 @@ climate: !include knx_climate.yaml
 light: !include knx_light.yaml
 scene: !include knx_scene.yaml
 expose:
-- type: 'binary'
-  entity_id: 'binary_sensor.tag_nacht_wetterstation_ersatz'
-  address: '13/0/3'
+#- type: 'binary'
+#  entity_id: 'binary_sensor.tag_nacht_wetterstation_ersatz'
+#  address: '13/0/3'
 - type: time
   address: '13/0/11'
 - type: datetime
@@ -111,9 +111,9 @@ expose:
 - type: 'string'
   entity_id: 'sensor.windfang_wc_temp_soll_text'
   address: '10/7/7'
-- type: 'temperature'
-  entity_id: 'sensor.temp_aussen'
-  address: '13/0/0'
+#- type: 'temperature'
+#  entity_id: 'sensor.temp_aussen'
+#  address: '13/0/0'
 - type: 'temperature'
   entity_id: 'sensor.onewire_15_estrich_wc_1'
   address: '12/0/6'

@@ -188,28 +188,28 @@
     type: temperature
 
 # --- Wetterstation - Sonstige ---
-#  - name: 'Windgeschwindigkeit Wetterstation'
-#    state_address: '13/0/1'
-#    sync_state: False
-#    type: wind_speed_ms
-#  - name: 'Sonnenschutz Fassade 1 Position'
-#    state_address: '13/0/14'
-#    type: percent
-#  - name: 'Sonnenschutz Fassade 1 Lamellen'
-#    state_address: '13/0/15'
-#    type: percent
-#  - name: 'Sonnenschutz Fassade 2 Position'
-#    state_address: '13/0/18'
-#    type: percent
-#  - name: 'Sonnenschutz Fassade 2 Lamellen'
-#    state_address: '13/0/19'
-#    type: percent
-#  - name: 'Sonnenschutz Fassade 3 Position'
-#    state_address: '13/0/22'
-#    type: percent
-#  - name: 'Sonnenschutz Fassade 3 Lamellen'
-#    state_address: '13/0/23'
-#    type: percent
+  - name: 'Windgeschwindigkeit Wetterstation'
+    state_address: '13/0/1'
+    sync_state: False
+    type: wind_speed_ms
+  - name: 'Sonnenschutz Fassade 1 Position'
+    state_address: '13/0/14'
+    type: percent
+  - name: 'Sonnenschutz Fassade 1 Lamellen'
+    state_address: '13/0/15'
+    type: percent
+  - name: 'Sonnenschutz Fassade 2 Position'
+    state_address: '13/0/18'
+    type: percent
+  - name: 'Sonnenschutz Fassade 2 Lamellen'
+    state_address: '13/0/19'
+    type: percent
+  - name: 'Sonnenschutz Fassade 3 Position'
+    state_address: '13/0/22'
+    type: percent
+  - name: 'Sonnenschutz Fassade 3 Lamellen'
+    state_address: '13/0/23'
+    type: percent
 
 # --- Elektrische Leistung ---
 # Schaltaktor direkt

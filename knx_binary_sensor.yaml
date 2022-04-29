@@ -152,26 +152,26 @@
     device_class: moving
 
 # --- Wetter ---
-#  - state_address: '13/0/4'
-#    name: Windalarm 1
-#  - state_address: '13/0/5'
-#    name: Windalarm 2
-#  - state_address: '13/0/6'
-#    name: Windalarm 3
-#  - state_address: '13/0/3'
-#    name: Tag-Nacht Wetterstation
-#  - state_address: '13/0/7'
-#    name: Regenalarm
-#  - state_address: '13/0/8'
-#    name: Temperaturalarm Wetterstation
-#    device_class: cold
-#  - state_address: '13/0/13'
-#    name: Wetterstation Status GPS-Signal
-#    device_class: power
-#  - state_address: '13/0/28'
-#    name: Status Waermeschutz
-#  - state_address: '13/0/29'
-#    name: Status Waermegewinnung
+  - state_address: '13/0/4'
+    name: Windalarm 1
+  - state_address: '13/0/5'
+    name: Windalarm 2
+  - state_address: '13/0/6'
+    name: Windalarm 3
+  - state_address: '13/0/3'
+    name: Tag-Nacht Wetterstation
+  - state_address: '13/0/7'
+    name: Regenalarm
+  - state_address: '13/0/8'
+    name: Temperaturalarm Wetterstation
+    device_class: cold
+  - state_address: '13/0/13'
+    name: Wetterstation Status GPS-Signal
+    device_class: power
+  - state_address: '13/0/28'
+    name: Status Waermeschutz
+  - state_address: '13/0/29'
+    name: Status Waermegewinnung
 
 # --- Heizung ---
   - state_address: '10/7/1'

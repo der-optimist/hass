@@ -66,10 +66,10 @@ template:
             {{ colormap['orange'] }}
       - name: helper_light_is_too_dark_a_ga_leuchtwuerfel_ecke_gross
         state: >
-          {{ (states("sensor.helligkeit_wetterstation_ersatz") | float(0)) < (states("sensor.helper_light_min_illuminance_a_ga_leuchtwuerfel_ecke_gross") | float(1)) }}
+          {{ (states("sensor.helligkeit_wetterstation") | float(0)) < (states("sensor.helper_light_min_illuminance_a_ga_leuchtwuerfel_ecke_gross") | float(1)) }}
       - name: helper_light_is_too_bright_a_ga_leuchtwuerfel_ecke_gross
         state: >
-          {{ (states("sensor.helligkeit_wetterstation_ersatz") | float(0)) > (states("sensor.helper_light_min_illuminance_a_ga_leuchtwuerfel_ecke_gross") | float(1) + 1000 ) }}
+          {{ (states("sensor.helligkeit_wetterstation") | float(0)) > (states("sensor.helper_light_min_illuminance_a_ga_leuchtwuerfel_ecke_gross") | float(1) + 1000 ) }}
 
 automation:
   - alias: Licht Garten Leuchtwürfel Ecke gross
