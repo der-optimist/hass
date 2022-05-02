@@ -1604,11 +1604,11 @@
   mode: queued
   trigger:
     - platform: numeric_state
-      entity_id: sensor.helligkeit_wetterstation_ersatz
+      entity_id: sensor.helligkeit_wetterstation
       below: 4000
       id: down
     - platform: numeric_state
-      entity_id: sensor.helligkeit_wetterstation_ersatz
+      entity_id: sensor.helligkeit_wetterstation
       below: 800
       id: down
     - platform: time
@@ -1643,7 +1643,7 @@
   mode: queued
   trigger:
     - platform: numeric_state
-      entity_id: sensor.helligkeit_wetterstation_ersatz
+      entity_id: sensor.helligkeit_wetterstation
       below: 700
       id: down
     - platform: time
