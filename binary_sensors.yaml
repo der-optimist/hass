@@ -208,7 +208,7 @@
         friendly_name: "PM Timer Magnetsensor Vorratsraum"
         device_class: moving
         delay_off:
-          minutes: 5
+          minutes: 15
         value_template: >
           {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.pm_k_timer_magnetsensor_vorratsraum') }}
@@ -219,7 +219,7 @@
         friendly_name: "PM Timer Magnetsensor Werkelraum"
         device_class: moving
         delay_off:
-          minutes: 10
+          hours: 1
         value_template: >
           {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.pm_k_timer_magnetsensor_werkelraum') }}
@@ -230,7 +230,7 @@
         friendly_name: "PM Timer Bewegung Partyraum"
         device_class: moving
         delay_off:
-          minutes: 10
+          minutes: 20
         value_template: >
           {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_36694e04_on_off') in ['unavailable', 'unknown', 'none']
              or states('binary_sensor.lumi_lumi_sensor_motion_aq2_6f2e5d04_occupancy') in ['unavailable', 'unknown', 'none']
