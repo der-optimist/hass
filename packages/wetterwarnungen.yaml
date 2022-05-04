@@ -17,6 +17,8 @@ automation:
     alias: Wetter-Warnungen
     description: ''
     mode: queued
+    trace:
+      stored_traces: 30
     trigger:
       - platform: state
         entity_id: binary_sensor.dwd_weather_warnings_active
