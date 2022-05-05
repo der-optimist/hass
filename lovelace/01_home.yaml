@@ -87,13 +87,26 @@ cards:
             name: PV-Einspeisung aktuell
             entity: sensor.pv_einspeisung_letzte_3_min_durchschnitt_anzeige
             state: "{{ ((float(states('sensor.pv_einspeisung_letzte_3_min_durchschnitt_anzeige'),0) / 100) | round(0)) * 100 }} W"
-  - type: picture-entity
-    entity: camera.meteogram
-#    camera_view: live
-    show_name: false
-    show_state: false
+#  - type: picture-entity
+#    entity: camera.meteogram
+#    show_name: false
+#    show_state: false
+#    view_layout:
+#      grid-area: meteogram
+  - type: custom:hui-element
     view_layout:
       grid-area: meteogram
+    card_type: picture-elements
+    image: /local/meteograms/meteogram.png
+    elements:
+      - type: image
+        entity: camera.meteogram
+        camera_image: camera.meteogram
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+          height: 100%
   - type: vertical-stack
     view_layout:
       grid-area: todo
