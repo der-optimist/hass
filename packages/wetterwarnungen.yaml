@@ -70,7 +70,7 @@ automation:
                       {% set event = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ repeat.index ~ '_name') %}
                       {% set level = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ repeat.index ~ '_level') %}
                       {% set event_fix = event[:5] %}
-                      {% set str_hours = '{:03.0f}'.format(t_end - t_start).seconds / 3600) %}
+                      {% set str_hours = '{:03.0f}'.format((t_end - t_start).seconds / 3600) %}
                       {% set str_ts_start = '{:10.0f}'.format(as_timestamp(t_start)) %}
                       {% set str_level = '{:1.0f}'.format(level) %}
                       {% set id = (event_fix + '-' + str_ts_start + '-' + str_hours + '-' + str_level) | slugify(separator='-') %}
