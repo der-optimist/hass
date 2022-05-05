@@ -9,7 +9,9 @@ cards:
       - entity: input_boolean.gewitter
         name: Gewitter!
       - entity: sensor.blitzortung_lightning_distance
-        name: Blitz - Entfernung
+        name: Blitz - Entfernung aktuell
+      - entity: sensor.blitzentfernung_letze_5_minuten
+        name: Blitz - Entfernung letzte 5 Minuten
       - entity: sensor.blitzortung_lightning_azimuth
         name: Blitz - Richtung
       - entity: sensor.blitzortung_lightning_counter
