@@ -155,7 +155,7 @@ cards:
                 unit: W
                 float_precision: 0
                 fill_raw: last
-                extend_to_end: false
+                extend_to: now
                 group_by:
                   func: avg
                   duration: 30min
@@ -172,7 +172,7 @@ cards:
                     color: lime
               - entity: sensor.solcast_forecast_rest
                 type: line
-                extend_to_end: false
+                extend_to: now
                 unit: W
                 float_precision: 0
                 show:

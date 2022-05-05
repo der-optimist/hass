@@ -98,7 +98,7 @@ cards:
         name: Vorhersage
         unit: W
         fill_raw: last
-        extend_to_end: false
+        extend_to: now
         color: gray
         stroke_width: 2
         float_precision: 0
@@ -107,7 +107,7 @@ cards:
         unit: W
         float_precision: 0
         fill_raw: last
-        extend_to_end: false
+        extend_to: now
         group_by:
           func: avg
           duration: 30min
