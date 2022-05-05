@@ -915,6 +915,13 @@
     state_characteristic: value_max
     max_age:
       minutes: 2
+  - platform: statistics
+    name: Blitzentfernung letze 5 Minuten
+    entity_id: sensor.blitzortung_lightning_distance
+    sampling_size: 10000
+    state_characteristic: value_min
+    max_age:
+      minutes: 5
 #
 # --------------------------------
 # --                            --
