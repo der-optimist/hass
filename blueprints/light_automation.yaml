@@ -120,6 +120,7 @@ max_exceeded: silent
 variables:
   helper_effective_brightness: !input helper_effective_brightness
   helper_basic_brightness: !input helper_basic_brightness
+  light_entity: !input light_entity
   startup_delay_seconds: !input startup_delay_seconds
 
 trigger:
@@ -193,9 +194,7 @@ action:
           - condition: trigger
             id: ha_start
           sequence:
-          - delay:
-              seconds: >
-                {{ startup_delay_seconds }}
+          - wait_template: "{{ states(light_entity) in ['on','off'] }}"
         default: []
       - choose:
         - conditions:
