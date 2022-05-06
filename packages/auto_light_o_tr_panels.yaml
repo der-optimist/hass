@@ -51,12 +51,12 @@ template:
         unit_of_measurement: "lx"
         state: >
           {% set hours = 
-            ['00:00','06:29',5],
+            ['00:00','06:29',10],
             ['06:30','08:59',25],
-            ['09:00','16:59',30],
-            ['17:00','18:59',25],
-            ['19:00','22:59',10],
-            ['23:00','23:59',5] %}
+            ['09:00','16:59',40],
+            ['17:00','18:59',35],
+            ['19:00','22:59',30],
+            ['23:00','23:59',10] %}
           {% set t = states('sensor.time').replace(':','')|int %}
           {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
               {{h[2]}}
@@ -135,4 +135,3 @@ automation:
         helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_o_tr_panels
         helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_o_tr_panels
         helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_o_tr_panels
-        startup_delay_seconds: 60

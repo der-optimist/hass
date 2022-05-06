@@ -91,4 +91,3 @@ automation:
         helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_k_treppe
         helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_k_treppe
         helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_k_treppe
-        startup_delay_seconds: 60
