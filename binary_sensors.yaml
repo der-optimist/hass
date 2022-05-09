@@ -142,10 +142,12 @@
         friendly_name: "Nachtmodus Wohnbereich Jalousie"
         value_template: >
           {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
-             or states('switch.kinder_schon_wach') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.nachtmodus_wohnbereich_jalousie') }}
+             or states('switch.kinder_schon_wach') in ['unavailable', 'unknown', 'none']
+             or states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
+             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none'] %}
+            {{ this }}
           {% else %}
-            {{ is_state('switch.majo_schlafen', 'on') and is_state('switch.kinder_schon_wach', 'off') }}
+            {{ is_state('binary_sensor.jemand_schlaeft', 'on') and is_state('switch.kinder_schon_wach', 'off') }}
           {% endif %}
       bodenstrahler_blumenbeet_ist_sichtbar:
         friendly_name: "Bodenstrahler Blumenbeet ist sichtbar"
