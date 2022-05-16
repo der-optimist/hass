@@ -814,6 +814,7 @@
   - platform: integration
     source: sensor.power_photovoltaics_fronius_power_flow_0_192_168_178_28
     name: pv_ac_energy_riemann
+    unique_id: 468928ac-d4d9-11ec-bfe7-3f17cda37263
     unit_prefix: k
     round: 2
     method: left
