@@ -1,6 +1,7 @@
 sensor:
   - platform: powercalc
     create_group: Bekannte Verbraucher
+    unique_id: 5da77d06-d4e6-11ec-bcd5-533ea3dd1b9a
     entities:
       - create_group: Alle Lichter
         unique_id: 81f777e4-d4df-11ec-85d0-dfb4ae2aa83a
@@ -314,6 +315,7 @@ sensor:
                     manufacturer: innr
                     model: 'RB 285 C'
       - create_group: Wärmepumpe gesamt
+        unique_id: 6a8a5e3a-d4e6-11ec-9412-17d6662e547e
         entities:
           - entity_id: sensor.el_leistung_wp_aussenteil
             power_sensor_id: sensor.el_leistung_wp_aussenteil
@@ -325,6 +327,7 @@ sensor:
             power_sensor_id: sensor.el_leistung_wp_heizstab
             name: WP Heizstab
       - create_group: Küchengeräte ohne Kühlschrank
+        unique_id: 6f642698-d4e6-11ec-b5ff-5ffffcb302c4
         entities:
           - entity_id: sensor.el_leistung_backofen
             power_sensor_id: sensor.el_leistung_backofen
@@ -339,6 +342,7 @@ sensor:
             power_sensor_id: sensor.el_leistung_spulmaschine
             name: Spülmaschine
       - create_group: Kühlgeräte
+        unique_id: 761da14e-d4e6-11ec-b986-8f23f43c4cdb
         entities:
           - entity_id: sensor.el_leistung_kuhlschrank_kuche
             power_sensor_id: sensor.el_leistung_kuhlschrank_kuche
@@ -347,6 +351,7 @@ sensor:
             power_sensor_id: sensor.el_leistung_gefrierschrank
             name: Gefrierschrank
       - create_group: Multimedia
+        unique_id: 7a29b700-d4e6-11ec-aa95-b7163cea96da
         entities:
           - entity_id: sensor.el_leistung_tv
             power_sensor_id: sensor.el_leistung_tv
@@ -384,6 +389,7 @@ sensor:
 #              value: 1.8
 #              unit_of_measurement: W
       - create_group: Waschmaschine und Trockner
+        unique_id: 81e1e81e-d4e6-11ec-bbf4-9b13a3184af9
         entities:
           - entity_id: sensor.el_leistung_waschmaschine
             power_sensor_id: sensor.el_leistung_waschmaschine
@@ -392,6 +398,7 @@ sensor:
             power_sensor_id: sensor.el_leistung_trockner
             name: Trockner
       - create_group: Haustechnik
+        unique_id: 85c0c770-d4e6-11ec-839f-13ded9df0121
         entities:
           - entity_id: sensor.el_leistung_luftungsanlage
             power_sensor_id: sensor.el_leistung_luftungsanlage
@@ -422,6 +429,7 @@ sensor:
             # Onewirepi                        2
             # Robbi                            1
       - create_group: Netzwerk Telefon und Computer
+        unique_id: 8be33bc4-d4e6-11ec-ab34-a3a9cd3e3430
         entities:
           - name: Netzwerk
             daily_fixed_energy:
@@ -442,6 +450,7 @@ sensor:
             # Standyby Monitor                 3    (3 x 1 geschätzt)
             # Raspi Bilderrahmen Flur          2
       - create_group: Luftentfeuchter und Befeuchter
+        unique_id: 8fe3bad2-d4e6-11ec-9b29-07ac1d4aaea7
         entities:
           - entity_id: sensor.el_leistung_luftentfeuchter_waschkueche
             power_sensor_id: sensor.el_leistung_luftentfeuchter_waschkueche
@@ -456,6 +465,7 @@ sensor:
             power_sensor_id: sensor.el_leistung_esp_sd_2
             name: Luftbefeuchter WZ
       - create_group: Heizung Partyraum
+        unique_id: 95ab1c9e-d4e6-11ec-a181-7ba9e587eb94
         entities:
           - entity_id: sensor.el_leistung_heizung_partyraum_vorne
             power_sensor_id: sensor.el_leistung_heizung_partyraum_vorne
