@@ -55,7 +55,7 @@ template:
             {% set ts_peak_time = as_timestamp(states('sensor.solcast_forecast_peak_zeit_bis_wasser_heizen')) %}
             {% set ts_now = as_timestamp(now()) %}
             {% set minutes_start_before_peak = 61 %}
-            {% if (ts_peak_time - ts_now) < (minutes_start_before_peak * 60) %}
+            {% if ((ts_peak_time - ts_now) < (minutes_start_before_peak * 60)) or is_state('binary_sensor.template_water_heater_pv_boost_condition','on') %}
               {% if is_state('binary_sensor.template_water_heater_pv_power_sufficient','on') %}
                 {{ true }}
               {% else %}
