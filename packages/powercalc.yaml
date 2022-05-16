@@ -3,6 +3,7 @@ sensor:
     create_group: Bekannte Verbraucher
     entities:
       - create_group: Alle Lichter
+        unique_id: 81f777e4-d4df-11ec-85d0-dfb4ae2aa83a
         entities:
           - create_group: Lichter Küche
             entities:
