@@ -473,3 +473,33 @@ sensor:
           - entity_id: sensor.el_leistung_heizung_partyraum_hinten
             power_sensor_id: sensor.el_leistung_heizung_partyraum_hinten
             name: Heizung Partyraum hinten
+  - platform: powercalc
+    entity_id: sensor.template_el_leistung_unbekannte_verbraucher
+    power_sensor_id: sensor.template_el_leistung_unbekannte_verbraucher
+    name: Unbekannte Verbraucher
+    unique_id: cd1ad446-d5c5-11ec-942a-23b0e6b2ad5a
+  - platform: powercalc
+    entity_id: sensor.el_leistung_verbrauch_gesamt
+    power_sensor_id: sensor.el_leistung_verbrauch_gesamt
+    name: Verbrauch gesamt
+    unique_id: ec589adc-d5c5-11ec-9457-0f7bfd653fe7
+  - platform: powercalc
+    entity_id: sensor.el_leistung_pv_ac
+    power_sensor_id: sensor.el_leistung_pv_ac
+    name: PV Leistung
+    unique_id: 2a44499a-d5c6-11ec-b073-5381474628d7
+  - platform: powercalc
+    entity_id: sensor.el_leistung_einspeisung
+    power_sensor_id: sensor.el_leistung_einspeisung
+    name: PV Einspeisung
+    unique_id: 58cebbba-d5c6-11ec-96c1-637159bb0824
+
+
+template:
+  - sensor:
+      - unique_id: el_leistung_unbekannte_verbraucher
+        unit_of_measurement: "W"
+        state: >
+          {{ (states('sensor.el_leistung_verbrauch_gesamt') | float(0)) - (states('sensor.el_leistung_powercalc_bekannte_verbraucher') | float(0)) }}
+        attributes:
+          friendly_name: "El. Leistung unbekannte Verbraucher"
