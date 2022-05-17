@@ -474,8 +474,8 @@ sensor:
             power_sensor_id: sensor.el_leistung_heizung_partyraum_hinten
             name: Heizung Partyraum hinten
   - platform: powercalc
-    entity_id: sensor.template_el_leistung_unbekannte_verbraucher
-    power_sensor_id: sensor.template_el_leistung_unbekannte_verbraucher
+    entity_id: sensor.el_leistung_unbekannte_verbraucher
+    power_sensor_id: sensor.el_leistung_unbekannte_verbraucher
     name: Unbekannte Verbraucher
     unique_id: cd1ad446-d5c5-11ec-942a-23b0e6b2ad5a
   - platform: powercalc
