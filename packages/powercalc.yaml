@@ -503,3 +503,82 @@ template:
           {{ (states('sensor.el_leistung_verbrauch_gesamt') | float(0)) - (states('sensor.el_leistung_powercalc_bekannte_verbraucher') | float(0)) }}
         attributes:
           friendly_name: "El. Leistung unbekannte Verbraucher"
+      # Euro pro Stunde ohne PV
+      - unique_id: euro_pro_stunde_bekannte_verbraucher_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_bekannte_verbraucher') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde bekannte Verbraucher - ohne PV"
+      - unique_id: euro_pro_stunde_unbekannte_verbraucher_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_unbekannte_verbraucher') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde unbekannte Verbraucher - ohne PV"
+      - unique_id: euro_pro_stunde_verbrauch_gesamt_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_verbrauch_gesamt') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Verbrauch gesamt - ohne PV"
+      - unique_id: euro_pro_stunde_alle_lichter_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_alle_lichter') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde alle Lichter - ohne PV"
+      - unique_id: euro_pro_stunde_waermepumpe_gesamt_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_warmepumpe_gesamt') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Wärmepumpe gesamt - ohne PV"
+      - unique_id: euro_pro_stunde_kuchengerate_ohne_kuhlschrank_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_kuchengerate_ohne_kuhlschrank') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Küchengeräte ohne Kühlschrank - ohne PV"
+      - unique_id: euro_pro_stunde_kuhlgerate_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_kuhlgerate') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Kühlgeräte - ohne PV"
+      - unique_id: euro_pro_stunde_multimedia_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_multimedia') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Multimedia - ohne PV"
+      - unique_id: euro_pro_stunde_waschmaschine_und_trockner_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_waschmaschine_und_trockner') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Waschmaschine und Trockner - ohne PV"
+      - unique_id: euro_pro_stunde_haustechnik_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_haustechnik') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Haustechnik - ohne PV"
+      - unique_id: euro_pro_stunde_netzwerk_telefon_und_computer_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_netzwerk_telefon_und_computer') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Netzwerk Telefon und Computer - ohne PV"
+      - unique_id: euro_pro_stunde_luftentfeuchter_und_befeuchter_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_luftentfeuchter_und_befeuchter') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Luftentfeuchter und Befeuchter - ohne PV"
+      - unique_id: euro_pro_stunde_heizung_partyraum_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_heizung_partyraum') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Heizung Partyraum - ohne PV"
