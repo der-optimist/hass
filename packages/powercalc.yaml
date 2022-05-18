@@ -493,6 +493,247 @@ sensor:
     power_sensor_id: sensor.el_leistung_einspeisung
     name: PV Einspeisung
     unique_id: 58cebbba-d5c6-11ec-96c1-637159bb0824
+  # -----------------------------------------------------------
+  # ----------------- Integration of Costs --------------------
+  # -----------------------------------------------------------
+  # ohne PV
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_alle_lichter_ohne_pv
+    name: kostenzaehler_alle_lichter_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_bekannte_verbraucher_ohne_pv
+    name: kostenzaehler_bekannte_verbraucher_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_haustechnik_ohne_pv
+    name: kostenzaehler_haustechnik_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_heizung_partyraum_ohne_pv
+    name: kostenzaehler_heizung_partyraum_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_kuchengerate_ohne_kuhlschrank_ohne_pv
+    name: kostenzaehler_kuchengerate_ohne_kuhlschrank_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_kuhlgerate_ohne_pv
+    name: kostenzaehler_kuhlgerate_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_luftentfeuchter_und_befeuchter_ohne_pv
+    name: kostenzaehler_luftentfeuchter_und_befeuchter_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_multimedia_ohne_pv
+    name: kostenzaehler_multimedia_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_netzwerk_telefon_und_computer_ohne_pv
+    name: kostenzaehler_netzwerk_telefon_und_computer_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_unbekannte_verbraucher_ohne_pv
+    name: kostenzaehler_unbekannte_verbraucher_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_verbrauch_gesamt_ohne_pv
+    name: kostenzaehler_verbrauch_gesamt_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_waermepumpe_gesamt_ohne_pv
+    name: kostenzaehler_waermepumpe_gesamt_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_waschmaschine_und_trockner_ohne_pv
+    name: kostenzaehler_waschmaschine_und_trockner_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  # mit PV - effektiv
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_alle_lichter_mit_pv_effektiv
+    name: kostenzaehler_alle_lichter_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_bekannte_verbraucher_mit_pv_effektiv
+    name: kostenzaehler_bekannte_verbraucher_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_haustechnik_mit_pv_effektiv
+    name: kostenzaehler_haustechnik_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_heizung_partyraum_mit_pv_effektiv
+    name: kostenzaehler_heizung_partyraum_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
+    name: kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_kuhlgerate_mit_pv_effektiv
+    name: kostenzaehler_kuhlgerate_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_luftentfeuchter_und_befeuchter_mit_pv_effektiv
+    name: kostenzaehler_luftentfeuchter_und_befeuchter_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_multimedia_mit_pv_effektiv
+    name: kostenzaehler_multimedia_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_netzwerk_telefon_und_computer_mit_pv_effektiv
+    name: kostenzaehler_netzwerk_telefon_und_computer_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_unbekannte_verbraucher_mit_pv_effektiv
+    name: kostenzaehler_unbekannte_verbraucher_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_verbrauch_gesamt_mit_pv_effektiv
+    name: kostenzaehler_verbrauch_gesamt_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_waermepumpe_gesamt_mit_pv_effektiv
+    name: kostenzaehler_waermepumpe_gesamt_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_waschmaschine_und_trockner_mit_pv_effektiv
+    name: kostenzaehler_waschmaschine_und_trockner_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  # mit PV - Abrechnung
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_alle_lichter_mit_pv_abrechnung
+    name: kostenzaehler_alle_lichter_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_bekannte_verbraucher_mit_pv_abrechnung
+    name: kostenzaehler_bekannte_verbraucher_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_haustechnik_mit_pv_abrechnung
+    name: kostenzaehler_haustechnik_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_heizung_partyraum_mit_pv_abrechnung
+    name: kostenzaehler_heizung_partyraum_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung
+    name: kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_kuhlgerate_mit_pv_abrechnung
+    name: kostenzaehler_kuhlgerate_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_luftentfeuchter_und_befeuchter_mit_pv_abrechnung
+    name: kostenzaehler_luftentfeuchter_und_befeuchter_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_multimedia_mit_pv_abrechnung
+    name: kostenzaehler_multimedia_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_netzwerk_telefon_und_computer_mit_pv_abrechnung
+    name: kostenzaehler_netzwerk_telefon_und_computer_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_unbekannte_verbraucher_mit_pv_abrechnung
+    name: kostenzaehler_unbekannte_verbraucher_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_verbrauch_gesamt_mit_pv_abrechnung
+    name: kostenzaehler_verbrauch_gesamt_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_waermepumpe_gesamt_mit_pv_abrechnung
+    name: kostenzaehler_waermepumpe_gesamt_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_waschmaschine_und_trockner_mit_pv_abrechnung
+    name: kostenzaehler_waschmaschine_und_trockner_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+
 
 
 template:
@@ -740,3 +981,9 @@ template:
           {{ (states('sensor.el_leistung_powercalc_heizung_partyraum') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
         attributes:
           friendly_name: "Euro pro Stunde Heizung Partyraum - mit PV - Abrechnung"
+
+utility_meter:
+  daily_energy_offpeak:
+    source: sensor.energy_consumption_tarif_1
+    name: Daily Energy (Offpeak)
+    cycle: daily
