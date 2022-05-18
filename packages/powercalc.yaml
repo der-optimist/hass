@@ -983,6 +983,53 @@ template:
           friendly_name: "Euro pro Stunde Heizung Partyraum - mit PV - Abrechnung"
 
 utility_meter:
+  # ------ Verbrauch Winterjahr ------
+  stromzahler_powercalc_bekannte_verbraucher_winteryear:
+    source: sensor.stromzahler_powercalc_bekannte_verbraucher
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_alle_lichter_winteryear:
+    source: sensor.stromzahler_powercalc_alle_lichter
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_warmepumpe_gesamt_winteryear:
+    source: sensor.stromzahler_powercalc_warmepumpe_gesamt
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_kuchengerate_ohne_kuhlschrank_winteryear:
+    source: sensor.stromzahler_powercalc_kuchengerate_ohne_kuhlschrank
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_kuhlgerate_winteryear:
+    source: sensor.stromzahler_powercalc_kuhlgerate
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_multimedia_winteryear:
+    source: sensor.stromzahler_powercalc_multimedia
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_waschmaschine_und_trockner_winteryear:
+    source: sensor.stromzahler_powercalc_waschmaschine_und_trockner
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_haustechnik_winteryear:
+    source: sensor.stromzahler_powercalc_haustechnik
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_netzwerk_telefon_und_computer_winteryear:
+    source: sensor.stromzahler_powercalc_netzwerk_telefon_und_computer
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_luftentfeuchter_und_befeuchter_winteryear:
+    source: sensor.stromzahler_powercalc_luftentfeuchter_und_befeuchter
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_heizung_partyraum_winteryear:
+    source: sensor.stromzahler_powercalc_heizung_partyraum
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_unbekannte_verbraucher_winteryear:
+    source: sensor.stromzahler_powercalc_unbekannte_verbraucher
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_verbrauch_gesamt_winteryear:
+    source: sensor.stromzahler_powercalc_verbrauch_gesamt
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_pv_leistung_winteryear:
+    source: sensor.stromzahler_powercalc_pv_leistung
+    cron: "0 0 1 7 *"
+  stromzahler_powercalc_pv_einspeisung_winteryear:
+    source: sensor.stromzahler_powercalc_pv_einspeisung
+    cron: "0 0 1 7 *"
+  # ------ Kosten ------
   # --- ohne PV ---
   # daily
   kosten_alle_lichter_ohne_pv_daily:
