@@ -983,7 +983,486 @@ template:
           friendly_name: "Euro pro Stunde Heizung Partyraum - mit PV - Abrechnung"
 
 utility_meter:
-  daily_energy_offpeak:
-    source: sensor.energy_consumption_tarif_1
-    name: Daily Energy (Offpeak)
+  # --- ohne PV ---
+  # daily
+  kosten_alle_lichter_ohne_pv_daily:
+    source: sensor.kostenzaehler_alle_lichter_ohne_pv
     cycle: daily
+  kosten_bekannte_verbraucher_ohne_pv_daily:
+    source: sensor.kostenzaehler_bekannte_verbraucher_ohne_pv
+    cycle: daily
+  kosten_haustechnik_ohne_pv_daily:
+    source: sensor.kostenzaehler_haustechnik_ohne_pv
+    cycle: daily
+  kosten_heizung_partyraum_ohne_pv_daily:
+    source: sensor.kostenzaehler_heizung_partyraum_ohne_pv
+    cycle: daily
+  kosten_kuchengerate_ohne_kuhlschrank_ohne_pv_daily:
+    source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_ohne_pv
+    cycle: daily
+  kosten_kuhlgerate_ohne_pv_daily:
+    source: sensor.kostenzaehler_kuhlgerate_ohne_pv
+    cycle: daily
+  kosten_luftentfeuchter_und_befeuchter_ohne_pv_daily:
+    source: sensor.kostenzaehler_luftentfeuchter_und_befeuchter_ohne_pv
+    cycle: daily
+  kosten_multimedia_ohne_pv_daily:
+    source: sensor.kostenzaehler_multimedia_ohne_pv
+    cycle: daily
+  kosten_netzwerk_telefon_und_computer_ohne_pv_daily:
+    source: sensor.kostenzaehler_netzwerk_telefon_und_computer_ohne_pv
+    cycle: daily
+  kosten_unbekannte_verbraucher_ohne_pv_daily:
+    source: sensor.kostenzaehler_unbekannte_verbraucher_ohne_pv
+    cycle: daily
+  kosten_verbrauch_gesamt_ohne_pv_daily:
+    source: sensor.kostenzaehler_verbrauch_gesamt_ohne_pv
+    cycle: daily
+  kosten_waermepumpe_gesamt_ohne_pv_daily:
+    source: sensor.kostenzaehler_waermepumpe_gesamt_ohne_pv
+    cycle: daily
+  kosten_waschmaschine_und_trockner_ohne_pv_daily:
+    source: sensor.kostenzaehler_waschmaschine_und_trockner_ohne_pv
+    cycle: daily
+  # monthly
+  kosten_alle_lichter_ohne_pv_monthly:
+    source: sensor.kostenzaehler_alle_lichter_ohne_pv
+    cycle: monthly
+  kosten_bekannte_verbraucher_ohne_pv_monthly:
+    source: sensor.kostenzaehler_bekannte_verbraucher_ohne_pv
+    cycle: monthly
+  kosten_haustechnik_ohne_pv_monthly:
+    source: sensor.kostenzaehler_haustechnik_ohne_pv
+    cycle: monthly
+  kosten_heizung_partyraum_ohne_pv_monthly:
+    source: sensor.kostenzaehler_heizung_partyraum_ohne_pv
+    cycle: monthly
+  kosten_kuchengerate_ohne_kuhlschrank_ohne_pv_monthly:
+    source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_ohne_pv
+    cycle: monthly
+  kosten_kuhlgerate_ohne_pv_monthly:
+    source: sensor.kostenzaehler_kuhlgerate_ohne_pv
+    cycle: monthly
+  kosten_luftentfeuchter_und_befeuchter_ohne_pv_monthly:
+    source: sensor.kostenzaehler_luftentfeuchter_und_befeuchter_ohne_pv
+    cycle: monthly
+  kosten_multimedia_ohne_pv_monthly:
+    source: sensor.kostenzaehler_multimedia_ohne_pv
+    cycle: monthly
+  kosten_netzwerk_telefon_und_computer_ohne_pv_monthly:
+    source: sensor.kostenzaehler_netzwerk_telefon_und_computer_ohne_pv
+    cycle: monthly
+  kosten_unbekannte_verbraucher_ohne_pv_monthly:
+    source: sensor.kostenzaehler_unbekannte_verbraucher_ohne_pv
+    cycle: monthly
+  kosten_verbrauch_gesamt_ohne_pv_monthly:
+    source: sensor.kostenzaehler_verbrauch_gesamt_ohne_pv
+    cycle: monthly
+  kosten_waermepumpe_gesamt_ohne_pv_monthly:
+    source: sensor.kostenzaehler_waermepumpe_gesamt_ohne_pv
+    cycle: monthly
+  kosten_waschmaschine_und_trockner_ohne_pv_monthly:
+    source: sensor.kostenzaehler_waschmaschine_und_trockner_ohne_pv
+    cycle: monthly
+  # yearly
+  kosten_alle_lichter_ohne_pv_yearly:
+    source: sensor.kostenzaehler_alle_lichter_ohne_pv
+    cycle: yearly
+  kosten_bekannte_verbraucher_ohne_pv_yearly:
+    source: sensor.kostenzaehler_bekannte_verbraucher_ohne_pv
+    cycle: yearly
+  kosten_haustechnik_ohne_pv_yearly:
+    source: sensor.kostenzaehler_haustechnik_ohne_pv
+    cycle: yearly
+  kosten_heizung_partyraum_ohne_pv_yearly:
+    source: sensor.kostenzaehler_heizung_partyraum_ohne_pv
+    cycle: yearly
+  kosten_kuchengerate_ohne_kuhlschrank_ohne_pv_yearly:
+    source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_ohne_pv
+    cycle: yearly
+  kosten_kuhlgerate_ohne_pv_yearly:
+    source: sensor.kostenzaehler_kuhlgerate_ohne_pv
+    cycle: yearly
+  kosten_luftentfeuchter_und_befeuchter_ohne_pv_yearly:
+    source: sensor.kostenzaehler_luftentfeuchter_und_befeuchter_ohne_pv
+    cycle: yearly
+  kosten_multimedia_ohne_pv_yearly:
+    source: sensor.kostenzaehler_multimedia_ohne_pv
+    cycle: yearly
+  kosten_netzwerk_telefon_und_computer_ohne_pv_yearly:
+    source: sensor.kostenzaehler_netzwerk_telefon_und_computer_ohne_pv
+    cycle: yearly
+  kosten_unbekannte_verbraucher_ohne_pv_yearly:
+    source: sensor.kostenzaehler_unbekannte_verbraucher_ohne_pv
+    cycle: yearly
+  kosten_verbrauch_gesamt_ohne_pv_yearly:
+    source: sensor.kostenzaehler_verbrauch_gesamt_ohne_pv
+    cycle: yearly
+  kosten_waermepumpe_gesamt_ohne_pv_yearly:
+    source: sensor.kostenzaehler_waermepumpe_gesamt_ohne_pv
+    cycle: yearly
+  kosten_waschmaschine_und_trockner_ohne_pv_yearly:
+    source: sensor.kostenzaehler_waschmaschine_und_trockner_ohne_pv
+    cycle: yearly
+  # winteryear
+  kosten_alle_lichter_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_alle_lichter_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_bekannte_verbraucher_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_bekannte_verbraucher_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_haustechnik_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_haustechnik_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_heizung_partyraum_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_heizung_partyraum_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_kuchengerate_ohne_kuhlschrank_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_kuhlgerate_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_kuhlgerate_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_luftentfeuchter_und_befeuchter_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_luftentfeuchter_und_befeuchter_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_multimedia_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_multimedia_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_netzwerk_telefon_und_computer_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_netzwerk_telefon_und_computer_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_unbekannte_verbraucher_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_unbekannte_verbraucher_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_verbrauch_gesamt_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_verbrauch_gesamt_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_waermepumpe_gesamt_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_waermepumpe_gesamt_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_waschmaschine_und_trockner_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_waschmaschine_und_trockner_ohne_pv
+    cron: "0 0 1 7 *"
+  # --- mit PV - effektiv ---
+  # daily
+  kosten_alle_lichter_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_alle_lichter_mit_pv_effektiv
+    cycle: daily
+  kosten_bekannte_verbraucher_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_bekannte_verbraucher_mit_pv_effektiv
+    cycle: daily
+  kosten_haustechnik_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_haustechnik_mit_pv_effektiv
+    cycle: daily
+  kosten_heizung_partyraum_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_heizung_partyraum_mit_pv_effektiv
+    cycle: daily
+  kosten_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
+    cycle: daily
+  kosten_kuhlgerate_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_kuhlgerate_mit_pv_effektiv
+    cycle: daily
+  kosten_luftentfeuchter_und_befeuchter_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_luftentfeuchter_und_befeuchter_mit_pv_effektiv
+    cycle: daily
+  kosten_multimedia_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_multimedia_mit_pv_effektiv
+    cycle: daily
+  kosten_netzwerk_telefon_und_computer_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_netzwerk_telefon_und_computer_mit_pv_effektiv
+    cycle: daily
+  kosten_unbekannte_verbraucher_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_unbekannte_verbraucher_mit_pv_effektiv
+    cycle: daily
+  kosten_verbrauch_gesamt_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_verbrauch_gesamt_mit_pv_effektiv
+    cycle: daily
+  kosten_waermepumpe_gesamt_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_waermepumpe_gesamt_mit_pv_effektiv
+    cycle: daily
+  kosten_waschmaschine_und_trockner_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_waschmaschine_und_trockner_mit_pv_effektiv
+    cycle: daily
+  # monthly
+  kosten_alle_lichter_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_alle_lichter_mit_pv_effektiv
+    cycle: monthly
+  kosten_bekannte_verbraucher_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_bekannte_verbraucher_mit_pv_effektiv
+    cycle: monthly
+  kosten_haustechnik_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_haustechnik_mit_pv_effektiv
+    cycle: monthly
+  kosten_heizung_partyraum_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_heizung_partyraum_mit_pv_effektiv
+    cycle: monthly
+  kosten_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
+    cycle: monthly
+  kosten_kuhlgerate_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_kuhlgerate_mit_pv_effektiv
+    cycle: monthly
+  kosten_luftentfeuchter_und_befeuchter_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_luftentfeuchter_und_befeuchter_mit_pv_effektiv
+    cycle: monthly
+  kosten_multimedia_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_multimedia_mit_pv_effektiv
+    cycle: monthly
+  kosten_netzwerk_telefon_und_computer_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_netzwerk_telefon_und_computer_mit_pv_effektiv
+    cycle: monthly
+  kosten_unbekannte_verbraucher_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_unbekannte_verbraucher_mit_pv_effektiv
+    cycle: monthly
+  kosten_verbrauch_gesamt_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_verbrauch_gesamt_mit_pv_effektiv
+    cycle: monthly
+  kosten_waermepumpe_gesamt_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_waermepumpe_gesamt_mit_pv_effektiv
+    cycle: monthly
+  kosten_waschmaschine_und_trockner_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_waschmaschine_und_trockner_mit_pv_effektiv
+    cycle: monthly
+  # yearly
+  kosten_alle_lichter_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_alle_lichter_mit_pv_effektiv
+    cycle: yearly
+  kosten_bekannte_verbraucher_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_bekannte_verbraucher_mit_pv_effektiv
+    cycle: yearly
+  kosten_haustechnik_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_haustechnik_mit_pv_effektiv
+    cycle: yearly
+  kosten_heizung_partyraum_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_heizung_partyraum_mit_pv_effektiv
+    cycle: yearly
+  kosten_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
+    cycle: yearly
+  kosten_kuhlgerate_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_kuhlgerate_mit_pv_effektiv
+    cycle: yearly
+  kosten_luftentfeuchter_und_befeuchter_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_luftentfeuchter_und_befeuchter_mit_pv_effektiv
+    cycle: yearly
+  kosten_multimedia_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_multimedia_mit_pv_effektiv
+    cycle: yearly
+  kosten_netzwerk_telefon_und_computer_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_netzwerk_telefon_und_computer_mit_pv_effektiv
+    cycle: yearly
+  kosten_unbekannte_verbraucher_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_unbekannte_verbraucher_mit_pv_effektiv
+    cycle: yearly
+  kosten_verbrauch_gesamt_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_verbrauch_gesamt_mit_pv_effektiv
+    cycle: yearly
+  kosten_waermepumpe_gesamt_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_waermepumpe_gesamt_mit_pv_effektiv
+    cycle: yearly
+  kosten_waschmaschine_und_trockner_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_waschmaschine_und_trockner_mit_pv_effektiv
+    cycle: yearly
+  # winteryear
+  kosten_alle_lichter_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_alle_lichter_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_bekannte_verbraucher_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_bekannte_verbraucher_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_haustechnik_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_haustechnik_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_heizung_partyraum_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_heizung_partyraum_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_kuhlgerate_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_kuhlgerate_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_luftentfeuchter_und_befeuchter_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_luftentfeuchter_und_befeuchter_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_multimedia_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_multimedia_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_netzwerk_telefon_und_computer_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_netzwerk_telefon_und_computer_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_unbekannte_verbraucher_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_unbekannte_verbraucher_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_verbrauch_gesamt_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_verbrauch_gesamt_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_waermepumpe_gesamt_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_waermepumpe_gesamt_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_waschmaschine_und_trockner_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_waschmaschine_und_trockner_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  # --- mit PV - Abrechnung ---
+  # daily
+  kosten_alle_lichter_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_alle_lichter_mit_pv_abrechnung
+    cycle: daily
+  kosten_bekannte_verbraucher_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_bekannte_verbraucher_mit_pv_abrechnung
+    cycle: daily
+  kosten_haustechnik_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_haustechnik_mit_pv_abrechnung
+    cycle: daily
+  kosten_heizung_partyraum_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_heizung_partyraum_mit_pv_abrechnung
+    cycle: daily
+  kosten_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung
+    cycle: daily
+  kosten_kuhlgerate_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_kuhlgerate_mit_pv_abrechnung
+    cycle: daily
+  kosten_luftentfeuchter_und_befeuchter_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_luftentfeuchter_und_befeuchter_mit_pv_abrechnung
+    cycle: daily
+  kosten_multimedia_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_multimedia_mit_pv_abrechnung
+    cycle: daily
+  kosten_netzwerk_telefon_und_computer_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_netzwerk_telefon_und_computer_mit_pv_abrechnung
+    cycle: daily
+  kosten_unbekannte_verbraucher_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_unbekannte_verbraucher_mit_pv_abrechnung
+    cycle: daily
+  kosten_verbrauch_gesamt_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_verbrauch_gesamt_mit_pv_abrechnung
+    cycle: daily
+  kosten_waermepumpe_gesamt_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_waermepumpe_gesamt_mit_pv_abrechnung
+    cycle: daily
+  kosten_waschmaschine_und_trockner_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_waschmaschine_und_trockner_mit_pv_abrechnung
+    cycle: daily
+  # monthly
+  kosten_alle_lichter_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_alle_lichter_mit_pv_abrechnung
+    cycle: monthly
+  kosten_bekannte_verbraucher_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_bekannte_verbraucher_mit_pv_abrechnung
+    cycle: monthly
+  kosten_haustechnik_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_haustechnik_mit_pv_abrechnung
+    cycle: monthly
+  kosten_heizung_partyraum_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_heizung_partyraum_mit_pv_abrechnung
+    cycle: monthly
+  kosten_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung
+    cycle: monthly
+  kosten_kuhlgerate_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_kuhlgerate_mit_pv_abrechnung
+    cycle: monthly
+  kosten_luftentfeuchter_und_befeuchter_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_luftentfeuchter_und_befeuchter_mit_pv_abrechnung
+    cycle: monthly
+  kosten_multimedia_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_multimedia_mit_pv_abrechnung
+    cycle: monthly
+  kosten_netzwerk_telefon_und_computer_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_netzwerk_telefon_und_computer_mit_pv_abrechnung
+    cycle: monthly
+  kosten_unbekannte_verbraucher_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_unbekannte_verbraucher_mit_pv_abrechnung
+    cycle: monthly
+  kosten_verbrauch_gesamt_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_verbrauch_gesamt_mit_pv_abrechnung
+    cycle: monthly
+  kosten_waermepumpe_gesamt_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_waermepumpe_gesamt_mit_pv_abrechnung
+    cycle: monthly
+  kosten_waschmaschine_und_trockner_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_waschmaschine_und_trockner_mit_pv_abrechnung
+    cycle: monthly
+  # yearly
+  kosten_alle_lichter_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_alle_lichter_mit_pv_abrechnung
+    cycle: yearly
+  kosten_bekannte_verbraucher_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_bekannte_verbraucher_mit_pv_abrechnung
+    cycle: yearly
+  kosten_haustechnik_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_haustechnik_mit_pv_abrechnung
+    cycle: yearly
+  kosten_heizung_partyraum_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_heizung_partyraum_mit_pv_abrechnung
+    cycle: yearly
+  kosten_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung
+    cycle: yearly
+  kosten_kuhlgerate_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_kuhlgerate_mit_pv_abrechnung
+    cycle: yearly
+  kosten_luftentfeuchter_und_befeuchter_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_luftentfeuchter_und_befeuchter_mit_pv_abrechnung
+    cycle: yearly
+  kosten_multimedia_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_multimedia_mit_pv_abrechnung
+    cycle: yearly
+  kosten_netzwerk_telefon_und_computer_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_netzwerk_telefon_und_computer_mit_pv_abrechnung
+    cycle: yearly
+  kosten_unbekannte_verbraucher_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_unbekannte_verbraucher_mit_pv_abrechnung
+    cycle: yearly
+  kosten_verbrauch_gesamt_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_verbrauch_gesamt_mit_pv_abrechnung
+    cycle: yearly
+  kosten_waermepumpe_gesamt_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_waermepumpe_gesamt_mit_pv_abrechnung
+    cycle: yearly
+  kosten_waschmaschine_und_trockner_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_waschmaschine_und_trockner_mit_pv_abrechnung
+    cycle: yearly
+  # winteryear
+  kosten_alle_lichter_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_alle_lichter_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_bekannte_verbraucher_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_bekannte_verbraucher_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_haustechnik_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_haustechnik_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_heizung_partyraum_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_heizung_partyraum_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_kuhlgerate_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_kuhlgerate_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_luftentfeuchter_und_befeuchter_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_luftentfeuchter_und_befeuchter_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_multimedia_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_multimedia_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_netzwerk_telefon_und_computer_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_netzwerk_telefon_und_computer_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_unbekannte_verbraucher_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_unbekannte_verbraucher_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_verbrauch_gesamt_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_verbrauch_gesamt_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_waermepumpe_gesamt_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_waermepumpe_gesamt_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_waschmaschine_und_trockner_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_waschmaschine_und_trockner_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
