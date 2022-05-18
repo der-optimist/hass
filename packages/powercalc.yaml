@@ -582,3 +582,161 @@ template:
           {{ (states('sensor.el_leistung_powercalc_heizung_partyraum') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
         attributes:
           friendly_name: "Euro pro Stunde Heizung Partyraum - ohne PV"
+      # Euro pro Stunde mit PV - effektiv
+      - unique_id: euro_pro_stunde_bekannte_verbraucher_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_bekannte_verbraucher') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde bekannte Verbraucher - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_unbekannte_verbraucher_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_unbekannte_verbraucher') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde unbekannte Verbraucher - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_verbrauch_gesamt_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_verbrauch_gesamt') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Verbrauch gesamt - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_alle_lichter_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_alle_lichter') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde alle Lichter - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_waermepumpe_gesamt_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_warmepumpe_gesamt') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Wärmepumpe gesamt - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_kuchengerate_ohne_kuhlschrank') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Küchengeräte ohne Kühlschrank - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_kuhlgerate_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_kuhlgerate') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Kühlgeräte - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_multimedia_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_multimedia') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Multimedia - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_waschmaschine_und_trockner_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_waschmaschine_und_trockner') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Waschmaschine und Trockner - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_haustechnik_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_haustechnik') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Haustechnik - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_netzwerk_telefon_und_computer_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_netzwerk_telefon_und_computer') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Netzwerk Telefon und Computer - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_luftentfeuchter_und_befeuchter_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_luftentfeuchter_und_befeuchter') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Luftentfeuchter und Befeuchter - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_heizung_partyraum_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_heizung_partyraum') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Heizung Partyraum - mit PV - effektiv"
+      # Euro pro Stunde mit PV - Abrechnung
+      - unique_id: euro_pro_stunde_bekannte_verbraucher_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_bekannte_verbraucher') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde bekannte Verbraucher - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_unbekannte_verbraucher_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_unbekannte_verbraucher') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde unbekannte Verbraucher - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_verbrauch_gesamt_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_verbrauch_gesamt') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Verbrauch gesamt - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_alle_lichter_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_alle_lichter') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde alle Lichter - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_waermepumpe_gesamt_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_warmepumpe_gesamt') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Wärmepumpe gesamt - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_kuchengerate_ohne_kuhlschrank') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Küchengeräte ohne Kühlschrank - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_kuhlgerate_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_kuhlgerate') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Kühlgeräte - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_multimedia_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_multimedia') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Multimedia - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_waschmaschine_und_trockner_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_waschmaschine_und_trockner') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Waschmaschine und Trockner - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_haustechnik_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_haustechnik') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Haustechnik - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_netzwerk_telefon_und_computer_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_netzwerk_telefon_und_computer') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Netzwerk Telefon und Computer - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_luftentfeuchter_und_befeuchter_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_luftentfeuchter_und_befeuchter') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Luftentfeuchter und Befeuchter - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_heizung_partyraum_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_heizung_partyraum') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Heizung Partyraum - mit PV - Abrechnung"
