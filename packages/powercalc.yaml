@@ -409,46 +409,18 @@ sensor:
           - entity_id: sensor.el_leistung_bildschirm_theke
             power_sensor_id: sensor.el_leistung_bildschirm_theke
             name: Bildschirm Theke
-          - name: Dauerverbraucher Haustechnik
-            daily_fixed_energy:
-              value: 50
-              unit_of_measurement: W
-            # KNX Netzteil:                   12    (Abschätzung)
-            # Wetterstation:                   2    (Datenblatt)
-            # Wasserabsperrhahn:               0.5
-            # Wechselrichter:                 10    (Datenblatt)
-            # Modbus Gateway Lüftungsanlage:   1.5  (Datenblatt + Netzteil)
-            # Entkalkungsanlage:               3    (geschätzt)
-            # Klingel:                         5    (geschätzt)
-            # Relais Sicherung Keller:         1    (geschätzt)
-            # Shelly Schalter Bett-Steckdosen: 1
-            # Shelly Steckdose Hebeanlage:     1
-            # WLAN-Steckdosen:                 3    (3 x 1 W geschätzt - Bildschirm, 2x Heizung Partyraum)
-            # Zigbee-Steckdosen                2    (4 x 0.5 - Luftentfeuchter Waschk. + Partyraum, 2x Zigbee-Repeater)
-            # ESP-Sensoren                     5    (ca 5 x 1 W)
-            # Onewirepi                        2
-            # Robbi                            1
+          - entity_id: sensor.el_leistung_dauerverbraucher_haustechnik
+            power_sensor_id: sensor.el_leistung_dauerverbraucher_haustechnik
+            name: Dauerverbraucher Haustechnik
       - create_group: Netzwerk Telefon und Computer
         unique_id: 8be33bc4-d4e6-11ec-ab34-a3a9cd3e3430
         entities:
-          - name: Netzwerk
-            daily_fixed_energy:
-              value: 64.5
-              unit_of_measurement: W
-            # an USV:                         51    (gemessen. USV, Fritzbox, Kabelmodem, Repeater Keller)
-            # Repeater WZ                      4    (online-Test)
-            # OdroidXU4 inkl. Platte           9.5  (4.5 Odroid, 5 Festplatte)
-          - name: Telefon und Computer
-            daily_fixed_energy:
-              value: 10.5
-              unit_of_measurement: W
-            # Telefon                          1    (<1 gemessen bzw nicht messbar)
-            # Drucker                          1.5  (gemessen, an)
-            # Netzteil Laptop Ma               1    (geschätzt)
-            # Netzteil Laptop Jo               1    (geschätzt)
-            # Netzteil Laptop MaJo             1    (geschätzt)
-            # Standyby Monitor                 3    (3 x 1 geschätzt)
-            # Raspi Bilderrahmen Flur          2
+          - entity_id: sensor.el_leistung_dauerverbraucher_netzwerk
+            power_sensor_id: sensor.el_leistung_dauerverbraucher_netzwerk
+            name: Netzwerk
+          - entity_id: sensor.el_leistung_dauerverbraucher_telefon_und_computer
+            power_sensor_id: sensor.el_leistung_dauerverbraucher_telefon_und_computer
+            name: Telefon und Computer
       - create_group: Luftentfeuchter und Befeuchter
         unique_id: 8fe3bad2-d4e6-11ec-9b29-07ac1d4aaea7
         entities:
@@ -470,9 +442,9 @@ sensor:
           - entity_id: sensor.el_leistung_heizung_partyraum_vorne
             power_sensor_id: sensor.el_leistung_heizung_partyraum_vorne
             name: Heizung Partyraum vorne
-          - entity_id: sensor.el_leistung_heizung_partyraum_hinten
-            power_sensor_id: sensor.el_leistung_heizung_partyraum_hinten
-            name: Heizung Partyraum hinten
+#          - entity_id: sensor.el_leistung_heizung_partyraum_hinten
+#            power_sensor_id: sensor.el_leistung_heizung_partyraum_hinten
+#            name: Heizung Partyraum hinten
   - platform: powercalc
     entity_id: sensor.el_leistung_unbekannte_verbraucher
     power_sensor_id: sensor.el_leistung_unbekannte_verbraucher
@@ -744,6 +716,53 @@ template:
           {{ (states('sensor.el_leistung_verbrauch_gesamt') | float(0)) - (states('sensor.el_leistung_powercalc_bekannte_verbraucher') | float(0)) }}
         attributes:
           friendly_name: "El. Leistung unbekannte Verbraucher"
+      # Dauerverbraucher
+      - unique_id: el_leistung_dauerverbraucher_haustechnik_temp
+          # KNX Netzteil:                   12    (Abschätzung)
+          # Wetterstation:                   2    (Datenblatt)
+          # Wasserabsperrhahn:               0.5
+          # Wechselrichter:                 10    (Datenblatt)
+          # Modbus Gateway Lüftungsanlage:   1.5  (Datenblatt + Netzteil)
+          # Entkalkungsanlage:               3    (geschätzt)
+          # Klingel:                         5    (geschätzt)
+          # Relais Sicherung Keller:         1    (geschätzt)
+          # Shelly Schalter Bett-Steckdosen: 1
+          # Shelly Steckdose Hebeanlage:     1
+          # WLAN-Steckdosen:                 3    (3 x 1 W geschätzt - Bildschirm, 2x Heizung Partyraum)
+          # Zigbee-Steckdosen                2    (4 x 0.5 - Luftentfeuchter Waschk. + Partyraum, 2x Zigbee-Repeater)
+          # ESP-Sensoren                     5    (ca 5 x 1 W)
+          # Onewirepi                        2
+          # Robbi                            1
+        state: >
+          {{ (now().hour | float(0) / 1000000) + 12 + 2 + 0.5 + 10 + 1.5 + 3 + 5 + 1 + 1 + 1 + 3 + 2 + 5 + 2 + 1 }}
+        attributes:
+          friendly_name: 'El. Leistung Dauerverbraucher Haustechnik'
+          unit_of_measurement: 'W'
+          icon_template: mdi:speedometer
+      - unique_id: el_leistung_dauerverbraucher_netzwerk_temp
+          # an USV:                         51    (gemessen. USV, Fritzbox, Kabelmodem, Repeater Keller)
+          # Repeater WZ                      4    (online-Test)
+          # OdroidXU4 inkl. Platte           9.5  (4.5 Odroid, 5 Festplatte)
+        state: >
+          {{ (now().hour | float(0) / 1000000) + 51 + 4 + 9.5 }}
+        attributes:
+          friendly_name: 'El. Leistung Dauerverbraucher Netzwerk'
+          unit_of_measurement: 'W'
+          icon_template: mdi:speedometer
+      - unique_id: el_leistung_dauerverbraucher_telefon_und_computer_temp
+          # Telefon                          1    (<1 gemessen bzw nicht messbar)
+          # Drucker                          1.5  (gemessen, an)
+          # Netzteil Laptop Ma               1    (geschätzt)
+          # Netzteil Laptop Jo               1    (geschätzt)
+          # Netzteil Laptop MaJo             1    (geschätzt)
+          # Standyby Monitor                 3    (3 x 1 geschätzt)
+          # Raspi Bilderrahmen Flur          2
+        state: >
+          {{ (now().hour | float(0) / 1000000) + 1 + 1.5 + 1 + 1 + 1 + 3 + 2 }}
+        attributes:
+          friendly_name: 'El. Leistung Dauerverbraucher Telefon und Computer'
+          unit_of_measurement: 'W'
+          icon_template: mdi:speedometer
       # Euro pro Stunde ohne PV
       - unique_id: euro_pro_stunde_bekannte_verbraucher_ohne_pv
         unit_of_measurement: "€/h"
