@@ -734,7 +734,7 @@ template:
           # Onewirepi                        2
           # Robbi                            1
         state: >
-          {{ (now().hour | float(0) / 1000000) + 12 + 2 + 0.5 + 10 + 1.5 + 3 + 5 + 1 + 1 + 1 + 3 + 2 + 5 + 2 + 1 }}
+          {{ (now().minute | float(0) / 1000000) + 12 + 2 + 0.5 + 10 + 1.5 + 3 + 5 + 1 + 1 + 1 + 3 + 2 + 5 + 2 + 1 }}
         attributes:
           friendly_name: 'El. Leistung Dauerverbraucher Haustechnik'
           unit_of_measurement: 'W'
@@ -744,7 +744,7 @@ template:
           # Repeater WZ                      4    (online-Test)
           # OdroidXU4 inkl. Platte           9.5  (4.5 Odroid, 5 Festplatte)
         state: >
-          {{ (now().hour | float(0) / 1000000) + 51 + 4 + 9.5 }}
+          {{ (now().minute | float(0) / 1000000) + 51 + 4 + 9.5 }}
         attributes:
           friendly_name: 'El. Leistung Dauerverbraucher Netzwerk'
           unit_of_measurement: 'W'
@@ -758,7 +758,7 @@ template:
           # Standyby Monitor                 3    (3 x 1 geschätzt)
           # Raspi Bilderrahmen Flur          2
         state: >
-          {{ (now().hour | float(0) / 1000000) + 1 + 1.5 + 1 + 1 + 1 + 3 + 2 }}
+          {{ (now().minute | float(0) / 1000000) + 1 + 1.5 + 1 + 1 + 1 + 3 + 2 }}
         attributes:
           friendly_name: 'El. Leistung Dauerverbraucher Telefon und Computer'
           unit_of_measurement: 'W'
