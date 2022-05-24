@@ -717,7 +717,7 @@ template:
         attributes:
           friendly_name: "El. Leistung unbekannte Verbraucher"
       # Dauerverbraucher
-      - unique_id: el_leistung_dauerverbraucher_haustechnik_temp
+      - unique_id: el_leistung_dauerverbraucher_haustechnik
           # KNX Netzteil:                   12    (Abschätzung)
           # Wetterstation:                   2    (Datenblatt)
           # Wasserabsperrhahn:               0.5
@@ -739,7 +739,7 @@ template:
           friendly_name: 'El. Leistung Dauerverbraucher Haustechnik'
           unit_of_measurement: 'W'
           icon_template: mdi:speedometer
-      - unique_id: el_leistung_dauerverbraucher_netzwerk_temp
+      - unique_id: el_leistung_dauerverbraucher_netzwerk
           # an USV:                         51    (gemessen. USV, Fritzbox, Kabelmodem, Repeater Keller)
           # Repeater WZ                      4    (online-Test)
           # OdroidXU4 inkl. Platte           9.5  (4.5 Odroid, 5 Festplatte)
@@ -749,7 +749,7 @@ template:
           friendly_name: 'El. Leistung Dauerverbraucher Netzwerk'
           unit_of_measurement: 'W'
           icon_template: mdi:speedometer
-      - unique_id: el_leistung_dauerverbraucher_telefon_und_computer_temp
+      - unique_id: el_leistung_dauerverbraucher_telefon_und_computer
           # Telefon                          1    (<1 gemessen bzw nicht messbar)
           # Drucker                          1.5  (gemessen, an)
           # Netzteil Laptop Ma               1    (geschätzt)
