@@ -1052,8 +1052,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_abrechnung_heute
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_daily') %}
-          {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_daily') %}
+          {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_daily') %}
+          {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_daily') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -1062,8 +1062,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV Abrechnung Wärmepumpe gesamt heute"
           prozent: >
-            {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_daily') %}
-            {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_daily') %}
+            {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_daily') %}
+            {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_daily') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -1312,8 +1312,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_effektiv_heute
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_daily') %}
-          {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_daily') %}
+          {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_daily') %}
+          {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_daily') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -1322,8 +1322,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV effektiv Wärmepumpe gesamt heute"
           prozent: >
-            {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_daily') %}
-            {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_daily') %}
+            {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_daily') %}
+            {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_daily') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -1573,8 +1573,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_abrechnung_gestern
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_daily','last_period') %}
-          {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_daily','last_period') %}
+          {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_daily','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_daily','last_period') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -1583,8 +1583,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV Abrechnung Wärmepumpe gesamt gestern"
           prozent: >
-            {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_daily','last_period') %}
-            {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_daily','last_period') %}
+            {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_daily','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_daily','last_period') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -1833,8 +1833,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_effektiv_gestern
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_daily','last_period') %}
-          {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_daily','last_period') %}
+          {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_daily','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_daily','last_period') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -1843,8 +1843,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV effektiv Wärmepumpe gesamt gestern"
           prozent: >
-            {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_daily','last_period') %}
-            {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_daily','last_period') %}
+            {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_daily','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_daily','last_period') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -2094,8 +2094,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_abrechnung_aktueller_monat
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_monthly') %}
-          {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_monthly') %}
+          {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_monthly') %}
+          {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_monthly') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -2104,8 +2104,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV Abrechnung Wärmepumpe gesamt aktueller Monat"
           prozent: >
-            {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_monthly') %}
-            {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_monthly') %}
+            {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_monthly') %}
+            {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_monthly') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -2354,8 +2354,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_effektiv_aktueller_monat
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_monthly') %}
-          {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_monthly') %}
+          {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_monthly') %}
+          {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_monthly') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -2364,8 +2364,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV effektiv Wärmepumpe gesamt aktueller Monat"
           prozent: >
-            {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_monthly') %}
-            {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_monthly') %}
+            {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_monthly') %}
+            {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_monthly') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -2615,8 +2615,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_abrechnung_letzter_monat
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_monthly','last_period') %}
-          {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_monthly','last_period') %}
+          {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_monthly','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_monthly','last_period') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -2625,8 +2625,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV Abrechnung Wärmepumpe gesamt letzter Monat"
           prozent: >
-            {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_monthly','last_period') %}
-            {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_monthly','last_period') %}
+            {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_monthly','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_monthly','last_period') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -2875,8 +2875,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_effektiv_letzter_monat
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_monthly','last_period') %}
-          {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_monthly','last_period') %}
+          {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_monthly','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_monthly','last_period') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -2885,8 +2885,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV effektiv Wärmepumpe gesamt letzter Monat"
           prozent: >
-            {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_monthly','last_period') %}
-            {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_monthly','last_period') %}
+            {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_monthly','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_monthly','last_period') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -3136,8 +3136,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_abrechnung_dieses_jahr
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_yearly') %}
-          {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_yearly') %}
+          {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_yearly') %}
+          {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_yearly') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -3146,8 +3146,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV Abrechnung Wärmepumpe gesamt dieses Jahr"
           prozent: >
-            {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_yearly') %}
-            {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_yearly') %}
+            {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_yearly') %}
+            {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_yearly') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -3396,8 +3396,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_effektiv_dieses_jahr
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_yearly') %}
-          {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_yearly') %}
+          {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_yearly') %}
+          {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_yearly') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -3406,8 +3406,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV effektiv Wärmepumpe gesamt dieses Jahr"
           prozent: >
-            {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_yearly') %}
-            {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_yearly') %}
+            {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_yearly') %}
+            {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_yearly') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -3657,8 +3657,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_abrechnung_letztes_jahr
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_yearly','last_period') %}
-          {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_yearly','last_period') %}
+          {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_yearly','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_yearly','last_period') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -3667,8 +3667,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV Abrechnung Wärmepumpe gesamt letztes Jahr"
           prozent: >
-            {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_yearly','last_period') %}
-            {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_yearly','last_period') %}
+            {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_yearly','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_yearly','last_period') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -3917,8 +3917,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_effektiv_letztes_jahr
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_yearly','last_period') %}
-          {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_yearly','last_period') %}
+          {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_yearly','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_yearly','last_period') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -3927,8 +3927,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV effektiv Wärmepumpe gesamt letztes Jahr"
           prozent: >
-            {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_yearly','last_period') %}
-            {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_yearly','last_period') %}
+            {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_yearly','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_yearly','last_period') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -4178,8 +4178,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_abrechnung_dieses_winterjahr
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_winteryear') %}
-          {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_winteryear') %}
+          {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_winteryear') %}
+          {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_winteryear') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -4188,8 +4188,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV Abrechnung Wärmepumpe gesamt dieses Winterjahr"
           prozent: >
-            {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_winteryear') %}
-            {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_winteryear') %}
+            {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_winteryear') %}
+            {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_winteryear') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -4438,8 +4438,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_effektiv_dieses_winterjahr
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_winteryear') %}
-          {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_winteryear') %}
+          {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_winteryear') %}
+          {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_winteryear') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -4448,8 +4448,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV effektiv Wärmepumpe gesamt dieses Winterjahr"
           prozent: >
-            {% set cost_with_pv = states('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_winteryear') %}
-            {% set cost_without_pv = states('sensor.kosten_warmepumpe_gesamt_ohne_pv_winteryear') %}
+            {% set cost_with_pv = states('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_winteryear') %}
+            {% set cost_without_pv = states('sensor.kosten_waermepumpe_gesamt_ohne_pv_winteryear') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -4699,8 +4699,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_abrechnung_letztes_winterjahr
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_winteryear','last_period') %}
-          {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_winteryear','last_period') %}
+          {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_winteryear','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_winteryear','last_period') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -4709,8 +4709,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV Abrechnung Wärmepumpe gesamt letztes Winterjahr"
           prozent: >
-            {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_winteryear','last_period') %}
-            {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_winteryear','last_period') %}
+            {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_winteryear','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_winteryear','last_period') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
@@ -4959,8 +4959,8 @@ template:
       - unique_id: einsparung_warmepumpe_gesamt_effektiv_letztes_winterjahr
         unit_of_measurement: "€"
         state: >
-          {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_winteryear','last_period') %}
-          {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_winteryear','last_period') %}
+          {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_winteryear','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_winteryear','last_period') %}
           {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
             {{ 0 }}
           {% else %}
@@ -4969,8 +4969,8 @@ template:
         attributes:
           friendly_name: "Einsparung PV effektiv Wärmepumpe gesamt letztes Winterjahr"
           prozent: >
-            {% set cost_with_pv = state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_effektiv_winteryear','last_period') %}
-            {% set cost_without_pv = state_attr('sensor.kosten_warmepumpe_gesamt_ohne_pv_winteryear','last_period') %}
+            {% set cost_with_pv = state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_effektiv_winteryear','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_waermepumpe_gesamt_ohne_pv_winteryear','last_period') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or (cost_with_pv > cost_without_pv) %}
               {{ 0 }}
             {% else %}
