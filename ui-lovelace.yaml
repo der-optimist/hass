@@ -1,7 +1,6 @@
 title: Lieblingshaus
 views:
   - !include lovelace/01_home.yaml
-#  - !include lovelace/02_home_mobile.yaml
   - !include lovelace/10_wohnbereich.yaml
   - !include lovelace/20_eltern.yaml
   - !include lovelace/30_flure_treppen_carport.yaml
@@ -15,7 +14,8 @@ views:
   - !include lovelace/72_jalousien.yaml
   - !include lovelace/75_heizung.yaml
   - !include lovelace/79_pv.yaml
-  - !include lovelace/80_stromverbrauch.yaml
+  - !include lovelace/80a_el_leistung.yaml
+  - !include lovelace/80b_stromverbrauch.yaml
   - !include lovelace/81_temperaturen.yaml
   - !include lovelace/82_luftfeuchtigkeit.yaml
   - !include lovelace/83_helligkeiten.yaml
