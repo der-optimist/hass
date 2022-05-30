@@ -3,11 +3,9 @@ path: el_leistung
 icon: mdi:power-plug-outline
 cards:
   - type: entities
-    title: Überblick
+    title: Netz und PV
     show_header_toggle: false
     entities:
-      - type: section
-        label: Netz und PV
       - type: custom:template-entity-row
         name: Leistung PV
         entity: sensor.el_leistung_pv_ac
@@ -28,25 +26,47 @@ cards:
         name: unbekannte Verbraucher
         entity: sensor.el_leistung_unbekannte_verbraucher
         state: "{{ states('sensor.el_leistung_unbekannte_verbraucher') | float(0) | round(0) }} W"
-      - type: section
-        label: Gruppen
-      - name: Alle Lichter
+  - type: entities
+    title: Aufteilung
+    show_header_toggle: false
+    entities:
+      - type: custom:template-entity-row
+        name: Alle Lichter
         entity: sensor.el_leistung_powercalc_alle_lichter
-      - name: Wärmepumpe
+        state: "{{ states('sensor.el_leistung_powercalc_alle_lichter') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Wärmepumpe
         entity: sensor.el_leistung_powercalc_warmepumpe_gesamt
-      - name: Küchengeräte (ohne Kühlschrank)
+        state: "{{ states('sensor.el_leistung_powercalc_warmepumpe_gesamt') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Küchengeräte (ohne Kühlschrank)
         entity: sensor.el_leistung_powercalc_kuchengerate_ohne_kuhlschrank
-      - name: Kühlgeräte
+        state: "{{ states('sensor.el_leistung_powercalc_kuchengerate_ohne_kuhlschrank') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Kühlgeräte
         entity: sensor.el_leistung_powercalc_kuhlgerate
-      - name: Multimedia
+        state: "{{ states('sensor.el_leistung_powercalc_kuhlgerate') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Multimedia
         entity: sensor.el_leistung_powercalc_multimedia
-      - name: Waschmaschine und Trockner
+        state: "{{ states('sensor.el_leistung_powercalc_multimedia') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Waschmaschine und Trockner
         entity: sensor.el_leistung_powercalc_waschmaschine_und_trockner
-      - name: Haustechnik
+        state: "{{ states('sensor.el_leistung_powercalc_waschmaschine_und_trockner') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Haustechnik
         entity: sensor.el_leistung_powercalc_haustechnik
-      - name: Netzwerk Telefon und Computer
+        state: "{{ states('sensor.el_leistung_powercalc_haustechnik') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Netzwerk Telefon und Computer
         entity: sensor.el_leistung_powercalc_netzwerk_telefon_und_computer
-      - name: Luftentfeuchter und Befeuchter
+        state: "{{ states('sensor.el_leistung_powercalc_netzwerk_telefon_und_computer') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Luftentfeuchter und Befeuchter
         entity: sensor.el_leistung_powercalc_luftentfeuchter_und_befeuchter
-      - name: Heizung Partyraum
+        state: "{{ states('sensor.el_leistung_powercalc_luftentfeuchter_und_befeuchter') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Heizung Partyraum
         entity: sensor.el_leistung_powercalc_heizung_partyraum
+        state: "{{ states('sensor.el_leistung_powercalc_heizung_partyraum') | float(0) | round(0) }} W"
