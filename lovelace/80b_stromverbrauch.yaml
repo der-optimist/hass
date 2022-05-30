@@ -3,9 +3,9 @@ path: stromverbrauch
 icon: mdi:counter
 panel: true
 cards:
-  - type: custom:layout-card
-    min_columns: 1
-    max_columns: 3
+  - type: custom:masonry-layout
+    layout:
+      max_cols: 2
     cards:
       - type: entities
         title: Verbrauch heute
