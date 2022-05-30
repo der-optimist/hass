@@ -90,66 +90,66 @@ cards:
             name: Verbrauch gesamt
             entity: sensor.stromzahler_powercalc_verbrauch_gesamt
             state: "{{ state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_verbrauch_gesamt_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_verbrauch_gesamt_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_verbrauch_gesamt_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_verbrauch_gesamt_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_verbrauch_gesamt_abrechnung_gestern', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Bekannte Verbraucher
             entity: sensor.stromzahler_powercalc_bekannte_verbraucher
             state: "{{ state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_bekannte_verbraucher_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_bekannte_verbraucher_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_bekannte_verbraucher_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_bekannte_verbraucher_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_bekannte_verbraucher_abrechnung_gestern', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Unbekannte Verbraucher
             entity: sensor.stromzahler_powercalc_unbekannte_verbraucher
             state: "{{ state_attr('sensor.stromzahler_powercalc_unbekannte_verbraucher_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_unbekannte_verbraucher_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_unbekannte_verbraucher_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_unbekannte_verbraucher_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_unbekannte_verbraucher_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_unbekannte_verbraucher_abrechnung_gestern', 'prozent') }} %"
           - type: section
             label: Aufteilung
           - type: custom:template-entity-row
             name: Alle Lichter
             entity: sensor.stromzahler_powercalc_alle_lichter
             state: "{{ state_attr('sensor.stromzahler_powercalc_alle_lichter_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_alle_lichter_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_alle_lichter_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_alle_lichter_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_alle_lichter_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_alle_lichter_abrechnung_gestern', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Wärmepumpe
             entity: sensor.stromzahler_powercalc_warmepumpe_gesamt
             state: "{{ state_attr('sensor.stromzahler_powercalc_warmepumpe_gesamt_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_gestern', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Küchengeräte (ohne Kühlschrank)
             entity: sensor.stromzahler_powercalc_kuchengerate_ohne_kuhlschrank
             state: "{{ state_attr('sensor.stromzahler_powercalc_kuchengerate_ohne_kuhlschrank_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_kuchengerate_ohne_kuhlschrank_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_kuchengerate_ohne_kuhlschrank_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_kuchengerate_ohne_kuhlschrank_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_kuchengerate_ohne_kuhlschrank_abrechnung_gestern', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Kühlgeräte
             entity: sensor.stromzahler_powercalc_kuhlgerate
             state: "{{ state_attr('sensor.stromzahler_powercalc_kuhlgerate_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_kuhlgerate_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_kuhlgerate_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_kuhlgerate_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_kuhlgerate_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_kuhlgerate_abrechnung_gestern', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Multimedia
             entity: sensor.stromzahler_powercalc_multimedia
             state: "{{ state_attr('sensor.stromzahler_powercalc_multimedia_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_multimedia_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_multimedia_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_multimedia_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_multimedia_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_multimedia_abrechnung_gestern', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Waschmaschine und Trockner
             entity: sensor.stromzahler_powercalc_waschmaschine_und_trockner
             state: "{{ state_attr('sensor.stromzahler_powercalc_waschmaschine_und_trockner_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_waschmaschine_und_trockner_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_waschmaschine_und_trockner_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_waschmaschine_und_trockner_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_waschmaschine_und_trockner_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_waschmaschine_und_trockner_abrechnung_gestern', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Haustechnik
             entity: sensor.stromzahler_powercalc_haustechnik
             state: "{{ state_attr('sensor.stromzahler_powercalc_haustechnik_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_haustechnik_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_haustechnik_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_haustechnik_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_haustechnik_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_haustechnik_abrechnung_gestern', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Netzwerk Telefon und Computer
             entity: sensor.stromzahler_powercalc_netzwerk_telefon_und_computer
             state: "{{ state_attr('sensor.stromzahler_powercalc_netzwerk_telefon_und_computer_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_netzwerk_telefon_und_computer_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_netzwerk_telefon_und_computer_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_netzwerk_telefon_und_computer_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_netzwerk_telefon_und_computer_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_netzwerk_telefon_und_computer_abrechnung_gestern', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Luftentfeuchter und Befeuchter
             entity: sensor.stromzahler_powercalc_luftentfeuchter_und_befeuchter
             state: "{{ state_attr('sensor.stromzahler_powercalc_luftentfeuchter_und_befeuchter_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_luftentfeuchter_und_befeuchter_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_luftentfeuchter_und_befeuchter_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_luftentfeuchter_und_befeuchter_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_luftentfeuchter_und_befeuchter_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_luftentfeuchter_und_befeuchter_abrechnung_gestern', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Heizung Partyraum
             entity: sensor.stromzahler_powercalc_heizung_partyraum
             state: "{{ state_attr('sensor.stromzahler_powercalc_heizung_partyraum_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_heizung_partyraum_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
-            secondary: "gespart durch PV: {{ '%.2f'%(state_attr('sensor.template_einsparung_heizung_partyraum_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_heizung_partyraum_abrechnung_gestern', 'prozent') }} %"
+            secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_heizung_partyraum_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_heizung_partyraum_abrechnung_gestern', 'prozent') }} %"
