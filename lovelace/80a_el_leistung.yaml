@@ -14,8 +14,8 @@ cards:
         state: "{{ states('sensor.el_leistung_pv_ac') | float(0) | round(0) }} W"
       - type: custom:template-entity-row
         name: Einspeisung aktuell
-        entity: sensor.pv_einspeisung
-        state: "{{ states('sensor.pv_einspeisung') | float(0) | round(0) }} W"
+        entity: sensor.el_leistung_einspeisung
+        state: "{{ states('sensor.el_leistung_einspeisung') | float(0) | round(0) }} W"
       - type: custom:template-entity-row
         name: Verbrauch aktuell
         entity: sensor.el_leistung_verbrauch_gesamt
