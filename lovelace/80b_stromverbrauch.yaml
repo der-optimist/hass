@@ -38,7 +38,7 @@ cards:
           - type: custom:template-entity-row
             name: Wärmepumpe
             entity: sensor.stromzahler_powercalc_warmepumpe_gesamt
-            state: "{{ states('sensor.stromzahler_powercalc_warmepumpe_gesamt_daily') | float(0) | round(1) }} kWh => {{ '%.2f'%(states('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_daily') | float(0)) }} €"
+            state: "{{ states('sensor.stromzahler_powercalc_warmepumpe_gesamt_daily') | float(0) | round(1) }} kWh => {{ '%.2f'%(states('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_daily') | float(0)) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_heute') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_heute', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Küchengeräte (ohne Kühlschrank)
@@ -111,7 +111,7 @@ cards:
           - type: custom:template-entity-row
             name: Wärmepumpe
             entity: sensor.stromzahler_powercalc_warmepumpe_gesamt
-            state: "{{ state_attr('sensor.stromzahler_powercalc_warmepumpe_gesamt_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
+            state: "{{ state_attr('sensor.stromzahler_powercalc_warmepumpe_gesamt_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_gestern', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Küchengeräte (ohne Kühlschrank)
@@ -184,7 +184,7 @@ cards:
           - type: custom:template-entity-row
             name: Wärmepumpe
             entity: sensor.stromzahler_powercalc_warmepumpe_gesamt
-            state: "{{ states('sensor.stromzahler_powercalc_warmepumpe_gesamt_monthly') | float(0) | round(1) }} kWh => {{ '%.2f'%(states('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_monthly') | float(0)) }} €"
+            state: "{{ states('sensor.stromzahler_powercalc_warmepumpe_gesamt_monthly') | float(0) | round(1) }} kWh => {{ '%.2f'%(states('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_monthly') | float(0)) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_aktueller_monat') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_aktueller_monat', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Küchengeräte (ohne Kühlschrank)
@@ -257,7 +257,7 @@ cards:
           - type: custom:template-entity-row
             name: Wärmepumpe
             entity: sensor.stromzahler_powercalc_warmepumpe_gesamt
-            state: "{{ state_attr('sensor.stromzahler_powercalc_warmepumpe_gesamt_monthly','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_monthly','last_period') | float(0)) }} €"
+            state: "{{ state_attr('sensor.stromzahler_powercalc_warmepumpe_gesamt_monthly','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_monthly','last_period') | float(0)) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_letzter_monat') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_letzter_monat', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Küchengeräte (ohne Kühlschrank)
@@ -330,7 +330,7 @@ cards:
           - type: custom:template-entity-row
             name: Wärmepumpe
             entity: sensor.stromzahler_powercalc_warmepumpe_gesamt
-            state: "{{ states('sensor.stromzahler_powercalc_warmepumpe_gesamt_yearly') | float(0) | round(1) }} kWh => {{ '%.2f'%(states('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_yearly') | float(0)) }} €"
+            state: "{{ states('sensor.stromzahler_powercalc_warmepumpe_gesamt_yearly') | float(0) | round(1) }} kWh => {{ '%.2f'%(states('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_yearly') | float(0)) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_dieses_jahr') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_dieses_jahr', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Küchengeräte (ohne Kühlschrank)
@@ -403,7 +403,7 @@ cards:
           - type: custom:template-entity-row
             name: Wärmepumpe
             entity: sensor.stromzahler_powercalc_warmepumpe_gesamt
-            state: "{{ state_attr('sensor.stromzahler_powercalc_warmepumpe_gesamt_yearly','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_yearly','last_period') | float(0)) }} €"
+            state: "{{ state_attr('sensor.stromzahler_powercalc_warmepumpe_gesamt_yearly','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_yearly','last_period') | float(0)) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_letztes_jahr') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_letztes_jahr', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Küchengeräte (ohne Kühlschrank)
@@ -476,7 +476,7 @@ cards:
           - type: custom:template-entity-row
             name: Wärmepumpe
             entity: sensor.stromzahler_powercalc_warmepumpe_gesamt
-            state: "{{ states('sensor.stromzahler_powercalc_warmepumpe_gesamt_winteryear') | float(0) | round(1) }} kWh => {{ '%.2f'%(states('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_winteryear') | float(0)) }} €"
+            state: "{{ states('sensor.stromzahler_powercalc_warmepumpe_gesamt_winteryear') | float(0) | round(1) }} kWh => {{ '%.2f'%(states('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_winteryear') | float(0)) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_dieses_winterjahr') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_dieses_winterjahr', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Küchengeräte (ohne Kühlschrank)
@@ -549,7 +549,7 @@ cards:
           - type: custom:template-entity-row
             name: Wärmepumpe
             entity: sensor.stromzahler_powercalc_warmepumpe_gesamt
-            state: "{{ state_attr('sensor.stromzahler_powercalc_warmepumpe_gesamt_winteryear','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_warmepumpe_gesamt_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} €"
+            state: "{{ state_attr('sensor.stromzahler_powercalc_warmepumpe_gesamt_winteryear','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} €"
             secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_letztes_winterjahr') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_letztes_winterjahr', 'prozent') }} %"
           - type: custom:template-entity-row
             name: Küchengeräte (ohne Kühlschrank)
