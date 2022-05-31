@@ -4,7 +4,6 @@ icon: mdi:counter
 type: custom:masonry-layout
 layout:
   max_cols: 2
-panel: true
 cards:
   - type: entities
     title: Verbrauch heute
