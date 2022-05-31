@@ -198,7 +198,7 @@ sensor:
                   gamma_curve: 4
                 disable_standby_power: true
               - entity_id: light.innr_e14_tw_stehlampe_lea_level_light_color_on_off
-                name: Stehlampe Lara
+                name: Stehlampe Lea
                 linear:
                   min_power: 0.5
                   max_power: 5.8
