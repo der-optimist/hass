@@ -152,7 +152,7 @@ cards:
         state: "{{ state_attr('sensor.stromzahler_powercalc_heizung_partyraum_daily','last_period') | float(0) | round(1) }} kWh => {{ '%.2f'%(state_attr('sensor.kosten_heizung_partyraum_mit_pv_abrechnung_daily','last_period') | float(0)) }} €"
         secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_heizung_partyraum_abrechnung_gestern') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_heizung_partyraum_abrechnung_gestern', 'prozent') }} %"
   - type: entities
-    title: Verbrauch aktueller Monat
+    title: Verbrauch dieser Monat
     show_header_toggle: false
     entities:
       - type: section
@@ -225,7 +225,7 @@ cards:
         state: "{{ states('sensor.stromzahler_powercalc_heizung_partyraum_monthly') | float(0) | round(1) }} kWh => {{ '%.2f'%(states('sensor.kosten_heizung_partyraum_mit_pv_abrechnung_monthly') | float(0)) }} €"
         secondary: "gespart durch PV: {{ '%.2f'%(states('sensor.template_einsparung_heizung_partyraum_abrechnung_aktueller_monat') | float(0)) }} € bzw. {{ state_attr('sensor.template_einsparung_heizung_partyraum_abrechnung_aktueller_monat', 'prozent') }} %"
   - type: entities
-    title: Verbrauch letzten Monat
+    title: Verbrauch letzter Monat
     show_header_toggle: false
     entities:
       - type: section
