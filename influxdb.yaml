@@ -34,4 +34,7 @@ include:
     - sensor.pv*
     - sensor.template_einsparung*
     - sensor.stellwert_heizung*
+    - sensor.sollwert_heizung*
     - binary_sensor.pm*
+  domains:
+    - climate
