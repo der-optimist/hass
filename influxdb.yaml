@@ -1,7 +1,36 @@
 measurement_attr: entity_id
-exclude:
+include:
   entities:
-    - sensor.time
-    - sensor.last_boot
-    - sensor.windfang_wc_temp_ist_text
-    - sensor.windfang_wc_temp_soll_text
+    # Wetter
+    - sensor.temp_aussen
+    - sensor.luftfeuchtigkeit_aussen
+    - sensor.helligkeit_wetterstation
+    - binary_sensor.regenalarm
+    - sensor.windgeschwindigkeit_wetterstation_kmh
+    # Heizung
+    - sensor.water_heater_target_temp
+    - sensor.water_heater_current_temp
+    - sensor.supply_temp_setpoint
+    - sensor.actual_supply_temp
+    - sensor.stellwert_heizung_aktueller_maxwert
+    - sensor.heating_room_target_temp
+    - sensor.bosch_health_status
+    - sensor.bosch_notifications
+    # Strom
+    - input_number.strompreis
+    - sensor.einspeiselimit_watt
+    - sensor.anteil_el_leistung_netzbezug
+    - sensor.anteil_el_leistung_pv_nicht_einspeisbar
+    - sensor.anteil_el_leistung_pv_einspeisbar
+    - sensor.strompreis_aktuell_effektiv_euro
+    - sensor.strompreis_aktuell_abrechnung_euro
+    - binary_sensor.template_water_heater_pv_power_sufficient
+    - binary_sensor.template_water_heater_pv_boost_condition
+  entity_globs:
+    - sensor.el_leistung*
+    - sensor.kosten*
+    - sensor.stromz*
+    - sensor.einsparung*
+    - sensor.pv*
+    - sensor.template_einsparung*
+    - sensor.stellwert_heizung*
