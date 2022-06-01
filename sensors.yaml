@@ -152,7 +152,7 @@
         friendly_name: 'PV verbleibend bis Amortisation'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
-#
+# 
 #     --------------------------------
 #     --   Elektrische Leistung     --
 #     --------------------------------
