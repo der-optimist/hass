@@ -12,7 +12,14 @@ rest:
         value_template: >
           {% set len = (value_json | count) %}
           {% if len > 0 %}
-            {{ value_json[0].summary }}___{{ value_json[0].etag | regex_replace(find='"', replace='', ignorecase=False) }}
+            {% set summary = value_json[0].summary %}
+            {% set start = as_timestamp(value_json[0].start.dateTime) %}
+            {% set end = as_timestamp(value_json[0].end.dateTime) %}
+            {% set summary_slug = slugify(summary)[:8] %}
+            {% set start_str = '{:10.0f}'.format(start) %}
+            {% set duration_str = '{:.0f}'.format(end - start) %}
+            {% set etag = summary_slug + '-' + start_str + '-' + duration_str %}
+            {{ summary }}___{{ etag }}
           {% else %}
             no_event
           {% endif %}
@@ -20,7 +27,14 @@ rest:
         value_template: >
           {% set len = (value_json | count) %}
           {% if len > 1 %}
-            {{ value_json[1].summary }}___{{ value_json[1].etag | regex_replace(find='"', replace='', ignorecase=False) }}
+            {% set summary = value_json[1].summary %}
+            {% set start = as_timestamp(value_json[1].start.dateTime) %}
+            {% set end = as_timestamp(value_json[1].end.dateTime) %}
+            {% set summary_slug = slugify(summary)[:8] %}
+            {% set start_str = '{:10.0f}'.format(start) %}
+            {% set duration_str = '{:.0f}'.format(end - start) %}
+            {% set etag = summary_slug + '-' + start_str + '-' + duration_str %}
+            {{ summary }}___{{ etag }}
           {% else %}
             no_event
           {% endif %}
@@ -28,7 +42,14 @@ rest:
         value_template: >
           {% set len = (value_json | count) %}
           {% if len > 2 %}
-            {{ value_json[2].summary }}___{{ value_json[2].etag | regex_replace(find='"', replace='', ignorecase=False) }}
+            {% set summary = value_json[2].summary %}
+            {% set start = as_timestamp(value_json[2].start.dateTime) %}
+            {% set end = as_timestamp(value_json[2].end.dateTime) %}
+            {% set summary_slug = slugify(summary)[:8] %}
+            {% set start_str = '{:10.0f}'.format(start) %}
+            {% set duration_str = '{:.0f}'.format(end - start) %}
+            {% set etag = summary_slug + '-' + start_str + '-' + duration_str %}
+            {{ summary }}___{{ etag }}
           {% else %}
             no_event
           {% endif %}
@@ -36,7 +57,14 @@ rest:
         value_template: >
           {% set len = (value_json | count) %}
           {% if len > 3 %}
-            {{ value_json[3].summary }}___{{ value_json[3].etag | regex_replace(find='"', replace='', ignorecase=False) }}
+            {% set summary = value_json[3].summary %}
+            {% set start = as_timestamp(value_json[3].start.dateTime) %}
+            {% set end = as_timestamp(value_json[3].end.dateTime) %}
+            {% set summary_slug = slugify(summary)[:8] %}
+            {% set start_str = '{:10.0f}'.format(start) %}
+            {% set duration_str = '{:.0f}'.format(end - start) %}
+            {% set etag = summary_slug + '-' + start_str + '-' + duration_str %}
+            {{ summary }}___{{ etag }}
           {% else %}
             no_event
           {% endif %}
