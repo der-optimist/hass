@@ -70,6 +70,8 @@ cards:
           - type: custom:slider-entity-row
             entity: input_number.pizza_timer_2
             name: Minuten
+            full_row: true
+            hide_state: false
           - entity: input_button.pizza_timer_standard
       - type: entities
 #        title: "PV aktuell"
