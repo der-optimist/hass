@@ -1889,3 +1889,27 @@
     - service: switch.turn_off
       target:
         entity_id: switch.le_schlaft
+#
+###############################################
+#####            Telegram Bot             #####
+###############################################
+- id: '82a95f09-9aa0-401e-bbc8-79d1d24fe520'
+  alias: Telegram Bot
+  description: ''
+  mode: queued
+  trigger:
+    - platform: event
+      event_type: telegram_text
+      id: gewitter
+      event_data:
+        text: Gewitter
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: gewitter
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Gewitter Befehl erkannt'
