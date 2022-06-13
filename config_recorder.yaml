@@ -1,14 +1,4 @@
 db_url: !secret maria_db_url
-include:
-  domains:
-    - sensor
-    - binary_sensor
-    - switch
-    - climate
-    - cover
-    - light
-    - device_tracker
-    - input_boolean
 exclude:
   entities:
     - sensor.time
@@ -22,4 +12,4 @@ exclude:
     - sensor.pv_einspeisung_letzte_3_min_durchschnitt
   event_types:
     - call_service
-purge_keep_days: 3
+purge_keep_days: 16
