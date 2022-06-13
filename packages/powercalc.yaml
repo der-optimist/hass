@@ -197,7 +197,7 @@ sensor:
                   max_power: 12
                   gamma_curve: 4
                 disable_standby_power: true
-              - entity_id: light.innr_e14_tw_stehlampe_lea_level_light_color_on_off
+              - entity_id: light.0x680ae2fffeeb9221
                 name: Stehlampe Lea
                 linear:
                   min_power: 0.5
