@@ -137,7 +137,7 @@ sensor:
                 name: Stehlampe Flur EG oben
                 manufacturer: innr
                 model: 'RB 285 C'
-              - entity_id: light.innr_e27_rgb_flur_eg_unten_level_light_color_on_off
+              - entity_id: light.0x00158d0005019b3f
                 name: Stehlampe Flur EG unten
                 manufacturer: innr
                 model: 'RB 285 C'
