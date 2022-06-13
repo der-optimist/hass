@@ -84,7 +84,7 @@ sensor:
                   max_power: 28
                   gamma_curve: 4
                 disable_standby_power: true
-              - entity_id: light.innr_e14_tw_kugellampe_schlafzimmer_level_light_color_on_off
+              - entity_id: light.0x680ae2fffee9df98
                 name: Kugellampe Schlafzimmer
                 linear:
                   min_power: 0.5
