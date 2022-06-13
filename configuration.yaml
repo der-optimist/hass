@@ -61,9 +61,10 @@ downloader:
 
 generic_hygrostat: !include config_generic_hygrostat.yaml
 
-google:
-  client_id: !secret google_calendar_client_id
-  client_secret: !secret google_calendar_secret
+# replaced by GUI
+#google:
+#  client_id: !secret google_calendar_client_id
+#  client_secret: !secret google_calendar_secret
 
 http:
   cors_allowed_origins:
@@ -100,6 +101,7 @@ media_player:
 
 modbus: !include modbus.yaml
 
+# replaced by GUI
 #mqtt: !include config_mqtt.yaml
 
 notify: !include config_notify.yaml
