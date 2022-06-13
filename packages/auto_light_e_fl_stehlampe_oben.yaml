@@ -2,7 +2,7 @@
 #
 # friendly name: Licht EG Flur Stehlampe oben
 # id name: e_fl_stehlampe_oben
-# light: light.innr_e27_rgb_flur_eg_oben_level_light_color_on_off
+# light: light.0x00158d0005019c5c
 
 input_boolean:
   automation_switch_light_e_fl_stehlampe_oben:
@@ -145,7 +145,7 @@ automation:
     use_blueprint:
       path: /config/blueprints/light_automation.yaml
       input:
-        light_entity: light.innr_e27_rgb_flur_eg_oben_level_light_color_on_off
+        light_entity: light.0x00158d0005019c5c
         automation_switch: input_boolean.automation_switch_light_e_fl_stehlampe_oben
         trigger: binary_sensor.helper_light_trigger_e_fl_stehlampe_oben
         helper_effective_brightness: sensor.helper_light_effective_brightness_e_fl_stehlampe_oben
