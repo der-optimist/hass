@@ -166,7 +166,7 @@ sensor:
                   max_power: 12
                   gamma_curve: 4
                 disable_standby_power: true
-              - entity_id: light.innr_e14_ww_stehlampe_lara_level_on_off
+              - entity_id: light.0x00158d000344670b
                 name: Stehlampe Lara
                 linear:
                   min_power: 0.5

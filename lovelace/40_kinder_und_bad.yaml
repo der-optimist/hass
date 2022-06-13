@@ -17,7 +17,7 @@ cards:
       name: Wandwürfel
       toggle: true
     - type: custom:slider-entity-row
-      entity: light.innr_e14_ww_stehlampe_lara_level_on_off
+      entity: light.0x00158d000344670b
       name: Stehlampe
       toggle: true
     - entity: switch.bleib_so_la_licht

@@ -2,7 +2,7 @@
 #
 # friendly name: Licht OG Lara Stehlampe
 # id name: o_la_stehlampe
-# light: light.innr_e14_ww_stehlampe_lara_level_on_off
+# light: light.0x00158d000344670b
 
 input_boolean:
   automation_switch_light_o_la_stehlampe:
@@ -82,7 +82,7 @@ automation:
     use_blueprint:
       path: /config/blueprints/light_automation.yaml
       input:
-        light_entity: light.innr_e14_ww_stehlampe_lara_level_on_off
+        light_entity: light.0x00158d000344670b
         automation_switch: input_boolean.automation_switch_light_o_la_stehlampe
         trigger: binary_sensor.helper_light_trigger_o_la_stehlampe
         helper_effective_brightness: sensor.helper_light_effective_brightness_o_la_stehlampe

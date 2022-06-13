@@ -40,7 +40,7 @@
     path: /config/blueprints/knx_relative_dimming_farmio.yaml
     input:
       target_lights:
-        entity_id: light.innr_e14_ww_stehlampe_lara_level_on_off
+        entity_id: light.0x00158d000344670b
       switch_address: '1/5/200'
       dimm_address: '1/5/202'
       dimm_time: 5
@@ -377,7 +377,7 @@
             message: KNX Szene - Lara geht ins Bett
         - service: light.turn_on
           target:
-            entity_id: light.innr_e14_ww_stehlampe_lara_level_on_off
+            entity_id: light.0x00158d000344670b
           data:
             brightness_pct: 100
       - conditions:
