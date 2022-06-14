@@ -53,7 +53,7 @@
         # name: change entity_id in UI after creation
         unit_of_measurement: "W"
         state: >
-          {{ states('sensor.el_leistung_innr_sp_120_luftentfeuchter_waschkuche') }}
+          {{ states('sensor.0x00158d0003891388_power') }}
         attributes:
           friendly_name: "El. Leistung Luftentfeuchter Waschküche"
       - unique_id: el_leistung_hebeanlage

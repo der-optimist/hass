@@ -1,5 +1,5 @@
 - name: Luftentfeuchter Waschküche
-  humidifier: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
+  humidifier: switch.0x00158d0003891388
   target_sensor: sensor.luftfeuchtigkeit_waschkuche
   target_humidity: 50
   dry_tolerance: 3

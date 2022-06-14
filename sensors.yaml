@@ -281,11 +281,6 @@
               {{ '/local/icons/power/solar_power_gray.svg' }}
             {% endif %}
           {% endif %}
-#      battery_sim_energy_saved_byd_hvm_11_0:
-#        value_template: "{{ state_attr('sensor.byd_hvm_11_0', 'energy_saved') | float(0) }}"
-#        friendly_name: 'Batterie-Sim BYD HVM 11_0 Energy Saved'
-#        unit_of_measurement: 'kWh'
-#        icon_template: mdi:counter
 #
 #
 #       --------------------------------
@@ -515,65 +510,6 @@
 #
 # --------------------------------
 # --                            --
-# --          PowerCalc         --
-# --                            --
-# --------------------------------
-#
-#
-#
-#   --------------------------------
-#   --     Sonoff POW R2 1        --
-#   --------------------------------
-#
-#  - platform: mqtt
-#    name: "Sonoff POW R2 1 Scheinleistung"
-#    state_topic: "tele/tasmota_pow_r2_1/SENSOR"
-#    value_template: '{{ value_json["ENERGY"]["ApparentPower"] }}'
-#    unit_of_measurement: "VA"
-#  - platform: mqtt
-#    name: "Sonoff POW R2 1 Wirkleistung"
-#    state_topic: "tele/tasmota_pow_r2_1/SENSOR"
-#    value_template: '{{ value_json["ENERGY"]["Power"] }}'
-#    unit_of_measurement: "W"
-#  - platform: mqtt
-#    name: "Sonoff POW R2 1 Leistungsfaktor"
-#    state_topic: "tele/tasmota_pow_r2_1/SENSOR"
-#    value_template: '{{ value_json["ENERGY"]["Factor"] }}'
-#    unit_of_measurement: "None"
-#  - platform: mqtt
-#    name: "Sonoff POW R2 1 Energie"
-#    state_topic: "tele/tasmota_pow_r2_1/SENSOR"
-#    value_template: '{{ value_json["ENERGY"]["Total"] }}'
-#    unit_of_measurement: "kWh"
-#
-#   --------------------------------
-#   --     Sonoff POW R2 2        --
-#   --------------------------------
-#
-#  - platform: mqtt
-#    name: "Sonoff POW R2 2 Scheinleistung"
-#    state_topic: "tele/tasmota_pow_r2_2/SENSOR"
-#    value_template: '{{ value_json["ENERGY"]["ApparentPower"] }}'
-#    unit_of_measurement: "VA"
-#  - platform: mqtt
-#    name: "Sonoff POW R2 2 Wirkleistung"
-#    state_topic: "tele/tasmota_pow_r2_2/SENSOR"
-#    value_template: '{{ value_json["ENERGY"]["Power"] }}'
-#    unit_of_measurement: "W"
-#  - platform: mqtt
-#    name: "Sonoff POW R2 2 Leistungsfaktor"
-#    state_topic: "tele/tasmota_pow_r2_2/SENSOR"
-#    value_template: '{{ value_json["ENERGY"]["Factor"] }}'
-#    unit_of_measurement: "None"
-#  - platform: mqtt
-#    name: "Sonoff POW R2 2 Energie"
-#    state_topic: "tele/tasmota_pow_r2_2/SENSOR"
-#    value_template: '{{ value_json["ENERGY"]["Total"] }}'
-#    unit_of_measurement: "kWh"
-#
-#
-# --------------------------------
-# --                            --
 # --        Integration         --
 # --                            --
 # --------------------------------
@@ -744,25 +680,6 @@
     - ip6
     - deviceId
     value_template: 'OK'
-#  - platform: rest
-#    name: Geburtstage Google
-#    resource_template: 'http://localhost:8123/api/calendars/calendar.geburtstage_und_jahrestag?start={{ utcnow().strftime("%Y-%m-%dT%H:%M:%S") }}Z&end={{ (utcnow() + timedelta(days = 31)).strftime("%Y-%m-%dT%H:%M:%S") }}Z'
-#    headers:
-#      Authorization: !secret calendar_api_token
-#    value_template: >
-#      {% set len = (value_json | count) %}
-#      {% if len == 1 %}
-#        {{ value_json[0].summary }}___{{ value_json[0].start.date }}___nothing___nothing___nothing___nothing___nothing___nothing
-#      {% elif len == 2 %}
-#        {{ value_json[0].summary }}___{{ value_json[0].start.date }}___{{ value_json[1].summary }}___{{ value_json[1].start.date }}___nothing___nothing___nothing___nothing
-#      {% elif len == 3 %}
-#        {{ value_json[0].summary }}___{{ value_json[0].start.date }}___{{ value_json[1].summary }}___{{ value_json[1].start.date }}___{{ value_json[2].summary }}___{{ value_json[2].start.date }}___nothing___nothing
-#      {% elif len > 3 %}
-#        {{ value_json[0].summary }}___{{ value_json[0].start.date }}___{{ value_json[1].summary }}___{{ value_json[1].start.date }}___{{ value_json[2].summary }}___{{ value_json[2].start.date }}___{{ value_json[3].summary }}___{{ value_json[3].start.date }}
-#      {% else %}
-#        nothing___nothing___nothing___nothing___nothing___nothing___nothing___nothing
-#      {% endif %}
-#    scan_interval: 180
 #
 # --------------------------------
 # --                            --

@@ -4,7 +4,7 @@ template:
       - unique_id: tank_luftentfeuchter_waschkueche_voll
         # name: change entity_id in UI after creation
         state: >
-          {{ is_state('switch.innr_sp_120_luftentfeuchter_waschkuche_on_off','on') and ((states('sensor.el_leistung_luftentfeuchter_waschkueche') | float(0)) < 20) }}
+          {{ is_state('switch.0x00158d0003891388','on') and ((states('sensor.el_leistung_luftentfeuchter_waschkueche') | float(0)) < 20) }}
         delay_on: '0:10:00'
         attributes:
           friendly_name: "Tank Luftentfeuchter Waschküche voll"
