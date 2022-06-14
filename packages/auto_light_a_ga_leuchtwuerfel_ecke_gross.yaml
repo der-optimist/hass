@@ -2,7 +2,7 @@
 #
 # friendly name: Licht Garten Leuchtwürfel Ecke gross
 # id name: a_ga_leuchtwuerfel_ecke_gross
-# light: light.innr_rb_285_c_7cc30105_level_light_color_on_off
+# light: light.0x00158d000501c37c
 
 input_boolean:
   automation_switch_light_a_ga_leuchtwuerfel_ecke_gross:
@@ -80,7 +80,7 @@ automation:
     use_blueprint:
       path: /config/blueprints/light_automation.yaml
       input:
-        light_entity: light.innr_rb_285_c_7cc30105_level_light_color_on_off
+        light_entity: light.0x00158d000501c37c
         automation_switch: input_boolean.automation_switch_light_a_ga_leuchtwuerfel_ecke_gross
         trigger: binary_sensor.helper_light_trigger_a_ga_leuchtwuerfel_ecke_gross
         helper_effective_brightness: sensor.helper_light_effective_brightness_a_ga_leuchtwuerfel_ecke_gross

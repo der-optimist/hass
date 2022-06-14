@@ -66,7 +66,7 @@ sensor:
                   max_power: 21
                   gamma_curve: 4
                 disable_standby_power: true
-              - entity_id: light.innr_e27_color_stehlampe_wz_level_light_color_on_off
+              - entity_id: light.0x00158d000502f589
                 name: Stehlampe Wohnzimmer
                 manufacturer: innr
                 model: 'RB 285 C'
@@ -302,15 +302,15 @@ sensor:
                   - entity_id: light.bodenstrahler_blumenbeet
                     fixed:
                       power: 6
-                  - entity_id: light.innr_rb_285_c_7cc30105_level_light_color_on_off
+                  - entity_id: light.0x00158d000501c37c
                     name: Leuchtwürfel Ecke gross
                     manufacturer: innr
                     model: 'RB 285 C'
-                  - entity_id: light.innr_rb_285_c_55f50405_level_light_color_on_off
+                  - entity_id: light.0x00158d000504f555
                     name: Leuchtwürfel Ecke klein
                     manufacturer: innr
                     model: 'RB 285 C'
-                  - entity_id: light.innr_e27_color_terrasse_feuerplatz_level_light_color_on_off
+                  - entity_id: light.0x00158d000501c2a4
                     name: Leuchtwürfel Feuerplatz
                     manufacturer: innr
                     model: 'RB 285 C'

@@ -2,7 +2,7 @@
 #
 # friendly name: Licht EG WZ Stehlampe
 # id name: e_wz_stehlampe
-# light: light.innr_e27_color_stehlampe_wz_level_light_color_on_off
+# light: light.0x00158d000502f589
 
 input_boolean:
   automation_switch_light_e_wz_stehlampe:
@@ -146,7 +146,7 @@ automation:
     use_blueprint:
       path: /config/blueprints/light_automation.yaml
       input:
-        light_entity: light.innr_e27_color_stehlampe_wz_level_light_color_on_off
+        light_entity: light.0x00158d000502f589
         automation_switch: input_boolean.automation_switch_light_e_wz_stehlampe
         trigger: binary_sensor.helper_light_trigger_e_wz_stehlampe
         helper_effective_brightness: sensor.helper_light_effective_brightness_e_wz_stehlampe

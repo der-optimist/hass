@@ -125,11 +125,11 @@ expose:
   address: '0/3/41'
 # Stehlampe WZ - Anzeige auf Taster
 - type: "binary"
-  entity_id: "light.innr_e27_color_stehlampe_wz_level_light_color_on_off"
+  entity_id: "light.0x00158d000502f589"
   address: "1/6/81"
   default: false
 - type: "percentU8"
-  entity_id: "light.innr_e27_color_stehlampe_wz_level_light_color_on_off"
+  entity_id: "light.0x00158d000502f589"
   attribute: "brightness"
   default: 0
   address: "1/6/84"

@@ -41,11 +41,11 @@ cards:
         height: 1px
         background-color: "#ff9c27"
         opacity: 0.25
-    - entity: light.innr_e27_color_terrasse_feuerplatz_level_light_color_on_off
+    - entity: light.0x00158d000501c2a4
       name: Leuchtwürfel Feuerplatz
-    - entity: light.innr_rb_285_c_55f50405_level_light_color_on_off
+    - entity: light.0x00158d000504f555
       name: Leuchtwürfel Ecke klein
-    - entity: light.innr_rb_285_c_7cc30105_level_light_color_on_off
+    - entity: light.0x00158d000501c37c
       name: Leuchtwürfel Ecke groß
 #    - entity: light.wuerfel_gross_ecke
 #      name: Würfelhocker groß Ecke
