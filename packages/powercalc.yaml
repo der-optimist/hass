@@ -205,7 +205,7 @@ sensor:
                 standby_power: 0.4
           - create_group: Lichter Gästezimmer
             entities:
-              - entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
+              - entity_id: light.0x00158d0003418897
                 linear:
                   min_power: 0.5
                   max_power: 5.3

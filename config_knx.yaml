@@ -155,11 +155,11 @@ expose:
   address: "1/5/204"
 # Deckenlicht GZ - Anzeige auf Taster
 - type: "binary"
-  entity_id: "light.innr_e14_ww_decke_gastezimmer_level_on_off"
+  entity_id: "light.0x00158d0003418897"
   address: "1/6/41"
   default: false
 - type: "percentU8"
-  entity_id: "light.innr_e14_ww_decke_gastezimmer_level_on_off"
+  entity_id: "light.0x00158d0003418897"
   attribute: "brightness"
   default: 0
   address: "1/6/44"

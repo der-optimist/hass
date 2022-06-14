@@ -72,7 +72,7 @@
     path: /config/blueprints/knx_relative_dimming_farmio.yaml
     input:
       target_lights:
-        entity_id: light.innr_e14_ww_decke_gastezimmer_level_on_off
+        entity_id: light.0x00158d0003418897
       switch_address: '1/6/40'
       dimm_address: '1/6/42'
       dimm_time: 5

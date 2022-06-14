@@ -2,7 +2,7 @@
 #
 # friendly name: Licht OG Gästezimmer Deckenlicht
 # id name: o_gz_deckenlicht
-# light: light.innr_e14_ww_decke_gastezimmer_level_on_off
+# light: light.0x00158d0003418897
 
 input_boolean:
   automation_switch_light_o_gz_deckenlicht:
@@ -116,7 +116,7 @@ automation:
     use_blueprint:
       path: /config/blueprints/light_automation.yaml
       input:
-        light_entity: light.innr_e14_ww_decke_gastezimmer_level_on_off
+        light_entity: light.0x00158d0003418897
         automation_switch: input_boolean.automation_switch_light_o_gz_deckenlicht
         trigger: binary_sensor.helper_light_trigger_o_gz_deckenlicht
         helper_effective_brightness: sensor.helper_light_effective_brightness_o_gz_deckenlicht
