@@ -223,10 +223,11 @@
         delay_off:
           hours: 1
         value_template: >
-          {% if states('binary_sensor.0x00158d00054d1e90_contact') in ['unavailable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.0x00158d00054d1e90_contact') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.0x00158d0001dfffc3_occupancy') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.pm_k_timer_magnetsensor_werkelraum') }}
           {% else %}
-            {{ is_state('binary_sensor.0x00158d00054d1e90_contact', 'on') }}
+            {{ is_state('binary_sensor.0x00158d00054d1e90_contact', 'on') or is_state('binary_sensor.0x00158d0001dfffc3_occupancy','on') }}
           {% endif %}
       pm_k_timer_bewegung_partyraum:
         friendly_name: "PM Timer Bewegung Partyraum"
@@ -235,13 +236,13 @@
           minutes: 20
         value_template: >
           {% if states('binary_sensor.0x00158d00044e6936_contact') in ['unavailable', 'unknown', 'none']
-             or states('binary_sensor.lumi_lumi_sensor_motion_aq2_6f2e5d04_occupancy') in ['unavailable', 'unknown', 'none']
-             or states('binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy') in ['unavailable', 'unknown', 'none'] %}
+             or states('binary_sensor.0x00158d00045d2e6f_occupancy') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.0x00158d000451908d_occupancy') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.pm_k_timer_bewegung_partyraum') }}
           {% else %}
             {{ is_state('binary_sensor.0x00158d00044e6936_contact', 'on')
-               or is_state('binary_sensor.lumi_lumi_sensor_motion_aq2_6f2e5d04_occupancy', 'on')
-               or is_state('binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy', 'on') }}
+               or is_state('binary_sensor.0x00158d00045d2e6f_occupancy', 'on')
+               or is_state('binary_sensor.0x00158d000451908d_occupancy', 'on') }}
           {% endif %}
       reminder_tuer_partyraum:
         friendly_name: "Reminder Tür Partyraum"
@@ -249,13 +250,13 @@
         delay_on:
           minutes: 5
         value_template: "{{ is_state('binary_sensor.0x00158d00044e6936_contact','on') and not
-                            (is_state('binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy','on') or is_state('binary_sensor.lumi_lumi_sensor_motion_aq2_6f2e5d04_occupancy','on')) }}"
+                            (is_state('binary_sensor.0x00158d000451908d_occupancy','on') or is_state('binary_sensor.0x00158d00045d2e6f_occupancy','on')) }}"
       reminder_tuer_werkelraum:
         friendly_name: "Reminder Tür Werkelraum"
         device_class: moving
         delay_on:
           hours: 1
-        value_template: "{{ is_state('binary_sensor.0x00158d00054d1e90_contact','on') }}"
+        value_template: "{{ is_state('binary_sensor.0x00158d00054d1e90_contact','on') and is_state('binary_sensor.0x00158d0001dfffc3_occupancy','off') }}"
       anwesenheit_bildschirm:
         friendly_name: "Anwesenheit Bildschirm"
         value_template: >-
