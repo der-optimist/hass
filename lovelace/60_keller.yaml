@@ -34,7 +34,7 @@ cards:
       name: Hygrostat
     - entity: sensor.luftfeuchtigkeit_waschkuche
       name: Luftfeuchtigkeit
-    - entity: switch.innr_sp_120_luftentfeuchter_waschkuche_on_off
+    - entity: switch.0x00158d0003891388
       name: Steckdose Luftentfeuchter
     - entity: sensor.el_leistung_luftentfeuchter_waschkueche
       name: Leistung Luftentfeuchter
