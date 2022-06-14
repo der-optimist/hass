@@ -112,21 +112,15 @@
 - id: '1640156192211'
   alias: ZigBee Taster Lara
   description: ''
-  trigger_variables:
-      device_ieee: 00:15:8d:00:06:72:6e:97
   trigger:
-    - platform: event
-      event_type: zha_event
-      id: zha_event_single
-      event_data:
-        device_ieee: "{{ device_ieee }}"
-        command: single
-    - platform: event
-      event_type: zha_event
-      id: zha_event_double
-      event_data:
-        device_ieee: "{{ device_ieee }}"
-        command: double
+    - platform: state
+      entity_id: sensor.0x00158d0006726e97_action
+      to: "single"
+      id: action_single
+    - platform: state
+      entity_id: sensor.0x00158d0006726e97_action
+      to: "double"
+      id: action_double
   condition: []
   action:
     - service: switch.toggle
