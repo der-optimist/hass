@@ -223,10 +223,10 @@
         delay_off:
           hours: 1
         value_template: >
-          {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off') in ['unavailable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.0x00158d00054d1e90_contact') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.pm_k_timer_magnetsensor_werkelraum') }}
           {% else %}
-            {{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off', 'on') }}
+            {{ is_state('binary_sensor.0x00158d00054d1e90_contact', 'on') }}
           {% endif %}
       pm_k_timer_bewegung_partyraum:
         friendly_name: "PM Timer Bewegung Partyraum"
@@ -255,7 +255,7 @@
         device_class: moving
         delay_on:
           hours: 1
-        value_template: "{{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off','on') }}"
+        value_template: "{{ is_state('binary_sensor.0x00158d00054d1e90_contact','on') }}"
       anwesenheit_bildschirm:
         friendly_name: "Anwesenheit Bildschirm"
         value_template: >-
