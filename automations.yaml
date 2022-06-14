@@ -838,7 +838,7 @@
         entity_id: timer.wm_door_delay
       id: wm_door_delay_finished
     - platform: state
-      entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
+      entity_id: binary_sensor.0x00158d00049ff9dd_contact
       id: wm_opened
       to: "on"
     - platform: event
