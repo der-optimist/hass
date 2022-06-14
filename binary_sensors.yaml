@@ -212,10 +212,10 @@
         delay_off:
           minutes: 15
         value_template: >
-          {% if states('binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off') in ['unavailable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.0x00158d00045c1583_contact') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.pm_k_timer_magnetsensor_vorratsraum') }}
           {% else %}
-            {{ is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off', 'on') }}
+            {{ is_state('binary_sensor.0x00158d00045c1583_contact', 'on') }}
           {% endif %}
       pm_k_timer_magnetsensor_werkelraum:
         friendly_name: "PM Timer Magnetsensor Werkelraum"

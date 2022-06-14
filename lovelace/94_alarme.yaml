@@ -31,7 +31,7 @@ cards:
         name: Partyraum
       - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_901e4d05_on_off
         name: Werkelraum
-      - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_83155c04_on_off
+      - entity: binary_sensor.0x00158d00045c1583_contact
         name: Speis
   - type: entities
     title: Ping
