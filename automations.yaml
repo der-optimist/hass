@@ -1726,6 +1726,15 @@
       from: 'on'
       to: 'off'
       id: gewitter_ende
+    - platform: numeric_state
+      entity_id: sensor.blitzortung_lightning_distance
+      value_template: "{{ states('sensor.blitzortung_lightning_distance') | float(1000) }}"
+      below: 5
+      id: gewitter_automatisch_erkannt
+    - platform: numeric_state
+      entity_id: sensor.blitzortung_lightning_counter
+      below: 0.5
+      id: gewitter_ende_automatisch_erkannt
   condition: []
   action:
     - choose:
@@ -1831,6 +1840,39 @@
         - service: switch.turn_on
           target:
             entity_id: switch.tv
+      - conditions:
+        - condition: trigger
+          id: gewitter_automatisch_erkannt
+        - condition: state
+          entity_id: input_boolean.gewitter
+          state: "off"
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Gewitter automatisch erkannt. Drücke jetzt den Gewitter-Knopf für euch'
+        - service: notify.telegram_ma
+          data:
+            message: 'Gewitter automatisch erkannt. Drücke jetzt den Gewitter-Knopf für euch'
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.gewitter
+      - conditions:
+        - condition: trigger
+          id: gewitter_ende_automatisch_erkannt
+        - condition: state
+          entity_id: input_boolean.gewitter
+          state: "on"
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Keine Blitze mehr im Umkreis von 30km. Schalte jetzt den Gewitter-Knopf für euch aus'
+        - service: notify.telegram_ma
+          data:
+            message: 'Keine Blitze mehr im Umkreis von 30km. Schalte jetzt den Gewitter-Knopf für euch aus'
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.gewitter
+
 #
 ###############################################
 #####   Kinder-schon-wach-Knopf Reset     #####
