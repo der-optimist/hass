@@ -1399,15 +1399,11 @@
   alias: Wasser-Alarm
   description: ''
   mode: queued
-  trigger_variables:
-      device_ieee: 00:15:8d:00:04:0b:11:2f
   trigger:
-    - platform: event
-      event_type: zha_event
-      id: zha_event_right_single
-      event_data:
-        device_ieee: "{{ device_ieee }}"
-        command: right_single
+    - platform: state
+      entity_id: sensor.0x00158d00040b112f_action
+      to: "single_right"
+      id: single_right
     - platform: state
       entity_id: binary_sensor.eimer_hebeanlage_voll
       to: 'on'
@@ -1512,7 +1508,7 @@
             entity_id: input_boolean.alarm_activated
       - conditions:
         - condition: trigger
-          id: zha_event_right_single
+          id: single_right
         sequence:
         - service: switch.turn_on
           target:
