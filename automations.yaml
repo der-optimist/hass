@@ -198,15 +198,11 @@
 - id: '08f25ae6-5ade-46ae-b571-7596cc14c01a'
   alias: Cube WC
   description: ''
-  trigger_variables:
-      device_ieee: 00:15:8d:00:02:7d:45:07
   trigger:
-    - platform: event
-      event_type: zha_event
+    - platform: state
+      entity_id: sensor.0x00158d00027d4507_action
+      to: "shake"
       id: shake
-      event_data:
-        device_ieee: "{{ device_ieee }}"
-        command: shake
   condition: []
   action:
     - choose:
