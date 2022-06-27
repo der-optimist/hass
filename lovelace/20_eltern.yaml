@@ -35,9 +35,13 @@ cards:
     - type: section
       label: Steckdosen
     - entity: switch.shellyswitch25_10521c45de0b_relay_0
-      name: Handysteckdose Ma
+      name: Strom Handysteckdose Ma
+    - entity: automation.handyladesteckdose_ma
+      name: Automatisierung Handysteckdose Ma
     - entity: switch.shellyswitch25_10521c45de0b_relay_1
       name: Handysteckdose Jo
+    - entity: automation.handyladesteckdose_jo
+      name: Automatisierung Handysteckdose Jo
     - type: section
       label: Jalousie
     - entity: cover.jalousie_schlafzimmer
