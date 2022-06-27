@@ -1564,12 +1564,37 @@
     - platform: time
       at: "18:02:01"
       id: turn_on
+    - platform: numeric_state
+      entity_id: sensor.pixel_3a_ma_akkustand
+      above: 89
+      id: charging_done
+    - platform: numeric_state
+      entity_id: sensor.pixel_3a_ma_akkustand
+      below: 85
+      id: charging_needed
   condition: []
   action:
     - choose:
       - conditions:
         - condition: trigger
           id: turn_on
+        sequence:
+        - service: switch.turn_on
+          target:
+            entity_id: switch.shellyswitch25_10521c45de0b_relay_0
+      - conditions:
+        - condition: trigger
+          id: charging_done
+        - condition: state
+          entity_id: device_tracker.pixel_3a_ma_wlan
+          state: home
+        sequence:
+        - service: switch.turn_off
+          target:
+            entity_id: switch.shellyswitch25_10521c45de0b_relay_0
+      - conditions:
+        - condition: trigger
+          id: charging_needed
         sequence:
         - service: switch.turn_on
           target:
@@ -1589,12 +1614,37 @@
     - platform: time
       at: "18:02:02"
       id: turn_on
+    - platform: numeric_state
+      entity_id: sensor.pixel_3a_jochen_akkustand
+      above: 89
+      id: charging_done
+    - platform: numeric_state
+      entity_id: sensor.pixel_3a_jochen_akkustand
+      below: 85
+      id: charging_needed
   condition: []
   action:
     - choose:
       - conditions:
         - condition: trigger
           id: turn_on
+        sequence:
+        - service: switch.turn_on
+          target:
+            entity_id: switch.shellyswitch25_10521c45de0b_relay_1
+      - conditions:
+        - condition: trigger
+          id: charging_done
+        - condition: state
+          entity_id: device_tracker.pixel_3a_jo_wlan
+          state: home
+        sequence:
+        - service: switch.turn_off
+          target:
+            entity_id: switch.shellyswitch25_10521c45de0b_relay_1
+      - conditions:
+        - condition: trigger
+          id: charging_needed
         sequence:
         - service: switch.turn_on
           target:
