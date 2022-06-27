@@ -332,10 +332,10 @@
   mode: single
 #
 ###############################################
-#####             KNX Scenes              #####
+#####       KNX Szenen und Tasten         #####
 ###############################################
 - id: 'f59f075d-d8f6-4b8e-b8e8-23c39b261b5c'
-  alias: KNX Scenes
+  alias: KNX Szenen und Tasten
   description: ''
   mode: queued
   trigger:
@@ -343,86 +343,117 @@
       event_type: knx_event
       event_data:
         destination: 15/0/50
+      id: szene
+    - platform: event
+      event_type: knx_event
+      event_data:
+        destination: 0/3/20
+      id: poweroutlet_phone_ma
+    - platform: event
+      event_type: knx_event
+      event_data:
+        destination: 0/3/40
+      id: poweroutlet_phone_jo
   condition: []
   action:
     - choose:
       - conditions:
-        - condition: template
-          value_template: '{{ trigger.event.data.data[0] == 0 }}'
+        - condition: trigger
+          id: szene
         sequence:
-        - service: notify.telegram_jo
-          data:
-            message: KNX Szene - Lara geht ins Bett
-        - service: light.turn_on
+        - choose:
+          - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.data[0] == 0 }}'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: KNX Szene - Lara geht ins Bett
+            - service: light.turn_on
+              target:
+                entity_id: light.0x00158d000344670b
+              data:
+                brightness_pct: 100
+          - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.data[0] == 1 }}'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: KNX Szene - Lea geht ins Bett
+            - service: light.turn_on
+              target:
+                entity_id: light.0x680ae2fffeeb9221
+              data:
+                brightness_pct: 100
+          - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.data[0] == 4 }}'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: KNX Szene - Lara steht auf
+            - service: switch.turn_off
+              target:
+                entity_id: switch.la_schlaft
+          - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.data[0] == 5 }}'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: KNX Szene - Lea steht auf
+            - service: switch.turn_off
+              target:
+                entity_id: switch.le_schlaft
+          - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.data[0] == 21 }}'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: KNX Szene - Lüftung Stoß
+            - service: modbus.write_register
+              data:
+                address: 1103
+                unit: 1
+                value: 30
+                hub: lueftungsanlage
+            - delay: 1
+            - service: modbus.write_register
+              data:
+                address: 1161
+                unit: 1
+                value: 4
+                hub: lueftungsanlage
+          - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.data[0] == 22 }}'
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: KNX Szene - Lüftung Auto
+            - service: modbus.write_register
+              data:
+                address: 1161
+                unit: 1
+                value: 1
+                hub: lueftungsanlage
+          default: []
+      - conditions:
+        - condition: trigger
+          id: poweroutlet_phone_ma
+        sequence:
+        - service: switch.toggle
           target:
-            entity_id: light.0x00158d000344670b
-          data:
-            brightness_pct: 100
+            entity_id: switch.shellyswitch25_10521c45de0b_relay_0
       - conditions:
-        - condition: template
-          value_template: '{{ trigger.event.data.data[0] == 1 }}'
+        - condition: trigger
+          id: poweroutlet_phone_jo
         sequence:
-        - service: notify.telegram_jo
-          data:
-            message: KNX Szene - Lea geht ins Bett
-        - service: light.turn_on
+        - service: switch.toggle
           target:
-            entity_id: light.0x680ae2fffeeb9221
-          data:
-            brightness_pct: 100
-      - conditions:
-        - condition: template
-          value_template: '{{ trigger.event.data.data[0] == 4 }}'
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: KNX Szene - Lara steht auf
-        - service: switch.turn_off
-          target:
-            entity_id: switch.la_schlaft
-      - conditions:
-        - condition: template
-          value_template: '{{ trigger.event.data.data[0] == 5 }}'
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: KNX Szene - Lea steht auf
-        - service: switch.turn_off
-          target:
-            entity_id: switch.le_schlaft
-      - conditions:
-        - condition: template
-          value_template: '{{ trigger.event.data.data[0] == 21 }}'
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: KNX Szene - Lüftung Stoß
-        - service: modbus.write_register
-          data:
-            address: 1103
-            unit: 1
-            value: 30
-            hub: lueftungsanlage
-        - delay: 1
-        - service: modbus.write_register
-          data:
-            address: 1161
-            unit: 1
-            value: 4
-            hub: lueftungsanlage
-      - conditions:
-        - condition: template
-          value_template: '{{ trigger.event.data.data[0] == 22 }}'
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: KNX Szene - Lüftung Auto
-        - service: modbus.write_register
-          data:
-            address: 1161
-            unit: 1
-            value: 1
-            hub: lueftungsanlage
+            entity_id: switch.shellyswitch25_10521c45de0b_relay_1
       default: []
 #
 ###############################################
