@@ -43,13 +43,14 @@ template:
       - name: helper_light_trigger_a_cp_bodenlicht
         state: >
           {{ is_state('binary_sensor.pm_a_eg', 'on') 
-             or is_state('binary_sensor.pm_a_cp', 'on') }}
+             or is_state('binary_sensor.pm_a_cp', 'on')
+             or is_state('binary_sensor.pm_a_ar', 'on') }}
       - name: helper_light_keeping_off_entities_a_cp_bodenlicht
         state: >
           {{ false }}
       - name: helper_light_keeping_on_entities_a_cp_bodenlicht
         state: >
-          {{ is_state('binary_sensor.pm_a_ar', 'on') }}
+          {{ false }}
       - name: helper_light_keeping_fix_entities_a_cp_bodenlicht
         state: >
           {{ false }}
