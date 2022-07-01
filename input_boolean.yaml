@@ -194,3 +194,12 @@
   reminder_dryer:
     name: Trockner ist fertig
     icon: mdi:tumble-dryer
+  reminder_tuer_partyraum:
+    name: Tür Partyraum ist offen
+    icon: mdi:door-open
+  reminder_tuer_werkelraum:
+    name: Tür Werkelraum ist offen
+    icon: mdi:door-open
+  reminder_tuer_speis:
+    name: Tür Speis ist offen
+    icon: mdi:door-open

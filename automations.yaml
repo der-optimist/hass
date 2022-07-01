@@ -1916,3 +1916,81 @@
         - service: input_boolean.toggle
           target:
             entity_id: input_boolean.gewitter
+#
+###############################################
+#####           Reminder Türen            #####
+###############################################
+- id: '241b7d80-e376-48f1-bfea-134b6e45acb4'
+  alias: Reminder Türen
+  description: ''
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.reminder_tuer_partyraum
+      to: 'on'
+      id: tuer_partyraum_on
+    - platform: state
+      entity_id: binary_sensor.reminder_tuer_partyraum
+      to: 'off'
+      id: tuer_partyraum_off
+    - platform: state
+      entity_id: binary_sensor.reminder_tuer_werkelraum
+      to: 'on'
+      id: tuer_werkelraum_on
+    - platform: state
+      entity_id: binary_sensor.reminder_tuer_werkelraum
+      to: 'off'
+      id: tuer_werkelraum_off
+    - platform: state
+      entity_id: binary_sensor.reminder_tuer_speis
+      to: 'on'
+      id: tuer_speis_on
+    - platform: state
+      entity_id: binary_sensor.reminder_tuer_speis
+      to: 'off'
+      id: tuer_speis_off
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: tuer_partyraum_on
+        sequence:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.reminder_tuer_partyraum
+      - conditions:
+        - condition: trigger
+          id: tuer_partyraum_off
+        sequence:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.reminder_tuer_partyraum
+      - conditions:
+        - condition: trigger
+          id: tuer_werkelraum_on
+        sequence:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.reminder_tuer_werkelraum
+      - conditions:
+        - condition: trigger
+          id: tuer_werkelraum_off
+        sequence:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.reminder_tuer_werkelraum
+      - conditions:
+        - condition: trigger
+          id: tuer_speis_on
+        sequence:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.reminder_tuer_speis
+      - conditions:
+        - condition: trigger
+          id: tuer_speis_off
+        sequence:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.reminder_tuer_speis

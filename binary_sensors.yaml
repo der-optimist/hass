@@ -248,15 +248,21 @@
         friendly_name: "Reminder Tür Partyraum"
         device_class: moving
         delay_on:
-          minutes: 5
+          minutes: 10
         value_template: "{{ is_state('binary_sensor.0x00158d00044e6936_contact','on') and not
                             (is_state('binary_sensor.0x00158d000451908d_occupancy','on') or is_state('binary_sensor.0x00158d00045d2e6f_occupancy','on')) }}"
       reminder_tuer_werkelraum:
         friendly_name: "Reminder Tür Werkelraum"
         device_class: moving
         delay_on:
-          hours: 1
+          minutes: 30
         value_template: "{{ is_state('binary_sensor.0x00158d00054d1e90_contact','on') and is_state('binary_sensor.0x00158d0001dfffc3_occupancy','off') }}"
+      reminder_tuer_speis:
+        friendly_name: "Reminder Tür Speis"
+        device_class: moving
+        delay_on:
+          minutes: 60
+        value_template: "{{ is_state('binary_sensor.0x00158d00045c1583_contact','on') }}"
       anwesenheit_bildschirm:
         friendly_name: "Anwesenheit Bildschirm"
         value_template: >-
