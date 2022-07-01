@@ -624,7 +624,7 @@
         - condition: trigger
           id: jo_aktiviert
         sequence:
-        - delay: 60
+        - delay: 15
         - service: notify.telegram_jo
           data:
             message: Probe-Bewegungsalarm
@@ -632,7 +632,7 @@
         - condition: trigger
           id: ma_aktiviert
         sequence:
-        - delay: 60
+        - delay: 15
         - service: notify.telegram_ma
           data:
             message: Probe-Bewegungsalarm
