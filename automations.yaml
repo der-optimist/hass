@@ -555,8 +555,18 @@
 - id: 'fd83d1a0-de60-4abf-9efa-87a1ed31f6f0'
   alias: Bewegungsalarm
   description: ''
-  mode: queued
+  mode: parallel
   trigger:
+    - platform: state
+      entity_id: input_boolean.flur_alarm_jo
+      id: jo_aktiviert
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.flur_alarm_ma
+      id: ma_aktiviert
+      from: "off"
+      to: "on"
     - platform: state
       entity_id: binary_sensor.pm_o_ko_la_tuer
       id: la_tuer
@@ -610,6 +620,22 @@
   condition: []
   action:
     - choose:
+      - conditions:
+        - condition: trigger
+          id: jo_aktiviert
+        sequence:
+        - delay: 60
+        - service: notify.telegram_jo
+          data:
+            message: Probe-Bewegungsalarm
+      - conditions:
+        - condition: trigger
+          id: ma_aktiviert
+        sequence:
+        - delay: 60
+        - service: notify.telegram_ma
+          data:
+            message: Probe-Bewegungsalarm
       - conditions:
         - condition: trigger
           id: la_tuer
