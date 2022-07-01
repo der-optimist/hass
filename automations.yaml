@@ -1994,3 +1994,26 @@
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.reminder_tuer_speis
+#
+###############################################
+#####       Info-Benachrichtigungen       #####
+###############################################
+- id: 'b936cbb3-33a1-41d1-9aa5-190728ed6c87'
+  alias: Info-Benachrichtigungen
+  description: ''
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sicherung_keller_sd_rausgeflogen
+      to: 'off'
+      id: hebeanlage_hat_wieder_strom
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: hebeanlage_hat_wieder_strom
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Info: Hebeanlage hat wieder Strom'
