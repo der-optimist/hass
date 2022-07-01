@@ -2007,6 +2007,34 @@
       entity_id: binary_sensor.sicherung_keller_sd_rausgeflogen
       to: 'off'
       id: hebeanlage_hat_wieder_strom
+    - platform: state
+      entity_id: binary_sensor.storung_heizaktor_eg_notify
+      to: 'on'
+      id: stoerung_heizaktor_eg
+    - platform: state
+      entity_id: binary_sensor.storung_heizaktor_og
+      to: 'on'
+      id: storung_heizaktor_og
+    - platform: state
+      entity_id: binary_sensor.storung_heizaktor_eg_notify
+      to: 'off'
+      id: stoerung_heizaktor_eg_vorbei
+    - platform: state
+      entity_id: binary_sensor.storung_heizaktor_og
+      to: 'off'
+      id: storung_heizaktor_og_vorbei
+    - platform: state
+      entity_id: sensor.bosch_health_status
+      to: 'error'
+      id: wp_error
+    - platform: state
+      entity_id: sensor.bosch_health_status
+      to: 'ok'
+      id: wp_ok
+    - platform: state
+      entity_id: sensor.bosch_health_status
+      to: 'maintenance'
+      id: wp_maintenance
   condition: []
   action:
     - choose:
@@ -2017,3 +2045,52 @@
         - service: notify.telegram_jo
           data:
             message: 'Info: Hebeanlage hat wieder Strom'
+      - conditions:
+        - condition: trigger
+          id: stoerung_heizaktor_eg
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Störung Heizungsaktor EG'
+      - conditions:
+        - condition: trigger
+          id: stoerung_heizaktor_og
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Störung Heizungsaktor OG'
+      - conditions:
+        - condition: trigger
+          id: stoerung_heizaktor_eg_vorbei
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Störung Heizungsaktor EG vorbei'
+      - conditions:
+        - condition: trigger
+          id: stoerung_heizaktor_og_vorbei
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Störung Heizungsaktor OG vorbei'
+      - conditions:
+        - condition: trigger
+          id: wp_error
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Störung Wärmepumpe'
+      - conditions:
+        - condition: trigger
+          id: wp_ok
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Wärmepumpe wieder OK'
+      - conditions:
+        - condition: trigger
+          id: wp_maintenance
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Wärmepumpe im Wartungsmodus'
