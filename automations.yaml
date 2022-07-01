@@ -1681,10 +1681,10 @@
             entity_id: cover.jalousie_wz_couch
 #
 ###############################################
-#####              Gewitter               #####
+#####           Gewitter-Knopf            #####
 ###############################################
 - id: '96ca5912-cf4c-4b2e-bd03-fa7932fceb9e'
-  alias: Gewitter
+  alias: Gewitter-Knopf
   description: ''
   mode: queued
   trigger:
@@ -1698,15 +1698,6 @@
       from: 'on'
       to: 'off'
       id: gewitter_ende
-    - platform: numeric_state
-      entity_id: sensor.blitzortung_lightning_distance
-      value_template: "{{ states('sensor.blitzortung_lightning_distance') | float(1000) }}"
-      below: 5
-      id: gewitter_automatisch_erkannt
-    - platform: numeric_state
-      entity_id: sensor.blitzortung_lightning_counter
-      below: 0.5
-      id: gewitter_ende_automatisch_erkannt
   condition: []
   action:
     - choose:
@@ -1812,6 +1803,27 @@
         - service: switch.turn_on
           target:
             entity_id: switch.tv
+#
+###############################################
+#####         Gewitter-Erkennung          #####
+###############################################
+- id: '71be220b-658f-467a-81dd-8fd24ad0ffbc'
+  alias: Gewitter-Erkennung
+  description: ''
+  mode: queued
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.blitzortung_lightning_distance
+      value_template: "{{ states('sensor.blitzortung_lightning_distance') | float(1000) }}"
+      below: 5
+      id: gewitter_automatisch_erkannt
+    - platform: numeric_state
+      entity_id: sensor.blitzortung_lightning_counter
+      below: 0.5
+      id: gewitter_ende_automatisch_erkannt
+  condition: []
+  action:
+    - choose:
       - conditions:
         - condition: trigger
           id: gewitter_automatisch_erkannt
@@ -1844,7 +1856,6 @@
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.gewitter
-
 #
 ###############################################
 #####   Kinder-schon-wach-Knopf Reset     #####
