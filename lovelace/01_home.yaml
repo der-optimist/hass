@@ -357,8 +357,10 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-        - entity: input_boolean.eisschutz_jalousien
-          name: Eisschutz Jalousien
+#        - entity: input_boolean.eisschutz_jalousien
+#          name: Eisschutz Jalousien
+        - entity: sensor.temp_pool
+          name: Pool
         - entity: input_boolean.gewitter
           name: Gewitter!
   - type: custom:gap-card

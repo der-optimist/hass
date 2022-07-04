@@ -63,3 +63,11 @@
           {{ states('sensor.el_leistung_shellyplug_s_169d16_power') }}
         attributes:
           friendly_name: "El. Leistung Hebeanlage"
+      - unique_id: temp_pool
+        # name: change entity_id in UI after creation
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state: >
+          {{ states('sensor.temp_0xa30317605abeff28_d1_pro_1') | float(0) | round(1) }}
+        attributes:
+          friendly_name: "Pool-Temperatur"
