@@ -2149,6 +2149,30 @@
       id: notify_jo_always
       variables:
         message: "Überstrom-Alarm LED-Aktor 7"
+    - platform: state
+      entity_id: binary_sensor.windalarm_2
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Windalarm 60 kmh - Beginn"
+    - platform: state
+      entity_id: binary_sensor.windalarm_2
+      to: 'off'
+      id: notify_jo_but_not_from_unavailable
+      variables:
+        message: "Windalarm 60 kmh - Ende"
+    - platform: state
+      entity_id: input_boolean.pool_heizung_wenn_pv_strom_uebrig
+      to: 'on'
+      id: notify_jo_but_not_from_unavailable
+      variables:
+        message: "Notify Test not from unavailable"
+    - platform: state
+      entity_id: input_boolean.pool_heizung_wenn_pv_strom_uebrig
+      to: 'off'
+      id: notify_jo_always
+      variables:
+        message: "Notify Test alway"
   condition: []
   action:
     - choose:
