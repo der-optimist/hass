@@ -2,13 +2,6 @@ title: Pool
 path: pool
 icon: mdi:pool
 cards:
-  - type: custom:apexcharts-card
-    header:
-      show: false
-    graph_span: 24h
-    series:
-      - entity: sensor.temp_pool
-        name: Pool-Temperatur
   - type: entities
     title: Pumpe
     show_header_toggle: false
@@ -51,3 +44,10 @@ cards:
         label: Automatisierungen
       - entity: automation.pool_heizung
         name: Sicherheits-Aus 21 Uhr
+  - type: custom:apexcharts-card
+    header:
+      show: false
+    graph_span: 24h
+    series:
+      - entity: sensor.temp_pool
+        name: Pool-Temperatur
