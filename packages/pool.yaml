@@ -37,6 +37,25 @@ template:
         attributes:
           friendly_name: "Pool - Heizung läuft"
 
+input_number:
+  zieltemperatur_pool:
+    name: Zieltemperatur Pool
+    min: 20
+    max: 30
+    step: 0.5
+    icon: mdi:coolant-temperature
+
+input_boolean:
+  pool_heizung_wenn_pv_strom_uebrig:
+    name: Pool Heizung wenn PV-Strom übrig
+    icon: mdi:auto-fix
+  pool_heizung_sobald_pv_strom:
+    name: Pool Heizung sobald PV-Strom da
+    icon: mdi:auto-fix
+  pool_heizung_auch_bezahlstrom:
+    name: Pool Heizung auch wenn Bezahlstrom
+    icon: mdi:auto-fix
+
 automation:
   - id: '447d4b8d-3f10-41ca-b3a0-b5ad292d4995'
     alias: Pool - Pumpe
