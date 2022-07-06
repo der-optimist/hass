@@ -2037,6 +2037,14 @@
       entity_id: sensor.bosch_health_status
       to: 'maintenance'
       id: wp_maintenance
+    - platform: state
+      entity_id: binary_sensor.heizstab_ist_an
+      to: 'on'
+      id: heizstab_an
+    - platform: state
+      entity_id: binary_sensor.heizstab_ist_an
+      to: 'off'
+      id: heizstab_aus
   condition: []
   action:
     - choose:
@@ -2099,3 +2107,20 @@
         - service: notify.telegram_jo
           data:
             message: 'Wärmepumpe im Wartungsmodus'
+      - conditions:
+        - condition: trigger
+          id: heizstab_an
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Heizstab ist an'
+      - conditions:
+        - condition: trigger
+          id: heizstab_aus
+        - condition: template
+          value_template: >
+            {{ trigger.from_state.state not in ['unavailable', 'unknown', 'none'] }}
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: 'Heizstab ist wieder aus'
