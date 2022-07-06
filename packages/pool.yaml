@@ -81,7 +81,10 @@ automation:
         at: "11:00:05"
         id: check_if_running
       - platform: time
-        at: "17:00:05"
+        at: "15:00:05"
+        id: check_if_running
+      - platform: time
+        at: "18:00:05"
         id: check_if_running
     condition: []
     action:
