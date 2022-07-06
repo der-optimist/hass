@@ -72,3 +72,27 @@ automation:
           - service: switch.turn_off
             target:
               entity_id: switch.0xa4c1380e0ea5cb89
+  - id: '4fc21835-8338-4990-8f77-4a92682cc758'
+    alias: Pool - Chlorinator überwachen
+    description: ''
+    mode: queued
+    trigger:
+      - platform: time
+        at: "11:00:05"
+        id: check_if_running
+      - platform: time
+        at: "17:00:05"
+        id: check_if_running
+    condition: []
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: check_if_running
+          - condition: state
+            entity_id: binary_sensor.pool_chlorinator_lauft
+            state: "off"
+          sequence:
+          - service: notify.telegram_jo
+            data:
+              message: 'Chlorinator läuft nicht'

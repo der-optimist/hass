@@ -1,0 +1,39 @@
+title: Pool
+path: pool
+icon: mdi:pool
+cards:
+  - type: custom:apexcharts-card
+    header:
+      show: false
+    graph_span: 24h
+    series:
+      - entity: sensor.temp_pool
+        name: Pool-Temperatur
+  - type: entities
+    title: Pumpe
+    show_header_toggle: false
+    entities:
+      - entity: switch.0xa4c1380e0ea5cb89
+        name: Steckdose Pumpe
+      - entity: binary_sensor.pool_pumpe_lauft
+        name: Pumpe läuft?
+      - entity: sensor.0xa4c1380e0ea5cb89_power
+        name: el. Leistung Pumpe
+      - type: section
+        label: Automatisierungen
+      - entity: automation.pool_pumpe
+        name: Pumpe Standard an/aus
+  - type: entities
+    title: Chlorinator
+    show_header_toggle: false
+    entities:
+      - entity: switch.0xa4c1381ed732dbe2
+        name: Steckdose Chlorinator
+      - entity: binary_sensor.pool_chlorinator_lauft
+        name: Chlorinator läuft?
+      - entity: sensor.0xa4c1381ed732dbe2_power
+        name: el. Leistung Chlorinator
+      - type: section
+        label: Automatisierungen
+      - entity: automation.pool_chlorinator_uberwachen
+        name: Chlorinator überwachen
