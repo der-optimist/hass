@@ -36,6 +36,39 @@ template:
           {% endif %}
         attributes:
           friendly_name: "Pool - Heizung läuft"
+      - unique_id: pool_auto_heizung_freigabe
+        state: >
+          {% set einspeisung_ohne_poolheizung = (states('sensor.pv_einspeisung_letzte_3_min_durchschnitt') | float(0)) + (states('sensor.0xa4c138b64253ef10_power') | float(0)) %}
+          {% if is_state('input_boolean.pool_heizung_auch_bezahlstrom','on') %}
+            {{ true }}
+          {% elif is_state('input_boolean.pool_heizung_sobald_pv_strom','on') and (einspeisung_ohne_poolheizung > 2000) %}
+            {{ true }}
+          {% elif is_state('input_boolean.pool_heizung_wenn_pv_strom_uebrig','on') and (einspeisung_ohne_poolheizung > 6000) %}
+            {{ true }}          
+          {% else %}
+            {{ false }}
+          {% endif %}
+        attributes:
+          friendly_name: "Pool - Heizungsautomatik Freigabe"
+      - unique_id: pool_auto_heizung_noetig
+        state: >
+         {{
+          (states('sensor.temp_pool') | float(0)) >
+          ((states('input_number.zieltemperatur_pool') | float(0))
+          + (0.2 if is_state('binary_sensor.pool_auto_heizung_noetig', 'off') else 0)
+          - (0.2 if is_state('binary_sensor.pool_auto_heizung_noetig', 'on') else 0))
+         }}
+        attributes:
+          friendly_name: "Pool - Heizungsautomatik nötig"
+      - unique_id: pool_auto_heizung_heize_jetzt
+        state: >
+          {% if is_state('binary_sensor.pool_auto_heizung_noetig','on') and is_state('binary_sensor.pool_auto_heizung_freigabe','on') %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+        attributes:
+          friendly_name: "Pool - Heizungsautomatik heize jetzt"
 
 input_number:
   zieltemperatur_pool:
