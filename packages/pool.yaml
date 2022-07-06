@@ -96,3 +96,21 @@ automation:
           - service: notify.telegram_jo
             data:
               message: 'Chlorinator läuft nicht'
+  - id: 'd431661c-bc02-447b-bbda-8df1d72afedc'
+    alias: Pool - Heizung aus 21 Uhr
+    description: ''
+    mode: queued
+    trigger:
+      - platform: time
+        at: "21:00:01"
+        id: heizung_vergessen
+    condition: []
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: heizung_vergessen
+          sequence:
+          - service: switch.turn_off
+            target:
+              entity_id: switch.0xa4c138b64253ef10

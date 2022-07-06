@@ -37,3 +37,17 @@ cards:
         label: Automatisierungen
       - entity: automation.pool_chlorinator_uberwachen
         name: Chlorinator überwachen
+  - type: entities
+    title: Heizung
+    show_header_toggle: false
+    entities:
+      - entity: switch.0xa4c138b64253ef10
+        name: Steckdose Heizung
+      - entity: binary_sensor.pool_heizung_lauft
+        name: Heizung läuft?
+      - entity: sensor.0xa4c138b64253ef10_power
+        name: el. Leistung Heizung
+      - type: section
+        label: Automatisierungen
+      - entity: automation.pool_heizung
+        name: Sicherheits-Aus 21 Uhr

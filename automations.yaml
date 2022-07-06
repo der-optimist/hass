@@ -1308,9 +1308,11 @@
     - platform: state
       entity_id: binary_sensor.pm_o_ko_la_raum
       to: "unavailable"
+      for: "00:00:30"
     - platform: state
       entity_id: binary_sensor.pm_o_ko_la_raum
       to: "unknown"
+      for: "00:00:30"
   condition: []
   action:
     - service: notify.telegram_jo
@@ -2083,6 +2085,9 @@
       - conditions:
         - condition: trigger
           id: wp_ok
+        - condition: template
+          value_template: >
+            {{ trigger.from_state.state not in ['unavailable', 'unknown', 'none'] }}
         sequence:
         - service: notify.telegram_jo
           data:
