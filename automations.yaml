@@ -2008,119 +2008,164 @@
     - platform: state
       entity_id: binary_sensor.sicherung_keller_sd_rausgeflogen
       to: 'off'
-      id: hebeanlage_hat_wieder_strom
+      id: notify_jo_always
+      variables:
+        message: "Info: Hebeanlage hat wieder Strom"
     - platform: state
       entity_id: binary_sensor.storung_heizaktor_eg_notify
       to: 'on'
-      id: stoerung_heizaktor_eg
+      id: notify_jo_always
+      variables:
+        message: "Störung Heizungsaktor EG"
     - platform: state
       entity_id: binary_sensor.storung_heizaktor_og
       to: 'on'
-      id: storung_heizaktor_og
+      id: notify_jo_always
+      variables:
+        message: "Störung Heizungsaktor OG"
     - platform: state
       entity_id: binary_sensor.storung_heizaktor_eg_notify
       to: 'off'
-      id: stoerung_heizaktor_eg_vorbei
+      id: notify_jo_always
+      variables:
+        message: "Störung Heizungsaktor EG vorbei"
     - platform: state
       entity_id: binary_sensor.storung_heizaktor_og
       to: 'off'
-      id: storung_heizaktor_og_vorbei
+      id: notify_jo_always
+      variables:
+        message: "Störung Heizungsaktor OG vorbei"
     - platform: state
       entity_id: sensor.bosch_health_status
       to: 'error'
-      id: wp_error
+      id: notify_jo_always
+      variables:
+        message: "Störung Wärmepumpe"
     - platform: state
       entity_id: sensor.bosch_health_status
       to: 'ok'
-      id: wp_ok
+      id: notify_jo_but_not_from_unavailable
+      variables:
+        message: "Wärmepumpe wieder OK"
     - platform: state
       entity_id: sensor.bosch_health_status
       to: 'maintenance'
-      id: wp_maintenance
+      id: notify_jo_always
+      variables:
+        message: "Wärmepumpe im Wartungsmodus"
     - platform: state
       entity_id: binary_sensor.heizstab_ist_an
       to: 'on'
-      id: heizstab_an
+      id: notify_jo_always
+      variables:
+        message: "Heizstab ist an"
     - platform: state
       entity_id: binary_sensor.heizstab_ist_an
       to: 'off'
-      id: heizstab_aus
+      id: notify_jo_but_not_from_unavailable
+      variables:
+        message: "Heizstab ist wieder aus"
+    - platform: state
+      entity_id: binary_sensor.ubertemperaturalarm_led_aktor_1
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Übertemperatur-Alarm LED-Aktor 1"
+    - platform: state
+      entity_id: binary_sensor.ubertemperaturalarm_led_aktor_2
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Übertemperatur-Alarm LED-Aktor 2"
+    - platform: state
+      entity_id: binary_sensor.ubertemperaturalarm_led_aktor_3
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Übertemperatur-Alarm LED-Aktor 3"
+    - platform: state
+      entity_id: binary_sensor.ubertemperaturalarm_led_aktor_4
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Übertemperatur-Alarm LED-Aktor 4"
+    - platform: state
+      entity_id: binary_sensor.ubertemperaturalarm_led_aktor_5
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Übertemperatur-Alarm LED-Aktor 5"
+    - platform: state
+      entity_id: binary_sensor.ubertemperaturalarm_led_aktor_6
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Übertemperatur-Alarm LED-Aktor 6"
+    - platform: state
+      entity_id: binary_sensor.ubertemperaturalarm_led_aktor_7
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Übertemperatur-Alarm LED-Aktor 7"
+    - platform: state
+      entity_id: binary_sensor.uberstromalarm_led_aktor_1
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Überstrom-Alarm LED-Aktor 1"
+    - platform: state
+      entity_id: binary_sensor.uberstromalarm_led_aktor_2
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Überstrom-Alarm LED-Aktor 2"
+    - platform: state
+      entity_id: binary_sensor.uberstromalarm_led_aktor_3
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Überstrom-Alarm LED-Aktor 3"
+    - platform: state
+      entity_id: binary_sensor.uberstromalarm_led_aktor_4
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Überstrom-Alarm LED-Aktor 4"
+    - platform: state
+      entity_id: binary_sensor.uberstromalarm_led_aktor_5
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Überstrom-Alarm LED-Aktor 5"
+    - platform: state
+      entity_id: binary_sensor.uberstromalarm_led_aktor_6
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Überstrom-Alarm LED-Aktor 6"
+    - platform: state
+      entity_id: binary_sensor.uberstromalarm_led_aktor_7
+      to: 'on'
+      id: notify_jo_always
+      variables:
+        message: "Überstrom-Alarm LED-Aktor 7"
   condition: []
   action:
     - choose:
       - conditions:
         - condition: trigger
-          id: hebeanlage_hat_wieder_strom
+          id: notify_jo_always
         sequence:
         - service: notify.telegram_jo
           data:
-            message: 'Info: Hebeanlage hat wieder Strom'
+            message: "{{ message }}"
       - conditions:
         - condition: trigger
-          id: stoerung_heizaktor_eg
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: 'Störung Heizungsaktor EG'
-      - conditions:
-        - condition: trigger
-          id: stoerung_heizaktor_og
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: 'Störung Heizungsaktor OG'
-      - conditions:
-        - condition: trigger
-          id: stoerung_heizaktor_eg_vorbei
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: 'Störung Heizungsaktor EG vorbei'
-      - conditions:
-        - condition: trigger
-          id: stoerung_heizaktor_og_vorbei
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: 'Störung Heizungsaktor OG vorbei'
-      - conditions:
-        - condition: trigger
-          id: wp_error
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: 'Störung Wärmepumpe'
-      - conditions:
-        - condition: trigger
-          id: wp_ok
+          id: notify_jo_but_not_from_unavailable
         - condition: template
           value_template: >
             {{ trigger.from_state.state not in ['unavailable', 'unknown', 'none'] }}
         sequence:
         - service: notify.telegram_jo
           data:
-            message: 'Wärmepumpe wieder OK'
-      - conditions:
-        - condition: trigger
-          id: wp_maintenance
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: 'Wärmepumpe im Wartungsmodus'
-      - conditions:
-        - condition: trigger
-          id: heizstab_an
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: 'Heizstab ist an'
-      - conditions:
-        - condition: trigger
-          id: heizstab_aus
-        - condition: template
-          value_template: >
-            {{ trigger.from_state.state not in ['unavailable', 'unknown', 'none'] }}
-        sequence:
-        - service: notify.telegram_jo
-          data:
-            message: 'Heizstab ist wieder aus'
+            message: "{{ message }}"
