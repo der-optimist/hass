@@ -1,0 +1,74 @@
+template: 
+  - sensor:
+      - unique_id: temp_pool
+        # name: change entity_id in UI after creation
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state: >
+          {{ states('sensor.temp_0xa30317605abeff28_d1_pro_1') | float(0) | round(1) }}
+        attributes:
+          friendly_name: "Pool-Temperatur"
+    binary_sensor:
+      - unique_id: pool_chlorinator_lauft
+        state: >
+          {% if (states('sensor.0xa4c1381ed732dbe2_power') | float(0) > 10) %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+        attributes:
+          friendly_name: "Pool - Chlorinator läuft"
+      - unique_id: pool_pumpe_lauft
+        state: >
+          {% if (states('sensor.0xa4c1380e0ea5cb89_power') | float(0) > 50) %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+        attributes:
+          friendly_name: "Pool - Pumpe läuft"
+      - unique_id: pool_heizung_lauft
+        state: >
+          {% if (states('sensor.0xa4c138b64253ef10_power') | float(0) > 1000) %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+        attributes:
+          friendly_name: "Pool - Heizung läuft"
+
+automation:
+  - id: '447d4b8d-3f10-41ca-b3a0-b5ad292d4995'
+    alias: Pool - Pumpe
+    description: ''
+    mode: queued
+    trigger:
+      - platform: time
+        at: "10:00:00"
+        id: pumpe_an
+      - platform: time
+        at: "10:10:00"
+        id: pumpe_an
+      - platform: time
+        at: "19:00:00"
+        id: pumpe_aus
+      - platform: time
+        at: "19:10:00"
+        id: pumpe_aus
+    condition: []
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: pumpe_an
+          sequence:
+          - service: switch.turn_on
+            target:
+              entity_id: switch.0xa4c1380e0ea5cb89
+        - conditions:
+          - condition: trigger
+            id: pumpe_aus
+          sequence:
+          - service: switch.turn_off
+            target:
+              entity_id: switch.0xa4c1380e0ea5cb89
