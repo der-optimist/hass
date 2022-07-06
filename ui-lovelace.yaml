@@ -20,7 +20,8 @@ views:
   - !include lovelace/82_luftfeuchtigkeit.yaml
   - !include lovelace/83_helligkeiten.yaml
   - !include lovelace/84_wetterstation.yaml
-  - !include lovelace/87_wowa.yaml
+  - !include lovelace/86_pool.yaml
+#  - !include lovelace/87_wowa.yaml
   - !include lovelace/90_technik.yaml
   - !include lovelace/94_alarme.yaml
   - !include lovelace/95_hochzeitsvideo.yaml
