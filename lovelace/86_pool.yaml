@@ -46,8 +46,10 @@ cards:
         name: Sicherheits-Aus 21 Uhr
   - type: custom:apexcharts-card
     header:
-      show: false
+      show: true
+      title: Pool-Temperatur
+      show_states: true
     graph_span: 24h
     series:
       - entity: sensor.temp_pool
-        name: Pool-Temperatur
+        name: aktuell
