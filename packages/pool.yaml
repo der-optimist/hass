@@ -165,6 +165,50 @@ automation:
         - conditions:
           - condition: trigger
             id: heizung_vergessen
+          - condition: state
+            entity_id: input_boolean.pool_heizung_auch_bezahlstrom
+            state: 'off'
+          sequence:
+          - service: switch.turn_off
+            target:
+              entity_id: switch.0xa4c138b64253ef10
+        - conditions:
+          - condition: trigger
+            id: heizung_vergessen
+          - condition: state
+            entity_id: input_boolean.pool_heizung_auch_bezahlstrom
+            state: 'on'
+          sequence:
+          - service: notify.telegram_jo
+            data:
+              message: 'Pool heizt noch, aber der Schalter, dass die Pool-Heizung auch mit Bezahlstrom laufen soll, ist ja auch gedrückt'
+  - id: 'e174e01b-f336-4100-a4fb-30b2c253dad1'
+    alias: Pool - Heizung automatisch
+    description: ''
+    mode: queued
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.pool_auto_heizung_heize_jetzt
+        to: "on"
+        id: heizung_an
+      - platform: state
+        entity_id: binary_sensor.pool_auto_heizung_heize_jetzt
+        to: "off"
+        id: heizung_aus
+    condition: []
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: heizung_an
+          sequence:
+          - service: switch.turn_on
+            target:
+              entity_id: switch.0xa4c138b64253ef10
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: heizung_aus
           sequence:
           - service: switch.turn_off
             target:

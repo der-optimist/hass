@@ -41,7 +41,19 @@ cards:
       - entity: sensor.0xa4c138b64253ef10_power
         name: el. Leistung Heizung
       - type: section
+        label: Automatisch Heizen
+      - entity: input_number.zieltemperatur_pool
+        name: Zieltemperatur
+      - entity: input_boolean.pool_heizung_wenn_pv_strom_uebrig
+        name: wenn PV-Strom übrig
+      - entity: input_boolean.pool_heizung_sobald_pv_strom
+        name: sobald PV-Strom da
+      - entity: input_boolean.pool_heizung_auch_bezahlstrom
+        name: auch wenn Bezahlstrom
+      - type: section
         label: Automatisierungen
+      - entity: automation.pool_heizung_automatisch
+        name: Heizung automatisch
       - entity: automation.pool_heizung_vergessen
         name: Sicherheits-Aus 21 Uhr
   - type: custom:apexcharts-card
