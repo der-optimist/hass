@@ -191,10 +191,12 @@ automation:
         entity_id: binary_sensor.pool_auto_heizung_heize_jetzt
         to: "on"
         id: heizung_an
+        for: "00:10:00"
       - platform: state
         entity_id: binary_sensor.pool_auto_heizung_heize_jetzt
         to: "off"
         id: heizung_aus
+        for: "00:03:00"
     condition: []
     action:
       - choose:
