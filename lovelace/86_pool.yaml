@@ -42,7 +42,7 @@ cards:
         name: el. Leistung Heizung
       - type: section
         label: Automatisierungen
-      - entity: automation.pool_heizung
+      - entity: automation.pool_heizung_vergessen
         name: Sicherheits-Aus 21 Uhr
   - type: custom:apexcharts-card
     header:

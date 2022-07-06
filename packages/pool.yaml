@@ -97,7 +97,7 @@ automation:
             data:
               message: 'Chlorinator läuft nicht'
   - id: 'd431661c-bc02-447b-bbda-8df1d72afedc'
-    alias: Pool - Heizung aus 21 Uhr
+    alias: Pool - Heizung vergessen
     description: ''
     mode: queued
     trigger:
