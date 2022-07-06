@@ -43,7 +43,7 @@ template:
             {{ true }}
           {% elif is_state('input_boolean.pool_heizung_sobald_pv_strom','on') and (einspeisung_ohne_poolheizung > 2000) %}
             {{ true }}
-          {% elif is_state('input_boolean.pool_heizung_wenn_pv_strom_uebrig','on') and (einspeisung_ohne_poolheizung > 6000) %}
+          {% elif is_state('input_boolean.pool_heizung_wenn_pv_strom_uebrig','on') and (einspeisung_ohne_poolheizung > 5500) %}
             {{ true }}          
           {% else %}
             {{ false }}
