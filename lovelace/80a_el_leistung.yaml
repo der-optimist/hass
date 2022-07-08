@@ -70,3 +70,7 @@ cards:
         name: Heizung Partyraum
         entity: sensor.el_leistung_powercalc_heizung_partyraum
         state: "{{ states('sensor.el_leistung_powercalc_heizung_partyraum') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Pool
+        entity: sensor.el_leistung_powercalc_pool
+        state: "{{ states('sensor.el_leistung_powercalc_pool') | float(0) | round(0) }} W"
