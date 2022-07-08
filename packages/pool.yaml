@@ -89,6 +89,29 @@ input_boolean:
     name: Pool Heizung auch wenn Bezahlstrom
     icon: mdi:auto-fix
 
+sensor:
+  - platform: history_stats
+    name: pool_pumpe_an_heute
+    entity_id: binary_sensor.pool_pumpe_lauft
+    state: "on"
+    type: time
+    start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+    end: "{{ now() }}"
+  - platform: history_stats
+    name: pool_chlorinator_an_heute
+    entity_id: binary_sensor.pool_chlorinator_lauft
+    state: "on"
+    type: time
+    start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+    end: "{{ now() }}"
+  - platform: history_stats
+    name: pool_heizung_an_heute
+    entity_id: binary_sensor.pool_heizung_lauft
+    state: "on"
+    type: time
+    start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+    end: "{{ now() }}"
+
 automation:
   - id: '447d4b8d-3f10-41ca-b3a0-b5ad292d4995'
     alias: Pool - Pumpe
