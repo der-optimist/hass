@@ -445,6 +445,18 @@ sensor:
 #          - entity_id: sensor.el_leistung_heizung_partyraum_hinten
 #            power_sensor_id: sensor.el_leistung_heizung_partyraum_hinten
 #            name: Heizung Partyraum hinten
+      - create_group: Pool
+        unique_id: 214efdaf-9a3a-4e7f-85f4-4c04934660f6
+        entities:
+          - entity_id: sensor.0xa4c1380e0ea5cb89_power
+            power_sensor_id: sensor.0xa4c1380e0ea5cb89_power
+            name: Pool Pumpe
+          - entity_id: sensor.0xa4c1381ed732dbe2_power
+            power_sensor_id: sensor.0xa4c1381ed732dbe2_power
+            name: Pool Chlorinator
+          - entity_id: sensor.0xa4c138b64253ef10_power
+            power_sensor_id: sensor.0xa4c138b64253ef10_power
+            name: Pool Heizung
   - platform: powercalc
     entity_id: sensor.el_leistung_unbekannte_verbraucher
     power_sensor_id: sensor.el_leistung_unbekannte_verbraucher
@@ -490,6 +502,12 @@ sensor:
   - platform: integration
     source: sensor.template_euro_pro_stunde_heizung_partyraum_ohne_pv
     name: kostenzaehler_heizung_partyraum_ohne_pv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_pool_ohne_pv
+    name: kostenzaehler_pool_ohne_pv
     round: 2
     unit_time: h
     method: left
@@ -573,6 +591,12 @@ sensor:
     unit_time: h
     method: left
   - platform: integration
+    source: sensor.template_euro_pro_stunde_pool_mit_pv_effektiv
+    name: kostenzaehler_pool_mit_pv_effektiv
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
     source: sensor.template_euro_pro_stunde_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
     name: kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
     round: 2
@@ -648,6 +672,12 @@ sensor:
   - platform: integration
     source: sensor.template_euro_pro_stunde_heizung_partyraum_mit_pv_abrechnung
     name: kostenzaehler_heizung_partyraum_mit_pv_abrechnung
+    round: 2
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.template_euro_pro_stunde_pool_mit_pv_abrechnung
+    name: kostenzaehler_pool_mit_pv_abrechnung
     round: 2
     unit_time: h
     method: left
@@ -847,6 +877,12 @@ template:
           {{ (states('sensor.el_leistung_powercalc_heizung_partyraum') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
         attributes:
           friendly_name: "Euro pro Stunde Heizung Partyraum - ohne PV"
+      - unique_id: euro_pro_stunde_pool_ohne_pv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_pool') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Pool - ohne PV"
       # Euro pro Stunde mit PV - effektiv
       - unique_id: euro_pro_stunde_bekannte_verbraucher_mit_pv_effektiv
         unit_of_measurement: "€/h"
@@ -926,6 +962,12 @@ template:
           {{ (states('sensor.el_leistung_powercalc_heizung_partyraum') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
         attributes:
           friendly_name: "Euro pro Stunde Heizung Partyraum - mit PV - effektiv"
+      - unique_id: euro_pro_stunde_pool_mit_pv_effektiv
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_pool') | float(0) * states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Pool - mit PV - effektiv"
       # Euro pro Stunde mit PV - Abrechnung
       - unique_id: euro_pro_stunde_bekannte_verbraucher_mit_pv_abrechnung
         unit_of_measurement: "€/h"
@@ -1005,6 +1047,12 @@ template:
           {{ (states('sensor.el_leistung_powercalc_heizung_partyraum') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
         attributes:
           friendly_name: "Euro pro Stunde Heizung Partyraum - mit PV - Abrechnung"
+      - unique_id: euro_pro_stunde_pool_mit_pv_abrechnung
+        unit_of_measurement: "€/h"
+        state: >
+          {{ (states('sensor.el_leistung_powercalc_pool') | float(0) * states('sensor.strompreis_aktuell_abrechnung_euro') | float(0)) / 1000 }}
+        attributes:
+          friendly_name: "Euro pro Stunde Pool - mit PV - Abrechnung"
       # ---------------------------------
       # ------ Einsparung durch PV ------
       # ---------------------------------
@@ -1224,6 +1272,26 @@ template:
           prozent: >
             {% set cost_with_pv = states('sensor.kosten_heizung_partyraum_mit_pv_abrechnung_daily') %}
             {% set cost_without_pv = states('sensor.kosten_heizung_partyraum_ohne_pv_daily') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
+      - unique_id: einsparung_pool_abrechnung_heute
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_abrechnung_daily') %}
+          {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_daily') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV Abrechnung Pool heute"
+          prozent: >
+            {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_abrechnung_daily') %}
+            {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_daily') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
               {{ 0 }}
             {% else %}
@@ -1484,6 +1552,26 @@ template:
           prozent: >
             {% set cost_with_pv = states('sensor.kosten_heizung_partyraum_mit_pv_effektiv_daily') %}
             {% set cost_without_pv = states('sensor.kosten_heizung_partyraum_ohne_pv_daily') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
+      - unique_id: einsparung_pool_effektiv_heute
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_effektiv_daily') %}
+          {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_daily') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV effektiv Pool heute"
+          prozent: >
+            {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_effektiv_daily') %}
+            {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_daily') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
               {{ 0 }}
             {% else %}
@@ -1750,6 +1838,26 @@ template:
             {% else %}
               {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
             {% endif %}
+      - unique_id: einsparung_pool_abrechnung_gestern
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_abrechnung_daily','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_daily','last_period') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV Abrechnung Pool gestern"
+          prozent: >
+            {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_abrechnung_daily','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_daily','last_period') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
       - unique_id: einsparung_unbekannte_verbraucher_abrechnung_gestern
         unit_of_measurement: "€"
         state: >
@@ -2005,6 +2113,26 @@ template:
           prozent: >
             {% set cost_with_pv = state_attr('sensor.kosten_heizung_partyraum_mit_pv_effektiv_daily','last_period') %}
             {% set cost_without_pv = state_attr('sensor.kosten_heizung_partyraum_ohne_pv_daily','last_period') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
+      - unique_id: einsparung_pool_effektiv_gestern
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_effektiv_daily','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_daily','last_period') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV effektiv Pool gestern"
+          prozent: >
+            {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_effektiv_daily','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_daily','last_period') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
               {{ 0 }}
             {% else %}
@@ -2271,6 +2399,26 @@ template:
             {% else %}
               {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
             {% endif %}
+      - unique_id: einsparung_pool_abrechnung_aktueller_monat
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_abrechnung_monthly') %}
+          {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_monthly') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV Abrechnung Pool aktueller Monat"
+          prozent: >
+            {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_abrechnung_monthly') %}
+            {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_monthly') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
       - unique_id: einsparung_unbekannte_verbraucher_abrechnung_aktueller_monat
         unit_of_measurement: "€"
         state: >
@@ -2526,6 +2674,26 @@ template:
           prozent: >
             {% set cost_with_pv = states('sensor.kosten_heizung_partyraum_mit_pv_effektiv_monthly') %}
             {% set cost_without_pv = states('sensor.kosten_heizung_partyraum_ohne_pv_monthly') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
+      - unique_id: einsparung_pool_effektiv_aktueller_monat
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_effektiv_monthly') %}
+          {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_monthly') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV effektiv Pool aktueller Monat"
+          prozent: >
+            {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_effektiv_monthly') %}
+            {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_monthly') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
               {{ 0 }}
             {% else %}
@@ -2792,6 +2960,26 @@ template:
             {% else %}
               {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
             {% endif %}
+      - unique_id: einsparung_pool_abrechnung_letzter_monat
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_abrechnung_monthly','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_monthly','last_period') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV Abrechnung Pool letzter Monat"
+          prozent: >
+            {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_abrechnung_monthly','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_monthly','last_period') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
       - unique_id: einsparung_unbekannte_verbraucher_abrechnung_letzter_monat
         unit_of_measurement: "€"
         state: >
@@ -3047,6 +3235,26 @@ template:
           prozent: >
             {% set cost_with_pv = state_attr('sensor.kosten_heizung_partyraum_mit_pv_effektiv_monthly','last_period') %}
             {% set cost_without_pv = state_attr('sensor.kosten_heizung_partyraum_ohne_pv_monthly','last_period') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
+      - unique_id: einsparung_pool_effektiv_letzter_monat
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_effektiv_monthly','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_monthly','last_period') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV effektiv Pool letzter Monat"
+          prozent: >
+            {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_effektiv_monthly','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_monthly','last_period') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
               {{ 0 }}
             {% else %}
@@ -3313,6 +3521,26 @@ template:
             {% else %}
               {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
             {% endif %}
+      - unique_id: einsparung_pool_abrechnung_dieses_jahr
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_abrechnung_yearly') %}
+          {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_yearly') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV Abrechnung Pool dieses Jahr"
+          prozent: >
+            {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_abrechnung_yearly') %}
+            {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_yearly') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
       - unique_id: einsparung_unbekannte_verbraucher_abrechnung_dieses_jahr
         unit_of_measurement: "€"
         state: >
@@ -3568,6 +3796,26 @@ template:
           prozent: >
             {% set cost_with_pv = states('sensor.kosten_heizung_partyraum_mit_pv_effektiv_yearly') %}
             {% set cost_without_pv = states('sensor.kosten_heizung_partyraum_ohne_pv_yearly') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
+      - unique_id: einsparung_pool_effektiv_dieses_jahr
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_effektiv_yearly') %}
+          {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_yearly') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV effektiv Pool dieses Jahr"
+          prozent: >
+            {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_effektiv_yearly') %}
+            {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_yearly') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
               {{ 0 }}
             {% else %}
@@ -3834,6 +4082,26 @@ template:
             {% else %}
               {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
             {% endif %}
+      - unique_id: einsparung_pool_abrechnung_letztes_jahr
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_abrechnung_yearly','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_yearly','last_period') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV Abrechnung Pool letztes Jahr"
+          prozent: >
+            {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_abrechnung_yearly','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_yearly','last_period') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
       - unique_id: einsparung_unbekannte_verbraucher_abrechnung_letztes_jahr
         unit_of_measurement: "€"
         state: >
@@ -4089,6 +4357,26 @@ template:
           prozent: >
             {% set cost_with_pv = state_attr('sensor.kosten_heizung_partyraum_mit_pv_effektiv_yearly','last_period') %}
             {% set cost_without_pv = state_attr('sensor.kosten_heizung_partyraum_ohne_pv_yearly','last_period') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
+      - unique_id: einsparung_pool_effektiv_letztes_jahr
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_effektiv_yearly','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_yearly','last_period') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV effektiv Pool letztes Jahr"
+          prozent: >
+            {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_effektiv_yearly','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_yearly','last_period') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
               {{ 0 }}
             {% else %}
@@ -4355,6 +4643,26 @@ template:
             {% else %}
               {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
             {% endif %}
+      - unique_id: einsparung_pool_abrechnung_dieses_winterjahr
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_abrechnung_winteryear') %}
+          {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_winteryear') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV Abrechnung Pool dieses Winterjahr"
+          prozent: >
+            {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_abrechnung_winteryear') %}
+            {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_winteryear') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
       - unique_id: einsparung_unbekannte_verbraucher_abrechnung_dieses_winterjahr
         unit_of_measurement: "€"
         state: >
@@ -4610,6 +4918,26 @@ template:
           prozent: >
             {% set cost_with_pv = states('sensor.kosten_heizung_partyraum_mit_pv_effektiv_winteryear') %}
             {% set cost_without_pv = states('sensor.kosten_heizung_partyraum_ohne_pv_winteryear') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
+      - unique_id: einsparung_pool_effektiv_dieses_winterjahr
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_effektiv_winteryear') %}
+          {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_winteryear') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV effektiv Pool dieses Winterjahr"
+          prozent: >
+            {% set cost_with_pv = states('sensor.kosten_pool_mit_pv_effektiv_winteryear') %}
+            {% set cost_without_pv = states('sensor.kosten_pool_ohne_pv_winteryear') %}
             {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
               {{ 0 }}
             {% else %}
@@ -4876,6 +5204,26 @@ template:
             {% else %}
               {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
             {% endif %}
+      - unique_id: einsparung_pool_abrechnung_letztes_winterjahr
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_abrechnung_winteryear','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_winteryear','last_period') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV Abrechnung Pool letztes Winterjahr"
+          prozent: >
+            {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_abrechnung_winteryear','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_winteryear','last_period') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
       - unique_id: einsparung_unbekannte_verbraucher_abrechnung_letztes_winterjahr
         unit_of_measurement: "€"
         state: >
@@ -5136,6 +5484,26 @@ template:
             {% else %}
               {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
             {% endif %}
+      - unique_id: einsparung_pool_effektiv_letztes_winterjahr
+        unit_of_measurement: "€"
+        state: >
+          {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_effektiv_winteryear','last_period') %}
+          {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_winteryear','last_period') %}
+          {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) %}
+            {{ 0 }}
+          {% else %}
+            {{ ((cost_without_pv | float(0)) - (cost_with_pv | float(0))) | round(2) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Einsparung PV effektiv Pool letztes Winterjahr"
+          prozent: >
+            {% set cost_with_pv = state_attr('sensor.kosten_pool_mit_pv_effektiv_winteryear','last_period') %}
+            {% set cost_without_pv = state_attr('sensor.kosten_pool_ohne_pv_winteryear','last_period') %}
+            {% if (cost_without_pv in ['unavailable', 'unknown', 'none']) or (cost_with_pv in ['unavailable', 'unknown', 'none']) or ((cost_without_pv | float(0)) == 0) or ((cost_with_pv | float(0)) > (cost_without_pv | float(0))) %}
+              {{ 0 }}
+            {% else %}
+              {{ (100 * (1 - (cost_with_pv | float(0) / cost_without_pv | float(1)))) | round(0) }}
+            {% endif %}
       - unique_id: einsparung_unbekannte_verbraucher_effektiv_letztes_winterjahr
         unit_of_measurement: "€"
         state: >
@@ -5212,6 +5580,9 @@ utility_meter:
   stromzahler_powercalc_heizung_partyraum_winteryear:
     source: sensor.stromzahler_powercalc_heizung_partyraum
     cron: "0 0 1 7 *"
+  stromzahler_powercalc_pool_winteryear:
+    source: sensor.stromzahler_powercalc_pool
+    cron: "0 0 1 7 *"
   stromzahler_powercalc_unbekannte_verbraucher_winteryear:
     source: sensor.stromzahler_powercalc_unbekannte_verbraucher
     cron: "0 0 1 7 *"
@@ -5238,6 +5609,9 @@ utility_meter:
     cycle: daily
   kosten_heizung_partyraum_ohne_pv_daily:
     source: sensor.kostenzaehler_heizung_partyraum_ohne_pv
+    cycle: daily
+  kosten_pool_ohne_pv_daily:
+    source: sensor.kostenzaehler_pool_ohne_pv
     cycle: daily
   kosten_kuchengerate_ohne_kuhlschrank_ohne_pv_daily:
     source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_ohne_pv
@@ -5279,6 +5653,9 @@ utility_meter:
   kosten_heizung_partyraum_ohne_pv_monthly:
     source: sensor.kostenzaehler_heizung_partyraum_ohne_pv
     cycle: monthly
+  kosten_pool_ohne_pv_monthly:
+    source: sensor.kostenzaehler_pool_ohne_pv
+    cycle: monthly
   kosten_kuchengerate_ohne_kuhlschrank_ohne_pv_monthly:
     source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_ohne_pv
     cycle: monthly
@@ -5319,6 +5696,9 @@ utility_meter:
   kosten_heizung_partyraum_ohne_pv_yearly:
     source: sensor.kostenzaehler_heizung_partyraum_ohne_pv
     cycle: yearly
+  kosten_pool_ohne_pv_yearly:
+    source: sensor.kostenzaehler_pool_ohne_pv
+    cycle: yearly
   kosten_kuchengerate_ohne_kuhlschrank_ohne_pv_yearly:
     source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_ohne_pv
     cycle: yearly
@@ -5358,6 +5738,9 @@ utility_meter:
     cron: "0 0 1 7 *"
   kosten_heizung_partyraum_ohne_pv_winteryear:
     source: sensor.kostenzaehler_heizung_partyraum_ohne_pv
+    cron: "0 0 1 7 *"
+  kosten_pool_ohne_pv_winteryear:
+    source: sensor.kostenzaehler_pool_ohne_pv
     cron: "0 0 1 7 *"
   kosten_kuchengerate_ohne_kuhlschrank_ohne_pv_winteryear:
     source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_ohne_pv
@@ -5400,6 +5783,9 @@ utility_meter:
   kosten_heizung_partyraum_mit_pv_effektiv_daily:
     source: sensor.kostenzaehler_heizung_partyraum_mit_pv_effektiv
     cycle: daily
+  kosten_pool_mit_pv_effektiv_daily:
+    source: sensor.kostenzaehler_pool_mit_pv_effektiv
+    cycle: daily
   kosten_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv_daily:
     source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
     cycle: daily
@@ -5439,6 +5825,9 @@ utility_meter:
     cycle: monthly
   kosten_heizung_partyraum_mit_pv_effektiv_monthly:
     source: sensor.kostenzaehler_heizung_partyraum_mit_pv_effektiv
+    cycle: monthly
+  kosten_pool_mit_pv_effektiv_monthly:
+    source: sensor.kostenzaehler_pool_mit_pv_effektiv
     cycle: monthly
   kosten_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv_monthly:
     source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
@@ -5480,6 +5869,9 @@ utility_meter:
   kosten_heizung_partyraum_mit_pv_effektiv_yearly:
     source: sensor.kostenzaehler_heizung_partyraum_mit_pv_effektiv
     cycle: yearly
+  kosten_pool_mit_pv_effektiv_yearly:
+    source: sensor.kostenzaehler_pool_mit_pv_effektiv
+    cycle: yearly
   kosten_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv_yearly:
     source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
     cycle: yearly
@@ -5519,6 +5911,9 @@ utility_meter:
     cron: "0 0 1 7 *"
   kosten_heizung_partyraum_mit_pv_effektiv_winteryear:
     source: sensor.kostenzaehler_heizung_partyraum_mit_pv_effektiv
+    cron: "0 0 1 7 *"
+  kosten_pool_mit_pv_effektiv_winteryear:
+    source: sensor.kostenzaehler_pool_mit_pv_effektiv
     cron: "0 0 1 7 *"
   kosten_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv_winteryear:
     source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_effektiv
@@ -5561,6 +5956,9 @@ utility_meter:
   kosten_heizung_partyraum_mit_pv_abrechnung_daily:
     source: sensor.kostenzaehler_heizung_partyraum_mit_pv_abrechnung
     cycle: daily
+  kosten_pool_mit_pv_abrechnung_daily:
+    source: sensor.kostenzaehler_pool_mit_pv_abrechnung
+    cycle: daily
   kosten_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung_daily:
     source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung
     cycle: daily
@@ -5600,6 +5998,9 @@ utility_meter:
     cycle: monthly
   kosten_heizung_partyraum_mit_pv_abrechnung_monthly:
     source: sensor.kostenzaehler_heizung_partyraum_mit_pv_abrechnung
+    cycle: monthly
+  kosten_pool_mit_pv_abrechnung_monthly:
+    source: sensor.kostenzaehler_pool_mit_pv_abrechnung
     cycle: monthly
   kosten_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung_monthly:
     source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung
@@ -5641,6 +6042,9 @@ utility_meter:
   kosten_heizung_partyraum_mit_pv_abrechnung_yearly:
     source: sensor.kostenzaehler_heizung_partyraum_mit_pv_abrechnung
     cycle: yearly
+  kosten_pool_mit_pv_abrechnung_yearly:
+    source: sensor.kostenzaehler_pool_mit_pv_abrechnung
+    cycle: yearly
   kosten_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung_yearly:
     source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung
     cycle: yearly
@@ -5680,6 +6084,9 @@ utility_meter:
     cron: "0 0 1 7 *"
   kosten_heizung_partyraum_mit_pv_abrechnung_winteryear:
     source: sensor.kostenzaehler_heizung_partyraum_mit_pv_abrechnung
+    cron: "0 0 1 7 *"
+  kosten_pool_mit_pv_abrechnung_winteryear:
+    source: sensor.kostenzaehler_pool_mit_pv_abrechnung
     cron: "0 0 1 7 *"
   kosten_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung_winteryear:
     source: sensor.kostenzaehler_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung
