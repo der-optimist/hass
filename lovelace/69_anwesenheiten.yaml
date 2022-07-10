@@ -20,6 +20,8 @@ cards:
     filter:
       include:
         - entity_id: "binary_sensor.pm_o*"
+      exclude:
+        - entity_id: "binary_sensor.pm_o_gz"
   - type: entities
     title: Wir sind unterwegs...
     show_header_toggle: false
