@@ -69,6 +69,16 @@ template:
           {% endif %}
         attributes:
           friendly_name: "Pool - Heizungsautomatik heize jetzt"
+      - unique_id: pool_pumpe_pumpe_jetzt
+        state: >
+          {% set h = now().hour | int(0) %}
+          {% if (h >= 10 and h <= 18) or is_state('switch.0xa4c138b64253ef10','on') %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+        attributes:
+          friendly_name: "Pool - Pumpe pumpe jetzt"
 
 input_number:
   zieltemperatur_pool:
@@ -118,17 +128,13 @@ automation:
     description: ''
     mode: queued
     trigger:
-      - platform: time
-        at: "10:00:00"
+      - platform: state
+        entity_id: binary_sensor.pool_pumpe_pumpe_jetzt
+        to: "on"
         id: pumpe_an
-      - platform: time
-        at: "10:10:00"
-        id: pumpe_an
-      - platform: time
-        at: "19:00:00"
-        id: pumpe_aus
-      - platform: time
-        at: "19:10:00"
+      - platform: state
+        entity_id: binary_sensor.pool_pumpe_pumpe_jetzt
+        to: "off"
         id: pumpe_aus
     condition: []
     action:
