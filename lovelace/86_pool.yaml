@@ -65,3 +65,11 @@ cards:
     series:
       - entity: sensor.temp_pool
         name: aktuell
+  - type: entities
+    title: Hilfsgrößen
+    show_header_toggle: false
+    entities:
+      - entity: binary_sensor.pool_auto_heizung_freigabe
+      - entity: binary_sensor.pool_auto_heizung_noetig
+      - entity: binary_sensor.pool_auto_heizung_heize_jetzt
+      - entity: binary_sensor.pool_pumpe_pumpe_jetzt
