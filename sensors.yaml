@@ -613,6 +613,13 @@
     max_age:
       minutes: 3
   - platform: statistics
+    name: Leistung Netz letzte 3 Min Durchschnitt
+    entity_id: sensor.el_leistung_netz
+    sampling_size: 40
+    state_characteristic: average_step
+    max_age:
+      minutes: 3
+  - platform: statistics
     name: Windgeschwindigkeit Wetterstation max
     entity_id: sensor.windgeschwindigkeit_wetterstation
     sampling_size: 60

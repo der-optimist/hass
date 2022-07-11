@@ -38,7 +38,7 @@ template:
           friendly_name: "Pool - Heizung läuft"
       - unique_id: pool_auto_heizung_freigabe
         state: >
-          {% set einspeisung_ohne_poolheizung = (states('sensor.pv_einspeisung_letzte_3_min_durchschnitt') | float(0)) + (states('sensor.0xa4c138b64253ef10_power') | float(0)) %}
+          {% set einspeisung_ohne_poolheizung = -1*(states('sensor.leistung_netz_letzte_3_min_durchschnitt') | float(0)) + (states('sensor.0xa4c138b64253ef10_power') | float(0)) %}
           {% if is_state('input_boolean.pool_heizung_auch_bezahlstrom','on') %}
             {{ true }}
           {% elif is_state('input_boolean.pool_heizung_sobald_pv_strom','on') and (einspeisung_ohne_poolheizung > 2000) %}
