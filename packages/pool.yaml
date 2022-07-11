@@ -91,13 +91,13 @@ input_number:
 input_boolean:
   pool_heizung_wenn_pv_strom_uebrig:
     name: Pool Heizung wenn PV-Strom übrig
-    icon: mdi:auto-fix
+    icon: mdi:weather-sunny
   pool_heizung_sobald_pv_strom:
     name: Pool Heizung sobald PV-Strom da
-    icon: mdi:auto-fix
+    icon: mdi:weather-partly-cloudy
   pool_heizung_auch_bezahlstrom:
     name: Pool Heizung auch wenn Bezahlstrom
-    icon: mdi:auto-fix
+    icon: mdi:cash-multiple
 
 sensor:
   - platform: history_stats
