@@ -55,8 +55,8 @@ template:
          {{
           (states('sensor.temp_pool') | float(0)) <
           ((states('input_number.zieltemperatur_pool') | float(0))
-          + (0.2 if is_state('binary_sensor.pool_auto_heizung_noetig', 'off') else 0)
-          - (0.2 if is_state('binary_sensor.pool_auto_heizung_noetig', 'on') else 0))
+          + (0.2 if is_state('binary_sensor.pool_auto_heizung_noetig', 'on') else 0)
+          - (0.2 if is_state('binary_sensor.pool_auto_heizung_noetig', 'off') else 0))
          }}
         attributes:
           friendly_name: "Pool - Heizungsautomatik nötig"
