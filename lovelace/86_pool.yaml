@@ -12,6 +12,8 @@ cards:
         name: Pumpe läuft?
       - entity: sensor.0xa4c1380e0ea5cb89_power
         name: el. Leistung Pumpe
+      - entity_id: sensor.pool_pumpe_an_heute
+        name: Laufzeit heute (Stunden)
       - type: section
         label: Automatisierungen
       - entity: automation.pool_pumpe
@@ -26,6 +28,8 @@ cards:
         name: Chlorinator läuft?
       - entity: sensor.0xa4c1381ed732dbe2_power
         name: el. Leistung Chlorinator
+      - entity_id: sensor.pool_chlorinator_an_heute
+        name: Laufzeit heute (Stunden)
       - type: section
         label: Automatisierungen
       - entity: automation.pool_chlorinator_uberwachen
@@ -40,6 +44,8 @@ cards:
         name: Heizung läuft?
       - entity: sensor.0xa4c138b64253ef10_power
         name: el. Leistung Heizung
+      - entity_id: sensor.pool_heizung_an_heute
+        name: Laufzeit heute (Stunden)
       - type: section
         label: Automatisch Heizen
       - entity: input_number.zieltemperatur_pool
