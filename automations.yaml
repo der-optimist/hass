@@ -1927,9 +1927,10 @@
         - condition: trigger
           id: diesel
         sequence:
-        - service: notify.telegram_jo
+        - service: telegram_bot.send_message
           data:
-            title: Dieselpreise
+            title: "*Dieselpreise*"
+            target: "{{ trigger.event.data.user_id }}"
             message: >
               ## Waldburg:
                 {{ states('sensor.aral_wolfegger_strasse_2_diesel') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
