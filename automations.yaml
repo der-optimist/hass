@@ -1931,7 +1931,9 @@
           data:
             title: "*Dieselpreise*"
             target: "{{ trigger.event.data.user_id }}"
+            parse_mode: markdown
             message: >
+              
               ## Waldburg:
                 {{ states('sensor.aral_wolfegger_strasse_2_diesel') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.aral_schomburger_strasse_1_diesel') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
