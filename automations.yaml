@@ -1929,24 +1929,25 @@
         sequence:
         - service: telegram_bot.send_message
           data:
-            title: "*Dieselpreise*"
             target: "{{ trigger.event.data.user_id }}"
             parse_mode: markdown
             message: >
+              *Dieselpreise*
               
-              ## Waldburg:
+              
+              *Waldburg:*
                 {{ states('sensor.aral_wolfegger_strasse_2_diesel') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.aral_schomburger_strasse_1_diesel') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.avia_bildspitz_1_diesel') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
-              ## Wangen
+              *Wangen:*
                 {{ states('sensor.shell_ravensburger_str_72_diesel') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.esso_friedrich_ebert_str_15_diesel') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.bft_zeppelinstrasse_14_16_diesel') }}€ BFT Zepp. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.ran_lindauer_str_59_diesel') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.bft_erzbergerstrasse_61_diesel') }}€ BFT Erzberg. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
-              ## FN
+              *FN:*
                 {{ states('sensor.seestrasse_106_diesel') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.marktkauf_aussere_alinger_str_20_diesel') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.jet_ravensburger_strasse_63_diesel') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
@@ -1954,7 +1955,7 @@
                 {{ states('sensor.pinoil_lindauer_strasse_26_diesel') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.agip_eni_lindauer_strasse_41_diesel') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
-              ## RV
+              *RV:*
                 {{ states('sensor.esso_wangener_str_94_diesel') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 #
 ###############################################
