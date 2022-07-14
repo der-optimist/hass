@@ -1943,9 +1943,9 @@
               *Wangen:*
                 {{ states('sensor.shell_ravensburger_str_72_diesel') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.esso_friedrich_ebert_str_15_diesel') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_zeppelinstrasse_14_16_diesel') }}€ BFT Zepp. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_zeppelinstrasse_14_16_diesel') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.ran_lindauer_str_59_diesel') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_erzbergerstrasse_61_diesel') }}€ BFT Erzberg. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_erzbergerstrasse_61_diesel') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *FN:*
                 {{ states('sensor.seestrasse_106_diesel') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
