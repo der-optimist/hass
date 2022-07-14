@@ -1930,7 +1930,6 @@
         - service: notify.telegram_jo
           data:
             title: Dieselpreise
-            parse_mode: markdown
             message: >
               ## Waldburg:
                 {{ states('sensor.aral_wolfegger_strasse_2_diesel') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
