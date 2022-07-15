@@ -1971,27 +1971,27 @@
               
               
               *Waldburg:*
-                {{ states('sensor.aral_wolfegger_strasse_2_diesel') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.aral_schomburger_strasse_1_diesel') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.avia_bildspitz_1_diesel') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_wolfegger_strasse_2_diesel') | replace('unknown','--- ') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_schomburger_strasse_1_diesel') | replace('unknown','--- ') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.avia_bildspitz_1_diesel') | replace('unknown','--- ') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *Wangen:*
-                {{ states('sensor.shell_ravensburger_str_72_diesel') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.esso_friedrich_ebert_str_15_diesel') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_zeppelinstrasse_14_16_diesel') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.ran_lindauer_str_59_diesel') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_erzbergerstrasse_61_diesel') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.shell_ravensburger_str_72_diesel') | replace('unknown','--- ') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.esso_friedrich_ebert_str_15_diesel') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_zeppelinstrasse_14_16_diesel') | replace('unknown','--- ') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.ran_lindauer_str_59_diesel') | replace('unknown','--- ') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_erzbergerstrasse_61_diesel') | replace('unknown','--- ') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *FN:*
-                {{ states('sensor.seestrasse_106_diesel') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.marktkauf_aussere_alinger_str_20_diesel') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.jet_ravensburger_strasse_63_diesel') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.aral_hauptstrasse_88_diesel') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.pinoil_lindauer_strasse_26_diesel') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.agip_eni_lindauer_strasse_41_diesel') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.seestrasse_106_diesel') | replace('unknown','--- ') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.marktkauf_aussere_alinger_str_20_diesel') | replace('unknown','--- ') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.jet_ravensburger_strasse_63_diesel') | replace('unknown','--- ') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_hauptstrasse_88_diesel') | replace('unknown','--- ') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.pinoil_lindauer_strasse_26_diesel') | replace('unknown','--- ') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.agip_eni_lindauer_strasse_41_diesel') | replace('unknown','--- ') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *RV:*
-                {{ states('sensor.esso_wangener_str_94_diesel') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.esso_wangener_str_94_diesel') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
       - conditions:
         - condition: trigger
           id: e10
@@ -2005,27 +2005,27 @@
               
               
               *Waldburg:*
-                {{ states('sensor.aral_wolfegger_strasse_2_super_e10') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.aral_schomburger_strasse_1_super_e10') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.avia_bildspitz_1_super_e10') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_wolfegger_strasse_2_super_e10') | replace('unknown','--- ') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_schomburger_strasse_1_super_e10') | replace('unknown','--- ') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.avia_bildspitz_1_super_e10') | replace('unknown','--- ') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *Wangen:*
-                {{ states('sensor.shell_ravensburger_str_72_super_e10') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.esso_friedrich_ebert_str_15_super_e10') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_zeppelinstrasse_14_16_super_e10') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.ran_lindauer_str_59_super_e10') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_erzbergerstrasse_61_super_e10') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.shell_ravensburger_str_72_super_e10') | replace('unknown','--- ') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.esso_friedrich_ebert_str_15_super_e10') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_zeppelinstrasse_14_16_super_e10') | replace('unknown','--- ') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.ran_lindauer_str_59_super_e10') | replace('unknown','--- ') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_erzbergerstrasse_61_super_e10') | replace('unknown','--- ') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *FN:*
-                {{ states('sensor.seestrasse_106_super_e10') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.marktkauf_aussere_alinger_str_20_super_e10') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.jet_ravensburger_strasse_63_super_e10') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.aral_hauptstrasse_88_super_e10') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.pinoil_lindauer_strasse_26_super_e10') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.agip_eni_lindauer_strasse_41_super_e10') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.seestrasse_106_super_e10') | replace('unknown','--- ') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.marktkauf_aussere_alinger_str_20_super_e10') | replace('unknown','--- ') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.jet_ravensburger_strasse_63_super_e10') | replace('unknown','--- ') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_hauptstrasse_88_super_e10') | replace('unknown','--- ') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.pinoil_lindauer_strasse_26_super_e10') | replace('unknown','--- ') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.agip_eni_lindauer_strasse_41_super_e10') | replace('unknown','--- ') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *RV:*
-                {{ states('sensor.esso_wangener_str_94_super_e10') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.esso_wangener_str_94_super_e10') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
       - conditions:
         - condition: trigger
           id: super
@@ -2039,27 +2039,27 @@
               
               
               *Waldburg:*
-                {{ states('sensor.aral_wolfegger_strasse_2_super') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.aral_schomburger_strasse_1_super') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.avia_bildspitz_1_super') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_wolfegger_strasse_2_super') | replace('unknown','--- ') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_schomburger_strasse_1_super') | replace('unknown','--- ') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.avia_bildspitz_1_super') | replace('unknown','--- ') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *Wangen:*
-                {{ states('sensor.shell_ravensburger_str_72_super') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.esso_friedrich_ebert_str_15_super') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_zeppelinstrasse_14_16_super') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.ran_lindauer_str_59_super') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_erzbergerstrasse_61_super') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.shell_ravensburger_str_72_super') | replace('unknown','--- ') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.esso_friedrich_ebert_str_15_super') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_zeppelinstrasse_14_16_super') | replace('unknown','--- ') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.ran_lindauer_str_59_super') | replace('unknown','--- ') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_erzbergerstrasse_61_super') | replace('unknown','--- ') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *FN:*
-                {{ states('sensor.seestrasse_106_super') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.marktkauf_aussere_alinger_str_20_super') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.jet_ravensburger_strasse_63_super') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.aral_hauptstrasse_88_super') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.pinoil_lindauer_strasse_26_super') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.agip_eni_lindauer_strasse_41_super') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.seestrasse_106_super') | replace('unknown','--- ') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.marktkauf_aussere_alinger_str_20_super') | replace('unknown','--- ') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.jet_ravensburger_strasse_63_super') | replace('unknown','--- ') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_hauptstrasse_88_super') | replace('unknown','--- ') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.pinoil_lindauer_strasse_26_super') | replace('unknown','--- ') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.agip_eni_lindauer_strasse_41_super') | replace('unknown','--- ') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *RV:*
-                {{ states('sensor.esso_wangener_str_94_super') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.esso_wangener_str_94_super') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
       - conditions:
         - condition: trigger
           id: tanken
@@ -2073,27 +2073,27 @@
               
               
               *Waldburg:*
-                {{ states('sensor.aral_wolfegger_strasse_2_super_e10') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.aral_schomburger_strasse_1_super_e10') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.avia_bildspitz_1_super_e10') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_wolfegger_strasse_2_super_e10') | replace('unknown','--- ') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_schomburger_strasse_1_super_e10') | replace('unknown','--- ') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.avia_bildspitz_1_super_e10') | replace('unknown','--- ') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *Wangen:*
-                {{ states('sensor.shell_ravensburger_str_72_super_e10') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.esso_friedrich_ebert_str_15_super_e10') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_zeppelinstrasse_14_16_super_e10') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.ran_lindauer_str_59_super_e10') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_erzbergerstrasse_61_super_e10') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.shell_ravensburger_str_72_super_e10') | replace('unknown','--- ') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.esso_friedrich_ebert_str_15_super_e10') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_zeppelinstrasse_14_16_super_e10') | replace('unknown','--- ') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.ran_lindauer_str_59_super_e10') | replace('unknown','--- ') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_erzbergerstrasse_61_super_e10') | replace('unknown','--- ') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *FN:*
-                {{ states('sensor.seestrasse_106_super_e10') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.marktkauf_aussere_alinger_str_20_super_e10') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.jet_ravensburger_strasse_63_super_e10') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.aral_hauptstrasse_88_super_e10') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.pinoil_lindauer_strasse_26_super_e10') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.agip_eni_lindauer_strasse_41_super_e10') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.seestrasse_106_super_e10') | replace('unknown','--- ') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.marktkauf_aussere_alinger_str_20_super_e10') | replace('unknown','--- ') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.jet_ravensburger_strasse_63_super_e10') | replace('unknown','--- ') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_hauptstrasse_88_super_e10') | replace('unknown','--- ') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.pinoil_lindauer_strasse_26_super_e10') | replace('unknown','--- ') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.agip_eni_lindauer_strasse_41_super_e10') | replace('unknown','--- ') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *RV:*
-                {{ states('sensor.esso_wangener_str_94_super_e10') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.esso_wangener_str_94_super_e10') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
         - service: telegram_bot.send_message
           data:
             target: "{{ trigger.event.data.user_id }}"
@@ -2103,27 +2103,27 @@
               
               
               *Waldburg:*
-                {{ states('sensor.aral_wolfegger_strasse_2_super') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.aral_schomburger_strasse_1_super') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.avia_bildspitz_1_super') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_wolfegger_strasse_2_super') | replace('unknown','--- ') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_schomburger_strasse_1_super') | replace('unknown','--- ') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.avia_bildspitz_1_super') | replace('unknown','--- ') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *Wangen:*
-                {{ states('sensor.shell_ravensburger_str_72_super') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.esso_friedrich_ebert_str_15_super') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_zeppelinstrasse_14_16_super') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.ran_lindauer_str_59_super') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_erzbergerstrasse_61_super') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.shell_ravensburger_str_72_super') | replace('unknown','--- ') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.esso_friedrich_ebert_str_15_super') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_zeppelinstrasse_14_16_super') | replace('unknown','--- ') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.ran_lindauer_str_59_super') | replace('unknown','--- ') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_erzbergerstrasse_61_super') | replace('unknown','--- ') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *FN:*
-                {{ states('sensor.seestrasse_106_super') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.marktkauf_aussere_alinger_str_20_super') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.jet_ravensburger_strasse_63_super') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.aral_hauptstrasse_88_super') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.pinoil_lindauer_strasse_26_super') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.agip_eni_lindauer_strasse_41_super') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.seestrasse_106_super') | replace('unknown','--- ') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.marktkauf_aussere_alinger_str_20_super') | replace('unknown','--- ') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.jet_ravensburger_strasse_63_super') | replace('unknown','--- ') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_hauptstrasse_88_super') | replace('unknown','--- ') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.pinoil_lindauer_strasse_26_super') | replace('unknown','--- ') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.agip_eni_lindauer_strasse_41_super') | replace('unknown','--- ') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *RV:*
-                {{ states('sensor.esso_wangener_str_94_super') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.esso_wangener_str_94_super') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
         - service: telegram_bot.send_message
           data:
             target: "{{ trigger.event.data.user_id }}"
@@ -2133,27 +2133,27 @@
               
               
               *Waldburg:*
-                {{ states('sensor.aral_wolfegger_strasse_2_diesel') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.aral_schomburger_strasse_1_diesel') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.avia_bildspitz_1_diesel') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_wolfegger_strasse_2_diesel') | replace('unknown','--- ') }}€ Vogt ({{ states('binary_sensor.aral_wolfegger_strasse_2_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_schomburger_strasse_1_diesel') | replace('unknown','--- ') }}€ Amtzell ({{ states('binary_sensor.aral_schomburger_strasse_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.avia_bildspitz_1_diesel') | replace('unknown','--- ') }}€ Hannober ({{ states('binary_sensor.avia_bildspitz_1_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *Wangen:*
-                {{ states('sensor.shell_ravensburger_str_72_diesel') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.esso_friedrich_ebert_str_15_diesel') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_zeppelinstrasse_14_16_diesel') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.ran_lindauer_str_59_diesel') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.bft_erzbergerstrasse_61_diesel') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.shell_ravensburger_str_72_diesel') | replace('unknown','--- ') }}€ Shell ({{ states('binary_sensor.shell_ravensburger_str_72_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.esso_friedrich_ebert_str_15_diesel') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_friedrich_ebert_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_zeppelinstrasse_14_16_diesel') | replace('unknown','--- ') }}€ BFT Zeppelinstr. ({{ states('binary_sensor.bft_zeppelinstrasse_14_16_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.ran_lindauer_str_59_diesel') | replace('unknown','--- ') }}€ RAN ({{ states('binary_sensor.ran_lindauer_str_59_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.bft_erzbergerstrasse_61_diesel') | replace('unknown','--- ') }}€ BFT Erzbergstr. ({{ states('binary_sensor.bft_erzbergerstrasse_61_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *FN:*
-                {{ states('sensor.seestrasse_106_diesel') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.marktkauf_aussere_alinger_str_20_diesel') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.jet_ravensburger_strasse_63_diesel') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.aral_hauptstrasse_88_diesel') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.pinoil_lindauer_strasse_26_diesel') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
-                {{ states('sensor.agip_eni_lindauer_strasse_41_diesel') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.seestrasse_106_diesel') | replace('unknown','--- ') }}€ Schindele ({{ states('binary_sensor.seestrasse_106_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.marktkauf_aussere_alinger_str_20_diesel') | replace('unknown','--- ') }}€ Marktkauf ({{ states('binary_sensor.marktkauf_aussere_alinger_str_20_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.jet_ravensburger_strasse_63_diesel') | replace('unknown','--- ') }}€ Jet ({{ states('binary_sensor.jet_ravensburger_strasse_63_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_hauptstrasse_88_diesel') | replace('unknown','--- ') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.pinoil_lindauer_strasse_26_diesel') | replace('unknown','--- ') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.agip_eni_lindauer_strasse_41_diesel') | replace('unknown','--- ') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *RV:*
-                {{ states('sensor.esso_wangener_str_94_diesel') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.esso_wangener_str_94_diesel') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 #
 ###############################################
 #####           Reminder Türen            #####
