@@ -5,7 +5,16 @@ template:
         unit_of_measurement: "°C"
         device_class: temperature
         state: >
-          {{ states('sensor.temp_0xa30317605abeff28_d1_pro_1') | float(0) | round(1) }}
+          {% set measurement = states('sensor.temp_0xa30317605abeff28_d1_pro_1') | float(-100) | round(1) %}
+          {% if measurement > -100 %}
+          {{ measurement }}
+          {% else %}
+            {% if (now() - states.sensor.temp_0xa30317605abeff28_d1_pro_1.last_updated) < timedelta( hours = 1) %}
+              {{ states('sensor.temp_pool') }}
+            {% else %}
+              {{ 'unknown' }}
+            {% endif %}
+          {% endif %}
         attributes:
           friendly_name: "Pool-Temperatur"
     binary_sensor:
