@@ -27,6 +27,7 @@ include:
     - binary_sensor.template_water_heater_pv_power_sufficient
     - binary_sensor.template_water_heater_pv_boost_condition
   entity_globs:
+    - sensor.temp_*
     - sensor.el_leistung*
     - sensor.kosten*
     - sensor.stromz*
@@ -36,5 +37,9 @@ include:
     - sensor.stellwert_heizung*
     - sensor.sollwert_heizung*
     - binary_sensor.pm*
+    - sensor.*_diesel
+    - sensor.*_super
+    - sensor.*_e10
+    - binary_sensor.*_status
   domains:
     - climate
