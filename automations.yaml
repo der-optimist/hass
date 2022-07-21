@@ -1989,6 +1989,7 @@
                 {{ states('sensor.aral_hauptstrasse_88_diesel') | replace('unknown','--- ') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.pinoil_lindauer_strasse_26_diesel') | replace('unknown','--- ') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.agip_eni_lindauer_strasse_41_diesel') | replace('unknown','--- ') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_tettnanger_strasse_150_diesel') | replace('unknown','--- ') }}€ Aral Pfingstw. ({{ states('binary_sensor.aral_tettnanger_strasse_150_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *RV:*
                 {{ states('sensor.esso_wangener_str_94_diesel') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
@@ -2023,6 +2024,7 @@
                 {{ states('sensor.aral_hauptstrasse_88_super_e10') | replace('unknown','--- ') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.pinoil_lindauer_strasse_26_super_e10') | replace('unknown','--- ') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.agip_eni_lindauer_strasse_41_super_e10') | replace('unknown','--- ') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_tettnanger_strasse_150_super_e10') | replace('unknown','--- ') }}€ Aral Pfingstw. ({{ states('binary_sensor.aral_tettnanger_strasse_150_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *RV:*
                 {{ states('sensor.esso_wangener_str_94_super_e10') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
@@ -2057,6 +2059,7 @@
                 {{ states('sensor.aral_hauptstrasse_88_super') | replace('unknown','--- ') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.pinoil_lindauer_strasse_26_super') | replace('unknown','--- ') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.agip_eni_lindauer_strasse_41_super') | replace('unknown','--- ') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_tettnanger_strasse_150_super') | replace('unknown','--- ') }}€ Aral Pfingstw. ({{ states('binary_sensor.aral_tettnanger_strasse_150_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *RV:*
                 {{ states('sensor.esso_wangener_str_94_super') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
@@ -2091,6 +2094,7 @@
                 {{ states('sensor.aral_hauptstrasse_88_super_e10') | replace('unknown','--- ') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.pinoil_lindauer_strasse_26_super_e10') | replace('unknown','--- ') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.agip_eni_lindauer_strasse_41_super_e10') | replace('unknown','--- ') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_tettnanger_strasse_150_super_e10') | replace('unknown','--- ') }}€ Aral Pfingstw. ({{ states('binary_sensor.aral_tettnanger_strasse_150_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *RV:*
                 {{ states('sensor.esso_wangener_str_94_super_e10') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
@@ -2121,6 +2125,7 @@
                 {{ states('sensor.aral_hauptstrasse_88_super') | replace('unknown','--- ') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.pinoil_lindauer_strasse_26_super') | replace('unknown','--- ') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.agip_eni_lindauer_strasse_41_super') | replace('unknown','--- ') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_tettnanger_strasse_150_super') | replace('unknown','--- ') }}€ Aral Pfingstw. ({{ states('binary_sensor.aral_tettnanger_strasse_150_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *RV:*
                 {{ states('sensor.esso_wangener_str_94_super') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
@@ -2151,6 +2156,7 @@
                 {{ states('sensor.aral_hauptstrasse_88_diesel') | replace('unknown','--- ') }}€ Mecka Aral ({{ states('binary_sensor.aral_hauptstrasse_88_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.pinoil_lindauer_strasse_26_diesel') | replace('unknown','--- ') }}€ TT Pinoil ({{ states('binary_sensor.pinoil_lindauer_strasse_26_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.agip_eni_lindauer_strasse_41_diesel') | replace('unknown','--- ') }}€ TT Agip ({{ states('binary_sensor.agip_eni_lindauer_strasse_41_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_tettnanger_strasse_150_diesel') | replace('unknown','--- ') }}€ Aral Pfingstw. ({{ states('binary_sensor.aral_tettnanger_strasse_150_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 
               *RV:*
                 {{ states('sensor.esso_wangener_str_94_diesel') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
