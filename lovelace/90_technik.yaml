@@ -10,21 +10,13 @@ cards:
       - entity: sensor.cpu_temperatur
       - entity: sensor.memory_use_percent
       - entity: sensor.disk_use_percent
-  - type: vertical-stack
-    cards:
-      - type: entity-button
-        name: Restart HA
-        icon: mdi:restart
-        tap_action:
-          action: call-service
-          service: homeassistant.restart
-        entity: zone.home
-      - type: entities
-        title: Sonstiges
-        show_header_toggle: true
-        entities:
-          - entity: input_boolean.app_switch_log_events
-            name: Log Events in AD
+  - type: entity-button
+    name: Restart HA
+    icon: mdi:restart
+    tap_action:
+      action: call-service
+      service: homeassistant.restart
+    entity: zone.home
   - type: entities
     title: "Bildschirm Theke"
     show_header_toggle: false
@@ -37,14 +29,6 @@ cards:
         name: Helligkeit
       - entity: switch.esp_sd_3_relais
         name: Steckdose
-  - type: entities
-    title: "externe Stromberechnung"
-    show_header_toggle: false
-    entities:
-      - entity: input_boolean.stromverbrauch_todo
-      - entity: input_boolean.stromverbrauch_ist_berechnet
-      - entity: sensor.stromverbrauch_tag_extern_berechnet
-      - entity: sensor.stromverbrauch_verbrauch_gesamt
   - type: custom:auto-entities
     card:
       type: entities

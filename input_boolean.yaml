@@ -8,12 +8,6 @@
   alarm_activated:
     name: Wasseralarm aktiviert
     icon: mdi:alarm-light-outline
-  stromverbrauch_todo:
-    name: Berechnung Stromverbrauch steht an
-    icon: mdi:calculator
-  stromverbrauch_ist_berechnet:
-    name: Stromverbrauch ist berechnet
-    icon: mdi:progress-check
   gewitter:
     name: Gewitter
     icon: mdi:flash-alert
@@ -74,74 +68,6 @@
   korrektur_heizung_bad_og:
     name: Kurrektur Heizung Bad OG
     icon: mdi:auto-fix
-  zigbee_permit_join:
-    name: Allow devices to join
-    initial: off
-    icon: mdi:cellphone-wireless
-  # App Switches
-#  app_switch_licht_kueche:
-#    name: Automatik Licht Küche (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_esszimmer:
-#    name: Automatik Licht Esszimmer (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_christbaum:
-#    name: Automatik Licht Christbaum (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_wohnzimmer:
-#    name: Automatik Licht Wohnzimmer (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_schlafzimmer:
-#    name: Automatik Licht Schlafzimmer (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_bad_eg:
-#    name: Automatik Licht Bad EG (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_flur_eg:
-#    name: Automatik Licht Flur EG (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_windfang:
-#    name: Automatik Licht Windfang (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_wc:
-#    name: Automatik Licht WC (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_la:
-#    name: Automatik Licht La (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_naehzimmer:
-#    name: Automatik Licht Nähzimmer (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_le:
-#    name: Automatik Licht Le (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_gaestezimmer:
-#    name: Automatik Licht Gästezimmer (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_flur_og:
-#    name: Automatik Licht Flur OG (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_bad_og:
-#    name: Automatik Licht Bad OG (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_treppe_og:
-#    name: Automatik Licht Treppe OG (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_treppe_keller:
-#    name: Automatik Licht Kellertreppe (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_keller:
-#    name: Automatik Licht Keller (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_aussen_carport:
-#    name: Automatik Licht Carport (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_bodenstrahler_blumenbeet:
-#    name: Automatik Bodenstrahler (alt)
-#    icon: mdi:auto-fix
-#  app_switch_licht_stern_blumenbeet:
-#    name: Automatik Stern (alt)
-#    icon: mdi:auto-fix
   app_switch_jalousie_kueche:
     name: Automatik Jalousie Küche
     icon: mdi:auto-fix
@@ -169,22 +95,6 @@
   app_switch_jalousie_bad_og:
     name: Automatik Jalousie Bad OG
     icon: mdi:auto-fix
-  app_switch_luftentfeuchter_waschkueche:
-    name: Automatik Luftentf. Waschküche
-    icon: mdi:auto-fix
-  app_switch_log_events:
-    name: Logging HA events in AD
-    icon: mdi:note-text
-  app_switch_bildschirm:
-    name: Automatik Bildschirm
-    icon: mdi:auto-fix
-  kodi_just_started_playing:
-    name: Kodi just started playing
-    icon: mdi:play-circle-outline
-    initial: off
-  appdaemon_production_mode:
-    name: AppDaemon Production Mode
-    icon: mdi:lock
   beleuchtung_hochzeitsbild:
     name: Beleuchtung Hochzeitsbild
     icon: mdi:lightbulb-on-outline
