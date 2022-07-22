@@ -89,7 +89,7 @@
 
 # (Nähzimmer) Arbeitszimmer
   - state_address: '7/0/137'
-    name: PM_O_NZ_Fenster
+    name: PM_O_NZ
     device_class: moving
   - state_address: '7/0/151'
     name: PM_O_NZ_Tuer

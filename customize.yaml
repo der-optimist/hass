@@ -119,7 +119,9 @@ binary_sensor.pm_o_kw_le_raum:
 binary_sensor.pm_o_kw_le_tuer:
   friendly_name: Lea Tür
 binary_sensor.pm_o_nz:
-  friendly_name: Arbeitszimmer
+  friendly_name: Arbeitsz. Fenster
+binary_sensor.pm_o_nz_tuer:
+  friendly_name: Arbeitsz. Tür
 # Keller
 binary_sensor.pm_k_fl_2:
   friendly_name: Kellerflur
