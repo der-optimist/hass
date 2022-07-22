@@ -1993,6 +1993,11 @@
 
               *RV:*
                 {{ states('sensor.esso_wangener_str_94_diesel') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+
+              *Jessen:*
+                {{ states('sensor.sprint_rehainer_str_15_diesel') | replace('unknown','--- ') }}€ Sprint ({{ states('binary_sensor.sprint_rehainer_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_r_luxemburg_strasse_105_diesel') | replace('unknown','--- ') }}€ Aral ({{ states('binary_sensor.aral_r_luxemburg_strasse_105_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.totalenergies_rosa_luxemburg_str_131_diesel') | replace('unknown','--- ') }}€ Total ({{ states('binary_sensor.totalenergies_rosa_luxemburg_str_131_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
       - conditions:
         - condition: trigger
           id: e10
@@ -2028,6 +2033,11 @@
 
               *RV:*
                 {{ states('sensor.esso_wangener_str_94_super_e10') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+
+              *Jessen:*
+                {{ states('sensor.sprint_rehainer_str_15_super_e10') | replace('unknown','--- ') }}€ Sprint ({{ states('binary_sensor.sprint_rehainer_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_r_luxemburg_strasse_105_super_e10') | replace('unknown','--- ') }}€ Aral ({{ states('binary_sensor.aral_r_luxemburg_strasse_105_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.totalenergies_rosa_luxemburg_str_131_super_e10') | replace('unknown','--- ') }}€ Total ({{ states('binary_sensor.totalenergies_rosa_luxemburg_str_131_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
       - conditions:
         - condition: trigger
           id: super
@@ -2063,6 +2073,11 @@
 
               *RV:*
                 {{ states('sensor.esso_wangener_str_94_super') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+
+              *Jessen:*
+                {{ states('sensor.sprint_rehainer_str_15_super') | replace('unknown','--- ') }}€ Sprint ({{ states('binary_sensor.sprint_rehainer_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_r_luxemburg_strasse_105_super') | replace('unknown','--- ') }}€ Aral ({{ states('binary_sensor.aral_r_luxemburg_strasse_105_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.totalenergies_rosa_luxemburg_str_131_super') | replace('unknown','--- ') }}€ Total ({{ states('binary_sensor.totalenergies_rosa_luxemburg_str_131_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
       - conditions:
         - condition: trigger
           id: tanken
@@ -2098,6 +2113,11 @@
 
               *RV:*
                 {{ states('sensor.esso_wangener_str_94_super_e10') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+
+              *Jessen:*
+                {{ states('sensor.sprint_rehainer_str_15_super_e10') | replace('unknown','--- ') }}€ Sprint ({{ states('binary_sensor.sprint_rehainer_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_r_luxemburg_strasse_105_super_e10') | replace('unknown','--- ') }}€ Aral ({{ states('binary_sensor.aral_r_luxemburg_strasse_105_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.totalenergies_rosa_luxemburg_str_131_super_e10') | replace('unknown','--- ') }}€ Total ({{ states('binary_sensor.totalenergies_rosa_luxemburg_str_131_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
         - service: telegram_bot.send_message
           data:
             target: "{{ trigger.event.data.user_id }}"
@@ -2129,6 +2149,11 @@
 
               *RV:*
                 {{ states('sensor.esso_wangener_str_94_super') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+
+              *Jessen:*
+                {{ states('sensor.sprint_rehainer_str_15_super') | replace('unknown','--- ') }}€ Sprint ({{ states('binary_sensor.sprint_rehainer_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_r_luxemburg_strasse_105_super') | replace('unknown','--- ') }}€ Aral ({{ states('binary_sensor.aral_r_luxemburg_strasse_105_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.totalenergies_rosa_luxemburg_str_131_super') | replace('unknown','--- ') }}€ Total ({{ states('binary_sensor.totalenergies_rosa_luxemburg_str_131_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
         - service: telegram_bot.send_message
           data:
             target: "{{ trigger.event.data.user_id }}"
@@ -2160,6 +2185,11 @@
 
               *RV:*
                 {{ states('sensor.esso_wangener_str_94_diesel') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+
+              *Jessen:*
+                {{ states('sensor.sprint_rehainer_str_15_diesel') | replace('unknown','--- ') }}€ Sprint ({{ states('binary_sensor.sprint_rehainer_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.aral_r_luxemburg_strasse_105_diesel') | replace('unknown','--- ') }}€ Aral ({{ states('binary_sensor.aral_r_luxemburg_strasse_105_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+                {{ states('sensor.totalenergies_rosa_luxemburg_str_131_diesel') | replace('unknown','--- ') }}€ Total ({{ states('binary_sensor.totalenergies_rosa_luxemburg_str_131_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
 #
 ###############################################
 #####           Reminder Türen            #####
