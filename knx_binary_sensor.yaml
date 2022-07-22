@@ -87,9 +87,12 @@
     name: PM_O_KO_La_Tuer
     device_class: moving
 
-# Nähzimmer
+# (Nähzimmer) Arbeitszimmer
   - state_address: '7/0/137'
-    name: PM_O_NZ
+    name: PM_O_NZ_Fenster
+    device_class: moving
+  - state_address: '7/0/151'
+    name: PM_O_NZ_Tuer
     device_class: moving
 
 # Le
