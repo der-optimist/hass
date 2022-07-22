@@ -11,6 +11,9 @@ cards:
     filter:
       include:
         - entity_id: "binary_sensor.pm_e*"
+    sort:
+      method: name
+      ignore_case: true
   - type: custom:auto-entities
     card:
       type: entities
@@ -22,6 +25,9 @@ cards:
         - entity_id: "binary_sensor.pm_o*"
 #      exclude:
 #        - entity_id: "binary_sensor.pm_o_gz"
+    sort:
+      method: name
+      ignore_case: true
   - type: entities
     title: Wir sind unterwegs...
     show_header_toggle: false
@@ -39,6 +45,9 @@ cards:
       include:
         - entity_id: "binary_sensor.pm_k*"
         - entity_id: "binary_sensor.pm_a*"
+    sort:
+      method: name
+      ignore_case: true
   - type: custom:auto-entities
     card:
       type: entities
@@ -48,3 +57,6 @@ cards:
     filter:
       include:
         - entity_id: "binary_sensor.anwesenheit*"
+    sort:
+      method: name
+      ignore_case: true
