@@ -58,10 +58,13 @@ template:
     binary_sensor:
       - name: helper_light_trigger_o_az_fenster
         state: >
-          {% if states('binary_sensor.pm_o_nz') in ['unavailable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.pm_o_nz') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_o_nz_tuer') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_trigger_o_az_fenster') }}
           {% else %}
-            {{ is_state('binary_sensor.pm_o_nz', 'on') }}
+            {% set h = now().hour | int(0) %}
+            {{ is_state('binary_sensor.pm_o_nz', 'on')
+              or ((h >= 6 and h < 18) and is_state('binary_sensor.pm_o_nz_tuer', 'on')) }}
           {% endif %}
       - name: helper_light_keeping_off_entities_o_az_fenster
         state: >
