@@ -189,6 +189,30 @@ automation:
           - service: notify.telegram_jo
             data:
               message: 'Chlorinator läuft nicht'
+  - id: '2825ff19-21fc-4e2a-bdf5-910e18de87ec'
+    alias: Pool - Auto-Starte Chlorinator
+    description: ''
+    mode: queued
+    trigger:
+      - platform: time
+        at: "10:29:45"
+        id: check_if_running
+    condition: []
+    action:
+      - service: switch.turn_off
+        target:
+          entity_id: switch.0xa4c1381ed732dbe2
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 15
+          milliseconds: 0
+      - service: switch.turn_on
+        target:
+          entity_id: switch.0xa4c1381ed732dbe2
+      - service: notify.telegram_jo
+        data:
+          message: 'Habe den Chlorinator gestartet'
   - id: 'd431661c-bc02-447b-bbda-8df1d72afedc'
     alias: Pool - Heizung vergessen
     description: ''
