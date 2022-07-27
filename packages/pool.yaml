@@ -213,6 +213,9 @@ automation:
       - service: notify.telegram_jo
         data:
           message: 'Habe den Chlorinator gestartet'
+      - service: automation.turn_off
+        target:
+          entity_id: automation.pool_auto_starte_chlorinator
   - id: 'd431661c-bc02-447b-bbda-8df1d72afedc'
     alias: Pool - Heizung vergessen
     description: ''
