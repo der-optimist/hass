@@ -32,6 +32,8 @@ cards:
         name: Laufzeit heute (Stunden)
       - type: section
         label: Automatisierungen
+      - entity: automation.pool_auto_starte_chlorinator
+        name: Auto-Starte Chlorinator um 10:30
       - entity: automation.pool_chlorinator_uberwachen
         name: Chlorinator überwachen
   - type: entities
