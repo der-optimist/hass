@@ -410,35 +410,16 @@
             - condition: template
               value_template: '{{ trigger.event.data.data[0] == 21 }}'
             sequence:
-            - service: notify.telegram_jo
-              data:
-                message: KNX Szene - Lüftung Stoß
-            - service: modbus.write_register
-              data:
-                address: 1103
-                unit: 1
-                value: 30
-                hub: lueftungsanlage
-            - delay: 1
-            - service: modbus.write_register
-              data:
-                address: 1161
-                unit: 1
-                value: 4
-                hub: lueftungsanlage
+            - service: input_button.press
+              target:
+                entity_id: input_button.lueftung_stoss
           - conditions:
             - condition: template
               value_template: '{{ trigger.event.data.data[0] == 22 }}'
             sequence:
-            - service: notify.telegram_jo
-              data:
-                message: KNX Szene - Lüftung Auto
-            - service: modbus.write_register
-              data:
-                address: 1161
-                unit: 1
-                value: 1
-                hub: lueftungsanlage
+            - service: input_button.press
+              target:
+                entity_id: input_button.lueftung_auto
           default: []
       - conditions:
         - condition: trigger
@@ -494,33 +475,42 @@
       default: []
 #
 ###############################################
-#####      Lüftung hoch wenn Gäste        #####
+#####              Lüftung                #####
 ###############################################
 - id: '0a4738a0-494a-49f7-90e2-1a9d89c87149'
-  alias: Lüftung hoch wenn Gäste
+  alias: Lüftung
   description: ''
   mode: queued
   trigger:
     - platform: state
       entity_id: input_boolean.gaeste_abends
-      id: to_on
+      id: party
       from: "off"
       to: "on"
     - platform: state
       entity_id: input_boolean.gaeste_abends
-      id: to_off
+      id: auto
       from: "on"
       to: "off"
+    - platform: state
+      entity_id: input_button.lueftung_auto
+      id: auto
+    - platform: state
+      entity_id: input_button.lueftung_party
+      id: party
+    - platform: state
+      entity_id: input_button.lueftung_stoss
+      id: stoss
   condition: []
   action:
     - choose:
       - conditions:
         - condition: trigger
-          id: to_on
+          id: party
         sequence:
         - service: notify.telegram_jo
           data:
-            message: KNX Szene - Lüftung Party
+            message: Lüftung Party
         - service: modbus.write_register
           data:
             address: 1104
@@ -536,16 +526,36 @@
             hub: lueftungsanlage
       - conditions:
         - condition: trigger
-          id: to_off
+          id: auto
         sequence:
         - service: notify.telegram_jo
           data:
-            message: KNX Szene - Lüftung Auto
+            message: Lüftung Auto
         - service: modbus.write_register
           data:
             address: 1161
             unit: 1
             value: 1
+            hub: lueftungsanlage
+      - conditions:
+        - condition: trigger
+          id: stoss
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: Lüftung Stoß
+        - service: modbus.write_register
+          data:
+            address: 1103
+            unit: 1
+            value: 60
+            hub: lueftungsanlage
+        - delay: 1
+        - service: modbus.write_register
+          data:
+            address: 1161
+            unit: 1
+            value: 4
             hub: lueftungsanlage
       default: []
 #
