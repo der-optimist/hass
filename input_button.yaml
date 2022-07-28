@@ -1,3 +1,12 @@
 pizza_timer_standard:
   name: '12 Minuten'
   icon: mdi:pizza
+lueftung_auto:
+  name: 'Lüftung Automatik'
+  icon: mdi:fan-auto
+lueftung_party:
+  name: 'Lüftung Partymodus 8 Std.'
+  icon: mdi:fan-plus
+lueftung_stoss:
+  name: 'Lüftung Stoß'
+  icon: mdi:fan-alert
