@@ -93,6 +93,9 @@ cards:
     - entity: switch.luftungsanlage
       name: Lüftungsanlage
       secondary_info: "[[ sensor.el_leistung_luftungsanlage ]] W"
+    - entity: input_button.lueftung_stoss
+    - entity: input_button.lueftung_party
+    - entity: input_button.lueftung_auto
     - type: section
       label: Luft
     - entity: sensor.temp_werkelraum
