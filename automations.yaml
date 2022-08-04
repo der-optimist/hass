@@ -1968,6 +1968,16 @@
       id: geo_ma
       event_data:
         text: geo
+    - platform: event
+      event_type: telegram_text
+      id: alarm_jo
+      event_data:
+        text: Alarm
+    - platform: event
+      event_type: telegram_text
+      id: alarm_jo
+      event_data:
+        text: alarm
   condition: []
   action:
     - choose:
@@ -2218,6 +2228,31 @@
           data:
             message: >
               {{ states('sensor.pixel_3a_ma_geokodierter_standort') }}
+      - conditions:
+        - condition: trigger
+          id: alarm_jo
+        sequence:
+        - service: input_boolean.toggle
+          target:
+            entity_id: input_boolean.flur_alarm_jo
+        - delay: 1
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_jo
+              state: "on"
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: 'Flur-Alarm ist jetzt an'
+          - conditions:
+            - condition: state
+              entity_id: input_boolean.flur_alarm_jo
+              state: "off"
+            sequence:
+            - service: notify.telegram_jo
+              data:
+                message: 'Flur-Alarm ist jetzt aus'
 #
 ###############################################
 #####           Reminder Türen            #####
