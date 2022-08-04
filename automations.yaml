@@ -1958,6 +1958,16 @@
       id: tanken
       event_data:
         text: Tanken
+    - platform: event
+      event_type: telegram_text
+      id: geo_ma
+      event_data:
+        text: Geo
+    - platform: event
+      event_type: telegram_text
+      id: geo_ma
+      event_data:
+        text: geo
   condition: []
   action:
     - choose:
@@ -2200,6 +2210,14 @@
                 {{ states('sensor.sprint_rehainer_str_15_diesel') | replace('unknown','--- ') }}€ Sprint ({{ states('binary_sensor.sprint_rehainer_str_15_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.aral_r_luxemburg_strasse_105_diesel') | replace('unknown','--- ') }}€ Aral ({{ states('binary_sensor.aral_r_luxemburg_strasse_105_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
                 {{ states('sensor.totalenergies_rosa_luxemburg_str_131_diesel') | replace('unknown','--- ') }}€ Total ({{ states('binary_sensor.totalenergies_rosa_luxemburg_str_131_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
+      - conditions:
+        - condition: trigger
+          id: geo_ma
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: >
+              {{ states('sensor.pixel_3a_ma_geokodierter_standort') }}
 #
 ###############################################
 #####           Reminder Türen            #####

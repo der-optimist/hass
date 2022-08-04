@@ -4,3 +4,4 @@ sensor:
     name: Steigung Temp. EZ
     unit_time: h
     time_window: "02:30:00"
+  
