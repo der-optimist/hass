@@ -4,4 +4,20 @@ sensor:
     name: Steigung Temp. EZ
     unit_time: h
     time_window: "02:30:00"
-  
+
+template:
+  - sensor:
+      - name: helper_heating_ez_steigung_mit_faktor_und_limit
+        unit_of_measurement: "K/h"
+        state: >
+          {% set multipicator = 6 %}
+          {% set limit_upper = 1.0 %}
+          {% set limit_lower = -1.0 %}
+          {% set factor = -1*multipicator*(states('sensor.steigung_temp_ez_median') | float(0)) %}
+          {% if factor > limit_upper %}
+            {{ limit_upper }}
+          {% elif factor < limit_lower %}
+            {{ limit_lower }}
+          {% else %}
+            {{ factor }}
+          {% endif %}
