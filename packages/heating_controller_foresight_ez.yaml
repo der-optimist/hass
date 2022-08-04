@@ -7,17 +7,17 @@ sensor:
 
 template:
   - sensor:
-      - name: helper_heating_ez_steigung_mit_faktor_und_limit
+      - name: helper_heating_ez_shift_kelvin_limited
         unit_of_measurement: "K/h"
         state: >
           {% set multipicator = 6 %}
           {% set limit_upper = 1.0 %}
           {% set limit_lower = -1.0 %}
-          {% set factor = -1*multipicator*(states('sensor.steigung_temp_ez_median') | float(0)) %}
-          {% if factor > limit_upper %}
+          {% set shift_kelvin = -1*multipicator*(states('sensor.steigung_temp_ez_median') | float(0)) %}
+          {% if shift_kelvin > limit_upper %}
             {{ limit_upper }}
-          {% elif factor < limit_lower %}
+          {% elif shift_kelvin < limit_lower %}
             {{ limit_lower }}
           {% else %}
-            {{ factor }}
+            {{ shift_kelvin }}
           {% endif %}
