@@ -25,7 +25,7 @@
 - name: Luftentfeuchter Speis
   humidifier: switch.kuhlschrank_keller
   target_sensor: sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_sht31
-  target_humidity: 57
+  target_humidity: 45
   dry_tolerance: 2
   wet_tolerance: 3
   device_class: "dehumidifier"
