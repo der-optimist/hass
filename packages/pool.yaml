@@ -107,6 +107,14 @@ input_boolean:
   pool_heizung_auch_bezahlstrom:
     name: Pool Heizung auch wenn Bezahlstrom
     icon: mdi:cash-multiple
+  chlorinator_sonderschicht_geplant:
+    name: Chlor. Sonderschicht 23 Uhr
+    icon: mdi:timer-sand
+
+input_button:
+  chlorinator_sonderschicht_jetzt:
+    name: Chlor. Sonderschicht jetzt
+    icon: mdi:arm-flex-outline
 
 sensor:
   - platform: history_stats
@@ -216,6 +224,58 @@ automation:
       - service: automation.turn_off
         target:
           entity_id: automation.pool_auto_starte_chlorinator
+  - id: '4756a050-7b11-42d4-b9e5-97c1994b28e6'
+    alias: Pool - Chlorinator Sonderschicht
+    description: ''
+    mode: queued
+    trigger:
+      - platform: time
+        at: "22:59:45"
+        id: check_sonderschicht_geplant
+      - platform: state
+        entity_id: input_button.chlorinator_sonderschicht_jetzt
+        id: sonderschicht_jetzt
+    condition:
+      condition: or
+      conditions:
+        - condition: trigger
+          id: sonderschicht_jetzt
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: check_sonderschicht_geplant
+            - condition: state
+              entity_id: input_boolean.chlorinator_sonderschicht_geplant
+              state: 'on'
+    action:
+      # Pumpe an
+      - service: switch.turn_on
+        target:
+          entity_id: switch.0xa4c1380e0ea5cb89
+      # Chlorinator aus => Restart
+      - service: switch.turn_off
+        target:
+          entity_id: switch.0xa4c1381ed732dbe2
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 15
+          milliseconds: 0
+      # Chlorinator an
+      - service: switch.turn_on
+        target:
+          entity_id: switch.0xa4c1381ed732dbe2
+      # Chlorinator morgen wieder zur normalen Zeit an
+      - service: automation.turn_on
+        target:
+          entity_id: automation.pool_auto_starte_chlorinator
+      # Reset geplante Sonderschicht
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.chlorinator_sonderschicht_geplant
+      - service: notify.telegram_jo
+        data:
+          message: 'Habe Chlorinator Sonderschicht gestartet'
   - id: 'd431661c-bc02-447b-bbda-8df1d72afedc'
     alias: Pool - Heizung vergessen
     description: ''
