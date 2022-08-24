@@ -203,7 +203,7 @@ automation:
     mode: queued
     trigger:
       - platform: time
-        at: "10:29:45"
+        at: "10:29:00"
         id: check_if_running
     condition: []
     action:
@@ -212,8 +212,8 @@ automation:
           entity_id: switch.0xa4c1381ed732dbe2
       - delay:
           hours: 0
-          minutes: 0
-          seconds: 15
+          minutes: 1
+          seconds: 0
           milliseconds: 0
       - service: switch.turn_on
         target:
@@ -230,7 +230,7 @@ automation:
     mode: queued
     trigger:
       - platform: time
-        at: "22:59:45"
+        at: "22:59:00"
         id: check_sonderschicht_geplant
       - platform: state
         entity_id: input_button.chlorinator_sonderschicht_jetzt
@@ -258,8 +258,8 @@ automation:
           entity_id: switch.0xa4c1381ed732dbe2
       - delay:
           hours: 0
-          minutes: 0
-          seconds: 15
+          minutes: 1
+          seconds: 0
           milliseconds: 0
       # Chlorinator an
       - service: switch.turn_on
