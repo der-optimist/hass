@@ -731,4 +731,3 @@
         group_function: last
         unit_of_measurement: 'K/h'
         value_template: '{{ ((states("sensor.temp_esszimmer_pm") | float(0)) - value) / 2 }}'
-        scan_interval: 300
