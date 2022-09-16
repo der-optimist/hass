@@ -723,6 +723,7 @@
 # --------------------------------
 #
   - platform: influxdb
+    scan_interval: 300
     queries:
       - name: heating_controller_foresight_helper_ez_derivative_120m
         measurement: '"autogen"."sensor.temp_esszimmer_pm"'
