@@ -1473,11 +1473,11 @@
       id: turn_on
     - platform: numeric_state
       entity_id: sensor.pixel_3a_ma_akkustand
-      above: 89
+      above: 94
       id: charging_done
     - platform: numeric_state
       entity_id: sensor.pixel_3a_ma_akkustand
-      below: 85
+      below: 90
       id: charging_needed
   condition: []
   action:
@@ -1523,11 +1523,11 @@
       id: turn_on
     - platform: numeric_state
       entity_id: sensor.pixel_3a_jochen_akkustand
-      above: 89
+      above: 94
       id: charging_done
     - platform: numeric_state
       entity_id: sensor.pixel_3a_jochen_akkustand
-      below: 85
+      below: 90
       id: charging_needed
   condition: []
   action:
