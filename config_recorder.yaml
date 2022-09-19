@@ -1,4 +1,4 @@
-db_url: !secret maria_db_url
+#db_url: !secret maria_db_url
 exclude:
   entities:
     - sensor.time
