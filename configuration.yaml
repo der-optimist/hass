@@ -94,6 +94,11 @@ influxdb: !include influxdb.yaml
 
 input_boolean: !include input_boolean.yaml
 input_button: !include input_button.yaml
+input_datetime:
+  ha_last_restart:
+    name: Last Restart of HA
+    has_date: true
+    has_time: true
 input_number: !include input_number.yaml
 input_text: !include input_text.yaml
 

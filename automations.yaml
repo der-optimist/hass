@@ -2516,3 +2516,21 @@
         - service: notify.telegram_jo
           data:
             message: "{{ message }}"
+#
+###############################################
+#####       HA Restart Zeitstempel        #####
+###############################################
+- id: 'ddc0acdf-7f6c-408b-8bde-6e9d8b88bed2'
+  alias: HA Restart Zeitstempel
+  description: ''
+  trigger:
+    - platform: homeassistant
+      event: start
+  condition: []
+  action:
+    - service: input_datetime.set_datetime
+      target:
+        entity_id: input_datetime.ha_last_restart
+      data:
+        timestamp: "{{ now() | as_timestamp }}"
+  mode: single

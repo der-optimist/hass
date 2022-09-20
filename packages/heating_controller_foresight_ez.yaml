@@ -133,3 +133,24 @@ template:
           {% else %}
             {{ 0 }}
           {% endif %}
+
+automation:
+  - id: '1d42201e-0fec-48ab-bde3-26592e179a06'
+    alias: Heizung Vorausschau EZ
+    description: ''
+    mode: queued
+    trigger:
+      - platform: time_pattern
+        minutes: "/5"
+        id: regularly
+    condition:
+      - "{{ ((state_attr('input_datetime.ha_last_restart', 'timestamp')|float(0)) - (now() | as_timestamp)) > 900 }}"
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: regularly
+          sequence:
+          - service: notify.telegram_jo
+            data:
+              message: "Heizung Vorausschau EZ"
