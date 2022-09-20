@@ -144,13 +144,32 @@ automation:
         minutes: "/5"
         id: regularly
     condition:
-      - "{{ ((state_attr('input_datetime.ha_last_restart', 'timestamp')|float(0)) - (now() | as_timestamp)) > 900 }}"
+      condition: or
+      conditions:
+        - "{{ ((now() | as_timestamp) - (state_attr('input_datetime.ha_last_restart', 'timestamp')|float(0))) > 600 }}"
+        - "{{ states('sensor.helper_heating_controller_foresight_ez_derivative_median') != 'unavailable' }}"
     action:
       - choose:
         - conditions:
           - condition: trigger
             id: regularly
+          - condition: state
+            entity_id: input_boolean.heating_controller_foresight_ez_activate
+            state: 'on'
           sequence:
-          - service: notify.telegram_jo
+          - service: knx.send
             data:
-              message: "Heizung Vorausschau EZ"
+              address: '10/0/21'
+              payload: "{{ states('sensor.helper_heating_controller_foresight_ez_shift_kelvin_bytes') | int(0) }}"
+        - conditions:
+          - condition: trigger
+            id: regularly
+          - condition: state
+            entity_id: input_boolean.heating_controller_foresight_ez_activate
+            state: 'off'
+          sequence:
+          - service: knx.send
+            data:
+              address: '10/0/21'
+              payload: 0
+        default: []
