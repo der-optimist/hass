@@ -12,16 +12,107 @@ sensor:
     name: Steigung Temp. EZ
     unit_time: h
     time_window: "02:30:00"
+  - platform: influxdb
+    scan_interval: 300
+    queries:
+      - name: helper_heating_controller_foresight_ez_derivative_030m
+        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+        where: 'time < now() - 30m'
+        field: value
+        group_function: last
+        unit_of_measurement: 'K/h'
+        value_template: >
+          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set past = (value | float(0)) %}
+          {% if current < 5 or past < 5 %}
+            {{ 'unavailable' }}
+          {% else %}
+            {{ (current - past) / 0.5 }}
+          {% endif %}
+      - name: helper_heating_controller_foresight_ez_derivative_060m
+        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+        where: 'time < now() - 60m'
+        field: value
+        group_function: last
+        unit_of_measurement: 'K/h'
+        value_template: >
+          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set past = (value | float(0)) %}
+          {% if current < 5 or past < 5 %}
+            {{ 'unavailable' }}
+          {% else %}
+            {{ (current - past) / 1.0 }}
+          {% endif %}
+      - name: helper_heating_controller_foresight_ez_derivative_090m
+        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+        where: 'time < now() - 90m'
+        field: value
+        group_function: last
+        unit_of_measurement: 'K/h'
+        value_template: >
+          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set past = (value | float(0)) %}
+          {% if current < 5 or past < 5 %}
+            {{ 'unavailable' }}
+          {% else %}
+            {{ (current - past) / 1.5 }}
+          {% endif %}
+      - name: helper_heating_controller_foresight_ez_derivative_120m
+        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+        where: 'time < now() - 120m'
+        field: value
+        group_function: last
+        unit_of_measurement: 'K/h'
+        value_template: >
+          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set past = (value | float(0)) %}
+          {% if current < 5 or past < 5 %}
+            {{ 'unavailable' }}
+          {% else %}
+            {{ (current - past) / 2.0 }}
+          {% endif %}
+      - name: helper_heating_controller_foresight_ez_derivative_150m
+        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+        where: 'time < now() - 150m'
+        field: value
+        group_function: last
+        unit_of_measurement: 'K/h'
+        value_template: >
+          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set past = (value | float(0)) %}
+          {% if current < 5 or past < 5 %}
+            {{ 'unavailable' }}
+          {% else %}
+            {{ (current - past) / 2.5 }}
+          {% endif %}
 
 template:
   - sensor:
-      - name: helper_heating_ez_shift_kelvin_limited
+      - name: helper_heating_controller_foresight_ez_derivative_median
+        unit_of_measurement: "K"
+        state: >
+          {% set der_1 = states("sensor.helper_heating_controller_foresight_ez_derivative_030m") %}
+          {% set der_2 = states("sensor.helper_heating_controller_foresight_ez_derivative_060m") %}
+          {% set der_3 = states("sensor.helper_heating_controller_foresight_ez_derivative_090m") %}
+          {% set der_4 = states("sensor.helper_heating_controller_foresight_ez_derivative_120m") %}
+          {% set der_5 = states("sensor.helper_heating_controller_foresight_ez_derivative_150m") %}
+          {% if der_1 in ['unavailable', 'unknown', 'none']
+            or der_2 in ['unavailable', 'unknown', 'none']
+            or der_3 in ['unavailable', 'unknown', 'none']
+            or der_4 in ['unavailable', 'unknown', 'none']
+            or der_5 in ['unavailable', 'unknown', 'none'] %}
+            {{ 'unavailable' }}
+          {% else %}
+            {% set der_list_sort = ([der_1, der_2, der_3, der_4, der_5] | sort) %}
+            {{ der_list_sort[2] }}
+          {% endif %}
+      - name: helper_heating_controller_foresight_ez_shift_kelvin_limited
         unit_of_measurement: "K"
         state: >
           {% set multipicator = 6 %}
           {% set limit_upper = 1.0 %}
           {% set limit_lower = -1.0 %}
-          {% set shift_kelvin = -1*multipicator*(states('sensor.steigung_temp_ez_median') | float(0)) %}
+          {% set shift_kelvin = -1*multipicator*(states('sensor.helper_heating_controller_foresight_ez_derivative_median') | float(0)) %}
           {% if shift_kelvin > limit_upper %}
             {{ limit_upper }}
           {% elif shift_kelvin < limit_lower %}
@@ -29,12 +120,12 @@ template:
           {% else %}
             {{ shift_kelvin }}
           {% endif %}
-      - name: helper_heating_ez_shift_kelvin_bytes
+      - name: helper_heating_controller_foresight_ez_shift_kelvin_bytes
         unit_of_measurement: "bytes"
         # shift_value is the value, that is set in the heating actuator via ETS
         state: >
           {% set shift_value = 0.1 %}
-          {% set shift_points = ((states('sensor.helper_heating_ez_shift_kelvin_limited') | float(0)) / shift_value) | round(0) %}
+          {% set shift_points = ((states('sensor.helper_heating_controller_foresight_ez_shift_kelvin_limited') | float(0)) / shift_value) | round(0) %}
           {% if shift_points > 0 %}
             {{ shift_points }}
           {% elif shift_points < 0 %}
