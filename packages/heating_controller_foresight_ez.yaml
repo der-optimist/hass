@@ -160,7 +160,7 @@ automation:
           - service: knx.send
             data:
               address: '10/0/21'
-              payload: "{{ states('sensor.helper_heating_controller_foresight_ez_shift_kelvin_bytes') | int(0) }}"
+              payload: "{{ [(states('sensor.helper_heating_controller_foresight_ez_shift_kelvin_bytes') | int(0))] }}"
         - conditions:
           - condition: trigger
             id: regularly
