@@ -55,16 +55,16 @@ cards:
           height: 1px
           background-color: "#ff9c27"
           opacity: 0.25
-      - entity: input_boolean.korrektur_heizung_ez
-      - entity: input_boolean.korrektur_heizung_sz
-      - entity: input_boolean.korrektur_heizung_bad_eg
-      - entity: input_boolean.korrektur_heizung_wf_wc
-      - entity: input_boolean.korrektur_heizung_la
-      - entity: input_boolean.korrektur_heizung_nz
-      - entity: input_boolean.korrektur_heizung_le
-      - entity: input_boolean.korrektur_heizung_gz
-      - entity: input_boolean.korrektur_heizung_flur_og
-      - entity: input_boolean.korrektur_heizung_bad_og
+      - entity: input_boolean.heating_controller_foresight_ez_activate
+      - entity: input_boolean.heating_controller_foresight_sz_activate
+      - entity: input_boolean.heating_controller_foresight_bad_eg_activate
+      - entity: input_boolean.heating_controller_foresight_wf_wc_activate
+      - entity: input_boolean.heating_controller_foresight_la_activate
+      - entity: input_boolean.heating_controller_foresight_az_activate
+      - entity: input_boolean.heating_controller_foresight_le_activate
+      - entity: input_boolean.heating_controller_foresight_gz_activate
+      - entity: input_boolean.heating_controller_foresight_flur_og_activate
+      - entity: input_boolean.heating_controller_foresight_bad_og_activate
       - type: divider
         style: 
           height: 1px
