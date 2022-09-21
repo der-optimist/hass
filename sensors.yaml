@@ -602,7 +602,7 @@
     name: Stellwert Heizung Zeitverlauf Mean
     entity_id: sensor.stellwert_heizung_aktueller_maxwert
     sampling_size: 2000
-    state_characteristic: mean
+    state_characteristic: average_step
     max_age:
       minutes: 30
   - platform: statistics
