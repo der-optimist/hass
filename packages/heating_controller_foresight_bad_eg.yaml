@@ -1,76 +1,76 @@
 input_boolean:
-  heating_controller_foresight_ez_activate:
-    name: Heizungskorrektur EZ (Vorausschau)
+  heating_controller_foresight_bad_eg_activate:
+    name: Heizungskorrektur Bad EG (Vorausschau)
     icon: mdi:auto-fix
 
 sensor:
   - platform: influxdb
     scan_interval: 300
     queries:
-      - name: helper_heating_controller_foresight_ez_derivative_030m
-        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+      - name: helper_heating_controller_foresight_bad_eg_derivative_030m
+        measurement: '"autogen"."sensor.temp_bad_eg_pm"'
         where: 'time < now() - 30m'
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
         value_template: >
-          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set current = (states("sensor.temp_bad_eg_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
           {% if current < 5 or past < 5 %}
             {{ 'unavailable' }}
           {% else %}
             {{ (current - past) / 0.5 }}
           {% endif %}
-      - name: helper_heating_controller_foresight_ez_derivative_060m
-        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+      - name: helper_heating_controller_foresight_bad_eg_derivative_060m
+        measurement: '"autogen"."sensor.temp_bad_eg_pm"'
         where: 'time < now() - 60m'
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
         value_template: >
-          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set current = (states("sensor.temp_bad_eg_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
           {% if current < 5 or past < 5 %}
             {{ 'unavailable' }}
           {% else %}
             {{ (current - past) / 1.0 }}
           {% endif %}
-      - name: helper_heating_controller_foresight_ez_derivative_090m
-        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+      - name: helper_heating_controller_foresight_bad_eg_derivative_090m
+        measurement: '"autogen"."sensor.temp_bad_eg_pm"'
         where: 'time < now() - 90m'
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
         value_template: >
-          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set current = (states("sensor.temp_bad_eg_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
           {% if current < 5 or past < 5 %}
             {{ 'unavailable' }}
           {% else %}
             {{ (current - past) / 1.5 }}
           {% endif %}
-      - name: helper_heating_controller_foresight_ez_derivative_120m
-        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+      - name: helper_heating_controller_foresight_bad_eg_derivative_120m
+        measurement: '"autogen"."sensor.temp_bad_eg_pm"'
         where: 'time < now() - 120m'
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
         value_template: >
-          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set current = (states("sensor.temp_bad_eg_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
           {% if current < 5 or past < 5 %}
             {{ 'unavailable' }}
           {% else %}
             {{ (current - past) / 2.0 }}
           {% endif %}
-      - name: helper_heating_controller_foresight_ez_derivative_150m
-        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+      - name: helper_heating_controller_foresight_bad_eg_derivative_150m
+        measurement: '"autogen"."sensor.temp_bad_eg_pm"'
         where: 'time < now() - 150m'
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
         value_template: >
-          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set current = (states("sensor.temp_bad_eg_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
           {% if current < 5 or past < 5 %}
             {{ 'unavailable' }}
@@ -80,14 +80,14 @@ sensor:
 
 template:
   - sensor:
-      - name: helper_heating_controller_foresight_ez_derivative_median
+      - name: helper_heating_controller_foresight_bad_eg_derivative_median
         unit_of_measurement: "K/h"
         state: >
-          {% set der_1 = states("sensor.helper_heating_controller_foresight_ez_derivative_030m") %}
-          {% set der_2 = states("sensor.helper_heating_controller_foresight_ez_derivative_060m") %}
-          {% set der_3 = states("sensor.helper_heating_controller_foresight_ez_derivative_090m") %}
-          {% set der_4 = states("sensor.helper_heating_controller_foresight_ez_derivative_120m") %}
-          {% set der_5 = states("sensor.helper_heating_controller_foresight_ez_derivative_150m") %}
+          {% set der_1 = states("sensor.helper_heating_controller_foresight_bad_eg_derivative_030m") %}
+          {% set der_2 = states("sensor.helper_heating_controller_foresight_bad_eg_derivative_060m") %}
+          {% set der_3 = states("sensor.helper_heating_controller_foresight_bad_eg_derivative_090m") %}
+          {% set der_4 = states("sensor.helper_heating_controller_foresight_bad_eg_derivative_120m") %}
+          {% set der_5 = states("sensor.helper_heating_controller_foresight_bad_eg_derivative_150m") %}
           {% if der_1 in ['unavailable', 'unknown', 'none']
             or der_2 in ['unavailable', 'unknown', 'none']
             or der_3 in ['unavailable', 'unknown', 'none']
@@ -98,13 +98,13 @@ template:
             {% set der_list_sort = ([der_1, der_2, der_3, der_4, der_5] | sort) %}
             {{ der_list_sort[2] }}
           {% endif %}
-      - name: helper_heating_controller_foresight_ez_shift_kelvin_limited
+      - name: helper_heating_controller_foresight_bad_eg_shift_kelvin_limited
         unit_of_measurement: "K"
         state: >
-          {% set multipicator = 5 %}
+          {% set multipicator = 6 %}
           {% set limit_upper = 1.0 %}
           {% set limit_lower = -1.0 %}
-          {% set shift_kelvin = -1*multipicator*(states('sensor.helper_heating_controller_foresight_ez_derivative_median') | float(0)) %}
+          {% set shift_kelvin = -1*multipicator*(states('sensor.helper_heating_controller_foresight_bad_eg_derivative_median') | float(0)) %}
           {% if shift_kelvin > limit_upper %}
             {{ limit_upper }}
           {% elif shift_kelvin < limit_lower %}
@@ -112,12 +112,12 @@ template:
           {% else %}
             {{ shift_kelvin }}
           {% endif %}
-      - name: helper_heating_controller_foresight_ez_shift_kelvin_bytes
+      - name: helper_heating_controller_foresight_bad_eg_shift_kelvin_bytes
         unit_of_measurement: "bytes"
         # shift_value is the value, that is set in the heating actuator via ETS
         state: >
           {% set shift_value = 0.1 %}
-          {% set shift_points = ((states('sensor.helper_heating_controller_foresight_ez_shift_kelvin_limited') | float(0)) / shift_value) | round(0) %}
+          {% set shift_points = ((states('sensor.helper_heating_controller_foresight_bad_eg_shift_kelvin_limited') | float(0)) / shift_value) | round(0) %}
           {% if shift_points > 0 %}
             {{ shift_points }}
           {% elif shift_points < 0 %}
@@ -127,8 +127,8 @@ template:
           {% endif %}
 
 automation:
-  - id: '1d42201e-0fec-48ab-bde3-26592e179a06'
-    alias: Heizung Vorausschau EZ
+  - id: 'ef8d4eaa-c8ee-42fa-8050-2a72a7957fee'
+    alias: Heizung Vorausschau Bad EG
     description: ''
     mode: queued
     trigger:
@@ -139,29 +139,29 @@ automation:
       condition: or
       conditions:
         - "{{ ((now() | as_timestamp) - (state_attr('input_datetime.ha_last_restart', 'timestamp')|float(0))) > 600 }}"
-        - "{{ states('sensor.helper_heating_controller_foresight_ez_derivative_median') != 'unavailable' }}"
+        - "{{ states('sensor.helper_heating_controller_foresight_bad_eg_derivative_median') != 'unavailable' }}"
     action:
       - choose:
         - conditions:
           - condition: trigger
             id: regularly
           - condition: state
-            entity_id: input_boolean.heating_controller_foresight_ez_activate
+            entity_id: input_boolean.heating_controller_foresight_bad_eg_activate
             state: 'on'
           sequence:
           - service: knx.send
             data:
-              address: '10/0/21'
-              payload: "{{ [(states('sensor.helper_heating_controller_foresight_ez_shift_kelvin_bytes') | int(0))] }}"
+              address: '10/0/81'
+              payload: "{{ [(states('sensor.helper_heating_controller_foresight_bad_eg_shift_kelvin_bytes') | int(0))] }}"
         - conditions:
           - condition: trigger
             id: regularly
           - condition: state
-            entity_id: input_boolean.heating_controller_foresight_ez_activate
+            entity_id: input_boolean.heating_controller_foresight_bad_eg_activate
             state: 'off'
           sequence:
           - service: knx.send
             data:
-              address: '10/0/21'
+              address: '10/0/81'
               payload: 0
         default: []
