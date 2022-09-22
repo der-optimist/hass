@@ -1,0 +1,167 @@
+input_boolean:
+  heating_controller_foresight_wz_activate:
+    name: Heizungskorrektur WZ (Vorausschau)
+    icon: mdi:auto-fix
+
+sensor:
+  - platform: influxdb
+    scan_interval: 300
+    queries:
+      - name: helper_heating_controller_foresight_wz_derivative_030m
+        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+        where: 'time < now() - 30m'
+        field: value
+        group_function: last
+        unit_of_measurement: 'K/h'
+        value_template: >
+          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set past = (value | float(0)) %}
+          {% if current < 5 or past < 5 %}
+            {{ 'unavailable' }}
+          {% else %}
+            {{ (current - past) / 0.5 }}
+          {% endif %}
+      - name: helper_heating_controller_foresight_wz_derivative_060m
+        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+        where: 'time < now() - 60m'
+        field: value
+        group_function: last
+        unit_of_measurement: 'K/h'
+        value_template: >
+          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set past = (value | float(0)) %}
+          {% if current < 5 or past < 5 %}
+            {{ 'unavailable' }}
+          {% else %}
+            {{ (current - past) / 1.0 }}
+          {% endif %}
+      - name: helper_heating_controller_foresight_wz_derivative_090m
+        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+        where: 'time < now() - 90m'
+        field: value
+        group_function: last
+        unit_of_measurement: 'K/h'
+        value_template: >
+          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set past = (value | float(0)) %}
+          {% if current < 5 or past < 5 %}
+            {{ 'unavailable' }}
+          {% else %}
+            {{ (current - past) / 1.5 }}
+          {% endif %}
+      - name: helper_heating_controller_foresight_wz_derivative_120m
+        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+        where: 'time < now() - 120m'
+        field: value
+        group_function: last
+        unit_of_measurement: 'K/h'
+        value_template: >
+          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set past = (value | float(0)) %}
+          {% if current < 5 or past < 5 %}
+            {{ 'unavailable' }}
+          {% else %}
+            {{ (current - past) / 2.0 }}
+          {% endif %}
+      - name: helper_heating_controller_foresight_wz_derivative_150m
+        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+        where: 'time < now() - 150m'
+        field: value
+        group_function: last
+        unit_of_measurement: 'K/h'
+        value_template: >
+          {% set current = (states("sensor.temp_esszimmer_pm") | float(0)) %}
+          {% set past = (value | float(0)) %}
+          {% if current < 5 or past < 5 %}
+            {{ 'unavailable' }}
+          {% else %}
+            {{ (current - past) / 2.5 }}
+          {% endif %}
+
+template:
+  - sensor:
+      - name: helper_heating_controller_foresight_wz_derivative_median
+        unit_of_measurement: "K/h"
+        state: >
+          {% set der_1 = states("sensor.helper_heating_controller_foresight_wz_derivative_030m") %}
+          {% set der_2 = states("sensor.helper_heating_controller_foresight_wz_derivative_060m") %}
+          {% set der_3 = states("sensor.helper_heating_controller_foresight_wz_derivative_090m") %}
+          {% set der_4 = states("sensor.helper_heating_controller_foresight_wz_derivative_120m") %}
+          {% set der_5 = states("sensor.helper_heating_controller_foresight_wz_derivative_150m") %}
+          {% if der_1 in ['unavailable', 'unknown', 'none']
+            or der_2 in ['unavailable', 'unknown', 'none']
+            or der_3 in ['unavailable', 'unknown', 'none']
+            or der_4 in ['unavailable', 'unknown', 'none']
+            or der_5 in ['unavailable', 'unknown', 'none'] %}
+            {{ 'unavailable' }}
+          {% else %}
+            {% set der_list_sort = ([der_1, der_2, der_3, der_4, der_5] | sort) %}
+            {{ der_list_sort[2] }}
+          {% endif %}
+      - name: helper_heating_controller_foresight_wz_shift_kelvin_limited
+        unit_of_measurement: "K"
+        state: >
+          {% set multipicator = 5 %}
+          {% set limit_upper = 1.0 %}
+          {% set limit_lower = -1.0 %}
+          {% set shift_kelvin = -1*multipicator*(states('sensor.helper_heating_controller_foresight_wz_derivative_median') | float(0)) %}
+          {% if shift_kelvin > limit_upper %}
+            {{ limit_upper }}
+          {% elif shift_kelvin < limit_lower %}
+            {{ limit_lower }}
+          {% else %}
+            {{ shift_kelvin }}
+          {% endif %}
+      - name: helper_heating_controller_foresight_wz_shift_kelvin_bytes
+        unit_of_measurement: "bytes"
+        # shift_value is the value, that is set in the heating actuator via ETS
+        state: >
+          {% set shift_value = 0.1 %}
+          {% set shift_points = ((states('sensor.helper_heating_controller_foresight_wz_shift_kelvin_limited') | float(0)) / shift_value) | round(0) %}
+          {% if shift_points > 0 %}
+            {{ shift_points }}
+          {% elif shift_points < 0 %}
+            {{ 256 + shift_points }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
+
+automation:
+  - id: '1d42201e-0fec-48ab-bde3-26592e179a06'
+    alias: Heizung Vorausschau WZ
+    description: ''
+    mode: queued
+    trigger:
+      - platform: time_pattern
+        minutes: "/5"
+        id: regularly
+    condition:
+      condition: or
+      conditions:
+        - "{{ ((now() | as_timestamp) - (state_attr('input_datetime.ha_last_restart', 'timestamp')|float(0))) > 600 }}"
+        - "{{ states('sensor.helper_heating_controller_foresight_wz_derivative_median') != 'unavailable' }}"
+    action:
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: regularly
+          - condition: state
+            entity_id: input_boolean.heating_controller_foresight_wz_activate
+            state: 'on'
+          sequence:
+          - service: knx.send
+            data:
+              address: '10/0/41'
+              payload: "{{ [(states('sensor.helper_heating_controller_foresight_wz_shift_kelvin_bytes') | int(0))] }}"
+        - conditions:
+          - condition: trigger
+            id: regularly
+          - condition: state
+            entity_id: input_boolean.heating_controller_foresight_wz_activate
+            state: 'off'
+          sequence:
+          - service: knx.send
+            data:
+              address: '10/0/41'
+              payload: 0
+        default: []
