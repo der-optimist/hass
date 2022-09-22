@@ -103,7 +103,7 @@ template:
         state: >
           {% set multipicator = 4 %}
           {% set limit_upper = 0.9 %}
-          {% set limit_lower = -0.4 %}
+          {% set limit_lower = -0.5 %}
           {% set shift_kelvin = -1*multipicator*(states('sensor.helper_heating_controller_foresight_bad_og_derivative_median') | float(0)) %}
           {% if shift_kelvin > limit_upper %}
             {{ limit_upper }}
