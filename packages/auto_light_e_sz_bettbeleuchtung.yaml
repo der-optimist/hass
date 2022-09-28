@@ -67,15 +67,21 @@ template:
       - name: helper_light_keeping_off_entities_e_sz_bettbeleuchtung
         state: >
           {% set h = now().hour | int(0) %}
-          {% if states('switch.luften_sz') in ['unavailable', 'unknown', 'none'] %}
+          {% if states('switch.luften_sz') in ['unavailable', 'unknown', 'none']
+             or states('switch.bleib_so_sz_licht') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_off_entities_e_sz_bettbeleuchtung') }}
           {% else %}
             {{ is_state('switch.luften_sz', 'on') 
+               or is_state('switch.bleib_so_sz_licht', 'on') 
                or (h >= 9 and h <= 16) }}
           {% endif %}
       - name: helper_light_keeping_on_entities_e_sz_bettbeleuchtung
         state: >
-          {{ false }}
+          {% if states('switch.bleib_so_sz_licht') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_on_entities_e_sz_bettbeleuchtung') }}
+          {% else %}
+            {{ is_state('switch.bleib_so_sz_licht', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_fix_entities_e_sz_bettbeleuchtung
         state: >
           {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']

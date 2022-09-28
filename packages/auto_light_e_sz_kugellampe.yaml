@@ -73,18 +73,24 @@ template:
           {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
              or states('binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo') in ['unavailable', 'unknown', 'none']
              or states('switch.knutschen') in ['unavailable', 'unknown', 'none']
+             or states('switch.bleib_so_sz_licht') in ['unavailable', 'unknown', 'none']
              or states('switch.luften_sz') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_off_entities_e_sz_kugellampe') }}
           {% else %}
             {{ is_state('switch.majo_schlafen', 'on')
               or is_state('binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo', 'on')
               or is_state('switch.knutschen', 'on')
+              or is_state('switch.bleib_so_sz_licht', 'on')
               or (h >= 3 and h <= 15)
               or is_state('switch.luften_sz', 'on') }}
           {% endif %}
       - name: helper_light_keeping_on_entities_e_sz_kugellampe
         state: >
-          {{ false }}
+          {% if states('switch.bleib_so_sz_licht') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_on_entities_e_sz_kugellampe') }}
+          {% else %}
+            {{ is_state('switch.bleib_so_sz_licht', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_fix_entities_e_sz_kugellampe
         state: >
           {{ false }}
