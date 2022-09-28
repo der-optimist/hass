@@ -567,6 +567,53 @@
                   data:
                     message: Licht SZ wieder automatisch
               default: []
+          - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.data[0] == 27 }}'
+            sequence:
+            - choose:
+              - conditions:
+                - condition: state
+                  entity_id: switch.bleib_so_wz_licht
+                  state: 'off'
+                sequence:
+                - service: light.turn_off
+                  target:
+                    entity_id: light.panels_wohnzimmer
+                - service: light.turn_off
+                  target:
+                    entity_id: light.schrankbeleuchtung_wohnzimmer
+                - service: light.turn_off
+                  target:
+                    entity_id: light.0x00158d000502f589
+                - service: switch.turn_on
+                  target:
+                    entity_id: switch.bleib_so_wz_licht
+                - delay: 2
+                - service: input_boolean.turn_off
+                  target:
+                    entity_id: input_boolean.helper_light_manually_switched_off_e_wz_panels
+                - service: input_boolean.turn_off
+                  target:
+                    entity_id: input_boolean.helper_light_manually_switched_off_e_wz_schraenke
+                - service: input_boolean.turn_off
+                  target:
+                    entity_id: input_boolean.helper_light_manually_switched_off_e_wz_stehlampe
+                - service: notify.telegram_jo
+                  data:
+                    message: Licht WZ aus ohne Schlafen
+              - conditions:
+                - condition: state
+                  entity_id: switch.bleib_so_wz_licht
+                  state: 'on'
+                sequence:
+                - service: switch.turn_off
+                  target:
+                    entity_id: switch.bleib_so_wz_licht
+                - service: notify.telegram_jo
+                  data:
+                    message: Licht WZ wieder automatisch
+              default: []
           default: []
       - conditions:
         - condition: trigger
