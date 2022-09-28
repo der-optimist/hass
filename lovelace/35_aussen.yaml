@@ -47,7 +47,21 @@ cards:
       name: Leuchtwürfel Ecke klein
     - entity: light.0x00158d000501c37c
       name: Leuchtwürfel Ecke groß
-#    - entity: light.wuerfel_gross_ecke
-#      name: Würfelhocker groß Ecke
-#    - entity: light.wuerfel_klein
-#      name: Würfelhocker klein
+    - type: section
+      label: Markisen
+    - type: custom:slider-entity-row
+      entity: cover.markise_terrasse_oben
+      name: Terrase - Oben
+    - type: custom:slider-entity-row
+      entity: cover.markise_terrasse_senkrecht
+      name: Terrase - Senkrecht
+    - type: custom:slider-entity-row
+      entity: cover.markise_feuerstelle_oben
+      name: Feuerstelle - Oben
+    - type: custom:slider-entity-row
+      entity: cover.markise_feuerstelle_senkrecht
+      name: Feuerstelle - Senkrecht
+    - entity: scene.alle_markisen_einfahren
+      name: Alle hoch
+    - entity: scene.alle_markisen_ausfahren
+      name: Alle runter
