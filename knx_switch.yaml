@@ -87,6 +87,9 @@
   - name: 'Bleib so, La-Licht!'
     address: '15/0/69'
     state_address: '15/0/70'
+  - name: 'Bleib so, SZ-Licht!'
+    address: '15/0/85'
+    state_address: '15/0/86'
 
 # Fenster
   - name: 'Lüften alles'
