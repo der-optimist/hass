@@ -518,6 +518,55 @@
                   data:
                     message: Licht Le wieder automatisch
               default: []
+          - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.data[0] == 26 }}'
+            sequence:
+            - choose:
+              - conditions:
+                - condition: state
+                  entity_id: switch.bleib_so_sz_licht
+                  state: 'off'
+                sequence:
+                - service: light.turn_off
+                  target:
+                    entity_id: light.panels_schlafzimmer
+                - service: light.turn_off
+                  target:
+                    entity_id: light.0x680ae2fffee9df98
+                - service: light.turn_on
+                  target:
+                    entity_id: light.bettbeleuchtung
+                  data:
+                    brightness_pct: 3
+                - service: switch.turn_on
+                  target:
+                    entity_id: switch.bleib_so_sz_licht
+                - delay: 2
+                - service: input_boolean.turn_off
+                  target:
+                    entity_id: input_boolean.helper_light_manually_switched_off_e_sz_bettbeleuchtung
+                - service: input_boolean.turn_off
+                  target:
+                    entity_id: input_boolean.helper_light_manually_switched_off_e_sz_kugellampe
+                - service: input_boolean.turn_off
+                  target:
+                    entity_id: input_boolean.helper_light_manually_switched_off_e_sz_panels
+                - service: notify.telegram_jo
+                  data:
+                    message: Licht SZ aus ohne Schlafen
+              - conditions:
+                - condition: state
+                  entity_id: switch.bleib_so_sz_licht
+                  state: 'on'
+                sequence:
+                - service: switch.turn_off
+                  target:
+                    entity_id: switch.bleib_so_sz_licht
+                - service: notify.telegram_jo
+                  data:
+                    message: Licht SZ wieder automatisch
+              default: []
           default: []
       - conditions:
         - condition: trigger
