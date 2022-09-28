@@ -20,6 +20,8 @@ cards:
       entity: light.0x680ae2fffee9df98
       name: Kugellampe
       toggle: true
+    - entity: switch.bleib_so_sz_licht
+      name: Bleib so, Licht!
     - type: section
       label: Schläft jemand?
     - entity: switch.majo_schlafen
