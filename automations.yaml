@@ -468,6 +468,56 @@
                 - service: notify.telegram_jo
                   data:
                     message: Licht La wieder automatisch
+              default: []
+          - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.data[0] == 25 }}'
+            sequence:
+            - choose:
+              - conditions:
+                - condition: state
+                  entity_id: switch.bleib_so_le_licht
+                  state: 'off'
+                sequence:
+                - service: light.turn_off
+                  target:
+                    entity_id: light.panels_le
+                - service: light.turn_off
+                  target:
+                    entity_id: light.0x680ae2fffeeb9221
+                - service: light.turn_on
+                  target:
+                    entity_id: light.wandwurfel_le
+                  data:
+                    brightness_pct: 2
+                - service: switch.turn_on
+                  target:
+                    entity_id: switch.bleib_so_le_licht
+                - delay: 2
+                - service: input_boolean.turn_off
+                  target:
+                    entity_id: input_boolean.helper_light_manually_switched_off_o_le_panels
+                - service: input_boolean.turn_off
+                  target:
+                    entity_id: input_boolean.helper_light_manually_switched_off_o_le_stehlampe
+                - service: input_boolean.turn_off
+                  target:
+                    entity_id: input_boolean.helper_light_manually_switched_off_o_le_wandwuerfel
+                - service: notify.telegram_jo
+                  data:
+                    message: Licht Le aus ohne Schlafen
+              - conditions:
+                - condition: state
+                  entity_id: switch.bleib_so_le_licht
+                  state: 'on'
+                sequence:
+                - service: switch.turn_off
+                  target:
+                    entity_id: switch.bleib_so_le_licht
+                - service: notify.telegram_jo
+                  data:
+                    message: Licht Le wieder automatisch
+              default: []
           default: []
       - conditions:
         - condition: trigger
