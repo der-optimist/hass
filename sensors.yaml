@@ -715,3 +715,19 @@
 #
   - platform: dwd_weather_warnings
     region_name: !secret dwd_warncell_id_int
+#
+# --------------------------------
+# --                            --
+# --          InfluxDB          --
+# --                            --
+# --------------------------------
+#
+  - platform: influxdb
+    queries:
+      - name: heating_controller_foresight_helper_ez_derivative_120m
+        where: '< now() - 120m'
+        measurement: '"autogen"."sensor.temp_esszimmer_pm"'
+        field: value
+        group_function: last
+        unit_of_measurement: °C
+        value_template: '{{ (value - (states("sensor.temp_esszimmer_pm") | float(0))) / 2 }}'
