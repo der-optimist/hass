@@ -101,9 +101,9 @@ template:
       - name: helper_heating_controller_foresight_bad_eg_shift_kelvin_limited
         unit_of_measurement: "K"
         state: >
-          {% set multipicator = 6 %}
-          {% set limit_upper = 1.0 %}
-          {% set limit_lower = -1.0 %}
+          {% set multipicator = 4 %}
+          {% set limit_upper = 0.8 %}
+          {% set limit_lower = -0.8 %}
           {% set shift_kelvin = -1*multipicator*(states('sensor.helper_heating_controller_foresight_bad_eg_derivative_median') | float(0)) %}
           {% if shift_kelvin > limit_upper %}
             {{ limit_upper }}
