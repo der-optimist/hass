@@ -56,6 +56,7 @@ cards:
           background-color: "#ff9c27"
           opacity: 0.25
       - entity: input_boolean.heating_controller_foresight_ez_activate
+      - entity: input_boolean.heating_controller_foresight_wz_activate
       - entity: input_boolean.heating_controller_foresight_sz_activate
       - entity: input_boolean.heating_controller_foresight_bad_eg_activate
       - entity: input_boolean.heating_controller_foresight_wf_wc_activate
