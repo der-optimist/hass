@@ -28,6 +28,7 @@ include:
     - binary_sensor.template_water_heater_pv_boost_condition
   entity_globs:
     - sensor.temp_*
+    - sensor.onewire*
     - sensor.el_leistung*
     - sensor.kosten*
     - sensor.stromz*
