@@ -133,6 +133,16 @@ expose:
   attribute: "brightness"
   default: 0
   address: "1/6/84"
+# Kugellampe SZ - Anzeige auf Taster
+- type: "binary"
+  entity_id: "light.0x680ae2fffee9df98"
+  address: "1/6/201"
+  default: false
+- type: "percentU8"
+  entity_id: "light.0x680ae2fffee9df98"
+  attribute: "brightness"
+  default: 0
+  address: "1/6/204"
 # Stehlampe Le - Anzeige auf Taster
 - type: "binary"
   entity_id: "light.0x680ae2fffeeb9221"
