@@ -108,7 +108,7 @@ template:
               {{ state_attr('binary_sensor.helper_light_keeping_fix_entities_o_le_wandwuerfel', 'brightness') }}
             {% else %}
               {% if is_state('switch.le_schlaft', 'on') %}
-                {{ int(2) }}
+                {{ int(4) }}
               {% else %}
                 {{ int(0) }}
               {% endif %}
