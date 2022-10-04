@@ -38,6 +38,12 @@
     after: '15:00'
     before: '22:00'
 
+# Weekday
+  - platform: workday
+    name: workday_today
+    country: DE
+    province: BW
+
 # --- Template ---
   - platform: template
     sensors:
