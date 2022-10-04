@@ -2743,6 +2743,9 @@
     - platform: time
       at: "06:00:05"
       id: monthly
+    - platform: time
+      at: "06:00:10"
+      id: yearly
   condition: []
   action:
     - choose:
@@ -2869,4 +2872,134 @@
               Pool: 
 
               {{ state_attr('sensor.stromzahler_powercalc_pool_monthly','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_pool_mit_pv_abrechnung_monthly','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_pool_abrechnung_letzter_monat') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_pool_abrechnung_letzter_monat', 'prozent') }}%)
+      - conditions:
+        - condition: trigger
+          id: yearly
+        - condition: template
+          value_template: >
+            {{ (now().day == 1) and (now().month == 1) }}
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: >-
+              Stromverbrauch letztes Kalenderjahr:
+
+              (ab Mai 22)
+
+              {{ state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_yearly','last_period') | float(0) | round(1) }} kWh, davon {{ state_attr('sensor.template_einsparung_verbrauch_gesamt_abrechnung_letztes_jahr', 'prozent') }} % PV
+
+              {{ '%.2f'%(state_attr('sensor.kosten_verbrauch_gesamt_mit_pv_abrechnung_yearly','last_period') | float(0)) }} € (und {{ '%.2f'%(states('sensor.template_einsparung_verbrauch_gesamt_abrechnung_letztes_jahr') | float(0)) }} € gespart)
+
+
+              Bekannte Verbr.: {{ state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_yearly','last_period') | float(0) | round(1) }} kWh ({{ ((state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_yearly','last_period') | float(0)) / (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_yearly','last_period') | float(0)) * 100) | round(0) }} %)
+
+
+              Wärmepumpe: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_warmepumpe_gesamt_yearly','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_yearly','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_letztes_jahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_letztes_jahr', 'prozent') }}%)
+
+              Licht: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_alle_lichter_yearly','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_alle_lichter_mit_pv_abrechnung_yearly','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_alle_lichter_abrechnung_letztes_jahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_alle_lichter_abrechnung_letztes_jahr', 'prozent') }}%)
+
+              Küchengeräte (ohne KS): 
+
+              {{ state_attr('sensor.stromzahler_powercalc_kuchengerate_ohne_kuhlschrank_yearly','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung_yearly','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_kuchengerate_ohne_kuhlschrank_abrechnung_letztes_jahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_kuchengerate_ohne_kuhlschrank_abrechnung_letztes_jahr', 'prozent') }}%)
+
+              Kühlgeräte: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_kuhlgerate_yearly','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_kuhlgerate_mit_pv_abrechnung_yearly','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_kuhlgerate_abrechnung_letztes_jahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_kuhlgerate_abrechnung_letztes_jahr', 'prozent') }}%)
+
+              Multimedia: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_multimedia_yearly','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_multimedia_mit_pv_abrechnung_yearly','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_multimedia_abrechnung_letztes_jahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_multimedia_abrechnung_letztes_jahr', 'prozent') }}%)
+
+              WM und Trockner: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_waschmaschine_und_trockner_yearly','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_waschmaschine_und_trockner_mit_pv_abrechnung_yearly','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_waschmaschine_und_trockner_abrechnung_letztes_jahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_waschmaschine_und_trockner_abrechnung_letztes_jahr', 'prozent') }}%)
+
+              Haustechnik: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_haustechnik_yearly','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_haustechnik_mit_pv_abrechnung_yearly','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_haustechnik_abrechnung_letztes_jahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_haustechnik_abrechnung_letztes_jahr', 'prozent') }}%)
+
+              Netzwerk, Telefon, Computer: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_netzwerk_telefon_und_computer_yearly','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_netzwerk_telefon_und_computer_mit_pv_abrechnung_yearly','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_netzwerk_telefon_und_computer_abrechnung_letztes_jahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_netzwerk_telefon_und_computer_abrechnung_letztes_jahr', 'prozent') }}%)
+
+              Luftbe- und entfeuchter: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_luftentfeuchter_und_befeuchter_yearly','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_luftentfeuchter_und_befeuchter_mit_pv_abrechnung_yearly','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_luftentfeuchter_und_befeuchter_abrechnung_letztes_jahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_luftentfeuchter_und_befeuchter_abrechnung_letztes_jahr', 'prozent') }}%)
+
+              Heizung Partyraum: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_heizung_partyraum_yearly','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_heizung_partyraum_mit_pv_abrechnung_yearly','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_heizung_partyraum_abrechnung_letztes_jahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_heizung_partyraum_abrechnung_letztes_jahr', 'prozent') }}%)
+
+              Pool: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_pool_yearly','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_pool_mit_pv_abrechnung_yearly','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_pool_abrechnung_letztes_jahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_pool_abrechnung_letztes_jahr', 'prozent') }}%)
+      - conditions:
+        - condition: trigger
+          id: yearly
+        - condition: template
+          value_template: >
+            {{ (now().day == 1) and (now().month == 7) }}
+        sequence:
+        - service: notify.telegram_jo
+          data:
+            message: >-
+              Stromverbrauch letztes Winterjahr:
+
+              (ab Mai 22)
+
+              {{ state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_winteryear','last_period') | float(0) | round(1) }} kWh, davon {{ state_attr('sensor.template_einsparung_verbrauch_gesamt_abrechnung_letztes_winterjahr', 'prozent') }} % PV
+
+              {{ '%.2f'%(state_attr('sensor.kosten_verbrauch_gesamt_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (und {{ '%.2f'%(states('sensor.template_einsparung_verbrauch_gesamt_abrechnung_letztes_winterjahr') | float(0)) }} € gespart)
+
+
+              Bekannte Verbr.: {{ state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_winteryear','last_period') | float(0) | round(1) }} kWh ({{ ((state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_winteryear','last_period') | float(0)) / (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_winteryear','last_period') | float(0)) * 100) | round(0) }} %)
+
+
+              Wärmepumpe: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_warmepumpe_gesamt_winteryear','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_waermepumpe_gesamt_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_letztes_winterjahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_warmepumpe_gesamt_abrechnung_letztes_winterjahr', 'prozent') }}%)
+
+              Licht: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_alle_lichter_winteryear','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_alle_lichter_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_alle_lichter_abrechnung_letztes_winterjahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_alle_lichter_abrechnung_letztes_winterjahr', 'prozent') }}%)
+
+              Küchengeräte (ohne KS): 
+
+              {{ state_attr('sensor.stromzahler_powercalc_kuchengerate_ohne_kuhlschrank_winteryear','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_kuchengerate_ohne_kuhlschrank_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_kuchengerate_ohne_kuhlschrank_abrechnung_letztes_winterjahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_kuchengerate_ohne_kuhlschrank_abrechnung_letztes_winterjahr', 'prozent') }}%)
+
+              Kühlgeräte: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_kuhlgerate_winteryear','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_kuhlgerate_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_kuhlgerate_abrechnung_letztes_winterjahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_kuhlgerate_abrechnung_letztes_winterjahr', 'prozent') }}%)
+
+              Multimedia: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_multimedia_winteryear','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_multimedia_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_multimedia_abrechnung_letztes_winterjahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_multimedia_abrechnung_letztes_winterjahr', 'prozent') }}%)
+
+              WM und Trockner: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_waschmaschine_und_trockner_winteryear','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_waschmaschine_und_trockner_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_waschmaschine_und_trockner_abrechnung_letztes_winterjahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_waschmaschine_und_trockner_abrechnung_letztes_winterjahr', 'prozent') }}%)
+
+              Haustechnik: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_haustechnik_winteryear','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_haustechnik_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_haustechnik_abrechnung_letztes_winterjahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_haustechnik_abrechnung_letztes_winterjahr', 'prozent') }}%)
+
+              Netzwerk, Telefon, Computer: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_netzwerk_telefon_und_computer_winteryear','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_netzwerk_telefon_und_computer_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_netzwerk_telefon_und_computer_abrechnung_letztes_winterjahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_netzwerk_telefon_und_computer_abrechnung_letztes_winterjahr', 'prozent') }}%)
+
+              Luftbe- und entfeuchter: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_luftentfeuchter_und_befeuchter_winteryear','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_luftentfeuchter_und_befeuchter_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_luftentfeuchter_und_befeuchter_abrechnung_letztes_winterjahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_luftentfeuchter_und_befeuchter_abrechnung_letztes_winterjahr', 'prozent') }}%)
+
+              Heizung Partyraum: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_heizung_partyraum_winteryear','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_heizung_partyraum_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_heizung_partyraum_abrechnung_letztes_winterjahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_heizung_partyraum_abrechnung_letztes_winterjahr', 'prozent') }}%)
+
+              Pool: 
+
+              {{ state_attr('sensor.stromzahler_powercalc_pool_winteryear','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_pool_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_pool_abrechnung_letztes_winterjahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_pool_abrechnung_letztes_winterjahr', 'prozent') }}%)
       default: []
