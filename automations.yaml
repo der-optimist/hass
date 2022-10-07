@@ -382,9 +382,6 @@
             - condition: template
               value_template: '{{ trigger.event.data.data[0] == 0 }}'
             sequence:
-            - service: notify.telegram_jo
-              data:
-                message: KNX Szene - Lara geht ins Bett
             - service: light.turn_on
               target:
                 entity_id: light.0x00158d000344670b
@@ -394,9 +391,6 @@
             - condition: template
               value_template: '{{ trigger.event.data.data[0] == 1 }}'
             sequence:
-            - service: notify.telegram_jo
-              data:
-                message: KNX Szene - Lea geht ins Bett
             - service: light.turn_on
               target:
                 entity_id: light.0x680ae2fffeeb9221
@@ -406,9 +400,6 @@
             - condition: template
               value_template: '{{ trigger.event.data.data[0] == 4 }}'
             sequence:
-            - service: notify.telegram_jo
-              data:
-                message: KNX Szene - Lara steht auf
             - service: switch.turn_off
               target:
                 entity_id: switch.la_schlaft
@@ -416,9 +407,6 @@
             - condition: template
               value_template: '{{ trigger.event.data.data[0] == 5 }}'
             sequence:
-            - service: notify.telegram_jo
-              data:
-                message: KNX Szene - Lea steht auf
             - service: switch.turn_off
               target:
                 entity_id: switch.le_schlaft
@@ -470,9 +458,6 @@
                 - service: input_boolean.turn_off
                   target:
                     entity_id: input_boolean.helper_light_manually_switched_off_o_la_wandwuerfel
-                - service: notify.telegram_jo
-                  data:
-                    message: Licht La aus ohne Schlafen
               - conditions:
                 - condition: state
                   entity_id: switch.bleib_so_la_licht
@@ -481,9 +466,6 @@
                 - service: switch.turn_off
                   target:
                     entity_id: switch.bleib_so_la_licht
-                - service: notify.telegram_jo
-                  data:
-                    message: Licht La wieder automatisch
               default: []
           - conditions:
             - condition: template
@@ -519,9 +501,6 @@
                 - service: input_boolean.turn_off
                   target:
                     entity_id: input_boolean.helper_light_manually_switched_off_o_le_wandwuerfel
-                - service: notify.telegram_jo
-                  data:
-                    message: Licht Le aus ohne Schlafen
               - conditions:
                 - condition: state
                   entity_id: switch.bleib_so_le_licht
@@ -530,9 +509,6 @@
                 - service: switch.turn_off
                   target:
                     entity_id: switch.bleib_so_le_licht
-                - service: notify.telegram_jo
-                  data:
-                    message: Licht Le wieder automatisch
               default: []
           - conditions:
             - condition: template
@@ -568,9 +544,6 @@
                 - service: input_boolean.turn_off
                   target:
                     entity_id: input_boolean.helper_light_manually_switched_off_e_sz_panels
-                - service: notify.telegram_jo
-                  data:
-                    message: Licht SZ aus ohne Schlafen
               - conditions:
                 - condition: state
                   entity_id: switch.bleib_so_sz_licht
@@ -579,9 +552,6 @@
                 - service: switch.turn_off
                   target:
                     entity_id: switch.bleib_so_sz_licht
-                - service: notify.telegram_jo
-                  data:
-                    message: Licht SZ wieder automatisch
               default: []
           - conditions:
             - condition: template
@@ -615,9 +585,6 @@
                 - service: input_boolean.turn_off
                   target:
                     entity_id: input_boolean.helper_light_manually_switched_off_e_wz_stehlampe
-                - service: notify.telegram_jo
-                  data:
-                    message: Licht WZ aus ohne Schlafen
               - conditions:
                 - condition: state
                   entity_id: switch.bleib_so_wz_licht
@@ -626,9 +593,6 @@
                 - service: switch.turn_off
                   target:
                     entity_id: switch.bleib_so_wz_licht
-                - service: notify.telegram_jo
-                  data:
-                    message: Licht WZ wieder automatisch
               default: []
           default: []
       - conditions:
