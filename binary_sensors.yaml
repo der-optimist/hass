@@ -119,6 +119,10 @@
         friendly_name: "Schlafen oder Licht noch aus lassen MaJo"
         value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 50
                             and states('sensor.helligkeit_wetterstation')|float(0) > 20000 }}"
+      schlafen_oder_licht_bad_eg_noch_abgedunkelt:
+        friendly_name: "Schlafen oder Licht Bad EG noch abgedunkelt"
+        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 50
+                            and states('sensor.helligkeit_wetterstation')|float(0) > 20000 }}"
       nachtmodus_wc:
         friendly_name: "Nachtmodus WC"
         value_template: >

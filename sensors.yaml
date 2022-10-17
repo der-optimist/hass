@@ -560,6 +560,14 @@
     duration:
       hours: 1
   - platform: history_stats
+    name: Anteil Präsenz Bad EG letzte Stunde
+    entity_id: binary_sensor.pm_e_ba
+    state: 'on'
+    type: ratio
+    end: '{{ now() }}'
+    duration:
+      hours: 1
+  - platform: history_stats
     name: Anteil Kinder wach letzte Stunde
     entity_id: binary_sensor.la_oder_le_schlafen
     state: 'off'
