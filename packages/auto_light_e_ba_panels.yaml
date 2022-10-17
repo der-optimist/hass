@@ -38,10 +38,14 @@ template:
       - name: helper_light_effective_brightness_e_ba_panels
         unit_of_measurement: "%"
         state: >
-          {{ states('sensor.helper_light_basic_brightness_e_ba_panels') }}
+          {% if is_state('binary_sensor.schlafen_oder_licht_bad_eg_noch_abgedunkelt', 'on') %}
+            {{ int(15) }}
+          {% else %}
+            {{ states('sensor.helper_light_basic_brightness_e_ba_panels') }}
+          {% endif %}
         attributes:
           special_brightness: >
-            {{ [] | select('equalto', 'on') | list | count }}
+            {{ [states('binary_sensor.schlafen_oder_licht_bad_eg_noch_abgedunkelt')] | select('equalto', 'on') | list | count }}
       - name: helper_light_min_illuminance_e_ba_panels
         unit_of_measurement: "lx"
         state: >

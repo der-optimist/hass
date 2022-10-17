@@ -121,8 +121,8 @@
                             and states('sensor.helligkeit_wetterstation')|float(0) > 20000 }}"
       schlafen_oder_licht_bad_eg_noch_abgedunkelt:
         friendly_name: "Schlafen oder Licht Bad EG noch abgedunkelt"
-        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 50
-                            and states('sensor.helligkeit_wetterstation')|float(0) > 20000 }}"
+        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float(100) < 50
+                            and states('sensor.anteil_prasenz_bad_eg_letzte_stunde')|float(100) < 17 }}"
       nachtmodus_wc:
         friendly_name: "Nachtmodus WC"
         value_template: >
