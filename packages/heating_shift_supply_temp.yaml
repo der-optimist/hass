@@ -30,15 +30,11 @@ template:
         unit_of_measurement: "°C"
         device_class: temperature
         state: >
-          {% set measurement = states('sensor.stellwert_heizung_zeitverlauf_mean') | float(-100) | round(1) %}
-          {% if measurement > -100 %}
-          {{ measurement }}
-          {% else %}
-            {% if (now() - states.sensor.stellwert_heizung_zeitverlauf_mean.last_updated) < timedelta( hours = 24) %}
-              {{ states('sensor.stellwert_heizung_zeitverlauf_mean_hold') }}
-            {% else %}
-              {{ 'unknown' }}
-            {% endif %}
-          {% endif %}
+          {% set VALUE = states('sensor.stellwert_heizung_zeitverlauf_mean') -%}
+          {%- if VALUE|is_number -%}
+            {{ VALUE }}
+          {%- else -%}
+            {{ this.state }}
+          {%- endif %}
         attributes:
           friendly_name: "Stellwert Heizung Zeitverlauf Mean Hold"
