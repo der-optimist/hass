@@ -71,6 +71,9 @@ template:
             {{ [states('binary_sensor.tv_zeit_abend'),states('switch.luften_ez')] | select('equalto', 'on') | list | count }}
           {% endif %}
     binary_sensor:
+      - name: helper_stay_as_you_are_e_wz_panels
+        state: >
+          {{ states('switch.bleib_so_wz_licht') }}
       - name: helper_light_trigger_e_wz_panels
         state: >
           {% if states('binary_sensor.pm_e_wz_couch_links') in ['unavailable', 'unknown', 'none']
@@ -84,22 +87,16 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_wz_panels
         state: >
-          {% if states('switch.bleib_so_wz_licht') in ['unavailable', 'unknown', 'none']
-             or states('binary_sensor.tv_zeit_abend') in ['unavailable', 'unknown', 'none']
+          {% if states('binary_sensor.tv_zeit_abend') in ['unavailable', 'unknown', 'none']
              or states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_off_entities_e_wz_panels') }}
           {% else %}
-            {{ is_state('switch.bleib_so_wz_licht', 'on')
-              or is_state('binary_sensor.tv_zeit_abend', 'on')
+            {{ is_state('binary_sensor.tv_zeit_abend', 'on')
               or is_state('switch.luften_ez', 'on') }}
           {% endif %}
       - name: helper_light_keeping_on_entities_e_wz_panels
         state: >
-          {% if states('switch.bleib_so_wz_licht') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.helper_light_keeping_on_entities_e_wz_panels') }}
-          {% else %}
-            {{ is_state('switch.bleib_so_wz_licht', 'on') }}
-          {% endif %}
+          {{ false }}
       - name: helper_light_keeping_fix_entities_e_wz_panels
         state: >
           {{ false }}
@@ -128,10 +125,11 @@ automation:
     trace:
       stored_traces: 10
     use_blueprint:
-      path: /config/blueprints/light_automation.yaml
+      path: /config/blueprints/light_automation_beta.yaml
       input:
         light_entity: light.panels_wohnzimmer
         automation_switch: input_boolean.automation_switch_light_e_wz_panels
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_e_wz_panels
         trigger: binary_sensor.helper_light_trigger_e_wz_panels
         helper_effective_brightness: sensor.helper_light_effective_brightness_e_wz_panels
         helper_basic_brightness: sensor.helper_light_basic_brightness_e_wz_panels

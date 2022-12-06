@@ -1,0 +1,948 @@
+blueprint:
+  name: Automation for Dim and Switch Lights
+  description: Pretty complex automation with a lot of helper entities
+  domain: automation
+  input:
+    light_entity:
+      name: Light
+      description: The light that shall be controlled.
+      selector:
+        target:
+          entity:
+            domain: light
+    automation_switch:
+      name: Automation Switch
+      description: Switching the automation function on or off without deactivating the HA automation
+      selector:
+        target:
+          entity:
+            domain: input_boolean
+    trigger:
+      name: Helper Trigger
+      description: Binary Sensor that represents occupancy
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
+    helper_effective_brightness:
+      name: Helper Effective Brightness
+      description: Helper Entity (sensor), that keeps the current effective brightness
+      selector:
+        target:
+          entity:
+            domain: sensor
+    helper_basic_brightness:
+      name: Helper Basic Brightness
+      description: Helper Entity (sensor), that keeps the current basic brightness
+      selector:
+        target:
+          entity:
+            domain: sensor
+    helper_stay_as_you_are:
+      name: Helper that is on it the light shall stay as it is
+      description: Helper Entity (binary sensor), that is on it the light shall stay as it is
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
+    helper_is_too_dark:
+      name: Helper showing if too dark
+      description: Helper Entity (binary sensor), that indicates if it is too dark
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
+    helper_is_too_bright:
+      name: Helper showing if too bright
+      description: Helper Entity (binary sensor), that indicates if it is too bright
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
+    helper_auto_switched:
+      name: Helper Auto-Switched
+      description: Variable that stores information if light was switched by automation
+      selector:
+        target:
+          entity:
+            domain: input_boolean
+    helper_manually_switched_on:
+      name: Helper Manually Switched On
+      description: Variable that stores information if light was switched on manually
+      selector:
+        target:
+          entity:
+            domain: input_boolean
+    helper_manually_switched_off:
+      name: Helper Manually Switched Off
+      description: Variable that stores information if light was switched off manually
+      selector:
+        target:
+          entity:
+            domain: input_boolean
+    helper_switching_off_entities:
+      name: Helper Switching Off Entities
+      description: Sensor for number of active switching off entities
+      selector:
+        target:
+          entity:
+            domain: sensor
+    helper_keeping_on_entities:
+      name: Helper Keeping On Entities
+      description: Binary Sensor that indicates if a keeping on entity is active
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
+    helper_keeping_off_entities:
+      name: Helper Keeping Off Entities
+      description: Binary Sensor that indicates if a keeping off entity is active
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
+    helper_keeping_fix_entities:
+      name: Helper Keeping Fix Entities
+      description: Binary Sensor that indicates if a keeping fix entity is active
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
+
+mode: queued
+max: 20
+max_exceeded: silent
+
+variables:
+  helper_effective_brightness: !input helper_effective_brightness
+  helper_basic_brightness: !input helper_basic_brightness
+  light_entity: !input light_entity
+
+trigger:
+  - platform: state
+    entity_id: !input automation_switch
+    id: app_switch
+    to: 'on'
+  - platform: homeassistant
+    event: start
+    id: ha_start
+  - platform: state
+    entity_id: !input helper_stay_as_you_are
+    id: stay_as_you_are_on
+    from: "off"
+    to: "on"
+  - platform: state
+    entity_id: !input helper_stay_as_you_are
+    id: stay_as_you_are_off
+    from: "on"
+    to: "off"
+  - platform: state
+    entity_id: !input trigger
+    id: motion_on
+    from: "off"
+    to: "on"
+  - platform: state
+    entity_id: !input trigger
+    id: motion_off
+    from: "on"
+    to: "off"
+  - platform: state
+    entity_id: !input helper_switching_off_entities
+    id: switching_off_entities
+  - platform: state
+    entity_id: !input helper_is_too_dark
+    id: too_dark
+    to: "on"
+  - platform: state
+    entity_id: !input helper_is_too_bright
+    id: too_bright
+    to: "on"
+  - platform: state
+    entity_id: !input light_entity
+    id: light_on_or_off
+    to: ~
+  - platform: state
+    entity_id: !input helper_keeping_on_entities
+    id: keeping_on_ended
+    to: "off"
+  - platform: state
+    entity_id: !input helper_keeping_off_entities
+    id: keeping_off_ended
+    to: "off"
+  - platform: state
+    entity_id: !input helper_keeping_fix_entities
+    attribute: brightness
+    id: keeping_fix_brightness_changed
+    to: ~
+  - platform: state
+    entity_id: !input helper_effective_brightness
+    attribute: special_brightness
+    to: ~
+    id: no_of_special_brightness_changed
+
+action:
+  - choose:
+    # path 0.1
+    - conditions:
+      - condition: trigger
+        id: stay_as_you_are_on
+      sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: !input automation_switch
+    # path 0.2
+    - conditions:
+      - condition: trigger
+        id: stay_as_you_are_off
+      sequence:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: !input automation_switch
+  # path 1
+    - conditions:
+      - condition: or
+        conditions:
+          - condition: trigger
+            id: app_switch
+          - condition: trigger
+            id: ha_start
+      sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: !input helper_auto_switched
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: ha_start
+          sequence:
+          - wait_template: "{{ states(light_entity) in ['on','off'] }}"
+        default: []
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: !input helper_keeping_fix_entities
+            state: 'off'
+          sequence:
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: !input trigger
+                state: 'on'
+              sequence:
+              - choose:
+                - conditions:
+                  - condition: state
+                    entity_id: !input helper_is_too_dark
+                    state: 'on'
+                  sequence:
+                  - condition: state
+                    entity_id: !input automation_switch
+                    state: 'on'
+                  - condition: state
+                    state: 'off'
+                    entity_id: !input helper_keeping_off_entities
+                  - condition: state
+                    state: 'off'
+                    entity_id: !input helper_manually_switched_off
+                  - choose:
+                    - conditions:
+                      - condition: state
+                        entity_id: !input light_entity
+                        state: 'off'
+                      sequence:
+                      - service: input_boolean.turn_on
+                        target:
+                          entity_id: !input helper_auto_switched
+                    default: []
+                  - choose:
+                    - conditions:
+                      - condition: template
+                        value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
+                      sequence:
+                      - service: light.turn_on
+                        target:
+                          entity_id: !input light_entity
+                        data_template:
+                          brightness_pct: >
+                            {{ states(helper_effective_brightness) | int(75) }}
+                    - conditions:
+                      - condition: template
+                        value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
+                      sequence:
+                      - service: light.turn_on
+                        target:
+                          entity_id: !input light_entity
+                        data_template:
+                          brightness_pct: >
+                            {{ states(helper_effective_brightness) | int(75) }}
+                          rgb_color: >
+                            {{ state_attr(helper_effective_brightness, "color") }}
+                    default: []
+                # path 2
+                - conditions:
+                  - condition: state
+                    entity_id: !input helper_is_too_bright
+                    state: 'on'
+                  sequence:
+                  - condition: state
+                    entity_id: !input automation_switch
+                    state: 'on'
+                  - condition: state
+                    state: 'off'
+                    entity_id: !input helper_keeping_on_entities
+                  - condition: state
+                    state: 'off'
+                    entity_id: !input helper_manually_switched_on
+                  - choose:
+                    - conditions:
+                      - condition: state
+                        entity_id: !input light_entity
+                        state: 'on'
+                      sequence:
+                      - service: input_boolean.turn_on
+                        target:
+                          entity_id: !input helper_auto_switched
+                    default: []
+                  - service: light.turn_off
+                    target:
+                      entity_id: !input light_entity
+                default: []
+            - conditions:
+              - condition: state
+                entity_id: !input trigger
+                state: 'off'
+              sequence:
+              - condition: state
+                entity_id: !input automation_switch
+                state: 'on'
+              - condition: state
+                state: 'off'
+                entity_id: !input helper_keeping_on_entities
+              - choose:
+                - conditions:
+                  - condition: state
+                    entity_id: !input light_entity
+                    state: 'on'
+                  sequence:
+                  - service: input_boolean.turn_on
+                    target:
+                      entity_id: !input helper_auto_switched
+                default: []
+              - service: light.turn_off
+                target:
+                  entity_id: !input light_entity
+            default: []
+        # path 4
+        - conditions:
+          - condition: state
+            entity_id: !input helper_keeping_fix_entities
+            state: 'on'
+          sequence:
+          - condition: state
+            entity_id: !input automation_switch
+            state: 'on'
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: !input light_entity
+                state: 'off'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: !input helper_auto_switched
+            default: []
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
+              sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: !input light_entity
+                data_template:
+                  brightness_pct: >
+                    {{ states(helper_effective_brightness) | int(75) }}
+            - conditions:
+              - condition: template
+                value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
+              sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: !input light_entity
+                data_template:
+                  brightness_pct: >
+                    {{ states(helper_effective_brightness) | int(75) }}
+                  rgb_color: >
+                    {{ state_attr(helper_effective_brightness, "color") }}
+            default: []
+        default: []
+    # path 5
+    - conditions:
+      - condition: trigger
+        id: motion_on
+      sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: !input helper_manually_switched_off
+      - service: input_boolean.turn_off
+        target:
+          entity_id: !input helper_manually_switched_on
+      - condition: state
+        entity_id: !input automation_switch
+        state: 'on'
+      - condition: state
+        entity_id: !input helper_keeping_off_entities
+        state: 'off'
+      - condition: state
+        entity_id: !input helper_keeping_fix_entities
+        state: 'off'
+      - condition: state
+        entity_id: !input helper_is_too_dark
+        state: 'on'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: !input light_entity
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: !input helper_auto_switched
+        default: []
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: !input light_entity
+            data_template:
+              brightness_pct: >
+                {{ states(helper_effective_brightness) | int(75) }}
+        - conditions:
+          - condition: template
+            value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: !input light_entity
+            data_template:
+              brightness_pct: >
+                {{ states(helper_effective_brightness) | int(75) }}
+              rgb_color: >
+                {{ state_attr(helper_effective_brightness, "color") }}
+        default: []
+    # path 6
+    - conditions:
+      - condition: trigger
+        id: motion_off
+      sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: !input helper_manually_switched_on
+      - service: input_boolean.turn_off
+        target:
+          entity_id: !input helper_manually_switched_off
+      - condition: state
+        entity_id: !input automation_switch
+        state: 'on'
+      - condition: state
+        entity_id: !input helper_keeping_on_entities
+        state: 'off'
+      - condition: state
+        entity_id: !input helper_keeping_fix_entities
+        state: 'off'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: !input light_entity
+            state: 'on'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: !input helper_auto_switched
+        default: []
+      - service: light.turn_off
+        target:
+          entity_id: !input light_entity
+    # path 7
+    - conditions:
+      - condition: trigger
+        id: switching_off_entities
+      sequence:
+      - condition: template
+        value_template: '{{ is_number(trigger.to_state.state) }}'
+      - condition: template
+        value_template: '{{ is_number(trigger.from_state.state) }}'
+      - condition: template
+        value_template: '{{ (trigger.to_state.state | float(0)) > (trigger.from_state.state | float(1)) }}'
+      - condition: state
+        entity_id: !input automation_switch
+        state: 'on'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: !input light_entity
+            state: 'on'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: !input helper_auto_switched
+        default: []
+      - service: light.turn_off
+        target:
+          entity_id: !input light_entity
+    # path 8
+    - conditions:
+      - condition: trigger
+        id: too_dark
+      sequence:
+      - condition: state
+        entity_id: !input automation_switch
+        state: 'on'
+      - condition: state
+        entity_id: !input trigger
+        state: 'on'
+      - condition: state
+        entity_id: !input helper_keeping_off_entities
+        state: 'off'
+      - condition: state
+        entity_id: !input helper_keeping_fix_entities
+        state: 'off'
+      - condition: state
+        entity_id: !input helper_manually_switched_off
+        state: 'off'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: !input light_entity
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: !input helper_auto_switched
+        default: []
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: !input light_entity
+            data_template:
+              brightness_pct: >
+                {{ states(helper_effective_brightness) | int(75) }}
+        - conditions:
+          - condition: template
+            value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: !input light_entity
+            data_template:
+              brightness_pct: >
+                {{ states(helper_effective_brightness) | int(75) }}
+              rgb_color: >
+                {{ state_attr(helper_effective_brightness, "color") }}
+        default: []
+    # path 9
+    - conditions:
+      - condition: trigger
+        id: too_bright
+      sequence:
+      - condition: state
+        entity_id: !input automation_switch
+        state: 'on'
+      - condition: state
+        entity_id: !input helper_keeping_on_entities
+        state: 'off'
+      - condition: state
+        entity_id: !input helper_keeping_fix_entities
+        state: 'off'
+      - condition: state
+        entity_id: !input helper_manually_switched_on
+        state: 'off'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: !input light_entity
+            state: 'on'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: !input helper_auto_switched
+        default: []
+      - service: light.turn_off
+        target:
+          entity_id: !input light_entity
+    # path 10
+    - conditions:
+      - condition: trigger
+        id: light_on_or_off
+      - condition: template
+        value_template: >
+          {{ trigger.from_state.state != 'unavailable' }}
+      - condition: template
+        value_template: >
+          {{ trigger.from_state.state != 'unknown' }}
+      - condition: template
+        value_template: >
+          {{ trigger.from_state.state != 'none' }}
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: !input helper_auto_switched
+            state: 'off'
+          sequence:
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: >
+                  {{ trigger.to_state.state == 'on' }}
+              - condition: template
+                value_template: >
+                  {{ trigger.from_state.state == 'off' }}
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: !input helper_manually_switched_on
+            # path 11
+            - conditions:
+              - condition: template
+                value_template: >
+                  {{ trigger.to_state.state == 'off' }}
+              - condition: template
+                value_template: >
+                  {{ trigger.from_state.state == 'on' }}
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: !input helper_manually_switched_off
+            default: []
+        # path 12
+        - conditions:
+          - condition: state
+            entity_id: !input helper_auto_switched
+            state: 'on'
+          sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: !input helper_auto_switched
+        default: []
+    # path 13
+    - conditions:
+      - condition: trigger
+        id: keeping_off_ended
+      sequence:
+      - condition: state
+        entity_id: !input automation_switch
+        state: 'on'
+      - condition: state
+        entity_id: !input trigger
+        state: 'on'
+      - condition: state
+        entity_id: !input helper_is_too_dark
+        state: 'on'
+      - condition: state
+        entity_id: !input helper_manually_switched_off
+        state: 'off'
+      - condition: state
+        entity_id: !input helper_keeping_fix_entities
+        state: 'off'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: !input light_entity
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: !input helper_auto_switched
+        default: []
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: !input light_entity
+            data_template:
+              brightness_pct: >
+                {{ states(helper_effective_brightness) | int(75) }}
+        - conditions:
+          - condition: template
+            value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: !input light_entity
+            data_template:
+              brightness_pct: >
+                {{ states(helper_effective_brightness) | int(75) }}
+              rgb_color: >
+                {{ state_attr(helper_effective_brightness, "color") }}
+        default: []
+    # path 14
+    - conditions:
+      - condition: trigger
+        id: keeping_on_ended
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: !input trigger
+            state: 'on'
+          sequence:
+          - condition: state
+            entity_id: !input automation_switch
+            state: 'on'
+          - condition: state
+            entity_id: !input helper_is_too_dark
+            state: 'off'
+          - condition: state
+            entity_id: !input helper_manually_switched_on
+            state: 'off'
+          - condition: state
+            entity_id: !input helper_keeping_fix_entities
+            state: 'off'
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: !input light_entity
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: !input helper_auto_switched
+            default: []
+          - service: light.turn_off
+            target:
+              entity_id: !input light_entity
+        # path 15
+        - conditions:
+          - condition: state
+            entity_id: !input trigger
+            state: 'off'
+          sequence:
+          - condition: state
+            entity_id: !input automation_switch
+            state: 'on'
+          - condition: state
+            entity_id: !input helper_keeping_fix_entities
+            state: 'off'
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: !input light_entity
+                state: 'on'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: !input helper_auto_switched
+            default: []
+          - service: light.turn_off
+            target:
+              entity_id: !input light_entity
+    # path 16
+    - conditions:
+      - condition: trigger
+        id: keeping_fix_brightness_changed
+      - condition: state
+        entity_id: !input automation_switch
+        state: 'on'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: >
+              {{ (trigger.to_state.attributes.brightness | int(0)) > 0 }}
+          sequence:
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: !input light_entity
+                state: 'off'
+              sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: !input helper_auto_switched
+            default: []
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
+              sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: !input light_entity
+                data_template:
+                  brightness_pct: >
+                    {{ trigger.to_state.attributes.brightness | int(75) }}
+            - conditions:
+              - condition: template
+                value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
+              sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: !input light_entity
+                data_template:
+                  brightness_pct: >
+                    {{ trigger.to_state.attributes.brightness | int(75) }}
+                  rgb_color: >
+                    {{ trigger.to_state.attributes.color }}
+            default: []
+          # path 17
+        - conditions:
+          - condition: template
+            value_template: >
+              {{ (trigger.to_state.attributes.brightness | int(0)) == 0 }}
+          sequence:
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: !input trigger
+                state: 'on'
+              sequence:
+              - choose:
+                - conditions:
+                  - condition: state
+                    entity_id: !input helper_is_too_dark
+                    state: 'on'
+                  sequence:
+                  - condition: state
+                    entity_id: !input helper_keeping_off_entities
+                    state: 'off'
+                  - condition: state
+                    entity_id: !input helper_manually_switched_off
+                    state: 'off'
+                  - choose:
+                    - conditions:
+                      - condition: state
+                        entity_id: !input light_entity
+                        state: 'off'
+                      sequence:
+                      - service: input_boolean.turn_on
+                        target:
+                          entity_id: !input helper_auto_switched
+                    default: []
+                  - choose:
+                    - conditions:
+                      - condition: template
+                        value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
+                      sequence:
+                      - service: light.turn_on
+                        target:
+                          entity_id: !input light_entity
+                        data_template:
+                          brightness_pct: >
+                            {{ states(helper_effective_brightness) | int(75) }}
+                    - conditions:
+                      - condition: template
+                        value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
+                      sequence:
+                      - service: light.turn_on
+                        target:
+                          entity_id: !input light_entity
+                        data_template:
+                          brightness_pct: >
+                            {{ states(helper_effective_brightness) | int(75) }}
+                          rgb_color: >
+                            {{ state_attr(helper_effective_brightness, "color") }}
+                    default: []
+                # path 18
+                - conditions:
+                  - condition: state
+                    entity_id: !input helper_is_too_dark
+                    state: 'off'
+                  sequence:
+                  - condition: state
+                    entity_id: !input helper_keeping_on_entities
+                    state: 'off'
+                  - condition: state
+                    entity_id: !input helper_manually_switched_on
+                    state: 'off'
+                  - choose:
+                    - conditions:
+                      - condition: state
+                        entity_id: !input light_entity
+                        state: 'on'
+                      sequence:
+                      - service: input_boolean.turn_on
+                        target:
+                          entity_id: !input helper_auto_switched
+                    default: []
+                  - service: light.turn_off
+                    target:
+                      entity_id: !input light_entity
+                default: []
+            # path 19
+            - conditions:
+              - condition: state
+                entity_id: !input trigger
+                state: 'off'
+              sequence:
+              - condition: state
+                entity_id: !input helper_keeping_on_entities
+                state: 'off'
+              - condition: state
+                entity_id: !input helper_manually_switched_on
+                state: 'off'
+              - choose:
+                - conditions:
+                  - condition: state
+                    entity_id: !input light_entity
+                    state: 'on'
+                  sequence:
+                  - service: input_boolean.turn_on
+                    target:
+                      entity_id: !input helper_auto_switched
+                default: []
+              - service: light.turn_off
+                target:
+                  entity_id: !input light_entity
+            default: []
+        default: []
+    # path 20
+    - conditions:
+      - condition: trigger
+        id: no_of_special_brightness_changed
+      sequence:
+      - condition: state
+        entity_id: !input automation_switch
+        state: 'on'
+      - condition: state
+        entity_id: !input helper_keeping_fix_entities
+        state: 'off'
+      - condition: state
+        entity_id: !input light_entity
+        state: 'on'
+      - delay: 1
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ state_attr(helper_effective_brightness, "color") == none }}'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: !input light_entity
+            data_template:
+              brightness_pct: >
+                {{ states(helper_effective_brightness) | int(75) }}
+        - conditions:
+          - condition: template
+            value_template: '{{ state_attr(helper_effective_brightness, "color") != none }}'
+          sequence:
+          - service: light.turn_on
+            target:
+              entity_id: !input light_entity
+            data_template:
+              brightness_pct: >
+                {{ states(helper_effective_brightness) | int(75) }}
+              rgb_color: >
+                {{ state_attr(helper_effective_brightness, "color") }}
+        default: []
+    default: []
