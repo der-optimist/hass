@@ -2402,6 +2402,13 @@
           data:
             message: >
               {{ states('sensor.pixel_3a_ma_geokodierter_standort') }}
+              {% set delta = (now() - states.sensor.pixel_3a_ma_geokodierter_standort.last_updated).seconds %}
+              {% set days = (delta / 86400) | int %}
+              {%- if days > 0 -%}
+                seit {{ days }} Tagen, {{ (delta - (days * 86400)) | int | timestamp_custom('%H h %M min. %S sec.', false) }}
+              {%- else -%}
+                seit {{ delta | int | timestamp_custom('%H h %M min. %S sec.', false) }}
+              {%- endif -%}
       - conditions:
         - condition: trigger
           id: alarm_jo
