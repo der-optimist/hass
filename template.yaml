@@ -63,3 +63,14 @@
           {{ states('sensor.el_leistung_shellyplug_s_169d16_power') }}
         attributes:
           friendly_name: "El. Leistung Hebeanlage"
+      - unique_id: dummy_nuki_battery
+        # name: change entity_id in UI after creation
+        unit_of_measurement: "%"
+        state: >
+          {% if state_attr('lock.haustur','battery_critical') == true %}
+            {{ 1 }}
+          {% else %}
+            {{ 100 }}
+          {% endif %}
+        attributes:
+          friendly_name: "Batterie Nuki-Schloss"

@@ -2983,3 +2983,29 @@
 
               {{ state_attr('sensor.stromzahler_powercalc_pool_winteryear','last_period') | float(0) | round(1) }} kWh / {{ '%.2f'%(state_attr('sensor.kosten_pool_mit_pv_abrechnung_winteryear','last_period') | float(0)) }} € (PV: -{{ '%.2f'%(states('sensor.template_einsparung_pool_abrechnung_letztes_winterjahr') | float(0)) }} € / -{{ state_attr('sensor.template_einsparung_pool_abrechnung_letztes_winterjahr', 'prozent') }}%)
       default: []
+#
+###############################################
+#####  Erinnerung Batterie Nuki-Schloss   #####
+###############################################
+- id: 'df1f921b-c133-4363-8490-6f91dd80e12c'
+  alias: Erinnerung Batterie Nuki-Schloss
+  description: ''
+  trigger:
+    - platform: template
+      value_template: "{{ state_attr('lock.haustur','battery_critical') == true }}"
+  condition: []
+  action:
+    - repeat:
+        while:
+          - condition: template
+            value_template: "{{ state_attr('lock.haustur','battery_critical') == true }}"
+        sequence:
+          - service: notify.telegram_jo
+            data:
+              message: Batterie Nuki-Schloss ist leer
+          - delay:
+              hours: 8
+              minutes: 0
+              seconds: 0
+              milliseconds: 0
+  mode: single
