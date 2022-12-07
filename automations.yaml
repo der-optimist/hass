@@ -2402,6 +2402,7 @@
           data:
             message: >
               {{ states('sensor.pixel_3a_ma_geokodierter_standort') }}
+              
               {% set delta = (now() - states.sensor.pixel_3a_ma_geokodierter_standort.last_updated).seconds %}
               {% set days = (delta / 86400) | int %}
               {%- if days > 0 -%}
