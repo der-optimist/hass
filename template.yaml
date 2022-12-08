@@ -74,3 +74,25 @@
           {% endif %}
         attributes:
           friendly_name: "Batterie Nuki-Schloss"
+      - unique_id: tablet_la_battery
+        # name: change entity_id in UI after creation
+        unit_of_measurement: "%"
+        state: >
+          {% if states.sensor.tabletlala_battery_level.last_updated < states.sensor.tabletla_battery_level.last_updated %}
+            {{ states('sensor.tabletla_battery_level') }}
+          {% else %}
+            {{ states('sensor.tabletlala_battery_level') }}
+          {% endif %}
+        attributes:
+          friendly_name: "Akku Tablet La."
+      - unique_id: tablet_le_battery
+        # name: change entity_id in UI after creation
+        unit_of_measurement: "%"
+        state: >
+          {% if states.sensor.tabletlele_battery_level.last_updated < states.sensor.tabletle_battery_level.last_updated %}
+            {{ states('sensor.tabletle_battery_level') }}
+          {% else %}
+            {{ states('sensor.tabletlele_battery_level') }}
+          {% endif %}
+        attributes:
+          friendly_name: "Akku Tablet Le."
