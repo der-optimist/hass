@@ -1,5 +1,5 @@
 enable_autodiscovery: false
-scan_interval: 00:05:00
+force_update_frequency: 00:05:00
 create_energy_sensors: true
 power_sensor_naming: "El. Leistung PowerCalc {}"
 energy_sensor_naming: "Stromzähler PowerCalc {}"
