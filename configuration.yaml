@@ -6,8 +6,12 @@ homeassistant:
   longitude: !secret home_longitude
   elevation: !secret home_elevation
   unit_system: metric
+  temperature_unit: C
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Berlin
+  currency: EUR
+  language: de
+  country: DE
   customize: !include customize.yaml
   customize_glob: !include cutomize_glob.yaml
   packages: !include_dir_named packages/
