@@ -25,6 +25,9 @@ automation:
         to: 'off'
         for: '00:35:00'
         id: dwd_weather_warnings_inactive
+      - platform: time
+        at: "05:00:04"
+        id: dwd_weather_warnings_inactive
       - platform: state
         entity_id: sensor.dwd_weather_warnings_advance_warning_level
         id: warnings_changed
