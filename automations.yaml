@@ -123,6 +123,24 @@
   mode: restart
 #
 ###############################################
+#####           NAS Plattenplatz          #####
+###############################################
+- id: '4877c538-38e2-4130-b3ec-56fb02085705'
+  alias: NAS Plattenplatz melden
+  description: ''
+  trigger:
+    - platform: event
+      event_type: nas_plattenplatz
+      id: nas_plattenplatz
+  condition: []
+  action:
+    - service: notify.telegram_jo
+      data:
+        title: NAS Plattenplatz
+        message: '{{ trigger.event.data.msg }}'
+  mode: queued
+#
+###############################################
 #####         ZigBee Taster Lara          #####
 ###############################################
 - id: '1640156192211'
