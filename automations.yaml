@@ -119,7 +119,7 @@
       target:
         entity_id: media_player.beam
       data:
-        volume_level: 0.2
+        volume_level: 0.15
   mode: restart
 #
 ###############################################
