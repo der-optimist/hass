@@ -75,7 +75,11 @@ automation:
                       {% set weekday_start = as_timestamp(time_start) | timestamp_custom("%w", True) | int %}
                       {% set time_end = as_local(state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ repeat.index ~ "_end")) %}
                       {% set weekday_end = as_timestamp(time_end) | timestamp_custom("%w", True) | int %}
+                      {% set gestern = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][as_timestamp(now() + timedelta( days = -1 )) | timestamp_custom("%w", True) | int-1] %}
+                      {% set heute = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][as_timestamp(now()) | timestamp_custom("%w", True) | int-1] %}
+                      {% set morgen = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][as_timestamp(now() + timedelta( days = 1 )) | timestamp_custom("%w", True) | int-1] %}
                       {% set zeit = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][weekday_start-1] ~ ", " ~ time_start.strftime("%H:%M") ~ " bis " ~ ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][weekday_end-1] ~ ", " ~ time_end.strftime("%H:%M") %}
+                      {% set zeit = zeit | regex_replace(find=gestern, replace='gestern', ignorecase=False) | regex_replace(find=heute, replace='heute', ignorecase=False) | regex_replace(find=morgen, replace='morgen', ignorecase=False) %}
                       {{ headline + ' von ' + zeit + ': ' + description }}
                 - service: input_text.set_value
                   data:
@@ -133,7 +137,11 @@ automation:
                       {% set weekday_start = as_timestamp(time_start) | timestamp_custom("%w", True) | int %}
                       {% set time_end = as_local(state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ repeat.index ~ "_end")) %}
                       {% set weekday_end = as_timestamp(time_end) | timestamp_custom("%w", True) | int %}
+                      {% set gestern = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][as_timestamp(now() + timedelta( days = -1 )) | timestamp_custom("%w", True) | int-1] %}
+                      {% set heute = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][as_timestamp(now()) | timestamp_custom("%w", True) | int-1] %}
+                      {% set morgen = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][as_timestamp(now() + timedelta( days = 1 )) | timestamp_custom("%w", True) | int-1] %}
                       {% set zeit = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][weekday_start-1] ~ ", " ~ time_start.strftime("%H:%M") ~ " bis " ~ ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][weekday_end-1] ~ ", " ~ time_end.strftime("%H:%M") %}
+                      {% set zeit = zeit | regex_replace(find=gestern, replace='gestern', ignorecase=False) | regex_replace(find=heute, replace='heute', ignorecase=False) | regex_replace(find=morgen, replace='morgen', ignorecase=False) %}
                       {{ headline + ' von ' + zeit + ': ' + description }}
                 - service: input_text.set_value
                   data:
