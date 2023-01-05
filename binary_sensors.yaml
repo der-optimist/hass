@@ -115,10 +115,13 @@
       schlafen_oder_aufwachphase_majo:
         friendly_name: "Schlafen oder Aufwachphase MaJo"
         value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 34 }}"
+      schlafen_oder_licht_gedimmt_majo:
+        friendly_name: "Schlafen oder Licht gedimmt MaJo"
+        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 67 }}"
       schlafen_oder_licht_noch_aus_lassen_majo:
         friendly_name: "Schlafen oder Licht noch aus lassen MaJo"
-        value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 50
-                            and states('sensor.helligkeit_wetterstation')|float(0) > 20000 }}"
+        value_template: "{{ (states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 67 and states('sensor.helligkeit_wetterstation')|float(0) > 20000) 
+                            or states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 34 }}"
       schlafen_oder_licht_bad_eg_noch_abgedunkelt:
         friendly_name: "Schlafen oder Licht Bad EG noch abgedunkelt"
         value_template: "{{ states('sensor.anteil_majo_wach_letzte_stunde')|float(100) < 50

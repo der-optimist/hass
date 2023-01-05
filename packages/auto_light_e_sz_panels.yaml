@@ -25,7 +25,7 @@ template:
         state: >
           {% set hours = 
             ['00:00','03:59',30],
-            ['04:00','09:59',10],
+            ['04:00','09:59',50],
             ['10:00','16:59',80],
             ['17:00','17:59',75],
             ['18:00','18:59',70],
@@ -38,10 +38,14 @@ template:
       - name: helper_light_effective_brightness_e_sz_panels
         unit_of_measurement: "%"
         state: >
-          {{ states('sensor.helper_light_basic_brightness_e_sz_panels') }}
+          {% if is_state('binary_sensor.schlafen_oder_licht_gedimmt_majo', 'on') %}
+            {{ int(10) }}
+          {% else %}
+            {{ states('sensor.helper_light_basic_brightness_e_sz_panels') }}
+          {% endif %}
         attributes:
           special_brightness: >
-            {{ [] | select('equalto', 'on') | list | count }}
+            {{ [states('binary_sensor.schlafen_oder_licht_gedimmt_majo')] | select('equalto', 'on') | list | count }}
       - name: helper_light_min_illuminance_e_sz_panels
         unit_of_measurement: "lx"
         state: >
@@ -76,7 +80,6 @@ template:
       - name: helper_light_keeping_off_entities_e_sz_panels
         state: >
           {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
-             or states('binary_sensor.schlafen_oder_aufwachphase_majo') in ['unavailable', 'unknown', 'none']
              or states('binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo') in ['unavailable', 'unknown', 'none']
              or states('switch.knutschen') in ['unavailable', 'unknown', 'none']
              or states('switch.bleib_so_sz_licht') in ['unavailable', 'unknown', 'none']
@@ -84,7 +87,6 @@ template:
             {{ states('binary_sensor.helper_light_keeping_off_entities_e_sz_panels') }}
           {% else %}
             {{ is_state('switch.majo_schlafen', 'on') 
-              or is_state('binary_sensor.schlafen_oder_aufwachphase_majo', 'on') 
               or is_state('binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo', 'on') 
               or is_state('switch.knutschen', 'on') 
               or is_state('switch.bleib_so_sz_licht', 'on') 
