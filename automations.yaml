@@ -2771,6 +2771,8 @@
 
               Bekannte Verbr.: {{ state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_daily','last_period') | float(0) | round(1) }} kWh ({{ ((state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_daily','last_period') | float(0)) / (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_daily','last_period') | float(0)) * 100) | round(0) }} %)
 
+              Unbekannte Verbr.: {{ (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_daily','last_period') | float(0) - state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_daily','last_period') | float(0)) | round(1) }} kWh ({{ (100-(state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_daily','last_period') | float(0)) / (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_daily','last_period') | float(0)) * 100) | round(0) }} %)
+
 
               Wärmepumpe: 
 
@@ -2833,6 +2835,8 @@
 
 
               Bekannte Verbr.: {{ state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_monthly','last_period') | float(0) | round(1) }} kWh ({{ ((state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_monthly','last_period') | float(0)) / (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_monthly','last_period') | float(0)) * 100) | round(0) }} %)
+
+              Unbekannte Verbr.: {{ (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_monthly','last_period') | float(0) - state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_monthly','last_period') | float(0)) | round(1) }} kWh ({{ (100-(state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_monthly','last_period') | float(0)) / (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_monthly','last_period') | float(0)) * 100) | round(0) }} %)
 
 
               Wärmepumpe: 
@@ -2899,6 +2903,8 @@
 
               Bekannte Verbr.: {{ state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_yearly','last_period') | float(0) | round(1) }} kWh ({{ ((state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_yearly','last_period') | float(0)) / (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_yearly','last_period') | float(0)) * 100) | round(0) }} %)
 
+              Unbekannte Verbr.: {{ (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_yearly','last_period') | float(0) - state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_yearly','last_period') | float(0)) | round(1) }} kWh ({{ (100-(state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_yearly','last_period') | float(0)) / (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_yearly','last_period') | float(0)) * 100) | round(0) }} %)
+
 
               Wärmepumpe: 
 
@@ -2963,6 +2969,8 @@
 
 
               Bekannte Verbr.: {{ state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_winteryear','last_period') | float(0) | round(1) }} kWh ({{ ((state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_winteryear','last_period') | float(0)) / (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_winteryear','last_period') | float(0)) * 100) | round(0) }} %)
+
+              Unbekannte Verbr.: {{ (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_winteryear','last_period') | float(0) - state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_winteryear','last_period') | float(0)) | round(1) }} kWh ({{ (100-(state_attr('sensor.stromzahler_powercalc_bekannte_verbraucher_winteryear','last_period') | float(0)) / (state_attr('sensor.stromzahler_powercalc_verbrauch_gesamt_winteryear','last_period') | float(0)) * 100) | round(0) }} %)
 
 
               Wärmepumpe: 
