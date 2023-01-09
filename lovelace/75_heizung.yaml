@@ -30,8 +30,22 @@ cards:
         name: Temperatur aktuell
       - entity: water_heater.dhw1
         name: Water-Heater
-      - entity: switch.pv_heizung_1
-        name: PV-Strom
+      - type: button
+        name: Warmwasser Boost
+        icon: mdi:rocket-launch-outline
+        tap_action:
+          action: call-service
+          service: water_heater.set_operation_mode
+          data:
+            operation_mode: "on"
+      - type: button
+        name: Warmwasser Normal
+        icon: mdi:cash-100
+        tap_action:
+          action: call-service
+          service: water_heater.set_operation_mode
+          data:
+            operation_mode: "eco"
       - type: section
         label: Gerät
       - entity: sensor.bosch_health_status
