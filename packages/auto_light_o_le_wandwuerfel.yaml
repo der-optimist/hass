@@ -70,6 +70,9 @@ template:
             {{ [states('switch.luften_le')] | select('equalto', 'on') | list | count }}
           {% endif %}
     binary_sensor:
+      - name: helper_stay_as_you_are_o_le_wandwuerfel
+        state: >
+          {{ false }}
       - name: helper_light_trigger_o_le_wandwuerfel
         state: >
           {% if states('binary_sensor.pm_o_kw_le_raum') in ['unavailable', 'unknown', 'none'] 
@@ -139,6 +142,7 @@ automation:
       input:
         light_entity: light.wandwurfel_le
         automation_switch: input_boolean.automation_switch_light_o_le_wandwuerfel
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_o_le_wandwuerfel
         trigger: binary_sensor.helper_light_trigger_o_le_wandwuerfel
         helper_effective_brightness: sensor.helper_light_effective_brightness_o_le_wandwuerfel
         helper_basic_brightness: sensor.helper_light_basic_brightness_o_le_wandwuerfel

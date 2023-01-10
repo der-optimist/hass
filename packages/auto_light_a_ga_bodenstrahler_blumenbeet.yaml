@@ -40,6 +40,9 @@ template:
         state: >
           {{ [] | select('equalto', 'on') | list | count }}
     binary_sensor:
+      - name: helper_stay_as_you_are_a_ga_bodenstrahler_blumenbeet
+        state: >
+          {{ false }}
       - name: helper_light_trigger_a_ga_bodenstrahler_blumenbeet
         state: >
           {{ is_state('binary_sensor.bodenstrahler_blumenbeet_soll_an_sein', 'on') }}
@@ -73,6 +76,7 @@ automation:
       input:
         light_entity: light.bodenstrahler_blumenbeet
         automation_switch: input_boolean.automation_switch_light_a_ga_bodenstrahler_blumenbeet
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_a_ga_bodenstrahler_blumenbeet
         trigger: binary_sensor.helper_light_trigger_a_ga_bodenstrahler_blumenbeet
         helper_effective_brightness: sensor.helper_light_effective_brightness_a_ga_bodenstrahler_blumenbeet
         helper_basic_brightness: sensor.helper_light_basic_brightness_a_ga_bodenstrahler_blumenbeet

@@ -125,7 +125,7 @@ automation:
     trace:
       stored_traces: 10
     use_blueprint:
-      path: /config/blueprints/light_automation_beta.yaml
+      path: /config/blueprints/light_automation.yaml
       input:
         light_entity: light.panels_wohnzimmer
         automation_switch: input_boolean.automation_switch_light_e_wz_panels

@@ -72,6 +72,9 @@ template:
         state: >
           {{ [] | select('equalto', 'on') | list | count }}
     binary_sensor:
+      - name: helper_stay_as_you_are_e_wf_brettlicht
+        state: >
+          {{ false }}
       - name: helper_light_trigger_e_wf_brettlicht
         state: >
           {% if states('binary_sensor.pm_e_wf_haustur') in ['unavailable', 'unknown', 'none']
@@ -129,6 +132,7 @@ automation:
       input:
         light_entity: light.brettlicht_windfang
         automation_switch: input_boolean.automation_switch_light_e_wf_brettlicht
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_e_wf_brettlicht
         trigger: binary_sensor.helper_light_trigger_e_wf_brettlicht
         helper_effective_brightness: sensor.helper_light_effective_brightness_e_wf_brettlicht
         helper_basic_brightness: sensor.helper_light_basic_brightness_e_wf_brettlicht

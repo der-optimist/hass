@@ -40,6 +40,9 @@ template:
         state: >
           {{ [states('binary_sensor.tv_abends_an')] | select('equalto', 'on') | list | count }}
     binary_sensor:
+      - name: helper_stay_as_you_are_e_ez_weihnachtsbaum
+        state: >
+          {{ false }}
       - name: helper_light_trigger_e_ez_weihnachtsbaum
         state: >
           {% if states('binary_sensor.pm_e_ez_bar_kuche') in ['unavailable', 'unknown', 'none']
@@ -93,6 +96,7 @@ automation:
       input:
         light_entity: light.sd_fussraum_bar
         automation_switch: input_boolean.automation_switch_light_e_ez_weihnachtsbaum
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_e_ez_weihnachtsbaum
         trigger: binary_sensor.helper_light_trigger_e_ez_weihnachtsbaum
         helper_effective_brightness: sensor.helper_light_effective_brightness_e_ez_weihnachtsbaum
         helper_basic_brightness: sensor.helper_light_basic_brightness_e_ez_weihnachtsbaum

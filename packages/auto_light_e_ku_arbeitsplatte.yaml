@@ -82,6 +82,9 @@ template:
         state: >
           {{ [] | select('equalto', 'on') | list | count }}
     binary_sensor:
+      - name: helper_stay_as_you_are_e_ku_arbeitsplatte
+        state: >
+          {{ false }}
       - name: helper_light_trigger_e_ku_arbeitsplatte
         state: >
           {% if states('binary_sensor.pm_e_ku_kuche') in ['unavailable', 'unknown', 'none'] %}
@@ -127,6 +130,7 @@ automation:
       input:
         light_entity: light.arbeitsplatte
         automation_switch: input_boolean.automation_switch_light_e_ku_arbeitsplatte
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_e_ku_arbeitsplatte
         trigger: binary_sensor.helper_light_trigger_e_ku_arbeitsplatte
         helper_effective_brightness: sensor.helper_light_effective_brightness_e_ku_arbeitsplatte
         helper_basic_brightness: sensor.helper_light_basic_brightness_e_ku_arbeitsplatte

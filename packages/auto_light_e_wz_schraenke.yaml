@@ -47,6 +47,9 @@ template:
         state: >
           {{ [] | select('equalto', 'on') | list | count }}
     binary_sensor:
+      - name: helper_stay_as_you_are_e_wz_schraenke
+        state: >
+          {{ states('switch.bleib_so_wz_licht') }}
       - name: helper_light_trigger_e_wz_schraenke
         state: >
           {% if states('binary_sensor.pm_e_wz_couch_links') in ['unavailable', 'unknown', 'none']
@@ -60,18 +63,10 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_wz_schraenke
         state: >
-          {% if states('switch.bleib_so_wz_licht') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.helper_light_keeping_off_entities_e_wz_schraenke') }}
-          {% else %}
-            {{ is_state('switch.bleib_so_wz_licht', 'on') }}
-          {% endif %}
+          {{ false }}
       - name: helper_light_keeping_on_entities_e_wz_schraenke
         state: >
-          {% if states('switch.bleib_so_wz_licht') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.helper_light_keeping_on_entities_e_wz_schraenke') }}
-          {% else %}
-            {{ is_state('switch.bleib_so_wz_licht', 'on') }}
-          {% endif %}
+          {{ false }}
       - name: helper_light_keeping_fix_entities_e_wz_schraenke
         state: >
           {% if states('binary_sensor.tv_pizza_abend') in ['unavailable', 'unknown', 'none']
@@ -125,6 +120,7 @@ automation:
       input:
         light_entity: light.schrankbeleuchtung_wohnzimmer
         automation_switch: input_boolean.automation_switch_light_e_wz_schraenke
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_e_wz_schraenke
         trigger: binary_sensor.helper_light_trigger_e_wz_schraenke
         helper_effective_brightness: sensor.helper_light_effective_brightness_e_wz_schraenke
         helper_basic_brightness: sensor.helper_light_basic_brightness_e_wz_schraenke

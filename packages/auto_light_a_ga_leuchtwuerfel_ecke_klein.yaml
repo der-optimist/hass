@@ -46,6 +46,9 @@ template:
         state: >
           {{ [] | select('equalto', 'on') | list | count }}
     binary_sensor:
+      - name: helper_stay_as_you_are_a_ga_leuchtwuerfel_ecke_klein
+        state: >
+          {{ false }}
       - name: helper_light_trigger_a_ga_leuchtwuerfel_ecke_klein
         state: >
           {{ is_state('binary_sensor.hst_offen', 'on') }}
@@ -82,6 +85,7 @@ automation:
       input:
         light_entity: light.0x00158d000504f555
         automation_switch: input_boolean.automation_switch_light_a_ga_leuchtwuerfel_ecke_klein
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_a_ga_leuchtwuerfel_ecke_klein
         trigger: binary_sensor.helper_light_trigger_a_ga_leuchtwuerfel_ecke_klein
         helper_effective_brightness: sensor.helper_light_effective_brightness_a_ga_leuchtwuerfel_ecke_klein
         helper_basic_brightness: sensor.helper_light_basic_brightness_a_ga_leuchtwuerfel_ecke_klein

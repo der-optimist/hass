@@ -71,6 +71,9 @@ template:
             {{ [states('binary_sensor.tv_abends_an'),states('input_boolean.arbeit_theke'),states('switch.luften_ez')] | select('equalto', 'on') | list | count }}
           {% endif %}
     binary_sensor:
+      - name: helper_stay_as_you_are_e_ez_panels
+        state: >
+          {{ false }}
       - name: helper_light_trigger_e_ez_panels
         state: >
           {% if states('binary_sensor.pm_e_ez_bar_kuche') in ['unavailable', 'unknown', 'none']
@@ -132,6 +135,7 @@ automation:
       input:
         light_entity: light.panels_esszimmer
         automation_switch: input_boolean.automation_switch_light_e_ez_panels
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_e_ez_panels
         trigger: binary_sensor.helper_light_trigger_e_ez_panels
         helper_effective_brightness: sensor.helper_light_effective_brightness_e_ez_panels
         helper_basic_brightness: sensor.helper_light_basic_brightness_e_ez_panels

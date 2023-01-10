@@ -45,6 +45,9 @@ template:
             {{ [states('switch.luften_la'),states('switch.luften_le')] | select('equalto', 'on') | list | count }}
           {% endif %}
     binary_sensor:
+      - name: helper_stay_as_you_are_o_az_mitte
+        state: >
+          {{ false }}
       - name: helper_light_trigger_o_az_mitte
         state: >
           {% if states('binary_sensor.pm_o_nz') in ['unavailable', 'unknown', 'none'] %}
@@ -82,6 +85,7 @@ automation:
       input:
         light_entity: light.schreibtisch_decke
         automation_switch: input_boolean.automation_switch_light_o_az_mitte
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_o_az_mitte
         trigger: binary_sensor.helper_light_trigger_o_az_mitte
         helper_effective_brightness: sensor.helper_light_effective_brightness_o_az_mitte
         helper_basic_brightness: sensor.helper_light_basic_brightness_o_az_mitte

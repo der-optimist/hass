@@ -62,6 +62,9 @@ template:
             {{ [states('switch.bad_og_nachtmodus')] | select('equalto', 'on') | list | count }}
           {% endif %}
     binary_sensor:
+      - name: helper_stay_as_you_are_o_ba_panels
+        state: >
+          {{ false }}
       - name: helper_light_trigger_o_ba_panels
         state: >
           {% if states('binary_sensor.pm_o_ba') in ['unavailable', 'unknown', 'none'] %}
@@ -111,6 +114,7 @@ automation:
       input:
         light_entity: light.panels_bad_og
         automation_switch: input_boolean.automation_switch_light_o_ba_panels
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_o_ba_panels
         trigger: binary_sensor.helper_light_trigger_o_ba_panels
         helper_effective_brightness: sensor.helper_light_effective_brightness_o_ba_panels
         helper_basic_brightness: sensor.helper_light_basic_brightness_o_ba_panels

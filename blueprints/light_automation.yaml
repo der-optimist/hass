@@ -38,6 +38,13 @@ blueprint:
         target:
           entity:
             domain: sensor
+    helper_stay_as_you_are:
+      name: Helper that is on it the light shall stay as it is
+      description: Helper Entity (binary sensor), that is on it the light shall stay as it is
+      selector:
+        target:
+          entity:
+            domain: binary_sensor
     helper_is_too_dark:
       name: Helper showing if too dark
       description: Helper Entity (binary sensor), that indicates if it is too dark
@@ -120,6 +127,16 @@ trigger:
     event: start
     id: ha_start
   - platform: state
+    entity_id: !input helper_stay_as_you_are
+    id: stay_as_you_are_on
+    from: "off"
+    to: "on"
+  - platform: state
+    entity_id: !input helper_stay_as_you_are
+    id: stay_as_you_are_off
+    from: "on"
+    to: "off"
+  - platform: state
     entity_id: !input trigger
     id: motion_on
     from: "off"
@@ -165,6 +182,22 @@ trigger:
 
 action:
   - choose:
+    # path 0.1
+    - conditions:
+      - condition: trigger
+        id: stay_as_you_are_on
+      sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: !input automation_switch
+    # path 0.2
+    - conditions:
+      - condition: trigger
+        id: stay_as_you_are_off
+      sequence:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: !input automation_switch
   # path 1
     - conditions:
       - condition: or

@@ -65,6 +65,9 @@ template:
             {{ [states('switch.majo_schlafen')] | select('equalto', 'on') | list | count }}
           {% endif %}
     binary_sensor:
+      - name: helper_stay_as_you_are_e_wf_panels
+        state: >
+          {{ false }}
       - name: helper_light_trigger_e_wf_panels
         state: >
           {% if states('binary_sensor.pm_e_wf_haustur') in ['unavailable', 'unknown', 'none']
@@ -120,6 +123,7 @@ automation:
       input:
         light_entity: light.panels_windfang
         automation_switch: input_boolean.automation_switch_light_e_wf_panels
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_e_wf_panels
         trigger: binary_sensor.helper_light_trigger_e_wf_panels
         helper_effective_brightness: sensor.helper_light_effective_brightness_e_wf_panels
         helper_basic_brightness: sensor.helper_light_basic_brightness_e_wf_panels

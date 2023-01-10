@@ -54,6 +54,9 @@ template:
         state: >
           {{ [] | select('equalto', 'on') | list | count }}
     binary_sensor:
+      - name: helper_stay_as_you_are_o_ba_spiegel_oben
+        state: >
+          {{ false }}
       - name: helper_light_trigger_o_ba_spiegel_oben
         state: >
           {% if states('binary_sensor.pm_o_ba') in ['unavailable', 'unknown', 'none'] %}
@@ -99,6 +102,7 @@ automation:
       input:
         light_entity: light.led_auf_spiegelschrank_bad_og
         automation_switch: input_boolean.automation_switch_light_o_ba_spiegel_oben
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_o_ba_spiegel_oben
         trigger: binary_sensor.helper_light_trigger_o_ba_spiegel_oben
         helper_effective_brightness: sensor.helper_light_effective_brightness_o_ba_spiegel_oben
         helper_basic_brightness: sensor.helper_light_basic_brightness_o_ba_spiegel_oben

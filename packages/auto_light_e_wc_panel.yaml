@@ -64,6 +64,9 @@ template:
         state: >
           {{ [] | select('equalto', 'on') | list | count }}
     binary_sensor:
+      - name: helper_stay_as_you_are_e_wc_panel
+        state: >
+          {{ false }}
       - name: helper_light_trigger_e_wc_panel
         state: >
           {% if states('binary_sensor.pm_e_wc') in ['unavailable', 'unknown', 'none'] %}
@@ -109,6 +112,7 @@ automation:
       input:
         light_entity: light.panels_wc
         automation_switch: input_boolean.automation_switch_light_e_wc_panel
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_e_wc_panel
         trigger: binary_sensor.helper_light_trigger_e_wc_panel
         helper_effective_brightness: sensor.helper_light_effective_brightness_e_wc_panel
         helper_basic_brightness: sensor.helper_light_basic_brightness_e_wc_panel

@@ -40,6 +40,9 @@ template:
         state: >
           {{ [] | select('equalto', 'on') | list | count }}
     binary_sensor:
+      - name: helper_stay_as_you_are_a_ar_decke
+        state: >
+          {{ false }}
       - name: helper_light_trigger_a_ar_decke
         state: >
           {{ is_state('binary_sensor.pm_a_ar', 'on') }}
@@ -74,6 +77,7 @@ automation:
       input:
         light_entity: light.abstellraum_carport
         automation_switch: input_boolean.automation_switch_light_a_ar_decke
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_a_ar_decke
         trigger: binary_sensor.helper_light_trigger_a_ar_decke
         helper_effective_brightness: sensor.helper_light_effective_brightness_a_ar_decke
         helper_basic_brightness: sensor.helper_light_basic_brightness_a_ar_decke

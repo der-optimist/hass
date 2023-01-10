@@ -55,6 +55,9 @@ template:
             {{ [states('switch.luften_sz')] | select('equalto', 'on') | list | count }}
           {% endif %}
     binary_sensor:
+      - name: helper_stay_as_you_are_e_sz_bettbeleuchtung
+        state: >
+          {{ states('switch.bleib_so_sz_licht') }}
       - name: helper_light_trigger_e_sz_bettbeleuchtung
         state: >
           {% if states('binary_sensor.pm_e_sz_bett') in ['unavailable', 'unknown', 'none']
@@ -67,21 +70,15 @@ template:
       - name: helper_light_keeping_off_entities_e_sz_bettbeleuchtung
         state: >
           {% set h = now().hour | int(0) %}
-          {% if states('switch.luften_sz') in ['unavailable', 'unknown', 'none']
-             or states('switch.bleib_so_sz_licht') in ['unavailable', 'unknown', 'none'] %}
+          {% if states('switch.luften_sz') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_off_entities_e_sz_bettbeleuchtung') }}
           {% else %}
             {{ is_state('switch.luften_sz', 'on') 
-               or is_state('switch.bleib_so_sz_licht', 'on') 
                or (h >= 9 and h <= 16) }}
           {% endif %}
       - name: helper_light_keeping_on_entities_e_sz_bettbeleuchtung
         state: >
-          {% if states('switch.bleib_so_sz_licht') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.helper_light_keeping_on_entities_e_sz_bettbeleuchtung') }}
-          {% else %}
-            {{ is_state('switch.bleib_so_sz_licht', 'on') }}
-          {% endif %}
+          {{ false }}
       - name: helper_light_keeping_fix_entities_e_sz_bettbeleuchtung
         state: >
           {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
@@ -131,6 +128,7 @@ automation:
       input:
         light_entity: light.bettbeleuchtung
         automation_switch: input_boolean.automation_switch_light_e_sz_bettbeleuchtung
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_e_sz_bettbeleuchtung
         trigger: binary_sensor.helper_light_trigger_e_sz_bettbeleuchtung
         helper_effective_brightness: sensor.helper_light_effective_brightness_e_sz_bettbeleuchtung
         helper_basic_brightness: sensor.helper_light_basic_brightness_e_sz_bettbeleuchtung
