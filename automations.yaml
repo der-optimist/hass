@@ -827,6 +827,9 @@
           id: jo_aktiviert
         sequence:
         - delay: 15
+        - condition: state
+          entity_id: input_boolean.flur_alarm_jo
+          state: 'on'
         - service: notify.telegram_jo
           data:
             message: Probe-Bewegungsalarm
@@ -835,6 +838,9 @@
           id: ma_aktiviert
         sequence:
         - delay: 15
+        - condition: state
+          entity_id: input_boolean.flur_alarm_ma
+          state: 'on'
         - service: notify.telegram_ma
           data:
             message: Probe-Bewegungsalarm
