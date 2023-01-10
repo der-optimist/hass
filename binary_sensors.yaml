@@ -134,14 +134,6 @@
           {% else %}
             {{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 50 or is_state('switch.majo_schlafen', 'on') }}
           {% endif %}
-      la_schon_im_bett:
-        friendly_name: "La schon im Bett"
-        value_template: >
-          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.la_schon_im_bett') }}
-          {% else %}
-            {{ is_state('switch.la_schlaft', 'on') and is_state('binary_sensor.bettgehzeit_kinder', 'on') }}
-          {% endif %}
       nachtmodus_wohnbereich_licht:
         friendly_name: "Nachtmodus Wohnbereich Licht"
         value_template: >

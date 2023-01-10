@@ -42,8 +42,6 @@ template:
         state: >
           {% if is_state('binary_sensor.schlafen_oder_aufwachphase_le', 'on') %}
             {{ int(5) }}
-          {% elif is_state('binary_sensor.la_schon_im_bett', 'on') %}
-            {{ int(25) }}
           {% else %}
             {{ states('sensor.helper_light_basic_brightness_o_le_panels') }}
           {% endif %}
