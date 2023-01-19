@@ -12,6 +12,15 @@ cards:
         name: Automatik Eisschutz
       - entity: input_boolean.eisschutz_jalousien
         name: Eisschutz Jalousien
+      - type: button
+        name: Beende Windalarm manuell
+        icon: mdi:thumb-up-outline
+        tap_action:
+          action: call-service
+          service: knx.send
+          data:
+            address: 13/0/5
+            payload: 0
       - type: section
         label: einzeln
       - entity: input_boolean.sperre_jal_ku
