@@ -62,10 +62,10 @@ template:
         state: >
           {% set humidity = state_attr('humidifier.luftentfeuchter_waschkuche','saved_humidity') %}
           {% if is_state('binary_sensor.template_helper_luftentfeuchter_waschkuche_use_pv','on') %}
-            {% set humidity = humidity - 5 %}
+            {% set humidity = humidity - 6 %}
           {% endif %}
           {% if is_state('timer.special_humidity_waschkueche','active') %}
-            {% set humidity = humidity - 7 %}
+            {% set humidity = humidity - 12 %}
           {% endif %}
           {{ humidity }}
       - name: helper_luftentfeuchter_speis_target_humidity

@@ -1135,9 +1135,9 @@
         - condition: trigger
           id: wm_reminder
         sequence:
-        - service: notify.telegram_ma
-          data:
-            message: 'Waschmaschine ist seit einer Stunde fertig'
+#        - service: notify.telegram_ma
+#          data:
+#            message: 'Waschmaschine ist seit einer Stunde fertig'
         - service: notify.telegram_jo
           data:
             message: 'Waschmaschine ist seit einer Stunde fertig'
@@ -1213,9 +1213,9 @@
         - condition: trigger
           id: dryer_reminder
         sequence:
-        - service: notify.telegram_ma
-          data:
-            message: 'Trockner ist seit 2 Stunden fertig'
+#        - service: notify.telegram_ma
+#          data:
+#            message: 'Trockner ist seit 2 Stunden fertig'
         - service: notify.telegram_jo
           data:
             message: 'Trockner ist seit 2 Stunden fertig'
