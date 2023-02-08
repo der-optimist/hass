@@ -606,10 +606,10 @@
   - platform: statistics
     name: Windgeschwindigkeit Wetterstation mittel
     entity_id: sensor.windgeschwindigkeit_wetterstation
-    sampling_size: 60
+    sampling_size: 100
     state_characteristic: average_step
     max_age:
-      minutes: 5
+      minutes: 10
   - platform: statistics
     name: Blitzentfernung letze 5 Minuten
     entity_id: sensor.blitzortung_lightning_distance
