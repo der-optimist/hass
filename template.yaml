@@ -96,3 +96,12 @@
           {% endif %}
         attributes:
           friendly_name: "Akku Tablet Le."
+      - unique_id: temp_windchill
+        # name: change entity_id in UI after creation
+        unit_of_measurement: "°C"
+        state: >
+          {% set temp = states('sensor.temp_aussen') | float(0) %}
+          {% set wind_kmh = (states('sensor.windgeschwindigkeit_wetterstation') | float(0)) * 3.6 %}
+          {{ (13.12 + 0.6215*temp + (0.3965*temp - 11.37)*(wind_kmh**0.16)) | round(1) }}
+        attributes:
+          friendly_name: "Temp. Windchill"
