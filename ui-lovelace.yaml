@@ -1,6 +1,7 @@
 title: Lieblingshaus
 views:
   - !include lovelace/01_home.yaml
+  - !include lovelace/69_anwesenheiten.yaml
   - !include lovelace/10_wohnbereich.yaml
   - !include lovelace/20_eltern.yaml
   - !include lovelace/30_flure_treppen_carport.yaml
@@ -9,7 +10,6 @@ views:
   - !include lovelace/50_nz_gz.yaml
   - !include lovelace/60_keller.yaml
   - !include lovelace/65_multimedia.yaml
-  - !include lovelace/69_anwesenheiten.yaml
   - !include lovelace/70_automatisierungen.yaml
   - !include lovelace/72_jalousien.yaml
   - !include lovelace/75_heizung.yaml
