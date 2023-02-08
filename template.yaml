@@ -105,3 +105,21 @@
           {{ (13.12 + 0.6215*temp + (0.3965*temp - 11.37)*(wind_kmh**0.16)) | round(1) }}
         attributes:
           friendly_name: "Temp. Windchill"
+      - unique_id: temp_außen_gefuehlt
+        # name: change entity_id in UI after creation
+        unit_of_measurement: "°C"
+        state: >
+          {% set temp = states('sensor.temp_aussen') | float(0) %}
+          {% set windchill = states('sensor.template_temp_windchill') | float(0) %}
+          {% set heat_index = states('sensor.thermal_comfort_aussen_heat_index') | float(0) %}
+          {% if temp < 10 %}
+            {{ windchill | round(1) }}
+          {% elif temp > 15 %}
+            {{ heat_index | round(1) }}
+          {% else %}
+            {% set ratio_windchill = (15 - temp) / 5 %}
+            {% set ratio_heat_index = 1 - ratio_windchill %}
+            {{ (ratio_windchill * windchill + ratio_heat_index * heat_index) | round(1) }}
+          {% endif %}
+        attributes:
+          friendly_name: "Temp. außen gefühlt"
