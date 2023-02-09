@@ -81,9 +81,9 @@ cards:
           - entity: sensor.template_temp_aussen_gefuehlt
             type: line
             name: gefühlt
-            group_by:
-              func: avg
-              duration: 20min
+#            group_by:
+#              func: avg
+#              duration: 20min
             fill_raw: last
             color: '#8fa4b3'
             stroke_width: 3
