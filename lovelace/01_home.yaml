@@ -55,7 +55,9 @@ cards:
           show_states: true
         apex_config:
           chart:
-            height: 145px
+            height: 200px
+          legend:
+            show: false
         series:
           - entity: sensor.temp_wetterstation
             type: line
