@@ -85,8 +85,8 @@ cards:
               func: avg
               duration: 20min
             fill_raw: last
-            color: '#62717B'
-            stroke_width: 2
+            color: '#8fa4b3'
+            stroke_width: 3
 #      - type: custom:mini-graph-card
 #        style: |
 #          state__value {
