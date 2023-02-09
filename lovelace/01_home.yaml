@@ -60,6 +60,14 @@ cards:
             show: false
           yaxis:
             show: true
+          grid:
+            show: true
+            xaxis:
+              lines:
+                show: false 
+            yaxis:
+              lines:
+                show: true
         series:
           - entity: sensor.temp_wetterstation
             type: line
@@ -68,6 +76,7 @@ cards:
               func: avg
               duration: 20min
             fill_raw: last
+            color: var(--primary-color)
           - entity: sensor.template_temp_aussen_gefuehlt
             type: line
             name: gefühlt
@@ -75,6 +84,7 @@ cards:
               func: avg
               duration: 20min
             fill_raw: last
+            color: var(--primary-color)
 #      - type: custom:mini-graph-card
 #        style: |
 #          state__value {
