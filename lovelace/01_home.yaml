@@ -59,8 +59,7 @@ cards:
           legend:
             show: false
           yaxis:
-            lines:
-              show: true
+            show: true
         series:
           - entity: sensor.temp_wetterstation
             type: line
