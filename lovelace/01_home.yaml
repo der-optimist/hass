@@ -45,31 +45,49 @@ cards:
               # {{ states('sensor.time') }}
               
               {{ states('sensor.date_template') }}
-      - type: custom:mini-graph-card
-        style: |
-          state__value {
-            font-size: 2em;
-          }
-        entities: 
+      - type: custom:apexcharts-card
+        graph_span: 1d
+        update_interval: 5min
+        header:
+          show: True
+          title: Außentemperatur
+          show_states: true
+        apex_config:
+          chart:
+            height: 145px
+        series:
           - entity: sensor.temp_wetterstation
+            type: line
             name: gemessen
-            show_state: true
-            show_legend: true
+            group_by:
+              func: avg
+              duration: 10min
           - entity: sensor.template_temp_aussen_gefuehlt
+            type: line
             name: gefühlt
-            show_state: true
-            show_legend: true
-        name: Außentemperatur
-        height: 145
-        hour24: true
-        decimals: 1
-        show:
-          labels: true
-#      - type: entities
-#        title: "Wer ist wo..."
-#        show_header_toggle: false
-#        entities:
-#          - entity: sensor.location_jo
+            group_by:
+              func: avg
+              duration: 10min
+#      - type: custom:mini-graph-card
+#        style: |
+#          state__value {
+#            font-size: 2em;
+#          }
+#        entities: 
+#          - entity: sensor.temp_wetterstation
+#            name: gemessen
+#            show_state: true
+#            show_legend: true
+#          - entity: sensor.template_temp_aussen_gefuehlt
+#            name: gefühlt
+#            show_state: true
+#            show_legend: true
+#        name: Außentemperatur
+#        height: 145
+#        hour24: true
+#        decimals: 1
+#        show:
+#          labels: true
       - type: entities
         title: "Pizza-Timer"
         show_header_toggle: false
