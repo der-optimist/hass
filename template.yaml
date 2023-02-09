@@ -101,8 +101,12 @@
         unit_of_measurement: "°C"
         state: >
           {% set temp = states('sensor.temp_aussen') | float(0) %}
-          {% set wind_kmh = (states('sensor.windgeschwindigkeit_wetterstation') | float(0)) * 3.6 %}
-          {{ (13.12 + 0.6215*temp + (0.3965*temp - 11.37)*(wind_kmh**0.16)) | round(1) }}
+          {% set wind_kmh = (states('sensor.windgeschwindigkeit_wetterstation_mittel') | float(0)) * 3.6 %}
+          {% if wind_kmh > 5 %}
+            {{ (13.12 + 0.6215*temp + (0.3965*temp - 11.37)*(wind_kmh**0.16)) | round(1) }}
+          {% else %}
+            {{ temp | round(1) }}
+          {% endif %}
         attributes:
           friendly_name: "Temp. Windchill"
       - unique_id: temp_außen_gefuehlt
