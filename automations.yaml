@@ -2176,6 +2176,16 @@
       id: alarm_jo
       event_data:
         text: alarm
+    - platform: event
+      event_type: telegram_text
+      id: temp
+      event_data:
+        text: Temp
+    - platform: event
+      event_type: telegram_text
+      id: temp
+      event_data:
+        text: Temperatur
   condition: []
   action:
     - choose:
@@ -2459,6 +2469,20 @@
             - service: notify.telegram_jo
               data:
                 message: 'Flur-Alarm ist jetzt aus'
+      - conditions:
+        - condition: trigger
+          id: temp
+        sequence:
+        - service: telegram_bot.send_message
+          data:
+            target: "{{ trigger.event.data.user_id }}"
+            parse_mode: markdown
+            message: >      
+              Außen gemessen: {{ states('sensor.temp_aussen') | round(1) }} °C
+
+              Außen gefühlt: {{ states('sensor.template_temp_aussen_gefuehlt') }} °C
+              
+              Esszimmer: {{ states('sensor.temp_esszimmer_pm') | round(1) }} °C
 #
 ###############################################
 #####           Reminder Türen            #####
