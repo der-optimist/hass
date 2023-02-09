@@ -117,13 +117,13 @@
           {% set windchill = states('sensor.template_temp_windchill') | float(0) %}
           {% set heat_index = states('sensor.thermal_comfort_aussen_heat_index') | float(0) %}
           {% if temp < 10 %}
-            {{ windchill | round(1) }}
+            {{ windchill | round(0) }}
           {% elif temp > 15 %}
-            {{ heat_index | round(1) }}
+            {{ heat_index | round(0) }}
           {% else %}
             {% set ratio_windchill = (15 - temp) / 5 %}
             {% set ratio_heat_index = 1 - ratio_windchill %}
-            {{ (ratio_windchill * windchill + ratio_heat_index * heat_index) | round(1) }}
+            {{ (ratio_windchill * windchill + ratio_heat_index * heat_index) | round(0) }}
           {% endif %}
         attributes:
           friendly_name: "Temp. außen gefühlt"
