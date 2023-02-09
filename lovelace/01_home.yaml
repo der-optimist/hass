@@ -77,6 +77,7 @@ cards:
               duration: 20min
             fill_raw: last
             color: var(--primary-color)
+            stroke_width: 5
           - entity: sensor.template_temp_aussen_gefuehlt
             type: line
             name: gefühlt
@@ -84,7 +85,8 @@ cards:
               func: avg
               duration: 20min
             fill_raw: last
-            color: var(--primary-color)
+            color: #62717B
+            stroke_width: 2
 #      - type: custom:mini-graph-card
 #        style: |
 #          state__value {
