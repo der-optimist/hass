@@ -58,6 +58,9 @@ cards:
             height: 200px
           legend:
             show: false
+          yaxis:
+            lines:
+              show: true
         series:
           - entity: sensor.temp_wetterstation
             type: line
@@ -66,7 +69,6 @@ cards:
               func: avg
               duration: 20min
             fill_raw: last
-            type: area
           - entity: sensor.template_temp_aussen_gefuehlt
             type: line
             name: gefühlt
