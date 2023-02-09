@@ -52,6 +52,11 @@ cards:
           }
         entities: 
           - sensor.temp_wetterstation
+          - entity: sensor.template_temp_aussen_gefuehlt
+            name: gefühlt
+            show_state: true
+            show_graph: false
+            show_legend: false
         name: Außentemperatur
         height: 145
         hour24: true
