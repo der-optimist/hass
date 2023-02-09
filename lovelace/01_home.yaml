@@ -55,7 +55,7 @@ cards:
           show_states: true
         apex_config:
           chart:
-            height: 200px
+            height: 190px
           legend:
             show: false
           yaxis:
