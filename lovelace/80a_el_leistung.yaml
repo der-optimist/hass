@@ -74,3 +74,27 @@ cards:
         name: Pool
         entity: sensor.el_leistung_powercalc_pool
         state: "{{ states('sensor.el_leistung_powercalc_pool') | float(0) | round(0) }} W"
+  - type: entities
+    title: Einzelne Geräte
+    show_header_toggle: false
+    entities:
+      - type: custom:template-entity-row
+        name: Lüftunsanlage
+        entity: sensor.el_leistung_luftungsanlage
+        state: "{{ states('sensor.el_leistung_luftungsanlage') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Backofen
+        entity: sensor.el_leistung_backofen
+        state: "{{ states('sensor.el_leistung_backofen') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Spülmaschine
+        entity: sensor.el_leistung_spulmaschine
+        state: "{{ states('sensor.el_leistung_spulmaschine') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Waschmaschine
+        entity: sensor.el_leistung_waschmaschine
+        state: "{{ states('sensor.el_leistung_waschmaschine') | float(0) | round(0) }} W"
+      - type: custom:template-entity-row
+        name: Trockner
+        entity: sensor.el_leistung_trockner
+        state: "{{ states('sensor.el_leistung_trockner') | float(0) | round(0) }} W"
