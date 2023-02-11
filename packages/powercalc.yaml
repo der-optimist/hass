@@ -442,9 +442,9 @@ sensor:
           - entity_id: sensor.el_leistung_heizung_partyraum_vorne
             power_sensor_id: sensor.el_leistung_heizung_partyraum_vorne
             name: Heizung Partyraum vorne
-#          - entity_id: sensor.el_leistung_heizung_partyraum_hinten
-#            power_sensor_id: sensor.el_leistung_heizung_partyraum_hinten
-#            name: Heizung Partyraum hinten
+          - entity_id: sensor.el_leistung_heizung_partyraum_hinten
+            power_sensor_id: sensor.el_leistung_heizung_partyraum_hinten
+            name: Heizung Partyraum hinten
       - create_group: Pool
         unique_id: 214efdaf-9a3a-4e7f-85f4-4c04934660f6
         entities:

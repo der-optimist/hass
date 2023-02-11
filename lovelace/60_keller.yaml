@@ -122,3 +122,13 @@ cards:
       name: Steckdose Luftentfeuchter
     - entity: sensor.el_leistung_luftentfeuchter_partyraum
       name: Leistung Luftentfeuchter
+    - type: section
+      label: Heizung
+    - entity: switch.0xa4c138be24f3a561
+      name: Steckdose Heizung vorne
+    - entity: sensor.el_leistung_heizung_partyraum_vorne
+      name: El. Leistung Heizung vorne
+    - entity: switch.0xa4c1382185708acf
+      name: Steckdose Heizung hinten
+    - entity: sensor.el_leistung_heizung_partyraum_hinten
+      name: El. Leistung Heizung hinten
