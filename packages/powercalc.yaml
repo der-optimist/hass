@@ -2,6 +2,7 @@ sensor:
   - platform: powercalc
     create_group: Bekannte Verbraucher
     unique_id: 5da77d06-d4e6-11ec-bcd5-533ea3dd1b9a
+    ignore_unavailable_state: true
     entities:
       - create_group: Alle Lichter
         unique_id: 81f777e4-d4df-11ec-85d0-dfb4ae2aa83a
@@ -423,6 +424,7 @@ sensor:
             name: Telefon und Computer
       - create_group: Luftentfeuchter und Befeuchter
         unique_id: 8fe3bad2-d4e6-11ec-9b29-07ac1d4aaea7
+        ignore_unavailable_state: true
         entities:
           - entity_id: sensor.el_leistung_luftentfeuchter_waschkueche
             power_sensor_id: sensor.el_leistung_luftentfeuchter_waschkueche
@@ -438,6 +440,7 @@ sensor:
             name: Luftbefeuchter WZ
       - create_group: Heizung Partyraum
         unique_id: 95ab1c9e-d4e6-11ec-a181-7ba9e587eb94
+        ignore_unavailable_state: true
         entities:
           - entity_id: sensor.el_leistung_heizung_partyraum_vorne
             power_sensor_id: sensor.el_leistung_heizung_partyraum_vorne
@@ -447,6 +450,7 @@ sensor:
             name: Heizung Partyraum hinten
       - create_group: Pool
         unique_id: 214efdaf-9a3a-4e7f-85f4-4c04934660f6
+        ignore_unavailable_state: true
         entities:
           - entity_id: sensor.0xa4c1380e0ea5cb89_power
             power_sensor_id: sensor.0xa4c1380e0ea5cb89_power
