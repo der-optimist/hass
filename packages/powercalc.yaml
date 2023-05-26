@@ -435,9 +435,9 @@ sensor:
           - entity_id: sensor.el_leistung_luftentf_vorratsraum
             power_sensor_id: sensor.el_leistung_luftentf_vorratsraum
             name: Luftentfeuchter Speis
-          - entity_id: sensor.el_leistung_esp_sd_2
-            power_sensor_id: sensor.el_leistung_esp_sd_2
-            name: Luftbefeuchter WZ
+#          - entity_id: sensor.el_leistung_esp_sd_2
+#            power_sensor_id: sensor.el_leistung_esp_sd_2
+#            name: Luftbefeuchter WZ
       - create_group: Heizung Partyraum
         unique_id: 95ab1c9e-d4e6-11ec-a181-7ba9e587eb94
         ignore_unavailable_state: true
