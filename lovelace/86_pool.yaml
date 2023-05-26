@@ -6,11 +6,11 @@ cards:
     title: Pumpe
     show_header_toggle: false
     entities:
-      - entity: switch.0xa4c1380e0ea5cb89
+      - entity: switch.0xa4c138a1288e6b94
         name: Steckdose Pumpe
       - entity: binary_sensor.pool_pumpe_lauft
         name: Pumpe läuft?
-      - entity: sensor.0xa4c1380e0ea5cb89_power
+      - entity: sensor.0xa4c138a1288e6b94_power
         name: el. Leistung Pumpe
       - entity: sensor.pool_pumpe_an_heute
         name: Laufzeit heute (Stunden)

@@ -29,7 +29,7 @@ template:
           friendly_name: "Pool - Chlorinator läuft"
       - unique_id: pool_pumpe_lauft
         state: >
-          {% if (states('sensor.0xa4c1380e0ea5cb89_power') | float(0) > 50) %}
+          {% if (states('sensor.0xa4c138a1288e6b94_power') | float(0) > 50) %}
             {{ true }}
           {% else %}
             {{ false }}
@@ -162,14 +162,14 @@ automation:
           sequence:
           - service: switch.turn_on
             target:
-              entity_id: switch.0xa4c1380e0ea5cb89
+              entity_id: switch.0xa4c138a1288e6b94
         - conditions:
           - condition: trigger
             id: pumpe_aus
           sequence:
           - service: switch.turn_off
             target:
-              entity_id: switch.0xa4c1380e0ea5cb89
+              entity_id: switch.0xa4c138a1288e6b94
   - id: '4fc21835-8338-4990-8f77-4a92682cc758'
     alias: Pool - Chlorinator überwachen
     description: ''
@@ -251,7 +251,7 @@ automation:
       # Pumpe an
       - service: switch.turn_on
         target:
-          entity_id: switch.0xa4c1380e0ea5cb89
+          entity_id: switch.0xa4c138a1288e6b94
       # Chlorinator aus => Restart
       - service: switch.turn_off
         target:
