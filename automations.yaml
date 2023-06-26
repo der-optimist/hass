@@ -700,9 +700,9 @@
         - condition: trigger
           id: party
         sequence:
-        - service: notify.telegram_jo
-          data:
-            message: Lüftung Party
+#        - service: notify.telegram_jo
+#          data:
+#            message: Lüftung Party
         - service: modbus.write_register
           data:
             address: 1104
@@ -720,9 +720,9 @@
         - condition: trigger
           id: auto
         sequence:
-        - service: notify.telegram_jo
-          data:
-            message: Lüftung Auto
+#        - service: notify.telegram_jo
+#          data:
+#            message: Lüftung Auto
         - service: modbus.write_register
           data:
             address: 1161
@@ -733,9 +733,9 @@
         - condition: trigger
           id: stoss
         sequence:
-        - service: notify.telegram_jo
-          data:
-            message: Lüftung Stoß
+#        - service: notify.telegram_jo
+#          data:
+#            message: Lüftung Stoß
         - service: modbus.write_register
           data:
             address: 1103
