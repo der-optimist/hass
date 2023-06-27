@@ -315,20 +315,20 @@ automation:
           - service: notify.telegram_jo
             data:
               message: 'Pool heizt noch, aber der Schalter, dass die Pool-Heizung auch mit Bezahlstrom laufen soll, ist ja auch gedrückt'
-        - conditions:
-          - condition: trigger
-            id: heizung_an
-          sequence:
-          - service: notify.telegram_jo
-            data:
-              message: 'Pool-Heizung an'
-        - conditions:
-          - condition: trigger
-            id: heizung_aus
-          sequence:
-          - service: notify.telegram_jo
-            data:
-              message: 'Pool-Heizung aus'
+#        - conditions:
+#          - condition: trigger
+#            id: heizung_an
+#          sequence:
+#          - service: notify.telegram_jo
+#            data:
+#              message: 'Pool-Heizung an'
+#        - conditions:
+#          - condition: trigger
+#            id: heizung_aus
+#          sequence:
+#          - service: notify.telegram_jo
+#            data:
+#              message: 'Pool-Heizung aus'
   - id: 'e174e01b-f336-4100-a4fb-30b2c253dad1'
     alias: Pool - Heizung automatisch
     description: ''
