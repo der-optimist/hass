@@ -45,7 +45,7 @@ template:
           {{ false }}
       - name: helper_light_trigger_a_ga_stern_blumenbeet
         state: >
-          {{ (is_state('binary_sensor.bodenstrahler_blumenbeet_ist_sichtbar', 'on') and is_state('binary_sensor.anwesenheit_bildschirm', 'on'))
+          {{ (is_state('binary_sensor.bodenstrahler_blumenbeet_ist_sichtbar', 'on') and is_state('binary_sensor.anwesenheit_wohnbereich', 'on'))
              or is_state('binary_sensor.hst_offen', 'on') }}
       - name: helper_light_keeping_off_entities_a_ga_stern_blumenbeet
         state: >
