@@ -1,0 +1,9 @@
+  - switch:
+      name: bilderrahmen_1
+      command_on: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/ssh-keys/id_rsa pi@rp3bildschirm.fritz.box './bilderrahmen/mon-an.sh'"
+      command_off: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/ssh-keys/id_rsa pi@rp3bildschirm.fritz.box './bilderrahmen/mon-aus.sh'"
+  - sensor:
+      name: CPU Temperatur
+      command: "cat /sys/class/thermal/thermal_zone0/temp"
+      unit_of_measurement: "°C"
+      value_template: '{{ value | multiply(0.001) | round(1) }}'

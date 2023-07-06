@@ -44,6 +44,8 @@ climate:
 cloud:
   alexa: !include alexa.yaml
 
+command_line: !config_command_line.yaml
+
 cover:
 #  - platform: template
 #    covers:
@@ -141,7 +143,7 @@ sensor: !include sensors.yaml
 
 stream:
 
-switch: !include switch.yaml
+switch:
 
 system_log:
   max_entries: 100
