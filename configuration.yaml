@@ -44,7 +44,7 @@ climate:
 cloud:
   alexa: !include alexa.yaml
 
-command_line: !config_command_line.yaml
+command_line: !include config_command_line.yaml
 
 cover:
 #  - platform: template
