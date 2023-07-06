@@ -696,6 +696,6 @@
 # --         DWD Warn           --
 # --                            --
 # --------------------------------
-#
-  - platform: dwd_weather_warnings
-    region_name: !secret dwd_warncell_id_int
+# migrated to GUI
+#  - platform: dwd_weather_warnings
+#    region_name: !secret dwd_warncell_id_int
