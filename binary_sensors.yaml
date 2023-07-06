@@ -308,6 +308,26 @@
                or is_state('binary_sensor.pm_ktr_treppe', 'on')
                or is_state('binary_sensor.pm_ktr_flur', 'on') }}
           {% endif %}
+      anwesenheit_wohnbereich:
+        friendly_name: "Anwesenheit Wohnbereich"
+        value_template: >-
+          {% if states('binary_sensor.pm_e_ez_bar_kuche') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ez_esstisch') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ku_bar_ez') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ku_kuche') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_couch_links') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_couch_rechts') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_durchgang') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.anwesenheit_wohnbereich') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_e_ez_bar_kuche', 'on')
+               or is_state('binary_sensor.pm_e_ez_esstisch', 'on')
+               or is_state('binary_sensor.pm_e_ku_bar_ez', 'on')
+               or is_state('binary_sensor.pm_e_ku_kuche', 'on')
+               or is_state('binary_sensor.pm_e_wz_couch_links', 'on')
+               or is_state('binary_sensor.pm_e_wz_couch_rechts', 'on')
+               or is_state('binary_sensor.pm_e_wz_durchgang', 'on') }}
+          {% endif %}
       anwesenheit_eg:
         friendly_name: "Anwesenheit EG"
         value_template: >-
