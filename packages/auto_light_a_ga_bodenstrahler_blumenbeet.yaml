@@ -38,7 +38,11 @@ template:
       - name: helper_light_switching_off_entities_a_ga_bodenstrahler_blumenbeet
         unit_of_measurement: "number"
         state: >
-          {{ [] | select('equalto', 'on') | list | count }}
+          {% if states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_a_ga_bodenstrahler_blumenbeet') }}
+          {% else %}
+            {{ [states('switch.luften_ez')] | select('equalto', 'on') | list | count }}
+          {% endif %}
     binary_sensor:
       - name: helper_stay_as_you_are_a_ga_bodenstrahler_blumenbeet
         state: >
@@ -48,7 +52,11 @@ template:
           {{ is_state('binary_sensor.bodenstrahler_blumenbeet_soll_an_sein', 'on') }}
       - name: helper_light_keeping_off_entities_a_ga_bodenstrahler_blumenbeet
         state: >
-          {{ False }}
+          {% if states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_a_ga_bodenstrahler_blumenbeet') }}
+          {% else %}
+            {{ is_state('switch.luften_ez', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_a_ga_bodenstrahler_blumenbeet
         state: >
           {{ false }}

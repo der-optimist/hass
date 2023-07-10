@@ -44,7 +44,11 @@ template:
       - name: helper_light_switching_off_entities_a_ga_leuchtwuerfel_feuerplatz
         unit_of_measurement: "number"
         state: >
-          {{ [] | select('equalto', 'on') | list | count }}
+          {% if states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_a_ga_leuchtwuerfel_feuerplatz') }}
+          {% else %}
+            {{ [states('switch.luften_ez')] | select('equalto', 'on') | list | count }}
+          {% endif %}
     binary_sensor:
       - name: helper_stay_as_you_are_a_ga_leuchtwuerfel_feuerplatz
         state: >
@@ -54,7 +58,11 @@ template:
           {{ is_state('binary_sensor.hst_offen', 'on') }}
       - name: helper_light_keeping_off_entities_a_ga_leuchtwuerfel_feuerplatz
         state: >
-          {{ false }}
+          {% if states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_a_ga_leuchtwuerfel_feuerplatz') }}
+          {% else %}
+            {{ is_state('switch.luften_ez', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_a_ga_leuchtwuerfel_feuerplatz
         state: >
           {{ false }}
