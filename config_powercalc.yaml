@@ -11,6 +11,482 @@ utility_meter_types:
 energy_integration_method: left
 energy_sensor_precision: 3
 ignore_unavailable_state: true
-#create_domain_groups:
-#  - light
-#  - media_player
+
+sensors:
+  - create_group: Bekannte Verbraucher
+    unique_id: 5da77d06-d4e6-11ec-bcd5-533ea3dd1b9a
+    ignore_unavailable_state: true
+    entities:
+      - create_group: Alle Lichter
+        unique_id: 81f777e4-d4df-11ec-85d0-dfb4ae2aa83a
+        entities:
+          - create_group: Lichter Küche
+            entities:
+              - entity_id: light.arbeitsplatte
+                linear:
+                  min_power: 2
+                  max_power: 90
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.panels_kuche
+                linear:
+                  min_power: 1
+                  max_power: 24
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.panels_bar
+                linear:
+                  min_power: 1
+                  max_power: 16
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.sockelbeleuchtung
+                linear:
+                  min_power: 2
+                  max_power: 28
+                  gamma_curve: 4
+                disable_standby_power: true
+          - create_group: Lichter Esszimmer
+            entities:
+              - entity_id: light.panels_esszimmer
+                linear:
+                  min_power: 1
+                  max_power: 32
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.wandleuchten_esszimmer_hell
+                linear:
+                  min_power: 1
+                  max_power: 34
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.wandleuchten_esszimmer_gemutlich
+                linear:
+                  min_power: 1
+                  max_power: 25
+                  gamma_curve: 4
+                disable_standby_power: true
+          - create_group: Lichter Wohnzimmer
+            entities:
+              - entity_id: light.panels_wohnzimmer
+                linear:
+                  min_power: 1
+                  max_power: 32
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.schrankbeleuchtung_wohnzimmer
+                linear:
+                  min_power: 1
+                  max_power: 21
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.0x00158d000502f589
+                name: Stehlampe Wohnzimmer
+                manufacturer: innr
+                model: 'RB 285 C'
+          - create_group: Lichter Schlafzimmer
+            entities:
+              - entity_id: light.panels_schlafzimmer
+                linear:
+                  min_power: 1
+                  max_power: 48
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.bettbeleuchtung
+                linear:
+                  min_power: 1
+                  max_power: 28
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.0x680ae2fffee9df98
+                name: Kugellampe Schlafzimmer
+                linear:
+                  min_power: 0.5
+                  max_power: 5.8
+                standby_power: 0.4
+          - create_group: Lichter Bad EG
+            entities:
+              - entity_id: light.panels_bad_eg
+                linear:
+                  min_power: 1
+                  max_power: 40
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.regal_bad_eg
+                linear:
+                  min_power: 1
+                  max_power: 15
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.led_auf_spiegelschrank_bad_eg
+                linear:
+                  min_power: 1
+                  max_power: 17
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.spiegel_bad_eg
+                fixed:
+                  power: 12
+          - create_group: Lichter Flur EG und Windfang
+            entities:
+              - entity_id: light.panels_flur_eg
+                linear:
+                  min_power: 1
+                  max_power: 24
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.panels_windfang
+                linear:
+                  min_power: 1
+                  max_power: 16
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.brettlicht_windfang
+                linear:
+                  min_power: 1
+                  max_power: 29
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.0x00158d0005019c5c
+                name: Stehlampe Flur EG oben
+                manufacturer: innr
+                model: 'RB 285 C'
+              - entity_id: light.0x00158d0005019b3f
+                name: Stehlampe Flur EG unten
+                manufacturer: innr
+                model: 'RB 285 C'
+          - create_group: Lichter WC
+            entities:
+              - entity_id: light.panels_wc
+                linear:
+                  min_power: 1
+                  max_power: 8
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.spiegel_wc
+                fixed:
+                  power: 20
+          - create_group: Lichter Lara
+            entities:
+              - entity_id: light.panels_la
+                linear:
+                  min_power: 1
+                  max_power: 40
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.wandwurfel_la
+                linear:
+                  min_power: 1
+                  max_power: 12
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.0x00158d000344670b
+                name: Stehlampe Lara
+                linear:
+                  min_power: 0.5
+                  max_power: 5.3
+                standby_power: 0.4
+          - create_group: Lichter Arbeitszimmer
+            entities:
+              - entity_id: light.schreibtisch_decke
+                fixed:
+                  power: 24
+              - entity_id: light.ikea_panel_arbeitszimmer_esphome
+                linear:
+                  min_power: 2
+                  max_power: 30
+                  gamma_curve: 2.8
+                standby_power: 1
+          - create_group: Lichter Lea
+            entities:
+              - entity_id: light.panels_le
+                linear:
+                  min_power: 1
+                  max_power: 40
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.wandwurfel_le
+                linear:
+                  min_power: 1
+                  max_power: 12
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.0x680ae2fffeeb9221
+                name: Stehlampe Lea
+                linear:
+                  min_power: 0.5
+                  max_power: 5.8
+                standby_power: 0.4
+          - create_group: Lichter Gästezimmer
+            entities:
+              - entity_id: light.0x00158d0003418897
+                linear:
+                  min_power: 0.5
+                  max_power: 5.3
+                standby_power: 0.4
+          - create_group: Lichter Flur und Treppe OG
+            entities:
+              - entity_id: light.panels_flur_og
+                linear:
+                  min_power: 1
+                  max_power: 40
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.panels_treppe_og
+                linear:
+                  min_power: 1
+                  max_power: 16
+                  gamma_curve: 4
+                disable_standby_power: true
+          - create_group: Lichter Bad OG
+            entities:
+              - entity_id: light.panels_bad_og
+                linear:
+                  min_power: 1
+                  max_power: 48
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.led_auf_spiegelschrank_bad_og
+                linear:
+                  min_power: 1
+                  max_power: 17
+                  gamma_curve: 4
+                disable_standby_power: true
+              - entity_id: light.spiegel_bad_og
+                fixed:
+                  power: 12
+          - create_group: Lichter Keller
+            entities:
+              - entity_id: light.shellydimmer_d472fe_light_0
+                power_sensor_id: sensor.el_leistung_shellydimmer_d472fe_power
+                name: Licht Kellertreppe
+              - name: Standby Dimmer Kellertreppe
+                daily_fixed_energy:
+                  value: 1
+                  unit_of_measurement: W
+              - entity_id: light.flur_keller
+                fixed:
+                  power: 20
+              - entity_id: light.vorratsraum
+                fixed:
+                  power: 20
+              - entity_id: light.technikraum
+                fixed:
+                  power: 20
+              - entity_id: light.lagerraum
+                name: Licht Partyraum
+                fixed:
+                  power: 22
+              - entity_id: light.werkelraum
+                fixed:
+                  power: 60
+          - create_group: Lichter Aussen
+            entities:
+              - create_group: Lichter Carport
+                entities:
+                  - entity_id: light.led_streifen_carport
+                    linear:
+                      min_power: 1
+                      max_power: 67
+                      gamma_curve: 4
+                    disable_standby_power: true
+                  - entity_id: light.bodenlicht_eingang
+                    linear:
+                      min_power: 1
+                      max_power: 16
+                      gamma_curve: 4
+                    disable_standby_power: true
+                  - entity_id: light.spots_carport_2
+                    linear:
+                      min_power: 1
+                      max_power: 22
+                      gamma_curve: 4
+                    disable_standby_power: true
+                  - entity_id: light.abstellraum_carport
+                    fixed:
+                      power: 24
+              - create_group: Lichter Garten und Terrasse
+                entities:
+                  - entity_id: light.wandwurfel_suden
+                    fixed:
+                      power: 21
+                  - entity_id: light.wandwurfel_westen
+                    fixed:
+                      power: 21
+                  - entity_id: light.bodenstrahler_blumenbeet
+                    fixed:
+                      power: 6
+                  - entity_id: light.0x00158d000501c37c
+                    name: Leuchtwürfel Ecke gross
+                    manufacturer: innr
+                    model: 'RB 285 C'
+                  - entity_id: light.0x00158d000504f555
+                    name: Leuchtwürfel Ecke klein
+                    manufacturer: innr
+                    model: 'RB 285 C'
+                  - entity_id: light.0x00158d000501c2a4
+                    name: Leuchtwürfel Feuerplatz
+                    manufacturer: innr
+                    model: 'RB 285 C'
+      - create_group: Wärmepumpe gesamt
+        unique_id: 6a8a5e3a-d4e6-11ec-9412-17d6662e547e
+        entities:
+          - entity_id: sensor.el_leistung_wp_aussenteil
+            power_sensor_id: sensor.el_leistung_wp_aussenteil
+            name: WP Aussenteil
+          - entity_id: sensor.el_leistung_wp_innenteil
+            power_sensor_id: sensor.el_leistung_wp_innenteil
+            name: WP Innenteil
+          - entity_id: sensor.el_leistung_wp_heizstab
+            power_sensor_id: sensor.el_leistung_wp_heizstab
+            name: WP Heizstab
+      - create_group: Küchengeräte ohne Kühlschrank
+        unique_id: 6f642698-d4e6-11ec-b5ff-5ffffcb302c4
+        entities:
+          - entity_id: sensor.el_leistung_backofen
+            power_sensor_id: sensor.el_leistung_backofen
+            name: Backofen
+          - entity_id: sensor.el_leistung_kochfeld
+            power_sensor_id: sensor.el_leistung_kochfeld
+            name: Kochfeld
+          - entity_id: sensor.el_leistung_mixi
+            power_sensor_id: sensor.el_leistung_mixi
+            name: Mixi
+          - entity_id: sensor.el_leistung_spulmaschine
+            power_sensor_id: sensor.el_leistung_spulmaschine
+            name: Spülmaschine
+      - create_group: Kühlgeräte
+        unique_id: 761da14e-d4e6-11ec-b986-8f23f43c4cdb
+        entities:
+          - entity_id: sensor.el_leistung_kuhlschrank_kuche
+            power_sensor_id: sensor.el_leistung_kuhlschrank_kuche
+            name: Kühlschrank Küche
+          - entity_id: sensor.el_leistung_gefrierschrank
+            power_sensor_id: sensor.el_leistung_gefrierschrank
+            name: Gefrierschrank
+      - create_group: Multimedia
+        unique_id: 7a29b700-d4e6-11ec-aa95-b7163cea96da
+        entities:
+          - entity_id: sensor.el_leistung_tv
+            power_sensor_id: sensor.el_leistung_tv
+            name: TV
+          - entity_id: media_player.beam
+            fixed:
+              power: 6.5
+          - entity_id: media_player.sonos_move
+            fixed:
+              power: 3.5
+          - entity_id: media_player.sonos_one_1
+            fixed:
+              power: 3.5
+          - entity_id: media_player.kodi_wz_2
+            fixed:
+              power: 2
+          - name: Digibit Receiver
+            daily_fixed_energy:
+              value: 8
+              unit_of_measurement: W
+          - name: Radio Lea
+            daily_fixed_energy:
+              value: 1
+              unit_of_measurement: W
+          - name: Echo Arbeitszimmer
+            daily_fixed_energy:
+              value: 2
+              unit_of_measurement: W
+#          - name: Echo Lea
+#            daily_fixed_energy:
+#              value: 1.8
+#              unit_of_measurement: W
+#          - name: Echo Lara
+#            daily_fixed_energy:
+#              value: 1.8
+#              unit_of_measurement: W
+      - create_group: Waschmaschine und Trockner
+        unique_id: 81e1e81e-d4e6-11ec-bbf4-9b13a3184af9
+        entities:
+          - entity_id: sensor.el_leistung_waschmaschine
+            power_sensor_id: sensor.el_leistung_waschmaschine
+            name: Waschmaschine
+          - entity_id: sensor.el_leistung_trockner
+            power_sensor_id: sensor.el_leistung_trockner
+            name: Trockner
+      - create_group: Haustechnik
+        unique_id: 85c0c770-d4e6-11ec-839f-13ded9df0121
+        entities:
+          - entity_id: sensor.el_leistung_luftungsanlage
+            power_sensor_id: sensor.el_leistung_luftungsanlage
+            name: Lüftungsanlage
+          - entity_id: sensor.el_leistung_hebeanlage
+            power_sensor_id: sensor.el_leistung_hebeanlage
+            name: Hebeanlage
+          - entity_id: sensor.el_leistung_bildschirm_theke
+            power_sensor_id: sensor.el_leistung_bildschirm_theke
+            name: Bildschirm Theke
+          - entity_id: sensor.el_leistung_dauerverbraucher_haustechnik
+            power_sensor_id: sensor.el_leistung_dauerverbraucher_haustechnik
+            name: Dauerverbraucher Haustechnik
+      - create_group: Netzwerk Telefon und Computer
+        unique_id: 8be33bc4-d4e6-11ec-ab34-a3a9cd3e3430
+        entities:
+          - entity_id: sensor.el_leistung_dauerverbraucher_netzwerk
+            power_sensor_id: sensor.el_leistung_dauerverbraucher_netzwerk
+            name: Netzwerk
+          - entity_id: sensor.el_leistung_dauerverbraucher_telefon_und_computer
+            power_sensor_id: sensor.el_leistung_dauerverbraucher_telefon_und_computer
+            name: Telefon und Computer
+      - create_group: Luftentfeuchter und Befeuchter
+        unique_id: 8fe3bad2-d4e6-11ec-9b29-07ac1d4aaea7
+        ignore_unavailable_state: true
+        entities:
+          - entity_id: sensor.el_leistung_luftentfeuchter_waschkueche
+            power_sensor_id: sensor.el_leistung_luftentfeuchter_waschkueche
+            name: Luftentfeuchter Waschküche
+          - entity_id: sensor.el_leistung_luftentfeuchter_partyraum
+            power_sensor_id: sensor.el_leistung_luftentfeuchter_partyraum
+            name: Luftentfeuchter Partyraum
+          - entity_id: sensor.el_leistung_luftentf_vorratsraum
+            power_sensor_id: sensor.el_leistung_luftentf_vorratsraum
+            name: Luftentfeuchter Speis
+#          - entity_id: sensor.el_leistung_esp_sd_2
+#            power_sensor_id: sensor.el_leistung_esp_sd_2
+#            name: Luftbefeuchter WZ
+      - create_group: Heizung Partyraum
+        unique_id: 95ab1c9e-d4e6-11ec-a181-7ba9e587eb94
+        ignore_unavailable_state: true
+        entities:
+          - entity_id: sensor.el_leistung_heizung_partyraum_vorne
+            power_sensor_id: sensor.el_leistung_heizung_partyraum_vorne
+            name: Heizung Partyraum vorne
+          - entity_id: sensor.el_leistung_heizung_partyraum_hinten
+            power_sensor_id: sensor.el_leistung_heizung_partyraum_hinten
+            name: Heizung Partyraum hinten
+      - create_group: Pool
+        unique_id: 214efdaf-9a3a-4e7f-85f4-4c04934660f6
+        ignore_unavailable_state: true
+        entities:
+          - entity_id: sensor.0xa4c1380e0ea5cb89_power
+            power_sensor_id: sensor.0xa4c1380e0ea5cb89_power
+            name: Pool Pumpe
+          - entity_id: sensor.0xa4c1381ed732dbe2_power
+            power_sensor_id: sensor.0xa4c1381ed732dbe2_power
+            name: Pool Chlorinator
+          - entity_id: sensor.0xa4c138b64253ef10_power
+            power_sensor_id: sensor.0xa4c138b64253ef10_power
+            name: Pool Heizung
+  - entity_id: sensor.el_leistung_unbekannte_verbraucher
+    power_sensor_id: sensor.el_leistung_unbekannte_verbraucher
+    name: Unbekannte Verbraucher
+    unique_id: cd1ad446-d5c5-11ec-942a-23b0e6b2ad5a
+  - entity_id: sensor.el_leistung_verbrauch_gesamt
+    power_sensor_id: sensor.el_leistung_verbrauch_gesamt
+    name: Verbrauch gesamt
+    unique_id: ec589adc-d5c5-11ec-9457-0f7bfd653fe7
+  - entity_id: sensor.el_leistung_pv_ac
+    power_sensor_id: sensor.el_leistung_pv_ac
+    name: PV Leistung
+    unique_id: 2a44499a-d5c6-11ec-b073-5381474628d7
+  - entity_id: sensor.el_leistung_einspeisung
+    power_sensor_id: sensor.el_leistung_einspeisung
+    name: PV Einspeisung
+    unique_id: 58cebbba-d5c6-11ec-96c1-637159bb0824
