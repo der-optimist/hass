@@ -2,7 +2,7 @@ template:
   - binary_sensor:
       - name: dwd_weather_warnings_active
         state: >
-          {% if (states('sensor.dwd_weather_warnings_advance_warning_level') | float(0) > 0) or (states('sensor.dwd_weather_warnings_current_warning_level') | float(0) > 0) %}
+          {% if (states('sensor.dwd_weather_warnings_808436079_advance_warning_level') | float(0) > 0) or (states('sensor.dwd_weather_warnings_808436079_current_warning_level') | float(0) > 0) %}
             {{ true }}
           {% else %}
             {{ false }}
@@ -29,10 +29,10 @@ automation:
         at: "05:00:04"
         id: dwd_weather_warnings_inactive
       - platform: state
-        entity_id: sensor.dwd_weather_warnings_advance_warning_level
+        entity_id: sensor.dwd_weather_warnings_808436079_advance_warning_level
         id: warnings_changed
       - platform: state
-        entity_id: sensor.dwd_weather_warnings_current_warning_level
+        entity_id: sensor.dwd_weather_warnings_808436079_current_warning_level
         id: warnings_changed
     condition: []
     action:
@@ -51,14 +51,14 @@ automation:
             id: warnings_changed
           sequence:
           - repeat:
-              count: "{{ state_attr('sensor.dwd_weather_warnings_advance_warning_level','warning_count') | int(0) }}"
+              count: "{{ state_attr('sensor.dwd_weather_warnings_808436079_advance_warning_level','warning_count') | int(0) }}"
               sequence:
                 - condition: template
                   value_template: >
-                    {% set t_start = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ repeat.index ~ '_start') %}
-                    {% set t_end = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ repeat.index ~ '_end') %}
-                    {% set event = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ repeat.index ~ '_name') %}
-                    {% set level = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ repeat.index ~ '_level') %}
+                    {% set t_start = state_attr('sensor.dwd_weather_warnings_808436079_advance_warning_level', 'warning_' ~ repeat.index ~ '_start') %}
+                    {% set t_end = state_attr('sensor.dwd_weather_warnings_808436079_advance_warning_level', 'warning_' ~ repeat.index ~ '_end') %}
+                    {% set event = state_attr('sensor.dwd_weather_warnings_808436079_advance_warning_level', 'warning_' ~ repeat.index ~ '_name') %}
+                    {% set level = state_attr('sensor.dwd_weather_warnings_808436079_advance_warning_level', 'warning_' ~ repeat.index ~ '_level') %}
                     {% set event_fix = event[:5] %}
                     {% set str_hours = '{:03.0f}'.format((t_end - t_start).seconds / 3600) %}
                     {% set str_ts_start = '{:10.0f}'.format(as_timestamp(t_start)) %}
@@ -68,12 +68,12 @@ automation:
                 - service: notify.telegram_jo
                   data:
                     message: >
-                      {% set headline = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ repeat.index ~ "_headline") %}
-                      {% set description = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ repeat.index ~ "_description") %}
-                      {% set level = state_attr("sensor.sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ repeat.index ~ "_level") %}
-                      {% set time_start = as_local(state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ repeat.index ~ "_start")) %}
+                      {% set headline = state_attr("sensor.dwd_weather_warnings_808436079_advance_warning_level", "warning_" ~ repeat.index ~ "_headline") %}
+                      {% set description = state_attr("sensor.dwd_weather_warnings_808436079_advance_warning_level", "warning_" ~ repeat.index ~ "_description") %}
+                      {% set level = state_attr("sensor.sensor.dwd_weather_warnings_808436079_advance_warning_level", "warning_" ~ repeat.index ~ "_level") %}
+                      {% set time_start = as_local(state_attr("sensor.dwd_weather_warnings_808436079_advance_warning_level", "warning_" ~ repeat.index ~ "_start")) %}
                       {% set weekday_start = as_timestamp(time_start) | timestamp_custom("%w", True) | int %}
-                      {% set time_end = as_local(state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ repeat.index ~ "_end")) %}
+                      {% set time_end = as_local(state_attr("sensor.dwd_weather_warnings_808436079_advance_warning_level", "warning_" ~ repeat.index ~ "_end")) %}
                       {% set weekday_end = as_timestamp(time_end) | timestamp_custom("%w", True) | int %}
                       {% set gestern = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][as_timestamp(now() + timedelta( days = -1 )) | timestamp_custom("%w", True) | int-1] %}
                       {% set heute = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][as_timestamp(now()) | timestamp_custom("%w", True) | int-1] %}
@@ -84,10 +84,10 @@ automation:
                 - service: input_text.set_value
                   data:
                     value: >
-                      {% set t_start = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ repeat.index ~ '_start') %}
-                      {% set t_end = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ repeat.index ~ '_end') %}
-                      {% set event = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ repeat.index ~ '_name') %}
-                      {% set level = state_attr('sensor.dwd_weather_warnings_advance_warning_level', 'warning_' ~ repeat.index ~ '_level') %}
+                      {% set t_start = state_attr('sensor.dwd_weather_warnings_808436079_advance_warning_level', 'warning_' ~ repeat.index ~ '_start') %}
+                      {% set t_end = state_attr('sensor.dwd_weather_warnings_808436079_advance_warning_level', 'warning_' ~ repeat.index ~ '_end') %}
+                      {% set event = state_attr('sensor.dwd_weather_warnings_808436079_advance_warning_level', 'warning_' ~ repeat.index ~ '_name') %}
+                      {% set level = state_attr('sensor.dwd_weather_warnings_808436079_advance_warning_level', 'warning_' ~ repeat.index ~ '_level') %}
                       {% set event_fix = event[:5] %}
                       {% set str_hours = '{:03.0f}'.format((t_end - t_start).seconds / 3600) %}
                       {% set str_ts_start = '{:10.0f}'.format(as_timestamp(t_start)) %}
@@ -113,14 +113,14 @@ automation:
                   target:
                     entity_id: input_text.helper_wetterwarnungen_bekannte_ids
           - repeat:
-              count: "{{ state_attr('sensor.dwd_weather_warnings_current_warning_level','warning_count') | int(0) }}"
+              count: "{{ state_attr('sensor.dwd_weather_warnings_808436079_current_warning_level','warning_count') | int(0) }}"
               sequence:
                 - condition: template
                   value_template: >
-                    {% set t_start = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ repeat.index ~ '_start') %}
-                    {% set t_end = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ repeat.index ~ '_end') %}
-                    {% set event = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ repeat.index ~ '_name') %}
-                    {% set level = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ repeat.index ~ '_level') %}
+                    {% set t_start = state_attr('sensor.dwd_weather_warnings_808436079_current_warning_level', 'warning_' ~ repeat.index ~ '_start') %}
+                    {% set t_end = state_attr('sensor.dwd_weather_warnings_808436079_current_warning_level', 'warning_' ~ repeat.index ~ '_end') %}
+                    {% set event = state_attr('sensor.dwd_weather_warnings_808436079_current_warning_level', 'warning_' ~ repeat.index ~ '_name') %}
+                    {% set level = state_attr('sensor.dwd_weather_warnings_808436079_current_warning_level', 'warning_' ~ repeat.index ~ '_level') %}
                     {% set event_fix = event[:5] %}
                     {% set str_hours = '{:03.0f}'.format((t_end - t_start).seconds / 3600) %}
                     {% set str_ts_start = '{:10.0f}'.format(as_timestamp(t_start)) %}
@@ -130,12 +130,12 @@ automation:
                 - service: notify.telegram_jo
                   data:
                     message: >
-                      {% set headline = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ repeat.index ~ "_headline") %}
-                      {% set description = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ repeat.index ~ "_description") %}
-                      {% set level = state_attr("sensor.sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ repeat.index ~ "_level") %}
-                      {% set time_start = as_local(state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ repeat.index ~ "_start")) %}
+                      {% set headline = state_attr("sensor.dwd_weather_warnings_808436079_current_warning_level", "warning_" ~ repeat.index ~ "_headline") %}
+                      {% set description = state_attr("sensor.dwd_weather_warnings_808436079_current_warning_level", "warning_" ~ repeat.index ~ "_description") %}
+                      {% set level = state_attr("sensor.sensor.dwd_weather_warnings_808436079_current_warning_level", "warning_" ~ repeat.index ~ "_level") %}
+                      {% set time_start = as_local(state_attr("sensor.dwd_weather_warnings_808436079_current_warning_level", "warning_" ~ repeat.index ~ "_start")) %}
                       {% set weekday_start = as_timestamp(time_start) | timestamp_custom("%w", True) | int %}
-                      {% set time_end = as_local(state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ repeat.index ~ "_end")) %}
+                      {% set time_end = as_local(state_attr("sensor.dwd_weather_warnings_808436079_current_warning_level", "warning_" ~ repeat.index ~ "_end")) %}
                       {% set weekday_end = as_timestamp(time_end) | timestamp_custom("%w", True) | int %}
                       {% set gestern = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][as_timestamp(now() + timedelta( days = -1 )) | timestamp_custom("%w", True) | int-1] %}
                       {% set heute = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'][as_timestamp(now()) | timestamp_custom("%w", True) | int-1] %}
@@ -146,10 +146,10 @@ automation:
                 - service: input_text.set_value
                   data:
                     value: >
-                      {% set t_start = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ repeat.index ~ '_start') %}
-                      {% set t_end = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ repeat.index ~ '_end') %}
-                      {% set event = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ repeat.index ~ '_name') %}
-                      {% set level = state_attr('sensor.dwd_weather_warnings_current_warning_level', 'warning_' ~ repeat.index ~ '_level') %}
+                      {% set t_start = state_attr('sensor.dwd_weather_warnings_808436079_current_warning_level', 'warning_' ~ repeat.index ~ '_start') %}
+                      {% set t_end = state_attr('sensor.dwd_weather_warnings_808436079_current_warning_level', 'warning_' ~ repeat.index ~ '_end') %}
+                      {% set event = state_attr('sensor.dwd_weather_warnings_808436079_current_warning_level', 'warning_' ~ repeat.index ~ '_name') %}
+                      {% set level = state_attr('sensor.dwd_weather_warnings_808436079_current_warning_level', 'warning_' ~ repeat.index ~ '_level') %}
                       {% set event_fix = event[:5] %}
                       {% set str_hours = '{:03.0f}'.format((t_end - t_start).seconds / 3600) %}
                       {% set str_ts_start = '{:10.0f}'.format(as_timestamp(t_start)) %}
