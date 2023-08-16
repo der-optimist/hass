@@ -60,8 +60,6 @@ cover:
 #        stop_cover:
 #          service: script.stop_garage_door
 
-discovery:
-
 downloader:
   download_dir: www
 
