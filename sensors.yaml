@@ -663,7 +663,7 @@
 #
   - platform: rest
     name: Kiosk Browser Bildschirm Theke
-    resource: 'http://192.168.178.42:2323/?cmd=deviceInfo&type=json&password=nopw'
+    resource: 'http://192.168.178.79:2323/?cmd=deviceInfo&type=json&password=nopw'
     json_attributes:
     - screenBrightness
     - screenOn
