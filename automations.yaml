@@ -3073,3 +3073,39 @@
               seconds: 0
               milliseconds: 0
   mode: single
+#
+###############################################
+#####        Markise abends rein          #####
+###############################################
+- id: '95ce2d20-01f5-4c29-be1c-1c4aa16b0eaf'
+  alias: Markise abends rein
+  description: ''
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition: []
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.alle_markisen_einfahren
+  mode: single
+  #
+###############################################
+#####       Markise rein bei Wind         #####
+###############################################
+- id: '55f372a8-ec9e-468b-b0f3-827fdae0821f'
+  alias: Markise rein bei Wind
+  description: ''
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.windgeschwindigkeit_wetterstation
+      above: 12.5
+    - platform: state
+      entity_id: binary_sensor.windalarm_2
+      to: "on"
+  condition: []
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.alle_markisen_einfahren
+  mode: single
