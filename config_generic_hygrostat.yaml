@@ -24,7 +24,7 @@
   sensor_stale_duration: 02:00:00
 - name: Luftentfeuchter Speis
   humidifier: switch.kuhlschrank_keller
-  target_sensor: sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_sht31
+  target_sensor: sensor.luftfeuchtigkeit_vorratsraum
   target_humidity: 45
   dry_tolerance: 2
   wet_tolerance: 3
