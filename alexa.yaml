@@ -49,6 +49,8 @@
         - sensor.windgeschwindigkeit_wetterstation_kmh
         - switch.bleib_so_wz_licht
         - switch.knutschen
+        - switch.la_schlaft
+        - switch.le_schlaft
         - switch.majo_schlafen
       include_domains:
         - light
