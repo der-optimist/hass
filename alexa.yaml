@@ -208,6 +208,12 @@
       switch.knutschen:
         name: Knutschen
         description: Knutsch-Licht Schlafzimmer
+      switch.la_schlaft:
+        name: Lara schlafen
+        description: Schlafen-Knopf Lara
+      switch.le_schlaft:
+        name: Lea schlafen
+        description: Schlafen-Knopf Lea
       switch.majo_schlafen:
         name: Majo schlafen
         description: Schlafen-Knopf Schlafzimmer
