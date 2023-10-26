@@ -40,7 +40,7 @@ template:
         unit_of_measurement: "%"
         state: >
           {% if is_state('binary_sensor.tv_ist_an', 'on') %}
-            {{ int(55) }}
+            {{ int(40) }}
           {% else %}
             {{ states('sensor.helper_light_basic_brightness_e_wz_panels') }}
           {% endif %}
@@ -65,11 +65,7 @@ template:
       - name: helper_light_switching_off_entities_e_wz_panels
         unit_of_measurement: "number"
         state: >
-          {% if states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.helper_light_switching_off_entities_e_wz_panels') }}
-          {% else %}
-            {{ [states('binary_sensor.tv_zeit_abend'),states('switch.luften_ez')] | select('equalto', 'on') | list | count }}
-          {% endif %}
+          {{ [] | select('equalto', 'on') | list | count }}
     binary_sensor:
       - name: helper_stay_as_you_are_e_wz_panels
         state: >
@@ -87,22 +83,37 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_e_wz_panels
         state: >
-          {% if states('binary_sensor.tv_zeit_abend') in ['unavailable', 'unknown', 'none']
-             or states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
+          {% if states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_keeping_off_entities_e_wz_panels') }}
           {% else %}
-            {{ is_state('binary_sensor.tv_zeit_abend', 'on')
-              or is_state('switch.luften_ez', 'on') }}
+            {{ is_state('switch.luften_ez', 'on') }}
           {% endif %}
       - name: helper_light_keeping_on_entities_e_wz_panels
         state: >
           {{ false }}
       - name: helper_light_keeping_fix_entities_e_wz_panels
         state: >
-          {{ false }}
+          {% if states('binary_sensor.tv_pizza_abend') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.tv_abend_ohne_pizza') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_fix_entities_e_wz_schraenke') }}
+          {% else %}
+            {{ is_state('binary_sensor.tv_pizza_abend', 'on')
+              or is_state('binary_sensor.tv_abend_ohne_pizza', 'on') }}
+          {% endif %}
         attributes:
           brightness: >
-            {{ int(0) }}
+            {% if states('binary_sensor.tv_pizza_abend') in ['unavailable', 'unknown', 'none']
+              or states('binary_sensor.tv_abend_ohne_pizza') in ['unavailable', 'unknown', 'none'] %}
+              {{ state_attr('binary_sensor.helper_light_keeping_fix_entities_e_wz_schraenke', 'brightness') }}
+            {% else %}
+              {% if is_state('binary_sensor.tv_pizza_abend', 'on') %}
+                {{ int(20) }}
+              {% elif is_state('binary_sensor.tv_abend_ohne_pizza', 'on') %}
+                {{ int(10) }}
+              {% else %}
+                {{ int(0) }}
+              {% endif %}
+            {% endif %}
       - name: helper_light_is_too_dark_e_wz_panels
         state: >
           {% if states('sensor.helligkeit_wohnzimmer_pm') in ['unavailable', 'unknown', 'none'] %}
