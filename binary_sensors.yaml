@@ -399,12 +399,12 @@
       waschmaschine_ist_an:
         friendly_name: "Waschmaschine läuft"
         delay_on:
-          minutes: 3
+          minutes: 1
         value_template: >
           {% if states('sensor.el_leistung_waschmaschine_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.waschmaschine_ist_an') }}
           {% else %}
-            {{ states('sensor.el_leistung_waschmaschine_scheinleistung')|float(0) > 15 }}
+            {{ states('sensor.el_leistung_waschmaschine_scheinleistung')|float(0) > 12.5 }}
           {% endif %}
       trockner_zieht_strom:
         friendly_name: "Trockner zieht Strom"
