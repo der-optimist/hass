@@ -29,7 +29,7 @@ cards:
     - entity: binary_sensor.schlafen_oder_aufwachphase_majo
       name: Schlafen bzw. Aufwachphase
     - entity: switch.kinder_schon_wach
-      name: Kinder schon wach
+      name: Wohnbereich normal
     - entity: switch.knutschen
       name: Knutschen
     - entity: switch.luften_sz

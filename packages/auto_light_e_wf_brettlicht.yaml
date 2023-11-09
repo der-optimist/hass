@@ -36,10 +36,10 @@ template:
       - name: helper_light_effective_brightness_e_wf_brettlicht
         unit_of_measurement: "%"
         state: >
-          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none'] %}
+          {% if states('binary_sensor.nachtmodus_wohnbereich_licht') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_effective_brightness_e_wf_brettlicht') }}
           {% else %}
-            {% if is_state('switch.majo_schlafen', 'on') %}
+            {% if is_state('binary_sensor.nachtmodus_wohnbereich_licht', 'on') %}
               {{ int(40) }}
             {% else %}
               {{ states('sensor.helper_light_basic_brightness_e_wf_brettlicht') }}
@@ -47,10 +47,10 @@ template:
           {% endif %}
         attributes:
           special_brightness: >
-            {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none'] %}
+            {% if states('binary_sensor.nachtmodus_wohnbereich_licht') in ['unavailable', 'unknown', 'none'] %}
               {{ state_attr('binary_sensor.helper_light_effective_brightness_e_wf_brettlicht','special_brightness') }}
             {% else %}
-              {{ [states('switch.majo_schlafen')] | select('equalto', 'on') | list | count }}
+              {{ [states('binary_sensor.nachtmodus_wohnbereich_licht')] | select('equalto', 'on') | list | count }}
             {% endif %}
       - name: helper_light_min_illuminance_e_wf_brettlicht
         unit_of_measurement: "lx"
