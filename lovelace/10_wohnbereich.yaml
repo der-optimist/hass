@@ -73,7 +73,7 @@ cards:
     - entity: light.sd_fussraum_bar
       name: SD Weihnachtsbaum
     - entity: switch.kinder_schon_wach
-      name: Wohnbereich normal (trotz schlafen)
+      name: Mädels wach
     - entity: switch.luften_alles
       name: Lüften alles
     - entity: switch.luften_ez
