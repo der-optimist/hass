@@ -414,7 +414,7 @@ cards:
             name: Pool
           - entity: input_boolean.gewitter
             name: Gewitter!
-        - type: conditional
+      - type: conditional
         conditions:
           - entity: binary_sensor.zeige_eisschutz_jalousien
             state: 'on'
