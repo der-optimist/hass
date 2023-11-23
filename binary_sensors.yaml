@@ -433,3 +433,7 @@
           {% else %}
             {{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) < 5 }}
           {% endif %}
+      zeige_eisschutz_jalousien:
+        friendly_name: "Zeige Eisschutz Jalousien"
+        value_template: >
+          {{ now().month in [11, 12, 1, 2, 3, 4] }}
