@@ -489,12 +489,12 @@
       # Warmwasser
       water_heater_target_temp:
         friendly_name: "Warmwasser Zieltemperatur"
-        value_template: "{{ state_attr('water_heater.dhw1', 'temperature') }}"
+        value_template: "{{ state_attr('water_heater.dhw1_2', 'temperature') }}"
         unit_of_measurement: '°C'
         device_class: temperature
       water_heater_current_temp:
         friendly_name: "Warmwasser aktuelle Temperatur"
-        value_template: "{{ state_attr('water_heater.dhw1', 'current_temperature') }}"
+        value_template: "{{ state_attr('water_heater.dhw1_2', 'current_temperature') }}"
         unit_of_measurement: '°C'
         device_class: temperature
 #
