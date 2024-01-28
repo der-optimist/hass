@@ -18,7 +18,7 @@ sensor:
           {% set current = (states("sensor.temp_nahzimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
           {% if current < 5 or past < 5 %}
-            {{ 'unavailable' }}
+            {{ 0 }}
           {% else %}
             {{ (current - past) / 0.5 }}
           {% endif %}
@@ -33,7 +33,7 @@ sensor:
           {% set current = (states("sensor.temp_nahzimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
           {% if current < 5 or past < 5 %}
-            {{ 'unavailable' }}
+            {{ 0 }}
           {% else %}
             {{ (current - past) / 1.0 }}
           {% endif %}
@@ -48,7 +48,7 @@ sensor:
           {% set current = (states("sensor.temp_nahzimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
           {% if current < 5 or past < 5 %}
-            {{ 'unavailable' }}
+            {{ 0 }}
           {% else %}
             {{ (current - past) / 1.5 }}
           {% endif %}
@@ -63,7 +63,7 @@ sensor:
           {% set current = (states("sensor.temp_nahzimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
           {% if current < 5 or past < 5 %}
-            {{ 'unavailable' }}
+            {{ 0 }}
           {% else %}
             {{ (current - past) / 2.0 }}
           {% endif %}
@@ -78,7 +78,7 @@ sensor:
           {% set current = (states("sensor.temp_nahzimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
           {% if current < 5 or past < 5 %}
-            {{ 'unavailable' }}
+            {{ 0 }}
           {% else %}
             {{ (current - past) / 2.5 }}
           {% endif %}
