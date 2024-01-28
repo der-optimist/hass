@@ -5,7 +5,6 @@ input_boolean:
 
 sensor:
   - platform: influxdb
-    scan_interval: 300
     queries:
       - name: helper_heating_controller_foresight_gz_derivative_030m_test
         measurement: '"autogen"."sensor.temp_gastezimmer_pm"'
