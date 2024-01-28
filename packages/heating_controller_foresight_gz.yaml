@@ -13,7 +13,6 @@ sensor:
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
-        device_class: temperature
         value_template: >
           {% set current = (states("sensor.temp_gastezimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
@@ -28,7 +27,6 @@ sensor:
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
-        device_class: temperature
         value_template: >
           {% set current = (states("sensor.temp_gastezimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
@@ -43,7 +41,6 @@ sensor:
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
-        device_class: temperature
         value_template: >
           {% set current = (states("sensor.temp_gastezimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
@@ -58,7 +55,6 @@ sensor:
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
-        device_class: temperature
         value_template: >
           {% set current = (states("sensor.temp_gastezimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
@@ -73,7 +69,6 @@ sensor:
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
-        device_class: temperature
         value_template: >
           {% set current = (states("sensor.temp_gastezimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
