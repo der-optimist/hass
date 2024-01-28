@@ -6,16 +6,6 @@ input_boolean:
 sensor:
   - platform: influxdb
     queries:
-      - name: helper_heating_controller_foresight_gz_derivative_030m_test
-        measurement: '"autogen"."sensor.temp_gastezimmer_pm"'
-        where: 'time < now() - 30m'
-        field: value
-        group_function: last
-        unit_of_measurement: 'K/h'
-        device_class: temperature
-        value_template: >
-          {% set past = (value | float(0)) %}
-          {{ past }}
       - name: helper_heating_controller_foresight_gz_derivative_030m
         measurement: '"autogen"."sensor.temp_gastezimmer_pm"'
         where: 'time < now() - 30m'
@@ -37,6 +27,7 @@ sensor:
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
+        device_class: temperature
         value_template: >
           {% set current = (states("sensor.temp_gastezimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
@@ -51,6 +42,7 @@ sensor:
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
+        device_class: temperature
         value_template: >
           {% set current = (states("sensor.temp_gastezimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
@@ -65,6 +57,7 @@ sensor:
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
+        device_class: temperature
         value_template: >
           {% set current = (states("sensor.temp_gastezimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
@@ -79,6 +72,7 @@ sensor:
         field: value
         group_function: last
         unit_of_measurement: 'K/h'
+        device_class: temperature
         value_template: >
           {% set current = (states("sensor.temp_gastezimmer_pm") | float(0)) %}
           {% set past = (value | float(0)) %}
