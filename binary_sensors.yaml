@@ -1,25 +1,3 @@
-# Connection
-  - platform: ping
-    host: 192.168.178.1
-    name: ping_fritzbox
-    count: 2
-    scan_interval: 60
-  - platform: ping
-    host: 192.168.178.23
-    name: ping_odroidxu4
-    count: 2
-    scan_interval: 60
-  - platform: ping
-    host: fronius1.fritz.box
-    name: ping_wechselrichter_pv
-    count: 2
-    scan_interval: 60
-  - platform: ping
-    host: 192.168.178.42
-    name: ping_wall_panel
-    count: 2
-    scan_interval: 60
-
 # Time of Day
   - platform: tod
     name: TV Zeit Abend
