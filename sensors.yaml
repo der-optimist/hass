@@ -342,7 +342,7 @@
 #
       el_leistung_kochfeld:
         friendly_name: 'El. Leistung Kochfeld'
-        value_template: "{{ states('sensor.el_leistung_kochfeld_esp') }}"
+        value_template: "{{ states('sensor.el_leistung_kochfeld_esp_2') }}"
         unit_of_measurement: 'W'
         icon_template: mdi:speedometer
       el_leistung_luftentf_vorratsraum:
