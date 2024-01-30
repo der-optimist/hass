@@ -137,6 +137,10 @@
         friendly_name: 'PV Ertrag Einspeisung'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
+      euro_pro_stunde_eigenverbrauch:
+        value_template: "{{ (states('sensor.el_leistung_eigenverbrauch') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}"
+        friendly_name: 'Euro pro Stunde - Eigenverbrauch'
+        unit_of_measurement: '€/h'
       pv_geldertrag_durch_eigenverbrauch_gesamt:
         value_template: "{{ '%.2f'%(((states('sensor.stromzaehler_pv_ac_gesamt') | float(0) ) - (states('sensor.stromzaehler_netzeinspeisung') | float(0) ))* (states('input_number.strompreis') | float(0))) }}"
         friendly_name: 'PV Ertrag Eigenverbrauch'
@@ -258,6 +262,16 @@
             {{ -1*states('sensor.el_leistung_stromzaehler_netzbezug') | float(0) }}
           {% endif %}
         friendly_name: 'El. Leistung Verbrauch gesamt'
+        unit_of_measurement: 'W'
+        entity_picture_template: '/local/icons/power/power_usage.svg'
+      el_leistung_eigenverbrauch:
+        value_template: >-
+          {% if (states('sensor.el_leistung_pv_ac') | float(0)) > (states('sensor.el_leistung_verbrauch_gesamt') | float(0)) %}
+            {{ states('sensor.el_leistung_verbrauch_gesamt') | float(0) }}
+          {% else %}
+            {{ states('sensor.el_leistung_pv_ac') | float(0) }}
+          {% endif %}
+        friendly_name: 'El. Leistung Eigenverbrauch'
         unit_of_measurement: 'W'
         entity_picture_template: '/local/icons/power/power_usage.svg'
       pv_einspeisung_letzte_3_min_durchschnitt_anzeige:
@@ -515,11 +529,10 @@
 # --------------------------------
 #
   - platform: integration
-    source: sensor.power_photovoltaics_fronius_power_flow_0_192_168_178_28
-    name: pv_ac_energy_riemann
-    unique_id: 468928ac-d4d9-11ec-bfe7-3f17cda37263
-    unit_prefix: k
+    source: sensor.euro_pro_stunde_eigenverbrauch
+    name: ertragszaehler_eigenverbrauch_pv
     round: 2
+    unit_time: h
     method: left
 #
 # --------------------------------
