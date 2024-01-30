@@ -151,6 +151,4 @@ cards:
     solar_icon: "mdi:solar-power"
     grid_icon: "mdi:transmission-tower"
     home_icon: "mdi:home"
-  - type: custom:sun-card
-    showAzimuth: true
-    showElevation: true
+  - type: custom:horizon-card
