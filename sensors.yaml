@@ -141,8 +141,11 @@
         value_template: "{{ (states('sensor.el_leistung_eigenverbrauch') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}"
         friendly_name: 'Euro pro Stunde - Eigenverbrauch'
         unit_of_measurement: '€/h'
+      # Eigenverbrauch bis 28.2.23: 5191 kWh zu Strompreis 0,28 => 1453,48 €
+      # Eigenverbrauch von 1.3.23 bis 30.1.24 16:00: 3863 kWh zu Strompreis 0,40 => 1545,20 €
+      # Gesamt 2998.68 € => dann Umstellung auf Integrations-Sensor, der den aktuellen Strompreis richtig verrechnet
       pv_geldertrag_durch_eigenverbrauch_gesamt:
-        value_template: "{{ '%.2f'%(((states('sensor.stromzaehler_pv_ac_gesamt') | float(0) ) - (states('sensor.stromzaehler_netzeinspeisung') | float(0) ))* (states('input_number.strompreis') | float(0))) }}"
+        value_template: "{{ '%.2f'%((states('sensor.ertragszaehler_eigenverbrauch_pv') | float(0)) + 2998.68) }}"
         friendly_name: 'PV Ertrag Eigenverbrauch'
         unit_of_measurement: '€'
         icon_template: mdi:currency-eur
