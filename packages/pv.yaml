@@ -112,9 +112,9 @@ automation:
           - condition: trigger
             id: boost_start
           sequence:
-          - service: notify.telegram_jo
-            data:
-              message: 'Starte PV-Boost WW'
+#          - service: notify.telegram_jo
+#            data:
+#              message: 'Starte PV-Boost WW'
           - service: water_heater.set_operation_mode
             data:
               operation_mode: 'on'
@@ -129,19 +129,19 @@ automation:
           - condition: trigger
             id: boost_end
           sequence:
-          - service: notify.telegram_jo
-            data:
-              message: 'Beende PV-Boost WW'
+#          - service: notify.telegram_jo
+#            data:
+#              message: 'Beende PV-Boost WW'
           - service: water_heater.set_operation_mode
             data:
               operation_mode: 'eco'
             target:
               entity_id: water_heater.dhw1_2
-        - conditions:
-          - condition: trigger
-            id: unavail
-          sequence:
-          - service: notify.telegram_jo
-            data:
-              message: 'PV-Boost Condition unavailable'
+#        - conditions:
+#          - condition: trigger
+#            id: unavail
+#          sequence:
+#          - service: notify.telegram_jo
+#            data:
+#              message: 'PV-Boost Condition unavailable'
         default: []
