@@ -46,7 +46,7 @@
         # name: change entity_id in UI after creation
         unit_of_measurement: "W"
         state: >
-          {{ states('sensor.el_leistung_esp_sd_6') }}
+          {{ states('sensor.el_leistung_esp_sd_6_2') }}
         attributes:
           friendly_name: "El. Leistung Luftentfeuchter Partyraum"
       - unique_id: el_leistung_luftentfeuchter_waschkueche
