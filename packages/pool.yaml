@@ -383,17 +383,17 @@ automation:
             id: zieltemperatur_wohl_erreicht
           sequence:
           - service: input_number.set_value
-          target:
-            entity_id: input_number.zieltemperatur_pool
-          data:
-            value: 20
+            target:
+              entity_id: input_number.zieltemperatur_pool
+            data:
+              value: 20
       - choose:
         - conditions:
           - condition: trigger
             id: zieltemperatur_reset
           sequence:
           - service: input_number.set_value
-          target:
-            entity_id: input_number.zieltemperatur_pool
-          data:
-            value: 30
+            target:
+              entity_id: input_number.zieltemperatur_pool
+            data:
+              value: 30

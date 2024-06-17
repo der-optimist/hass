@@ -83,4 +83,4 @@ cards:
       - entity: binary_sensor.pool_auto_heizung_noetig
       - entity: binary_sensor.pool_auto_heizung_heize_jetzt
       - entity: binary_sensor.pool_pumpe_pumpe_jetzt
-      - entity: pool_auto_heizung_hat_freigabe_heizt_aber_nicht
+      - entity: binary_sensor.pool_auto_heizung_hat_freigabe_heizt_aber_nicht
