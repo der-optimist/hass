@@ -38,7 +38,7 @@ template:
           friendly_name: "Pool - Pumpe läuft"
       - unique_id: pool_heizung_lauft
         state: >
-          {% if (states('sensor.0xa4c138b64253ef10_power') | float(0) > 1000) %}
+          {% if (states('sensor.0xa4c138b64253ef10_power') | float(0) > 100) %}
             {{ true }}
           {% else %}
             {{ false }}
@@ -50,9 +50,9 @@ template:
           {% set einspeisung_ohne_poolheizung = -1*(states('sensor.leistung_netz_letzte_3_min_durchschnitt') | float(0)) + (states('sensor.0xa4c138b64253ef10_power') | float(0)) %}
           {% if is_state('input_boolean.pool_heizung_auch_bezahlstrom','on') %}
             {{ true }}
-          {% elif is_state('input_boolean.pool_heizung_sobald_pv_strom','on') and (einspeisung_ohne_poolheizung > 2000) %}
+          {% elif is_state('input_boolean.pool_heizung_sobald_pv_strom','on') and (einspeisung_ohne_poolheizung > 500) %}
             {{ true }}
-          {% elif is_state('input_boolean.pool_heizung_wenn_pv_strom_uebrig','on') and (einspeisung_ohne_poolheizung > 5500) %}
+          {% elif is_state('input_boolean.pool_heizung_wenn_pv_strom_uebrig','on') and (einspeisung_ohne_poolheizung > 6000) %}
             {{ true }}          
           {% else %}
             {{ false }}
@@ -88,6 +88,13 @@ template:
           {% endif %}
         attributes:
           friendly_name: "Pool - Pumpe pumpe jetzt"
+      - unique_id: pool_auto_heizung_hat_freigabe_heizt_aber_nicht
+        state: >
+         {{
+          is_state('switch.0xa4c138b64253ef10', 'on') and (states('sensor.0xa4c138b64253ef10_power') | float(0) < 100)
+         }}
+        attributes:
+          friendly_name: "Pool - Heizungsautomatik Hat Freigabe heizt aber nicht"
 
 input_number:
   zieltemperatur_pool:
@@ -338,12 +345,20 @@ automation:
         entity_id: binary_sensor.pool_auto_heizung_heize_jetzt
         to: "on"
         id: heizung_an
-        for: "00:10:00"
+        for: "00:20:00"
       - platform: state
         entity_id: binary_sensor.pool_auto_heizung_heize_jetzt
         to: "off"
         id: heizung_aus
-        for: "00:03:00"
+        for: "00:15:00"
+      - platform: state
+        entity_id: binary_sensor.pool_auto_heizung_hat_freigabe_heizt_aber_nicht
+        to: "off"
+        id: zieltemperatur_wohl_erreicht
+        for: "00:10:00"
+      - platform: time
+        at: "02:00:00"
+        id: zieltemperatur_reset
     condition: []
     action:
       - choose:
@@ -362,3 +377,23 @@ automation:
           - service: switch.turn_off
             target:
               entity_id: switch.0xa4c138b64253ef10
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: zieltemperatur_wohl_erreicht
+          sequence:
+          - service: input_number.set_value
+          target:
+            entity_id: input_number.zieltemperatur_pool
+          data:
+            value: 20
+      - choose:
+        - conditions:
+          - condition: trigger
+            id: zieltemperatur_reset
+          sequence:
+          - service: input_number.set_value
+          target:
+            entity_id: input_number.zieltemperatur_pool
+          data:
+            value: 30
