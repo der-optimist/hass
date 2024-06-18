@@ -353,7 +353,7 @@ automation:
         for: "00:15:00"
       - platform: state
         entity_id: binary_sensor.pool_auto_heizung_hat_freigabe_heizt_aber_nicht
-        to: "off"
+        to: "on"
         id: zieltemperatur_wohl_erreicht
         for: "00:10:00"
       - platform: time
