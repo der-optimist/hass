@@ -9,7 +9,7 @@ template:
           {% if measurement > -100 %}
           {{ measurement }}
           {% else %}
-            {% if (now() - states.sensor.0x00124b0018e211d7_temperature_l1.last_updated) < timedelta( hours = 1) %}
+            {% if (now() - states.sensor.0x00124b0018e211d7.last_updated) < timedelta( hours = 1) %}
               {{ states('sensor.temp_pool') }}
             {% else %}
               {{ 'unknown' }}
