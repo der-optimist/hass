@@ -50,7 +50,7 @@ template:
           {% set einspeisung_ohne_poolheizung = -1*(states('sensor.leistung_netz_letzte_3_min_durchschnitt') | float(0)) + (states('sensor.0xa4c138b64253ef10_power') | float(0)) %}
           {% if is_state('input_boolean.pool_heizung_auch_bezahlstrom','on') %}
             {{ true }}
-          {% elif is_state('input_boolean.pool_heizung_sobald_pv_strom','on') and (einspeisung_ohne_poolheizung > 500) %}
+          {% elif is_state('input_boolean.pool_heizung_sobald_pv_strom','on') and (einspeisung_ohne_poolheizung > 1000) %}
             {{ true }}
           {% elif is_state('input_boolean.pool_heizung_wenn_pv_strom_uebrig','on') and (einspeisung_ohne_poolheizung > 6000) %}
             {{ true }}          
@@ -345,17 +345,17 @@ automation:
         entity_id: binary_sensor.pool_auto_heizung_heize_jetzt
         to: "on"
         id: heizung_an
-        for: "00:20:00"
+        for: "00:30:00"
       - platform: state
         entity_id: binary_sensor.pool_auto_heizung_heize_jetzt
         to: "off"
         id: heizung_aus
-        for: "00:15:00"
+        for: "00:20:00"
       - platform: state
         entity_id: binary_sensor.pool_auto_heizung_hat_freigabe_heizt_aber_nicht
         to: "on"
         id: zieltemperatur_wohl_erreicht
-        for: "00:10:00"
+        for: "00:20:00"
       - platform: time
         at: "02:00:00"
         id: zieltemperatur_reset
