@@ -5,11 +5,11 @@ template:
         unit_of_measurement: "°C"
         device_class: temperature
         state: >
-          {% set measurement = states('sensor.temp_0xa30317605abeff28_d1_pro_1') | float(-100) | round(1) %}
+          {% set measurement = states('sensor.pool_temperatur_gefiltert') | float(-100) | round(1) %}
           {% if measurement > -100 %}
           {{ measurement }}
           {% else %}
-            {% if (now() - states.sensor.temp_0xa30317605abeff28_d1_pro_1.last_updated) < timedelta( hours = 1) %}
+            {% if (now() - states.sensor.0x00124b0018e211d7_temperature_l1.last_updated) < timedelta( hours = 1) %}
               {{ states('sensor.temp_pool') }}
             {% else %}
               {{ 'unknown' }}
