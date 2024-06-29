@@ -633,6 +633,14 @@
     state_characteristic: value_min
     max_age:
       minutes: 5
+  - platform: statistics
+    name: "Pool Temperatur gefiltert"
+    entity_id: sensor.0x00124b0018e211d7_temperature_l1
+    state_characteristic: median
+    max_age:
+      minutes: 15
+    sampling_size: 60
+    precision: 1
 #
 # --------------------------------
 # --                            --
