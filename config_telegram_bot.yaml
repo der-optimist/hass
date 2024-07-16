@@ -3,4 +3,5 @@
   allowed_chat_ids:
     - !secret telegram_id_1
     - !secret telegram_id_2
+    - !secret telegram_id_3
     - !secret telegram_id_alarm_gruppe
