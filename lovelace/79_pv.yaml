@@ -44,6 +44,8 @@ cards:
         name: PV Einspeisung Tag
       - entity: sensor.stromzaehler_netzeinspeisung
         name: Zählerstand Einspeisung
+      - entity: sensor.stromzaehler_netzbezug
+        name: Zählerstand Bezug
       - sensor.pv_geldertrag_gesamt
       - sensor.pv_geldertrag_durch_eigenverbrauch_gesamt
       - sensor.pv_geldertrag_durch_einspeisung_gesamt
