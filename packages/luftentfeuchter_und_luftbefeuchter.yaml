@@ -73,7 +73,7 @@ template:
         state: >
           {% set humidity = state_attr('humidifier.luftentfeuchter_speis','saved_humidity') %}
           {% if is_state('binary_sensor.template_helper_luftentfeuchter_speis_use_pv','on') %}
-            {% set humidity = humidity - 6 %}
+            {% set humidity = humidity - 1 %}
           {% endif %}
           {{ humidity }}
       - name: helper_luftentfeuchter_partyraum_target_humidity
@@ -193,9 +193,9 @@ automation:
           - condition: trigger
             id: tank_action_required
           sequence:
-          - service: input_boolean.turn_on
-            target:
-              entity_id: input_boolean.reminder_tank_luftentfeuchter_speis
+#          - service: input_boolean.turn_on
+#            target:
+#              entity_id: input_boolean.reminder_tank_luftentfeuchter_speis
           - service: notify.telegram_jo
             data:
               message: 'Tank Luftentfeuchter Speis ist voll'
