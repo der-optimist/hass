@@ -428,11 +428,11 @@
         icon_template: mdi:speedometer
       el_leistung_spulmaschine:
         value_template: >-
-          {% if states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 6 %}
+          {% if states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 16 %}
             0.0
-          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 8 %}
-            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 0.2) }}
           {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 20 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 0.2) }}
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 30 %}
             {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 1.0) }}
           {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 60 %}
             {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 0.55) }}
