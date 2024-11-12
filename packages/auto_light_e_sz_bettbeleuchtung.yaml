@@ -97,7 +97,7 @@ template:
               {% if is_state('switch.knutschen', 'on') %}
                 {{ int(70) }}
               {% elif is_state('switch.majo_schlafen', 'on') %}
-                {{ int(3) }}
+                {{ int(5) }}
               {% else %}
                 {{ int(0) }}
               {% endif %}

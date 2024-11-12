@@ -25,8 +25,8 @@ template:
         state: >
           {% set hours = 
             ['00:00','04:00',60],
-            ['04:01','19:00',60],
-            ['19:01','23:59',60] %}
+            ['04:01','19:00',70],
+            ['19:01','23:59',70] %}
           {% set t = states('sensor.time').replace(':','')|int %}
           {% for h in hours if (h[0].replace(':','')|int) <= t <= (h[1].replace(':','')|int) %}
               {{h[2]}}
