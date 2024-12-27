@@ -48,6 +48,7 @@
         - sensor.temp_wohnzimmer_pm
         - sensor.windgeschwindigkeit_wetterstation_kmh
         - switch.bleib_so_wz_licht
+        - switch.esp_sd_3_relais
         - switch.knutschen
         - switch.la_schlaft
         - switch.le_schlaft
@@ -207,6 +208,9 @@
       switch.bleib_so_wz_licht:
         name: Bleib so Licht Wohnzimmer
         description: Bleib so Wohnzimmer-Licht
+      switch.esp_sd_3_relais:
+        name: Steckdose Bildschirm
+        description: Steckdose Bildschirm
       switch.knutschen:
         name: Knutschen
         description: Knutsch-Licht Schlafzimmer
