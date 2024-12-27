@@ -173,3 +173,7 @@ expose:
   attribute: "brightness"
   default: 0
   address: "1/6/44"
+# Glastaster La
+- type: 'string'
+  entity_id: 'sensor.text_uhrzeit_glastaster_la'
+  address: '15/0/87'
