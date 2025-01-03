@@ -127,13 +127,10 @@
           {% endif %}
         attributes:
           friendly_name: "Temp. außen gefühlt"
-      - unique_id: text_uhrzeit_glastaster_la
+  - binary_sensor:
+      - unique_id: blockade_uhrzeitanzeige_glastaster_la
         # name: change entity_id in UI after creation
         state: >
-          {% if states('switch.la_schlaft') == "off" or (now().hour > 5 and now().hour < 15) %}
-            {{ "{:02.0f}".format(now().hour) + ":" + "{:02.0f}".format(now().minute) }}
-          {% else %}
-            {{ "Gute Nacht" }}
-          {% endif %}
+          {{ states('switch.la_schlaft') == "on" and (now().hour < 6 or now().hour > 14) }}
         attributes:
-          friendly_name: "Text Uhrzeit Glastaster La"
+          friendly_name: "Blockade Uhrzeitanzeige Glastaster La"
