@@ -60,9 +60,6 @@ cover:
 #        stop_cover:
 #          service: script.stop_garage_door
 
-downloader:
-  download_dir: www
-
 generic_hygrostat: !include config_generic_hygrostat.yaml
 
 # replaced by GUI
