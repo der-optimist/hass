@@ -148,11 +148,11 @@
   description: ''
   trigger:
     - platform: state
-      entity_id: sensor.0x00158d0006726e97_action
+      entity_id: sensor.aqara_taster_lara_action
       to: "single"
       id: action_single
     - platform: state
-      entity_id: sensor.0x00158d0006726e97_action
+      entity_id: sensor.aqara_taster_lara_action
       to: "double"
       id: action_double
   condition: []
@@ -163,7 +163,7 @@
     - delay:
         hours: 0
         minutes: 0
-        seconds: 5
+        seconds: 3
         milliseconds: 0
   mode: single
 #
@@ -175,11 +175,11 @@
   description: ''
   trigger:
     - platform: state
-      entity_id: sensor.0x00158d00066f9b9d_action
+      entity_id: sensor.aqara_taster_lea_action
       to: "single"
       id: action_single
     - platform: state
-      entity_id: sensor.0x00158d00066f9b9d_action
+      entity_id: sensor.aqara_taster_lea_action
       to: "double"
       id: action_double
   condition: []
@@ -190,7 +190,7 @@
     - delay:
         hours: 0
         minutes: 0
-        seconds: 5
+        seconds: 3
         milliseconds: 0
   mode: single
 #
@@ -202,27 +202,22 @@
   description: ''
   trigger:
     - platform: state
-      entity_id: sensor.0x00158d00025f2262_action
+      entity_id: sensor.aqara_taster_gz_action
       to: "single"
       id: action_single
     - platform: state
-      entity_id: sensor.0x00158d00025f2262_action
+      entity_id: sensor.aqara_taster_gz_action
       to: "double"
       id: action_double
   condition: []
   action:
-  #  - service: light.turn_on
-  #    target:
-  #      entity_id: light.panels_schlafzimmer
-  #    data:
-  #      brightness_pct: 15
     - service: switch.toggle
       target:
         entity_id: switch.gaste_schlafen
     - delay:
         hours: 0
         minutes: 0
-        seconds: 5
+        seconds: 2
         milliseconds: 0
   mode: single
 #
