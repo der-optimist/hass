@@ -229,7 +229,7 @@
   description: ''
   trigger:
     - platform: state
-      entity_id: sensor.0x00158d00027d4507_action
+      entity_id: sensor.aqara_cube_wc_action
       to: "shake"
       id: shake
   condition: []

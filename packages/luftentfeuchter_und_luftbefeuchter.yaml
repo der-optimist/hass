@@ -114,11 +114,11 @@ automation:
         entity_id: sensor.helper_luftentfeuchter_waschkuche_target_humidity
         id: target_humidity_changed
       - platform: state
-        entity_id: sensor.0x00158d00040b112f_action
+        entity_id: sensor.aqara_doppeltaster_waschkuche_action
         to: "single_left"
         id: single_left
       - platform: state
-        entity_id: sensor.0x00158d00040b112f_action
+        entity_id: sensor.aqara_doppeltaster_waschkuche_action
         to: "double_left"
         id: double_left
     condition: []
