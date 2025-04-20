@@ -54,7 +54,13 @@ template:
           {% endif %}
       - name: helper_light_keeping_off_entities_k_flur
         state: >
-          {{ False }}
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.schlafen_oder_aufwachphase_majo') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_e_fl_panels') }}
+          {% else %}
+            {{ is_state('switch.majo_schlafen', 'on')
+              or is_state('binary_sensor.schlafen_oder_aufwachphase_majo', 'on') }}
+          {% endif %}
       - name: helper_light_keeping_on_entities_k_flur
         state: >
           {{ False }}
