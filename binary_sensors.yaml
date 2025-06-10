@@ -10,11 +10,11 @@
   - platform: tod
     name: Zeit Stern
     after: '15:00'
-    before: '23:00'
+    before: '21:30'
   - platform: tod
     name: Standardzeit Bodenstrahler Blumenbeet
     after: '15:00'
-    before: '22:00'
+    before: '21:30'
 
 # Weekday
 #  - platform: workday
