@@ -139,8 +139,7 @@
       bodenstrahler_blumenbeet_soll_an_sein:
         friendly_name: "Bodenstrahler Blumenbeet soll an sein"
         value_template: "{{ (is_state('binary_sensor.bodenstrahler_blumenbeet_ist_sichtbar', 'on') and is_state('binary_sensor.standardzeit_bodenstrahler_blumenbeet', 'on'))
-                          or (is_state('binary_sensor.bodenstrahler_blumenbeet_ist_sichtbar', 'on') and is_state('input_boolean.gaeste_abends', 'on')) 
-                          or is_state('binary_sensor.hst_offen', 'on') }}"
+                          or (is_state('binary_sensor.bodenstrahler_blumenbeet_ist_sichtbar', 'on') and is_state('input_boolean.gaeste_abends', 'on')) }}"
       tv_abends_an:
         friendly_name: "TV abends an"
         value_template: >-
