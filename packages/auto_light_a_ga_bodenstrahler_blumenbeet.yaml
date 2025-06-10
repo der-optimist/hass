@@ -49,7 +49,7 @@ template:
           {{ false }}
       - name: helper_light_trigger_a_ga_bodenstrahler_blumenbeet
         state: >
-          {{ is_state('binary_sensor.bodenstrahler_blumenbeet_soll_an_sein', 'on') }}
+          {{ (is_state('binary_sensor.bodenstrahler_blumenbeet_soll_an_sein', 'on')  and is_state('binary_sensor.anwesenheit_wohnbereich', 'on')) }}
       - name: helper_light_keeping_off_entities_a_ga_bodenstrahler_blumenbeet
         state: >
           {% if states('switch.luften_ez') in ['unavailable', 'unknown', 'none'] %}
