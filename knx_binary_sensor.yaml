@@ -142,6 +142,9 @@
   - state_address: '14/0/4'
     name: Sicherung Keller SD rausgeflogen
     device_class: problem
+  - state_address: '14/0/8'
+    name: Wasser Bad OG in Speis
+    device_class: problem
 
 # Aussen
   - state_address: '8/0/60'
