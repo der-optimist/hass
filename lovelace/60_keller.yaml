@@ -73,9 +73,7 @@ cards:
     - entity: humidifier.luftentfeuchter_speis
       name: Hygrostat
     - entity: sensor.luftfeuchtigkeit_vorratsraum
-      name: Luftf. Wand
-    - entity: sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_sht31
-      name: Luftf. Raum
+      name: Luftfeuchtigkeit
     - entity: switch.kuhlschrank_keller
       name: Steckdose Luftentfeuchter
     - entity: sensor.el_leistung_luftentf_vorratsraum
