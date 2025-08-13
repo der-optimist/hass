@@ -10,8 +10,6 @@ resources:
     type: module
   - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
     type: module
-  - url: /hacsfiles/bar-card/bar-card.js
-    type: module
   - url: /hacsfiles/lovelace-card-mod/card-mod.js
     type: module
   - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
@@ -39,4 +37,5 @@ resources:
   - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
     type: module
   - url: /hacsfiles/lovelace-horizon-card/lovelace-horizon-card.js
+
     type: module
