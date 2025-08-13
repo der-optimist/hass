@@ -15,6 +15,7 @@ cards:
       - entity: binary_sensor.wasser_unter_spule
       - entity: binary_sensor.eimer_hebeanlage_voll
       - entity: binary_sensor.wasser_boden_bei_hebeanlage
+      - entity: binary_sensor.wasser_bad_og_in_speis
   - type: entities
     title: Sicherungen
     show_header_toggle: false
