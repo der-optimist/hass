@@ -121,8 +121,6 @@ rest_command:
   bildschirm_theke_speak:
     url: 'http://192.168.178.79:2323/?cmd=textToSpeech&text={{ text }}&password=nopw'
 
-telegram_bot: !include config_telegram_bot.yaml
-
 template: !include template.yaml
 
 tts:
