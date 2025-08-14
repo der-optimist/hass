@@ -61,12 +61,6 @@ cards:
       entity: light.brettlicht_windfang
       name: Brettlicht
       toggle: true
-    - entity: input_boolean.beleuchtung_hochzeitsbild
-      name: Hochzeitsbild an/aus
-    - type: custom:slider-entity-row
-      entity: light.esp_wemos_d1_2_led_1
-      name: Hochzeitsbild Helligkeit
-      toggle: true
     - type: custom:slider-entity-row
       entity: light.panels_wc
       name: Panel WC
