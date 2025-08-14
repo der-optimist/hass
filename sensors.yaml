@@ -59,32 +59,32 @@
       luftfeuchtigkeit_waschkuche:
         friendly_name: 'Luftfeuchtigkeit Waschküche'
         unit_of_measurement: '%'
-        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_5_sht31') | float(0)) | round(1) }}"
+        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_5_sht31') | float(0) | round(1) }}"
         device_class: humidity
       temp_waschkuche:
         friendly_name: 'Temp. Waschküche'
         unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.temp_esp_wemos_d1_5_sht31') | float(0)) | round(1) }}"
+        value_template: "{{ states('sensor.temp_esp_wemos_d1_5_sht31') | float(0) | round(1) }}"
         device_class: temperature
       luftfeuchtigkeit_werkelraum:
         friendly_name: 'Luftfeuchtigkeit Werkelraum'
         unit_of_measurement: '%'
-        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_6_sht31') | float(0)) | round(1) }}"
+        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_6_sht31') | float(0) | round(1) }}"
         device_class: humidity
       temp_werkelraum:
         friendly_name: 'Temp. Werkelraum'
         unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.temp_esp_wemos_d1_6_sht31') | float(0)) | round(1) }}"
+        value_template: "{{ states('sensor.temp_esp_wemos_d1_6_sht31') | float(0) | round(1) }}"
         device_class: temperature
       luftfeuchtigkeit_partyraum:
         friendly_name: 'Luftfeuchtigkeit Partyraum'
         unit_of_measurement: '%'
-        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_11_sht31') | float(0)) | round(1) }}"
+        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_11_sht31') | float(0) | round(1) }}"
         device_class: humidity
       temp_partyraum:
         friendly_name: 'Temp. Partyraum'
         unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.temp_esp_wemos_d1_11_sht31') | float(0)) | round(1) }}"
+        value_template: "{{ states('sensor.temp_esp_wemos_d1_11_sht31') | float(0) | round(1) }}"
         device_class: temperature
       luftfeuchtigkeit_vorratsraum:
         friendly_name: 'Luftfeuchtigkeit Speis'
@@ -94,7 +94,7 @@
       temp_vorratsraum:
         friendly_name: 'Temp. Speis'
         unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.temp_esp_wemos_d1_9_bme280') | float(0)) | round(1) }}"
+        value_template: "{{ states('sensor.temp_esp_wemos_d1_9_bme280') | float(0) | round(1) }}"
         device_class: temperature
       temp_outside_internet:
         friendly_name: "Temperatur außen Internet"
