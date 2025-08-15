@@ -7,6 +7,9 @@
         - scene.jal_wohnbereich_runter
         - scene.lueftung_auto
         - scene.lueftung_stosslueften
+        - scene.robbi_in_den_windfang
+        - scene.robbi_in_die_kueche
+        - scene.robbi_in_kueche_und_windfang
         - sensor.el_leistung_pv_ac
         - sensor.el_leistung_verbrauch_gesamt
         - sensor.el_leistung_wp_gesamt
