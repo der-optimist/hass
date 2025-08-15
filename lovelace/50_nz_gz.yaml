@@ -1,9 +1,9 @@
-title: Nähzimmer und Gäste
+title: Arbeitszimmer und Gäste
 path: nz_und_gz
 icon: mdi:monitor-dashboard
 cards:
   - type: entities
-    title: Nähzimmer
+    title: Arbeitszimmer
     show_header_toggle: false
     entities:
     - type: section
@@ -11,9 +11,9 @@ cards:
     - type: custom:slider-entity-row
       entity: light.ikea_panel_arbeitszimmer_esphome
       toggle: true
-      name: !secret name_ma
+      name: Fenster
     - entity: light.schreibtisch_decke
-      name: !secret name_jo
+      name: Seite
     - entity: light.nahtisch_decke
       name: Strom IKEA-Panel
     - type: section
