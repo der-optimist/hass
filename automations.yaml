@@ -3125,3 +3125,29 @@
         entity_id: scene.alle_markisen_einfahren
 
   mode: single
+###############################################
+#####   Schick den Robbi in die Küche     #####
+###############################################
+- id: 'a8aa7689-a33e-4fbe-ae21-af48098b324a'
+  alias: Schick den Robbi in die Küche
+  description: ''
+  trigger:
+    - platform: event
+      event_type: call_service
+      event_data:
+        domain: scene
+        service: turn_on
+        service_data:
+          entity_id: scene.robbi_in_die_kueche
+  condition: []
+  action: 
+    - service: vacuum.send_command
+      data:
+        command: app_segment_clean
+        params:
+          - segments:
+              - 19
+            repeat: 2
+      target:
+        entity_id: vacuum.robbi
+  mode: single
