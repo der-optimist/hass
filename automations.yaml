@@ -3114,7 +3114,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.windgeschwindigkeit_wetterstation
-      above: 12.5
+      above: 11
     - platform: state
       entity_id: binary_sensor.windalarm_2
       to: "on"
