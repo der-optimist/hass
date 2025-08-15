@@ -181,8 +181,29 @@ expose:
   attribute: "brightness"
   default: 0
   address: "1/6/44"
+# Wandlichter Terrasse SW - Anzeige auf Taster
+- type: "binary"
+  entity_id: "light.esp_wemos_d1_7_dimmer_3"
+  address: "1/7/1"
+  default: false
+- type: "percentU8"
+  entity_id: "light.esp_wemos_d1_7_dimmer_3"
+  attribute: "brightness"
+  default: 0
+  address: "1/7/4"
+# Wandlichter Terrasse WW - Anzeige auf Taster
+- type: "binary"
+  entity_id: "light.esp_wemos_d1_7_dimmer_2"
+  address: "1/7/41"
+  default: false
+- type: "percentU8"
+  entity_id: "light.esp_wemos_d1_7_dimmer_2"
+  attribute: "brightness"
+  default: 0
+  address: "1/7/44"
 # Glastaster La
 - type: 'binary'
   entity_id: 'binary_sensor.blockade_uhrzeitanzeige_glastaster_la'
 
   address: '15/0/87'
+
