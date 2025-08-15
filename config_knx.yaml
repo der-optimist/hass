@@ -24,6 +24,14 @@ event:
   - address:
     - "1/6/122"
   - address:
+    - "1/7/0"
+  - address:
+    - "1/7/2"
+  - address:
+    - "1/7/40"
+  - address:
+    - "1/7/42"
+  - address:
     - "10/7/6"
   - address:
     - "12/0/6"
@@ -176,4 +184,5 @@ expose:
 # Glastaster La
 - type: 'binary'
   entity_id: 'binary_sensor.blockade_uhrzeitanzeige_glastaster_la'
+
   address: '15/0/87'
