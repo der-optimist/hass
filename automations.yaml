@@ -94,6 +94,38 @@
       dimm_time: 5
       dimm_steps: 10
 #
+##############################################################
+#####    KNX relative dimming Wandlichter Terrasse SW    #####
+##############################################################
+- alias: KNX relative dimming Wandlichter Terrasse SW
+  id: 'knx_relative_dimming_wandlichter_terrasse_sw'
+  description: ''
+  use_blueprint:
+    path: /config/blueprints/knx_relative_dimming_farmio.yaml
+    input:
+      target_lights:
+        entity_id: light.esp_wemos_d1_7_dimmer_3
+      switch_address: '1/7/0'
+      dimm_address: '1/7/2'
+      dimm_time: 5
+      dimm_steps: 10
+#
+##############################################################
+#####    KNX relative dimming Wandlichter Terrasse WW    #####
+##############################################################
+- alias: KNX relative dimming Wandlichter Terrasse WW
+  id: 'knx_relative_dimming_wandlichter_terrasse_ww'
+  description: ''
+  use_blueprint:
+    path: /config/blueprints/knx_relative_dimming_farmio.yaml
+    input:
+      target_lights:
+        entity_id: light.esp_wemos_d1_7_dimmer_2
+      switch_address: '1/7/40'
+      dimm_address: '1/7/42'
+      dimm_time: 5
+      dimm_steps: 10
+#
 ###############################################
 #####           Play on Kodi WZ           #####
 ###############################################
@@ -3091,4 +3123,5 @@
     - service: scene.turn_on
       target:
         entity_id: scene.alle_markisen_einfahren
+
   mode: single
