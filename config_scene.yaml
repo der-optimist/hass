@@ -1,0 +1,9 @@
+  - name: Robbi in die Kueche
+    entities:
+      select.robbi_ausgewahlte_karte: "EG"
+  - name: Robbi in den Windfang
+    entities:
+      select.robbi_ausgewahlte_karte: "EG"
+  - name: Robbi in Kueche und Windfang
+    entities:
+      select.robbi_ausgewahlte_karte: "EG"

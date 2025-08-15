@@ -129,6 +129,8 @@ tts:
 
 #utility_meter: !include utility_meter.yaml
 
+scene: !inclue config_scene.yaml
+
 sensor: !include sensors.yaml
 
 stream:
