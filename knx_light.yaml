@@ -252,12 +252,6 @@
     state_address: '0/2/81'
 
 # Garten / Terrasse
-  - name: 'Wandwürfel Süden'
-    address: '0/2/100'
-    state_address: '0/2/101'
-  - name: 'Wandwürfel Westen'
-    address: '0/2/120'
-    state_address: '0/2/121'
   - name: 'Bodenstrahler Blumenbeet'
     address: '0/1/0'
     state_address: '0/1/1'
