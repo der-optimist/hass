@@ -28,10 +28,14 @@ cards:
     entities:
     - type: section
       label: Licht
-    - entity: light.wandwurfel_suden
+    - type: custom:slider-entity-row
+      entity: light.esp_wemos_d1_7_dimmer_3
       name: Wandwürfel Süd
-    - entity: light.wandwurfel_westen
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.esp_wemos_d1_7_dimmer_2
       name: Wandwürfel West
+      toggle: true
     - entity: light.bodenstrahler_blumenbeet
       name: Bodenstrahler Blumenbeet
     - entity: light.stern_blumenbeet
