@@ -51,6 +51,27 @@ cards:
       name: Leuchtwürfel Ecke klein
     - entity: light.0x00158d000501c37c
       name: Leuchtwürfel Ecke groß
+    - type: divider
+      style: 
+        height: 1px
+        background-color: "#ff9c27"
+        opacity: 0.25
+    - type: custom:slider-entity-row
+      entity: light.lightvar_wh_io
+      name: LED Terrasse Haupt
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.lightvar_wh_io_3
+      name: LED Terrasse Wand
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.lightvar_wh_io_2
+      name: LED Feuerstelle Haupt
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.lightvar_wh_io_4
+      name: LED Feuerstelle Wand
+      toggle: true
     - type: section
       label: Markisen
     - type: custom:slider-entity-row
