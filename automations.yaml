@@ -3142,13 +3142,72 @@
   condition: []
   action: 
     - wait_template: "{{ is_state('sensor.robbi_aktueller_raum', 'Schlafzimmer') }}"
-      timeout: '00:00:10' 
+      timeout: '00:00:15' 
       continue_on_timeout: false
     - service: vacuum.send_command
       data:
         command: app_segment_clean
         params:
           - segments:
+              - 19
+            repeat: 2
+      target:
+        entity_id: vacuum.robbi
+  mode: single
+###############################################
+#####  Schick den Robbi in den Windfang   #####
+###############################################
+- id: '9e3e6100-fdf1-4383-b910-119ab352f0a4'
+  alias: Schick den Robbi in den Windfang
+  description: ''
+  trigger:
+    - platform: event
+      event_type: call_service
+      event_data:
+        domain: scene
+        service: turn_on
+        service_data:
+          entity_id: scene.robbi_in_den_windfang
+  condition: []
+  action: 
+    - wait_template: "{{ is_state('sensor.robbi_aktueller_raum', 'Schlafzimmer') }}"
+      timeout: '00:00:15' 
+      continue_on_timeout: false
+    - service: vacuum.send_command
+      data:
+        command: app_segment_clean
+        params:
+          - segments:
+              - 16
+            repeat: 2
+      target:
+        entity_id: vacuum.robbi
+  mode: single
+###############################################
+#####  Schick den Robbi in Küche und WF   #####
+###############################################
+- id: '79e7633c-dd01-4e54-95ff-4c6a00dc80ba'
+  alias: Schick den Robbi in Küche und WF
+  description: ''
+  trigger:
+    - platform: event
+      event_type: call_service
+      event_data:
+        domain: scene
+        service: turn_on
+        service_data:
+          entity_id: scene.robbi_in_kueche_und_windfang
+  condition: []
+  action: 
+    - wait_template: "{{ is_state('sensor.robbi_aktueller_raum', 'Schlafzimmer') }}"
+      timeout: '00:00:15' 
+      continue_on_timeout: false
+    - service: vacuum.send_command
+      data:
+        command: app_segment_clean
+        params:
+          - segments:
+              - 16
               - 19
             repeat: 2
       target:
