@@ -21,7 +21,7 @@ cards:
     - type: section
       label: Schläft jemand?
     - entity: switch.majo_schlafen
-      name: MaJo
+      name: Eltern
     - entity: binary_sensor.schlafen_oder_aufwachphase_majo
       name: Schlafen bzw. Aufwachphase
     - entity: switch.kinder_schon_wach

@@ -310,10 +310,30 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-        - entity: input_boolean.arbeit_theke
-          name: Arbeit Theke
-        - entity: input_boolean.gaeste_abends
-          name: Gäste
+        - type: button
+          entity: scene.robbi_in_die_kueche
+          name: Robbi Küche
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: scene.robbi_in_die_kueche
+        - type: button
+          entity: scene.robbi_in_den_windfang
+          name: Robbi Windfang
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: scene.robbi_in_den_windfang
+        - type: button
+          entity: scene.robbi_in_kueche_und_windfang
+          name: Robbi WF & Küche
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: scene.robbi_in_kueche_und_windfang
   - type: vertical-stack
     view_layout:
       grid-area: birthdays
@@ -347,6 +367,8 @@ cards:
             name: Pool
           - entity: input_boolean.gewitter
             name: Gewitter!
+          - entity: input_boolean.gaeste_abends
+            name: Gäste
       - type: conditional
         conditions:
           - entity: binary_sensor.zeige_eisschutz_jalousien
