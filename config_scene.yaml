@@ -1,9 +1,12 @@
   - name: Robbi in die Kueche
+    icon: mdi:robot-vacuum
     entities:
       select.robbi_ausgewahlte_karte: "EG"
   - name: Robbi in den Windfang
+    icon: mdi:robot-vacuum
     entities:
       select.robbi_ausgewahlte_karte: "EG"
   - name: Robbi in Kueche und Windfang
+    icon: mdi:robot-vacuum
     entities:
       select.robbi_ausgewahlte_karte: "EG"
