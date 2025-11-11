@@ -76,7 +76,8 @@
 ##        scan_interval: 300
   - name: lueftungsanlage
     type: tcp
-    host: modbuslueftung.fritz.box
+    host: 192.168.178.93
+    #host: modbuslueftung.fritz.box
     port: 502
     sensors:
       - name: lueftungmodbus_rh_max
