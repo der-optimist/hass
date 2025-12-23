@@ -185,9 +185,11 @@
       bewegung_hochzeitsbild:
         friendly_name: "Bewegung Hochzeitsbild"
         device_class: moving
-        value_template: "{{ is_state('binary_sensor.pm_ktr_flur','on') or 
-                            is_state('binary_sensor.pm_e_wf_garderobe','on') or 
-                            is_state('binary_sensor.pm_e_wf_haustur','on')  }}"
+        value_template: "{{ is_state('binary_sensor.pm_e_ez_bar_kuche', 'on')
+               or is_state('binary_sensor.pm_e_ez_esstisch', 'on')
+               or is_state('binary_sensor.pm_e_ku_bar_ez', 'on')
+               or is_state('binary_sensor.pm_e_ku_kuche', 'on')
+               or is_state('binary_sensor.pm_e_wz_durchgang', 'on') }}"
       pm_k_timer_magnetsensor_vorratsraum:
         friendly_name: "PM Timer Magnetsensor Vorratsraum"
         device_class: moving

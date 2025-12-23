@@ -1658,10 +1658,10 @@
   mode: queued
   trigger:
     - platform: time
-      at: "16:55:00"
+      at: "06:00:00"
       id: time_on
     - platform: time
-      at: "23:00:00"
+      at: "23:30:00"
       id: time_off
   condition: []
   action:
