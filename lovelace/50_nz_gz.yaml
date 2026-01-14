@@ -2,43 +2,49 @@ title: Arbeitszimmer und Gäste
 path: nz_und_gz
 icon: mdi:monitor-dashboard
 cards:
-  - type: entities
-    title: Arbeitszimmer
-    show_header_toggle: false
-    entities:
-    - type: section
-      label: Licht
-    - type: custom:slider-entity-row
-      entity: light.ikea_panel_arbeitszimmer_esphome
-      toggle: true
-      name: Fenster
-    - entity: light.schreibtisch_decke
-      name: Seite
-    - entity: light.nahtisch_decke
-      name: Strom IKEA-Panel
-    - type: section
-      label: Jalousie
-    - entity: cover.jalousie_nahzimmer
-      name: Bodentiefes
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_nahzimmer
-      name: Auf/Ab
-      attribute: position
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_nahzimmer
-      name: Winkel
-      attribute: tilt
-      icon: mdi:texture
-    - type: section
-      label: Heizung
-    - type: tile
-      entity: climate.nahzimmer
-      features_position: bottom
-      vertical: false
-      features:
-        - type: target-temperature
-    - entity: sensor.stellwert_heizung_nahzimmer
-      name: Ventil offen
+  - type: vertical-stack
+    title: Backyard
+    cards:
+      - type: entities
+        title: Arbeitszimmer
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Licht
+          - type: custom:slider-entity-row
+            entity: light.ikea_panel_arbeitszimmer_esphome
+            toggle: true
+            name: Fenster
+          - entity: light.schreibtisch_decke
+            name: Seite
+          - entity: light.nahtisch_decke
+            name: Strom IKEA-Panel
+          - type: section
+            label: Jalousie
+          - entity: cover.jalousie_nahzimmer
+            name: Bodentiefes
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_nahzimmer
+            name: Auf/Ab
+            attribute: position
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_nahzimmer
+            name: Winkel
+            attribute: tilt
+            icon: mdi:texture
+          - type: section
+            label: Heizung
+      - type: tile
+        entity: climate.nahzimmer
+        features_position: bottom
+        vertical: false
+        features:
+          - type: target-temperature
+      - type: entities
+        show_header_toggle: false
+        entities:
+        - entity: sensor.stellwert_heizung_nahzimmer
+          name: Ventil offen
   - type: entities
     title: Gästezimmer
     show_header_toggle: false
