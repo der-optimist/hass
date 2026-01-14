@@ -31,15 +31,14 @@ cards:
       icon: mdi:texture
     - type: section
       label: Heizung
-    - type: 'custom:simple-thermostat'
+    - type: tile
       entity: climate.nahzimmer
-      name: false
-      sensors:
-        - entity: sensor.stellwert_heizung_nahzimmer
-          name: Ventil offen
-      control:
-        - preset: false
-        - hvac: false
+      features_position: bottom
+      vertical: false
+      features:
+        - type: target-temperature
+    - entity: sensor.stellwert_heizung_nahzimmer
+      name: Ventil offen
   - type: entities
     title: Gästezimmer
     show_header_toggle: false
