@@ -3,9 +3,9 @@ path: nz_und_gz
 icon: mdi:monitor-dashboard
 cards:
   - type: vertical-stack
-    title: Arbeitszimmer
     cards:
       - type: entities
+        title: Arbeitszimmer
         show_header_toggle: false
         entities:
           - type: section
