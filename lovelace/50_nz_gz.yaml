@@ -3,10 +3,9 @@ path: nz_und_gz
 icon: mdi:monitor-dashboard
 cards:
   - type: vertical-stack
-    title: Backyard
+    title: Arbeitszimmer
     cards:
       - type: entities
-        title: Arbeitszimmer
         show_header_toggle: false
         entities:
           - type: section
@@ -34,17 +33,11 @@ cards:
             icon: mdi:texture
           - type: section
             label: Heizung
-      - type: tile
+          - entity: sensor.stellwert_heizung_nahzimmer
+            name: Ventil offen
+      - type: thermostat
         entity: climate.nahzimmer
-        features_position: bottom
-        vertical: false
-        features:
-          - type: target-temperature
-      - type: entities
-        show_header_toggle: false
-        entities:
-        - entity: sensor.stellwert_heizung_nahzimmer
-          name: Ventil offen
+        name: Heizung Arbeitszimmer
   - type: entities
     title: Gästezimmer
     show_header_toggle: false
