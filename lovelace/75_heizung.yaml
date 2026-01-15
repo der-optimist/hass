@@ -115,117 +115,150 @@ cards:
     title: Heizungen EG
     show_header_toggle: false
     entities:
-      - type: 'custom:simple-thermostat'
-        entity: climate.esszimmer
-        step_layout: row
-        name: Esszimmer und Küche
-        sensors:
-          - entity: sensor.stellwert_heizung_esszimmer
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_esszimmer
-            name: Regler
-        control: false
-      - type: 'custom:simple-thermostat'
-        entity: climate.wohnzimmer
-        step_layout: row
-        name: Wohnzimmer
-        sensors:
-          - entity: sensor.stellwert_heizung_wohnzimmer
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_wohnzimmer
-            name: Regler
-        control: false
-      - type: 'custom:simple-thermostat'
-        entity: climate.schlafzimmer
-        step_layout: row
-        name: Schlafzimmer
-        sensors:
-          - entity: sensor.stellwert_heizung_schlafzimmer
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_schlafzimmer
-            name: Regler
-        control: false
-      - type: 'custom:simple-thermostat'
-        entity: climate.bad_eg
-        step_layout: row
-        name: Bad EG
-        sensors:
-          - entity: sensor.stellwert_heizung_bad_eg
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_bad_eg
-            name: Regler
-        control: false
-      - type: 'custom:simple-thermostat'
-        entity: climate.windfang_wc
-        step_layout: row
-        name: Windfang / WC
-        sensors:
-          - entity: sensor.stellwert_heizung_windfang_wc
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_windfang_wc
-            name: Regler
-        control: false
+    # EZ
+      - type: section
+        label: Esszimmer / Küche
+      - entity: climate.esszimmer
+        attribute: temperature
+        name: Soll
+      - entity: climate.esszimmer
+        attribute: current_temperature
+        name: Ist
+      - entity: sensor.sollwert_heizung_esszimmer
+        name: Regler
+      - entity: sensor.stellwert_heizung_esszimmer
+        name: Ventil
+    # WZ
+      - type: section
+        label: Wohnzimmer
+      - entity: climate.wohnzimmer
+        attribute: temperature
+        name: Soll
+      - entity: climate.wohnzimmer
+        attribute: current_temperature
+        name: Ist
+      - entity: sensor.sollwert_heizung_wohnzimmer
+        name: Regler
+      - entity: sensor.stellwert_heizung_wohnzimmer
+        name: Ventil
+    # SZ
+      - type: section
+        label: Schlafzimmer
+      - entity: climate.schlafzimmer
+        attribute: temperature
+        name: Soll
+      - entity: climate.schlafzimmer
+        attribute: current_temperature
+        name: Ist
+      - entity: sensor.sollwert_heizung_schlafzimmer
+        name: Regler
+      - entity: sensor.stellwert_heizung_schlafzimmer
+        name: Ventil
+    # Bad EG
+      - type: section
+        label: Bad EG
+      - entity: climate.bad_eg
+        attribute: temperature
+        name: Soll
+      - entity: climate.bad_eg
+        attribute: current_temperature
+        name: Ist
+      - entity: sensor.sollwert_heizung_bad_eg
+        name: Regler
+      - entity: sensor.stellwert_heizung_bad_eg
+        name: Ventil
+    # WF / WC
+      - type: section
+        label: Windfang / WC
+      - entity: climate.windfang_wc
+        attribute: temperature
+        name: Soll
+      - entity: climate.windfang_wc
+        attribute: current_temperature
+        name: Ist
+      - entity: sensor.sollwert_heizung_windfang_wc
+        name: Regler
+      - entity: sensor.stellwert_heizung_windfang_wc
+        name: Ventil
   - type: entities
     title: Heizungen OG
     show_header_toggle: false
     entities:
-      - type: 'custom:simple-thermostat'
-        entity: climate.la
-        step_layout: row
-        name: !secret name_la
-        sensors:
-          - entity: sensor.stellwert_heizung_la
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_la
-            name: Regler
-        control: false
-      - type: 'custom:simple-thermostat'
-        entity: climate.nahzimmer
-        step_layout: row
-        name: Nähzimmer
-        sensors:
-          - entity: sensor.stellwert_heizung_nahzimmer
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_nahzimmer
-            name: Regler
-        control: false
-      - type: 'custom:simple-thermostat'
-        entity: climate.le
-        step_layout: row
-        name: !secret name_le
-        sensors:
-          - entity: sensor.stellwert_heizung_le
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_le
-            name: Regler
-        control: false
-      - type: 'custom:simple-thermostat'
-        entity: climate.gastezimmer
-        step_layout: row
-        name: Gästezimmer
-        sensors:
-          - entity: sensor.stellwert_heizung_gastezimmer
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_gastezimmer
-            name: Regler
-        control: false
-      - type: 'custom:simple-thermostat'
-        entity: climate.flur_og
-        step_layout: row
-        name: Flur OG
-        sensors:
-          - entity: sensor.stellwert_heizung_flur_og
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_flur_og
-            name: Regler
-        control: false
-      - type: 'custom:simple-thermostat'
-        entity: climate.bad_og
-        step_layout: row
-        name: Bad OG
-        sensors:
-          - entity: sensor.stellwert_heizung_bad_og
-            name: Ventil offen
-          - entity: sensor.sollwert_heizung_bad_og
-            name: Regler
-        control: false
+    # La
+      - type: section
+        label: La
+      - entity: climate.la
+        attribute: temperature
+        name: Soll
+      - entity: climate.la
+        attribute: current_temperature
+        name: Ist
+      - entity: sensor.sollwert_heizung_la
+        name: Regler
+      - entity: sensor.stellwert_heizung_la
+        name: Ventil
+    # AZ
+      - type: section
+        label: Arbeitszimmer
+      - entity: climate.nahzimmer
+        attribute: temperature
+        name: Soll
+      - entity: climate.nahzimmer
+        attribute: current_temperature
+        name: Ist
+      - entity: sensor.sollwert_heizung_nahzimmer
+        name: Regler
+      - entity: sensor.stellwert_heizung_nahzimmer
+        name: Ventil
+    # Le
+      - type: section
+        label: Le
+      - entity: climate.le
+        attribute: temperature
+        name: Soll
+      - entity: climate.le
+        attribute: current_temperature
+        name: Ist
+      - entity: sensor.sollwert_heizung_le
+        name: Regler
+      - entity: sensor.stellwert_heizung_le
+        name: Ventil
+    # GZ
+      - type: section
+        label: GZ / Jochen
+      - entity: climate.gastezimmer
+        attribute: temperature
+        name: Soll
+      - entity: climate.gastezimmer
+        attribute: current_temperature
+        name: Ist
+      - entity: sensor.sollwert_heizung_gastezimmer
+        name: Regler
+      - entity: sensor.stellwert_heizung_gastezimmer
+        name: Ventil
+    # Flur OG
+      - type: section
+        label: Flur OG
+      - entity: climate.flur_og
+        attribute: temperature
+        name: Soll
+      - entity: climate.flur_og
+        attribute: current_temperature
+        name: Ist
+      - entity: sensor.sollwert_heizung_flur_og
+        name: Regler
+      - entity: sensor.stellwert_heizung_flur_og
+        name: Ventil
+    # Bad OG
+      - type: section
+        label: Bad OG
+      - entity: climate.bad_og
+        attribute: temperature
+        name: Soll
+      - entity: climate.bad_og
+        attribute: current_temperature
+        name: Ist
+      - entity: sensor.sollwert_heizung_bad_og
+        name: Regler
+      - entity: sensor.stellwert_heizung_bad_og
+        name: Ventil
