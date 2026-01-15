@@ -105,8 +105,8 @@ cards:
         show_names: false
         entities:
           - sensor.stellwert_heizung_esszimmer
-          - stellwert_heizung_kuche
-          - stellwert_heizung_wohnzimmer
+          - sensor.stellwert_heizung_kuche
+          - sensor.stellwert_heizung_wohnzimmer
   - type: vertical-stack
     cards:
       - type: entities
