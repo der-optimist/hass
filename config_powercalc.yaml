@@ -1,5 +1,6 @@
-enable_autodiscovery: false
-force_update_frequency: 00:05:00
+discovery:
+  enabled: false
+energy_update_interval: 60
 create_energy_sensors: true
 power_sensor_naming: "El. Leistung PowerCalc {}"
 energy_sensor_naming: "Stromzähler PowerCalc {}"
@@ -489,4 +490,5 @@ sensors:
   - entity_id: sensor.el_leistung_einspeisung
     power_sensor_id: sensor.el_leistung_einspeisung
     name: PV Einspeisung
+
     unique_id: 58cebbba-d5c6-11ec-96c1-637159bb0824
