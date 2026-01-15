@@ -54,6 +54,7 @@ cards:
       - type: sensor
         entity: sensor.stellwert_heizung_nahzimmer
         name: Raum-Ventil
+        graph: line
         detail: 2
         limits:
           - min: 0.0
