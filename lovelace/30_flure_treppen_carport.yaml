@@ -2,99 +2,103 @@ title: Flur und Co
 path: flur_und_co
 icon: mdi:stairs
 cards:
-  - type: entities
-    title: "Flure und Treppen"
-    show_header_toggle: false
-    entities:
-    - type: section
-      label: Licht
-    - type: custom:slider-entity-row
-      entity: light.panels_flur_eg
-      name: Flur EG
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.0x00158d0005019c5c
-      name: Stehlampe oben
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.0x00158d0005019b3f
-      name: Stehlampe unten
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.panels_flur_og
-      name: Flur OG
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.panels_treppe_og
-      name: Panels Treppe
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.stufenbeleuchtung_treppe
-      name: Treppenstufen
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.shellydimmer_d472fe_light_0
-      name: Kellertreppe
-      toggle: true
-    - type: section
-      label: Heizung Flur OG
-    - type: 'custom:simple-thermostat'
-      entity: climate.flur_og
-      name: false
-      sensors:
-        - entity: sensor.stellwert_heizung_flur_og
-          name: Ventil offen
-      control:
-        - preset: false
-        - hvac: false
-  - type: entities
-    title: "Windfang und WC"
-    show_header_toggle: false
-    entities:
-    - type: section
-      label: Licht
-    - type: custom:slider-entity-row
-      entity: light.panels_windfang
-      name: Panels Windfang
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.brettlicht_windfang
-      name: Brettlicht
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.panels_wc
-      name: Panel WC
-      toggle: true
-    - entity: light.spiegel_wc
-      name: Spiegel WC
-    - type: section
-      label: Heizung
-    - type: 'custom:simple-thermostat'
-      entity: climate.windfang_wc
-      name: false
-      sensors:
-        - entity: sensor.stellwert_heizung_windfang_wc
-          name: Ventil offen
-      control:
-        - preset: false
-        - hvac: false
-  - type: entities
-    title: "Carport und Eingang"
-    show_header_toggle: false
-    entities:
-    - type: section
-      label: Licht
-    - type: custom:slider-entity-row
-      entity: light.led_streifen_carport
-      name: Streifen Eingang
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.bodenlicht_eingang
-      name: Bodenlicht
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.spots_carport_2
-      name: Spots Carport
-      toggle: true
-    - entity: light.abstellraum_carport
-      name: Abstellraum
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Flure und Treppen"
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Licht
+          - type: custom:slider-entity-row
+            entity: light.panels_flur_eg
+            name: Flur EG
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.0x00158d0005019c5c
+            name: Stehlampe oben
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.0x00158d0005019b3f
+            name: Stehlampe unten
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.panels_flur_og
+            name: Flur OG
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.panels_treppe_og
+            name: Panels Treppe
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.stufenbeleuchtung_treppe
+            name: Treppenstufen
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.shellydimmer_d472fe_light_0
+            name: Kellertreppe
+            toggle: true
+      - type: thermostat
+        entity: climate.flur_og
+        name: Heizung Flur OG
+      - type: history-graph
+        title: Raum-Ventil
+        min_y_axis: 0.0
+        max_y_axis: 100.0
+        show_names: false
+        entities:
+          - sensor.stellwert_heizung_flur_og
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Windfang und WC"
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Licht
+          - type: custom:slider-entity-row
+            entity: light.panels_windfang
+            name: Panels Windfang
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.brettlicht_windfang
+            name: Brettlicht
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.panels_wc
+            name: Panel WC
+            toggle: true
+          - entity: light.spiegel_wc
+            name: Spiegel WC
+      - type: thermostat
+        entity: climate.windfang_wc
+        name: Heizung Windfang/WC
+      - type: history-graph
+        title: Raum-Ventil
+        min_y_axis: 0.0
+        max_y_axis: 100.0
+        show_names: false
+        entities:
+          - sensor.stellwert_heizung_windfang_wc
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Carport und Eingang"
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Licht
+          - type: custom:slider-entity-row
+            entity: light.led_streifen_carport
+            name: Streifen Eingang
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.bodenlicht_eingang
+            name: Bodenlicht
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.spots_carport_2
+            name: Spots Carport
+            toggle: true
+          - entity: light.abstellraum_carport
+            name: Abstellraum
