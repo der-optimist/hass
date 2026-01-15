@@ -19,9 +19,7 @@ cards:
     show_header_toggle: false
     entities:
       - entity: sensor.luftfeuchtigkeit_kuche_aqara
-        name: Küche (aqara)
-      - entity: sensor.luftfeuchtigkeit_esp_wemos_d1_7_bme680
-        name: Lara
+        name: Küche / EZ
   - type: entities
     title: Draußen
     show_header_toggle: false
