@@ -48,11 +48,10 @@ cards:
         header:
           show: True
           title: Raum-Ventil
-#          show_states: true
         apex_config:
           chart:
-            height: 200px
-            offsetY: -50px
+            height: 250px
+#            offsetY: -50px
           legend:
             show: false
           yaxis:
@@ -60,7 +59,9 @@ cards:
             decimalsInFloat: 0
             min: 0
             max: 100
-            tickAmount: 20
+            tickAmount: 5
+          xaxis:
+            show: true
           grid:
             show: true
             xaxis:
