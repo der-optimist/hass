@@ -41,42 +41,6 @@ cards:
         show_names: false
         entities:
           - sensor.stellwert_heizung_nahzimmer
-      - type: custom:apexcharts-card
-        graph_span: 1d
-        update_interval: 5min
-        layout: minimal
-        header:
-          show: True
-          title: Raum-Ventil
-        apex_config:
-#          chart:
-#            height: 250px
-#            offsetY: -50px
-          legend:
-            show: false
-          yaxis:
-            show: true
-            decimalsInFloat: 0
-            min: 0
-            max: 100
-            tickAmount: 5
-          xaxis:
-            show: true
-          grid:
-            show: true
-            xaxis:
-              lines:
-                show: false 
-            yaxis:
-              lines:
-                show: true
-        series:
-          - entity: sensor.stellwert_heizung_nahzimmer
-            type: area
-            curve: stepline
-            fill_raw: last
-            color: var(--primary-color)
-            stroke_width: 2
   - type: vertical-stack
     cards:
       - type: entities
@@ -108,10 +72,13 @@ cards:
             name: Winkel
             attribute: tilt
             icon: mdi:texture
-          - type: section
-            label: Heizung
-          - entity: sensor.stellwert_heizung_gastezimmer
-            name: Ventil offen
       - type: thermostat
         entity: climate.gastezimmer
         name: Heizung Gästezimmer
+      - type: history-graph
+        title: Raum-Ventil
+        min_y_axis: 0.0
+        max_y_axis: 100.0
+        show_names: false
+        entities:
+          - sensor.stellwert_heizung_gastezimmer
