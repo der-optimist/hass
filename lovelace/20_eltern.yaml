@@ -2,86 +2,88 @@ title: Eltern-Suite
 path: elternsuite
 icon: mdi:emoticon-kiss-outline
 cards:
-  - type: entities
-    title: "Schlafzimmer"
-    show_header_toggle: false
-    entities:
-    - type: section
-      label: Licht
-    - type: custom:slider-entity-row
-      entity: light.panels_schlafzimmer
-      name: Panels Schlafzimmer
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.bettbeleuchtung
-      name: Bettbeleuchtung
-      toggle: true
-    - entity: switch.bleib_so_sz_licht
-      name: Bleib so, Licht!
-    - type: section
-      label: Schläft jemand?
-    - entity: switch.majo_schlafen
-      name: Eltern
-    - entity: binary_sensor.schlafen_oder_aufwachphase_majo
-      name: Schlafen bzw. Aufwachphase
-    - entity: switch.kinder_schon_wach
-      name: Mädels wach
-    - entity: switch.knutschen
-      name: Knutschen
-    - entity: switch.luften_sz
-      name: Lüften SZ
-    - type: section
-      label: Jalousie
-    - entity: cover.jalousie_schlafzimmer
-      name: Schlafzimmer
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_schlafzimmer
-      name: Auf/Ab
-      attribute: position
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_schlafzimmer
-      name: Winkel
-      attribute: tilt
-      icon: mdi:texture
-    - type: section
-      label: Heizung
-    - type: 'custom:simple-thermostat'
-      entity: climate.schlafzimmer
-      name: false
-      sensors:
-        - entity: sensor.stellwert_heizung_schlafzimmer
-          name: Ventil offen
-      control:
-        - preset: false
-        - hvac: false
-  - type: entities
-    title: "Bad EG"
-    show_header_toggle: false
-    entities:
-    - type: section
-      label: Licht
-    - type: custom:slider-entity-row
-      entity: light.panels_bad_eg
-      name: Panels Bad
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.regal_bad_eg
-      name: Regal
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.led_auf_spiegelschrank_bad_eg
-      name: Spiegel oben
-      toggle: true
-    - entity: light.spiegel_bad_eg
-      name: Spiegel vorne
-    - type: section
-      label: Heizung
-    - type: 'custom:simple-thermostat'
-      entity: climate.bad_eg
-      name: false
-      sensors:
-        - entity: sensor.stellwert_heizung_bad_eg
-          name: Ventil offen
-      control:
-        - preset: false
-        - hvac: false
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Schlafzimmer"
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Licht
+          - type: custom:slider-entity-row
+            entity: light.panels_schlafzimmer
+            name: Panels Schlafzimmer
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.bettbeleuchtung
+            name: Bettbeleuchtung
+            toggle: true
+          - entity: switch.bleib_so_sz_licht
+            name: Bleib so, Licht!
+          - type: section
+            label: Schläft jemand?
+          - entity: switch.majo_schlafen
+            name: Eltern
+          - entity: binary_sensor.schlafen_oder_aufwachphase_majo
+            name: Schlafen bzw. Aufwachphase
+          - entity: switch.kinder_schon_wach
+            name: Mädels wach
+          - entity: switch.knutschen
+            name: Knutschen
+          - entity: switch.luften_sz
+            name: Lüften SZ
+          - type: section
+            label: Jalousie
+          - entity: cover.jalousie_schlafzimmer
+            name: Schlafzimmer
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_schlafzimmer
+            name: Auf/Ab
+            attribute: position
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_schlafzimmer
+            name: Winkel
+            attribute: tilt
+            icon: mdi:texture
+      - type: thermostat
+        entity: climate.schlafzimmer
+        name: Heizung Schlafzimmer
+      - type: history-graph
+        title: Raum-Ventil
+        min_y_axis: 0.0
+        max_y_axis: 100.0
+        show_names: false
+        entities:
+          - sensor.stellwert_heizung_schlafzimmer
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Bad EG"
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Licht
+          - type: custom:slider-entity-row
+            entity: light.panels_bad_eg
+            name: Panels Bad
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.regal_bad_eg
+            name: Regal
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.led_auf_spiegelschrank_bad_eg
+            name: Spiegel oben
+            toggle: true
+          - entity: light.spiegel_bad_eg
+            name: Spiegel vorne
+      - type: thermostat
+        entity: climate.bad_eg
+        name: Heizung Bad EG
+      - type: history-graph
+        title: Raum-Ventil
+        min_y_axis: 0.0
+        max_y_axis: 100.0
+        show_names: false
+        entities:
+          - sensor.stellwert_heizung_bad_eg
