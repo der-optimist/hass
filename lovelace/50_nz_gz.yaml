@@ -51,7 +51,7 @@ cards:
         apex_config:
           chart:
             height: 250px
-#            offsetY: -50px
+            offsetY: -50px
           legend:
             show: false
           yaxis:
