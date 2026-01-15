@@ -31,10 +31,6 @@ cards:
             name: Winkel
             attribute: tilt
             icon: mdi:texture
-          - type: section
-            label: Heizung
-          - entity: sensor.stellwert_heizung_nahzimmer
-            name: Ventil offen
       - type: thermostat
         entity: climate.nahzimmer
         name: Heizung Arbeitszimmer
@@ -45,20 +41,36 @@ cards:
         show_names: false
         entities:
           - sensor.stellwert_heizung_nahzimmer
-      - type: history-graph
-        min_y_axis: 0.0
-        max_y_axis: 100.0
-        entities:
+      - type: custom:apexcharts-card
+        graph_span: 1d
+        update_interval: 5min
+        layout: minimal
+        header:
+          show: True
+          title: Raum-Ventil
+          show_states: true
+        apex_config:
+          chart:
+            height: 150px
+            offsetY: -50px
+          legend:
+            show: false
+          yaxis:
+            show: true
+          grid:
+            show: true
+            xaxis:
+              lines:
+                show: false 
+            yaxis:
+              lines:
+                show: true
+        series:
           - entity: sensor.stellwert_heizung_nahzimmer
-            name: Raum-Ventil
-      - type: sensor
-        entity: sensor.stellwert_heizung_nahzimmer
-        name: Raum-Ventil
-        graph: line
-        detail: 2
-        limits:
-          - min: 0.0
-          - max: 100.0
+            type: line
+            fill_raw: last
+            color: var(--primary-color)
+            stroke_width: 5
   - type: vertical-stack
     cards:
       - type: entities
