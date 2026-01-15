@@ -1,3 +1,0 @@
-save_energy_log:
-  module: save_energy_log
-  class: save_energy_log

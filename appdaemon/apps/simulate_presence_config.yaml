@@ -1,3 +1,0 @@
-simulate_presence:
-  module: simulate_presence
-  class: simulate_presence

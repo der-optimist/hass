@@ -1,3 +1,0 @@
-notifications:
-  module: notifications
-  class: notifications
