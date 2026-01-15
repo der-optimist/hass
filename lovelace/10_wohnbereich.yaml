@@ -2,167 +2,170 @@ title: Wohnbereich
 path: wohnbereich
 icon: mdi:food-fork-drink
 cards:
-  - type: entities
-    title: "Küche"
-    show_header_toggle: false
-    entities:
-    - type: section
-      label: Licht
-    - type: custom:slider-entity-row
-      entity: light.panels_kuche
-      name: Panels Küche
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.panels_bar
-      name: Panels Bar
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.arbeitsplatte
-      name: Arbeitsplatte
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.sockelbeleuchtung
-      name: Sockel
-      toggle: true
-    - type: section
-      label: Jalousie
-    - entity: cover.jalousie_kuche
-      name: Küche
-      style: |
-        svg {
-          transform: rotate(-90deg);
-        }
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_kuche
-      name: Auf/Ab
-      attribute: position
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_kuche
-      name: Winkel
-      attribute: tilt
-      icon: mdi:texture
-    - type: section
-      label: Geräte
-    - switch.mixi
-  - type: entities
-    title: "Esszimmer"
-    show_header_toggle: false
-    entities:
-    - type: section
-      label: Licht
-    - type: custom:slider-entity-row
-      entity: light.panels_esszimmer
-      name: Panels Esszimmer
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.panels_bar
-      name: Panels Bar
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.bar_beleuchtung
-      name: Thekenlicht
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.wandleuchten_esszimmer_hell
-      name: Wandleuchten hell
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.wandleuchten_esszimmer_gemutlich
-      name: Wandleuchten warm
-      toggle: true
-    - entity: light.sd_fussraum_bar
-      name: SD Weihnachtsbaum
-    - entity: switch.kinder_schon_wach
-      name: Mädels wach
-    - entity: switch.luften_alles
-      name: Lüften alles
-    - entity: switch.luften_ez
-      name: Lüften EZ
-    - type: section
-      label: Jalousie
-    - entity: cover.jalousie_hst
-      name: Esszimmer
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_hst
-      name: Auf/Ab
-      attribute: position
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_hst
-      name: Winkel
-      attribute: tilt
-      icon: mdi:texture
-    - type: section
-      label: Heizung
-    - type: 'custom:simple-thermostat'
-      entity: climate.esszimmer
-      name: false
-      sensors:
-        - entity: sensor.stellwert_heizung_esszimmer
-          name: Ventil offen
-        - entity: sensor.stellwert_heizung_kuche
-          name: Ventil Küche
-        - entity: sensor.stellwert_heizung_wohnzimmer
-          name: Ventil WZ
-      control:
-        - preset: false
-        - hvac: false
-  - type: entities
-    title: "Wohnzimmer"
-    show_header_toggle: false
-    entities:
-    - type: section
-      label: Licht und Steckdosen
-    - type: custom:slider-entity-row
-      entity: light.panels_wohnzimmer
-      name: Panels Wohnzimmer
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.schrankbeleuchtung_wohnzimmer
-      name: Hängeschränke
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.0x00158d000502f589
-      name: Stehlampe
-      toggle: true
-    - entity: switch.bleib_so_wz_licht
-      name: Bleib so, Licht!
-    - type: divider
-      style: 
-        height: 1px
-        background-color: "#ff9c27"
-        opacity: 0.25
-    - entity: switch.wz_steckdose
-      name: Steckdose neben Sideboard
-    - entity: switch.tv
-      name: Steckdose Fernseher
-    - entity: binary_sensor.tv_ist_an
-      name: Läuft der Fernseher?
-    - type: section
-      label: Jalousie
-    - entity: cover.jalousie_wz_bodentiefes
-      name: Bodentiefes
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_wz_bodentiefes
-      name: Auf/Ab
-      attribute: position
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_wz_bodentiefes
-      name: Winkel
-      attribute: tilt
-      icon: mdi:texture
-    - type: divider
-      style: 
-        height: 1px
-        background-color: "#ff9c27"
-        opacity: 0.25
-    - entity: cover.jalousie_wz_couch
-      name: Couch
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_wz_couch
-      name: Auf/Ab
-      attribute: position
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_wz_couch
-      name: Winkel
-      attribute: tilt
-      icon: mdi:texture
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Küche"
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Licht
+          - type: custom:slider-entity-row
+            entity: light.panels_kuche
+            name: Panels Küche
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.panels_bar
+            name: Panels Bar
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.arbeitsplatte
+            name: Arbeitsplatte
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.sockelbeleuchtung
+            name: Sockel
+            toggle: true
+          - type: section
+            label: Jalousie
+          - entity: cover.jalousie_kuche
+            name: Küche
+            style: |
+              svg {
+                transform: rotate(-90deg);
+              }
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_kuche
+            name: Auf/Ab
+            attribute: position
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_kuche
+            name: Winkel
+            attribute: tilt
+            icon: mdi:texture
+          - type: section
+            label: Geräte
+          - switch.mixi
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Esszimmer"
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Licht
+          - type: custom:slider-entity-row
+            entity: light.panels_esszimmer
+            name: Panels Esszimmer
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.panels_bar
+            name: Panels Bar
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.bar_beleuchtung
+            name: Thekenlicht
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.wandleuchten_esszimmer_hell
+            name: Wandleuchten hell
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.wandleuchten_esszimmer_gemutlich
+            name: Wandleuchten warm
+            toggle: true
+          - entity: light.sd_fussraum_bar
+            name: SD Weihnachtsbaum
+          - entity: switch.kinder_schon_wach
+            name: Mädels wach
+          - entity: switch.luften_alles
+            name: Lüften alles
+          - entity: switch.luften_ez
+            name: Lüften EZ
+          - type: section
+            label: Jalousie
+          - entity: cover.jalousie_hst
+            name: Esszimmer
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_hst
+            name: Auf/Ab
+            attribute: position
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_hst
+            name: Winkel
+            attribute: tilt
+            icon: mdi:texture
+      - type: thermostat
+        entity: climate.esszimmer
+        name: Heizung Esszimmer
+      - type: history-graph
+        title: Raum-Ventil
+        min_y_axis: 0.0
+        max_y_axis: 100.0
+        show_names: false
+        entities:
+          - sensor.stellwert_heizung_esszimmer
+          - stellwert_heizung_kuche
+          - stellwert_heizung_wohnzimmer
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Wohnzimmer"
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Licht und Steckdosen
+          - type: custom:slider-entity-row
+            entity: light.panels_wohnzimmer
+            name: Panels Wohnzimmer
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.schrankbeleuchtung_wohnzimmer
+            name: Hängeschränke
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.0x00158d000502f589
+            name: Stehlampe
+            toggle: true
+          - entity: switch.bleib_so_wz_licht
+            name: Bleib so, Licht!
+          - type: divider
+            style: 
+              height: 1px
+              background-color: "#ff9c27"
+              opacity: 0.25
+          - entity: switch.wz_steckdose
+            name: Steckdose neben Sideboard
+          - entity: switch.tv
+            name: Steckdose Fernseher
+          - entity: binary_sensor.tv_ist_an
+            name: Läuft der Fernseher?
+          - type: section
+            label: Jalousie
+          - entity: cover.jalousie_wz_bodentiefes
+            name: Bodentiefes
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_wz_bodentiefes
+            name: Auf/Ab
+            attribute: position
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_wz_bodentiefes
+            name: Winkel
+            attribute: tilt
+            icon: mdi:texture
+          - type: divider
+            style: 
+              height: 1px
+              background-color: "#ff9c27"
+              opacity: 0.25
+          - entity: cover.jalousie_wz_couch
+            name: Couch
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_wz_couch
+            name: Auf/Ab
+            attribute: position
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_wz_couch
+            name: Winkel
+            attribute: tilt
+            icon: mdi:texture
