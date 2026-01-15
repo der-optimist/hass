@@ -51,12 +51,16 @@ cards:
           show_states: true
         apex_config:
           chart:
-            height: 150px
+            height: 200px
             offsetY: -50px
           legend:
             show: false
           yaxis:
             show: true
+            decimalsInFloat: 0
+            min: 0
+            max: 100
+            tickAmount: 10
           grid:
             show: true
             xaxis:
@@ -67,10 +71,11 @@ cards:
                 show: true
         series:
           - entity: sensor.stellwert_heizung_nahzimmer
-            type: line
+            type: area
+            curve: stepline
             fill_raw: last
             color: var(--primary-color)
-            stroke_width: 5
+            stroke_width: 2
   - type: vertical-stack
     cards:
       - type: entities
