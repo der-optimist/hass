@@ -161,9 +161,6 @@ cards:
       - entity: climate.windfang_wc
         attribute: temperature
         name: Thermostat
-      - entity: climate.windfang_wc
-        attribute: current_temperature
-        name: Ist
       - entity: sensor.sollwert_heizung_windfang_wc
         name: Regler
       - entity: sensor.stellwert_heizung_windfang_wc
