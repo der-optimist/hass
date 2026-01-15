@@ -2,199 +2,186 @@ title: Kinder und Bad
 path: kinder_und_bad
 icon: mdi:human-female-female
 cards:
-  - type: entities
-    title: !secret name_la
-    show_header_toggle: false
-    entities:
-    - type: section
-      label: Licht
-    - type: custom:slider-entity-row
-      entity: light.panels_la
-      name: Panels
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.wandwurfel_la
-      name: Wandwürfel
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.0x00158d000344670b
-      name: Stehlampe
-      toggle: true
-    - entity: switch.bleib_so_la_licht
-      name: Bleib so, Licht!
-    - type: section
-      label: Schläft jemand?
-    - entity: switch.la_schlaft
-      name: Schläft
-    - entity: binary_sensor.schlafen_oder_aufwachphase_la
-      name: Schlafen bzw. Aufwachphase
-    - entity: switch.luften_la
-      name: Lüften La
-    - type: section
-      label: Jalousie
-    - entity: cover.jalousie_la_bodentiefes
-      name: Bodentiefes
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_la_bodentiefes
-      name: Auf/Ab
-      attribute: position
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_la_bodentiefes
-      name: Winkel
-      attribute: tilt
-      icon: mdi:texture
-    - type: divider
-      style: 
-        height: 1px
-        background-color: "#ff9c27"
-        opacity: 0.25
-    - entity: cover.jalousie_la_lichtband
-      name: Lichtband
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_la_lichtband
-      name: Auf/Ab
-      attribute: position
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_la_lichtband
-      name: Winkel
-      attribute: tilt
-      icon: mdi:texture
-    - type: section
-      label: Heizung
-    - type: 'custom:simple-thermostat'
-      entity: climate.la
-      name: false
-      sensors:
-        - entity: sensor.stellwert_heizung_la
-          name: Ventil offen
-      control:
-        - preset: false
-        - hvac: false
-    - type: section
-      label: Luftsensor
-    - entity: sensor.temp_esp_wemos_d1_7_bme680
-      name: Temperatur
-    - entity: sensor.luftfeuchtigkeit_esp_wemos_d1_7_bme680
-      name: Luftfeuchtigkeit
-    - entity: sensor.iaq_text
-      name: Luftqualität
-    - entity: sensor.iaq_esp_wemos_d1_7_bme680
-      name: Luftqualität (IAQ)
-    - entity: sensor.co2_equivalent_esp_wemos_d1_7_bme680
-      name: CO2
-    - entity: sensor.atmung_voc_equivalent_esp_wemos_d1_7_bme680
-      name: VOC
-    - entity: sensor.iaq_genauigkeit_text_esp_wemos_d1_7_bme680
-      name: Status Sensor
-  - type: entities
-    title: !secret name_le
-    show_header_toggle: false
-    entities:
-    - type: section
-      label: Licht
-    - type: custom:slider-entity-row
-      entity: light.panels_le
-      name: Panels
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.wandwurfel_le
-      name: Wandwürfel
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.0x680ae2fffeeb9221
-      name: Stehlampe
-      toggle: true
-    - entity: switch.bleib_so_le_licht
-      name: Bleib so, Licht!
-    - type: section
-      label: Schläft jemand?
-    - entity: switch.le_schlaft
-      name: Schläft
-    - entity: binary_sensor.schlafen_oder_aufwachphase_le
-      name: Schlafen bzw. Aufwachphase
-    - entity: switch.luften_le
-      name: Lüften Le
-    - type: section
-      label: Jalousie
-    - entity: cover.jalousie_le_bodentiefes
-      name: Bodentiefes
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_le_bodentiefes
-      name: Auf/Ab
-      attribute: position
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_le_bodentiefes
-      name: Winkel
-      attribute: tilt
-      icon: mdi:texture
-    - type: divider
-      style: 
-        height: 1px
-        background-color: "#ff9c27"
-        opacity: 0.25
-    - entity: cover.jalousie_le_lichtband
-      name: Lichtband
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_le_lichtband
-      name: Auf/Ab
-      attribute: position
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_le_lichtband
-      name: Winkel
-      attribute: tilt
-      icon: mdi:texture
-    - type: section
-      label: Heizung
-    - type: 'custom:simple-thermostat'
-      entity: climate.le
-      name: false
-      sensors:
-        - entity: sensor.stellwert_heizung_le
-          name: Ventil offen
-      control:
-        - preset: false
-        - hvac: false
-  - type: entities
-    title: "Bad OG"
-    show_header_toggle: false
-    entities:
-    - type: section
-      label: Licht
-    - type: custom:slider-entity-row
-      entity: light.panels_bad_og
-      name: Panels Bad
-      toggle: true
-    - type: custom:slider-entity-row
-      entity: light.led_auf_spiegelschrank_bad_og
-      name: Spiegel oben
-      toggle: true
-    - entity: light.spiegel_bad_og
-      name: Spiegel
-    - type: section
-      label: Schläft jemand?
-    - entity: switch.bad_og_nachtmodus
-      name: Nachtmodus
-    - type: section
-      label: Jalousie
-    - entity: cover.jalousie_bad_og
-      name: Bad
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_bad_og
-      name: Auf/Ab
-      attribute: position
-    - type: custom:slider-entity-row
-      entity: cover.jalousie_bad_og
-      name: Winkel
-      attribute: tilt
-      icon: mdi:texture
-    - type: section
-      label: Heizung
-    - type: 'custom:simple-thermostat'
-      entity: climate.bad_og
-      name: false
-      sensors:
-        - entity: sensor.stellwert_heizung_bad_og
-          name: Ventil offen
-      control:
-        - preset: false
-        - hvac: false
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: !secret name_la
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Licht
+          - type: custom:slider-entity-row
+            entity: light.panels_la
+            name: Panels
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.wandwurfel_la
+            name: Wandwürfel
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.0x00158d000344670b
+            name: Stehlampe
+            toggle: true
+          - entity: switch.bleib_so_la_licht
+            name: Bleib so, Licht!
+          - type: section
+            label: Schläft jemand?
+          - entity: switch.la_schlaft
+            name: Schläft
+          - entity: binary_sensor.schlafen_oder_aufwachphase_la
+            name: Schlafen bzw. Aufwachphase
+          - entity: switch.luften_la
+            name: Lüften La
+          - type: section
+            label: Jalousie
+          - entity: cover.jalousie_la_bodentiefes
+            name: Bodentiefes
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_la_bodentiefes
+            name: Auf/Ab
+            attribute: position
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_la_bodentiefes
+            name: Winkel
+            attribute: tilt
+            icon: mdi:texture
+          - type: divider
+            style: 
+              height: 1px
+              background-color: "#ff9c27"
+              opacity: 0.25
+          - entity: cover.jalousie_la_lichtband
+            name: Lichtband
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_la_lichtband
+            name: Auf/Ab
+            attribute: position
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_la_lichtband
+            name: Winkel
+            attribute: tilt
+            icon: mdi:texture
+      - type: thermostat
+        entity: climate.la
+        name: Heizung La
+      - type: history-graph
+        title: Raum-Ventil
+        min_y_axis: 0.0
+        max_y_axis: 100.0
+        show_names: false
+        entities:
+          - sensor.stellwert_heizung_la
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: !secret name_le
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Licht
+          - type: custom:slider-entity-row
+            entity: light.panels_le
+            name: Panels
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.wandwurfel_le
+            name: Wandwürfel
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.0x680ae2fffeeb9221
+            name: Stehlampe
+            toggle: true
+          - entity: switch.bleib_so_le_licht
+            name: Bleib so, Licht!
+          - type: section
+            label: Schläft jemand?
+          - entity: switch.le_schlaft
+            name: Schläft
+          - entity: binary_sensor.schlafen_oder_aufwachphase_le
+            name: Schlafen bzw. Aufwachphase
+          - entity: switch.luften_le
+            name: Lüften Le
+          - type: section
+            label: Jalousie
+          - entity: cover.jalousie_le_bodentiefes
+            name: Bodentiefes
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_le_bodentiefes
+            name: Auf/Ab
+            attribute: position
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_le_bodentiefes
+            name: Winkel
+            attribute: tilt
+            icon: mdi:texture
+          - type: divider
+            style: 
+              height: 1px
+              background-color: "#ff9c27"
+              opacity: 0.25
+          - entity: cover.jalousie_le_lichtband
+            name: Lichtband
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_le_lichtband
+            name: Auf/Ab
+            attribute: position
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_le_lichtband
+            name: Winkel
+            attribute: tilt
+            icon: mdi:texture
+      - type: thermostat
+        entity: climate.le
+        name: Heizung Le
+      - type: history-graph
+        title: Raum-Ventil
+        min_y_axis: 0.0
+        max_y_axis: 100.0
+        show_names: false
+        entities:
+          - sensor.stellwert_heizung_le
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: "Bad OG"
+        show_header_toggle: false
+        entities:
+          - type: section
+            label: Licht
+          - type: custom:slider-entity-row
+            entity: light.panels_bad_og
+            name: Panels Bad
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.led_auf_spiegelschrank_bad_og
+            name: Spiegel oben
+            toggle: true
+          - entity: light.spiegel_bad_og
+            name: Spiegel
+          - type: section
+            label: Schläft jemand?
+          - entity: switch.bad_og_nachtmodus
+            name: Nachtmodus
+          - type: section
+            label: Jalousie
+          - entity: cover.jalousie_bad_og
+            name: Bad
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_bad_og
+            name: Auf/Ab
+            attribute: position
+          - type: custom:slider-entity-row
+            entity: cover.jalousie_bad_og
+            name: Winkel
+            attribute: tilt
+            icon: mdi:texture
+      - type: thermostat
+        entity: climate.bad_og
+        name: Heizung Bad OG
+      - type: history-graph
+        title: Raum-Ventil
+        min_y_axis: 0.0
+        max_y_axis: 100.0
+        show_names: false
+        entities:
+          - sensor.stellwert_heizung_bad_og
