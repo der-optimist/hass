@@ -120,10 +120,7 @@ cards:
         label: Esszimmer / Küche
       - entity: climate.esszimmer
         attribute: temperature
-        name: Soll
-      - entity: climate.esszimmer
-        attribute: current_temperature
-        name: Ist
+        name: Thermostat
       - entity: sensor.sollwert_heizung_esszimmer
         name: Regler
       - entity: sensor.stellwert_heizung_esszimmer
@@ -133,10 +130,7 @@ cards:
         label: Wohnzimmer
       - entity: climate.wohnzimmer
         attribute: temperature
-        name: Soll
-      - entity: climate.wohnzimmer
-        attribute: current_temperature
-        name: Ist
+        name: Thermostat
       - entity: sensor.sollwert_heizung_wohnzimmer
         name: Regler
       - entity: sensor.stellwert_heizung_wohnzimmer
@@ -146,10 +140,7 @@ cards:
         label: Schlafzimmer
       - entity: climate.schlafzimmer
         attribute: temperature
-        name: Soll
-      - entity: climate.schlafzimmer
-        attribute: current_temperature
-        name: Ist
+        name: Thermostat
       - entity: sensor.sollwert_heizung_schlafzimmer
         name: Regler
       - entity: sensor.stellwert_heizung_schlafzimmer
@@ -159,10 +150,7 @@ cards:
         label: Bad EG
       - entity: climate.bad_eg
         attribute: temperature
-        name: Soll
-      - entity: climate.bad_eg
-        attribute: current_temperature
-        name: Ist
+        name: Thermostat
       - entity: sensor.sollwert_heizung_bad_eg
         name: Regler
       - entity: sensor.stellwert_heizung_bad_eg
@@ -172,7 +160,7 @@ cards:
         label: Windfang / WC
       - entity: climate.windfang_wc
         attribute: temperature
-        name: Soll
+        name: Thermostat
       - entity: climate.windfang_wc
         attribute: current_temperature
         name: Ist
@@ -189,10 +177,7 @@ cards:
         label: La
       - entity: climate.la
         attribute: temperature
-        name: Soll
-      - entity: climate.la
-        attribute: current_temperature
-        name: Ist
+        name: Thermostat
       - entity: sensor.sollwert_heizung_la
         name: Regler
       - entity: sensor.stellwert_heizung_la
@@ -202,10 +187,7 @@ cards:
         label: Arbeitszimmer
       - entity: climate.nahzimmer
         attribute: temperature
-        name: Soll
-      - entity: climate.nahzimmer
-        attribute: current_temperature
-        name: Ist
+        name: Thermostat
       - entity: sensor.sollwert_heizung_nahzimmer
         name: Regler
       - entity: sensor.stellwert_heizung_nahzimmer
@@ -215,10 +197,7 @@ cards:
         label: Le
       - entity: climate.le
         attribute: temperature
-        name: Soll
-      - entity: climate.le
-        attribute: current_temperature
-        name: Ist
+        name: Thermostat
       - entity: sensor.sollwert_heizung_le
         name: Regler
       - entity: sensor.stellwert_heizung_le
@@ -228,10 +207,7 @@ cards:
         label: GZ / Jochen
       - entity: climate.gastezimmer
         attribute: temperature
-        name: Soll
-      - entity: climate.gastezimmer
-        attribute: current_temperature
-        name: Ist
+        name: Thermostat
       - entity: sensor.sollwert_heizung_gastezimmer
         name: Regler
       - entity: sensor.stellwert_heizung_gastezimmer
@@ -241,10 +217,7 @@ cards:
         label: Flur OG
       - entity: climate.flur_og
         attribute: temperature
-        name: Soll
-      - entity: climate.flur_og
-        attribute: current_temperature
-        name: Ist
+        name: Thermostat
       - entity: sensor.sollwert_heizung_flur_og
         name: Regler
       - entity: sensor.stellwert_heizung_flur_og
@@ -254,10 +227,7 @@ cards:
         label: Bad OG
       - entity: climate.bad_og
         attribute: temperature
-        name: Soll
-      - entity: climate.bad_og
-        attribute: current_temperature
-        name: Ist
+        name: Thermostat
       - entity: sensor.sollwert_heizung_bad_og
         name: Regler
       - entity: sensor.stellwert_heizung_bad_og
