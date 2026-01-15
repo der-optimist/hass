@@ -49,9 +49,9 @@ cards:
           show: True
           title: Raum-Ventil
         apex_config:
-          chart:
-            height: 250px
-            offsetY: -50px
+#          chart:
+#            height: 250px
+#            offsetY: -50px
           legend:
             show: false
           yaxis:
