@@ -65,8 +65,9 @@ automation:
                     {% set str_level = '{:1.0f}'.format(level) %}
                     {% set id = (event_fix + '-' + str_ts_start + '-' + str_hours + '-' + str_level) | slugify(separator='-') %}
                     {{ id not in states('input_text.helper_wetterwarnungen_bekannte_ids') }}
-                - service: notify.telegram_jo
+                - service: notify.send_message
                   data:
+                    entity_id: notify.telegram_bot_726480700_507573222
                     message: >
                       {% set headline = state_attr("sensor.dwd_weather_warnings_808436079_advance_warning_level", "warning_" ~ repeat.index ~ "_headline") %}
                       {% set description = state_attr("sensor.dwd_weather_warnings_808436079_advance_warning_level", "warning_" ~ repeat.index ~ "_description") %}
@@ -127,8 +128,9 @@ automation:
                     {% set str_level = '{:1.0f}'.format(level) %}
                     {% set id = (event_fix + '-' + str_ts_start + '-' + str_hours + '-' + str_level) | slugify(separator='-') %}
                     {{ id not in states('input_text.helper_wetterwarnungen_bekannte_ids') }}
-                - service: notify.telegram_jo
+                - service: notify.send_message
                   data:
+                    entity_id: notify.telegram_bot_726480700_507573222
                     message: >
                       {% set headline = state_attr("sensor.dwd_weather_warnings_808436079_current_warning_level", "warning_" ~ repeat.index ~ "_headline") %}
                       {% set description = state_attr("sensor.dwd_weather_warnings_808436079_current_warning_level", "warning_" ~ repeat.index ~ "_description") %}
@@ -174,4 +176,5 @@ automation:
                       {{ ns.ids }}
                   target:
                     entity_id: input_text.helper_wetterwarnungen_bekannte_ids
+
         default: []
