@@ -201,9 +201,10 @@ automation:
             entity_id: binary_sensor.pool_chlorinator_lauft
             state: "off"
           sequence:
-          - service: notify.telegram_jo
+          - service: notify.send_message
             data:
               message: 'Chlorinator läuft nicht'
+              entity_id: notify.telegram_bot_726480700_507573222
   - id: '2825ff19-21fc-4e2a-bdf5-910e18de87ec'
     alias: Pool - Auto-Starte Chlorinator
     description: ''
@@ -225,9 +226,10 @@ automation:
       - service: switch.turn_on
         target:
           entity_id: switch.0xa4c1381ed732dbe2
-      - service: notify.telegram_jo
+      - service: notify.send_message
         data:
           message: 'Habe den Chlorinator gestartet'
+          entity_id: notify.telegram_bot_726480700_507573222
       - service: automation.turn_off
         target:
           entity_id: automation.pool_auto_starte_chlorinator
@@ -280,9 +282,10 @@ automation:
       - service: input_boolean.turn_off
         target:
           entity_id: input_boolean.chlorinator_sonderschicht_geplant
-      - service: notify.telegram_jo
+      - service: notify.send_message
         data:
           message: 'Habe Chlorinator Sonderschicht gestartet'
+          entity_id: notify.telegram_bot_726480700_507573222
   - id: 'd431661c-bc02-447b-bbda-8df1d72afedc'
     alias: Pool - Heizung vergessen
     description: ''
@@ -319,23 +322,26 @@ automation:
             entity_id: input_boolean.pool_heizung_auch_bezahlstrom
             state: 'on'
           sequence:
-          - service: notify.telegram_jo
+          - service: notify.send_message
             data:
               message: 'Pool heizt noch, aber der Schalter, dass die Pool-Heizung auch mit Bezahlstrom laufen soll, ist ja auch gedrückt'
+              entity_id: notify.telegram_bot_726480700_507573222
 #        - conditions:
 #          - condition: trigger
 #            id: heizung_an
 #          sequence:
-#          - service: notify.telegram_jo
+#          - service: notify.send_message
 #            data:
 #              message: 'Pool-Heizung an'
+#              entity_id: notify.telegram_bot_726480700_507573222
 #        - conditions:
 #          - condition: trigger
 #            id: heizung_aus
 #          sequence:
-#          - service: notify.telegram_jo
+#          - service: notify.send_message
 #            data:
 #              message: 'Pool-Heizung aus'
+#              entity_id: notify.telegram_bot_726480700_507573222
   - id: 'e174e01b-f336-4100-a4fb-30b2c253dad1'
     alias: Pool - Heizung automatisch
     description: ''
@@ -396,4 +402,5 @@ automation:
             target:
               entity_id: input_number.zieltemperatur_pool
             data:
+
               value: 30
