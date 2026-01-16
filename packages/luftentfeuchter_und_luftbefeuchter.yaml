@@ -131,9 +131,10 @@ automation:
           - service: input_boolean.turn_on
             target:
               entity_id: input_boolean.reminder_tank_luftentfeuchter_waschkuche
-          - service: notify.telegram_jo
+          - service: notify.send_message
             data:
               message: 'Tank Luftentfeuchter Waschküche ist voll'
+              entity_id: notify.telegram_bot_726480700_507573222
         - conditions:
           - condition: trigger
             id: tank_done
@@ -196,9 +197,10 @@ automation:
 #          - service: input_boolean.turn_on
 #            target:
 #              entity_id: input_boolean.reminder_tank_luftentfeuchter_speis
-          - service: notify.telegram_jo
+          - service: notify.send_message
             data:
               message: 'Tank Luftentfeuchter Speis ist voll'
+              entity_id: notify.telegram_bot_726480700_507573222
         - conditions:
           - condition: trigger
             id: tank_done
@@ -243,9 +245,10 @@ automation:
           - service: input_boolean.turn_on
             target:
               entity_id: input_boolean.reminder_tank_luftentfeuchter_partyraum
-          - service: notify.telegram_jo
+          - service: notify.send_message
             data:
               message: 'Tank Luftentfeuchter Partyraum ist voll'
+              entity_id: notify.telegram_bot_726480700_507573222
         - conditions:
           - condition: trigger
             id: tank_done
@@ -287,9 +290,10 @@ automation:
           - service: input_boolean.turn_on
             target:
               entity_id: input_boolean.reminder_tank_luftbefeuchter_wz
-          - service: notify.telegram_jo
+          - service: notify.send_message
             data:
               message: 'Luftbefeuchter Wohnzimmer ist leer'
+              entity_id: notify.telegram_bot_726480700_507573222
         - conditions:
           - condition: trigger
             id: tank_done
@@ -297,4 +301,5 @@ automation:
           - service: input_boolean.turn_off
             target:
               entity_id: input_boolean.reminder_tank_luftbefeuchter_wz
+
         default: []
