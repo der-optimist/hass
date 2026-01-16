@@ -147,7 +147,7 @@ automation:
               - service: notify.send_message
                 data:
                   message: 'Morgen ist Restmüll'
-                  entity_id: notify.telegram_jo
+                  entity_id: notify.telegram_bot_726480700_507573222
             default: []
           - choose:
             - conditions:
@@ -161,7 +161,7 @@ automation:
               - service: notify.send_message
                 data:
                   message: 'Morgen ist Biotonne'
-                  entity_id: notify.telegram_jo
+                  entity_id: notify.telegram_bot_726480700_507573222
             default: []
           - choose:
             - conditions:
@@ -175,7 +175,7 @@ automation:
               - service: notify.send_message
                 data:
                   message: 'Morgen ist Papiertonne'
-                  entity_id: notify.telegram_jo
+                  entity_id: notify.telegram_bot_726480700_507573222
             default: []
           - choose:
             - conditions:
@@ -189,7 +189,7 @@ automation:
               - service: notify.send_message
                 data:
                   message: 'Morgen ist Gelbe Tonne'
-                  entity_id: notify.telegram_jo
+                  entity_id: notify.telegram_bot_726480700_507573222
             default: []
         - conditions:
           - condition: trigger
@@ -207,3 +207,4 @@ automation:
           - service: input_boolean.turn_off
             target:
               entity_id: input_boolean.reminder_gelbe_tonne
+
