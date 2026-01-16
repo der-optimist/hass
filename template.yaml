@@ -134,3 +134,12 @@
           {{ states('switch.la_schlaft') == "on" and (now().hour < 6 or now().hour > 14) }}
         attributes:
           friendly_name: "Blockade Uhrzeitanzeige Glastaster La"
+      - name: "Tag-Nacht Wetterstation Ersatz"
+        default_entity_id: binary_sensor.tag_nacht_wetterstation_ersatz
+        unique_id: 7e29ee83-31cd-4dae-992d-7d3453e6101d
+        state: >-
+          {% if (state_attr('sun.sun', 'elevation') | float(0)) > -5 %}
+            {{ true }}
+          {% else %}
+            {{ false }}
+          {% endif %}
