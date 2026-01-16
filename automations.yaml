@@ -166,10 +166,11 @@
       id: nas_plattenplatz
   condition: []
   action:
-    - service: notify.telegram_jo
+    - service: notify.send_message
       data:
         title: NAS Plattenplatz
         message: '{{ trigger.event.data.msg }}'
+        entity_id: notify.telegram_bot_726480700_507573222
   mode: queued
 #
 ###############################################
@@ -324,9 +325,10 @@
             entity_id: sensor.el_leistung_heizung_partyraum_vorne
             above: 100
         sequence:
-          - service: notify.telegram_jo
+          - service: notify.send_message
             data:
               message: Heizung Partyraum vorne ist noch an
+              entity_id: notify.telegram_bot_726480700_507573222
           - delay:
               hours: 2
               minutes: 0
@@ -356,9 +358,10 @@
             entity_id: sensor.el_leistung_heizung_partyraum_hinten
             above: 100
         sequence:
-          - service: notify.telegram_jo
+          - service: notify.send_message
             data:
               message: Heizung Partyraum hinten ist noch an
+              entity_id: notify.telegram_bot_726480700_507573222
           - delay:
               hours: 2
               minutes: 0
@@ -382,9 +385,10 @@
           - condition: template
             value_template: "{% if states.sensor.esp_wemos_d1_2_wlan_signal.last_updated is defined %}{{ ((as_timestamp(now()) - as_timestamp(states.sensor.esp_wemos_d1_2_wlan_signal.last_updated)) / 3600) > 12 }}{% else %}{{ false }}{% endif %}"
         sequence:
-          - service: notify.telegram_jo
+          - service: notify.send_message
             data:
               message: Batterie Hochzeitsbild ist leer
+              entity_id: notify.telegram_bot_726480700_507573222
           - delay:
               hours: 8
               minutes: 0
@@ -727,9 +731,10 @@
         - condition: trigger
           id: party
         sequence:
-#        - service: notify.telegram_jo
+#        - service: notify.send_message
 #          data:
 #            message: Lüftung Party
+#            entity_id: notify.telegram_bot_726480700_507573222
         - service: modbus.write_register
           data:
             address: 1104
@@ -747,9 +752,10 @@
         - condition: trigger
           id: auto
         sequence:
-#        - service: notify.telegram_jo
+#        - service: notify.send_message
 #          data:
 #            message: Lüftung Auto
+#            entity_id: notify.telegram_bot_726480700_507573222
         - service: modbus.write_register
           data:
             address: 1161
@@ -760,9 +766,10 @@
         - condition: trigger
           id: stoss
         sequence:
-#        - service: notify.telegram_jo
+#        - service: notify.send_message
 #          data:
 #            message: Lüftung Stoß
+#            entity_id: notify.telegram_bot_726480700_507573222
         - service: modbus.write_register
           data:
             address: 1103
@@ -857,9 +864,10 @@
         - condition: state
           entity_id: input_boolean.flur_alarm_jo
           state: 'on'
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
             message: Probe-Bewegungsalarm
+            entity_id: notify.telegram_bot_726480700_507573222
       - conditions:
         - condition: trigger
           id: ma_aktiviert
@@ -868,9 +876,10 @@
         - condition: state
           entity_id: input_boolean.flur_alarm_ma
           state: 'on'
-        - service: notify.telegram_ma
+        - service: notify.send_message
           data:
             message: Probe-Bewegungsalarm
+            entity_id: notify.telegram_bot_726480700_597362436
       - conditions:
         - condition: trigger
           id: la_tuer
@@ -881,18 +890,20 @@
               entity_id: input_boolean.flur_alarm_jo
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: Bewegung! => Tür Lara
+                entity_id: notify.telegram_bot_726480700_507573222
         - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
               state: 'on'
             sequence:
-            - service: notify.telegram_ma
+            - service: notify.send_message
               data:
                 message: Bewegung! => Tür Lara
+                entity_id: notify.telegram_bot_726480700_597362436
           default: []
       - conditions:
         - condition: trigger
@@ -904,18 +915,20 @@
               entity_id: input_boolean.flur_alarm_jo
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: Bewegung! => Tür Lea
+                entity_id: notify.telegram_bot_726480700_507573222
         - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
               state: 'on'
             sequence:
-            - service: notify.telegram_ma
+            - service: notify.send_message
               data:
                 message: Bewegung! => Tür Lea
+                entity_id: notify.telegram_bot_726480700_597362436
           default: []
       - conditions:
         - condition: trigger
@@ -927,18 +940,20 @@
               entity_id: input_boolean.flur_alarm_jo
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: Bewegung! => Flur OG
+                entity_id: notify.telegram_bot_726480700_507573222
         - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
               state: 'on'
             sequence:
-            - service: notify.telegram_ma
+            - service: notify.send_message
               data:
                 message: Bewegung! => Flur OG
+                entity_id: notify.telegram_bot_726480700_597362436
           default: []
       - conditions:
         - condition: trigger
@@ -950,18 +965,20 @@
               entity_id: input_boolean.flur_alarm_jo
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: Bewegung! => Treppe oben
+                entity_id: notify.telegram_bot_726480700_507573222
         - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
               state: 'on'
             sequence:
-            - service: notify.telegram_ma
+            - service: notify.send_message
               data:
                 message: Bewegung! => Treppe oben
+                entity_id: notify.telegram_bot_726480700_597362436
           default: []
       - conditions:
         - condition: trigger
@@ -973,18 +990,20 @@
               entity_id: input_boolean.flur_alarm_jo
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: Bewegung! => Treppe unten
+                entity_id: notify.telegram_bot_726480700_507573222
         - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
               state: 'on'
             sequence:
-            - service: notify.telegram_ma
+            - service: notify.send_message
               data:
                 message: Bewegung! => Treppe unten
+                entity_id: notify.telegram_bot_726480700_597362436
           default: []
       - conditions:
         - condition: trigger
@@ -996,18 +1015,20 @@
               entity_id: input_boolean.flur_alarm_jo
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: Bewegung! => Flur EG
+                entity_id: notify.telegram_bot_726480700_507573222
         - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
               state: 'on'
             sequence:
-            - service: notify.telegram_ma
+            - service: notify.send_message
               data:
                 message: Bewegung! => Flur EG
+                entity_id: notify.telegram_bot_726480700_597362436
           default: []
       - conditions:
         - condition: trigger
@@ -1019,18 +1040,20 @@
               entity_id: input_boolean.flur_alarm_jo
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: Bewegung! => Garderobe
+                entity_id: notify.telegram_bot_726480700_507573222
         - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
               state: 'on'
             sequence:
-            - service: notify.telegram_ma
+            - service: notify.send_message
               data:
                 message: Bewegung! => Garderobe
+                entity_id: notify.telegram_bot_726480700_597362436
           default: []
       - conditions:
         - condition: trigger
@@ -1042,18 +1065,20 @@
               entity_id: input_boolean.flur_alarm_jo
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: Bewegung! => Haustür
+                entity_id: notify.telegram_bot_726480700_507573222
         - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
               state: 'on'
             sequence:
-            - service: notify.telegram_ma
+            - service: notify.send_message
               data:
                 message: Bewegung! => Haustür
+                entity_id: notify.telegram_bot_726480700_597362436
           default: []
       - conditions:
         - condition: trigger
@@ -1065,18 +1090,20 @@
               entity_id: input_boolean.flur_alarm_jo
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: Bewegung! => Schlafzimmer Gang
+                entity_id: notify.telegram_bot_726480700_507573222
         - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
               state: 'on'
             sequence:
-            - service: notify.telegram_ma
+            - service: notify.send_message
               data:
                 message: Bewegung! => Schlafzimmer Gang
+                entity_id: notify.telegram_bot_726480700_597362436
           default: []
       - conditions:
         - condition: trigger
@@ -1088,18 +1115,20 @@
               entity_id: input_boolean.flur_alarm_jo
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: Bewegung! => Kellertreppe
+                entity_id: notify.telegram_bot_726480700_507573222
         - choose:
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_ma
               state: 'on'
             sequence:
-            - service: notify.telegram_ma
+            - service: notify.send_message
               data:
                 message: Bewegung! => Kellertreppe
+                entity_id: notify.telegram_bot_726480700_597362436
           default: []
       default: []
 #
@@ -1162,12 +1191,14 @@
         - condition: trigger
           id: wm_reminder
         sequence:
-        - service: notify.telegram_ma
+        - service: notify.send_message
           data:
             message: 'Waschmaschine ist seit einer Stunde fertig'
-        - service: notify.telegram_jo
+            entity_id: notify.telegram_bot_726480700_597362436
+        - service: notify.send_message
           data:
             message: 'Waschmaschine ist seit einer Stunde fertig'
+            entity_id: notify.telegram_bot_726480700_507573222
       - conditions:
         - condition: trigger
           id: wm_opened
@@ -1240,12 +1271,14 @@
         - condition: trigger
           id: dryer_reminder
         sequence:
-        - service: notify.telegram_ma
+        - service: notify.send_message
           data:
             message: 'Trockner ist seit 2 Stunden fertig'
-        - service: notify.telegram_jo
+            entity_id: notify.telegram_bot_726480700_597362436
+        - service: notify.send_message
           data:
             message: 'Trockner ist seit 2 Stunden fertig'
+            entity_id: notify.telegram_bot_726480700_507573222
       - conditions:
         - condition: trigger
           id: dryer_opened
@@ -1290,49 +1323,55 @@
               entity_id: binary_sensor.pm_e_ba
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: 'Wasserventil konnte nicht bewegt werden, da noch jemand im Bad EG unterwegs war'
+                entity_id: notify.telegram_bot_726480700_507573222
           - conditions:
             - condition: state
               entity_id: binary_sensor.pm_e_wc
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: 'Wasserventil konnte nicht bewegt werden, da noch jemand im WC unterwegs war'
+                entity_id: notify.telegram_bot_726480700_507573222
           - conditions:
             - condition: state
               entity_id: binary_sensor.pm_e_ku_kuche
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: 'Wasserventil konnte nicht bewegt werden, da noch jemand in der Küche unterwegs war'
+                entity_id: notify.telegram_bot_726480700_507573222
           - conditions:
             - condition: state
               entity_id: binary_sensor.pm_o_ba
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: 'Wasserventil konnte nicht bewegt werden, da noch jemand im Bad OG unterwegs war'
+                entity_id: notify.telegram_bot_726480700_507573222
           - conditions:
             - condition: state
               entity_id: binary_sensor.waschmaschine_ist_an
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: 'Wasserventil konnte nicht bewegt werden, da die Waschmaschine läuft'
+                entity_id: notify.telegram_bot_726480700_507573222
           - conditions:
             - condition: numeric_state
               entity_id: sensor.el_leistung_spulmaschine
               above: 0.1
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: 'Wasserventil konnte nicht bewegt werden, da die Spülmaschine läuft'
+                entity_id: notify.telegram_bot_726480700_507573222
           default: 
           - service: switch.turn_off
             target:
@@ -1342,9 +1381,10 @@
               entity_id: timer.water_valve_weekly
             data:
               duration: '00:00:45'
-          - service: notify.telegram_jo
+          - service: notify.send_message
             data:
               message: 'Wasserventil wöchentlich zu'
+              entity_id: notify.telegram_bot_726480700_507573222
       - conditions:
         - condition: trigger
           id: timer_finished
@@ -1352,9 +1392,10 @@
         - service: switch.turn_on
           target:
             entity_id: switch.wasserabsperrventil
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
             message: 'Wasserventil wieder auf'
+            entity_id: notify.telegram_bot_726480700_507573222
       default: []
 #
 ###############################################
@@ -1550,9 +1591,10 @@
       for: "00:00:30"
   condition: []
   action:
-    - service: notify.telegram_jo
+    - service: notify.send_message
       data:
         message: 'KNX unavailable'
+        entity_id: notify.telegram_bot_726480700_507573222
 #
 ###############################################
 #####            Pizza-Knopf              #####
@@ -1593,25 +1635,12 @@
                   entity_id: timer.pizza_timer_ha
                   state: 'idle'
                 sequence:
-                - service: notify.telegram_jo
-                  data:
-                    message: 'Pizza ist fertig'
                 - service: rest_command.bildschirm_theke_speak
                   data:
                     text: Pizza%20ist%20fertig%2E%20Lasst%20es%20euch%20schmecken
                 - service: media_player.media_pause
                   entity_id: media_player.kodi_wz_2
-                - service: notify.kodi_wz_2
-                  data:
-                    title: Pizza
-                    message: ist fertig
-                    data:
-                      displaytime: 15000
-                      icon: "http://odroidxu4/sonstiges/pizza2.jpg"
               default:
-              - service: notify.telegram_jo
-                data:
-                  message: 'Pizza-Timer abgebrochen'
               - service: timer.cancel
                 target:
                   entity_id: timer.pizza_timer_ha
@@ -1942,24 +1971,28 @@
         - condition: trigger
           id: gewitter_start
         sequence:
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
             message: 'Gewitter! Ich nehme TV, Mixi, Lüftung, Waschmaschine und Trockner jetzt den Strom'
-        - service: notify.telegram_ma
+            entity_id: notify.telegram_bot_726480700_507573222
+        - service: notify.send_message
           data:
             message: 'Gewitter! Ich nehme TV, Mixi, Lüftung, Waschmaschine und Trockner jetzt den Strom'
+            entity_id: notify.telegram_bot_726480700_597362436
         - choose:
           - conditions:
             - condition: state
               entity_id: binary_sensor.tv_ist_an
               state: 'on'
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: 'TV ist wohl grad an. Den lasse ich an'
-            - service: notify.telegram_ma
+                entity_id: notify.telegram_bot_726480700_507573222
+            - service: notify.send_message
               data:
                 message: 'TV ist wohl grad an. Den lasse ich an'
+                entity_id: notify.telegram_bot_726480700_597362436
           default: 
           - service: switch.turn_off
             target:
@@ -1970,12 +2003,14 @@
               entity_id: sensor.el_leistung_mixi
               above: 5
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: 'Mixi ist wohl grad an. Den lasse ich an'
-            - service: notify.telegram_ma
+                entity_id: notify.telegram_bot_726480700_507573222
+            - service: notify.send_message
               data:
                 message: 'Mixi ist wohl grad an. Den lasse ich an'
+                entity_id: notify.telegram_bot_726480700_597362436
           default: 
           - service: switch.turn_off
             target:
@@ -1986,12 +2021,14 @@
               entity_id: sensor.el_leistung_waschmaschine
               above: 12
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: 'Waschmaschine ist wohl grad an. Die lasse ich an'
-            - service: notify.telegram_ma
+                entity_id: notify.telegram_bot_726480700_507573222
+            - service: notify.send_message
               data:
                 message: 'Waschmaschine ist wohl grad an. Die lasse ich an'
+                entity_id: notify.telegram_bot_726480700_597362436
           default: 
           - service: switch.turn_off
             target:
@@ -2002,12 +2039,14 @@
               entity_id: sensor.el_leistung_trockner
               above: 4
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: 'Trockner läuft wohl gerade. Den lasse ich an'
-            - service: notify.telegram_ma
+                entity_id: notify.telegram_bot_726480700_507573222
+            - service: notify.send_message
               data:
                 message: 'Trockner läuft wohl gerade. Den lasse ich an'
+                entity_id: notify.telegram_bot_726480700_597362436
           default: 
           - service: switch.turn_off
             target:
@@ -2019,12 +2058,14 @@
         - condition: trigger
           id: gewitter_ende
         sequence:
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
             message: 'Gewitter ist wohl vorbei, gut. Ich geb TV, Mixi, Lüftung, Waschmaschine und Trockner jetzt wieder Strom'
-        - service: notify.telegram_ma
+            entity_id: notify.telegram_bot_726480700_507573222
+        - service: notify.send_message
           data:
             message: 'Gewitter ist wohl vorbei, gut. Ich geb TV, Mixi, Lüftung, Waschmaschine und Trockner jetzt wieder Strom'
+            entity_id: notify.telegram_bot_726480700_597362436
         - service: switch.turn_on
           target:
             entity_id: switch.luftungsanlage
@@ -2068,12 +2109,14 @@
           entity_id: input_boolean.gewitter
           state: "off"
         sequence:
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
             message: 'Gewitter automatisch erkannt. Drücke jetzt den Gewitter-Knopf für euch'
-        - service: notify.telegram_ma
+            entity_id: notify.telegram_bot_726480700_507573222
+        - service: notify.send_message
           data:
             message: 'Gewitter automatisch erkannt. Drücke jetzt den Gewitter-Knopf für euch'
+            entity_id: notify.telegram_bot_726480700_597362436
         - service: input_boolean.turn_on
           target:
             entity_id: input_boolean.gewitter
@@ -2084,12 +2127,14 @@
           entity_id: input_boolean.gewitter
           state: "on"
         sequence:
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
             message: 'Keine Blitze mehr im Umkreis von 30km. Schalte jetzt den Gewitter-Knopf für euch aus'
-        - service: notify.telegram_ma
+            entity_id: notify.telegram_bot_726480700_507573222
+        - service: notify.send_message
           data:
             message: 'Keine Blitze mehr im Umkreis von 30km. Schalte jetzt den Gewitter-Knopf für euch aus'
+            entity_id: notify.telegram_bot_726480700_597362436
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.gewitter
@@ -2447,7 +2492,7 @@
         - condition: trigger
           id: geo_ma
         sequence:
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
             message: >
               {{ states('sensor.pixel_3a_ma_geokodierter_standort') }}
@@ -2459,6 +2504,7 @@
               {%- else -%}
                 seit {{ delta | int | timestamp_custom('%H h %M min. %S sec.', false) }}
               {%- endif -%}
+            entity_id: notify.telegram_bot_726480700_507573222
       - conditions:
         - condition: trigger
           id: alarm_jo
@@ -2473,17 +2519,19 @@
               entity_id: input_boolean.flur_alarm_jo
               state: "on"
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: 'Flur-Alarm ist jetzt an'
+                entity_id: notify.telegram_bot_726480700_507573222
           - conditions:
             - condition: state
               entity_id: input_boolean.flur_alarm_jo
               state: "off"
             sequence:
-            - service: notify.telegram_jo
+            - service: notify.send_message
               data:
                 message: 'Flur-Alarm ist jetzt aus'
+                entity_id: notify.telegram_bot_726480700_507573222
       - conditions:
         - condition: trigger
           id: temp
@@ -2748,9 +2796,10 @@
         - condition: trigger
           id: notify_jo_always
         sequence:
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
             message: "{{ message }}"
+            entity_id: notify.telegram_bot_726480700_507573222
       - conditions:
         - condition: trigger
           id: notify_jo_but_not_from_unavailable
@@ -2758,9 +2807,10 @@
           value_template: >
             {{ trigger.from_state.state not in ['unavailable', 'unknown', 'none'] }}
         sequence:
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
             message: "{{ message }}"
+            entity_id: notify.telegram_bot_726480700_507573222
 #
 ###############################################
 #####       HA Restart Zeitstempel        #####
@@ -2804,8 +2854,9 @@
         - condition: trigger
           id: daily
         sequence:
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
+            entity_id: notify.telegram_bot_726480700_507573222
             message: >-
               Stromverbrauch gestern:
 
@@ -2869,8 +2920,9 @@
           value_template: >
             {{ now().day == 1 }}
         sequence:
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
+            entity_id: notify.telegram_bot_726480700_507573222
             message: >-
               Stromverbrauch letzter Monat:
 
@@ -2934,8 +2986,9 @@
           value_template: >
             {{ (now().day == 1) and (now().month == 1) }}
         sequence:
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
+            entity_id: notify.telegram_bot_726480700_507573222
             message: >-
               Stromverbrauch letztes Kalenderjahr:
 
@@ -3001,8 +3054,9 @@
           value_template: >
             {{ (now().day == 1) and (now().month == 7) }}
         sequence:
-        - service: notify.telegram_jo
+        - service: notify.send_message
           data:
+            entity_id: notify.telegram_bot_726480700_507573222
             message: >-
               Stromverbrauch letztes Winterjahr:
 
@@ -3079,9 +3133,10 @@
           - condition: template
             value_template: "{{ state_attr('lock.haustur','battery_critical') == true }}"
         sequence:
-          - service: notify.telegram_jo
+          - service: notify.send_message
             data:
               message: Batterie Nuki-Schloss ist leer
+              entity_id: notify.telegram_bot_726480700_507573222
           - delay:
               hours: 8
               minutes: 0
@@ -3212,4 +3267,5 @@
             repeat: 2
       target:
         entity_id: vacuum.robbi
+
   mode: single
