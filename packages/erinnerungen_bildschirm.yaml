@@ -234,9 +234,10 @@ automation:
           - condition: trigger
             id: no_free_reminder
           sequence:
-          - service: notify.telegram_jo
+          - service: notify.send_message
             data:
               message: 'Alle vorgesehenen Erinnerungen Bildschirm sind belegt! Neue werden nicht angelegt. Bitte mal was erledigen...'
+              entity_id: notify.telegram_bot_726480700_507573222
         - conditions:
           - condition: trigger
             id: ha_start
@@ -301,4 +302,5 @@ automation:
               entity_id: input_boolean.reminder_erinnerungen_bildschirm_9
               friendly_name: "{{ states('input_text.helper_erinnerungen_bildschirm_reminder_9') }}"
               entity_picture: '/local/icons/reminders/exclamation_mark_blink.svg'
+
               allow_create: false
