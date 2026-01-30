@@ -53,7 +53,7 @@ template:
              or states('switch.luften_le') in ['unavailable', 'unknown', 'none'] %}
             {{ states('binary_sensor.helper_light_switching_off_entities_o_az_fenster') }}
           {% else %}
-            {{ [states('switch.luften_la'),states('switch.luften_le')] | select('equalto', 'on') | list | count }}
+            {{ (([states('switch.luften_la'),states('switch.luften_le')] | select('equalto', 'on') | list) + ([states('device_tracker.frdc06893')] | select('equalto', 'home') | list)) | count }}
           {% endif %}
     binary_sensor:
       - name: helper_stay_as_you_are_o_az_fenster
@@ -76,7 +76,8 @@ template:
             {{ states('binary_sensor.helper_light_keeping_off_entities_o_az_fenster') }}
           {% else %}
             {{ is_state('switch.luften_la', 'on')
-               or is_state('switch.luften_le', 'on') }}
+               or is_state('switch.luften_le', 'on')
+               or is_state('device_tracker.frdc06893', 'home') }}
           {% endif %}
       - name: helper_light_keeping_on_entities_o_az_fenster
         state: >
@@ -125,4 +126,5 @@ automation:
         helper_switching_off_entities: sensor.helper_light_switching_off_entities_o_az_fenster
         helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_o_az_fenster
         helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_o_az_fenster
+
         helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_o_az_fenster
