@@ -22,6 +22,12 @@ cards:
       toggle: true
     - entity: light.abstellraum_carport
       name: Abstellraum
+    - type: section
+      label: Luft
+    - entity: sensor.temp_aussen
+      name: Temperatur
+    - entity: sensor.luftfeuchtigkeit_aussen
+      name: Luftfeuchtigkeit
   - type: entities
     title: "Terrasse"
     show_header_toggle: true
