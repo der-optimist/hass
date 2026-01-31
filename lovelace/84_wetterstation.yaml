@@ -37,6 +37,16 @@ cards:
       - entity: sensor.humidity_outside_internet
         name: Luftfeuchtigkeit
   - type: entities
+    title: Funksensor
+    show_header_toggle: false
+    entities:
+      - entity: sensor.aussensensor_zigbee_temperature
+        name: Temperatur
+      - entity: sensor.aussensensor_zigbee_humidity
+        name: Luftfeuchtigkeit
+      - entity: sensor.aussensensor_zigbee_battery
+        name: Batterie
+  - type: entities
     title: Wind
     show_header_toggle: false
     entities:
