@@ -39,7 +39,7 @@
       luftfeuchtigkeit_aussen:
         friendly_name: 'Luftfeuchtigkeit Außen'
         unit_of_measurement: '%'
-        value_template: "{{ states('sensor.humidity_outside_internet') }}"
+        value_template: "{{ states('sensor.aussensensor_zigbee_humidity') }}"
         device_class: humidity
       luftfeuchtigkeit_kuche_aqara:
         friendly_name: 'Luftfeuchtigkeit Küche'
