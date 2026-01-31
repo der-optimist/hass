@@ -26,3 +26,5 @@ cards:
     entities:
       - entity: sensor.humidity_outside_internet
         name: Draußen (Internet)
+      - entity: sensor.aussensensor_zigbee_humidity
+        name: Draußen (Funksensor)
