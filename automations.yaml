@@ -2495,7 +2495,16 @@
         - service: notify.send_message
           data:
             message: >
-              {{ 'M: ' + states('sensor.pixel_8a_ma_geocoded_location') }}
+              {{ 'J: ' + states('sensor.pixel_8a_jo_geocoded_location') }}
+              {% set delta = 15847 %}
+              {% set days = (delta / 86400) | int %}
+              {%- if days > 0 -%}
+                {{ 'seit ' + days + ' Tagen, ' + (delta - (days * 86400)) | int | timestamp_custom('%H h %M min. %S sec.', false) }}
+              {%- else -%}
+                {{ 'seit ' + delta | int | timestamp_custom('%H h %M min. %S sec.', false) }}
+              {%- endif -%}
+              
+              {{ "\n\nM: " + states('sensor.pixel_8a_ma_geocoded_location') }}
               {% set delta = (now() - states.sensor.pixel_8a_ma_geocoded_location.last_updated).seconds %}
               {% set days = (delta / 86400) | int %}
               {%- if days > 0 -%}
@@ -2504,7 +2513,7 @@
                 {{ 'seit ' + delta | int | timestamp_custom('%H h %M min. %S sec.', false) }}
               {%- endif -%}
               
-              {{ '\n\nP: ' + states('sensor.pixel_8a_peter_geocoded_location') }}
+              {{ "\n\nP: " + states('sensor.pixel_8a_peter_geocoded_location') }}
               {% set delta = (now() - states.sensor.pixel_8a_peter_geocoded_location.last_updated).seconds %}
               {% set days = (delta / 86400) | int %}
               {%- if days > 0 -%}
