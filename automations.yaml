@@ -3269,3 +3269,75 @@
         entity_id: vacuum.robbi
 
   mode: single
+###############################################
+#####    Echo AZ aus wenn Jo arbeitet     #####
+###############################################
+- id: 'fefa0582-3620-4f26-91d1-06461139a219'
+  alias: Echo AZ aus wenn Jo arbeitet
+  description: ''
+  trigger:
+    - platform: state
+      entity_id: device_tracker.frdc06893
+      to: "home"
+      id: arbeit
+    - platform: state
+      entity_id: device_tracker.frdc06893
+      from: "home"
+      id: fertig
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: arbeit
+        sequence:
+        - action: switch.turn_off
+          target:
+            entity_id: switch.aqara_steckdose_echo_az
+          data: {}
+      - conditions:
+        - condition: trigger
+          id: fertig
+        sequence:
+        - action: switch.turn_on
+          target:
+            entity_id: switch.aqara_steckdose_echo_az
+          data: {}
+      default: []
+  mode: single
+###############################################
+#####     SatReceiver an wenn TV an       #####
+###############################################
+- id: '1033406b-c1e4-4115-b487-ba3640680bc7'
+  alias: SatReceiver an wenn TV an
+  description: ''
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.tv_ist_an
+      to: "on"
+      id: tv_an
+    - platform: state
+      entity_id: binary_sensor.tv_ist_an
+      to: "off"
+      id: tv_aus
+  condition: []
+  action:
+    - choose:
+      - conditions:
+        - condition: trigger
+          id: tv_an
+        sequence:
+        - action: switch.turn_on
+          target:
+            entity_id: switch.innr_steckdose_satreceiver
+          data: {}
+      - conditions:
+        - condition: trigger
+          id: tv_aus
+        sequence:
+        - action: switch.turn_off
+          target:
+            entity_id: switch.innr_steckdose_satreceiver
+          data: {}
+      default: []
+  mode: single
