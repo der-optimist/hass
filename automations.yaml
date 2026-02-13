@@ -2495,14 +2495,22 @@
         - service: notify.send_message
           data:
             message: >
-              {{ states('sensor.pixel_3a_ma_geokodierter_standort') }}
-              
-              {% set delta = (now() - states.sensor.pixel_3a_ma_geokodierter_standort.last_updated).seconds %}
+              {{ 'M: ' + states('sensor.pixel_8a_ma_geocoded_location') }}
+              {% set delta = (now() - states.sensor.pixel_8a_ma_geocoded_location.last_updated).seconds %}
               {% set days = (delta / 86400) | int %}
               {%- if days > 0 -%}
-                seit {{ days }} Tagen, {{ (delta - (days * 86400)) | int | timestamp_custom('%H h %M min. %S sec.', false) }}
+                {{ 'seit ' + days + ' Tagen, ' + (delta - (days * 86400)) | int | timestamp_custom('%H h %M min. %S sec.', false) }}
               {%- else -%}
-                seit {{ delta | int | timestamp_custom('%H h %M min. %S sec.', false) }}
+                {{ 'seit ' + delta | int | timestamp_custom('%H h %M min. %S sec.', false) }}
+              {%- endif -%}
+              
+              {{ '\n\nP: ' + states('sensor.pixel_8a_peter_geocoded_location') }}
+              {% set delta = (now() - states.sensor.pixel_8a_peter_geocoded_location.last_updated).seconds %}
+              {% set days = (delta / 86400) | int %}
+              {%- if days > 0 -%}
+                {{ 'seit ' + days + ' Tagen, ' + (delta - (days * 86400)) | int | timestamp_custom('%H h %M min. %S sec.', false) }}
+              {%- else -%}
+                {{ 'seit ' + delta | int | timestamp_custom('%H h %M min. %S sec.', false) }}
               {%- endif -%}
             entity_id: notify.telegram_bot_726480700_507573222
       - conditions:
