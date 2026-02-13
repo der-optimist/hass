@@ -1,0 +1,138 @@
+# strings to replace:
+#
+# friendly name: Licht EG Flur Lichterkette
+# id name: e_fl_lichterkette
+# light: light.esp_sd_5_esp_sd_5_licht
+
+input_boolean:
+  automation_switch_light_e_fl_lichterkette:
+    name: Auto Licht EG Flur Lichterkette
+    icon: mdi:auto-fix
+  helper_light_auto_switched_e_fl_lichterkette:
+    name: Helper - Auto Switched - Licht EG Flur Lichterkette
+    initial: off
+  helper_light_manually_switched_on_e_fl_lichterkette:
+    name: Helper - Man Switched on - Licht EG Flur Lichterkette
+    initial: off
+  helper_light_manually_switched_off_e_fl_lichterkette:
+    name: Helper - Man Switched off - Licht EG Flur Lichterkette
+    initial: off
+
+template:
+  - sensor:
+      - name: helper_light_basic_brightness_e_fl_lichterkette
+        unit_of_measurement: "%"
+        state: >
+          {{ int(100) }}
+      - name: helper_light_effective_brightness_e_fl_lichterkette
+        unit_of_measurement: "%"
+        state: >
+          {{ states('sensor.helper_light_basic_brightness_e_fl_lichterkette') }}
+        attributes:
+          special_brightness: >
+            {{ [] | select('equalto', 'on') | list | count }}
+      - name: helper_light_min_illuminance_e_fl_lichterkette
+        unit_of_measurement: "lx"
+        state: >
+          {{ int(200) }}
+      - name: helper_light_switching_off_entities_e_fl_lichterkette
+        unit_of_measurement: "number"
+        state: >
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
+             or states('switch.knutschen') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_ez') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_sz') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_switching_off_entities_e_fl_lichterkette') }}
+          {% else %}
+            {{ [states('switch.majo_schlafen'),states('switch.knutschen'),states('switch.luften_ez'),states('switch.luften_sz')] | select('equalto', 'on') | list | count }}
+          {% endif %}
+    binary_sensor:
+      - name: helper_stay_as_you_are_e_fl_lichterkette
+        state: >
+          {{ false }}
+      - name: helper_light_trigger_e_fl_lichterkette
+        state: >
+          {% if states('binary_sensor.pm_e_fl_treppe_og') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_fl_windfang') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wf_flur') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wf_garderobe') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_o_fl_treppe') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wc') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_sz_gang') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_ktr_flur') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_ktr_treppe') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_k_fl_2') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_trigger_e_fl_lichterkette') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_e_fl_treppe_og', 'on')
+               or is_state('binary_sensor.pm_e_fl_windfang', 'on')
+               or is_state('binary_sensor.pm_e_wf_flur', 'on')
+               or is_state('binary_sensor.pm_e_wf_garderobe', 'on')
+               or is_state('binary_sensor.pm_o_fl_treppe', 'on')
+               or is_state('binary_sensor.pm_e_wc', 'on')
+               or is_state('binary_sensor.pm_e_sz_gang', 'on')
+               or is_state('binary_sensor.pm_ktr_flur', 'on')
+               or is_state('binary_sensor.pm_ktr_treppe', 'on')
+               or is_state('binary_sensor.pm_k_fl_2', 'on') }}
+          {% endif %}
+      - name: helper_light_keeping_off_entities_e_fl_lichterkette
+        state: >
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
+             or states('switch.knutschen') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_ez') in ['unavailable', 'unknown', 'none']
+             or states('switch.luften_sz') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_keeping_off_entities_e_fl_lichterkette') }}
+          {% else %}
+            {{ is_state('switch.majo_schlafen', 'on')
+              or is_state('switch.knutschen', 'on')
+              or is_state('switch.luften_ez', 'on')
+              or is_state('switch.luften_sz', 'on') }}
+          {% endif %}
+      - name: helper_light_keeping_on_entities_e_fl_lichterkette
+        state: >
+          {{ false }}
+      - name: helper_light_keeping_fix_entities_e_fl_lichterkette
+        state: >
+          {{ false }}
+        attributes:
+          brightness: >
+            {{ int(0) }}
+      - name: helper_light_is_too_dark_e_fl_lichterkette
+        state: >
+          {% if states('sensor.helligkeit_flur_eg_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_dark_e_fl_lichterkette') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_flur_eg_pm") | float(0)) < (states("sensor.helper_light_min_illuminance_e_fl_lichterkette") | float(1)) }}
+          {% endif %}
+      - name: helper_light_is_too_bright_e_fl_lichterkette
+        state: >
+          {% if states('sensor.helligkeit_flur_eg_pm') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.helper_light_is_too_bright_e_fl_lichterkette') }}
+          {% else %}
+            {{ (states("sensor.helligkeit_flur_eg_pm") | float(0)) > (states("sensor.helper_light_min_illuminance_e_fl_lichterkette") | float(1) + 100 ) }}
+          {% endif %}
+
+automation:
+  - alias: Licht EG Flur Lichterkette
+    id: 'auto_light_e_fl_lichterkette'
+    description: ''
+    trace:
+      stored_traces: 10
+    use_blueprint:
+      path: /config/blueprints/light_automation.yaml
+      input:
+        light_entity: light.esp_sd_5_esp_sd_5_licht
+        automation_switch: input_boolean.automation_switch_light_e_fl_lichterkette
+        helper_stay_as_you_are: binary_sensor.helper_stay_as_you_are_e_fl_lichterkette
+        trigger: binary_sensor.helper_light_trigger_e_fl_lichterkette
+        helper_effective_brightness: sensor.helper_light_effective_brightness_e_fl_lichterkette
+        helper_basic_brightness: sensor.helper_light_basic_brightness_e_fl_lichterkette
+        helper_is_too_dark: binary_sensor.helper_light_is_too_dark_e_fl_lichterkette
+        helper_is_too_bright: binary_sensor.helper_light_is_too_bright_e_fl_lichterkette
+        helper_auto_switched: input_boolean.helper_light_auto_switched_e_fl_lichterkette
+        helper_manually_switched_on: input_boolean.helper_light_manually_switched_on_e_fl_lichterkette
+        helper_manually_switched_off: input_boolean.helper_light_manually_switched_off_e_fl_lichterkette
+        helper_switching_off_entities: sensor.helper_light_switching_off_entities_e_fl_lichterkette
+        helper_keeping_on_entities: binary_sensor.helper_light_keeping_on_entities_e_fl_lichterkette
+        helper_keeping_off_entities: binary_sensor.helper_light_keeping_off_entities_e_fl_lichterkette
+        helper_keeping_fix_entities: binary_sensor.helper_light_keeping_fix_entities_e_fl_lichterkette
