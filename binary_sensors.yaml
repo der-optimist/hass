@@ -33,50 +33,50 @@
 #          {% else %}
 #            {{ false }}
 #          {% endif %}
-      la_und_le_schlafen:
-        friendly_name: "Beide Mädels schlafen"
-        value_template: >-
-          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
-             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.la_und_le_schlafen') }}
-          {% else %}
-            {{ is_state('switch.la_schlaft', 'on')
-               and is_state('switch.le_schlaft', 'on') }}
-          {% endif %}
-      la_oder_le_schlafen:
-        friendly_name: "Min. 1 Kind schläft"
-        value_template: >-
-          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
-             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.la_oder_le_schlafen') }}
-          {% else %}
-            {{ is_state('switch.la_schlaft', 'on')
-               or is_state('switch.le_schlaft', 'on') }}
-          {% endif %}
-      alle_schlafen:
-        friendly_name: "Alle schlafen"
-        value_template: >-
-          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
-             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none']
-             or states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.alle_schlafen') }}
-          {% else %}
-            {{ is_state('switch.la_schlaft', 'on')
-              and is_state('switch.le_schlaft', 'on')
-              and is_state('switch.majo_schlafen', 'on') }}
-          {% endif %}
-      jemand_schlaeft:
-        friendly_name: "Jemand schläft"
-        value_template: >-
-          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
-             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none']
-             or states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.jemand_schlaeft') }}
-          {% else %}
-            {{ is_state('switch.la_schlaft', 'on')
-              or is_state('switch.le_schlaft', 'on')
-              or is_state('switch.majo_schlafen', 'on') }}
-          {% endif %}
+#      la_und_le_schlafen:
+#        friendly_name: "Beide Mädels schlafen"
+#        value_template: >-
+#          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
+#             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none'] %}
+#            {{ states('binary_sensor.la_und_le_schlafen') }}
+#          {% else %}
+#            {{ is_state('switch.la_schlaft', 'on')
+#               and is_state('switch.le_schlaft', 'on') }}
+#          {% endif %}
+#      la_oder_le_schlafen:
+#        friendly_name: "Min. 1 Kind schläft"
+#        value_template: >-
+#          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
+#             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none'] %}
+#            {{ states('binary_sensor.la_oder_le_schlafen') }}
+#          {% else %}
+#            {{ is_state('switch.la_schlaft', 'on')
+#               or is_state('switch.le_schlaft', 'on') }}
+#          {% endif %}
+#      alle_schlafen:
+#        friendly_name: "Alle schlafen"
+#        value_template: >-
+#          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
+#             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none']
+#             or states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none'] %}
+#            {{ states('binary_sensor.alle_schlafen') }}
+#          {% else %}
+#            {{ is_state('switch.la_schlaft', 'on')
+#              and is_state('switch.le_schlaft', 'on')
+#              and is_state('switch.majo_schlafen', 'on') }}
+#          {% endif %}
+#      jemand_schlaeft:
+#        friendly_name: "Jemand schläft"
+#        value_template: >-
+#          {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
+#             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none']
+#             or states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none'] %}
+#            {{ states('binary_sensor.jemand_schlaeft') }}
+#          {% else %}
+#            {{ is_state('switch.la_schlaft', 'on')
+#              or is_state('switch.le_schlaft', 'on')
+#              or is_state('switch.majo_schlafen', 'on') }}
+#          {% endif %}
       # On = in der letzten Stunde weniger als 10 Minuten wach
       schlafen_oder_aufwachphase_la:
         friendly_name: "Schlafen oder Aufwachphase La"
