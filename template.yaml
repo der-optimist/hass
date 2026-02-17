@@ -573,8 +573,8 @@
 
 
 
-      - default_entity_id: binary_sensor.
-        name: 
-        unique_id: 
-        state: >-
+#      - default_entity_id: binary_sensor.
+#        name: 
+#        unique_id: 
+#        state: >-
 
