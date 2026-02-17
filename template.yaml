@@ -6,10 +6,10 @@
     sensor:
       - name: Wirkungsgrad Wechselrichter gefiltert
         state: >-
-          {% if (states("sensor.wirkungsgrad_wechselrichter") | float(-1)) > (-1) %}
-            {{ states("sensor.wirkungsgrad_wechselrichter") }}
-          {% else %}
+          {% if states("sensor.wirkungsgrad_wechselrichter") in ['unavailable', 'unknown', 'none'] %}
             {{ 0.0 }}
+          {% else %}
+            {{ states("sensor.wirkungsgrad_wechselrichter") }}
           {% endif %}
         unit_of_measurement: '%'
   - trigger:
