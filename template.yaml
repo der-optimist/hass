@@ -5,7 +5,12 @@
         for: "00:00:05"
     sensor:
       - name: Wirkungsgrad Wechselrichter gefiltert
-        state: '{{ states("sensor.wirkungsgrad_wechselrichter") }}'
+        state: >-
+          {% if (states("sensor.wirkungsgrad_wechselrichter") | float(-1)) > (-1) %}
+            {{ states("sensor.wirkungsgrad_wechselrichter") }}
+          {% else %}
+            {{ 0.0 }}
+          {% endif %}
         unit_of_measurement: '%'
   - trigger:
       - platform: state
@@ -223,7 +228,7 @@
           {{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 67 }}
       - default_entity_id: binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo
         name: Schlafen oder Licht noch aus lassen MaJo
-        unique_id: 
+        unique_id: c87ac8be-a0a7-4cd5-ab54-f7dd76e88c28
         state: >-
           {{ (states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 67 and states('sensor.helligkeit_wetterstation')|float(0) > 20000) 
             or states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 34 }}
