@@ -23,8 +23,8 @@
 #    province: BW
 
 # --- Template ---
-  - platform: template
-    sensors:
+#  - platform: template
+#    sensors:
 #      tag_nacht_wetterstation_ersatz:
 #        friendly_name: "Tag-Nacht Wetterstation Ersatz"
 #        value_template: >-
@@ -346,73 +346,73 @@
 #          {{ is_state('binary_sensor.anwesenheit_eg', 'on')
 #             or is_state('binary_sensor.anwesenheit_og', 'on')
 #             or is_state('binary_sensor.pm_ktr_treppe', 'on') }}
-      wuerfel_terrasse:
-        friendly_name: "Würfel Terrasse"
-        value_template: >-
-          {{ is_state('binary_sensor.hst_offen', 'on')
-             and states('sensor.helligkeit_wetterstation')|float(0) < 500 }}
-      heizstab_ist_an:
-        friendly_name: "Heizstab an"
-        value_template: "{{ states('sensor.el_leistung_wp_heizstab')|float(0) > 11 }}"
-      tv_ist_an:
-        friendly_name: "TV an"
-        delay_off:
-          seconds: 6
-        value_template: >
-          {% if states('sensor.el_leistung_tv_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.tv_ist_an') }}
-          {% else %}
-            {{ states('sensor.el_leistung_tv_scheinleistung')|float(0) > 31 }}
-          {% endif %}
-      mixi_ist_an:
-        friendly_name: "Mixi an"
-        value_template: "{{ states('sensor.el_leistung_mixi')|float(0) > 5 }}"
-      backofen_ist_an:
-        friendly_name: "Backofen an"
-        value_template: >
-          {% if states('sensor.el_leistung_backofen') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.backofen_ist_an') }}
-          {% else %}
-            {{ states('sensor.el_leistung_backofen')|float(0) > 2 }}
-          {% endif %}
-      waschmaschine_ist_an:
-        friendly_name: "Waschmaschine läuft"
-        delay_on:
-          minutes: 1
-        value_template: >
-          {% if states('sensor.el_leistung_waschmaschine_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.waschmaschine_ist_an') }}
-          {% else %}
-            {{ states('sensor.el_leistung_waschmaschine_scheinleistung')|float(0) > 12.5 }}
-          {% endif %}
-      trockner_zieht_strom:
-        friendly_name: "Trockner zieht Strom"
-        delay_on:
-          seconds: 10
-        delay_off:
-          minutes: 4
-        value_template: >
-          {% if states('sensor.el_leistung_trockner_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.trockner_zieht_strom') }}
-          {% else %}
-            {{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) > 10 }}
-          {% endif %}
-      trockner_ist_an:
-        friendly_name: "Trockner läuft"
-        delay_off:
-          seconds: 10
-        value_template: >-
-          {{ is_state('binary_sensor.trockner_zieht_strom', 'on')
-             and not is_state('binary_sensor.trockner_ist_geleert', 'on') }}
-      trockner_ist_geleert:
-        friendly_name: "Trockner geleert"
-        value_template: >
-          {% if states('sensor.el_leistung_trockner_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.trockner_ist_geleert') }}
-          {% else %}
-            {{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) < 5 }}
-          {% endif %}
-      zeige_eisschutz_jalousien:
-        friendly_name: "Zeige Eisschutz Jalousien"
-        value_template: >
-          {{ now().month in [11, 12, 1, 2, 3, 4] }}
+#      wuerfel_terrasse:
+#        friendly_name: "Würfel Terrasse"
+#        value_template: >-
+#          {{ is_state('binary_sensor.hst_offen', 'on')
+#             and states('sensor.helligkeit_wetterstation')|float(0) < 500 }}
+#      heizstab_ist_an:
+#        friendly_name: "Heizstab an"
+#        value_template: "{{ states('sensor.el_leistung_wp_heizstab')|float(0) > 11 }}"
+#      tv_ist_an:
+#        friendly_name: "TV an"
+#        delay_off:
+#          seconds: 6
+#        value_template: >
+#          {% if states('sensor.el_leistung_tv_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
+#            {{ states('binary_sensor.tv_ist_an') }}
+#          {% else %}
+#            {{ states('sensor.el_leistung_tv_scheinleistung')|float(0) > 31 }}
+#          {% endif %}
+#      mixi_ist_an:
+#        friendly_name: "Mixi an"
+#        value_template: "{{ states('sensor.el_leistung_mixi')|float(0) > 5 }}"
+#      backofen_ist_an:
+#        friendly_name: "Backofen an"
+#        value_template: >
+#          {% if states('sensor.el_leistung_backofen') in ['unavailable', 'unknown', 'none'] %}
+#            {{ states('binary_sensor.backofen_ist_an') }}
+#          {% else %}
+#            {{ states('sensor.el_leistung_backofen')|float(0) > 2 }}
+#          {% endif %}
+#      waschmaschine_ist_an:
+#        friendly_name: "Waschmaschine läuft"
+#        delay_on:
+#          minutes: 1
+#        value_template: >
+#          {% if states('sensor.el_leistung_waschmaschine_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
+#            {{ states('binary_sensor.waschmaschine_ist_an') }}
+#          {% else %}
+#            {{ states('sensor.el_leistung_waschmaschine_scheinleistung')|float(0) > 12.5 }}
+#          {% endif %}
+#      trockner_zieht_strom:
+#        friendly_name: "Trockner zieht Strom"
+#        delay_on:
+#          seconds: 10
+#        delay_off:
+#          minutes: 4
+#        value_template: >
+#          {% if states('sensor.el_leistung_trockner_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
+#            {{ states('binary_sensor.trockner_zieht_strom') }}
+#          {% else %}
+#            {{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) > 10 }}
+#          {% endif %}
+#      trockner_ist_an:
+#        friendly_name: "Trockner läuft"
+#        delay_off:
+#          seconds: 10
+#        value_template: >-
+#          {{ is_state('binary_sensor.trockner_zieht_strom', 'on')
+#             and not is_state('binary_sensor.trockner_ist_geleert', 'on') }}
+#      trockner_ist_geleert:
+#        friendly_name: "Trockner geleert"
+#        value_template: >
+#          {% if states('sensor.el_leistung_trockner_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
+#            {{ states('binary_sensor.trockner_ist_geleert') }}
+#          {% else %}
+#            {{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) < 5 }}
+#          {% endif %}
+#      zeige_eisschutz_jalousien:
+#        friendly_name: "Zeige Eisschutz Jalousien"
+#        value_template: >
+#          {{ now().month in [11, 12, 1, 2, 3, 4] }}

@@ -488,13 +488,89 @@
           {{ is_state('binary_sensor.anwesenheit_eg', 'on')
             or is_state('binary_sensor.anwesenheit_og', 'on')
             or is_state('binary_sensor.pm_ktr_treppe', 'on') }}
+      - default_entity_id: binary_sensor.heizstab_ist_an
+        name: Heizstab an
+        unique_id: b273be57-3b71-4404-9c31-092390e8a01e
+        state: >-
+          {{ states('sensor.el_leistung_wp_heizstab')|float(0) > 11 }}
+      - default_entity_id: binary_sensor.tv_ist_an
+        name: TV an
+        unique_id: c8959c37-fd81-4e28-8c24-0f67ce2e3a90
+        delay_off:
+          seconds: 6
+        state: >-
+          {% if states('sensor.el_leistung_tv_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.tv_ist_an') }}
+          {% else %}
+            {{ states('sensor.el_leistung_tv_scheinleistung')|float(0) > 31 }}
+          {% endif %}
+      - default_entity_id: binary_sensor.mixi_ist_an
+        name: Mixi an
+        unique_id: dc1898a4-5b3c-4d96-a2fa-52db3cc40e0a
+        state: >-
+          {{ states('sensor.el_leistung_mixi')|float(0) > 5 }}
+      - default_entity_id: binary_sensor.backofen_ist_an
+        name: Backofen an
+        unique_id: 6e16acf7-3038-43e0-a124-eb4b13d03181
+        state: >-
+          {% if states('sensor.el_leistung_backofen') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.backofen_ist_an') }}
+          {% else %}
+            {{ states('sensor.el_leistung_backofen')|float(0) > 2 }}
+          {% endif %}
+      - default_entity_id: binary_sensor.waschmaschine_ist_an
+        name: Waschmaschine läuft
+        unique_id: 5ce285d6-a896-4347-b300-47bb866b194c
+        delay_on:
+          minutes: 1
+        state: >-
+          {% if states('sensor.el_leistung_waschmaschine_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.waschmaschine_ist_an') }}
+          {% else %}
+            {{ states('sensor.el_leistung_waschmaschine_scheinleistung')|float(0) > 12.5 }}
+          {% endif %}
+      - default_entity_id: binary_sensor.trockner_zieht_strom
+        name: Trockner zieht Strom
+        unique_id: 14b51500-e385-45dd-8b7e-066182139e62
+        delay_on:
+          seconds: 10
+        delay_off:
+          minutes: 4
+        state: >-
+          {% if states('sensor.el_leistung_trockner_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.trockner_zieht_strom') }}
+          {% else %}
+            {{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) > 10 }}
+          {% endif %}
+      - default_entity_id: binary_sensor.trockner_ist_an
+        name: Trockner läuft
+        unique_id: bfdb2813-b99e-430d-90dd-7db60ac09316
+        delay_off:
+          seconds: 10
+        state: >-
+          {{ is_state('binary_sensor.trockner_zieht_strom', 'on')
+             and not is_state('binary_sensor.trockner_ist_geleert', 'on') }}
+      - default_entity_id: binary_sensor.trockner_ist_geleert
+        name: Trockner geleert
+        unique_id: f1aef501-fe6d-4bb3-b3ec-60bcd87bcd09
+        state: >-
+          {% if states('sensor.el_leistung_trockner_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.trockner_ist_geleert') }}
+          {% else %}
+            {{ states('sensor.el_leistung_trockner_scheinleistung')|float(7) < 5 }}
+          {% endif %}
+      - default_entity_id: binary_sensor.zeige_eisschutz_jalousien
+        name: Zeige Eisschutz Jalousien
+        unique_id: ed90bf0f-6489-40b9-9927-137f4fcdf244
+        state: >-
+          {{ now().month in [11, 12, 1, 2, 3, 4] }}
 
 
 
 
 
-#      - default_entity_id: binary_sensor.
-#        name: 
-#        unique_id: 
-#        state: >-
+      - default_entity_id: binary_sensor.
+        name: 
+        unique_id: 
+        state: >-
 
