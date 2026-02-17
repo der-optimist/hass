@@ -51,6 +51,8 @@ template:
         state: >
           {% if is_state('timer.minimum_time_water_heater_boost','active') %}
             {{ true }}
+          {% elif states('sensor.solcast_forecast_peak_zeit_bis_wasser_heizen') in ['unavailable', 'unknown', 'none'] %}
+            {{ false }}
           {% else %}
             {% set ts_peak_time = as_timestamp(states('sensor.solcast_forecast_peak_zeit_bis_wasser_heizen')) %}
             {% set ts_now = as_timestamp(now()) %}
