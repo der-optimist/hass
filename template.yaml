@@ -176,6 +176,7 @@
           {% endif %}
       - default_entity_id: binary_sensor.jemand_schlaeft
         name: Jemand schläft
+        unique_id: 6d779306-ab58-4c22-a9fb-462dc5645c85
         state: >-
           {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
              or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none']
