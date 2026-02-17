@@ -1,17 +1,17 @@
 # Trigger based
-  - trigger:
-      - platform: state
-        entity_id: sensor.wirkungsgrad_wechselrichter
-        for: "00:00:05"
-    sensor:
-      - name: Wirkungsgrad Wechselrichter gefiltert
-        state: >-
-          {% if states("sensor.wirkungsgrad_wechselrichter") in ['unavailable', 'unknown', 'none'] %}
-            {{ 0.0 }}
-          {% else %}
-            {{ states("sensor.wirkungsgrad_wechselrichter") }}
-          {% endif %}
-        unit_of_measurement: '%'
+#  - trigger:
+#      - platform: state
+#        entity_id: sensor.wirkungsgrad_wechselrichter
+#        for: "00:00:05"
+#    sensor:
+#      - name: Wirkungsgrad Wechselrichter gefiltert
+#        state: >-
+#          {% if states("sensor.wirkungsgrad_wechselrichter") in ['unavailable', 'unknown', 'none'] %}
+#            {{ 0.0 }}
+#          {% else %}
+#            {{ states("sensor.wirkungsgrad_wechselrichter") }}
+#          {% endif %}
+#        unit_of_measurement: '%'
   - trigger:
       - platform: state
         entity_id: binary_sensor.storung_heizaktor_eg
