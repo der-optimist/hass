@@ -128,12 +128,11 @@
         attributes:
           friendly_name: "Temp. außen gefühlt"
   - binary_sensor:
-      - unique_id: blockade_uhrzeitanzeige_glastaster_la
-        # name: change entity_id in UI after creation
+      - default_entity_id: binary_sensor.blockade_uhrzeitanzeige_glastaster_la
+        name: Blockade Uhrzeitanzeige Glastaster La
+        unique_id: 88184ba8-def4-4624-91db-468e15ff7521
         state: >
           {{ states('switch.la_schlaft') == "on" and (now().hour < 6 or now().hour > 14) }}
-        attributes:
-          friendly_name: "Blockade Uhrzeitanzeige Glastaster La"
       - default_entity_id: binary_sensor.tag_nacht_wetterstation_ersatz
         name: Tag-Nacht Wetterstation Ersatz
         unique_id: c9a6c035-8b05-4333-9a82-b0fc1c55ddfd
