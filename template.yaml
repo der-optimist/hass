@@ -18,6 +18,7 @@
         for: "00:01:00"
     binary_sensor:
       - name: storung_heizaktor_eg_notify
+        unique_id: 0f538a77-7e39-4bea-8f8d-9dc1b51dd21d
         state: '{{ states("binary_sensor.storung_heizaktor_eg") }}'
         device_class: problem
   - trigger:
@@ -79,28 +80,6 @@
           {% endif %}
         attributes:
           friendly_name: "Batterie Nuki-Schloss"
-#      - unique_id: tablet_la_battery
-#        # name: change entity_id in UI after creation
-#        unit_of_measurement: "%"
-#        state: >
-#          {% if states.sensor.tabletlala_battery_level.last_updated < states.sensor.tabletla_battery_level.last_updated %}
-#            {{ states('sensor.tabletla_battery_level') }}
-#          {% else %}
-#            {{ states('sensor.tabletlala_battery_level') }}
-#          {% endif %}
-#        attributes:
-#          friendly_name: "Akku Tablet La."
-#      - unique_id: tablet_le_battery
-#        # name: change entity_id in UI after creation
-#        unit_of_measurement: "%"
-#        state: >
-#          {% if states.sensor.tabletlele_battery_level.last_updated < states.sensor.tabletle_battery_level.last_updated %}
-#            {{ states('sensor.tabletle_battery_level') }}
-#          {% else %}
-#            {{ states('sensor.tabletlele_battery_level') }}
-#          {% endif %}
-#        attributes:
-#          friendly_name: "Akku Tablet Le."
       - unique_id: temp_windchill
         # name: change entity_id in UI after creation
         unit_of_measurement: "°C"
@@ -132,6 +111,57 @@
           {% endif %}
         attributes:
           friendly_name: "Temp. außen gefühlt"
+      - default_entity_id: sensor.date_template
+        name: Datum
+        unique_id: 896e8abe-8b76-4f62-b116-dbd921d9f711
+        state: >
+          {{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}
+      - default_entity_id: sensor.helligkeit_wetterstation_ersatz
+        name: Helligkeit Wetterstation Ersatz
+        unique_id: db4d4636-c258-4b05-b142-73bd2ef10daf
+        unit_of_measurement: 'lx'
+        icon_template: mdi:weather-sunny
+        state: >
+          {{ (states('sensor.el_leistung_pv_ac') | float(0)) * 5 }}
+      - default_entity_id: sensor.temp_aussen
+        name: Temp. Außen
+        unique_id: fa5802f0-7917-41a9-85f3-ae839dfeeca7
+        unit_of_measurement: '°C'
+        device_class: temperature
+        state: >
+          {{ states('sensor.aussensensor_zigbee_temperature') }}
+      - default_entity_id: sensor.luftfeuchtigkeit_aussen
+        name: Luftfeuchtigkeit Außen
+        unique_id: e783d11f-cafd-45ff-96dd-4b10a4577043
+        unit_of_measurement: '%'
+        device_class: humidity
+        state: >
+          {{ states('sensor.aussensensor_zigbee_humidity') }}
+      - default_entity_id: sensor.luftfeuchtigkeit_kuche_aqara
+        name: Luftfeuchtigkeit Küche
+        unique_id: 5e8336f9-1450-4bcb-9d5a-387bc81cd446
+        unit_of_measurement: '%'
+        device_class: humidity
+        state: >
+          {{ (states('sensor.0x00158d00034d1e34_humidity') | float(0)) | round }}
+      - default_entity_id: sensor.temp_kuche_aqara
+        name: Temp. Küche Aqara
+        unique_id: b5b11fef-8dbd-4c2a-bb93-2abb4c97f846
+        unit_of_measurement: '°C'
+        device_class: temperature
+        state: >
+          {{ (states('sensor.0x00158d00034d1e34_temperature') | float(0)) | round(1) }}
+
+
+
+
+
+#      - default_entity_id: sensor.
+#        name: 
+#        unique_id: 
+#        state: >
+          
+
   - binary_sensor:
       - default_entity_id: binary_sensor.blockade_uhrzeitanzeige_glastaster_la
         name: Blockade Uhrzeitanzeige Glastaster La

@@ -12,45 +12,45 @@
 #     --          Date              --
 #     --------------------------------
 #
-      date_template:
-        friendly_name: 'Datum'
-        value_template: '{{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}'
+#      date_template:
+#        friendly_name: 'Datum'
+#        value_template: '{{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}'
 #
 #     --------------------------------
 #     --     Temporäre Dinge        --
 #     --------------------------------
 #
-      helligkeit_wetterstation_ersatz:
-        value_template: >-
-          {{ (states('sensor.el_leistung_pv_ac') | float(0)) * 5 }}
-        friendly_name: 'Helligkeit Wetterstation Ersatz'
-        unit_of_measurement: 'lx'
-        icon_template: mdi:weather-sunny
+#      helligkeit_wetterstation_ersatz:
+#        value_template: >-
+#          {{ (states('sensor.el_leistung_pv_ac') | float(0)) * 5 }}
+#        friendly_name: 'Helligkeit Wetterstation Ersatz'
+#        unit_of_measurement: 'lx'
+#        icon_template: mdi:weather-sunny
 #
 #     --------------------------------
 #     --    Temp. und Luftf.        --
 #     --------------------------------
 #
-      temp_aussen:
-        friendly_name: 'Temp. Außen'
-        unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.aussensensor_zigbee_temperature') }}"
-        device_class: temperature
-      luftfeuchtigkeit_aussen:
-        friendly_name: 'Luftfeuchtigkeit Außen'
-        unit_of_measurement: '%'
-        value_template: "{{ states('sensor.aussensensor_zigbee_humidity') }}"
-        device_class: humidity
-      luftfeuchtigkeit_kuche_aqara:
-        friendly_name: 'Luftfeuchtigkeit Küche'
-        unit_of_measurement: '%'
-        value_template: "{{ (states('sensor.0x00158d00034d1e34_humidity') | float(0)) | round }}"
-        device_class: humidity
-      temp_kuche_aqara:
-        friendly_name: 'Temp. Küche Aqara'
-        unit_of_measurement: '°C'
-        value_template: "{{ (states('sensor.0x00158d00034d1e34_temperature') | float(0)) | round(1) }}"
-        device_class: temperature
+#      temp_aussen:
+#        friendly_name: 'Temp. Außen'
+#        unit_of_measurement: '°C'
+#        value_template: "{{ states('sensor.aussensensor_zigbee_temperature') }}"
+#        device_class: temperature
+#      luftfeuchtigkeit_aussen:
+#        friendly_name: 'Luftfeuchtigkeit Außen'
+#        unit_of_measurement: '%'
+#        value_template: "{{ states('sensor.aussensensor_zigbee_humidity') }}"
+#        device_class: humidity
+#      luftfeuchtigkeit_kuche_aqara:
+#        friendly_name: 'Luftfeuchtigkeit Küche'
+#        unit_of_measurement: '%'
+#        value_template: "{{ (states('sensor.0x00158d00034d1e34_humidity') | float(0)) | round }}"
+#        device_class: humidity
+#      temp_kuche_aqara:
+#        friendly_name: 'Temp. Küche Aqara'
+#        unit_of_measurement: '°C'
+#        value_template: "{{ (states('sensor.0x00158d00034d1e34_temperature') | float(0)) | round(1) }}"
+#        device_class: temperature
       luftdruck_kuche_aqara:
         friendly_name: 'Luftdruck Küche Aqara'
         unit_of_measurement: 'hPa'
