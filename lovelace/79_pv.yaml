@@ -27,7 +27,6 @@ cards:
         entity: sensor.el_leistung_pv_dc
         state: "{{ (states('sensor.el_leistung_pv_dc') | float(0)) | round(0) }}"
       - sensor.wirkungsgrad_wechselrichter
-      - sensor.wirkungsgrad_wechselrichter_gefiltert
       - input_number.pv_einspeisebegrenzung_prozent
       - sensor.einspeiselimit_watt
       - sensor.el_leistung_pv_dc_string1
