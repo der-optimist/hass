@@ -136,6 +136,7 @@
           friendly_name: "Blockade Uhrzeitanzeige Glastaster La"
       - default_entity_id: binary_sensor.tag_nacht_wetterstation_ersatz
         name: Tag-Nacht Wetterstation Ersatz
+        unique_id: c9a6c035-8b05-4333-9a82-b0fc1c55ddfd
         state: >-
           {% if (state_attr('sun.sun', 'elevation') | float(0)) > -5 %}
             {{ true }}
@@ -144,6 +145,7 @@
           {% endif %}
       - default_entity_id: binary_sensor.la_und_le_schlafen
         name: Beide Mädels schlafen
+        unique_id: 4c8fc921-7499-4116-b013-3fc6b546ad17
         state: >-
           {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
              or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none'] %}
@@ -154,6 +156,7 @@
           {% endif %}
       - default_entity_id: binary_sensor.la_oder_le_schlafen
         name: Min. 1 Kind schläft
+        unique_id: feb6b27e-624b-4828-ad47-3e7af9b3aa60
         state: >-
           {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
              or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none'] %}
@@ -164,6 +167,7 @@
           {% endif %}
       - default_entity_id: binary_sensor.alle_schlafen
         name: Alle schlafen
+        unique_id: 701a0a6b-6808-4a98-873e-c26752024b31
         state: >-
           {% if states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
              or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none']
@@ -190,6 +194,7 @@
       # On = in der letzten Stunde weniger als 10 Minuten wach:
 #      - default_entity_id: binary_sensor.
 #        name: 
+#        unique_id: 
 #        state: >-
 
 
@@ -201,5 +206,6 @@
 
 #      - default_entity_id: binary_sensor.
 #        name: 
+#        unique_id: 
 #        state: >-
 
