@@ -192,20 +192,24 @@
               or is_state('switch.majo_schlafen', 'on') }}
           {% endif %}
       # On = in der letzten Stunde weniger als 10 Minuten wach:
-#      - default_entity_id: binary_sensor.
-#        name: 
-#        unique_id: 
-#        state: >-
+      - default_entity_id: binary_sensor.schlafen_oder_aufwachphase_la
+        name: Schlafen oder Aufwachphase La
+        unique_id: 2fdfe562-a679-4a6b-a0e0-6f9a5aeb8660
+        state: >-
+          {{ states('sensor.anteil_la_wach_letzte_stunde')|float(0) < 17 }}
+      - default_entity_id: binary_sensor.schlafen_oder_aufwachphase_le
+        name: Schlafen oder Aufwachphase Le
+        unique_id: a8fac994-0e26-4a3f-a89a-f834257143a3
+        state: >-
+          {{ states('sensor.anteil_le_wach_letzte_stunde')|float(0) < 17 }}
+      - default_entity_id: binary_sensor.schlafen_oder_aufwachphase_kinder
+        name: Schlafen oder Aufwachphase Kinder
+        unique_id: efaf1dfb-1dcd-43a6-aefa-8168b62b0b07
+        state: >-
+          {{ states('sensor.anteil_kinder_wach_letzte_stunde')|float(0) < 17 }}
 
 
 
 
 
-
-
-
-#      - default_entity_id: binary_sensor.
-#        name: 
-#        unique_id: 
-#        state: >-
 

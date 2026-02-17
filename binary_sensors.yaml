@@ -78,15 +78,15 @@
 #              or is_state('switch.majo_schlafen', 'on') }}
 #          {% endif %}
       # On = in der letzten Stunde weniger als 10 Minuten wach
-      schlafen_oder_aufwachphase_la:
-        friendly_name: "Schlafen oder Aufwachphase La"
-        value_template: "{{ states('sensor.anteil_la_wach_letzte_stunde')|float(0) < 17 }}"
-      schlafen_oder_aufwachphase_le:
-        friendly_name: "Schlafen oder Aufwachphase Le"
-        value_template: "{{ states('sensor.anteil_le_wach_letzte_stunde')|float(0) < 17 }}"
-      schlafen_oder_aufwachphase_kinder:
-        friendly_name: "Schlafen oder Aufwachphase Kinder"
-        value_template: "{{ states('sensor.anteil_kinder_wach_letzte_stunde')|float(0) < 17 }}"
+#      schlafen_oder_aufwachphase_la:
+#        friendly_name: "Schlafen oder Aufwachphase La"
+#        value_template: "{{ states('sensor.anteil_la_wach_letzte_stunde')|float(0) < 17 }}"
+#      schlafen_oder_aufwachphase_le:
+#        friendly_name: "Schlafen oder Aufwachphase Le"
+#        value_template: "{{ states('sensor.anteil_le_wach_letzte_stunde')|float(0) < 17 }}"
+#      schlafen_oder_aufwachphase_kinder:
+#        friendly_name: "Schlafen oder Aufwachphase Kinder"
+#        value_template: "{{ states('sensor.anteil_kinder_wach_letzte_stunde')|float(0) < 17 }}"
       aufwachphase_kinder:
         friendly_name: "Aufwachphase Kinder"
         value_template: "{{ states('sensor.anteil_kinder_wach_letzte_stunde')|float(0) < 17 and is_state('binary_sensor.la_oder_le_schlafen','off') }}"
