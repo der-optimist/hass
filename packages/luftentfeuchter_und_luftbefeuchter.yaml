@@ -60,7 +60,7 @@ template:
       - name: helper_luftentfeuchter_waschkuche_target_humidity
         unit_of_measurement: "%"
         state: >
-          {% set humidity = state_attr('humidifier.luftentfeuchter_waschkuche','saved_humidity') %}
+          {% set humidity = state_attr('humidifier.luftentfeuchter_waschkuche','saved_humidity') | float(40) %}
           {% if is_state('binary_sensor.template_helper_luftentfeuchter_waschkuche_use_pv','on') %}
             {% set humidity = humidity - 6 %}
           {% endif %}
@@ -71,7 +71,7 @@ template:
       - name: helper_luftentfeuchter_speis_target_humidity
         unit_of_measurement: "%"
         state: >
-          {% set humidity = state_attr('humidifier.luftentfeuchter_speis','saved_humidity') %}
+          {% set humidity = state_attr('humidifier.luftentfeuchter_speis','saved_humidity') | float(57) %}
           {% if is_state('binary_sensor.template_helper_luftentfeuchter_speis_use_pv','on') %}
             {% set humidity = humidity - 1 %}
           {% endif %}
@@ -79,7 +79,7 @@ template:
       - name: helper_luftentfeuchter_partyraum_target_humidity
         unit_of_measurement: "%"
         state: >
-          {% set humidity = state_attr('humidifier.luftentfeuchter_partyraum','saved_humidity') %}
+          {% set humidity = state_attr('humidifier.luftentfeuchter_partyraum','saved_humidity') | float(62) %}
           {% if is_state('binary_sensor.template_helper_luftentfeuchter_partyraum_use_pv','on') %}
             {% set humidity = humidity - 7 %}
           {% endif %}
