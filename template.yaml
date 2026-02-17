@@ -207,9 +207,168 @@
         unique_id: efaf1dfb-1dcd-43a6-aefa-8168b62b0b07
         state: >-
           {{ states('sensor.anteil_kinder_wach_letzte_stunde')|float(0) < 17 }}
+      - default_entity_id: binary_sensor.aufwachphase_kinder
+        name: Aufwachphase Kinder
+        unique_id: d3801bab-0595-4a22-bb79-b0fd7036ad23
+        state: >-
+          {{ states('sensor.anteil_kinder_wach_letzte_stunde')|float(0) < 17 and is_state('binary_sensor.la_oder_le_schlafen','off') }}
+      - default_entity_id: binary_sensor.schlafen_oder_aufwachphase_majo
+        name: Schlafen oder Aufwachphase MaJo
+        unique_id: 6a307a2e-0834-4b63-911b-ffcc5619dc4b
+        state: >-
+          {{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 34 }}
+      - default_entity_id: binary_sensor.schlafen_oder_licht_gedimmt_majo
+        name: Schlafen oder Licht gedimmt MaJo
+        unique_id: 17d7bbaa-c2a0-4063-bbdc-e4277de5a274
+        state: >-
+          {{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 67 }}
+      - default_entity_id: binary_sensor.schlafen_oder_licht_noch_aus_lassen_majo
+        name: Schlafen oder Licht noch aus lassen MaJo
+        unique_id: 
+        state: >-
+          {{ (states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 67 and states('sensor.helligkeit_wetterstation')|float(0) > 20000) 
+            or states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 34 }}
+      - default_entity_id: binary_sensor.schlafen_oder_licht_bad_eg_noch_abgedunkelt
+        name: Schlafen oder Licht Bad EG noch abgedunkelt
+        unique_id: ef65ac0a-eb4c-4cf8-b167-85545fc9ad8e
+        state: >-
+          {{ states('sensor.anteil_majo_wach_letzte_stunde')|float(100) < 50
+            and states('sensor.anteil_prasenz_bad_eg_letzte_stunde')|float(100) < 17 }}
+      - default_entity_id: binary_sensor.nachtmodus_wc
+        name: Nachtmodus WC
+        unique_id: bef132a0-84ea-4504-9252-41a17485dd94
+        state: >-
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.nachtmodus_wc') }}
+          {% else %}
+            {{ states('sensor.anteil_majo_wach_letzte_stunde')|float(0) < 50 or is_state('switch.majo_schlafen', 'on') }}
+          {% endif %}
+      - default_entity_id: binary_sensor.nachtmodus_wohnbereich_licht
+        name: Nachtmodus Wohnbereich Licht
+        unique_id: c66c91fa-63fa-400a-8ba2-1b3a87619e87
+        state: >-
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
+             or states('switch.kinder_schon_wach') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.nachtmodus_wohnbereich_licht') }}
+          {% else %}
+            {{ is_state('switch.majo_schlafen', 'on') and is_state('switch.kinder_schon_wach', 'off') }}
+          {% endif %}
+      - default_entity_id: binary_sensor.nachtmodus_wohnbereich_jalousie
+        name: Nachtmodus Wohnbereich Jalousie
+        unique_id: f6deb67e-7563-4100-a66a-e72145725bec
+        state: >-
+          {% if states('switch.majo_schlafen') in ['unavailable', 'unknown', 'none']
+             or states('switch.kinder_schon_wach') in ['unavailable', 'unknown', 'none']
+             or states('switch.la_schlaft') in ['unavailable', 'unknown', 'none']
+             or states('switch.le_schlaft') in ['unavailable', 'unknown', 'none'] %}
+            {{ this }}
+          {% else %}
+            {{ is_state('binary_sensor.jemand_schlaeft', 'on') and is_state('switch.kinder_schon_wach', 'off') }}
+          {% endif %}
+      - default_entity_id: binary_sensor.bodenstrahler_blumenbeet_ist_sichtbar
+        name: Bodenstrahler Blumenbeet ist sichtbar
+        unique_id: a42cd202-84a0-41a5-ae88-1a721a9971b2
+        state: >-
+          {{ (state_attr('cover.jalousie_hst','current_position')|float(0) < 40)
+            or ((state_attr('cover.jalousie_hst','current_tilt_position')|float(0) > 25) and (state_attr('cover.jalousie_hst','current_tilt_position')|float(0) < 85)) }}
+      - default_entity_id: binary_sensor.bodenstrahler_blumenbeet_soll_an_sein
+        name: Bodenstrahler Blumenbeet soll an sein
+        unique_id: d74797ce-4337-4edf-be7f-3ea8aadd99b4
+        state: >-
+          {{ (is_state('binary_sensor.bodenstrahler_blumenbeet_ist_sichtbar', 'on') and is_state('binary_sensor.standardzeit_bodenstrahler_blumenbeet', 'on'))
+            or (is_state('binary_sensor.bodenstrahler_blumenbeet_ist_sichtbar', 'on') and is_state('input_boolean.gaeste_abends', 'on')) }}
+      - default_entity_id: binary_sensor.tv_abends_an
+        name: TV abends an
+        unique_id: 88f29abd-32b4-43b7-9834-81a99e6e3982
+        state: >-
+          {{ is_state('binary_sensor.tv_zeit_abend', 'on')
+             and is_state('binary_sensor.tv_ist_an', 'on') }}
+      - default_entity_id: binary_sensor.tv_pizza_abend
+        name: TV Pizza Abend
+        unique_id: c871cd35-8ed0-4bf9-9b3d-29bb26a0db11
+        state: >-
+          {{ is_state('binary_sensor.tv_abends_an', 'on')
+             and is_state('binary_sensor.backofen_ist_an', 'on') }}
+      - default_entity_id: binary_sensor.kein_tv_pizza_abend  # Umkehrung von tv_pizza_abend für Panels Bar, Licht soll dann aus bleiben
+        name: kein TV Pizza Abend
+        unique_id: b6b41008-616b-4741-b577-ac83b8a749a7
+        state: >-
+          {{ is_state('binary_sensor.tv_pizza_abend', 'off') }}
+      - default_entity_id: binary_sensor.tv_abend_ohne_pizza
+        name: TV Abend ohne Pizza
+        unique_id: e4460570-af35-4f2d-83c7-4044169c5991
+        state: >-
+          {{ is_state('binary_sensor.tv_abends_an', 'on')
+             and is_state('binary_sensor.backofen_ist_an', 'off') }}
+      - default_entity_id: binary_sensor.kodi_abends
+        name: Kodi abends
+        unique_id: 70ab8d69-09ac-4f2a-bd74-476582f9cad8
+        state: >-
+          {{ is_state('binary_sensor.tv_zeit_abend', 'on')
+             and is_state('media_player.kodi_wz', 'playing') }}
+      - default_entity_id: binary_sensor.abends_und_min_ein_kind_im_bett
+        name: abends und min. 1 Kind im Bett
+        unique_id: fee3ffb6-3e61-406a-be08-013167e3cc9a
+        state: >-
+          {{ is_state('binary_sensor.tv_zeit_abend', 'on')
+             and is_state('binary_sensor.la_oder_le_schlafen', 'on') }}
+      - default_entity_id: binary_sensor.keine_gaeste
+        name: keine Gäste
+        unique_id: 80d1d7d2-c36e-45ac-bfc0-537a5275b0cc
+        state: >-
+          {{ is_state('input_boolean.gaeste_abends', 'off')
+             and is_state('input_boolean.gaeste_gz', 'off') }}
+      - default_entity_id: binary_sensor.gaeste_nur_abends
+        name: Gäste nur abends
+        unique_id: f779d342-f91f-4f10-9709-ec3378927168
+        state: >-
+          {{ is_state('input_boolean.gaeste_abends', 'on')
+             and is_state('input_boolean.gaeste_gz', 'off') }}
+      - default_entity_id: binary_sensor.pm_k_timer_magnetsensor_vorratsraum
+        name: PM Timer Magnetsensor Vorratsraum
+        unique_id: 0af050cb-b0b6-48d7-825e-a726ee079a35
+        delay_off:
+          minutes: 15
+        state: >-
+          {% if states('binary_sensor.0x00158d00045c1583_contact') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.pm_k_timer_magnetsensor_vorratsraum') }}
+          {% else %}
+            {{ is_state('binary_sensor.0x00158d00045c1583_contact', 'on') }}
+          {% endif %}
+      - default_entity_id: binary_sensor.pm_k_timer_magnetsensor_werkelraum
+        name: PM Timer Magnetsensor Werkelraum
+        unique_id: a231a65b-8ce5-462f-952d-25055a7be5fd
+        delay_off:
+          hours: 1
+        state: >-
+          {% if states('binary_sensor.0x00158d00054d1e90_contact') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.0x00158d0001dfffc3_occupancy') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.pm_k_timer_magnetsensor_werkelraum') }}
+          {% else %}
+            {{ is_state('binary_sensor.0x00158d00054d1e90_contact', 'on') or is_state('binary_sensor.0x00158d0001dfffc3_occupancy','on') }}
+          {% endif %}
+      - default_entity_id: binary_sensor.pm_k_timer_bewegung_partyraum
+        name: PM Timer Bewegung Partyraum
+        unique_id: cd2bf956-bc79-46cc-81ef-f860a43aeb50
+        delay_off:
+          minutes: 30
+        state: >-
+          {% if states('binary_sensor.0x00158d00044e6936_contact') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.0x00158d00045d2e6f_occupancy') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.0x00158d000451908d_occupancy') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.pm_k_timer_bewegung_partyraum') }}
+          {% else %}
+            {{ is_state('binary_sensor.0x00158d00044e6936_contact', 'on')
+               or is_state('binary_sensor.0x00158d00045d2e6f_occupancy', 'on')
+               or is_state('binary_sensor.0x00158d000451908d_occupancy', 'on') }}
+          {% endif %}
 
 
 
 
 
+#      - default_entity_id: binary_sensor.
+#        name: 
+#        unique_id: 
+#        state: >-
 
