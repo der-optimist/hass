@@ -362,6 +362,132 @@
                or is_state('binary_sensor.0x00158d00045d2e6f_occupancy', 'on')
                or is_state('binary_sensor.0x00158d000451908d_occupancy', 'on') }}
           {% endif %}
+      - default_entity_id: binary_sensor.reminder_tuer_partyraum
+        name: Reminder Tür Partyraum
+        unique_id: 14e2b607-d330-4b0e-b91d-98040c8410c8
+        delay_on:
+          minutes: 10
+        state: >-
+          {{ is_state('binary_sensor.0x00158d00044e6936_contact','on') and not
+            (is_state('binary_sensor.0x00158d000451908d_occupancy','on') or is_state('binary_sensor.0x00158d00045d2e6f_occupancy','on')) }}
+      - default_entity_id: binary_sensor.reminder_tuer_werkelraum
+        name: Reminder Tür Werkelraum
+        unique_id: 23fdc386-85dd-446d-b37e-be44ca0f2672
+        delay_on:
+          minutes: 30
+        state: >-
+          {{ is_state('binary_sensor.0x00158d00054d1e90_contact','on') and is_state('binary_sensor.0x00158d0001dfffc3_occupancy','off') }}
+      - default_entity_id: binary_sensor.reminder_tuer_speis
+        name: Reminder Tür Speis
+        unique_id: 85e81a6f-4d96-42ca-b518-c370f0de9e49
+        delay_on:
+          minutes: 60
+        state: >-
+          {{ is_state('binary_sensor.0x00158d00045c1583_contact','on') }}
+      - default_entity_id: binary_sensor.anwesenheit_bildschirm
+        name: Anwesenheit Bildschirm
+        unique_id: ef3db0c5-fcfc-47dc-87eb-47db7288b609
+        state: >-
+          {% if states('binary_sensor.pm_e_ba') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ez_bar_kuche') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ez_esstisch') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_fl_flur') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_fl_treppe_og') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_fl_windfang') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wf_flur') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wf_garderobe') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_o_fl_treppe') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ku_bar_ez') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ku_kuche') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wc') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_couch_links') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_couch_rechts') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_durchgang') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_ktr_treppe') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_ktr_flur') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.anwesenheit_bildschirm') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_e_ba', 'on')
+               or is_state('binary_sensor.pm_e_ez_bar_kuche', 'on')
+               or is_state('binary_sensor.pm_e_ez_esstisch', 'on')
+               or is_state('binary_sensor.pm_e_fl_flur', 'on')
+               or is_state('binary_sensor.pm_e_fl_treppe_og', 'on')
+               or is_state('binary_sensor.pm_e_fl_windfang', 'on')
+               or is_state('binary_sensor.pm_e_wf_flur', 'on')
+               or is_state('binary_sensor.pm_e_wf_garderobe', 'on')
+               or is_state('binary_sensor.pm_o_fl_treppe', 'on')
+               or is_state('binary_sensor.pm_e_ku_bar_ez', 'on')
+               or is_state('binary_sensor.pm_e_ku_kuche', 'on')
+               or is_state('binary_sensor.pm_e_wc', 'on')
+               or is_state('binary_sensor.pm_e_wz_couch_links', 'on')
+               or is_state('binary_sensor.pm_e_wz_couch_rechts', 'on')
+               or is_state('binary_sensor.pm_e_wz_durchgang', 'on')
+               or is_state('binary_sensor.pm_ktr_treppe', 'on')
+               or is_state('binary_sensor.pm_ktr_flur', 'on') }}
+          {% endif %}
+      - default_entity_id: binary_sensor.anwesenheit_wohnbereich
+        name: Anwesenheit Wohnbereich
+        unique_id: 40db0ca1-0232-4329-a0ec-e7e5fd39ab3a
+        state: >-
+          {% if states('binary_sensor.pm_e_ez_bar_kuche') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ez_esstisch') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ku_bar_ez') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_ku_kuche') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_couch_links') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_couch_rechts') in ['unavailable', 'unknown', 'none']
+             or states('binary_sensor.pm_e_wz_durchgang') in ['unavailable', 'unknown', 'none'] %}
+            {{ states('binary_sensor.anwesenheit_wohnbereich') }}
+          {% else %}
+            {{ is_state('binary_sensor.pm_e_ez_bar_kuche', 'on')
+               or is_state('binary_sensor.pm_e_ez_esstisch', 'on')
+               or is_state('binary_sensor.pm_e_ku_bar_ez', 'on')
+               or is_state('binary_sensor.pm_e_ku_kuche', 'on')
+               or is_state('binary_sensor.pm_e_wz_couch_links', 'on')
+               or is_state('binary_sensor.pm_e_wz_couch_rechts', 'on')
+               or is_state('binary_sensor.pm_e_wz_durchgang', 'on') }}
+          {% endif %}
+      - default_entity_id: binary_sensor.anwesenheit_eg
+        name: Anwesenheit EG
+        unique_id: e321d99e-a656-4385-a077-52e4aad97c3a
+        state: >-
+          {{ is_state('binary_sensor.pm_e_ba', 'on')
+             or is_state('binary_sensor.pm_e_ez_bar_kuche', 'on')
+             or is_state('binary_sensor.pm_e_ez_esstisch', 'on')
+             or is_state('binary_sensor.pm_e_fl_flur', 'on')
+             or is_state('binary_sensor.pm_e_fl_treppe_og', 'on')
+             or is_state('binary_sensor.pm_e_fl_windfang', 'on')
+             or is_state('binary_sensor.pm_e_ku_bar_ez', 'on')
+             or is_state('binary_sensor.pm_e_ku_kuche', 'on')
+             or is_state('binary_sensor.pm_e_sz_bett', 'on')
+             or is_state('binary_sensor.pm_e_sz_gang', 'on')
+             or is_state('binary_sensor.pm_e_wc', 'on')
+             or is_state('binary_sensor.pm_e_wf_flur', 'on')
+             or is_state('binary_sensor.pm_e_wf_haustur', 'on')
+             or is_state('binary_sensor.pm_e_wz_couch_links', 'on')
+             or is_state('binary_sensor.pm_e_wz_couch_rechts', 'on')
+             or is_state('binary_sensor.pm_e_wz_durchgang', 'on')
+             or is_state('binary_sensor.pm_ktr_flur', 'on')
+             or is_state('binary_sensor.pm_e_wf_garderobe', 'on') }}
+      - default_entity_id: binary_sensor.anwesenheit_og
+        name: Anwesenheit OG
+        unique_id: 9517dc68-b9bf-4f0c-a6fd-010f5e98afa2
+        state: >-
+          {{ is_state('binary_sensor.pm_o_ba', 'on')
+             or is_state('binary_sensor.pm_o_fl_flur', 'on')
+             or is_state('binary_sensor.pm_o_fl_treppe', 'on')
+             or is_state('binary_sensor.pm_o_gz', 'on')
+             or is_state('binary_sensor.pm_o_ko_la_raum', 'on')
+             or is_state('binary_sensor.pm_o_ko_la_tuer', 'on')
+             or is_state('binary_sensor.pm_o_kw_le_raum', 'on')
+             or is_state('binary_sensor.pm_o_kw_le_tuer', 'on')
+             or is_state('binary_sensor.pm_o_nz', 'on') }}
+      - default_entity_id: binary_sensor.anwesenheit_haus
+        name: Anwesenheit Haus
+        unique_id: 0f1abe1d-9c8e-4510-9c2c-dde217113799
+        state: >-
+          {{ is_state('binary_sensor.anwesenheit_eg', 'on')
+            or is_state('binary_sensor.anwesenheit_og', 'on')
+            or is_state('binary_sensor.pm_ktr_treppe', 'on') }}
 
 
 
