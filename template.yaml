@@ -123,6 +123,11 @@
         icon_template: mdi:weather-sunny
         state: >
           {{ (states('sensor.el_leistung_pv_ac') | float(0)) * 5 }}
+#
+#     --------------------------------
+#     --    Temp. und Luftf.        --
+#     --------------------------------
+#
       - default_entity_id: sensor.temp_aussen
         name: Temp. Außen
         unique_id: fa5802f0-7917-41a9-85f3-ae839dfeeca7
@@ -151,6 +156,167 @@
         device_class: temperature
         state: >
           {{ (states('sensor.0x00158d00034d1e34_temperature') | float(0)) | round(1) }}
+      - default_entity_id: sensor.luftdruck_kuche_aqara
+        name: Luftdruck Küche Aqara
+        unique_id: 41be9529-0040-4016-9fc3-bfbbadca7a90
+        unit_of_measurement: 'hPa'
+        device_class: pressure
+        state: >
+          {{ (states('sensor.0x00158d00034d1e34_pressure') | float(0)) | round }}
+      - default_entity_id: sensor.luftfeuchtigkeit_waschkuche
+        name: Luftfeuchtigkeit Waschküche
+        unique_id: 675286d8-f821-41b6-81be-eab4677bb669
+        unit_of_measurement: '%'
+        device_class: humidity
+        state: >
+          {{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_5_sht31') | float(0) | round(1) }}
+      - default_entity_id: sensor.temp_waschkuche
+        name: Temp. Waschküche
+        unique_id: 5ce9fff4-b1e9-40af-928b-7645a9b41dc8
+        unit_of_measurement: '°C'
+        device_class: temperature
+        state: >
+          {{ states('sensor.temp_esp_wemos_d1_5_sht31') | float(0) | round(1) }}
+      - default_entity_id: sensor.luftfeuchtigkeit_werkelraum
+        name: Luftfeuchtigkeit Werkelraum
+        unique_id: b35bbf58-4081-46d1-adb2-88e430015acc
+        unit_of_measurement: '%'
+        device_class: humidity
+        state: >
+          {{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_6_sht31') | float(0) | round(1) }}
+      - default_entity_id: sensor.temp_werkelraum
+        name: Temp. Werkelraum
+        unique_id: 11933239-a1ae-414a-a0d6-33de2078917c
+        unit_of_measurement: '°C'
+        device_class: temperature
+        state: >
+          {{ states('sensor.temp_esp_wemos_d1_6_sht31') | float(0) | round(1) }}
+      - default_entity_id: sensor.luftfeuchtigkeit_partyraum
+        name: Luftfeuchtigkeit Partyraum
+        unique_id: fc1f25d7-ea01-4aca-a7fa-06b18dbb8a31
+        unit_of_measurement: '%'
+        device_class: humidity
+        state: >
+          {{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_11_sht31') | float(0) | round(1) }}
+      - default_entity_id: sensor.temp_partyraum
+        name: Temp. Partyraum
+        unique_id: 2cf0ee1d-aa78-44ea-b0eb-ff18d09be684
+        unit_of_measurement: '°C'
+        device_class: temperature
+        state: >
+          {{ states('sensor.temp_esp_wemos_d1_11_sht31') | float(0) | round(1) }}
+      - default_entity_id: sensor.luftfeuchtigkeit_vorratsraum
+        name: Luftfeuchtigkeit Speis
+        unique_id: 86045dfe-9d0a-463c-a9ed-3c533a30cb4b
+        unit_of_measurement: '%'
+        device_class: humidity
+        state: >
+          {{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_bme280') | float(0) | round(1) }}
+      - default_entity_id: sensor.temp_vorratsraum
+        name: Temp. Speis
+        unique_id: 4cbd703c-1140-4d59-b564-995f7c06a241
+        unit_of_measurement: '°C'
+        device_class: temperature
+        state: >
+          {{ states('sensor.temp_esp_wemos_d1_9_bme280') | float(0) | round(1) }}
+      - default_entity_id: sensor.temp_outside_internet
+        name: Temperatur außen Internet
+        unique_id: 9b166d0f-3727-4a63-8642-8206e4a648e4
+        unit_of_measurement: '°C'
+        device_class: temperature
+        state: >
+          {{ state_attr('weather.lieblingshaus', 'temperature') }}
+      - default_entity_id: sensor.humidity_outside_internet
+        name: Luftfeuchtigkeit außen Internet
+        unique_id: ddf39744-9d9b-45ee-a60c-852d8b3cf0c0
+        unit_of_measurement: '%'
+        device_class: humidity
+        state: >
+          {{ state_attr('weather.lieblingshaus', 'humidity') }}
+#
+#     --------------------------------
+#     --     Stromverbrauch         --
+#     --------------------------------
+#
+      - default_entity_id: sensor.stromzaehler_netzbezug
+        name: Stromzähler Netzbezug
+        unique_id: 46fa60ef-ff71-4dcc-9a8e-231bd8a64bbc
+        unit_of_measurement: 'kWh'
+        icon_template: mdi:counter
+        state: >
+          {{ '%.1f'%(states('sensor.stromzahler_positive_active_energy_in_tariff_t1') | float(0) /1000) | float(0) }}
+      - default_entity_id: sensor.stromzaehler_netzeinspeisung
+        name: Stromzähler Netzeinspeisung
+        unique_id: 014c58ee-4cc0-4874-8947-ba0baca014bb
+        unit_of_measurement: 'kWh'
+        icon_template: mdi:counter
+        state: >
+          {{ '%.1f'%(states('sensor.stromzahler_negative_active_energy_in_tariff_t1') | float(0) /1000) | float(0) }}
+      - default_entity_id: sensor.stromkosten_netzbezug
+        name: Stromkosten Netzbezug
+        unique_id: 3fdb7142-a4d2-48ad-b557-757bdc7a0cf4
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+        state: >
+          {{ '%.2f'%((states('sensor.stromzaehler_netzbezug') | float(0) ) * (states('input_number.strompreis') | float(0))) }}
+#
+#     --------------------------------
+#     --        Ertrag PV           --
+#     --------------------------------
+#
+      - default_entity_id: sensor.pv_geldertrag_durch_einspeisung_gesamt
+        name: PV Ertrag Einspeisung
+        unique_id: 7a27e6c2-5dd2-4a79-af85-8057fffb31c5
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+        state: >
+          {{ '%.2f'%((states('sensor.stromzaehler_netzeinspeisung') | float(0) ) * (states('input_number.pv_einspeiseverguetung') | float(0))) }}
+      - default_entity_id: sensor.euro_pro_stunde_eigenverbrauch
+        name: Euro pro Stunde - Eigenverbrauch
+        unique_id: ada9abac-e27f-4923-9782-0642fc7243f8
+        unit_of_measurement: '€/h'
+        state: >
+          {{ (states('sensor.el_leistung_eigenverbrauch') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
+      # Eigenverbrauch bis 28.2.23: 5191 kWh zu Strompreis 0,28 => 1453,48 €
+      # Eigenverbrauch von 1.3.23 bis 30.1.24 16:00: 3863 kWh zu Strompreis 0,40 => 1545,20 €
+      # Gesamt 2998.68 € => dann Umstellung auf Integrations-Sensor, der den aktuellen Strompreis richtig verrechnet
+      - default_entity_id: sensor.pv_geldertrag_durch_eigenverbrauch_gesamt
+        name: PV Ertrag Eigenverbrauch
+        unique_id: 1229f93a-85a7-4868-a2d6-8c7fb38ce8bf
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+        state: >
+          {{ '%.2f'%((states('sensor.ertragszaehler_eigenverbrauch_pv') | float(0)) + 2998.68) }}
+      - default_entity_id: sensor.pv_geldertrag_gesamt
+        name: PV Ertrag gesamt
+        unique_id: d77b1037-f5a2-41f8-8d8d-d5d5c73a01b3
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+        state: >
+          {{ '%.2f'%((states('sensor.pv_geldertrag_durch_einspeisung_gesamt') | float(0) ) + (states('sensor.pv_geldertrag_durch_eigenverbrauch_gesamt') | float(0))) }}
+      - default_entity_id: sensor.pv_geldbetrag_bis_amortisation
+        name: PV verbleibend bis Amortisation
+        unique_id: a7fd9a7d-67c5-4be6-9e15-72ace3f5a69b
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+        state: >
+          {{ '%.2f'%(13724.42 - (states('sensor.pv_geldertrag_gesamt') | float(13724.42))) }}
+# 
+#     --------------------------------
+#     --   Elektrische Leistung     --
+#     --------------------------------
+#
+#       --------------------------------
+#       --       Netz und PV          --
+#       --------------------------------
+#
+      - default_entity_id: sensor.el_leistung_stromzaehler_netzbezug
+        name: El. Leistung Stromzähler Netzbezug
+        unique_id: ed8966a6-ddfc-4b61-9f1f-e20f570939da
+        unit_of_measurement: 'W'
+        icon_template: mdi:speedometer
+        state: >
+          {{ states('sensor.stromzahler_sum_active_instantaneous_power') }}
 
 
 

@@ -51,114 +51,114 @@
 #        unit_of_measurement: '°C'
 #        value_template: "{{ (states('sensor.0x00158d00034d1e34_temperature') | float(0)) | round(1) }}"
 #        device_class: temperature
-      luftdruck_kuche_aqara:
-        friendly_name: 'Luftdruck Küche Aqara'
-        unit_of_measurement: 'hPa'
-        value_template: "{{ (states('sensor.0x00158d00034d1e34_pressure') | float(0)) | round }}"
-        device_class: pressure
-      luftfeuchtigkeit_waschkuche:
-        friendly_name: 'Luftfeuchtigkeit Waschküche'
-        unit_of_measurement: '%'
-        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_5_sht31') | float(0) | round(1) }}"
-        device_class: humidity
-      temp_waschkuche:
-        friendly_name: 'Temp. Waschküche'
-        unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.temp_esp_wemos_d1_5_sht31') | float(0) | round(1) }}"
-        device_class: temperature
-      luftfeuchtigkeit_werkelraum:
-        friendly_name: 'Luftfeuchtigkeit Werkelraum'
-        unit_of_measurement: '%'
-        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_6_sht31') | float(0) | round(1) }}"
-        device_class: humidity
-      temp_werkelraum:
-        friendly_name: 'Temp. Werkelraum'
-        unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.temp_esp_wemos_d1_6_sht31') | float(0) | round(1) }}"
-        device_class: temperature
-      luftfeuchtigkeit_partyraum:
-        friendly_name: 'Luftfeuchtigkeit Partyraum'
-        unit_of_measurement: '%'
-        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_11_sht31') | float(0) | round(1) }}"
-        device_class: humidity
-      temp_partyraum:
-        friendly_name: 'Temp. Partyraum'
-        unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.temp_esp_wemos_d1_11_sht31') | float(0) | round(1) }}"
-        device_class: temperature
-      luftfeuchtigkeit_vorratsraum:
-        friendly_name: 'Luftfeuchtigkeit Speis'
-        unit_of_measurement: '%'
-        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_bme280') | float(0) | round(1) }}"
-        device_class: humidity
-      temp_vorratsraum:
-        friendly_name: 'Temp. Speis'
-        unit_of_measurement: '°C'
-        value_template: "{{ states('sensor.temp_esp_wemos_d1_9_bme280') | float(0) | round(1) }}"
-        device_class: temperature
-      temp_outside_internet:
-        friendly_name: "Temperatur außen Internet"
-        value_template: "{{ state_attr('weather.lieblingshaus', 'temperature') }}"
-        unit_of_measurement: '°C'
-        device_class: temperature
-      humidity_outside_internet:
-        friendly_name: "Luftfeuchtigkeit außen Internet"
-        value_template: "{{ state_attr('weather.lieblingshaus', 'humidity') }}"
-        unit_of_measurement: '%'
-        device_class: humidity
+#      luftdruck_kuche_aqara:
+#        friendly_name: 'Luftdruck Küche Aqara'
+#        unit_of_measurement: 'hPa'
+#        value_template: "{{ (states('sensor.0x00158d00034d1e34_pressure') | float(0)) | round }}"
+#        device_class: pressure
+#      luftfeuchtigkeit_waschkuche:
+#        friendly_name: 'Luftfeuchtigkeit Waschküche'
+#        unit_of_measurement: '%'
+#        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_5_sht31') | float(0) | round(1) }}"
+#        device_class: humidity
+#      temp_waschkuche:
+#        friendly_name: 'Temp. Waschküche'
+#        unit_of_measurement: '°C'
+#        value_template: "{{ states('sensor.temp_esp_wemos_d1_5_sht31') | float(0) | round(1) }}"
+#        device_class: temperature
+#      luftfeuchtigkeit_werkelraum:
+#        friendly_name: 'Luftfeuchtigkeit Werkelraum'
+#        unit_of_measurement: '%'
+#        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_6_sht31') | float(0) | round(1) }}"
+#        device_class: humidity
+#      temp_werkelraum:
+#        friendly_name: 'Temp. Werkelraum'
+#        unit_of_measurement: '°C'
+#        value_template: "{{ states('sensor.temp_esp_wemos_d1_6_sht31') | float(0) | round(1) }}"
+#        device_class: temperature
+#      luftfeuchtigkeit_partyraum:
+#        friendly_name: 'Luftfeuchtigkeit Partyraum'
+#        unit_of_measurement: '%'
+#        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_11_sht31') | float(0) | round(1) }}"
+#        device_class: humidity
+#      temp_partyraum:
+#        friendly_name: 'Temp. Partyraum'
+#        unit_of_measurement: '°C'
+#        value_template: "{{ states('sensor.temp_esp_wemos_d1_11_sht31') | float(0) | round(1) }}"
+#        device_class: temperature
+#      luftfeuchtigkeit_vorratsraum:
+#        friendly_name: 'Luftfeuchtigkeit Speis'
+#        unit_of_measurement: '%'
+#        value_template: "{{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_bme280') | float(0) | round(1) }}"
+#        device_class: humidity
+#      temp_vorratsraum:
+#        friendly_name: 'Temp. Speis'
+#        unit_of_measurement: '°C'
+#        value_template: "{{ states('sensor.temp_esp_wemos_d1_9_bme280') | float(0) | round(1) }}"
+#        device_class: temperature
+#      temp_outside_internet:
+#        friendly_name: "Temperatur außen Internet"
+#        value_template: "{{ state_attr('weather.lieblingshaus', 'temperature') }}"
+#        unit_of_measurement: '°C'
+#        device_class: temperature
+#      humidity_outside_internet:
+#        friendly_name: "Luftfeuchtigkeit außen Internet"
+#        value_template: "{{ state_attr('weather.lieblingshaus', 'humidity') }}"
+#        unit_of_measurement: '%'
+#        device_class: humidity
 #
 #
 #     --------------------------------
 #     --     Stromverbrauch         --
 #     --------------------------------
 #
-      stromzaehler_netzbezug:
-        value_template: "{{ '%.1f'%(states('sensor.stromzahler_positive_active_energy_in_tariff_t1') | float(0) /1000) | float(0) }}"
-        friendly_name: 'Stromzähler Netzbezug'
-        unit_of_measurement: 'kWh'
-        icon_template: mdi:counter
-      stromzaehler_netzeinspeisung:
-        value_template: "{{ '%.1f'%(states('sensor.stromzahler_negative_active_energy_in_tariff_t1') | float(0) /1000) | float(0) }}"
-        friendly_name: 'Stromzähler Netzeinspeisung'
-        unit_of_measurement: 'kWh'
-        icon_template: mdi:counter
-      stromkosten_netzbezug:
-        value_template: "{{ '%.2f'%((states('sensor.stromzaehler_netzbezug') | float(0) ) * (states('input_number.strompreis') | float(0))) }}"
-        friendly_name: 'Stromkosten Netzbezug'
-        unit_of_measurement: '€'
-        icon_template: mdi:currency-eur
+#      stromzaehler_netzbezug:
+#        value_template: "{{ '%.1f'%(states('sensor.stromzahler_positive_active_energy_in_tariff_t1') | float(0) /1000) | float(0) }}"
+#        friendly_name: 'Stromzähler Netzbezug'
+#        unit_of_measurement: 'kWh'
+#        icon_template: mdi:counter
+#      stromzaehler_netzeinspeisung:
+#        value_template: "{{ '%.1f'%(states('sensor.stromzahler_negative_active_energy_in_tariff_t1') | float(0) /1000) | float(0) }}"
+#        friendly_name: 'Stromzähler Netzeinspeisung'
+#        unit_of_measurement: 'kWh'
+#        icon_template: mdi:counter
+#      stromkosten_netzbezug:
+#        value_template: "{{ '%.2f'%((states('sensor.stromzaehler_netzbezug') | float(0) ) * (states('input_number.strompreis') | float(0))) }}"
+#        friendly_name: 'Stromkosten Netzbezug'
+#        unit_of_measurement: '€'
+#        icon_template: mdi:currency-eur
 #
 #     --------------------------------
 #     --        Ertrag PV           --
 #     --------------------------------
 #
-      pv_geldertrag_durch_einspeisung_gesamt:
-        value_template: "{{ '%.2f'%((states('sensor.stromzaehler_netzeinspeisung') | float(0) ) * (states('input_number.pv_einspeiseverguetung') | float(0))) }}"
-        friendly_name: 'PV Ertrag Einspeisung'
-        unit_of_measurement: '€'
-        icon_template: mdi:currency-eur
-      euro_pro_stunde_eigenverbrauch:
-        value_template: "{{ (states('sensor.el_leistung_eigenverbrauch') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}"
-        friendly_name: 'Euro pro Stunde - Eigenverbrauch'
-        unit_of_measurement: '€/h'
+#      pv_geldertrag_durch_einspeisung_gesamt:
+#        value_template: "{{ '%.2f'%((states('sensor.stromzaehler_netzeinspeisung') | float(0) ) * (states('input_number.pv_einspeiseverguetung') | float(0))) }}"
+#        friendly_name: 'PV Ertrag Einspeisung'
+#        unit_of_measurement: '€'
+#        icon_template: mdi:currency-eur
+#      euro_pro_stunde_eigenverbrauch:
+#        value_template: "{{ (states('sensor.el_leistung_eigenverbrauch') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}"
+#        friendly_name: 'Euro pro Stunde - Eigenverbrauch'
+#        unit_of_measurement: '€/h'
       # Eigenverbrauch bis 28.2.23: 5191 kWh zu Strompreis 0,28 => 1453,48 €
       # Eigenverbrauch von 1.3.23 bis 30.1.24 16:00: 3863 kWh zu Strompreis 0,40 => 1545,20 €
       # Gesamt 2998.68 € => dann Umstellung auf Integrations-Sensor, der den aktuellen Strompreis richtig verrechnet
-      pv_geldertrag_durch_eigenverbrauch_gesamt:
-        value_template: "{{ '%.2f'%((states('sensor.ertragszaehler_eigenverbrauch_pv') | float(0)) + 2998.68) }}"
-        friendly_name: 'PV Ertrag Eigenverbrauch'
-        unit_of_measurement: '€'
-        icon_template: mdi:currency-eur
-      pv_geldertrag_gesamt:
-        value_template: "{{ '%.2f'%((states('sensor.pv_geldertrag_durch_einspeisung_gesamt') | float(0) ) + (states('sensor.pv_geldertrag_durch_eigenverbrauch_gesamt') | float(0))) }}"
-        friendly_name: 'PV Ertrag gesamt'
-        unit_of_measurement: '€'
-        icon_template: mdi:currency-eur
-      pv_geldbetrag_bis_amortisation:
-        value_template: "{{ '%.2f'%(13724.42 - (states('sensor.pv_geldertrag_gesamt') | float(13724.42))) }}"
-        friendly_name: 'PV verbleibend bis Amortisation'
-        unit_of_measurement: '€'
-        icon_template: mdi:currency-eur
+#      pv_geldertrag_durch_eigenverbrauch_gesamt:
+#        value_template: "{{ '%.2f'%((states('sensor.ertragszaehler_eigenverbrauch_pv') | float(0)) + 2998.68) }}"
+#        friendly_name: 'PV Ertrag Eigenverbrauch'
+#        unit_of_measurement: '€'
+#        icon_template: mdi:currency-eur
+#      pv_geldertrag_gesamt:
+#        value_template: "{{ '%.2f'%((states('sensor.pv_geldertrag_durch_einspeisung_gesamt') | float(0) ) + (states('sensor.pv_geldertrag_durch_eigenverbrauch_gesamt') | float(0))) }}"
+#        friendly_name: 'PV Ertrag gesamt'
+#        unit_of_measurement: '€'
+#        icon_template: mdi:currency-eur
+#      pv_geldbetrag_bis_amortisation:
+#        value_template: "{{ '%.2f'%(13724.42 - (states('sensor.pv_geldertrag_gesamt') | float(13724.42))) }}"
+#        friendly_name: 'PV verbleibend bis Amortisation'
+#        unit_of_measurement: '€'
+#        icon_template: mdi:currency-eur
 # 
 #     --------------------------------
 #     --   Elektrische Leistung     --
@@ -168,11 +168,11 @@
 #       --       Netz und PV          --
 #       --------------------------------
 #
-      el_leistung_stromzaehler_netzbezug:
-        value_template: "{{ states('sensor.stromzahler_sum_active_instantaneous_power') }}"
-        friendly_name: 'El. Leistung Stromzähler Netzbezug'
-        unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+#      el_leistung_stromzaehler_netzbezug:
+#        value_template: "{{ states('sensor.stromzahler_sum_active_instantaneous_power') }}"
+#        friendly_name: 'El. Leistung Stromzähler Netzbezug'
+#        unit_of_measurement: 'W'
+#        icon_template: mdi:speedometer
       el_leistung_netz:
         value_template: >-
           {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
