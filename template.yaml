@@ -120,7 +120,7 @@
         name: Helligkeit Wetterstation Ersatz
         unique_id: db4d4636-c258-4b05-b142-73bd2ef10daf
         unit_of_measurement: 'lx'
-        icon_template: mdi:weather-sunny
+        icon: mdi:weather-sunny
         state: >
           {{ (states('sensor.el_leistung_pv_ac') | float(0)) * 5 }}
 #
@@ -242,21 +242,21 @@
         name: Stromzähler Netzbezug
         unique_id: 46fa60ef-ff71-4dcc-9a8e-231bd8a64bbc
         unit_of_measurement: 'kWh'
-        icon_template: mdi:counter
+        icon: mdi:counter
         state: >
           {{ '%.1f'%(states('sensor.stromzahler_positive_active_energy_in_tariff_t1') | float(0) /1000) | float(0) }}
       - default_entity_id: sensor.stromzaehler_netzeinspeisung
         name: Stromzähler Netzeinspeisung
         unique_id: 014c58ee-4cc0-4874-8947-ba0baca014bb
         unit_of_measurement: 'kWh'
-        icon_template: mdi:counter
+        icon: mdi:counter
         state: >
           {{ '%.1f'%(states('sensor.stromzahler_negative_active_energy_in_tariff_t1') | float(0) /1000) | float(0) }}
       - default_entity_id: sensor.stromkosten_netzbezug
         name: Stromkosten Netzbezug
         unique_id: 3fdb7142-a4d2-48ad-b557-757bdc7a0cf4
         unit_of_measurement: '€'
-        icon_template: mdi:currency-eur
+        icon: mdi:currency-eur
         state: >
           {{ '%.2f'%((states('sensor.stromzaehler_netzbezug') | float(0) ) * (states('input_number.strompreis') | float(0))) }}
 #
@@ -268,7 +268,7 @@
         name: PV Ertrag Einspeisung
         unique_id: 7a27e6c2-5dd2-4a79-af85-8057fffb31c5
         unit_of_measurement: '€'
-        icon_template: mdi:currency-eur
+        icon: mdi:currency-eur
         state: >
           {{ '%.2f'%((states('sensor.stromzaehler_netzeinspeisung') | float(0) ) * (states('input_number.pv_einspeiseverguetung') | float(0))) }}
       - default_entity_id: sensor.euro_pro_stunde_eigenverbrauch
@@ -284,21 +284,21 @@
         name: PV Ertrag Eigenverbrauch
         unique_id: 1229f93a-85a7-4868-a2d6-8c7fb38ce8bf
         unit_of_measurement: '€'
-        icon_template: mdi:currency-eur
+        icon: mdi:currency-eur
         state: >
           {{ '%.2f'%((states('sensor.ertragszaehler_eigenverbrauch_pv') | float(0)) + 2998.68) }}
       - default_entity_id: sensor.pv_geldertrag_gesamt
         name: PV Ertrag gesamt
         unique_id: d77b1037-f5a2-41f8-8d8d-d5d5c73a01b3
         unit_of_measurement: '€'
-        icon_template: mdi:currency-eur
+        icon: mdi:currency-eur
         state: >
           {{ '%.2f'%((states('sensor.pv_geldertrag_durch_einspeisung_gesamt') | float(0) ) + (states('sensor.pv_geldertrag_durch_eigenverbrauch_gesamt') | float(0))) }}
       - default_entity_id: sensor.pv_geldbetrag_bis_amortisation
         name: PV verbleibend bis Amortisation
         unique_id: a7fd9a7d-67c5-4be6-9e15-72ace3f5a69b
         unit_of_measurement: '€'
-        icon_template: mdi:currency-eur
+        icon: mdi:currency-eur
         state: >
           {{ '%.2f'%(13724.42 - (states('sensor.pv_geldertrag_gesamt') | float(13724.42))) }}
 # 
@@ -314,7 +314,7 @@
         name: El. Leistung Stromzähler Netzbezug
         unique_id: ed8966a6-ddfc-4b61-9f1f-e20f570939da
         unit_of_measurement: 'W'
-        icon_template: mdi:speedometer
+        icon: mdi:speedometer
         state: >
           {{ states('sensor.stromzahler_sum_active_instantaneous_power') }}
 
