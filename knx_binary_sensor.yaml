@@ -4,7 +4,7 @@
 #    device_class: moving
   - state_address: '6/0/23'
     name: PM_E_KU_Bar_EZ
-    device_class: none
+    device_class: moving
   - state_address: '14/0/3'
     name: Wasser unter Spüle
     device_class: problem
@@ -12,7 +12,7 @@
 # Esszimmer
   - state_address: '6/0/137'
     name: PM_E_EZ_Bar_Küche
-    device_class: None
+    device_class: moving
   - state_address: '6/0/151'
     name: PM_E_EZ_Esstisch
     device_class: moving
