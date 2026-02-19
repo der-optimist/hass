@@ -5,8 +5,8 @@
 # --                            --
 # --------------------------------
 #
-  - platform: template
-    sensors:
+#  - platform: template
+#    sensors:
 #
 #     --------------------------------
 #     --          Date              --
