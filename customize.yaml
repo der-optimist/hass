@@ -111,11 +111,11 @@ binary_sensor.pm_o_fl_treppe:
 binary_sensor.pm_o_gz:
   friendly_name: Gästezimmer
 binary_sensor.pm_o_ko_la_raum:
-  friendly_name: Lara Raum
+  friendly_name: 💕 Lara Raum
 binary_sensor.pm_o_ko_la_tuer:
   friendly_name: Lara Tür
 binary_sensor.pm_o_kw_le_raum:
-  friendly_name: Lea Raum
+  friendly_name: 💕 Lea Raum
 binary_sensor.pm_o_kw_le_tuer:
   friendly_name: Lea Tür
 binary_sensor.pm_o_nz:

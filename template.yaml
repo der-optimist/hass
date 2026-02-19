@@ -37,42 +37,42 @@
       - unique_id: el_leistung_heizung_partyraum_vorne
         # name: change entity_id in UI after creation
         unit_of_measurement: "W"
-        state: >
+        state: >-
           {{ states('sensor.0xa4c138be24f3a561_power') }}
         attributes:
           friendly_name: "El. Leistung Heizung Partyraum vorne"
       - unique_id: el_leistung_heizung_partyraum_hinten
         # name: change entity_id in UI after creation
         unit_of_measurement: "W"
-        state: >
+        state: >-
           {{ states('sensor.0xa4c1382185708acf_power') }}
         attributes:
           friendly_name: "El. Leistung Heizung Partyraum hinten"
       - unique_id: el_leistung_luftentfeuchter_partyraum
         # name: change entity_id in UI after creation
         unit_of_measurement: "W"
-        state: >
+        state: >-
           {{ states('sensor.el_leistung_esp_sd_6_2') }}
         attributes:
           friendly_name: "El. Leistung Luftentfeuchter Partyraum"
       - unique_id: el_leistung_luftentfeuchter_waschkueche
         # name: change entity_id in UI after creation
         unit_of_measurement: "W"
-        state: >
+        state: >-
           {{ states('sensor.0x00158d0003891388_power') }}
         attributes:
           friendly_name: "El. Leistung Luftentfeuchter Waschküche"
       - unique_id: el_leistung_hebeanlage
         # name: change entity_id in UI after creation
         unit_of_measurement: "W"
-        state: >
+        state: >-
           {{ states('sensor.el_leistung_shellyplug_s_169d16_power') }}
         attributes:
           friendly_name: "El. Leistung Hebeanlage"
       - unique_id: dummy_nuki_battery
         # name: change entity_id in UI after creation
         unit_of_measurement: "%"
-        state: >
+        state: >-
           {% if state_attr('lock.haustur','battery_critical') == true %}
             {{ 1 }}
           {% else %}
@@ -83,7 +83,7 @@
       - unique_id: temp_windchill
         # name: change entity_id in UI after creation
         unit_of_measurement: "°C"
-        state: >
+        state: >-
           {% set temp = states('sensor.temp_aussen') | float(0) %}
           {% set wind_kmh = (states('sensor.windgeschwindigkeit_wetterstation_mittel') | float(0)) * 3.6 %}
           {% if wind_kmh > 5 %}
@@ -96,7 +96,7 @@
       - unique_id: temp_außen_gefuehlt
         # name: change entity_id in UI after creation
         unit_of_measurement: "°C"
-        state: >
+        state: >-
           {% set temp = states('sensor.temp_aussen') | float(0) %}
           {% set windchill = states('sensor.template_temp_windchill') | float(0) %}
           {% set heat_index = states('sensor.thermal_comfort_aussen_heat_index') | float(0) %}
@@ -114,14 +114,14 @@
       - default_entity_id: sensor.date_template
         name: Datum
         unique_id: 896e8abe-8b76-4f62-b116-dbd921d9f711
-        state: >
+        state: >-
           {{ as_timestamp(now()) | timestamp_custom("%d.%m.%Y", True) }}
       - default_entity_id: sensor.helligkeit_wetterstation_ersatz
         name: Helligkeit Wetterstation Ersatz
         unique_id: db4d4636-c258-4b05-b142-73bd2ef10daf
         unit_of_measurement: 'lx'
         icon: mdi:weather-sunny
-        state: >
+        state: >-
           {{ (states('sensor.el_leistung_pv_ac') | float(0)) * 5 }}
 #
 #     --------------------------------
@@ -133,105 +133,105 @@
         unique_id: fa5802f0-7917-41a9-85f3-ae839dfeeca7
         unit_of_measurement: '°C'
         device_class: temperature
-        state: >
+        state: >-
           {{ states('sensor.aussensensor_zigbee_temperature') }}
       - default_entity_id: sensor.luftfeuchtigkeit_aussen
         name: Luftfeuchtigkeit Außen
         unique_id: e783d11f-cafd-45ff-96dd-4b10a4577043
         unit_of_measurement: '%'
         device_class: humidity
-        state: >
+        state: >-
           {{ states('sensor.aussensensor_zigbee_humidity') }}
       - default_entity_id: sensor.luftfeuchtigkeit_kuche_aqara
         name: Luftfeuchtigkeit Küche
         unique_id: 5e8336f9-1450-4bcb-9d5a-387bc81cd446
         unit_of_measurement: '%'
         device_class: humidity
-        state: >
+        state: >-
           {{ (states('sensor.0x00158d00034d1e34_humidity') | float(0)) | round }}
       - default_entity_id: sensor.temp_kuche_aqara
         name: Temp. Küche Aqara
         unique_id: b5b11fef-8dbd-4c2a-bb93-2abb4c97f846
         unit_of_measurement: '°C'
         device_class: temperature
-        state: >
+        state: >-
           {{ (states('sensor.0x00158d00034d1e34_temperature') | float(0)) | round(1) }}
       - default_entity_id: sensor.luftdruck_kuche_aqara
         name: Luftdruck Küche Aqara
         unique_id: 41be9529-0040-4016-9fc3-bfbbadca7a90
         unit_of_measurement: 'hPa'
         device_class: pressure
-        state: >
+        state: >-
           {{ (states('sensor.0x00158d00034d1e34_pressure') | float(0)) | round }}
       - default_entity_id: sensor.luftfeuchtigkeit_waschkuche
         name: Luftfeuchtigkeit Waschküche
         unique_id: 675286d8-f821-41b6-81be-eab4677bb669
         unit_of_measurement: '%'
         device_class: humidity
-        state: >
+        state: >-
           {{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_5_sht31') | float(0) | round(1) }}
       - default_entity_id: sensor.temp_waschkuche
         name: Temp. Waschküche
         unique_id: 5ce9fff4-b1e9-40af-928b-7645a9b41dc8
         unit_of_measurement: '°C'
         device_class: temperature
-        state: >
+        state: >-
           {{ states('sensor.temp_esp_wemos_d1_5_sht31') | float(0) | round(1) }}
       - default_entity_id: sensor.luftfeuchtigkeit_werkelraum
         name: Luftfeuchtigkeit Werkelraum
         unique_id: b35bbf58-4081-46d1-adb2-88e430015acc
         unit_of_measurement: '%'
         device_class: humidity
-        state: >
+        state: >-
           {{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_6_sht31') | float(0) | round(1) }}
       - default_entity_id: sensor.temp_werkelraum
         name: Temp. Werkelraum
         unique_id: 11933239-a1ae-414a-a0d6-33de2078917c
         unit_of_measurement: '°C'
         device_class: temperature
-        state: >
+        state: >-
           {{ states('sensor.temp_esp_wemos_d1_6_sht31') | float(0) | round(1) }}
       - default_entity_id: sensor.luftfeuchtigkeit_partyraum
         name: Luftfeuchtigkeit Partyraum
         unique_id: fc1f25d7-ea01-4aca-a7fa-06b18dbb8a31
         unit_of_measurement: '%'
         device_class: humidity
-        state: >
+        state: >-
           {{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_11_sht31') | float(0) | round(1) }}
       - default_entity_id: sensor.temp_partyraum
         name: Temp. Partyraum
         unique_id: 2cf0ee1d-aa78-44ea-b0eb-ff18d09be684
         unit_of_measurement: '°C'
         device_class: temperature
-        state: >
+        state: >-
           {{ states('sensor.temp_esp_wemos_d1_11_sht31') | float(0) | round(1) }}
       - default_entity_id: sensor.luftfeuchtigkeit_vorratsraum
         name: Luftfeuchtigkeit Speis
         unique_id: 86045dfe-9d0a-463c-a9ed-3c533a30cb4b
         unit_of_measurement: '%'
         device_class: humidity
-        state: >
+        state: >-
           {{ states('sensor.luftfeuchtigkeit_relativ_esp_wemos_d1_9_bme280') | float(0) | round(1) }}
       - default_entity_id: sensor.temp_vorratsraum
         name: Temp. Speis
         unique_id: 4cbd703c-1140-4d59-b564-995f7c06a241
         unit_of_measurement: '°C'
         device_class: temperature
-        state: >
+        state: >-
           {{ states('sensor.temp_esp_wemos_d1_9_bme280') | float(0) | round(1) }}
       - default_entity_id: sensor.temp_outside_internet
         name: Temperatur außen Internet
         unique_id: 9b166d0f-3727-4a63-8642-8206e4a648e4
         unit_of_measurement: '°C'
         device_class: temperature
-        state: >
+        state: >-
           {{ state_attr('weather.lieblingshaus', 'temperature') }}
       - default_entity_id: sensor.humidity_outside_internet
         name: Luftfeuchtigkeit außen Internet
         unique_id: ddf39744-9d9b-45ee-a60c-852d8b3cf0c0
         unit_of_measurement: '%'
         device_class: humidity
-        state: >
+        state: >-
           {{ state_attr('weather.lieblingshaus', 'humidity') }}
 #
 #     --------------------------------
@@ -243,21 +243,21 @@
         unique_id: 46fa60ef-ff71-4dcc-9a8e-231bd8a64bbc
         unit_of_measurement: 'kWh'
         icon: mdi:counter
-        state: >
+        state: >-
           {{ '%.1f'%(states('sensor.stromzahler_positive_active_energy_in_tariff_t1') | float(0) /1000) | float(0) }}
       - default_entity_id: sensor.stromzaehler_netzeinspeisung
         name: Stromzähler Netzeinspeisung
         unique_id: 014c58ee-4cc0-4874-8947-ba0baca014bb
         unit_of_measurement: 'kWh'
         icon: mdi:counter
-        state: >
+        state: >-
           {{ '%.1f'%(states('sensor.stromzahler_negative_active_energy_in_tariff_t1') | float(0) /1000) | float(0) }}
       - default_entity_id: sensor.stromkosten_netzbezug
         name: Stromkosten Netzbezug
         unique_id: 3fdb7142-a4d2-48ad-b557-757bdc7a0cf4
         unit_of_measurement: '€'
         icon: mdi:currency-eur
-        state: >
+        state: >-
           {{ '%.2f'%((states('sensor.stromzaehler_netzbezug') | float(0) ) * (states('input_number.strompreis') | float(0))) }}
 #
 #     --------------------------------
@@ -269,13 +269,13 @@
         unique_id: 7a27e6c2-5dd2-4a79-af85-8057fffb31c5
         unit_of_measurement: '€'
         icon: mdi:currency-eur
-        state: >
+        state: >-
           {{ '%.2f'%((states('sensor.stromzaehler_netzeinspeisung') | float(0) ) * (states('input_number.pv_einspeiseverguetung') | float(0))) }}
       - default_entity_id: sensor.euro_pro_stunde_eigenverbrauch
         name: Euro pro Stunde - Eigenverbrauch
         unique_id: ada9abac-e27f-4923-9782-0642fc7243f8
         unit_of_measurement: '€/h'
-        state: >
+        state: >-
           {{ (states('sensor.el_leistung_eigenverbrauch') | float(0) * states('input_number.strompreis') | float(0)) / 1000 }}
       # Eigenverbrauch bis 28.2.23: 5191 kWh zu Strompreis 0,28 => 1453,48 €
       # Eigenverbrauch von 1.3.23 bis 30.1.24 16:00: 3863 kWh zu Strompreis 0,40 => 1545,20 €
@@ -285,21 +285,21 @@
         unique_id: 1229f93a-85a7-4868-a2d6-8c7fb38ce8bf
         unit_of_measurement: '€'
         icon: mdi:currency-eur
-        state: >
+        state: >-
           {{ '%.2f'%((states('sensor.ertragszaehler_eigenverbrauch_pv') | float(0)) + 2998.68) }}
       - default_entity_id: sensor.pv_geldertrag_gesamt
         name: PV Ertrag gesamt
         unique_id: d77b1037-f5a2-41f8-8d8d-d5d5c73a01b3
         unit_of_measurement: '€'
         icon: mdi:currency-eur
-        state: >
+        state: >-
           {{ '%.2f'%((states('sensor.pv_geldertrag_durch_einspeisung_gesamt') | float(0) ) + (states('sensor.pv_geldertrag_durch_eigenverbrauch_gesamt') | float(0))) }}
       - default_entity_id: sensor.pv_geldbetrag_bis_amortisation
         name: PV verbleibend bis Amortisation
         unique_id: a7fd9a7d-67c5-4be6-9e15-72ace3f5a69b
         unit_of_measurement: '€'
         icon: mdi:currency-eur
-        state: >
+        state: >-
           {{ '%.2f'%(13724.42 - (states('sensor.pv_geldertrag_gesamt') | float(13724.42))) }}
 # 
 #     --------------------------------
@@ -315,24 +315,419 @@
         unique_id: ed8966a6-ddfc-4b61-9f1f-e20f570939da
         unit_of_measurement: 'W'
         icon: mdi:speedometer
-        state: >
+        state: >-
           {{ states('sensor.stromzahler_sum_active_instantaneous_power') }}
-
-
-
-
-
-#      - default_entity_id: sensor.
-#        name: 
-#        unique_id: 
-#        state: >
-          
-
+      - default_entity_id: sensor.el_leistung_netz
+        name: El. Leistung Netz (positiv gleich Bezug)
+        unique_id: 97c68271-a9b3-40a5-80bb-aaf52bb7d242
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
+            {{ states('sensor.power_grid_fronius_power_flow_0_192_168_178_28') | float(0) }}
+          {% else %}
+            {{ states('sensor.el_leistung_stromzaehler_netzbezug') | float(0) }}
+          {% endif %}
+      - default_entity_id: sensor.el_leistung_einspeisung
+        name: El. Leistung Einspeisung
+        unique_id: 46d194c5-6359-4d9d-a224-7ecd8726e836
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {% if (states('sensor.el_leistung_netz') | float(0)) < 0 %}
+            {{ -1*(states('sensor.el_leistung_netz') | float(0)) }}
+          {% else %}
+            0.0
+          {% endif %}
+      - default_entity_id: sensor.el_leistung_pv_ac
+        name: El. Leistung PV AC
+        unique_id: d8203e41-74fa-4b64-a26b-c29a35873804
+        unit_of_measurement: 'W'
+        picture: '/local/icons/power/solar_panel.svg'
+        state: >-
+          {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
+            {{ states('sensor.power_photovoltaics_fronius_power_flow_0_192_168_178_28') | float(0) }}
+          {% else %}
+            0.0
+          {% endif %}
+      - default_entity_id: sensor.el_leistung_pv_dc
+        name: El. Leistung PV DC
+        unique_id: 170ac8ea-8208-4726-9884-bbef275feded
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
+            {{ ((states('sensor.voltage_dc_fronius_inverter_1_192_168_178_28') | float(0)) * (states('sensor.current_dc_fronius_inverter_1_192_168_178_28') | float(0))) + ((states('sensor.voltage_dc_2_fronius_inverter_1_192_168_178_28') | float(0)) * (states('sensor.current_dc_2_fronius_inverter_1_192_168_178_28') | float(0))) }}
+          {% else %}
+            0.0
+          {% endif %}
+      - default_entity_id: sensor.wirkungsgrad_wechselrichter
+        name: Wirkungsgrad Wechselrichter
+        unique_id: 48b41c38-1781-4e43-bc72-66b6dfaab708
+        unit_of_measurement: '%'
+        icon: mdi:chart-bell-curve-cumulative
+        state: >-
+          {% set dc = ((states('sensor.voltage_dc_fronius_inverter_1_192_168_178_28') | float(1)) * (states('sensor.current_dc_fronius_inverter_1_192_168_178_28') | float(1))) + ((states('sensor.voltage_dc_2_fronius_inverter_1_192_168_178_28') | float(0)) * (states('sensor.current_dc_2_fronius_inverter_1_192_168_178_28') | float(0))) %}
+          {% set ac = states('sensor.power_ac_fronius_inverter_1_192_168_178_28') | float(0) %}
+          {% set eta = (ac / dc) * 100 %}
+          {% if eta > 100 %}
+            100.0
+          {% elif eta < 0 %}
+            0.0
+          {% else %}
+            {{ eta | round(1) }}
+          {% endif %}
+      - default_entity_id: sensor.el_leistung_pv_dc_string1
+        name: El. Leistung PV DC String 1
+        unique_id: 66819623-0401-45b3-ac1f-c1742148fb61
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {{ ((states('sensor.voltage_dc_fronius_inverter_1_192_168_178_28') | float(0)) * (states('sensor.current_dc_fronius_inverter_1_192_168_178_28') | float(0))) |round(0) }}
+      - default_entity_id: sensor.el_leistung_pv_dc_string2
+        name: El. Leistung PV DC String 2
+        unique_id: c82e0908-4213-4380-8cb6-a8a271bef966
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {{ ((states('sensor.voltage_dc_2_fronius_inverter_1_192_168_178_28') | float(0)) * (states('sensor.current_dc_2_fronius_inverter_1_192_168_178_28') | float(0))) |round(0) }}
+      - default_entity_id: sensor.unterschied_pv_string1_string2
+        name: Unterschied PV String 1 zu String 2
+        unique_id: e43469c4-87a4-4d06-acba-d6f941ea59d8
+        unit_of_measurement: '%'
+        icon: mdi:percent-outline
+        state: >-
+          {% set dc1 = (states('sensor.el_leistung_pv_dc_string1') | float(0)) %}
+          {% set dc2 = (states('sensor.el_leistung_pv_dc_string2') | float(0)) %}
+          {% if dc1 > 500 and dc2 > 500 %}
+            {{ (((dc1 - dc2) / (0.5*(dc1 + dc2))) * 100) | round(1) }}
+          {% else %}
+            {{ 0.0 }}
+          {% endif %}
+      - default_entity_id: sensor.stromzaehler_pv_ac_gesamt
+        name: Gesamtproduktion PV
+        unique_id: 3aeac1ac-d21f-464f-81e0-498941104b84
+        unit_of_measurement: 'kWh'
+        icon: mdi:counter
+        state: >-
+          {{ ((states('sensor.energy_total_fronius_inverter_1_192_168_178_28') | float(0) / 1000) + 3740.43) | round(1) }}
+        # 3740.43 was total production of first inverter that had a defect
+      - default_entity_id: sensor.el_leistung_verbrauch_gesamt
+        name: El. Leistung Verbrauch gesamt
+        unique_id: b23239a0-521d-42d7-974e-1f9c3b7b93ee
+        unit_of_measurement: 'W'
+        picture: '/local/icons/power/power_usage.svg'
+        state: >-
+          {% if is_state('binary_sensor.ping_wechselrichter_pv','on') %}
+            {{ -1*states('sensor.power_load_fronius_power_flow_0_192_168_178_28') | float(0) }}
+          {% else %}
+            {{ -1*states('sensor.el_leistung_stromzaehler_netzbezug') | float(0) }}
+          {% endif %}
+      - default_entity_id: sensor.el_leistung_eigenverbrauch
+        name: El. Leistung Eigenverbrauch
+        unique_id: 1b9f2e6b-d0f9-4cd9-a53d-edf6acff1347
+        unit_of_measurement: 'W'
+        picture: '/local/icons/power/power_usage.svg'
+        state: >-
+          {% if (states('sensor.el_leistung_pv_ac') | float(0)) > (states('sensor.el_leistung_verbrauch_gesamt') | float(0)) %}
+            {{ states('sensor.el_leistung_verbrauch_gesamt') | float(0) }}
+          {% else %}
+            {{ states('sensor.el_leistung_pv_ac') | float(0) }}
+          {% endif %}
+      - default_entity_id: sensor.pv_einspeisung_letzte_3_min_durchschnitt_anzeige
+        name: PV Einspeisung - Anzeige
+        unique_id: aa9d9c9b-770f-4d91-b771-de239d44d60d
+        unit_of_measurement: 'W'
+        picture: >-
+          {% if states('sensor.pv_einspeisung_letzte_3_min_durchschnitt') in ['unavailable', 'unknown', 'none'] %}
+            {{ '/local/icons/power/solar_power_gray.svg' }}
+          {% else %}
+            {% if (states('sensor.pv_einspeisung_letzte_3_min_durchschnitt') | float(0)) > 6000 %}
+              {{ '/local/icons/power/solar_power_green.svg' }}
+            {% elif (states('sensor.pv_einspeisung_letzte_3_min_durchschnitt') | float(0)) > 1500 %}
+              {{ '/local/icons/power/solar_power_orange.svg' }}
+            {% else %}
+              {{ '/local/icons/power/solar_power_gray.svg' }}
+            {% endif %}
+          {% endif %}
+        state: >-
+          {% if states('sensor.pv_einspeisung_letzte_3_min_durchschnitt') in ['unavailable', 'unknown', 'none'] %}
+            {{ 0 }}
+          {% else %}
+            {{ states('sensor.pv_einspeisung_letzte_3_min_durchschnitt') }}
+          {% endif %}
+#
+#       --------------------------------
+#       --   effektiver Strompreis    --
+#       --------------------------------
+#
+      - default_entity_id: sensor.einspeiselimit_watt
+        name: El. Leistung Einspeiselimit
+        unique_id: 32c7c767-efe8-4a90-be8e-fc78ef6572c3
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {{ (states('input_number.pv_einspeisebegrenzung_prozent') | float(0) ) * (states('input_number.pv_installierte_peakleistung') | float(0) ) * 0.01 }}
+      - default_entity_id: sensor.anteil_el_leistung_netzbezug
+        name: El. Leistung Anteil Netzbezug
+        unique_id: 27fdc630-be83-41a6-95d7-2847a1ea4571
+        unit_of_measurement: 'Anteil'
+        icon: mdi:chart-donut
+        state: >-
+          {% if (states('sensor.el_leistung_netz') | float(0)) > 0 %}
+            {{ (states('sensor.el_leistung_netz') | float(0)) / (states('sensor.el_leistung_verbrauch_gesamt') | float(1)) }}
+          {% else %}
+            0.0
+          {% endif %}
+      - default_entity_id: sensor.anteil_el_leistung_pv_nicht_einspeisbar
+        name: El. Leistung Anteil PV nicht einspeisbar
+        unique_id: a5d8153d-11c1-464c-8908-dd9b397fdbfa
+        unit_of_measurement: 'Anteil'
+        icon: mdi:chart-donut
+        state: >-
+          {% if (states('sensor.el_leistung_pv_ac') | float(0)) > ((states('sensor.einspeiselimit_watt') | float(0)) + (states('sensor.el_leistung_verbrauch_gesamt') | float(0))) %}
+            1.0
+          {% elif (states('sensor.el_leistung_pv_ac') | float(0)) > (states('sensor.einspeiselimit_watt') | float(0)) %}
+            {{ ((states('sensor.el_leistung_pv_ac') | float(0)) - (states('sensor.einspeiselimit_watt') | float(0))) / (states('sensor.el_leistung_verbrauch_gesamt') | float(1)) }}
+          {% else %}
+            0.0
+          {% endif %}
+      - default_entity_id: sensor.anteil_el_leistung_pv_einspeisbar
+        name: El. Leistung Anteil PV einspeisbar
+        unique_id: c89a348d-f1b1-4850-9ff0-159db290425f
+        unit_of_measurement: 'Anteil'
+        icon: mdi:chart-donut
+        state: >-
+          {{ 1 - (states('sensor.anteil_el_leistung_netzbezug') | float(0) ) - (states('sensor.anteil_el_leistung_pv_nicht_einspeisbar') | float(0) ) }}
+      - default_entity_id: sensor.strompreis_aktuell_effektiv_euro
+        name: Strompreis aktuell effektiv Euro
+        unique_id: 557c6d71-97b4-4b9d-9b60-0933dbccb178
+        unit_of_measurement: '€'
+        icon: mdi:currency-eur
+        state: >-
+          {{ (states('input_number.strompreis') | float(0) ) * (states('sensor.anteil_el_leistung_netzbezug') | float(0) ) + (states('input_number.pv_einspeiseverguetung') | float(0) ) * (states('sensor.anteil_el_leistung_pv_einspeisbar') | float(0) ) }}
+      - default_entity_id: sensor.strompreis_aktuell_abrechnung_euro
+        name: Strompreis aktuell Abrechnung Euro
+        unique_id: e289a7b9-7cc8-4cc8-973e-bf1dd3c9cc74
+        unit_of_measurement: '€'
+        icon: mdi:currency-eur
+        state: >-
+          {{ (states('input_number.strompreis') | float(0) ) * (states('sensor.anteil_el_leistung_netzbezug') | float(0) ) }}
+      - default_entity_id: sensor.strompreis_aktuell_effektiv_cent
+        name: Strompreis aktuell effektiv Cent
+        unique_id: 39354d52-c2d6-4164-93ab-66990820568a
+        unit_of_measurement: 'ct'
+        icon: mdi:currency-eur
+        state: >-
+          {{ ((states('sensor.strompreis_aktuell_effektiv_euro') | float(0)) * 100) | round(0) }}
+#
+#       --------------------------------
+#       --          Geräte            --
+#       --------------------------------
+#
+      - default_entity_id: sensor.el_leistung_kochfeld
+        name: El. Leistung Kochfeld
+        unique_id: e0fa111c-6aaf-4a12-811c-65a3bc7c808c
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {{ states('sensor.el_leistung_kochfeld_esp_2') }}
+      - default_entity_id: sensor.el_leistung_luftentf_vorratsraum
+        name: El. Leistung Luftentf. Vorratsraum
+        unique_id: 86959364-d57f-45cd-922c-c37477fddba5
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {% if states('sensor.el_leistung_kuhlschrank_keller') | float(0) < 1 %}
+            0.0
+          {% elif states('sensor.el_leistung_kuhlschrank_keller') | float(0) < 100 %}
+            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float(0) * 0.53) }}
+          {% else %}
+            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_keller') | float(0) * 0.656) }}
+          {% endif %}
+      - default_entity_id: sensor.el_leistung_waschmaschine
+        name: El. Leistung Waschmaschine
+        unique_id: 508a3d64-915c-46e6-94e7-63f9b1bd14dd
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {% if states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) < 15 %}
+            0.4
+          {% elif states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) < 360 %}
+            {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) * (states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) * 0.000688 + 0.561576)) }}
+          {% elif states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) < 1000 %}
+            {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) * 0.81) }}
+          {% else %}
+            {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) * 1) }}
+          {% endif %}
+      - default_entity_id: sensor.el_leistung_trockner
+        name: El. Leistung Trockner
+        unique_id: 38436488-1478-4f9b-aaa9-0556f8ac26b1
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {% if states('sensor.el_leistung_trockner_scheinleistung') | float(0) < 6 %}
+            0.0
+          {% elif states('sensor.el_leistung_trockner_scheinleistung') | float(0) < 9 %}
+            {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float(0) * (states('sensor.el_leistung_trockner_scheinleistung') | float(0) * (-0.008991) + 0.072442)) }}
+          {% elif states('sensor.el_leistung_trockner_scheinleistung') | float(0) < 10 %}
+            {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float(0) * 0.15) }}
+          {% else %}
+            {{ '%.1f'%(states('sensor.el_leistung_trockner_scheinleistung') | float(0) * 1) }}
+          {% endif %}
+      - default_entity_id: sensor.el_leistung_gefrierschrank
+        name: El. Leistung Gefrierschrank
+        unique_id: 36fd0b4a-40fd-4ec4-8a1e-491445d947e6
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {% if states('sensor.el_leistung_gefrierschrank_scheinleistung') | float(0) < 22 %}
+            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float(0) * 0.064) }}
+          {% elif states('sensor.el_leistung_gefrierschrank_scheinleistung') | float(0) < 80 %}
+            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float(0) * 0.73) }}
+          {% else %}
+            {{ '%.1f'%(states('sensor.el_leistung_gefrierschrank_scheinleistung') | float(0) * 0.82) }}
+          {% endif %}
+      - default_entity_id: sensor.el_leistung_kuhlschrank_kuche
+        name: El. Leistung Kühlschrank Küche
+        unique_id: 2c2ddaa5-3738-405d-9d89-9177b47c0007
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {% if states('sensor.el_leistung_kuhlschrank_kuche_scheinleistung') | float(0) < 10 %}
+            0.0
+          {% elif states('sensor.el_leistung_kuhlschrank_kuche_scheinleistung') | float(0) < 20 %}
+            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche_scheinleistung') | float(0) * 0.95) }}
+          {% else %}
+            {{ '%.1f'%(states('sensor.el_leistung_kuhlschrank_kuche_scheinleistung') | float(0) * 0.75) }}
+          {% endif %}
+      - default_entity_id: sensor.el_leistung_spulmaschine
+        name: El. Leistung Spülmaschine
+        unique_id: 05bf0bd1-f055-4819-ad97-5740b1a4b2a6
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {% if states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 16 %}
+            0.0
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 20 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 0.2) }}
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 30 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 1.0) }}
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 60 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 0.55) }}
+          {% elif states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) < 200 %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 0.81) }}
+          {% else %}
+            {{ '%.1f'%(states('sensor.el_leistung_spulmaschine_scheinleistung') | float(0) * 1.0) }}
+          {% endif %}
+      - default_entity_id: sensor.el_leistung_tv
+        name: El. Leistung TV
+        unique_id: 6f08e2f2-37f1-45a6-a203-05ced1f86b78
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {% if states('sensor.el_leistung_tv_scheinleistung') | float(0) == 0 %}
+            0.0
+          {% elif states('sensor.el_leistung_tv_scheinleistung') | float(0) < 15 %}
+            0.3
+          {% elif states('sensor.el_leistung_tv_scheinleistung') | float(0) < 30 %}
+            {{ '%.1f'%(states('sensor.el_leistung_tv_scheinleistung') | float(0) * 0.5) }}
+          {% elif states('sensor.el_leistung_tv_scheinleistung') | float(0) < 70 %}
+            {{ '%.1f'%(states('sensor.el_leistung_tv_scheinleistung') | float(0) * 0.815) }}
+          {% else %}
+            {{ '%.1f'%(states('sensor.el_leistung_tv_scheinleistung') | float(0) * 0.855) }}
+          {% endif %}
+      - default_entity_id: sensor.el_leistung_bildschirm_theke
+        name: El. Leistung Bildschirm Theke
+        unique_id: adcbeb55-5897-47e0-afc4-bfa1a7eb03d1
+        state: >-
+          {{ states("sensor.el_leistung_esp_sd_3_2") }}
+#
+#       --------------------------------
+#       --         Heizung            --
+#       --------------------------------
+#
+      - default_entity_id: sensor.el_leistung_wp_aussenteil
+        name: El. Leistung WP Aussenteil
+        unique_id: 9df3c0a6-308a-4d1b-b6a5-51381937acc5
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {{ states('sensor.el_leistung_wp_aussenteil_esp_2') | float(0) | round(0) }}
+      - default_entity_id: sensor.el_leistung_wp_innenteil
+        name: El. Leistung WP Innenteil
+        unique_id: 292af3b9-642d-42d0-b4da-088717bf9fa2
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {{ states('sensor.el_leistung_wp_innenteil_esp_2') | float(0) | round(0) }}
+      - default_entity_id: sensor.el_leistung_wp_heizstab
+        name: El. Leistung WP Heizstab
+        unique_id: 04e3ab16-f3d9-4c68-a446-657976a8ebee
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {{ states('sensor.el_leistung_wp_heizstab_esp_2') | float(0) | round(0) }}
+      - default_entity_id: sensor.el_leistung_wp_gesamt
+        name: El. Leistung WP gesamt
+        unique_id: 37fbcdaf-331e-43c9-ad4c-3ca81b0085aa
+        unit_of_measurement: 'W'
+        icon: mdi:speedometer
+        state: >-
+          {{ (states('sensor.el_leistung_wp_aussenteil_esp_2') | float(0) 
+           + states('sensor.el_leistung_wp_heizstab_esp_2') | float(0)
+           + states('sensor.el_leistung_wp_innenteil_esp_2') | float(0)) | round(0) }}
+      # max Stellwert Heizkreise Zeitverlauf
+      - default_entity_id: sensor.stellwert_heizung_zeitverlauf_max
+        name: Stellwert Heizung Zeitverlauf Max
+        unique_id: 45e431fb-e054-4963-aebb-a96872a2b026
+        unit_of_measurement: '%'
+        state: >-
+          {{ state_attr('sensor.stellwert_heizung_zeitverlauf_mean', 'max_value') }}
+      # Heizung
+      - default_entity_id: sensor.heating_room_target_temp
+        name: Heizung Zieltemperatur Raum
+        unique_id: 5b229412-a2e4-4007-9390-cc11530139f6
+        unit_of_measurement: '°C'
+        device_class: temperature
+        state: >-
+          {{ state_attr('climate.hc1_2', 'temperature') }}
+      # Warmwasser
+      - default_entity_id: sensor.water_heater_target_temp
+        name: Warmwasser Zieltemperatur
+        unique_id: 78b483d1-822e-4fa2-ba55-92e11afab9d4
+        unit_of_measurement: '°C'
+        device_class: temperature
+        state: >-
+          {{ state_attr('water_heater.dhw1_2', 'temperature') }}
+      - default_entity_id: sensor.water_heater_current_temp
+        name: Warmwasser aktuelle Temperatur
+        unique_id: dc5fd1c7-b0b9-4067-9588-676ecba1b893
+        unit_of_measurement: '°C'
+        device_class: temperature
+        state: >-
+          {{ state_attr('water_heater.dhw1_2', 'current_temperature') }}
+#
+#   --------------------------------
+#   --         Sonstiges          --
+#   --------------------------------
+#
+      - default_entity_id: sensor.target_temp_kuehlbox
+        name: Zieltemperatur Kühlbox
+        unique_id: b77edb34-1f74-4c43-b2c7-7ab05f926b3a
+        unit_of_measurement: '°C'
+        state: >-
+          {{ states('input_number.target_temp_kuehlbox') | float(0) }}
+#
+#   --------------------------------
+#   --  Binary Template Sensors   --
+#   --------------------------------
+#
   - binary_sensor:
       - default_entity_id: binary_sensor.blockade_uhrzeitanzeige_glastaster_la
         name: Blockade Uhrzeitanzeige Glastaster La
         unique_id: 88184ba8-def4-4624-91db-468e15ff7521
-        state: >
+        state: >-
           {{ states('switch.la_schlaft') == "on" and (now().hour < 6 or now().hour > 14) }}
       - default_entity_id: binary_sensor.tag_nacht_wetterstation_ersatz
         name: Tag-Nacht Wetterstation Ersatz
