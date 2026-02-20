@@ -87,6 +87,8 @@ cards:
             entity: light.wandwurfel_le
             name: Wandwürfel
             toggle: true
+          - entity: light.esp_sd_7_esp_sd_7_licht
+            name: Lichterkette
           - type: custom:slider-entity-row
             entity: light.0x680ae2fffeeb9221
             name: Stehlampe
