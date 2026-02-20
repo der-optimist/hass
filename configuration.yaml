@@ -79,7 +79,7 @@ frontend:
 
 knx: !include config_knx.yaml
 
-light: !include light.yaml
+light: #!include light.yaml
 
 logger:
   default: info

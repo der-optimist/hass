@@ -1160,12 +1160,25 @@
         state: >-
           {{ now().month in [11, 12, 1, 2, 3, 4] }}
 
-
-
-
-
-#      - default_entity_id: binary_sensor.
-#        name: 
-#        unique_id: 
-#        state: >-
-
+  - light:
+    - default_entity_id: light.bildschirm_theke_helligkeit
+      name: Bildschirm Theke Helligkeit
+      unique_id: fb829272-dd2f-47f2-8173-c9e8038d7cc1
+      turn_on:
+      - data:
+          cmd: screenOn
+        action: rest_command.bildschirm_theke_command
+      turn_off:
+      - data:
+          cmd: screenOff
+        action: rest_command.bildschirm_theke_command
+      set_level:
+      - data_template:
+          cmd: setStringSetting
+          key: screenBrightness
+          value: '{{ brightness }}'
+        action: rest_command.bildschirm_theke_command
+      level: >-
+        {{ state_attr('sensor.kiosk_browser_bildschirm_theke', 'screenBrightness')|int }}
+      state: >-
+        {{ state_attr('sensor.kiosk_browser_bildschirm_theke', 'screenOn') }}
