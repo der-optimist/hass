@@ -419,6 +419,11 @@
       event_data:
         destination: 0/3/40
       id: poweroutlet_phone_jo
+    - platform: event
+      event_type: knx_event
+      event_data:
+        destination: 0/3/0
+      id: lichterkette_le
   condition: []
   action:
     - choose:
@@ -658,6 +663,13 @@
         - service: switch.toggle
           target:
             entity_id: switch.shellyswitch25_10521c45de0b_relay_1
+      - conditions:
+        - condition: trigger
+          id: lichterkette_le
+        sequence:
+        - service: light.toggle
+          target:
+            entity_id: light.esp_sd_7_esp_sd_7_licht
       default: []
 #
 ###############################################
