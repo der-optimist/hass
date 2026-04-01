@@ -1181,6 +1181,9 @@
       - conditions:
         - condition: trigger
           id: wm_ended
+        - condition: state
+          entity_id: binary_sensor.0x00158d00049ff9dd_contact
+          state: "off"
         sequence:
         - service: timer.start
           target:
@@ -1190,6 +1193,9 @@
       - conditions:
         - condition: trigger
           id: wm_door_delay_finished
+        - condition: state
+          entity_id: binary_sensor.0x00158d00049ff9dd_contact
+          state: "off"
         sequence:
         - service: timer.start
           target:
