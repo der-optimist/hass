@@ -1121,11 +1121,7 @@
         delay_off:
           minutes: 10
         state: >-
-          {% if states('sensor.el_leistung_waschmaschine_scheinleistung') in ['unavailable', 'unknown', 'none'] %}
-            {{ states('binary_sensor.waschmaschine_ist_an') }}
-          {% else %}
-            {{ (states('sensor.el_leistung_waschmaschine_scheinleistung')|float(0) > 15) and not is_state('binary_sensor.0x00158d00049ff9dd_contact','on') }}
-          {% endif %}
+          {{ (states('sensor.el_leistung_waschmaschine_scheinleistung')|float(0) > 25) and not is_state('binary_sensor.0x00158d00049ff9dd_contact','on') }}
       - default_entity_id: binary_sensor.trockner_zieht_strom
         name: Trockner zieht Strom
         unique_id: 14b51500-e385-45dd-8b7e-066182139e62
