@@ -1,7 +1,8 @@
 template: 
   - sensor:
       - unique_id: temp_pool
-        # name: change entity_id in UI after creation
+        default_entity_id: sensor.temp_pool
+        name: Pool-Temperatur
         unit_of_measurement: "°C"
         device_class: temperature
         state: >
@@ -15,8 +16,6 @@ template:
               {{ 'unknown' }}
             {% endif %}
           {% endif %}
-        attributes:
-          friendly_name: "Pool-Temperatur"
     binary_sensor:
       - unique_id: pool_chlorinator_lauft
         state: >
@@ -46,6 +45,8 @@ template:
         attributes:
           friendly_name: "Pool - Heizung läuft"
       - unique_id: pool_auto_heizung_freigabe
+        default_entity_id: binary_sensor.pool_auto_heizung_freigabe
+        name: "Pool - Heizungsautomatik Freigabe"
         state: >
           {% set einspeisung_ohne_poolheizung = -1*(states('sensor.leistung_netz_letzte_3_min_durchschnitt') | float(0)) + (states('sensor.0xa4c138b64253ef10_power') | float(0)) %}
           {% if is_state('input_boolean.pool_heizung_auch_bezahlstrom','on') %}
@@ -57,8 +58,6 @@ template:
           {% else %}
             {{ false }}
           {% endif %}
-        attributes:
-          friendly_name: "Pool - Heizungsautomatik Freigabe"
       - unique_id: pool_auto_heizung_noetig
         state: >
          {{
