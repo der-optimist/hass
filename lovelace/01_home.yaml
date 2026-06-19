@@ -82,7 +82,7 @@ cards:
           - entity: sensor.template_temp_aussen_gefuehlt
             type: line
             name: gefühlt
-            opacity: 0
+            opacity: 0.1
 #            fill_raw: last
 #            color: '#8fa4b3'
 #            stroke_width: 3
