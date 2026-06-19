@@ -67,6 +67,7 @@ template:
           ((states('input_number.zieltemperatur_pool') | float(0))
           + (0.2 if is_state('binary_sensor.pool_auto_heizung_noetig', 'on') else 0)
           - (0.2 if is_state('binary_sensor.pool_auto_heizung_noetig', 'off') else 0))
+          and not is_state('binary_sensor.pool_heizung_zieltemperatur_heute_wohl_erreicht','on')
          }}
       - unique_id: pool_auto_heizung_heize_jetzt
         default_entity_id: binary_sensor.pool_auto_heizung_heize_jetzt
@@ -99,8 +100,8 @@ input_number:
   zieltemperatur_pool:
     name: Zieltemperatur Pool
     min: 20
-    max: 30
-    step: 0.5
+    max: 35
+    step: 1
     icon: mdi:coolant-temperature
 
 input_boolean:
@@ -116,6 +117,9 @@ input_boolean:
   chlorinator_sonderschicht_geplant:
     name: Chlor. Sonderschicht 23 Uhr
     icon: mdi:timer-sand
+  pool_heizung_zieltemperatur_heute_wohl_erreicht:
+    name: Pool Heizung Zieltemperatur wohl erreicht
+    icon: mdi:water-check-outline
 
 input_button:
   chlorinator_sonderschicht_jetzt:
@@ -325,22 +329,6 @@ automation:
             data:
               message: 'Pool heizt noch, aber der Schalter, dass die Pool-Heizung auch mit Bezahlstrom laufen soll, ist ja auch gedrückt'
               entity_id: notify.telegram_bot_726480700_507573222
-#        - conditions:
-#          - condition: trigger
-#            id: heizung_an
-#          sequence:
-#          - service: notify.send_message
-#            data:
-#              message: 'Pool-Heizung an'
-#              entity_id: notify.telegram_bot_726480700_507573222
-#        - conditions:
-#          - condition: trigger
-#            id: heizung_aus
-#          sequence:
-#          - service: notify.send_message
-#            data:
-#              message: 'Pool-Heizung aus'
-#              entity_id: notify.telegram_bot_726480700_507573222
   - id: 'e174e01b-f336-4100-a4fb-30b2c253dad1'
     alias: Pool - Heizung automatisch
     description: ''
@@ -387,19 +375,14 @@ automation:
           - condition: trigger
             id: zieltemperatur_wohl_erreicht
           sequence:
-          - service: input_number.set_value
+          - service: input_boolean.turn_on
             target:
-              entity_id: input_number.zieltemperatur_pool
-            data:
-              value: 20
+              entity_id: input_boolean.pool_heizung_zieltemperatur_heute_wohl_erreicht
       - choose:
         - conditions:
           - condition: trigger
             id: zieltemperatur_reset
           sequence:
-          - service: input_number.set_value
+          - service: input_boolean.turn_off
             target:
-              entity_id: input_number.zieltemperatur_pool
-            data:
-
-              value: 30
+              entity_id: input_boolean.pool_heizung_zieltemperatur_heute_wohl_erreicht
