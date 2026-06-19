@@ -49,63 +49,55 @@ cards:
         graph_span: 1d
         update_interval: 5min
         layout: minimal
+      
         header:
-          show: True
+          show: true
           title: Außentemperatur
           show_states: true
+      
         apex_config:
           chart:
             height: 150px
             offsetY: -50px
+      
           legend:
             show: false
-          yaxis:
-            show: true
+      
           grid:
             show: true
             xaxis:
               lines:
-                show: false 
+                show: false
             yaxis:
               lines:
                 show: true
+      
+          yaxis:
+            - id: temp_main
+              show: true
+              tickAmount: 5
+              forceNiceScale: true
+      
+            - id: temp_hidden
+              show: false   # komplett unsichtbar!
+      
         series:
           - entity: sensor.temp_wetterstation
             type: line
             name: gemessen
+            yaxis_id: temp_main   # ✅ bestimmt die Skalierung
             group_by:
               func: avg
               duration: 20min
             fill_raw: last
             color: var(--primary-color)
             stroke_width: 5
+      
           - entity: sensor.template_temp_aussen_gefuehlt
             type: line
             name: gefühlt
-            opacity: 0.1
-#            fill_raw: last
-#            color: '#8fa4b3'
-#            stroke_width: 3
-#      - type: custom:mini-graph-card
-#        style: |
-#          state__value {
-#            font-size: 2em;
-#          }
-#        entities: 
-#          - entity: sensor.temp_wetterstation
-#            name: gemessen
-#            show_state: true
-#            show_legend: true
-#          - entity: sensor.template_temp_aussen_gefuehlt
-#            name: gefühlt
-#            show_state: true
-#            show_legend: true
-#        name: Außentemperatur
-#        height: 145
-#        hour24: true
-#        decimals: 1
-#        show:
-#          labels: true
+            yaxis_id: temp_hidden  # ❌ beeinflusst Skalierung NICHT mehr
+            opacity: 0
       - type: entities
         title: "Pizza-Timer"
         show_header_toggle: false
