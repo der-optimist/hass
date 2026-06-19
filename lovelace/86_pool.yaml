@@ -54,7 +54,7 @@ cards:
         label: Automatisch Heizen
       - entity: input_number.zieltemperatur_pool
         name: Zieltemperatur
-      - entity: binary_sensor.pool_heizung_zieltemperatur_heute_wohl_erreicht
+      - entity: input_boolean.pool_heizung_zieltemperatur_heute_wohl_erreicht
         name: Heizungs-Zieltemp. wohl erreicht
       - entity: input_boolean.pool_heizung_wenn_pv_strom_uebrig
         name: wenn PV-Strom übrig
