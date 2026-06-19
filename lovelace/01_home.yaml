@@ -49,55 +49,40 @@ cards:
         graph_span: 1d
         update_interval: 5min
         layout: minimal
-      
         header:
-          show: true
+          show: True
           title: Außentemperatur
           show_states: true
-      
         apex_config:
           chart:
             height: 150px
             offsetY: -50px
-      
           legend:
             show: false
-      
+          yaxis:
+            show: true
           grid:
             show: true
             xaxis:
               lines:
-                show: false
+                show: false 
             yaxis:
               lines:
                 show: true
-      
-          yaxis:
-            - id: temp_main
-              show: true
-              tickAmount: 5
-              forceNiceScale: true
-      
-            - id: temp_hidden
-              show: false   # komplett unsichtbar!
-      
         series:
           - entity: sensor.temp_wetterstation
             type: line
             name: gemessen
-            yaxis_id: temp_main   # ✅ bestimmt die Skalierung
             group_by:
               func: avg
               duration: 20min
             fill_raw: last
             color: var(--primary-color)
             stroke_width: 5
-      
           - entity: sensor.template_temp_aussen_gefuehlt
             type: line
             name: gefühlt
-            yaxis_id: temp_hidden  # ❌ beeinflusst Skalierung NICHT mehr
-            opacity: 0
+            opacity: 0.1
       - type: entities
         title: "Pizza-Timer"
         show_header_toggle: false
