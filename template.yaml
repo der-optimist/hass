@@ -551,7 +551,7 @@
         unit_of_measurement: 'W'
         icon: mdi:speedometer
         state: >-
-          {% if states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) < 15 %}
+          {% if states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) < 25 %}
             0.4
           {% elif states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) < 360 %}
             {{ '%.1f'%(states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) * (states('sensor.el_leistung_waschmaschine_scheinleistung') | float(0) * 0.000688 + 0.561576)) }}
