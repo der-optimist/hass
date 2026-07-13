@@ -6,11 +6,11 @@ template:
         unit_of_measurement: "°C"
         device_class: temperature
         state: >
-          {% set measurement = states('sensor.aqara_sensor_pool_temperature') | float(-100) | round(1) %}
+          {% set measurement = states('sensor.sonoff_temperatur_pool_temperature') | float(-100) | round(1) %}
           {% if measurement > -100 %}
           {{ measurement }}
           {% else %}
-            {% if (now() - states.sensor.aqara_sensor_pool_temperature.last_updated) < timedelta( hours = 1) %}
+            {% if (now() - states.sensor.sonoff_temperatur_pool_temperature.last_updated) < timedelta( hours = 1) %}
               {{ states('sensor.temp_pool') }}
             {% else %}
               {{ 'unknown' }}
