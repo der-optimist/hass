@@ -3,44 +3,34 @@ include:
   entities:
     # Wetter
     - sensor.temp_aussen
-#    - sensor.luftfeuchtigkeit_aussen
     - sensor.helligkeit_wetterstation
-#    - binary_sensor.regenalarm
-#    - sensor.windgeschwindigkeit_wetterstation_kmh
     # Heizung
-#    - sensor.water_heater_target_temp
-#    - sensor.water_heater_current_temp
-#    - sensor.supply_temp_setpoint
-#    - sensor.actual_supply_temp
-#    - sensor.stellwert_heizung_aktueller_maxwert
-#    - sensor.heating_room_target_temp
     - sensor.bosch_health_status
     - sensor.bosch_notifications
     # Strom
     - input_number.strompreis
-#    - sensor.einspeiselimit_watt
-#    - sensor.anteil_el_leistung_netzbezug
-#    - sensor.anteil_el_leistung_pv_nicht_einspeisbar
-#    - sensor.anteil_el_leistung_pv_einspeisbar
-#    - sensor.strompreis_aktuell_effektiv_euro
-#    - sensor.strompreis_aktuell_abrechnung_euro
-#    - binary_sensor.template_water_heater_pv_power_sufficient
-#    - binary_sensor.template_water_heater_pv_boost_condition
-  entity_globs:
-#    - sensor.temp_*
-#    - sensor.onewire*
-    - sensor.el_leistung*
-#    - sensor.kosten*
-    - sensor.stromz*
-#    - sensor.einsparung*
-    - sensor.pv*
-#    - sensor.template_einsparung*
-    - sensor.stellwert_heizung*
-    - sensor.sollwert_heizung*
-#    - binary_sensor.pm*
-#    - sensor.*_diesel
-#    - sensor.*_super
-#    - sensor.*_e10
-#    - binary_sensor.*_status
-#  domains:
-#    - climate
+    - sensor.stromzaehler_netzbezug
+    - sensor.stromzaehler_netzeinspeisung
+    - sensor.stromzaehler_pv_ac_gesamt
+    - sensor.el_leistung_wp_gesamt
+    - sensor.el_leistung_wp_innenteil
+    - sensor.el_leistung_wp_heizstab
+    - sensor.el_leistung_wp_aussenteil
+    - sensor.el_leistung_verbrauch_gesamt
+    - sensor.el_leistung_stromzaehler_netzbezug
+    - sensor.el_leistung_trockner
+    - sensor.el_leistung_waschmaschine
+    - sensor.el_leistung_tv
+    - sensor.el_leistung_spulmaschine
+    - sensor.el_leistung_pv_ac
+    - sensor.el_leistung_pv_dc
+    - sensor.el_leistung_pv_dc_string1
+    - sensor.el_leistung_pv_dc_string2
+    - sensor.el_leistung_luftungsanlage
+    - sensor.el_leistung_mixi
+    - sensor.el_leistung_netz
+    - sensor.el_leistung_kochfeld
+    - sensor.el_leistung_gefrierschrank
+    - sensor.el_leistung_eigenverbrauch
+    - sensor.el_leistung_einspeisung
+    - sensor.el_leistung_backofen
