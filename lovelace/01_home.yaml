@@ -72,17 +72,17 @@ cards:
         series:
           - entity: sensor.temp_wetterstation
             type: line
-            name: gemessen
+#            name: gemessen
             group_by:
               func: avg
               duration: 20min
             fill_raw: last
             color: var(--primary-color)
             stroke_width: 5
-          - entity: sensor.template_temp_aussen_gefuehlt
-            type: line
-            name: gefühlt
-            opacity: 0.1
+#          - entity: sensor.template_temp_aussen_gefuehlt
+#            type: line
+#            name: gefühlt
+#            opacity: 0.1
       - type: entities
         title: "Pizza-Timer"
         show_header_toggle: false
