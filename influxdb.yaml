@@ -7,6 +7,18 @@ include:
     # Heizung
     - sensor.bosch_health_status
     - sensor.bosch_notifications
+    # Heizung Controller Foresight
+    - sensor.temp_nahzimmer_pm
+    - sensor.temp_bad_eg_pm
+    - sensor.temp_bad_og_pm
+    - sensor.temp_esszimmer_pm
+    - sensor.temp_flur_og_pm
+    - sensor.temp_gastezimmer_pm
+    - sensor.temp_la_pm
+    - sensor.temp_le_pm
+    - sensor.temp_schlafzimmer_pm
+    - sensor.onewire_15_estrich_wc_1
+    - sensor.temp_esszimmer_pm
     # Strom
     - input_number.strompreis
     - sensor.stromzaehler_netzbezug
