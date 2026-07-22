@@ -2292,7 +2292,7 @@
         sequence:
         - service: telegram_bot.send_message
           data:
-            target: "{{ trigger.event.data.user_id }}"
+            chat_id: "{{ trigger.event.data.user_id }}"
             parse_mode: markdown
             message: >
               *Preise Diesel*
@@ -2330,7 +2330,7 @@
         sequence:
         - service: telegram_bot.send_message
           data:
-            target: "{{ trigger.event.data.user_id }}"
+            chat_id: "{{ trigger.event.data.user_id }}"
             parse_mode: markdown
             message: >
               *Preise E10*
@@ -2368,7 +2368,7 @@
         sequence:
         - service: telegram_bot.send_message
           data:
-            target: "{{ trigger.event.data.user_id }}"
+            chat_id: "{{ trigger.event.data.user_id }}"
             parse_mode: markdown
             message: >
               *Preise Super*
@@ -2406,7 +2406,7 @@
         sequence:
         - service: telegram_bot.send_message
           data:
-            target: "{{ trigger.event.data.user_id }}"
+            chat_id: "{{ trigger.event.data.user_id }}"
             parse_mode: markdown
             message: >
               *Preise E10*
@@ -2440,7 +2440,7 @@
                 {{ states('sensor.esso_wangener_str_94_super_e10') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
         - service: telegram_bot.send_message
           data:
-            target: "{{ trigger.event.data.user_id }}"
+            chat_id: "{{ trigger.event.data.user_id }}"
             parse_mode: markdown
             message: >
               *Preise Super*
@@ -2474,7 +2474,7 @@
                 {{ states('sensor.esso_wangener_str_94_super') | replace('unknown','--- ') }}€ Esso ({{ states('binary_sensor.esso_wangener_str_94_status') | bool(none) | iif('offen','geschlossen','unbekannt') }})
         - service: telegram_bot.send_message
           data:
-            target: "{{ trigger.event.data.user_id }}"
+            chat_id: "{{ trigger.event.data.user_id }}"
             parse_mode: markdown
             message: >
               *Preise Diesel*
@@ -2573,7 +2573,7 @@
         sequence:
         - service: telegram_bot.send_message
           data:
-            target: "{{ trigger.event.data.user_id }}"
+            chat_id: "{{ trigger.event.data.user_id }}"
             parse_mode: markdown
             message: >      
               Außen gemessen: {{ states('sensor.temp_aussen') | round(1) }} °C
