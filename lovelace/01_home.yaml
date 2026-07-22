@@ -72,7 +72,7 @@ cards:
         series:
           - entity: sensor.temp_wetterstation
             type: line
-#            name: gemessen
+            name: Außensensor
             group_by:
               func: avg
               duration: 20min
