@@ -61,6 +61,7 @@ cards:
             show: false
           yaxis:
             show: true
+            tickAmount: 4
           grid:
             show: true
             xaxis:
